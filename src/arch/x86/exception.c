@@ -587,13 +587,13 @@ struct intr_gate {
    called. */
 extern u8 vec0[], vec1[], vec2[], vec3[], vec4[], vec5[], vec6[], vec7[];
 extern u8 vec8[], vec9[], vec10[], vec11[], vec12[], vec13[], vec14[], vec15[];
-extern u8 vec16[], vec17[], vec18[], vec19[];
+extern u8 vec16[], vec17[], vec18[], vec19[], vec13_msr_handler[];
 
 static const uintptr_t intr_entries[] = {
 	(uintptr_t)vec0, (uintptr_t)vec1, (uintptr_t)vec2, (uintptr_t)vec3,
 	(uintptr_t)vec4, (uintptr_t)vec5, (uintptr_t)vec6, (uintptr_t)vec7,
 	(uintptr_t)vec8, (uintptr_t)vec9, (uintptr_t)vec10, (uintptr_t)vec11,
-	(uintptr_t)vec12, (uintptr_t)vec13, (uintptr_t)vec14, (uintptr_t)vec15,
+	(uintptr_t)vec12, (uintptr_t)vec13_msr_handler, (uintptr_t)vec14, (uintptr_t)vec15,
 	(uintptr_t)vec16, (uintptr_t)vec17, (uintptr_t)vec18, (uintptr_t)vec19,
 };
 

@@ -18,6 +18,8 @@ struct fsp_notify_phase_data {
 	enum timestamp_id timestamp_after;
 };
 
+bool msr_not_exists = 0;
+
 static const struct fsp_notify_phase_data notify_data[] = {
 	{
 		.notify_phase     = AFTER_PCI_ENUM,
@@ -70,11 +72,49 @@ static void fsp_notify(enum fsp_notify_phase phase)
 		die("Notify_phase_entry_offset is zero!\n");
 
 	fspnotify = (void *)(uintptr_t)(fsps_hdr.image_base +
-			    fsps_hdr.notify_phase_entry_offset);
+				fsps_hdr.notify_phase_entry_offset);
 	fsp_before_debug_notify(fspnotify, &notify_params);
 
 	timestamp_add_now(data->timestamp_before);
 	post_code(data->post_code_before);
+
+	if (data->post_code_after == POSTCODE_FSP_NOTIFY_AFTER_END_OF_FIRMWARE) {
+		// This is the step that can be skipped in CSE init if we can read the magic MSR
+
+		// struct intr_gate backup = {
+		// 	.offset_0 = idt[13].offset_0,
+		// 	.segsel = idt[13].segsel,
+		// 	.flags = idt[13].flags,
+		// 	.offset_1 = idt[13].offset_1,
+		// #if ENV_X86_64
+		// 	.offset_2 = idt[13].offset_2,
+		// 	.reserved = idt[13].reserved,
+		// #endif
+		// };
+
+		// static const uintptr_t vec13_msr_handler_ptr = (uintptr_t)vec13_msr_handler;
+		// idt[13].offset_0 = vec13_msr_handler_ptr;
+		// idt[13].offset_1 = vec13_msr_handler_ptr >> 16;
+
+		// addr:
+		// printk(BIOS_INFO, "INT13: in caller\n\tCurrent addr %p\n\tvec13_msr_handler_ptr: 0x%lx\n", &&addr, vec13_msr_handler_ptr);
+		// printk(BIOS_INFO, "orig offset_0 0x%x\norig offset_1 0x%x\n", backup.offset_0, backup.offset_1);
+		// printk(BIOS_INFO, "new offset_0  0x%x\nnew offset_1  0x%x\n", idt[13].offset_0, idt[13].offset_1);
+		// printk(BIOS_INFO, "local_arr[0] 0x%lx", intr_entries[0]);
+
+		printk(BIOS_INFO, "[MSR] Pre rdmsr\n");
+		unsigned int msr = 0x1e6; // CRBUS register 0x2e6 mapping to MSR ('Undocumented x86 Instructions' - Ermolov et al.)
+		// unsigned int msr = 0x17; // IA32_PLATFORM_ID
+		unsigned int low = 0, high = 0;
+		__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (msr));
+		printk(BIOS_INFO, "[MSR]\n\t0x%x value: 0x%x%x\n\tmsr_not_exists: %d\n", msr, high, low, msr_not_exists);
+
+		// idt[13].offset_0 = backup.offset_0;
+		// idt[13].offset_1 = backup.offset_1;
+
+		// // __asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (msr));
+		// // printk(BIOS_INFO, "[MSR]\n\t0x%x value: 0x%x%x\n\nmsr_not_exists: %d", msr, high, low, msr_not_exists);
+	}
 
 	/* FSP disables the interrupt handler so remove debug exceptions temporarily  */
 	null_breakpoint_disable();
