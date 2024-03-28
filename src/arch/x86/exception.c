@@ -11,6 +11,7 @@
 #include <cpu/x86/lapic.h>
 #include <stdint.h>
 #include <string.h>
+#include "exception.h"
 
 #if CONFIG(GDB_STUB)
 
@@ -568,32 +569,11 @@ void x86_exception(struct eregs *info)
 
 #define IGATE_FLAGS (GATE_P | GATE_DPL(0) | GATE_SIZE_32 | (0x6 << 8))
 
-struct intr_gate {
-	uint16_t offset_0;
-	uint16_t segsel;
-	uint16_t flags;
-	uint16_t offset_1;
-#if ENV_X86_64
-	uint32_t offset_2;
-	uint32_t reserved;
-#endif
-} __packed;
-
-/* Even though the vecX symbols are interrupt entry points just treat them
-   like data to more easily get the pointer values in C. Because IDT entries
-   format splits the offset field up, one can't use the linker to resolve
-   parts of a relocation on x86 ABI. An array of pointers is used to gather
-   the symbols. The IDT is initialized at runtime when exception_init() is
-   called. */
-extern u8 vec0[], vec1[], vec2[], vec3[], vec4[], vec5[], vec6[], vec7[];
-extern u8 vec8[], vec9[], vec10[], vec11[], vec12[], vec13[], vec14[], vec15[];
-extern u8 vec16[], vec17[], vec18[], vec19[], vec13_msr_handler[];
-
-static const uintptr_t intr_entries[] = {
+uintptr_t intr_entries[] = {
 	(uintptr_t)vec0, (uintptr_t)vec1, (uintptr_t)vec2, (uintptr_t)vec3,
 	(uintptr_t)vec4, (uintptr_t)vec5, (uintptr_t)vec6, (uintptr_t)vec7,
 	(uintptr_t)vec8, (uintptr_t)vec9, (uintptr_t)vec10, (uintptr_t)vec11,
-	(uintptr_t)vec12, (uintptr_t)vec13_msr_handler, (uintptr_t)vec14, (uintptr_t)vec15,
+	(uintptr_t)vec12, (uintptr_t)vec13, (uintptr_t)vec14, (uintptr_t)vec15,
 	(uintptr_t)vec16, (uintptr_t)vec17, (uintptr_t)vec18, (uintptr_t)vec19,
 };
 

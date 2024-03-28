@@ -8,6 +8,8 @@
 #include <mode_switch.h>
 #include <timestamp.h>
 #include <types.h>
+#include <arch/exception.h>
+#include <arch/x86/exception.h>
 
 struct fsp_notify_phase_data {
 	enum fsp_notify_phase notify_phase;
@@ -81,29 +83,12 @@ static void fsp_notify(enum fsp_notify_phase phase)
 	if (data->post_code_after == POSTCODE_FSP_NOTIFY_AFTER_END_OF_FIRMWARE) {
 		// This is the step that can be skipped in CSE init if we can read the magic MSR
 
-		// struct intr_gate backup = {
-		// 	.offset_0 = idt[13].offset_0,
-		// 	.segsel = idt[13].segsel,
-		// 	.flags = idt[13].flags,
-		// 	.offset_1 = idt[13].offset_1,
-		// #if ENV_X86_64
-		// 	.offset_2 = idt[13].offset_2,
-		// 	.reserved = idt[13].reserved,
-		// #endif
-		// };
-
-		// static const uintptr_t vec13_msr_handler_ptr = (uintptr_t)vec13_msr_handler;
-		// idt[13].offset_0 = vec13_msr_handler_ptr;
-		// idt[13].offset_1 = vec13_msr_handler_ptr >> 16;
-
-		// addr:
-		// printk(BIOS_INFO, "INT13: in caller\n\tCurrent addr %p\n\tvec13_msr_handler_ptr: 0x%lx\n", &&addr, vec13_msr_handler_ptr);
-		// printk(BIOS_INFO, "orig offset_0 0x%x\norig offset_1 0x%x\n", backup.offset_0, backup.offset_1);
-		// printk(BIOS_INFO, "new offset_0  0x%x\nnew offset_1  0x%x\n", idt[13].offset_0, idt[13].offset_1);
-		// printk(BIOS_INFO, "local_arr[0] 0x%lx", intr_entries[0]);
-
 		#define STR_HELPER(x) #x
 		#define STR(x) STR_HELPER(x)
+
+		/* Install our exception handler */
+		intr_entries[13] = (uintptr_t)vec13_msr_handler;
+		exception_init();
 
 		uint32_t low = 0, high = 0; // These variables will be populated with garbage if the MSR doesn't exist
 		__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
@@ -113,11 +98,12 @@ static void fsp_notify(enum fsp_notify_phase phase)
 			printk(BIOS_INFO, "[MSR] " STR(APL_UCODE_CRBUS_UNLOCK) " found! Red unlocked already :)\n");
 		}
 
-		// idt[13].offset_0 = backup.offset_0;
-		// idt[13].offset_1 = backup.offset_1;
+		/* Restore the original interrupt handler */
+		intr_entries[13] = (uintptr_t)vec13;
+		exception_init();
 
-		// // __asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (msr));
-		// // printk(BIOS_INFO, "[MSR]\n\t0x%x value: 0x%x%x\n\nmsr_not_exists: %d", msr, high, low, msr_not_exists);
+		// Now this fails and is not caught
+		__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
 	}
 
 	/* FSP disables the interrupt handler so remove debug exceptions temporarily  */
