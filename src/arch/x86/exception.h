@@ -31,6 +31,8 @@ extern u8 vec16[], vec17[], vec18[], vec19[], vec13_msr_handler[];
 
 extern uintptr_t intr_entries[];
 
+extern struct intr_gate idt[] __aligned(8);
+
 #endif // !ASSEMBLER
 
 #endif

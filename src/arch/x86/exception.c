@@ -577,7 +577,7 @@ uintptr_t intr_entries[] = {
 	(uintptr_t)vec16, (uintptr_t)vec17, (uintptr_t)vec18, (uintptr_t)vec19,
 };
 
-static struct intr_gate idt[ARRAY_SIZE(intr_entries)] __aligned(8);
+struct intr_gate idt[ARRAY_SIZE(intr_entries)] __aligned(8);
 
 static inline uint16_t get_cs(void)
 {

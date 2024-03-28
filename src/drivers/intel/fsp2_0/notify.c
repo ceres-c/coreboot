@@ -87,8 +87,8 @@ static void fsp_notify(enum fsp_notify_phase phase)
 		#define STR(x) STR_HELPER(x)
 
 		/* Install our exception handler */
-		intr_entries[13] = (uintptr_t)vec13_msr_handler;
-		exception_init();
+		idt[13].offset_0 = (uintptr_t)vec13_msr_handler;
+		idt[13].offset_1 = (uintptr_t)vec13_msr_handler >> 16;
 
 		uint32_t low = 0, high = 0; // These variables will be populated with garbage if the MSR doesn't exist
 		__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
@@ -99,8 +99,8 @@ static void fsp_notify(enum fsp_notify_phase phase)
 		}
 
 		/* Restore the original interrupt handler */
-		intr_entries[13] = (uintptr_t)vec13;
-		exception_init();
+		idt[13].offset_0 = (uintptr_t)vec13;
+		idt[13].offset_1 = (uintptr_t)vec13 >> 16;
 
 		// Now this fails and is not caught
 		__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
