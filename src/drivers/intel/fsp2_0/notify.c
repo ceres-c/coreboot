@@ -102,12 +102,16 @@ static void fsp_notify(enum fsp_notify_phase phase)
 		// printk(BIOS_INFO, "new offset_0  0x%x\nnew offset_1  0x%x\n", idt[13].offset_0, idt[13].offset_1);
 		// printk(BIOS_INFO, "local_arr[0] 0x%lx", intr_entries[0]);
 
-		printk(BIOS_INFO, "[MSR] Pre rdmsr\n");
-		unsigned int msr = 0x1e6; // CRBUS register 0x2e6 mapping to MSR ('Undocumented x86 Instructions' - Ermolov et al.)
-		// unsigned int msr = 0x17; // IA32_PLATFORM_ID
-		unsigned int low = 0, high = 0;
-		__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (msr));
-		printk(BIOS_INFO, "[MSR]\n\t0x%x value: 0x%x%x\n\tmsr_not_exists: %d\n", msr, high, low, msr_not_exists);
+		#define STR_HELPER(x) #x
+		#define STR(x) STR_HELPER(x)
+
+		uint32_t low = 0, high = 0; // These variables will be populated with garbage if the MSR doesn't exist
+		__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
+		if (msr_not_exists) { // Exception handler sets this flag
+			printk(BIOS_INFO, "[MSR] " STR(APL_UCODE_CRBUS_UNLOCK) " doesn't exist :(\n");
+		} else {
+			printk(BIOS_INFO, "[MSR] " STR(APL_UCODE_CRBUS_UNLOCK) " found! Red unlocked already :)\n");
+		}
 
 		// idt[13].offset_0 = backup.offset_0;
 		// idt[13].offset_1 = backup.offset_1;

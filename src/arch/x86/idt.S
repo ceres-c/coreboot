@@ -218,58 +218,18 @@ int_hand:
 .extern msr_not_exists
 .global vec13_msr_handler
 vec13_msr_handler:
-# movl	$1, msr_not_exists
 
-# addl	$16, %esp /* pop of the error code */
-# iret
-
-push	$0 /* vector */
 /* At this point, on x86-32, on the stack there is:
-	*  0(%esp) vector
-	*  4(%esp) error code
-	*  8(%esp) eip
-	* 12(%esp) cs
-	* 16(%esp) eflags
+	*  0(%esp) error code
+	*  4(%esp) eip
+	*  8(%esp) cs
+	* 12(%esp) eflags
 	*/
 
-// Add 2 to eip to skip the faulty `rdmsr` instruction
-addl	$2, 8(%esp)
+addl	$2, 4(%esp) /* skip the instruction that caused the exception (EIP points to rdmrs itself) */
+addl	$4, %esp /* pop of the error code */
 
-# pushl	%edi
-# pushl	%esi
-# pushl	%ebp
+/* Write global to signal this interrupt executed */
+movl	$1, msr_not_exists
 
-# /* Original stack pointer */
-# leal	32(%esp), %ebp
-# pushl	%ebp
-# pushl	%ebx
-# pushl	%edx
-# pushl	%ecx
-# pushl	%eax
-
-# /* Save pointer to eregs structure */
-# movl	%esp, %ebp
-# /* Align stack to 16 bytes. */
-# andl	$0xfffffff0, %esp
-# /* Save original stack pointer while keeping stack alignment. This
-# 	value is also the eregs argument x86_exception(). */
-# sub	$12, %esp
-# pushl	%ebp	/* Pointer to structure on the stack */
-# call	dioporco
-
-# // Add 2 to the eip to return to the next instruction
-# addl	$2, 8(%esp)
-
-# pop	%esp	/* Unwind the stack alignment and argument passing. */
-
-# popl	%eax
-# popl	%ecx
-# popl	%edx
-# popl	%ebx
-# popl	%ebp	/* Ignore saved %esp value */
-# popl	%ebp
-# popl	%esi
-# popl	%edi
-
-addl	$8, %esp /* pop of the vector and error code */
 iret
