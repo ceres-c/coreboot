@@ -18,6 +18,14 @@
 #include <timestamp.h>
 #include <types.h>
 #include <mode_switch.h>
+#include <arch/exception.h>
+#include <arch/x86/exception.h>
+#include <cpu/x86/msr.h>
+
+#define STR_HELPER(x) #x
+#define STR(x) STR_HELPER(x)
+
+bool msr_not_exists = 0;
 
 struct fsp_header fsps_hdr;
 
@@ -253,6 +261,22 @@ void preload_fsps(void)
 
 void fsp_silicon_init(void)
 {
+	/* Install our exception handler */
+	idt[13].offset_0 = (uintptr_t)vec13_msr_handler;
+	idt[13].offset_1 = (uintptr_t)vec13_msr_handler >> 16;
+
+	uint32_t low = 0, high = 0; // These variables will be populated with garbage if the MSR doesn't exist
+	__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
+	if (msr_not_exists) { // Exception handler sets this flag
+		printk(BIOS_INFO, "[MSR] " STR(APL_UCODE_CRBUS_UNLOCK) " doesn't exist :(\n");
+	} else {
+		printk(BIOS_INFO, "[MSR] " STR(APL_UCODE_CRBUS_UNLOCK) " found! Red unlocked already :)\n");
+	}
+
+	/* Restore the original interrupt handler */
+	idt[13].offset_0 = (uintptr_t)vec13;
+	idt[13].offset_1 = (uintptr_t)vec13 >> 16;
+
 	fsps_load();
 	do_silicon_init(&fsps_hdr);
 

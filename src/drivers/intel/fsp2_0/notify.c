@@ -8,8 +8,6 @@
 #include <mode_switch.h>
 #include <timestamp.h>
 #include <types.h>
-#include <arch/exception.h>
-#include <arch/x86/exception.h>
 
 struct fsp_notify_phase_data {
 	enum fsp_notify_phase notify_phase;
@@ -19,8 +17,6 @@ struct fsp_notify_phase_data {
 	enum timestamp_id timestamp_before;
 	enum timestamp_id timestamp_after;
 };
-
-bool msr_not_exists = 0;
 
 static const struct fsp_notify_phase_data notify_data[] = {
 	{
@@ -79,32 +75,6 @@ static void fsp_notify(enum fsp_notify_phase phase)
 
 	timestamp_add_now(data->timestamp_before);
 	post_code(data->post_code_before);
-
-	if (data->post_code_after == POSTCODE_FSP_NOTIFY_AFTER_END_OF_FIRMWARE) {
-		// This is the step that can be skipped in CSE init if we can read the magic MSR
-
-		#define STR_HELPER(x) #x
-		#define STR(x) STR_HELPER(x)
-
-		/* Install our exception handler */
-		idt[13].offset_0 = (uintptr_t)vec13_msr_handler;
-		idt[13].offset_1 = (uintptr_t)vec13_msr_handler >> 16;
-
-		uint32_t low = 0, high = 0; // These variables will be populated with garbage if the MSR doesn't exist
-		__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
-		if (msr_not_exists) { // Exception handler sets this flag
-			printk(BIOS_INFO, "[MSR] " STR(APL_UCODE_CRBUS_UNLOCK) " doesn't exist :(\n");
-		} else {
-			printk(BIOS_INFO, "[MSR] " STR(APL_UCODE_CRBUS_UNLOCK) " found! Red unlocked already :)\n");
-		}
-
-		/* Restore the original interrupt handler */
-		idt[13].offset_0 = (uintptr_t)vec13;
-		idt[13].offset_1 = (uintptr_t)vec13 >> 16;
-
-		// Now this fails and is not caught
-		__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
-	}
 
 	/* FSP disables the interrupt handler so remove debug exceptions temporarily  */
 	null_breakpoint_disable();
