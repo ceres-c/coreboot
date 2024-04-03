@@ -3,7 +3,6 @@
 #include <console/console.h> // TODO remove if I get rid of printk
 #include <fsp/util.h>
 #include <arch/exception.h>
-#include <arch/x86/exception.h>
 #include <cpu/x86/msr.h>
 
 #define STR_HELPER(x) #x

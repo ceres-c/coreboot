@@ -11,7 +11,6 @@
 #include <cpu/x86/lapic.h>
 #include <stdint.h>
 #include <string.h>
-#include "exception.h"
 
 #if CONFIG(GDB_STUB)
 
