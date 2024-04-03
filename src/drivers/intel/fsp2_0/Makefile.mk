@@ -118,11 +118,19 @@ $(obj)/Fsp_T.fd: $(call strip_quotes,$(CONFIG_FSP_FD_PATH)) $(obj)/Fsp_M.fd
 	true
 endif
 
-ifeq ($(CONFIG_PLATFORM_USES_SECOND_FSP)$(CONFIG_FSP_FULL_FD),yy)
+ifeq ($(CONFIG_PLATFORM_USES_SECOND_FSP)$(CONFIG_FSP_FULL_FD)$(CONFIG_RED_UNLOCK),yyn)
 $(obj)/Fsp_2_M.fd: $(call strip_quotes,$(CONFIG_FSP_FD_PATH_2)) $(DOTCONFIG)
 	python 3rdparty/fsp/Tools/SplitFspBin.py split -f $(CONFIG_FSP_FD_PATH_2) -o "$(obj)" -n "Fsp_2.fd"
 
 $(obj)/Fsp_2_S.fd: $(call strip_quotes,$(CONFIG_FSP_FD_PATH_2)) $(obj)/Fsp_M.fd
+	true
+endif
+
+ifeq ($(CONFIG_PLATFORM_USES_SECOND_FSP)$(CONFIG_FSP_FULL_FD)$(CONFIG_RED_UNLOCK),yyy)
+$(obj)/Fsp_2_M.fd: $(call strip_quotes,$(CONFIG_FSP_FD_PATH)) $(DOTCONFIG)
+	python 3rdparty/fsp/Tools/SplitFspBin.py split -f $(CONFIG_FSP_FD_PATH) -o "$(obj)" -n "Fsp_2.fd"
+
+$(obj)/Fsp_2_S.fd: $(call strip_quotes,$(CONFIG_FSP_FD_PATH)) $(obj)/Fsp_M.fd
 	true
 endif
 

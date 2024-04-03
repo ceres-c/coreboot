@@ -18,14 +18,6 @@
 #include <timestamp.h>
 #include <types.h>
 #include <mode_switch.h>
-#include <arch/exception.h>
-#include <arch/x86/exception.h>
-#include <cpu/x86/msr.h>
-
-#define STR_HELPER(x) #x
-#define STR(x) STR_HELPER(x)
-
-bool msr_not_exists = 0;
 
 struct fsp_header fsps_hdr;
 
@@ -227,8 +219,10 @@ void fsps_load(void)
 	struct prog *fsps = &fspld.fsp_prog;
 	static int load_done;
 
-	if (load_done)
+	if (load_done) {
+		printk(BIOS_DEBUG, "FSPS already loaded\n"); // TODO: remove
 		return;
+	}
 
 	timestamp_add_now(TS_FSP_SILICON_INIT_LOAD);
 
@@ -240,6 +234,9 @@ void fsps_load(void)
 		load_done = 1;
 		return;
 	}
+
+	printk(BIOS_DEBUG, "FSPS loaded from %s\n", fsps_cbfs); // TODO: remove
+	printk(BIOS_DEBUG, "\tstart: %p\n\tsize: 0x%lx\n", fspld.fsp_prog.start, fspld.fsp_prog.size); // TODO: remove
 
 	if (fsp_load_component(&fspld, &fsps_hdr) != CB_SUCCESS)
 		die("FSP-S failed to load\n");
@@ -261,22 +258,6 @@ void preload_fsps(void)
 
 void fsp_silicon_init(void)
 {
-	/* Install our exception handler */
-	idt[13].offset_0 = (uintptr_t)vec13_msr_handler;
-	idt[13].offset_1 = (uintptr_t)vec13_msr_handler >> 16;
-
-	uint32_t low = 0, high = 0; // These variables will be populated with garbage if the MSR doesn't exist
-	__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
-	if (msr_not_exists) { // Exception handler sets this flag
-		printk(BIOS_INFO, "[MSR] " STR(APL_UCODE_CRBUS_UNLOCK) " doesn't exist :(\n");
-	} else {
-		printk(BIOS_INFO, "[MSR] " STR(APL_UCODE_CRBUS_UNLOCK) " found! Red unlocked already :)\n");
-	}
-
-	/* Restore the original interrupt handler */
-	idt[13].offset_0 = (uintptr_t)vec13;
-	idt[13].offset_1 = (uintptr_t)vec13 >> 16;
-
 	fsps_load();
 	do_silicon_init(&fsps_hdr);
 

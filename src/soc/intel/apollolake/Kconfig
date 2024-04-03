@@ -257,6 +257,25 @@ config IFWI_FILE_NAME
 	help
 	  Name of file to store in the IFWI region.
 
+config RED_UNLOCK
+	bool "Build with red unlock support"
+	depends on NEED_IFWI
+	default n
+
+config IFWI_FMAP_NAME
+	string "Name of FMAP region to pull red unlocked IFWI into"
+	depends on RED_UNLOCK
+	default "IFWI_RED"
+	help
+	  Name of FMAP region to write red unlocked IFWI.
+
+config IFWI_RED_UNLOCK_FILE_NAME
+	string "Path of red unlocked file to write to IFWI region"
+	depends on RED_UNLOCK
+	default "3rdparty/blobs/mainboard/\$(CONFIG_MAINBOARD_DIR)/ifwi_red_unlocked.bin"
+	help
+	  Name of red unlocked file to store in the IFWI region.
+
 config MAX_ROOT_PORTS
 	int
 	default 6

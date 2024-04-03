@@ -215,7 +215,8 @@ int_hand:
 	iret
 #endif
 
-.extern msr_not_exists
+#if CONFIG(RED_UNLOCK)
+.extern msr_exists
 .global vec13_msr_handler
 vec13_msr_handler:
 
@@ -230,6 +231,8 @@ addl	$2, 4(%esp) /* skip the instruction that caused the exception (EIP points t
 addl	$4, %esp /* pop of the error code */
 
 /* Write global to signal this interrupt executed */
-movl	$1, msr_not_exists
+movl	$0, msr_exists
 
 iret
+
+#endif

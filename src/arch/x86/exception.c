@@ -579,6 +579,10 @@ uintptr_t intr_entries[] = {
 
 struct intr_gate idt[ARRAY_SIZE(intr_entries)] __aligned(8);
 
+#if CONFIG(RED_UNLOCK)
+bool msr_exists = true; // Assume it does, until we check. The exception handler will set this to false if it doesn't.
+#endif
+
 static inline uint16_t get_cs(void)
 {
 	uint16_t segment;

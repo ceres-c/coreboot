@@ -113,6 +113,12 @@ flashregion_5_reserved.bin
 [coreboot]$ make olddefconfig
 ```
 
+### Red unlock
+If you want to build a coreboot image that will always boot in red unlock mode, you can also enable the additional following option:
+```bash
+[coreboot]$ ./util/scripts/config --enable RED_UNLOCK
+[coreboot]$ ./util/scripts/config --set-str IFWI_RED_UNLOCK_FILE_NAME "<red_unlocked_flashregion_1_bios.bin>"
+
 ### Building
 ```bash
 [coreboot]$ make

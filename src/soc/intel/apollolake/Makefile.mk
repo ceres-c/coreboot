@@ -102,6 +102,9 @@ ramstage-y += gpio_apl.c
 verstage-y += gpio_apl.c
 endif
 
+romstage-$(CONFIG_RED_UNLOCK) += apollolake.c
+ramstage-$(CONFIG_RED_UNLOCK) += apollolake.c
+
 CPPFLAGS_common += -I$(src)/soc/intel/apollolake/include
 
 # Since FSP-M runs in CAR we need to relocate it to a specific address

@@ -76,4 +76,10 @@ config CONSOLE_POST
 	bool
 	default y
 
+config RED_UNLOCK
+	bool
+	default n
+	select PLATFORM_USES_SECOND_FSP
+	select IDT_IN_EVERY_STAGE
+
 endif

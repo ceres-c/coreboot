@@ -4,9 +4,7 @@
 #include <commonlib/helpers.h>
 #include <stdint.h>
 
-#if CONFIG(GDB_STUB) // Kek don't know how to negate this
-
-#else
+#if (!CONFIG(GDB_STUB))
 
 struct intr_gate {
 	uint16_t offset_0;
@@ -32,6 +30,8 @@ extern u8 vec16[], vec17[], vec18[], vec19[], vec13_msr_handler[];
 extern uintptr_t intr_entries[];
 
 extern struct intr_gate idt[] __aligned(8);
+
+extern bool msr_exists;
 
 #endif // !ASSEMBLER
 
