@@ -230,7 +230,7 @@ vec13_msr_handler:
 addl	$2, 4(%esp) /* skip the instruction that caused the exception (EIP points to rdmrs itself) */
 addl	$4, %esp /* pop of the error code */
 
-/* Write global to signal this interrupt executed */
+/* Write global to signal we ended up in this exception handler */
 movl	$0, msr_exists
 
 iret

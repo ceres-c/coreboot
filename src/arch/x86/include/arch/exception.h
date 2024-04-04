@@ -34,8 +34,6 @@ extern uintptr_t intr_entries[];
 
 extern struct intr_gate idt[] __aligned(8);
 
-extern bool msr_exists;
-
 #endif
 
 #if CONFIG(IDT_IN_EVERY_STAGE) || ENV_RAMSTAGE
