@@ -235,9 +235,6 @@ void fsps_load(void)
 		return;
 	}
 
-	printk(BIOS_DEBUG, "FSPS loaded from %s\n", fsps_cbfs); // TODO: remove
-	printk(BIOS_DEBUG, "\tstart: %p\n\tsize: 0x%lx\n", fspld.fsp_prog.start, fspld.fsp_prog.size); // TODO: remove
-
 	if (fsp_load_component(&fspld, &fsps_hdr) != CB_SUCCESS)
 		die("FSP-S failed to load\n");
 

@@ -262,13 +262,6 @@ config RED_UNLOCK
 	depends on NEED_IFWI
 	default n
 
-config IFWI_FMAP_NAME
-	string "Name of FMAP region to pull red unlocked IFWI into"
-	depends on RED_UNLOCK
-	default "IFWI_RED"
-	help
-	  Name of FMAP region to write red unlocked IFWI.
-
 config IFWI_RED_UNLOCK_FILE_NAME
 	string "Path of red unlocked file to write to IFWI region"
 	depends on RED_UNLOCK

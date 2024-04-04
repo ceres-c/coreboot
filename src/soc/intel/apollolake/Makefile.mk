@@ -153,6 +153,15 @@ $(call add_intermediate, write_ifwi, $(objcbfs)/bootblock.bin $(IFWITOOL))
 	$(CBFSTOOL) $< write -r $(CONFIG_IFWI_FMAP_NAME) -f $(objcbfs)/ifwi.bin.tmp --fill-upward
 endif
 
+ifeq ($(CONFIG_RED_UNLOCK),y)
+$(call add_intermediate, write_ifwi_red_unlock, $(objcbfs)/bootblock.bin $(IFWITOOL))
+	@printf "    IFWI       Embedding %s in red unlocked %s\n" $(objcbfs)/bootblock.bin $(CONFIG_IFWI_FMAP_NAME)
+	$(IFWITOOL) $(CONFIG_IFWI_RED_UNLOCK_FILE_NAME) create -f $(objcbfs)/ifwi_red_unlock.bin.tmp
+	$(IFWITOOL) $(objcbfs)/ifwi_red_unlock.bin.tmp delete -n OBBP
+	$(IFWITOOL) $(objcbfs)/ifwi_red_unlock.bin.tmp replace -n IBBP -f $(objcbfs)/bootblock.bin -d -e IBBL
+	$(CBFSTOOL) $< write -r $(CONFIG_IFWI_FMAP_NAME) -f $(objcbfs)/ifwi_red_unlock.bin.tmp --fill-upward
+endif
+
 # When booting APL the IBBL loader places the microcode updates embedded
 # in the IFWI image and a matching FIT table in SRAM. After copying the
 # bootblock to SRAM, it updates the FIT pointer at 0xffffffc0 to point
