@@ -578,6 +578,8 @@ uintptr_t intr_entries[] = {
 
 struct intr_gate idt[ARRAY_SIZE(intr_entries)] __aligned(8);
 
+volatile bool msr_exists;
+
 static inline uint16_t get_cs(void)
 {
 	uint16_t segment;
@@ -629,6 +631,8 @@ asmlinkage void exception_init(void)
 	uint16_t segment;
 
 	segment = get_cs();
+
+	printk(BIOS_DEBUG, "Initializing IDT\n");
 
 	/* Initialize IDT. */
 	for (i = 0; i < ARRAY_SIZE(idt); i++) {

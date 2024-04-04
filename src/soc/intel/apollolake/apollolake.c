@@ -8,7 +8,7 @@
 #define STR_HELPER(x) #x
 #define STR(x) STR_HELPER(x)
 
-volatile bool msr_exists;
+extern volatile bool msr_exists;
 
 static bool is_red_unlocked(void)
 {
@@ -16,16 +16,18 @@ static bool is_red_unlocked(void)
 	 * Detect whether the CPU is already red unlocked.
 	 */
 	/* Install our exception handler */
-	// idt[13].offset_0 = (uintptr_t)vec13_msr_handler;
-	// idt[13].offset_1 = (uintptr_t)vec13_msr_handler >> 16;
+	idt[13].offset_0 = (uintptr_t)vec13_msr_handler;
+	idt[13].offset_1 = (uintptr_t)vec13_msr_handler >> 16;
 
 	uint32_t low = 0, high = 0; // NOTE: These variables will be populated with garbage if the MSR doesn't exist
 	msr_exists = true;
 	__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
 	if (msr_exists) { // Exception handler sets this flag
 		printk(BIOS_INFO, "[MSR] " STR(APL_UCODE_CRBUS_UNLOCK) " found! Red unlocked already :)\n");
+		printk(BIOS_INFO, "[MSR] MSR value: 0x%x%x\n", high, low);
 	} else {
 		printk(BIOS_INFO, "[MSR] " STR(APL_UCODE_CRBUS_UNLOCK) " doesn't exist :(\n");
+		printk(BIOS_INFO, "[MSR] MSR value: 0x%x%x\n", high, low);
 	}
 
 	/* Restore the original interrupt handler */
