@@ -257,6 +257,11 @@ config IFWI_FILE_NAME
 	help
 	  Name of file to store in the IFWI region.
 
+config RED_UNLOCK
+	bool "Embed red unlock payload in bootblock (must use red unlocked IFWI image)"
+	depends on NEED_IFWI
+	default n
+
 config MAX_ROOT_PORTS
 	int
 	default 6

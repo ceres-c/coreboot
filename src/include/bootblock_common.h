@@ -18,6 +18,9 @@ void bootblock_mainboard_early_init(void);
 void bootblock_mainboard_init(void);
 void bootblock_soc_early_init(void);
 void bootblock_soc_init(void);
+#if CONFIG(RED_UNLOCK)
+void bootblock_red_unlock_payload(void);
+#endif
 
 /*
  * C code entry point for the boot block.
