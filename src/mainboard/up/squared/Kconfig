@@ -79,5 +79,6 @@ config CONSOLE_POST
 config RED_UNLOCK
 	bool
 	default n
+	select IDT_IN_EVERY_STAGE
 
 endif
