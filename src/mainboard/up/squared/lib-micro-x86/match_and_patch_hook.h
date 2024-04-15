@@ -38,4 +38,10 @@ ucode_t match_and_patch_hook_ucode_patch[] = {
         CONCAT_DSZ16_DRI(RAX, RAX, 0x1337),
         END_SEQWORD
     },
+    // { // TODO remove
+    //     NOP,
+    //     NOP,
+    //     NOP,
+    //     END_SEQWORD
+    // }
 };
