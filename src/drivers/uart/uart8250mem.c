@@ -3,6 +3,7 @@
 #include <device/mmio.h>
 #include <boot/coreboot_tables.h>
 #include <console/uart.h>
+#include <console/uart8250mem.h>
 #include <device/device.h>
 #include <delay.h>
 #include <stdint.h>
@@ -18,33 +19,33 @@
 #define FIFO_TIMEOUT		(16 * SINGLE_CHAR_TIMEOUT)
 
 #if CONFIG(DRIVERS_UART_8250MEM_32)
-static uint8_t uart8250_read(void *base, uint8_t reg)
+uint8_t uart8250_read(void *base, uint8_t reg)
 {
 	return read32(base + 4 * reg) & 0xff;
 }
 
-static void uart8250_write(void *base, uint8_t reg, uint8_t data)
+void uart8250_write(void *base, uint8_t reg, uint8_t data)
 {
 	write32(base + 4 * reg, data);
 }
 #else
-static uint8_t uart8250_read(void *base, uint8_t reg)
+uint8_t uart8250_read(void *base, uint8_t reg)
 {
 	return read8(base + reg);
 }
 
-static void uart8250_write(void *base, uint8_t reg, uint8_t data)
+void uart8250_write(void *base, uint8_t reg, uint8_t data)
 {
 	write8(base + reg, data);
 }
 #endif
 
-static int uart8250_mem_can_tx_byte(void *base)
+int uart8250_mem_can_tx_byte(void *base)
 {
 	return uart8250_read(base, UART8250_LSR) & UART8250_LSR_THRE;
 }
 
-static void uart8250_mem_tx_byte(void *base, unsigned char data)
+void uart8250_mem_tx_byte(void *base, unsigned char data)
 {
 	unsigned long int i = SINGLE_CHAR_TIMEOUT;
 	while (i-- && !uart8250_mem_can_tx_byte(base))
@@ -52,19 +53,19 @@ static void uart8250_mem_tx_byte(void *base, unsigned char data)
 	uart8250_write(base, UART8250_TBR, data);
 }
 
-static void uart8250_mem_tx_flush(void *base)
+void uart8250_mem_tx_flush(void *base)
 {
 	unsigned long int i = FIFO_TIMEOUT;
 	while (i-- && !(uart8250_read(base, UART8250_LSR) & UART8250_LSR_TEMT))
 		udelay(1);
 }
 
-static int uart8250_mem_can_rx_byte(void *base)
+int uart8250_mem_can_rx_byte(void *base)
 {
 	return uart8250_read(base, UART8250_LSR) & UART8250_LSR_DR;
 }
 
-static unsigned char uart8250_mem_rx_byte(void *base)
+unsigned char uart8250_mem_rx_byte(void *base)
 {
 	unsigned long int i = SINGLE_CHAR_TIMEOUT;
 	while (i && !uart8250_mem_can_rx_byte(base)) {
@@ -77,7 +78,7 @@ static unsigned char uart8250_mem_rx_byte(void *base)
 		return 0x0;
 }
 
-static void uart8250_mem_init(void *base, unsigned int divisor)
+void uart8250_mem_init(void *base, unsigned int divisor)
 {
 	/* Disable interrupts */
 	uart8250_write(base, UART8250_IER, 0x0);

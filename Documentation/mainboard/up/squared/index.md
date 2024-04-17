@@ -119,6 +119,9 @@ you can enable the RED_UNLOCK option. Note the IFWI file you configured above mu
 [red unlocked firmware](https://libmicro.dev/about.html).
 ```bash
 [coreboot]$ ./util/scripts/config --enable RED_UNLOCK
+[coreboot]$ ./util/scripts/config --disable "DEFAULT_CONSOLE_LOGLEVEL_$(./util/scripts/config --state DEFAULT_CONSOLE_LOGLEVEL)"
+[coreboot]$ ./util/scripts/config --enable DEFAULT_CONSOLE_LOGLEVEL_0
+[coreboot]$ make olddefconfig
 ```
 
 ### Building
