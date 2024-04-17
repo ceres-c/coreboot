@@ -63,10 +63,6 @@ void bootblock_main_with_timestamp(uint64_t base_timestamp,
 		tpm_setup(s3resume);
 	}
 
-	#if CONFIG(RED_UNLOCK)
-	bootblock_red_unlock_payload();
-	#endif
-
 	timestamp_add_now(TS_BOOTBLOCK_END);
 
 	run_romstage();

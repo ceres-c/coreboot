@@ -52,7 +52,6 @@ inline static u_result_t udbgwr(uint32_t type, uint32_t addr, uint64_t value) {
 __attribute__((always_inline))
 inline static uint32_t ucode_invoke_2(uint32_t addr, uint32_t arg1, uint32_t arg2) {
 	uint32_t eax = addr, ecx = 0xD8;
-	do_putchar('a'); // TODO remove
 	lmfence();
 	asm volatile(
 		".byte 0x0F, 0x0F\n\t"
@@ -65,7 +64,6 @@ inline static uint32_t ucode_invoke_2(uint32_t addr, uint32_t arg1, uint32_t arg
 					   // It shouldn't (TM) matter if these are clobbered, as we're in x86 anyway
 	);
 	lmfence();
-	do_putchar('b'); // TODO remove
 	return eax;
 }
 

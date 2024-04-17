@@ -113,6 +113,14 @@ flashregion_5_reserved.bin
 [coreboot]$ make olddefconfig
 ```
 
+### Red Unlock
+If you want to red unlock the CPU at boot and execute code at ramstage (see `mainboard/up/squared/red_unlock.c`),
+you can enable the RED_UNLOCK option. Note the IFWI file you configured above must be coming from a
+[red unlocked firmware](https://libmicro.dev/about.html).
+```bash
+[coreboot]$ ./util/scripts/config --enable RED_UNLOCK
+```
+
 ### Building
 ```bash
 [coreboot]$ make

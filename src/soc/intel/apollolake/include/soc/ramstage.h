@@ -6,5 +6,8 @@
 #include <fsp/api.h>
 
 void mainboard_silicon_init_params(FSP_S_CONFIG *silconfig);
+#if CONFIG(RED_UNLOCK)
+void bootblock_red_unlock_payload(void);
+#endif
 
 #endif /* _SOC_APOLLOLAKE_RAMSTAGE_H_ */

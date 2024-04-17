@@ -50,6 +50,11 @@ int main(void)
         } else {
             printf("MSR value: 0x%x%x\n", high, low);
         }
+
+        register uint32_t eax asm("eax");
+        __asm__ __volatile__(
+            ".byte 0x0f, 0xc7, 0xf0;"); // rdrand eax - otherwise gcc gives `operand size mismatch`
+        printf("rdrand eax: 0x%08x\n", eax);
     }
     puts("Now we will halt. Bye");
     halt();

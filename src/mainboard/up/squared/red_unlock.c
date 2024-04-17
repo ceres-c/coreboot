@@ -5,7 +5,7 @@
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
 
-#include <bootblock_common.h>
+#include <soc/ramstage.h>
 #include <console/console.h>
 #include <cpu/x86/msr.h>
 
@@ -90,9 +90,7 @@ void hook_match_and_patch(uint32_t entry_idx, uint32_t ucode_addr, uint32_t patc
 	uint32_t patch_value = (dst << 16) | ucode_addr | 1;
 
 	patch_ucode(match_and_patch_hook_addr, match_and_patch_hook_ucode_patch, ARRAY_SZ(match_and_patch_hook_ucode_patch));
-	printk(BIOS_INFO, "Patched ucode in match_and_patch_hook\n"); // TODO remove
 	ucode_invoke_2(match_and_patch_hook_addr, patch_value, entry_idx<<1);
-	printk(BIOS_INFO, "Invoked ucode in match_and_patch_hook\n"); // TODO remove
 }
 
 void do_fix_IN_patch(void) {
@@ -105,7 +103,6 @@ void do_rdrand_patch(void) {
 	ucode_t ucode_patch[] = {
 		/* Manipulate rax */
 		{
-			// NOP, // TODO remove
 			ZEROEXT_DSZ64_DI(RAX, 0x1337), /* Write zero extended */
 			NOP,
 			NOP,
@@ -114,7 +111,6 @@ void do_rdrand_patch(void) {
 	};
 
 	patch_ucode(patch_addr, ucode_patch, ARRAY_SZ(ucode_patch));
-	printk(BIOS_INFO, "Call to patch_ucode done\n"); // TODO remove
 	hook_match_and_patch(0, RDRAND_XLAT, patch_addr);
 }
 
@@ -125,30 +121,39 @@ void bootblock_red_unlock_payload(void)
 	/* NOTE: I don't do any exception handling, that's why IDT_IN_EVERY_STAGE is enabled with RED_UNLOCK
 	* If any weird exception is thrown, check that your system is actually red unlocked (right blob?)
 	*/
-	unsigned int low = 0, high = 0;
-	__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
-	printk(BIOS_INFO, "MSR value: 0x%x%x\n", high, low);
 
 	/* Enable ucode debug */
+	unsigned int low = 0, high = 0;
 	__asm__ volatile ("wrmsr" : : "a" (MAGIC_UNLOCK), "d" (0), "c" (APL_UCODE_CRBUS_UNLOCK));
-
 	__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
-	printk(BIOS_INFO, "MSR value: 0x%x%x\n", high, low);
+	// printk(BIOS_INFO, "MSR value: 0x%x%x\n", high, low);
 	if (high != 0 || low != MAGIC_UNLOCK) {
 		die("\tFailed to write magic CRBUS MSR\n");
 	}
 
-	// do_fix_IN_patch(); // TODO this can probably be removed if I loop here instead of continuing with boot
-	// printk(BIOS_INFO, "IN patched\n");
+	/* The following line is commented because I am looping here, decomment if you want to continue and boot an OS
+	 * NOTE: The custom ucode does not seem to survive up to my payload, so I guess you have to patch later on if
+	 * you need that. It might as well be that my payload code was not running on the right core, did not test thoroughly...
+	 */
+	// do_fix_IN_patch();
 	do_rdrand_patch();
-	printk(BIOS_INFO, "RDRAND patched\n");
+	// printk(BIOS_INFO, "RDRAND patched\n");
 
+	// TODO here place the glitch loop.
+	// 1. Signal we are done
+	// 2. Wait for the glitcher to signal us to continue
+	// 3. Call `rdrand`
+	// 4. Send result to glitcher
+	// 5. Repeat from 2
+
+	volatile uint32_t rand;
 	register uint32_t eax asm("eax");
 	__asm__ __volatile__(
-		".byte 0x0f, 0xc7, 0xf0;"); // rdrand eax
-	printk(BIOS_INFO, "rdrand eax: 0x%08x\n", eax);
-	// if (eax != 0x1337) // TODO decomment
-	// 	die("Failed to patch microcode\n");
+		".byte 0x0f, 0xc7, 0xf0;"); /* rdrand eax - otherwise gcc gives `operand size mismatch` */
+	rand = eax; /* Copy before call to printk */
+	// printk(BIOS_INFO, "rdrand eax: 0x%08x\n", rand);
+	if (rand != 0x1337)
+		die("Failed to patch microcode\n");
 }
 
 #pragma GCC pop_options
