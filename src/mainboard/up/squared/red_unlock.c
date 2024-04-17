@@ -7,6 +7,7 @@
 
 #include <soc/ramstage.h>
 #include <console/console.h>
+#include <console/uart.h>
 #include <cpu/x86/msr.h>
 
 #include "lib-micro-x86/misc.h"
@@ -115,6 +116,23 @@ void do_rdrand_patch(void) {
 }
 
 
+#include <drivers/uart/uart8250reg.h>
+#include <include/device/mmio.h>
+#if CONFIG(DRIVERS_UART_8250MEM_32)
+static uint8_t uart8250_read(void *base, uint8_t reg)
+{
+	return read32(base + 4 * reg) & 0xff;
+}
+#else
+static uint8_t uart8250_read(void *base, uint8_t reg)
+{
+	return read8(base + reg);
+}
+#endif
+static int uart8250_mem_can_rx_byte(void *base)
+{
+	return uart8250_read(base, UART8250_LSR) & UART8250_LSR_DR;
+}
 
 void bootblock_red_unlock_payload(void)
 {
@@ -145,6 +163,24 @@ void bootblock_red_unlock_payload(void)
 	// 3. Call `rdrand`
 	// 4. Send result to glitcher
 	// 5. Repeat from 2
+	void* base =(void *)uart_platform_base(CONFIG(UART_FOR_CONSOLE));
+	while (true) {
+		uart_tx_byte(CONFIG(UART_FOR_CONSOLE), 'D'); // TODO change these to internal _mem calls with baseptr
+		while (!uart8250_mem_can_rx_byte(base)) {
+			__asm__ volatile ("nop");
+		}
+		if (uart_rx_byte(CONFIG(UART_FOR_CONSOLE)) == 'C') {
+			volatile uint32_t ret;
+			register uint32_t eax asm("eax");
+			__asm__ __volatile__(
+				".byte 0x0f, 0xc7, 0xf0;"); /* rdrand eax - otherwise gcc gives `operand size mismatch` */
+			ret = eax;
+			uart_tx_byte(CONFIG(UART_FOR_CONSOLE), ret & 0xff);
+			uart_tx_byte(CONFIG(UART_FOR_CONSOLE), (ret >> 8) & 0xff);
+			uart_tx_byte(CONFIG(UART_FOR_CONSOLE), (ret >> 16) & 0xff);
+			uart_tx_byte(CONFIG(UART_FOR_CONSOLE), (ret >> 24) & 0xff);
+		}
+	}
 
 	volatile uint32_t rand;
 	register uint32_t eax asm("eax");
