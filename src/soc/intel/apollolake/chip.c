@@ -514,12 +514,14 @@ static void soc_init(void *data)
 	soc_config = &config->power_limits_config;
 	set_power_limits(MOBILE_SKU_PL1_TIME_SEC, soc_config);
 
+	/* Must be after `set_power_limits`, or it will hang (?) */
+	bootblock_red_unlock_payload();
+
 	/*
 	* FSP-S routes SCI to IRQ 9. With the help of this function you can
 	* select another IRQ for SCI.
 	*/
 	set_sci_irq();
-	bootblock_red_unlock_payload();
 }
 
 static void soc_final(void *data)
