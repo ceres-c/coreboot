@@ -16,6 +16,7 @@ void uart8250_mem_tx_byte(void *base, unsigned char data);
 void uart8250_mem_tx_flush(void *base);
 int uart8250_mem_can_rx_byte(void *base);
 unsigned char uart8250_mem_rx_byte(void *base);
+void uart8250_mem_rx_flush(void *base);
 void uart8250_mem_init(void *base, unsigned int divisor);
 
 #endif /* CONSOLE_UART8250MEM_H */

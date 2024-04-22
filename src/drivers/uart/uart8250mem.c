@@ -78,6 +78,11 @@ unsigned char uart8250_mem_rx_byte(void *base)
 		return 0x0;
 }
 
+void uart8250_mem_rx_flush(void *base)
+{
+	uart8250_write(base, UART8250_FCR, UART8250_FCR_CLEAR_RCVR);
+}
+
 void uart8250_mem_init(void *base, unsigned int divisor)
 {
 	/* Disable interrupts */

@@ -18,6 +18,7 @@
 #include "lib-micro-x86/match_and_patch_hook.h"
 
 #define MAGIC_UNLOCK 0x200
+#define UART_TIMEOUT 1000000
 
 /* Make coreboot old-ass gcc happy */
 uint32_t ucode_addr_to_patch_addr(uint32_t addr);
@@ -116,6 +117,14 @@ void do_rdrand_patch(void) {
 	hook_match_and_patch(0, RDRAND_XLAT, patch_addr);
 }
 
+inline static void putu32(void *uart_base, uint32_t d) {
+	uart8250_mem_tx_byte(uart_base, d & 0xFF);
+	uart8250_mem_tx_byte(uart_base, (d >> 8) & 0xFF);
+	uart8250_mem_tx_byte(uart_base, (d >> 16) & 0xFF);
+	uart8250_mem_tx_byte(uart_base, (d >> 24) & 0xFF);
+	uart8250_mem_tx_flush(uart_base);
+}
+
 
 void bootblock_red_unlock_payload(void)
 {
@@ -138,27 +147,32 @@ void bootblock_red_unlock_payload(void)
 
 	void* uart_base = uart_platform_baseptr(CONFIG(UART_FOR_CONSOLE));
 	while (true) {
-		uart8250_mem_tx_byte(uart_base, 'D');
+		uart8250_mem_tx_byte(uart_base, 'R');			/* Ready - 0b01010010 */
 		uart8250_mem_tx_flush(uart_base);
-		while (!uart8250_mem_can_rx_byte(uart_base)) {
+
+		loop:
+		int i;
+		for (i = 0; !uart8250_mem_can_rx_byte(uart_base) && i < UART_TIMEOUT; i++) {
 			__asm__ volatile ("nop");
 		}
-		if (uart8250_mem_rx_byte(uart_base) == 'C') {
-			uart8250_mem_tx_byte(uart_base, 'T'); /* Trigger here */
+		if (i == UART_TIMEOUT) {
+			continue;
+		}
+
+		if (uart8250_mem_rx_byte(uart_base) == 'C') {	/* Connected */
+			uart8250_mem_tx_byte(uart_base, 'T');		/* Trigger here - 0b01010100 */
 			uart8250_mem_tx_flush(uart_base);
 			volatile uint32_t ret;
 			register uint32_t eax asm("eax");
 			__asm__ __volatile__(
 				".byte 0x0f, 0xc7, 0xf0;"); /* rdrand eax - otherwise gcc gives `operand size mismatch` */
 			ret = eax;
-			uart8250_mem_tx_byte(uart_base, 'S'); /* Success - canary for checking if the board is still alive */
-			uart8250_mem_tx_byte(uart_base, ret & 0xff);
-			uart8250_mem_tx_byte(uart_base, (ret >> 8) & 0xff);
-			uart8250_mem_tx_byte(uart_base, (ret >> 16) & 0xff);
-			uart8250_mem_tx_byte(uart_base, (ret >> 24) & 0xff);
-			uart8250_mem_tx_flush(uart_base);
+			uart8250_mem_tx_byte(uart_base, 'A');		/* Alive - canary for checking if the board is still on */
+			putu32(uart_base, ret);
 		}
+		uart8250_mem_rx_flush(uart_base);
 	}
+	goto loop;
 }
 
 #pragma GCC pop_options
