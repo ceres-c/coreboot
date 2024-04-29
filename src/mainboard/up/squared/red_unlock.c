@@ -10,6 +10,7 @@
 #include <console/uart.h>
 #include <console/uart8250mem.h>
 #include <cpu/x86/msr.h>
+#include <arch/cpuid.h>
 
 #include "lib-micro-x86/misc.h"
 #include "lib-micro-x86/ucode_macro.h"
@@ -19,6 +20,7 @@
 
 #define MAGIC_UNLOCK 0x200
 #define UART_TIMEOUT 1000000
+// #define PRINT_CLOCK_SPEED // Decomment if you want to enable clock speed printing at boot (BIOS_INFO log level)
 
 /* Make coreboot old-ass gcc happy */
 uint32_t ucode_addr_to_patch_addr(uint32_t addr);
@@ -31,6 +33,10 @@ void patch_ucode(uint32_t addr, ucode_t ucode_patch[], int n);
 void hook_match_and_patch(uint32_t entry_idx, uint32_t ucode_addr, uint32_t patch_addr);
 void do_fix_IN_patch(void);
 void do_rdrand_patch(void);
+#ifdef PRINT_CLOCK_SPEED
+static unsigned long cpu_max_khz_from_cpuid(void);
+static unsigned long curr_clock_khz(void);
+#endif
 
 uint32_t ucode_addr_to_patch_addr(uint32_t addr) {
     return addr - 0x7c00;
@@ -125,12 +131,54 @@ inline static void putu32(void *uart_base, uint32_t d) {
 	uart8250_mem_tx_flush(uart_base);
 }
 
+#ifdef PRINT_CLOCK_SPEED
+static unsigned long cpu_max_khz_from_cpuid(void)
+{
+	/* Atom SoCs don't report the crystal frequency via CPUID, but they require a 25 MHz crystal.
+	 * See Intel Atom® Processor C3000 Product Family Datasheet § 7.1 (Table 7-1, CLK_X1_PAD).
+	 */
+	unsigned int crystal_khz = 25000;
 
-void bootblock_red_unlock_payload(void)
+	/* Get numerator and denominator of TSC/crystal clock ratio.
+	 * See Intel Atom® Processor C3000 Product Family Datasheet § 2.2.7.22 (Table 2-15).
+	*/
+	struct cpuid_result res = cpuid(0x15);
+	uint32_t denominator = res.eax, numerator = res.ebx;
+	return crystal_khz * numerator / denominator;
+}
+
+static unsigned long curr_clock_khz(void) {
+	uint64_t aperf, mperf;
+	uint32_t eax, edx;
+	__asm__ volatile (
+		"rdmsr"
+		: "=a" (eax), "=d" (edx)
+		: "c" (0xe7)
+	);
+	aperf = ((uint64_t)edx << 32) | eax;
+
+	__asm__ volatile (
+		"rdmsr"
+		: "=a" (eax), "=d" (edx)
+		: "c" (0xe8)
+	);
+	mperf = ((uint64_t)edx << 32) | eax;
+
+	return cpu_max_khz_from_cpuid() * aperf / mperf;
+}
+#endif
+
+void red_unlock_payload(void)
 {
 	/* NOTE: I don't do any exception handling, that's why IDT_IN_EVERY_STAGE is enabled with RED_UNLOCK
 	* If any weird exception is thrown, check that your system is actually red unlocked (right blob?)
 	*/
+
+	#ifdef PRINT_CLOCK_SPEED
+	// NOTE1: This will not be printed if you don't set a high enough log level in your config
+	// NOTE2: This will not play well with the glitcher as it does not expect this data to be printed. Disable
+	printk(BIOS_EMERG, "Current clock: %ld kHz\n", curr_clock_khz());
+	#endif
 
 	/* Enable ucode debug */
 	unsigned int low = 0, high = 0;

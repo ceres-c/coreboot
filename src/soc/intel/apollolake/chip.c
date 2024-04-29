@@ -333,7 +333,7 @@ static void soc_init(void *data)
 
 	#if CONFIG(RED_UNLOCK)
 	/* Must be after `set_power_limits`, or it will hang (?) */
-	bootblock_red_unlock_payload();
+	red_unlock_payload();
 	#endif
 
 	/*
