@@ -19,7 +19,7 @@
 #include "lib-micro-x86/match_and_patch_hook.h"
 
 #define MAGIC_UNLOCK 0x200
-#define UART_TIMEOUT 1000000
+#define UART_TIMEOUT 5000
 // #define PRINT_CLOCK_SPEED // Decomment if you want to enable clock speed printing at boot (BIOS_INFO log level)
 
 /* Make coreboot old-ass gcc happy */
@@ -198,7 +198,6 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, 'R');			/* Ready - 0b01010010 */
 		uart8250_mem_tx_flush(uart_base);
 
-		loop:
 		int i;
 		for (i = 0; !uart8250_mem_can_rx_byte(uart_base) && i < UART_TIMEOUT; i++) {
 			__asm__ volatile ("nop");
@@ -220,7 +219,6 @@ void red_unlock_payload(void)
 		}
 		uart8250_mem_rx_flush(uart_base);
 	}
-	goto loop;
 }
 
 #pragma GCC pop_options
