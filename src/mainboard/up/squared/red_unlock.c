@@ -19,8 +19,9 @@
 #include "lib-micro-x86/match_and_patch_hook.h"
 
 #define MAGIC_UNLOCK 0x200
-#define UART_TIMEOUT 5000
-// #define PRINT_CLOCK_SPEED // Decomment if you want to enable clock speed printing at boot (BIOS_INFO log level)
+#define UART_TIMEOUT 5000		// ~3ms between each `R` byte
+#define POST_TRIGGER_WAIT 80000	// Wait before calling the opcode and after sending the `T` byte over UART
+// #define PRINT_CLOCK_SPEED	// Decomment if you want to enable clock speed printing at boot (BIOS_INFO log level)
 
 /* Make coreboot old-ass gcc happy */
 uint32_t ucode_addr_to_patch_addr(uint32_t addr);
@@ -194,21 +195,33 @@ void red_unlock_payload(void)
 	// printk(BIOS_INFO, "RDRAND patched\n");
 
 	void* uart_base = uart_platform_baseptr(CONFIG(UART_FOR_CONSOLE));
+	bool extra_wait = false;
 	while (true) {
 		uart8250_mem_tx_byte(uart_base, 'R');			/* Ready - 0b01010010 */
 		uart8250_mem_tx_flush(uart_base);
 
 		int i;
 		for (i = 0; !uart8250_mem_can_rx_byte(uart_base) && i < UART_TIMEOUT; i++) {
+			// This will wait for approx 3ms
 			__asm__ volatile ("nop");
 		}
 		if (i == UART_TIMEOUT) {
+			if (extra_wait) {
+				// Add a delay same as the one after the trigger below
+				for (i = 0; i < POST_TRIGGER_WAIT; i++) __asm__ volatile ("nop");
+				uart8250_mem_tx_byte(uart_base, 0x10);
+				uart8250_mem_tx_flush(uart_base);
+				extra_wait = false;
+			}
 			continue;
 		}
 
-		if (uart8250_mem_rx_byte(uart_base) == 'C') {	/* Connected */
+		volatile uint8_t c = uart8250_mem_rx_byte(uart_base);
+		if (c == 'C') {	/* Connected */
 			uart8250_mem_tx_byte(uart_base, 'T');		/* Trigger here - 0b01010100 */
 			uart8250_mem_tx_flush(uart_base);
+			for (i = 0; i < POST_TRIGGER_WAIT; i++) __asm__ volatile ("nop"); /* Give the glitcher some time to detect the trigger */
+
 			volatile uint32_t ret;
 			register uint32_t eax asm("eax");
 			__asm__ __volatile__(
@@ -216,6 +229,8 @@ void red_unlock_payload(void)
 			ret = eax;
 			uart8250_mem_tx_byte(uart_base, 'A');		/* Alive - canary for checking if the board is still on */
 			putu32(uart_base, ret);
+		} else if (c == 'E') {	/* Extra wait requested */
+			extra_wait = true;
 		}
 		uart8250_mem_rx_flush(uart_base);
 	}
