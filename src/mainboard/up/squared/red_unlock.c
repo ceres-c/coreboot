@@ -18,9 +18,18 @@
 #include "lib-micro-x86/opcode.h"
 #include "lib-micro-x86/match_and_patch_hook.h"
 
+#define T_CMD_READY					'R'
+#define T_CMD_CONNECT				'C'
+#define T_CMD_TRIGGER				'T'
+#define T_CMD_ALIVE					'A'
+#define T_CMD_EXTRA_WAIT			'E'		/* Add extra wait time between two resets in glitch loop (acts on next reset) */
+#define T_CMD_VOLT_TEST				'V'
+#define T_CMD_VOLT_TEST_PING		'.'
+
 #define MAGIC_UNLOCK 0x200
 #define UART_TIMEOUT 5000		// ~3ms between each `R` byte
-#define POST_TRIGGER_WAIT 80000	// Wait before calling the opcode and after sending the `T` byte over UART
+#define POST_TRIGGER_WAIT 80000	// Clock cycles wait before calling the opcode and after sending the `T` byte over UART
+#define VOLT_TEST_MSG_COUNT 50	// Number of bytes to send to the glitcher when a voltage test is started
 // #define PRINT_CLOCK_SPEED	// Decomment if you want to enable clock speed printing at boot (BIOS_INFO log level)
 
 /* Make coreboot old-ass gcc happy */
@@ -197,7 +206,7 @@ void red_unlock_payload(void)
 	void* uart_base = uart_platform_baseptr(CONFIG(UART_FOR_CONSOLE));
 	bool extra_wait = false;
 	while (true) {
-		uart8250_mem_tx_byte(uart_base, 'R');			/* Ready - 0b01010010 */
+		uart8250_mem_tx_byte(uart_base, T_CMD_READY);
 		uart8250_mem_tx_flush(uart_base);
 
 		int i;
@@ -208,7 +217,9 @@ void red_unlock_payload(void)
 		if (i == UART_TIMEOUT) {
 			if (extra_wait) {
 				// Add a delay same as the one after the trigger below
-				for (i = 0; i < POST_TRIGGER_WAIT; i++) __asm__ volatile ("nop");
+				// TODO cpuid, mfence, rdtsc, rdtscp, lfence, cpuid...
+				for (int j = 0; j < POST_TRIGGER_WAIT; j++) __asm__ volatile ("nop");
+				// TODO cpuid, mfence, rdtsc, rdtscp, lfence, cpuid...
 				uart8250_mem_tx_byte(uart_base, 0x10);
 				uart8250_mem_tx_flush(uart_base);
 				extra_wait = false;
@@ -217,20 +228,45 @@ void red_unlock_payload(void)
 		}
 
 		volatile uint8_t c = uart8250_mem_rx_byte(uart_base);
-		if (c == 'C') {	/* Connected */
-			uart8250_mem_tx_byte(uart_base, 'T');		/* Trigger here - 0b01010100 */
+		if (c == T_CMD_CONNECT) {	/* Connected */
+			/*
+			 * Send a trigger comand to the glitcher and execute the hijacked opcode.
+			 * This is where we actually glitch
+			 */
+			// TODO cpuid, mfence, rdtsc, rdtscp, lfence, cpuid...
+			uart8250_mem_tx_byte(uart_base, T_CMD_TRIGGER);		/* Trigger here */
 			uart8250_mem_tx_flush(uart_base);
-			for (i = 0; i < POST_TRIGGER_WAIT; i++) __asm__ volatile ("nop"); /* Give the glitcher some time to detect the trigger */
+			// TODO cpuid, mfence, rdtsc, rdtscp, lfence, cpuid...
+			for (int j = 0; j < POST_TRIGGER_WAIT; j++) __asm__ volatile ("nop"); /* Give the glitcher some time to detect the trigger */
 
 			volatile uint32_t ret;
 			register uint32_t eax asm("eax");
 			__asm__ __volatile__(
 				".byte 0x0f, 0xc7, 0xf0;"); /* rdrand eax - otherwise gcc gives `operand size mismatch` */
 			ret = eax;
-			uart8250_mem_tx_byte(uart_base, 'A');		/* Alive - canary for checking if the board is still on */
+			uart8250_mem_tx_byte(uart_base, T_CMD_ALIVE);		/* Alive - canary for checking if the board is still on */
 			putu32(uart_base, ret);
-		} else if (c == 'E') {	/* Extra wait requested */
+		} else if (c == T_CMD_EXTRA_WAIT) {	/* Extra wait requested */
+			/*
+			 * The next time the reset wait timeout expires (e.g. the glitcher
+			 * is not doing anything and the target is waiting for connection),
+			 * add an extra time equivalent to the time between the trigger and
+			 * the opcode execution.
+			 * Used by the glitcher to calculate the glitch external offset.
+			 */
 			extra_wait = true;
+		} else if (c == T_CMD_VOLT_TEST) { /* Voltage range identifier */
+			/*
+			 * Send 50 times the char '.', followed by an 'R' (next loop iteration).
+			 * In the meantime the glitcher will try to bring the voltage down
+			 * and count how many '.' it can receive within a timeout OR
+			 * before the 'R' is received.
+			 * Used to determine a low, but reliable voltage range.
+			 */
+			for (int m = 0; m < VOLT_TEST_MSG_COUNT; m++) {
+				uart8250_mem_tx_byte(uart_base, T_CMD_VOLT_TEST_PING);
+				uart8250_mem_tx_flush(uart_base);
+			}
 		}
 		uart8250_mem_rx_flush(uart_base);
 	}
