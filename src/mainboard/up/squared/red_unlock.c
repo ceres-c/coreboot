@@ -29,7 +29,7 @@
 
 #define MAGIC_UNLOCK 0x200
 #define UART_TIMEOUT 5000		// ~3ms between each `R` byte
-#define POST_TRIGGER_WAIT 80000	// Clock cycles wait before calling the opcode and after sending the `T` byte over UART
+#define POST_TRIGGER_WAIT 100000	// Clock cycles wait before calling the opcode and after sending the `T` byte over UART
 #define VOLT_TEST_MSG_COUNT 50	// Number of bytes to send to the glitcher when a voltage test is started
 // #define PRINT_CLOCK_SPEED	// Decomment if you want to enable clock speed printing at boot (BIOS_INFO log level)
 
