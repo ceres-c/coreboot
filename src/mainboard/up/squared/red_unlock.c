@@ -19,21 +19,12 @@
 #include "lib-micro-x86/match_and_patch_hook.h"
 
 #define T_CMD_READY					'R'
-#define T_CMD_CONNECT				'C'
-#define T_CMD_TRIGGER				'T'
 #define T_CMD_SUCCESS				'S'		/* Glitched mul successfully */
-#define T_CMD_NORMAL				'N'		/* No glitch achieved */
-#define T_CMD_EXTRA_WAIT			'E'		/* Add extra wait time between two resets in glitch loop (acts on next reset) */
-#define T_CMD_VOLT_TEST				'V'
-#define T_CMD_VOLT_TEST_PING		'.'
 
 #define MAGIC_UNLOCK 0x200
-#define UART_TIMEOUT 5000		// ~3ms between each `R` byte
-#define POST_TRIGGER_WAIT 100000	// Clock cycles wait before calling the opcode and after sending the `T` byte over UART
-#define VOLT_TEST_MSG_COUNT 50	// Number of bytes to send to the glitcher when a voltage test is started
 // #define PRINT_CLOCK_SPEED	// Decomment if you want to enable clock speed printing at boot (BIOS_INFO log level)
 
-#define MUL_ITERATIONS 1000
+#define MUL_ITERATIONS 100000
 
 /* Make coreboot old-ass gcc happy */
 uint32_t ucode_addr_to_patch_addr(uint32_t addr);
@@ -207,94 +198,36 @@ void red_unlock_payload(void)
 	// printk(BIOS_INFO, "RDRAND patched\n");
 
 	void* uart_base = uart_platform_baseptr(CONFIG(UART_FOR_CONSOLE));
-	bool extra_wait = false;
 	while (true) {
+		/*
+		 * Will send to the glitcher 2 potential commands/responses:
+		 * - T_CMD_READY: Ready to mark liveness and trigger the glitch
+		 * - T_CMD_SUCCESS: Glitched successfully (then will send 3 uint32_t: iterations, result_a, result_b)
+		 */
 		uart8250_mem_tx_byte(uart_base, T_CMD_READY);
 		uart8250_mem_tx_flush(uart_base);
 
-		int i;
-		for (i = 0; !uart8250_mem_can_rx_byte(uart_base) && i < UART_TIMEOUT; i++) {
-			// This will wait for approx 3ms
-			__asm__ volatile ("nop");
-		}
-		if (i == UART_TIMEOUT) {
-			if (extra_wait) {
-				// Add a delay same as the one after the trigger below
-				// TODO cpuid, mfence, rdtsc, rdtscp, lfence, cpuid...
-				for (int j = 0; j < POST_TRIGGER_WAIT; j++) __asm__ volatile ("nop");
-				// TODO cpuid, mfence, rdtsc, rdtscp, lfence, cpuid...
-				uart8250_mem_tx_byte(uart_base, 0x10);
-				uart8250_mem_tx_flush(uart_base);
-				extra_wait = false;
+		// TODO cpuid, mfence, rdtsc, rdtscp, lfence, cpuid...
+		uint32_t performed = 0;
+		uint32_t operand1 = 0x80000, operand2 = 0x4; // Taken from plundervolt paper // TODO add command to change these
+		uint32_t result_a = 0, result_b = 0;
+		bool faulty_result_found = false;
+
+		do {
+			performed++;
+			result_a = operand1 * operand2;
+			result_b = operand1 * operand2;
+			if(result_a != result_b){
+				faulty_result_found = true;
 			}
-			continue;
+		} while (!faulty_result_found && performed < MUL_ITERATIONS);
+
+		if (faulty_result_found) {
+			uart8250_mem_tx_byte(uart_base, T_CMD_SUCCESS);
+			putu32(uart_base, performed);
+			putu32(uart_base, result_a);
+			putu32(uart_base, result_b);
 		}
-
-		volatile uint8_t c = uart8250_mem_rx_byte(uart_base);
-		if (c == T_CMD_CONNECT) {	/* Connected */
-			/*
-			 * Send a trigger comand to the glitcher and execute the hijacked opcode.
-			 * This is where we actually glitch
-			 */
-			// TODO cpuid, mfence, rdtsc, rdtscp, lfence, cpuid...
-			uint32_t performed = 0;
-			uint32_t operand1 = 0x80000, operand2 = 0x4; // Taken from plundervolt paper // TODO add command to change these
-			uint32_t result_a = 0, result_b = 0;
-			bool faulty_result_found = false;
-
-			uart8250_mem_tx_byte(uart_base, T_CMD_TRIGGER);		/* Trigger here */
-			uart8250_mem_tx_flush(uart_base);
-			// TODO cpuid, mfence, rdtsc, rdtscp, lfence, cpuid...
-			for (int j = 0; j < POST_TRIGGER_WAIT; j++) __asm__ volatile ("nop"); /* Give the glitcher some time to detect the trigger */
-
-			do {
-				performed++;
-				result_a = operand1 * operand2;
-				result_b = operand1 * operand2;
-				if(result_a != result_b){
-					faulty_result_found = 1;
-				}
-			} while ( faulty_result_found == 0 && performed < MUL_ITERATIONS);
-
-			if (faulty_result_found == 1) {
-				uart8250_mem_tx_byte(uart_base, T_CMD_SUCCESS);
-				putu32(uart_base, performed);
-				putu32(uart_base, result_a);
-				putu32(uart_base, result_b);
-			} else {
-				uart8250_mem_tx_byte(uart_base, T_CMD_NORMAL);
-			}
-
-			// volatile uint32_t ret;
-			// register uint32_t eax asm("eax");
-			// __asm__ __volatile__(
-			// 	".byte 0x0f, 0xc7, 0xf0;"); /* rdrand eax - otherwise gcc gives `operand size mismatch` */
-			// ret = eax;
-			// uart8250_mem_tx_byte(uart_base, T_CMD_ALIVE);		/* Alive - canary for checking if the board is still on */
-			// putu32(uart_base, ret);
-		} else if (c == T_CMD_EXTRA_WAIT) {	/* Extra wait requested */
-			/*
-			 * The next time the reset wait timeout expires (e.g. the glitcher
-			 * is not doing anything and the target is waiting for connection),
-			 * add an extra time equivalent to the time between the trigger and
-			 * the opcode execution.
-			 * Used by the glitcher to calculate the glitch external offset.
-			 */
-			extra_wait = true;
-		} else if (c == T_CMD_VOLT_TEST) { /* Voltage range identifier */
-			/*
-			 * Send 50 times the char '.', followed by an 'R' (next loop iteration).
-			 * In the meantime the glitcher will try to bring the voltage down
-			 * and count how many '.' it can receive within a timeout OR
-			 * before the 'R' is received.
-			 * Used to determine a low, but reliable voltage range.
-			 */
-			for (int m = 0; m < VOLT_TEST_MSG_COUNT; m++) {
-				uart8250_mem_tx_byte(uart_base, T_CMD_VOLT_TEST_PING);
-				uart8250_mem_tx_flush(uart_base);
-			}
-		}
-		uart8250_mem_rx_flush(uart_base);
 	}
 }
 
