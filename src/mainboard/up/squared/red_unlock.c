@@ -127,7 +127,7 @@ void do_rdrand_patch(void) {
 	hook_match_and_patch(0, RDRAND_XLAT, patch_addr);
 }
 
-inline static void putu32(void *uart_base, uint32_t d) {
+inline static __attribute__((always_inline)) void putu32(void *uart_base, uint32_t d) {
 	uart8250_mem_tx_byte(uart_base, d & 0xFF);
 	uart8250_mem_tx_flush(uart_base);
 	uart8250_mem_tx_byte(uart_base, (d >> 8) & 0xFF);
