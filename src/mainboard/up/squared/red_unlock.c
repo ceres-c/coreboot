@@ -129,13 +129,9 @@ void do_rdrand_patch(void) {
 
 inline static __attribute__((always_inline)) void putu32(void *uart_base, uint32_t d) {
 	uart8250_mem_tx_byte(uart_base, d & 0xFF);
-	uart8250_mem_tx_flush(uart_base);
 	uart8250_mem_tx_byte(uart_base, (d >> 8) & 0xFF);
-	uart8250_mem_tx_flush(uart_base);
 	uart8250_mem_tx_byte(uart_base, (d >> 16) & 0xFF);
-	uart8250_mem_tx_flush(uart_base);
 	uart8250_mem_tx_byte(uart_base, (d >> 24) & 0xFF);
-	uart8250_mem_tx_flush(uart_base);
 }
 
 #ifdef PRINT_CLOCK_SPEED
@@ -8414,8 +8410,7 @@ void red_unlock_payload(void)
 		} while (faulty_result_found == 0 && performed < MUL_ITERATIONS);
 
 		if (faulty_result_found) {
-			uart8250_mem_tx_byte(uart_base, T_CMD_SUCCESS);
-			uart8250_mem_tx_flush(uart_base);
+			uart8250_mem_tx_byte(uart_base, T_CMD_SUCCESS); // Thou shalt not flush here: we have a very short window to send the results
 			putu32(uart_base, faulty_result_found);
 			putu32(uart_base, result_a);
 			putu32(uart_base, result_b);
