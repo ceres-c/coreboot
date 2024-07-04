@@ -269,8 +269,13 @@ void red_unlock_payload(void)
 		__asm__ volatile (
 			"movl %[stack_storage], %%eax;\n\t"
 
-			REP10(REP100(REP100(CODE_BODY_LOAD))) // 200k iterations
-			REP10(REP100(REP100(CODE_BODY_LOAD)))
+			REP100(REP100(CODE_BODY_LOAD)) // 70k iterations
+			REP100(REP100(CODE_BODY_LOAD)) // WTF if I have 60k iterations instead of 70k, it takes 1/2 the time?
+			REP100(REP100(CODE_BODY_LOAD))
+			REP100(REP100(CODE_BODY_LOAD))
+			REP100(REP100(CODE_BODY_LOAD))
+			REP100(REP100(CODE_BODY_LOAD))
+			REP100(REP100(CODE_BODY_LOAD))
 
 			: [fault_count]	"+r" (fault_count),
 			  [wrong_value]	"+r" (wrong_value)
@@ -300,8 +305,7 @@ void red_unlock_payload(void)
 			"movl %[stack_storage], %%eax;\n\t"
 			"movl %[stack_storage], %%ebx;\n\t"
 
-			REP10(REP100(REP100(CODE_BODY_CMP))) // 200k iterations
-			REP10(REP100(REP100(CODE_BODY_CMP)))
+			REP10(REP100(REP100(CODE_BODY_CMP))) // 100k iterations
 
 			: [fault_count]		"+r" (fault_count)
 			: [stack_storage]	"m" (stack_storage)
