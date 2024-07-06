@@ -112,15 +112,33 @@ void do_fix_IN_patch(void) {
 }
 
 void do_rdrand_patch(void) {
-	uint64_t patch_addr = 0x7da0;
+	uint32_t patch_addr = 0x7da0;
+
 	ucode_t ucode_patch[] = {
-		/* Manipulate rax */
-		{
-			ZEROEXT_DSZ64_DI(RAX, 0x1337), /* Write zero extended */
-			NOP,
+		{ /* rcx += rax != rbx ? 1 : 0 */
+			SUB_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
+			UJMPCC_DIRECT_NOTTAKEN_CONDNZ_RI(TMP0, patch_addr + 0x04),
 			NOP,
 			END_SEQWORD
-		}
+		},
+		{ // 0x04
+			MOVE_DSZ64_DR(TMP0, RCX),		/* Move current value of rcx to tmp0, because ucode ADD can */
+			ADD_DSZ64_DRI(RCX, TMP0, 1),	/* operate on only one architectual register at a time, it seems */
+			NOP,
+			END_SEQWORD
+		},
+		// { /* rcx += rax - rbx (potentially huge jumps) */
+		// 	SUB_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
+		// 	ADD_DSZ64_DRR(RCX, TMP0, RCX),
+		// 	NOP,
+		// 	END_SEQWORD
+		// },
+		// { /* rcx |= rax ^ rbx */
+		// 	XOR_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
+		// 	OR_DSZ64_DRR(RCX, TMP0, RCX),
+		// 	NOP,
+		// 	END_SEQWORD
+		// },
 	};
 
 	patch_ucode(patch_addr, ucode_patch, ARRAY_SZ(ucode_patch));
@@ -212,11 +230,12 @@ void red_unlock_payload(void)
 		BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY
 #define REP100(BODY) \
 		REP10(REP10(BODY))
-#define TARGET_MUL
+// #define TARGET_MUL
 // #define TARGET_LOAD
 // #define TARGET_CMP
+#define TARGET_RDRAND
 
-#if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP)) != 1
+#if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) + defined(TARGET_RDRAND)) != 1
 #error You should pick exactly one glitch target
 #elif defined(TARGET_MUL)
 #define CODE_BODY_MUL \
@@ -227,7 +246,7 @@ void red_unlock_payload(void)
 		"imull %[op2], %%ebx;\n\t" \
 		"cmp %%eax, %%ebx;\n\t" \
 		"setne %%cl;\n\t" \
-		"addl %%ecx, %[fault_count]\n\t"
+		"addl %%ecx, %[fault_count];\n\t"
 
 		uint32_t operand1 = 0x80000, operand2 = 0x4; // Taken from plundervolt paper // TODO add command to change these
 		uint32_t fault_count = 0, result_a = 0, result_b = 0;
@@ -260,8 +279,8 @@ void red_unlock_payload(void)
 		"movl %[stack_storage], %%ebx;\n\t" \
 		"cmp %%eax, %%ebx;\n\t" \
 		"setne %%cl;\n\t" \
-		"cmovne %%ebx, %[wrong_value]\n\t" \
-		"addl %%ecx, %[fault_count]\n\t" \
+		"cmovne %%ebx, %[wrong_value];\n\t" \
+		"addl %%ecx, %[fault_count];\n\t" \
 
 		uint32_t stack_storage = 0xAAAAAAAA; // 10101010...
 		uint32_t fault_count = 0, wrong_value = 0;
@@ -296,7 +315,7 @@ void red_unlock_payload(void)
 		"xor %%ecx, %%ecx;\n\t" \
 		"cmp %%eax, %%ebx;\n\t" \
 		"setne %%cl;\n\t" \
-		"addl %%ecx, %[fault_count]\n\t"
+		"addl %%ecx, %[fault_count];\n\t"
 
 		uint32_t stack_storage = 0xAAAAAAAA; // 10101010...
 		uint32_t fault_count = 0;
@@ -319,6 +338,35 @@ void red_unlock_payload(void)
 			putu32(uart_base, fault_count);
 			// Careful with sending too many bytes in a row or the fifo will fill up
 		}
+#elif defined(TARGET_RDRAND)
+#define CODE_BODY_RDRAND \
+		"rdrand %%ecx;\t\n"
+
+		uint32_t operand1 = 0b01, operand2 = 0b11; // NOTE: THESE ARE NOT EQUAL, THE WILL *ALWAYS* APPEAR AS IF FAULT HAPPENED. CHANGE TO EQUAL
+		uint32_t fault_count = 0;
+
+		__asm__ __volatile__ (
+			"xor %%ecx, %%ecx\t\n"
+			"mov %[op1], %%eax;\t\n"
+			"mov %[op2], %%ebx;\t\n"
+
+			REP10(REP100(REP100(CODE_BODY_RDRAND))) // 100k iterations
+
+			"mov %%ecx, %[fault_count];\t\n"
+			: [fault_count]	"=r" (fault_count)				// Output operands
+			: [op1]			"r" (operand1),					// Input operands
+			[op2]			"r" (operand2)
+			: "%eax", // operand1							// Clobbered register
+			  "%ebx", // operand2
+			  "%ecx"  // result
+		);
+
+		if (fault_count) {
+			uart8250_mem_tx_byte(uart_base, T_CMD_SUCCESS);
+			putu32(uart_base, fault_count);
+			// Careful with sending too many bytes in a row or the fifo will fill up
+		}
+
 #endif
 	}
 }
