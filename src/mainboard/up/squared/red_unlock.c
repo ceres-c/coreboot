@@ -112,27 +112,37 @@ void do_fix_IN_patch(void) {
 }
 
 void do_rdrand_patch(void) {
-	uint32_t patch_addr = 0x7da0;
+	uint64_t patch_addr = 0x7da0;
 
 	ucode_t ucode_patch[] = {
-		{ /* rcx += rax != rbx ? 1 : 0 */
-			SUB_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
-			UJMPCC_DIRECT_NOTTAKEN_CONDNZ_RI(TMP0, patch_addr + 0x04),
-			NOP,
-			END_SEQWORD
-		},
-		{ // 0x04
-			MOVE_DSZ64_DR(TMP0, RCX),		/* Move current value of rcx to tmp0, because ucode ADD can */
-			ADD_DSZ64_DRI(RCX, TMP0, 1),	/* operate on only one architectual register at a time, it seems */
-			NOP,
-			END_SEQWORD
-		},
-		// { /* rcx += rax - rbx (potentially huge jumps) */
-		// 	SUB_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
-		// 	ADD_DSZ64_DRR(RCX, TMP0, RCX),
+		// { /* rcx = 0x1337 */
+		// 	ZEROEXT_DSZ64_DI(RCX, 0x1337), /* Write zero extended */
+		// 	NOP,
 		// 	NOP,
 		// 	END_SEQWORD
 		// },
+
+		// This code with the conditional jump is not working. It hangs after a (small) number of iterations, idk...
+		// { /* rcx += rax != rbx ? 1 : 0 */
+		// 	SUB_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
+		// 	UJMPCC_DIRECT_NOTTAKEN_CONDNZ_RI(TMP0, patch_addr + 0x04),
+		// 	NOP,
+		// 	END_SEQWORD
+		// },
+		// { // 0x04
+		// 	MOVE_DSZ64_DR(TMP0, RCX),		/* Move current value of rcx to tmp0, because ucode ADD can */
+		// 	ADD_DSZ64_DRI(RCX, TMP0, 1),	/* operate on only one architectual register at a time, it seems */
+		// 	NOP,
+		// 	END_SEQWORD
+		// },
+
+		{ /* rcx += rax - rbx (potentially huge jumps) */
+			SUB_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
+			ADD_DSZ64_DRR(RCX, TMP0, RCX),
+			NOP,
+			END_SEQWORD
+		},
+
 		// { /* rcx |= rax ^ rbx */
 		// 	XOR_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
 		// 	OR_DSZ64_DRR(RCX, TMP0, RCX),
@@ -212,7 +222,7 @@ void red_unlock_payload(void)
 
 	do_fix_IN_patch();
 	do_rdrand_patch();
-	// printk(BIOS_INFO, "RDRAND patched\n");
+	printk(BIOS_INFO, "RDRAND patched\n");
 
 	void* uart_base = uart_platform_baseptr(CONFIG(UART_FOR_CONSOLE));
 	while (true) {
@@ -342,7 +352,7 @@ void red_unlock_payload(void)
 #define CODE_BODY_RDRAND \
 		"rdrand %%ecx;\t\n"
 
-		uint32_t operand1 = 0b01, operand2 = 0b11; // NOTE: THESE ARE NOT EQUAL, THE WILL *ALWAYS* APPEAR AS IF FAULT HAPPENED. CHANGE TO EQUAL
+		uint32_t operand1 = 0b01, operand2 = 0b01; // Can really be anything, as long as they're equal, I guess?
 		uint32_t fault_count = 0;
 
 		__asm__ __volatile__ (
