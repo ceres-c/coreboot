@@ -360,7 +360,9 @@ void red_unlock_payload(void)
 			"mov %[op1], %%eax;\t\n"
 			"mov %[op2], %%ebx;\t\n"
 
-			REP10(REP100(REP100(CODE_BODY_RDRAND))) // 100k iterations
+			REP10(REP100(REP100(CODE_BODY_RDRAND))) // 120k iterations
+			REP100(REP100(CODE_BODY_RDRAND))
+			REP100(REP100(CODE_BODY_RDRAND))
 
 			"mov %%ecx, %[fault_count];\t\n"
 			: [fault_count]	"=r" (fault_count)				// Output operands
