@@ -109,12 +109,10 @@
 #define IA32_CR_SF_QOS_MASK_1		0x1891
 #define IA32_CR_SF_QOS_MASK_2		0x1892
 
-#if CONFIG(RED_UNLOCK)
-/* CRBUS register 0x2e6 mapping to MSR 0x1e6 on red unlocked platforms.
+/* MSR 0x1e6 mapping to CRBUS register 0x2e6 on red unlocked Apollo Lake platforms.
  * Source: https://raw.githubusercontent.com/chip-red-pill/udbgInstr/main/paper/undocumented_x86_insts_for_uarch_control.pdf
  */
 #define APL_UCODE_CRBUS_UNLOCK	0x1e6
-#endif
 
 #ifndef __ASSEMBLER__
 

@@ -18,6 +18,17 @@
 #include "lib-micro-x86/opcode.h"
 #include "lib-micro-x86/match_and_patch_hook.h"
 
+#define REP10(BODY) BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY
+#define REP100(BODY) REP10(REP10(BODY))
+
+// #define TARGET_MUL
+// #define TARGET_LOAD
+// #define TARGET_CMP
+#define TARGET_RDRAND
+#if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) + defined(TARGET_RDRAND)) != 1
+#error You should pick exactly one glitch target
+#endif
+
 #define T_CMD_READY					'R'
 #define T_CMD_SUCCESS				'S'		/* Glitched mul successfully */
 
@@ -229,38 +240,28 @@ void red_unlock_payload(void)
 		/*
 		 * Will send to the glitcher 2 potential commands/responses:
 		 * - T_CMD_READY: Ready to mark liveness and trigger the glitch
-		 * - T_CMD_SUCCESS: Glitched successfully (then will send 3 uint32_t: iterations, result_a, result_b)
+		 * - T_CMD_SUCCESS: Glitched successfully (then will send an attinional number of uint32_t's: iterations, result_a, result_b...)
 		 */
 		uart8250_mem_tx_byte(uart_base, T_CMD_READY);
 		uart8250_mem_tx_flush(uart_base);
 
 		// TODO cpuid, mfence, rdtsc, rdtscp, lfence, cpuid...
 
-#define REP10(BODY) \
-		BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY
-#define REP100(BODY) \
-		REP10(REP10(BODY))
-// #define TARGET_MUL
-// #define TARGET_LOAD
-// #define TARGET_CMP
-#define TARGET_RDRAND
+		#ifdef TARGET_MUL
+		#define CODE_BODY_MUL \
+			"xor %%ecx, %%ecx;\n\t" \
+			"movl %[op1], %%eax;\n\t" \
+			"imull %[op2], %%eax;\n\t" \
+			"movl %[op1], %%ebx;\n\t" \
+			"imull %[op2], %%ebx;\n\t" \
+			"cmp %%eax, %%ebx;\n\t" \
+			"setne %%cl;\n\t" \
+			"addl %%ecx, %[fault_count];\n\t"
 
-#if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) + defined(TARGET_RDRAND)) != 1
-#error You should pick exactly one glitch target
-#elif defined(TARGET_MUL)
-#define CODE_BODY_MUL \
-		"xor %%ecx, %%ecx;\n\t" \
-		"movl %[op1], %%eax;\n\t" \
-		"imull %[op2], %%eax;\n\t" \
-		"movl %[op1], %%ebx;\n\t" \
-		"imull %[op2], %%ebx;\n\t" \
-		"cmp %%eax, %%ebx;\n\t" \
-		"setne %%cl;\n\t" \
-		"addl %%ecx, %[fault_count];\n\t"
-
-		uint32_t operand1 = 0x80000, operand2 = 0x4; // Taken from plundervolt paper // TODO add command to change these
+		uint32_t operand1 = 0x80000, operand2 = 0x4; // Taken from plundervolt paper
 		uint32_t fault_count = 0, result_a = 0, result_b = 0;
 
+		// AT&T syntax
 		__asm__ volatile (
 			REP100(REP100(CODE_BODY_MUL)) // 50k iterations
 			REP100(REP100(CODE_BODY_MUL))
@@ -277,24 +278,27 @@ void red_unlock_payload(void)
 		);
 
 		if (fault_count) {
-			// Careful with sending too many bytes in a row or the UART FIFO (64 bytes) will fill up
+			// Careful with sending too many bytes in a row, or the UART FIFO (64 bytes) will fill up
 			uart8250_mem_tx_byte(uart_base, T_CMD_SUCCESS);
 			putu32(uart_base, fault_count);
 			putu32(uart_base, result_a);
 			putu32(uart_base, result_b);
 		}
-#elif defined(TARGET_LOAD)
-#define CODE_BODY_LOAD \
-		"xor %%ecx, %%ecx;\n\t" \
-		"movl %[stack_storage], %%ebx;\n\t" \
-		"cmp %%eax, %%ebx;\n\t" \
-		"setne %%cl;\n\t" \
-		"cmovne %%ebx, %[wrong_value];\n\t" \
-		"addl %%ecx, %[fault_count];\n\t" \
+		#endif // TARGET_MUL
+
+		#ifdef TARGET_LOAD
+		#define CODE_BODY_LOAD \
+			"xor %%ecx, %%ecx;\n\t" \
+			"movl %[stack_storage], %%ebx;\n\t" \
+			"cmp %%eax, %%ebx;\n\t" \
+			"setne %%cl;\n\t" \
+			"cmovne %%ebx, %[wrong_value];\n\t" \
+			"addl %%ecx, %[fault_count];\n\t" \
 
 		uint32_t stack_storage = 0xAAAAAAAA; // 10101010...
 		uint32_t fault_count = 0, wrong_value = 0;
 
+		// AT&T syntax
 		__asm__ volatile (
 			"movl %[stack_storage], %%eax;\n\t"
 
@@ -320,16 +324,19 @@ void red_unlock_payload(void)
 			putu32(uart_base, wrong_value);
 			// Careful with sending too many bytes in a row or the fifo will fill up
 		}
-#elif defined(TARGET_CMP)
-#define CODE_BODY_CMP \
-		"xor %%ecx, %%ecx;\n\t" \
-		"cmp %%eax, %%ebx;\n\t" \
-		"setne %%cl;\n\t" \
-		"addl %%ecx, %[fault_count];\n\t"
+		#endif // TARGET_LOAD
+
+		#ifdef TARGET_CMP
+		#define CODE_BODY_CMP \
+			"xor %%ecx, %%ecx;\n\t" \
+			"cmp %%eax, %%ebx;\n\t" \
+			"setne %%cl;\n\t" \
+			"addl %%ecx, %[fault_count];\n\t"
 
 		uint32_t stack_storage = 0xAAAAAAAA; // 10101010...
 		uint32_t fault_count = 0;
 
+		// AT&T syntax
 		__asm__ volatile (
 			"movl %[stack_storage], %%eax;\n\t"
 			"movl %[stack_storage], %%ebx;\n\t"
@@ -348,13 +355,16 @@ void red_unlock_payload(void)
 			putu32(uart_base, fault_count);
 			// Careful with sending too many bytes in a row or the fifo will fill up
 		}
-#elif defined(TARGET_RDRAND)
-#define CODE_BODY_RDRAND \
-		"rdrand %%ecx;\t\n"
+		#endif // TARGET_CMP
+
+		#ifdef TARGET_RDRAND
+		#define CODE_BODY_RDRAND \
+			"rdrand %%ecx;\t\n"
 
 		uint32_t operand1 = 0b01, operand2 = 0b01; // Can really be anything, as long as they're equal, I guess?
 		uint32_t fault_count = 0;
 
+		// AT&T syntax
 		__asm__ __volatile__ (
 			"xor %%ecx, %%ecx\t\n"
 			"mov %[op1], %%eax;\t\n"
@@ -367,7 +377,7 @@ void red_unlock_payload(void)
 			"mov %%ecx, %[fault_count];\t\n"
 			: [fault_count]	"=r" (fault_count)				// Output operands
 			: [op1]			"r" (operand1),					// Input operands
-			[op2]			"r" (operand2)
+			  [op2]			"r" (operand2)
 			: "%eax", // operand1							// Clobbered register
 			  "%ebx", // operand2
 			  "%ecx"  // result
@@ -378,8 +388,7 @@ void red_unlock_payload(void)
 			putu32(uart_base, fault_count);
 			// Careful with sending too many bytes in a row or the fifo will fill up
 		}
-
-#endif
+		#endif // TARGET_RDRAND
 	}
 }
 
