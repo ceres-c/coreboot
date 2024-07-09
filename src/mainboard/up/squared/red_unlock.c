@@ -30,7 +30,7 @@
 #endif
 
 #define T_CMD_READY					'R'
-#define T_CMD_SUCCESS				'S'		/* Glitched mul successfully */
+#define T_CMD_DONE					'D'		/* Done with the current loop iteration */
 
 #define MAGIC_UNLOCK 0x200
 // #define PRINT_CLOCK_SPEED	// Decomment if you want to enable clock speed printing at boot (BIOS_INFO log level)
@@ -238,9 +238,10 @@ void red_unlock_payload(void)
 	void* uart_base = uart_platform_baseptr(CONFIG(UART_FOR_CONSOLE));
 	while (true) {
 		/*
-		 * Will send to the glitcher 2 potential commands/responses:
-		 * - T_CMD_READY: Ready to mark liveness and trigger the glitch
-		 * - T_CMD_SUCCESS: Glitched successfully (then will send an attinional number of uint32_t's: iterations, result_a, result_b...)
+		 * Will send to the glitcher 2 main commands/responses:
+		 * - T_CMD_READY:	Ready to mark liveness and trigger the glitch
+		 * - T_CMD_DONE:	Done with this loop iteration
+		 * 					Will then send some more uint32_t's (e.g. iterations, result_a, result_b...)
 		 */
 		uart8250_mem_tx_byte(uart_base, T_CMD_READY);
 		uart8250_mem_tx_flush(uart_base);
@@ -277,13 +278,11 @@ void red_unlock_payload(void)
 			  "%ecx"  // scratch
 		);
 
-		if (fault_count) {
-			// Careful with sending too many bytes in a row, or the UART FIFO (64 bytes) will fill up
-			uart8250_mem_tx_byte(uart_base, T_CMD_SUCCESS);
-			putu32(uart_base, fault_count);
-			putu32(uart_base, result_a);
-			putu32(uart_base, result_b);
-		}
+		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
+		putu32(uart_base, fault_count);
+		putu32(uart_base, result_a);
+		putu32(uart_base, result_b);
+		// Careful with sending too many bytes in a row, or the UART FIFO (64 bytes) will fill up
 		#endif // TARGET_MUL
 
 		#ifdef TARGET_LOAD
@@ -318,12 +317,10 @@ void red_unlock_payload(void)
 			  "%ecx"	// scratch
 		);
 
-		if (fault_count) {
-			uart8250_mem_tx_byte(uart_base, T_CMD_SUCCESS);
-			putu32(uart_base, fault_count);
-			putu32(uart_base, wrong_value);
-			// Careful with sending too many bytes in a row or the fifo will fill up
-		}
+		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
+		putu32(uart_base, fault_count);
+		putu32(uart_base, wrong_value);
+		// Careful with sending too many bytes in a row or the fifo will fill up
 		#endif // TARGET_LOAD
 
 		#ifdef TARGET_CMP
@@ -350,11 +347,9 @@ void red_unlock_payload(void)
 			  "%ecx"	// Scratch
 		);
 
-		if (fault_count) {
-			uart8250_mem_tx_byte(uart_base, T_CMD_SUCCESS);
-			putu32(uart_base, fault_count);
-			// Careful with sending too many bytes in a row or the fifo will fill up
-		}
+		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
+		putu32(uart_base, fault_count);
+		// Careful with sending too many bytes in a row or the fifo will fill up
 		#endif // TARGET_CMP
 
 		#ifdef TARGET_RDRAND
@@ -383,11 +378,9 @@ void red_unlock_payload(void)
 			  "%ecx"  // result
 		);
 
-		if (fault_count) {
-			uart8250_mem_tx_byte(uart_base, T_CMD_SUCCESS);
-			putu32(uart_base, fault_count);
-			// Careful with sending too many bytes in a row or the fifo will fill up
-		}
+		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
+		putu32(uart_base, fault_count);
+		// Careful with sending too many bytes in a row or the fifo will fill up
 		#endif // TARGET_RDRAND
 	}
 }
