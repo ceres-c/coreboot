@@ -24,8 +24,9 @@
 // #define TARGET_MUL
 // #define TARGET_LOAD
 // #define TARGET_CMP
-#define TARGET_RDRAND
-#if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) + defined(TARGET_RDRAND)) != 1
+// #define TARGET_RDRAND_SUB_ADD
+#define TARGET_RDRAND_ADD
+#if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) + defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD)) != 1
 #error You should pick exactly one glitch target
 #endif
 
@@ -126,40 +127,52 @@ void do_rdrand_patch(void) {
 	uint64_t patch_addr = 0x7da0;
 
 	ucode_t ucode_patch[] = {
-		// { /* rcx = 0x1337 */
-		// 	ZEROEXT_DSZ64_DI(RCX, 0x1337), /* Write zero extended */
-		// 	NOP,
-		// 	NOP,
-		// 	END_SEQWORD
-		// },
-
-		// This code with the conditional jump is not working. It hangs after a (small) number of iterations, idk...
-		// { /* rcx += rax != rbx ? 1 : 0 */
-		// 	SUB_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
-		// 	UJMPCC_DIRECT_NOTTAKEN_CONDNZ_RI(TMP0, patch_addr + 0x04),
-		// 	NOP,
-		// 	END_SEQWORD
-		// },
-		// { // 0x04
-		// 	MOVE_DSZ64_DR(TMP0, RCX),		/* Move current value of rcx to tmp0, because ucode ADD can */
-		// 	ADD_DSZ64_DRI(RCX, TMP0, 1),	/* operate on only one architectual register at a time, it seems */
-		// 	NOP,
-		// 	END_SEQWORD
-		// },
-
+		#if defined(TARGET_RDRAND_1337)
+		{ /* rcx = 0x1337 */
+			ZEROEXT_DSZ64_DI(RCX, 0x1337), /* Write zero extended */
+			NOP,
+			NOP,
+			END_SEQWORD
+		},
+		#elif defined(TARGET_RDRAND_CMP)
+		/* This code with the conditional jump is not working in coreboot. Here, it hangs after a (small)
+		 * number of iterations, but it was working in linux (?)
+		 * idk...
+		 */
+		{ /* rcx += rax != rbx ? 1 : 0 */
+			SUB_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
+			UJMPCC_DIRECT_NOTTAKEN_CONDNZ_RI(TMP0, patch_addr + 0x04),
+			NOP,
+			END_SEQWORD
+		},
+		{ // 0x04
+			MOVE_DSZ64_DR(TMP0, RCX),		/* Move current value of rcx to tmp0, because ucode ADD can */
+			ADD_DSZ64_DRI(RCX, TMP0, 1),	/* operate on only one architectual register at a time, it seems */
+			NOP,
+			END_SEQWORD
+		},
+		#elif defined(TARGET_RDRAND_SUB_ADD)
 		{ /* rcx += rax - rbx (potentially huge jumps) */
 			SUB_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
 			ADD_DSZ64_DRR(RCX, TMP0, RCX),
 			NOP,
 			END_SEQWORD
 		},
-
-		// { /* rcx |= rax ^ rbx */
-		// 	XOR_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
-		// 	OR_DSZ64_DRR(RCX, TMP0, RCX),
-		// 	NOP,
-		// 	END_SEQWORD
-		// },
+		#elif defined(TARGET_RDRAND_ADD)
+		{ /* rcx += 1 */
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			NOP,
+			NOP,
+			END_SEQWORD
+		},
+		#elif defined(TARGET_RDRAND_XOR)
+		{ /* rcx |= rax ^ rbx */
+			XOR_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax ^ rbx */
+			OR_DSZ64_DRR(RCX, TMP0, RCX),
+			NOP,
+			END_SEQWORD
+		},
+		#endif
 	};
 
 	patch_ucode(patch_addr, ucode_patch, ARRAY_SZ(ucode_patch));
@@ -352,8 +365,8 @@ void red_unlock_payload(void)
 		// Careful with sending too many bytes in a row or the fifo will fill up
 		#endif // TARGET_CMP
 
-		#ifdef TARGET_RDRAND
-		#define CODE_BODY_RDRAND \
+		#ifdef TARGET_RDRAND_SUB_ADD
+		#define CODE_BODY_RDRAND_SUB_ADD \
 			"rdrand %%ecx;\t\n"
 
 		uint32_t operand1 = 0b01, operand2 = 0b01; // Can really be anything, as long as they're equal, I guess?
@@ -365,9 +378,9 @@ void red_unlock_payload(void)
 			"mov %[op1], %%eax;\t\n"
 			"mov %[op2], %%ebx;\t\n"
 
-			REP10(REP100(REP100(CODE_BODY_RDRAND))) // 120k iterations
-			REP100(REP100(CODE_BODY_RDRAND))
-			REP100(REP100(CODE_BODY_RDRAND))
+			REP10(REP100(REP100(CODE_BODY_RDRAND_SUB_ADD))) // 120k iterations
+			REP100(REP100(CODE_BODY_RDRAND_SUB_ADD))
+			REP100(REP100(CODE_BODY_RDRAND_SUB_ADD))
 
 			"mov %%ecx, %[fault_count];\t\n"
 			: [fault_count]	"=r" (fault_count)				// Output operands
@@ -381,7 +394,31 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, fault_count);
 		// Careful with sending too many bytes in a row or the fifo will fill up
-		#endif // TARGET_RDRAND
+		#endif // TARGET_RDRAND_SUB_ADD
+		#ifdef TARGET_RDRAND_ADD
+		#define CODE_BODY_RDRAND_ADD \
+			"rdrand %%ecx;\t\n"
+
+		uint32_t summation = 0;
+
+		// AT&T syntax
+		__asm__ __volatile__ (
+			"xor %%ecx, %%ecx\t\n"
+
+			REP10(REP100(REP100(CODE_BODY_RDRAND_ADD))) // 120k iterations
+			REP100(REP100(CODE_BODY_RDRAND_ADD))
+			REP100(REP100(CODE_BODY_RDRAND_ADD))
+
+			"mov %%ecx, %[summation];\t\n"
+			: [summation]	"=r" (summation)				// Output operands
+			:												// Input operands
+			: "%ecx" // result								// Clobbered register
+		);
+
+		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
+		putu32(uart_base, summation);
+		// Careful with sending too many bytes in a row or the fifo will fill up
+		#endif // TARGET_RDRAND_ADD
 	}
 }
 
