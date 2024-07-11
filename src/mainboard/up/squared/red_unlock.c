@@ -18,25 +18,24 @@
 #include "lib-micro-x86/opcode.h"
 #include "lib-micro-x86/match_and_patch_hook.h"
 
+#define T_CMD_READY					'R'		/* Signal loop iteration start/trigger reference	*/
+#define T_CMD_DONE					'D'		/* Done with the current loop iteration				*/
 #define REP10(BODY) BODY BODY BODY BODY BODY BODY BODY BODY BODY BODY
 #define REP100(BODY) REP10(REP10(BODY))
 
+#define MAGIC_UNLOCK 0x200
+// #define PRINT_CLOCK_SPEED				/* Decomment if you want to print clock speed at boot (BIOS_INFO log level) */
 // #define TARGET_MUL
 // #define TARGET_LOAD
 // #define TARGET_CMP
 // #define TARGET_RDRAND_SUB_ADD
-#define TARGET_RDRAND_ADD
-#if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) + defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD)) != 1
+// #define TARGET_RDRAND_ADD
+#define TARGET_RDRAND_MANY_ADD
+#if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
+	 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
+	 defined(TARGET_RDRAND_MANY_ADD)) != 1
 #error You should pick exactly one glitch target
 #endif
-
-#define T_CMD_READY					'R'
-#define T_CMD_DONE					'D'		/* Done with the current loop iteration */
-
-#define MAGIC_UNLOCK 0x200
-// #define PRINT_CLOCK_SPEED	// Decomment if you want to enable clock speed printing at boot (BIOS_INFO log level)
-
-#define MUL_ITERATIONS 100000
 
 /* Make coreboot old-ass gcc happy */
 uint32_t ucode_addr_to_patch_addr(uint32_t addr);
@@ -165,6 +164,31 @@ void do_rdrand_patch(void) {
 			NOP,
 			END_SEQWORD
 		},
+		#elif defined(TARGET_RDRAND_MANY_ADD)
+		{ /* rcx += 10 - One add at a time, to detect whether I am skipping architectural op rdrand or microarchitectural uop add */
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			NOP_SEQWORD
+		},
+		{
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			NOP_SEQWORD
+		},
+		{
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			NOP_SEQWORD
+		},
+		{
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			NOP,
+			NOP,
+			END_SEQWORD
+		},
 		#elif defined(TARGET_RDRAND_XOR)
 		{ /* rcx |= rax ^ rbx */
 			XOR_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax ^ rbx */
@@ -261,7 +285,7 @@ void red_unlock_payload(void)
 
 		// TODO cpuid, mfence, rdtsc, rdtscp, lfence, cpuid...
 
-		#ifdef TARGET_MUL
+		#if defined(TARGET_MUL)
 		#define CODE_BODY_MUL \
 			"xor %%ecx, %%ecx;\n\t" \
 			"movl %[op1], %%eax;\n\t" \
@@ -296,9 +320,7 @@ void red_unlock_payload(void)
 		putu32(uart_base, result_a);
 		putu32(uart_base, result_b);
 		// Careful with sending too many bytes in a row, or the UART FIFO (64 bytes) will fill up
-		#endif // TARGET_MUL
-
-		#ifdef TARGET_LOAD
+		#elif defined(TARGET_LOAD)
 		#define CODE_BODY_LOAD \
 			"xor %%ecx, %%ecx;\n\t" \
 			"movl %[stack_storage], %%ebx;\n\t" \
@@ -334,9 +356,7 @@ void red_unlock_payload(void)
 		putu32(uart_base, fault_count);
 		putu32(uart_base, wrong_value);
 		// Careful with sending too many bytes in a row or the fifo will fill up
-		#endif // TARGET_LOAD
-
-		#ifdef TARGET_CMP
+		#elif defined(TARGET_CMP)
 		#define CODE_BODY_CMP \
 			"xor %%ecx, %%ecx;\n\t" \
 			"cmp %%eax, %%ebx;\n\t" \
@@ -363,9 +383,7 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, fault_count);
 		// Careful with sending too many bytes in a row or the fifo will fill up
-		#endif // TARGET_CMP
-
-		#ifdef TARGET_RDRAND_SUB_ADD
+		#elif defined(TARGET_RDRAND_SUB_ADD)
 		#define CODE_BODY_RDRAND_SUB_ADD \
 			"rdrand %%ecx;\t\n"
 
@@ -394,8 +412,7 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, fault_count);
 		// Careful with sending too many bytes in a row or the fifo will fill up
-		#endif // TARGET_RDRAND_SUB_ADD
-		#ifdef TARGET_RDRAND_ADD
+		#elif defined(TARGET_RDRAND_ADD) || defined(TARGET_RDRAND_MANY_ADD)
 		#define CODE_BODY_RDRAND_ADD \
 			"rdrand %%ecx;\t\n"
 
@@ -405,9 +422,20 @@ void red_unlock_payload(void)
 		__asm__ __volatile__ (
 			"xor %%ecx, %%ecx\t\n"
 
+			#if defined(TARGET_RDRAND_ADD)
 			REP10(REP100(REP100(CODE_BODY_RDRAND_ADD))) // 120k iterations
 			REP100(REP100(CODE_BODY_RDRAND_ADD))
 			REP100(REP100(CODE_BODY_RDRAND_ADD))
+			#elif defined(TARGET_RDRAND_MANY_ADD)
+			REP100(REP100(CODE_BODY_RDRAND_ADD)) // 80k iterations (*10 adds per rdrand invoke) - ecx = 800000
+			REP100(REP100(CODE_BODY_RDRAND_ADD))
+			REP100(REP100(CODE_BODY_RDRAND_ADD))
+			REP100(REP100(CODE_BODY_RDRAND_ADD))
+			REP100(REP100(CODE_BODY_RDRAND_ADD))
+			REP100(REP100(CODE_BODY_RDRAND_ADD))
+			REP100(REP100(CODE_BODY_RDRAND_ADD))
+			REP100(REP100(CODE_BODY_RDRAND_ADD))
+			#endif
 
 			"mov %%ecx, %[summation];\t\n"
 			: [summation]	"=r" (summation)				// Output operands
@@ -418,7 +446,7 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, summation);
 		// Careful with sending too many bytes in a row or the fifo will fill up
-		#endif // TARGET_RDRAND_ADD
+		#endif
 	}
 }
 
