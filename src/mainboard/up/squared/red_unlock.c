@@ -30,10 +30,11 @@
 // #define TARGET_CMP
 // #define TARGET_RDRAND_SUB_ADD
 // #define TARGET_RDRAND_ADD
-#define TARGET_RDRAND_MANY_ADD
+// #define TARGET_RDRAND_MANY_ADD
+#define TARGET_RDRAND_MOVE_REGS
 #if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
 	 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
-	 defined(TARGET_RDRAND_MANY_ADD)) != 1
+	 defined(TARGET_RDRAND_MANY_ADD) + defined(TARGET_RDRAND_MOVE_REGS)) != 1
 #error You should pick exactly one glitch target
 #endif
 
@@ -194,6 +195,31 @@ void do_rdrand_patch(void) {
 			XOR_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax ^ rbx */
 			OR_DSZ64_DRR(RCX, TMP0, RCX),
 			NOP,
+			END_SEQWORD
+		},
+		#elif defined(TARGET_RDRAND_MOVE_REGS)
+		{ /* Move around the current value of rcx without explicitly changing it, then store back to rcx. Test issues with register file */
+			MOVE_DSZ32_DR(TMP0, RCX),
+			MOVE_DSZ32_DR(TMP1, TMP0),
+			MOVE_DSZ32_DR(TMP2, TMP1),
+			NOP_SEQWORD
+		},
+		{
+			MOVE_DSZ32_DR(TMP3, TMP2),
+			MOVE_DSZ32_DR(TMP4, TMP3),
+			MOVE_DSZ32_DR(TMP5, TMP4),
+			NOP_SEQWORD
+		},
+		{
+			MOVE_DSZ32_DR(TMP6, TMP5),
+			MOVE_DSZ32_DR(TMP7, TMP6),
+			MOVE_DSZ32_DR(TMP8, TMP7),
+			NOP_SEQWORD
+		},
+		{
+			MOVE_DSZ32_DR(TMP9, TMP8),
+			MOVE_DSZ32_DR(TMP10, TMP9),
+			MOVE_DSZ32_DR(RCX, TMP10),
 			END_SEQWORD
 		},
 		#endif
@@ -445,6 +471,34 @@ void red_unlock_payload(void)
 
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, summation);
+		// Careful with sending too many bytes in a row or the fifo will fill up
+		#elif defined(TARGET_RDRAND_MOVE_REGS)
+		#define CODE_BODY_RDRAND_MOVE_REGS \
+			"rdrand %%ecx;\t\n"
+
+		uint32_t input = 0xFFFFFFFF, result = 0;
+
+		// AT&T syntax
+		__asm__ __volatile__ (
+			"mov %[input], %%ecx\t\n"
+
+			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS)) // 50k iterations (*10 adds per rdrand invoke) - ecx = 800000
+			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
+			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
+			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
+			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
+			// REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
+			// REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
+			// REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
+
+			"mov %%ecx, %[result];\t\n"
+			: [result]		"=r" (result)					// Output operands
+			: [input]		"r" (input)						// Input operands
+			: "%ecx" // result								// Clobbered register
+		);
+
+		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
+		putu32(uart_base, result);
 		// Careful with sending too many bytes in a row or the fifo will fill up
 		#endif
 	}
