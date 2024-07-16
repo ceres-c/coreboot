@@ -1,6 +1,9 @@
 /*
  * Federico (ceres-c) Cerutti
 */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-variable"	/* You're not my real dad, GCC. Let me live */
+#pragma GCC diagnostic ignored "-Wunused-function"
 
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
@@ -198,28 +201,14 @@ void do_rdrand_patch(void) {
 			END_SEQWORD
 		},
 		#elif defined(TARGET_RDRAND_MOVE_REGS)
-		{ /* Move around the current value of rcx without explicitly changing it, then store back to rcx. Test issues with register file */
-			MOVE_DSZ32_DR(TMP0, RCX),
-			MOVE_DSZ32_DR(TMP1, TMP0),
-			MOVE_DSZ32_DR(TMP2, TMP1),
-			NOP_SEQWORD
-		},
 		{
-			MOVE_DSZ32_DR(TMP3, TMP2),
-			MOVE_DSZ32_DR(TMP4, TMP3),
-			MOVE_DSZ32_DR(TMP5, TMP4),
-			NOP_SEQWORD
-		},
-		{
-			MOVE_DSZ32_DR(TMP6, TMP5),
-			MOVE_DSZ32_DR(TMP7, TMP6),
-			MOVE_DSZ32_DR(TMP8, TMP7),
-			NOP_SEQWORD
-		},
-		{
-			MOVE_DSZ32_DR(TMP9, TMP8),
-			MOVE_DSZ32_DR(TMP10, TMP9),
-			MOVE_DSZ32_DR(RCX, TMP10),
+			// MOVE_DSZ32_DI(RAX, 0x1337),
+			NOP,
+			// MOVE_DSZ32_DR(RBX, RAX),
+			NOP,
+			// ZEROEXT_DSZ64_DI(RCX, 0xcafe),
+			// NOP,
+			ZEROEXT_DSZ64_DR(RCX, RAX),
 			END_SEQWORD
 		},
 		#endif
@@ -275,13 +264,12 @@ static unsigned long curr_clock_khz(void) {
 
 void red_unlock_payload(void)
 {
-	/* NOTE: I don't do any exception handling, that's why IDT_IN_EVERY_STAGE is enabled with RED_UNLOCK
-	* If any weird exception is thrown, check that your system is actually red unlocked (right blob?)
-	*/
+	/* If invalid instruction/any weird exception is thrown, check that your system is actually red unlocked (right blob?) */
 
+	/* Print clock speed, if needed for reporting/debugging
+	 * NOTE: This is not compatible with the glitcher as it does not expect this data to be printed.
+	 */
 	#ifdef PRINT_CLOCK_SPEED
-	// NOTE1: This will not be printed if you don't set a high enough log level in your config
-	// NOTE2: This will not play well with the glitcher as it does not expect this data to be printed. Disable
 	printk(BIOS_EMERG, "Current clock: %ld kHz\n", curr_clock_khz());
 	#endif
 
@@ -289,9 +277,8 @@ void red_unlock_payload(void)
 	unsigned int low = 0, high = 0;
 	__asm__ volatile ("wrmsr" : : "a" (MAGIC_UNLOCK), "d" (0), "c" (APL_UCODE_CRBUS_UNLOCK));
 	__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
-	// printk(BIOS_INFO, "MSR value: 0x%x%x\n", high, low);
 	if (high != 0 || low != MAGIC_UNLOCK) {
-		die("\tFailed to write magic CRBUS MSR\n");
+		die("\tFailed to write APL_UCODE_CRBUS_UNLOCK MSR\n");
 	}
 
 	do_fix_IN_patch();
@@ -505,3 +492,4 @@ void red_unlock_payload(void)
 }
 
 #pragma GCC pop_options
+#pragma GCC diagnostic pop
