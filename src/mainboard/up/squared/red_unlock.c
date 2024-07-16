@@ -32,13 +32,15 @@
 // #define TARGET_LOAD
 // #define TARGET_CMP
 // #define TARGET_RDRAND_1337
-#define TARGET_RDRAND_CMP_NE
+// #define TARGET_RDRAND_CMP_NE
+#define TARGET_RDRAND_CMP_NE_JMP
 // #define TARGET_RDRAND_SUB_ADD
 // #define TARGET_RDRAND_ADD
 // #define TARGET_RDRAND_MANY_ADD
 // #define TARGET_RDRAND_MOVE_REGS
 #if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
-	 defined(TARGET_RDRAND_1337) + defined(TARGET_RDRAND_CMP_NE) +			\
+	 defined(TARGET_RDRAND_1337) + \
+	 defined(TARGET_RDRAND_CMP_NE) + defined(TARGET_RDRAND_CMP_NE_JMP) + \
 	 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
 	 defined(TARGET_RDRAND_MANY_ADD) + defined(TARGET_RDRAND_MOVE_REGS)) != 1
 #error You should pick exactly one glitch target
@@ -145,6 +147,20 @@ void do_rdrand_patch(void) {
 			SUB_DSZ32_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
 			SETCC_CONDNZ_DR(TMP1, TMP0),
 			ADD_DSZ32_DRR(RCX, TMP1, RCX),	/* NOTE: Both ADD and SUB 64 bit opcodes work just as well */
+			END_SEQWORD
+		},
+		#elif defined(TARGET_RDRAND_CMP_NE_JMP) /* rcx += rax != rbx (with jumps) */
+		#error RDRAND_CMP with jumps does not work, currently. Jumps are broken for unknown reasons in coreboot.
+		{
+			SUB_DSZ32_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
+			UJMPCC_DIRECT_NOTTAKEN_CONDNZ_RI(TMP0, patch_addr + 0x04), // NOTE: This is the jump that breaks everything. Works in linux
+			NOP,
+			END_SEQWORD
+		},
+		{
+			ADD_DSZ32_DRI(RCX, RCX, 1),
+			NOP,
+			NOP,
 			END_SEQWORD
 		},
 		#elif defined(TARGET_RDRAND_SUB_ADD)  /* rcx += rax - rbx (potentially huge jumps) */
@@ -427,8 +443,8 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, result);
 		// Careful with sending too many bytes in a row or the fifo will fill up
-		#elif defined(TARGET_RDRAND_CMP_NE)
-		#define CODE_BODY_RDRAND_CMP \
+		#elif defined(TARGET_RDRAND_CMP_NE) || defined(TARGET_RDRAND_CMP_NE_JMP)
+		#define CODE_BODY_RDRAND_CMP_NE \
 			"rdrand %%ecx;\t\n"
 
 		uint32_t operand1 = 0b01, operand2 = 0b01; // Can really be anything, as long as they're equal, I guess?
@@ -440,11 +456,11 @@ void red_unlock_payload(void)
 			"mov %[op1], %%eax;\t\n"
 			"mov %[op2], %%ebx;\t\n"
 
-			REP10(REP100(REP100(CODE_BODY_RDRAND_CMP))) // 120k iterations
-			REP100(REP100(CODE_BODY_RDRAND_CMP))
-			REP100(REP100(CODE_BODY_RDRAND_CMP))
-			REP100(REP100(CODE_BODY_RDRAND_CMP))
-			REP100(REP100(CODE_BODY_RDRAND_CMP))
+			REP10(REP100(REP100(CODE_BODY_RDRAND_CMP_NE))) // 120k iterations
+			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
+			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
+			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
+			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
 
 			"mov %%ecx, %[diff_count];\t\n"
 			: [diff_count]	"=r" (diff_count)				// Output operands
