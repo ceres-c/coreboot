@@ -133,67 +133,68 @@ void do_rdrand_patch(void) {
 	uint64_t patch_addr = 0x7da0;
 
 	ucode_t ucode_patch[] = {
-		#if defined(TARGET_RDRAND_1337)
-		{ /* rcx = 0x1337 */
+		#if defined(TARGET_RDRAND_1337) /* rcx = 0x1337 */
+		{
 			ZEROEXT_DSZ64_DI(RCX, 0x1337), /* Write zero extended */
 			NOP,
 			NOP,
 			END_SEQWORD
 		},
-		#elif defined(TARGET_RDRAND_CMP_NE)
-		{ /* rcx += rax != rbx (with conditional set) */
+		#elif defined(TARGET_RDRAND_CMP_NE) /* rcx += rax != rbx (with conditional set) */
+		{
 			SUB_DSZ32_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
 			SETCC_CONDNZ_DR(TMP1, TMP0),
 			ADD_DSZ32_DRR(RCX, TMP1, RCX),	/* NOTE: Both ADD and SUB 64 bit opcodes work just as well */
 			END_SEQWORD
 		},
-		#elif defined(TARGET_RDRAND_SUB_ADD)
-		{ /* rcx += rax - rbx (potentially huge jumps) */
+		#elif defined(TARGET_RDRAND_SUB_ADD)  /* rcx += rax - rbx (potentially huge jumps) */
+		{
 			SUB_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
 			ADD_DSZ64_DRR(RCX, TMP0, RCX),
 			NOP,
 			END_SEQWORD
 		},
-		#elif defined(TARGET_RDRAND_ADD)
-		{ /* rcx += 1 */
-			ADD_DSZ64_DRI(RCX, RCX, 1),
-			NOP,
-			NOP,
-			END_SEQWORD
-		},
-		#elif defined(TARGET_RDRAND_MANY_ADD)
-		{ /* rcx += 10 - One add at a time, to detect whether I am skipping architectural op rdrand or microarchitectural uop add */
-			ADD_DSZ64_DRI(RCX, RCX, 1),
-			ADD_DSZ64_DRI(RCX, RCX, 1),
-			ADD_DSZ64_DRI(RCX, RCX, 1),
-			NOP_SEQWORD
-		},
-		{
-			ADD_DSZ64_DRI(RCX, RCX, 1),
-			ADD_DSZ64_DRI(RCX, RCX, 1),
-			ADD_DSZ64_DRI(RCX, RCX, 1),
-			NOP_SEQWORD
-		},
-		{
-			ADD_DSZ64_DRI(RCX, RCX, 1),
-			ADD_DSZ64_DRI(RCX, RCX, 1),
-			ADD_DSZ64_DRI(RCX, RCX, 1),
-			NOP_SEQWORD
-		},
+		#elif defined(TARGET_RDRAND_ADD) /* rcx += 1 */
 		{
 			ADD_DSZ64_DRI(RCX, RCX, 1),
 			NOP,
 			NOP,
 			END_SEQWORD
 		},
-		#elif defined(TARGET_RDRAND_XOR)
-		{ /* rcx |= rax ^ rbx */
+		#elif defined(TARGET_RDRAND_MANY_ADD)  /* rcx += 10 - Do +1 10 times in a row */
+		/* This is useful to detect whether I am skipping architectural op 'rdrand' or microarchitectural uop 'add' */
+		{
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			NOP_SEQWORD
+		},
+		{
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			NOP_SEQWORD
+		},
+		{
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			NOP_SEQWORD
+		},
+		{
+			ADD_DSZ64_DRI(RCX, RCX, 1),
+			NOP,
+			NOP,
+			END_SEQWORD
+		},
+		#elif defined(TARGET_RDRAND_XOR) /* rcx |= rax ^ rbx */
+		{
 			XOR_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax ^ rbx */
 			OR_DSZ64_DRR(RCX, TMP0, RCX),
 			NOP,
 			END_SEQWORD
 		},
-		#elif defined(TARGET_RDRAND_MOVE_REGS)
+		#elif defined(TARGET_RDRAND_MOVE_REGS) /* rcx = rcx */
 		{ /* Move around the current value of rcx without explicitly changing it, then store back to rcx. Test issues with register file */
 			ZEROEXT_DSZ32_DR(TMP0, RCX),
 			ZEROEXT_DSZ32_DR(TMP1, TMP0),
