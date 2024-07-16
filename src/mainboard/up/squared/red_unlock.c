@@ -32,17 +32,17 @@
 // #define TARGET_LOAD
 // #define TARGET_CMP
 // #define TARGET_RDRAND_1337
-// #define TARGET_RDRAND_CMP_NE
-#define TARGET_RDRAND_CMP_NE_JMP
+#define TARGET_RDRAND_CMP_NE
+// #define TARGET_RDRAND_CMP_NE_JMP
 // #define TARGET_RDRAND_SUB_ADD
 // #define TARGET_RDRAND_ADD
-// #define TARGET_RDRAND_MANY_ADD
+// #define TARGET_RDRAND_ADD_MANY
 // #define TARGET_RDRAND_MOVE_REGS
 #if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
 	 defined(TARGET_RDRAND_1337) + \
 	 defined(TARGET_RDRAND_CMP_NE) + defined(TARGET_RDRAND_CMP_NE_JMP) + \
 	 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
-	 defined(TARGET_RDRAND_MANY_ADD) + defined(TARGET_RDRAND_MOVE_REGS)) != 1
+	 defined(TARGET_RDRAND_ADD_MANY) + defined(TARGET_RDRAND_MOVE_REGS)) != 1
 #error You should pick exactly one glitch target
 #endif
 
@@ -137,7 +137,7 @@ void do_rdrand_patch(void) {
 	ucode_t ucode_patch[] = {
 		#if defined(TARGET_RDRAND_1337) /* rcx = 0x1337 */
 		{
-			ZEROEXT_DSZ64_DI(RCX, 0x1337), /* Write zero extended */
+			ZEROEXT_DSZ32_DI(RCX, 0x1337), /* Write zero extended */
 			NOP,
 			NOP,
 			END_SEQWORD
@@ -177,7 +177,7 @@ void do_rdrand_patch(void) {
 			NOP,
 			END_SEQWORD
 		},
-		#elif defined(TARGET_RDRAND_MANY_ADD)  /* rcx += 10 - Do +1 10 times in a row */
+		#elif defined(TARGET_RDRAND_ADD_MANY)  /* rcx += 10 - Do +1 10 times in a row */
 		/* This is useful to detect whether I am skipping architectural op 'rdrand' or microarchitectural uop 'add' */
 		{
 			ADD_DSZ64_DRI(RCX, RCX, 1),
@@ -238,8 +238,11 @@ void do_rdrand_patch(void) {
 		#endif
 	};
 
+	#if !defined(TARGET_MUL) && !defined(TARGET_LOAD) && !defined(TARGET_CMP)
 	patch_ucode(patch_addr, ucode_patch, ARRAY_SZ(ucode_patch));
 	hook_match_and_patch(0, RDRAND_XLAT, patch_addr);
+	printk(BIOS_INFO, "RDRAND patched\n");
+	#endif
 }
 
 inline static __attribute__((always_inline)) void putu32(void *uart_base, uint32_t d) {
@@ -305,11 +308,8 @@ void red_unlock_payload(void)
 		die("\tFailed to write APL_UCODE_CRBUS_UNLOCK MSR\n");
 	}
 
-	#if !defined(TARGET_MUL) && !defined(TARGET_LOAD) && !defined(TARGET_CMP)
 	do_fix_IN_patch();
 	do_rdrand_patch();
-	printk(BIOS_INFO, "RDRAND patched\n");
-	#endif
 
 	void* uart_base = uart_platform_baseptr(CONFIG(UART_FOR_CONSOLE));
 	while (true) {
@@ -322,8 +322,11 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_READY);
 		uart8250_mem_tx_flush(uart_base);
 
-		// TODO cpuid, mfence, rdtsc, rdtscp, lfence, cpuid...
-
+		/*
+		 * NOTE: The code that is target of the glitch is repeated enough times to make each iteration last
+		 * ~420 us. This is to give enough time to the PMIC to drop the voltage to Vp first and Vf later,
+		 * and then to recover to Vcc before we are sending data over UART.
+		 */
 		#if defined(TARGET_MUL)
 		#define CODE_BODY_MUL \
 			"xor %%ecx, %%ecx;\n\t" \
@@ -340,11 +343,15 @@ void red_unlock_payload(void)
 
 		// AT&T syntax
 		__asm__ volatile (
-			REP100(REP100(CODE_BODY_MUL)) // 50k iterations
+			REP100(REP100(CODE_BODY_MUL)) // 54k iterations
 			REP100(REP100(CODE_BODY_MUL))
 			REP100(REP100(CODE_BODY_MUL))
 			REP100(REP100(CODE_BODY_MUL))
 			REP100(REP100(CODE_BODY_MUL))
+			REP10(REP100(CODE_BODY_MUL))
+			REP10(REP100(CODE_BODY_MUL))
+			REP10(REP100(CODE_BODY_MUL))
+			REP10(REP100(CODE_BODY_MUL))
 
 			: [fault_count]	"+r" (fault_count)				// Output operands
 			: [op1]			"r" (operand1),					// Input operands
@@ -359,7 +366,7 @@ void red_unlock_payload(void)
 		putu32(uart_base, result_a);
 		putu32(uart_base, result_b);
 		// Careful with sending too many bytes in a row, or the UART FIFO (64 bytes) will fill up
-		#elif defined(TARGET_LOAD)
+		#elif defined(TARGET_LOAD) /* NOTE: One iteration of this actually takes ~600 us */
 		#define CODE_BODY_LOAD \
 			"xor %%ecx, %%ecx;\n\t" \
 			"movl %[stack_storage], %%ebx;\n\t" \
@@ -376,7 +383,7 @@ void red_unlock_payload(void)
 			"movl %[stack_storage], %%eax;\n\t"
 
 			REP100(REP100(CODE_BODY_LOAD)) // 70k iterations
-			REP100(REP100(CODE_BODY_LOAD)) // WTF if I have 60k iterations instead of 70k, it takes 1/2 the time?
+			REP100(REP100(CODE_BODY_LOAD)) // WTF if I have 60k repetitions instead of 70k, it takes 1/5 the time?
 			REP100(REP100(CODE_BODY_LOAD))
 			REP100(REP100(CODE_BODY_LOAD))
 			REP100(REP100(CODE_BODY_LOAD))
@@ -410,7 +417,8 @@ void red_unlock_payload(void)
 			"movl %[stack_storage], %%eax;\n\t"
 			"movl %[stack_storage], %%ebx;\n\t"
 
-			REP10(REP100(REP100(CODE_BODY_CMP))) // 100k iterations
+			REP10(REP100(REP100(CODE_BODY_CMP))) // 110k iterations
+			REP100(REP100(CODE_BODY_CMP))
 
 			: [fault_count]		"+r" (fault_count)
 			: [stack_storage]	"m" (stack_storage)
@@ -431,13 +439,12 @@ void red_unlock_payload(void)
 		// AT&T syntax
 		__asm__ __volatile__ (
 			"xor %%ecx, %%ecx\t\n"
-
-			REP10(REP100(REP100(CODE_BODY_RDRAND_1337))) // 100k iterations NOTE: did not check if this is long enough (>400 us)
-
-			"mov %%ecx, %[result];\t\n"
-			: [result]	"=r" (result)						// Output operands
+			REP10(REP100(REP100(CODE_BODY_RDRAND_1337))) // 120k iterations
+			REP100(REP100(CODE_BODY_RDRAND_1337))
+			REP100(REP100(CODE_BODY_RDRAND_1337))
+			: "=c" (result)									// Output operands
 			:												// Input operands
-			: "%ecx" // result								// Clobbered register
+			:												// Clobbered register
 		);
 
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
@@ -450,25 +457,19 @@ void red_unlock_payload(void)
 		uint32_t operand1 = 0b01, operand2 = 0b01; // Can really be anything, as long as they're equal, I guess?
 		uint32_t diff_count = 0;
 
+		#ifdef TARGET_RDRAND_CMP_NE_JMP
+		#error Please check if 120k iterations corresponds to a ~400 us execution time for TARGET_RDRAND_CMP_NE_JMP
+		#endif
 		// AT&T syntax
 		__asm__ __volatile__ (
 			"xor %%ecx, %%ecx\t\n"
-			"mov %[op1], %%eax;\t\n"
-			"mov %[op2], %%ebx;\t\n"
-
 			REP10(REP100(REP100(CODE_BODY_RDRAND_CMP_NE))) // 120k iterations
 			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
 			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
-			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
-			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
-
-			"mov %%ecx, %[diff_count];\t\n"
-			: [diff_count]	"=r" (diff_count)				// Output operands
-			: [op1]			"r" (operand1),					// Input operands
-			  [op2]			"r" (operand2)
-			: "%eax", // operand1							// Clobbered register
-			  "%ebx", // operand2
-			  "%ecx"  // result
+			: "=c" (diff_count)								// Output operands
+			: "a" (operand1),								// Input operands
+			  "b" (operand2)
+			: 												// Clobbered register
 		);
 
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
@@ -484,26 +485,19 @@ void red_unlock_payload(void)
 		// AT&T syntax
 		__asm__ __volatile__ (
 			"xor %%ecx, %%ecx\t\n"
-			"mov %[op1], %%eax;\t\n"
-			"mov %[op2], %%ebx;\t\n"
-
 			REP10(REP100(REP100(CODE_BODY_RDRAND_SUB_ADD))) // 120k iterations
 			REP100(REP100(CODE_BODY_RDRAND_SUB_ADD))
 			REP100(REP100(CODE_BODY_RDRAND_SUB_ADD))
-
-			"mov %%ecx, %[fault_count];\t\n"
-			: [fault_count]	"=r" (fault_count)				// Output operands
-			: [op1]			"r" (operand1),					// Input operands
-			  [op2]			"r" (operand2)
-			: "%eax", // operand1							// Clobbered register
-			  "%ebx", // operand2
-			  "%ecx"  // result
+			: "=c" (fault_count)							// Output operands
+			: "a" (operand1),								// Input operands
+			  "b" (operand2)
+			:												// Clobbered register
 		);
 
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, fault_count);
 		// Careful with sending too many bytes in a row or the fifo will fill up
-		#elif defined(TARGET_RDRAND_ADD) || defined(TARGET_RDRAND_MANY_ADD)
+		#elif defined(TARGET_RDRAND_ADD) || defined(TARGET_RDRAND_ADD_MANY)
 		#define CODE_BODY_RDRAND_ADD \
 			"rdrand %%ecx;\t\n"
 
@@ -517,8 +511,9 @@ void red_unlock_payload(void)
 			REP10(REP100(REP100(CODE_BODY_RDRAND_ADD))) // 120k iterations
 			REP100(REP100(CODE_BODY_RDRAND_ADD))
 			REP100(REP100(CODE_BODY_RDRAND_ADD))
-			#elif defined(TARGET_RDRAND_MANY_ADD)
-			REP100(REP100(CODE_BODY_RDRAND_ADD)) // 80k iterations (*10 adds per rdrand invoke) - ecx = 800000
+			#elif defined(TARGET_RDRAND_ADD_MANY)
+			REP100(REP100(CODE_BODY_RDRAND_ADD)) // 90k iterations (*10 adds per rdrand invoke) - ecx = 900000
+			REP100(REP100(CODE_BODY_RDRAND_ADD))
 			REP100(REP100(CODE_BODY_RDRAND_ADD))
 			REP100(REP100(CODE_BODY_RDRAND_ADD))
 			REP100(REP100(CODE_BODY_RDRAND_ADD))
@@ -527,11 +522,9 @@ void red_unlock_payload(void)
 			REP100(REP100(CODE_BODY_RDRAND_ADD))
 			REP100(REP100(CODE_BODY_RDRAND_ADD))
 			#endif
-
-			"mov %%ecx, %[summation];\t\n"
-			: [summation]	"=r" (summation)				// Output operands
+			: "=c" (summation)								// Output operands
 			:												// Input operands
-			: "%ecx" // result								// Clobbered register
+			:												// Clobbered register
 		);
 
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
@@ -541,29 +534,26 @@ void red_unlock_payload(void)
 		#define CODE_BODY_RDRAND_MOVE_REGS \
 			"rdrand %%ecx;\t\n"
 
-		uint32_t input = 0xFFFFFFFF, result = 0;
+		uint32_t input = 0xFFFFFFFF, output = 0;
 
 		// AT&T syntax
 		__asm__ __volatile__ (
-			"mov %[input], %%ecx\t\n"
-
-			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS)) // 50k iterations (*10 adds per rdrand invoke) - ecx = 800000
+			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))		// 90k iterations
 			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
 			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
 			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
 			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
-			// REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
-			// REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
-			// REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
-
-			"mov %%ecx, %[result];\t\n"
-			: [result]		"=r" (result)					// Output operands
-			: [input]		"r" (input)						// Input operands
-			: "%ecx" // result								// Clobbered register
+			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
+			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
+			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
+			REP100(REP100(CODE_BODY_RDRAND_MOVE_REGS))
+			: "=c" (output)									// Output operands
+			: "c" (input)									// Input operands
+			:												// Clobbered register
 		);
 
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
-		putu32(uart_base, result);
+		putu32(uart_base, output);
 		// Careful with sending too many bytes in a row or the fifo will fill up
 		#endif
 	}
