@@ -31,11 +31,14 @@
 // #define TARGET_MUL
 // #define TARGET_LOAD
 // #define TARGET_CMP
+// #define TARGET_RDRAND_1337
+#define TARGET_RDRAND_CMP
 // #define TARGET_RDRAND_SUB_ADD
 // #define TARGET_RDRAND_ADD
 // #define TARGET_RDRAND_MANY_ADD
-#define TARGET_RDRAND_MOVE_REGS
+// #define TARGET_RDRAND_MOVE_REGS
 #if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
+	 defined(TARGET_RDRAND_1337) + defined(TARGET_RDRAND_CMP) +			\
 	 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
 	 defined(TARGET_RDRAND_MANY_ADD) + defined(TARGET_RDRAND_MOVE_REGS)) != 1
 #error You should pick exactly one glitch target
@@ -138,18 +141,14 @@ void do_rdrand_patch(void) {
 			END_SEQWORD
 		},
 		#elif defined(TARGET_RDRAND_CMP)
-		/* This code with the conditional jump is not working in coreboot. Here, it hangs after a (small)
-		 * number of iterations, but it was working in linux (?)
-		 * idk...
-		 */
-		{ /* rcx += rax != rbx ? 1 : 0 */
+		{ /* rcx += rax != rbx */
 			SUB_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
 			UJMPCC_DIRECT_NOTTAKEN_CONDNZ_RI(TMP0, patch_addr + 0x04),
 			NOP,
 			END_SEQWORD
 		},
 		{ // 0x04
-			MOVE_DSZ64_DR(TMP0, RCX),		/* Move current value of rcx to tmp0, because ucode ADD can */
+			ZEROEXT_DSZ32_DR(TMP0, RCX),	/* Move current value of rcx to tmp0, because ucode ADD can */
 			ADD_DSZ64_DRI(RCX, TMP0, 1),	/* operate on only one architectual register at a time, it seems */
 			NOP,
 			END_SEQWORD
@@ -201,14 +200,28 @@ void do_rdrand_patch(void) {
 			END_SEQWORD
 		},
 		#elif defined(TARGET_RDRAND_MOVE_REGS)
+		{ /* Move around the current value of rcx without explicitly changing it, then store back to rcx. Test issues with register file */
+			ZEROEXT_DSZ32_DR(TMP0, RCX),
+			ZEROEXT_DSZ32_DR(TMP1, TMP0),
+			ZEROEXT_DSZ32_DR(TMP2, TMP1),
+			NOP_SEQWORD
+		},
 		{
-			// MOVE_DSZ32_DI(RAX, 0x1337),
-			NOP,
-			// MOVE_DSZ32_DR(RBX, RAX),
-			NOP,
-			// ZEROEXT_DSZ64_DI(RCX, 0xcafe),
-			// NOP,
-			ZEROEXT_DSZ64_DR(RCX, RAX),
+			ZEROEXT_DSZ32_DR(TMP3, TMP2),
+			ZEROEXT_DSZ32_DR(TMP4, TMP3),
+			ZEROEXT_DSZ32_DR(TMP5, TMP4),
+			NOP_SEQWORD
+		},
+		{
+			ZEROEXT_DSZ32_DR(TMP6, TMP5),
+			ZEROEXT_DSZ32_DR(TMP7, TMP6),
+			ZEROEXT_DSZ32_DR(TMP8, TMP7),
+			NOP_SEQWORD
+		},
+		{
+			ZEROEXT_DSZ32_DR(TMP9, TMP8),
+			ZEROEXT_DSZ32_DR(TMP10, TMP9),
+			ZEROEXT_DSZ32_DR(RCX, TMP10),
 			END_SEQWORD
 		},
 		#endif
@@ -281,9 +294,11 @@ void red_unlock_payload(void)
 		die("\tFailed to write APL_UCODE_CRBUS_UNLOCK MSR\n");
 	}
 
+	#if not defined(TARGET_MUL) && not defined(TARGET_LOAD) && not defined(TARGET_CMP)
 	do_fix_IN_patch();
 	do_rdrand_patch();
 	printk(BIOS_INFO, "RDRAND patched\n");
+	#endif
 
 	void* uart_base = uart_platform_baseptr(CONFIG(UART_FOR_CONSOLE));
 	while (true) {
@@ -395,6 +410,58 @@ void red_unlock_payload(void)
 
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, fault_count);
+		// Careful with sending too many bytes in a row or the fifo will fill up
+		#elif defined(TARGET_RDRAND_1337)
+		#define CODE_BODY_RDRAND_1337 \
+			"rdrand %%ecx;\t\n"
+
+		uint32_t result = 0;
+
+		// AT&T syntax
+		__asm__ __volatile__ (
+			"xor %%ecx, %%ecx\t\n"
+
+			REP10(REP100(REP100(CODE_BODY_RDRAND_1337))) // 100k iterations NOTE: did not check if this is long enough (>400 us)
+
+			"mov %%ecx, %[result];\t\n"
+			: [result]	"=r" (result)						// Output operands
+			:												// Input operands
+			: "%ecx" // result								// Clobbered register
+		);
+
+		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
+		putu32(uart_base, result);
+		// Careful with sending too many bytes in a row or the fifo will fill up
+		#elif defined(TARGET_RDRAND_CMP)
+		#define CODE_BODY_RDRAND_CMP \
+			"rdrand %%ecx;\t\n"
+
+		uint32_t operand1 = 0b01, operand2 = 0b01; // Can really be anything, as long as they're equal, I guess?
+		uint32_t diff_count = 0;
+
+		// AT&T syntax
+		__asm__ __volatile__ (
+			"xor %%ecx, %%ecx\t\n"
+			"mov %[op1], %%eax;\t\n"
+			"mov %[op2], %%ebx;\t\n"
+
+			REP10(REP100(REP100(CODE_BODY_RDRAND_CMP))) // 120k iterations
+			REP100(REP100(CODE_BODY_RDRAND_CMP))
+			REP100(REP100(CODE_BODY_RDRAND_CMP))
+			REP100(REP100(CODE_BODY_RDRAND_CMP))
+			REP100(REP100(CODE_BODY_RDRAND_CMP))
+
+			"mov %%ecx, %[diff_count];\t\n"
+			: [diff_count]	"=r" (diff_count)				// Output operands
+			: [op1]			"r" (operand1),					// Input operands
+			  [op2]			"r" (operand2)
+			: "%eax", // operand1							// Clobbered register
+			  "%ebx", // operand2
+			  "%ecx"  // result
+		);
+
+		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
+		putu32(uart_base, diff_count);
 		// Careful with sending too many bytes in a row or the fifo will fill up
 		#elif defined(TARGET_RDRAND_SUB_ADD)
 		#define CODE_BODY_RDRAND_SUB_ADD \
