@@ -32,13 +32,13 @@
 // #define TARGET_LOAD
 // #define TARGET_CMP
 // #define TARGET_RDRAND_1337
-#define TARGET_RDRAND_CMP
+#define TARGET_RDRAND_CMP_NE
 // #define TARGET_RDRAND_SUB_ADD
 // #define TARGET_RDRAND_ADD
 // #define TARGET_RDRAND_MANY_ADD
 // #define TARGET_RDRAND_MOVE_REGS
 #if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
-	 defined(TARGET_RDRAND_1337) + defined(TARGET_RDRAND_CMP) +			\
+	 defined(TARGET_RDRAND_1337) + defined(TARGET_RDRAND_CMP_NE) +			\
 	 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
 	 defined(TARGET_RDRAND_MANY_ADD) + defined(TARGET_RDRAND_MOVE_REGS)) != 1
 #error You should pick exactly one glitch target
@@ -140,17 +140,11 @@ void do_rdrand_patch(void) {
 			NOP,
 			END_SEQWORD
 		},
-		#elif defined(TARGET_RDRAND_CMP)
-		{ /* rcx += rax != rbx */
-			SUB_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
-			UJMPCC_DIRECT_NOTTAKEN_CONDNZ_RI(TMP0, patch_addr + 0x04),
-			NOP,
-			END_SEQWORD
-		},
-		{ // 0x04
-			ZEROEXT_DSZ32_DR(TMP0, RCX),	/* Move current value of rcx to tmp0, because ucode ADD can */
-			ADD_DSZ64_DRI(RCX, TMP0, 1),	/* operate on only one architectual register at a time, it seems */
-			NOP,
+		#elif defined(TARGET_RDRAND_CMP_NE)
+		{ /* rcx += rax != rbx (with conditional set) */
+			SUB_DSZ32_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
+			SETCC_CONDNZ_DR(TMP1, TMP0),
+			ADD_DSZ32_DRR(RCX, TMP1, RCX),	/* NOTE: Both ADD and SUB 64 bit opcodes work just as well */
 			END_SEQWORD
 		},
 		#elif defined(TARGET_RDRAND_SUB_ADD)
@@ -294,7 +288,7 @@ void red_unlock_payload(void)
 		die("\tFailed to write APL_UCODE_CRBUS_UNLOCK MSR\n");
 	}
 
-	#if not defined(TARGET_MUL) && not defined(TARGET_LOAD) && not defined(TARGET_CMP)
+	#if !defined(TARGET_MUL) && !defined(TARGET_LOAD) && !defined(TARGET_CMP)
 	do_fix_IN_patch();
 	do_rdrand_patch();
 	printk(BIOS_INFO, "RDRAND patched\n");
@@ -432,7 +426,7 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, result);
 		// Careful with sending too many bytes in a row or the fifo will fill up
-		#elif defined(TARGET_RDRAND_CMP)
+		#elif defined(TARGET_RDRAND_CMP_NE)
 		#define CODE_BODY_RDRAND_CMP \
 			"rdrand %%ecx;\t\n"
 
