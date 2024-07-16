@@ -494,7 +494,10 @@ void x86_exception(struct eregs *info)
 			return;
 	}
 
-#if ENV_RAMSTAGE
+#if ENV_RAMSTAGE && !CONFIG(RED_UNLOCK)
+	/* For reasons behind my understanding, this will cause a triple fault if called when red_unlock_payload is running.
+	 * My guess is: we haven't yet brought all the cores up, so something something
+	 */
 	logical_processor = cpu_index();
 #endif
 	u8 *code;
