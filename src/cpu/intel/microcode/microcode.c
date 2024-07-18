@@ -41,31 +41,6 @@ struct ext_sig_entry {
 	u32 chksm;
 };
 
-static inline u32 read_microcode_rev(void)
-{
-	/* Some Intel CPUs can be very finicky about the
-	 * CPUID sequence used.  So this is implemented in
-	 * assembly so that it works reliably.
-	 */
-	msr_t msr;
-	asm volatile (
-		"xorl %%eax, %%eax\n\t"
-		"xorl %%edx, %%edx\n\t"
-		"movl $0x8b, %%ecx\n\t"
-		"wrmsr\n\t"
-		"movl $0x01, %%eax\n\t"
-		"cpuid\n\t"
-		"movl $0x08b, %%ecx\n\t"
-		"rdmsr\n\t"
-		: /* outputs */
-		"=a" (msr.lo), "=d" (msr.hi)
-		: /* inputs */
-		: /* trashed */
-		 "ebx", "ecx"
-	);
-	return msr.hi;
-}
-
 #define MICROCODE_CBFS_FILE "cpu_microcode_blob.bin"
 
 static int load_microcode(const struct microcode *ucode_patch)

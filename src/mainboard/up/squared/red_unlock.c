@@ -14,6 +14,7 @@
 #include <console/uart8250mem.h>
 #include <cpu/x86/msr.h>
 #include <arch/cpuid.h>
+#include <cpu/intel/microcode.h>
 
 #include "lib-micro-x86/misc.h"
 #include "lib-micro-x86/ucode_macro.h"
@@ -28,16 +29,17 @@
 
 #define MAGIC_UNLOCK 0x200
 // #define PRINT_CLOCK_SPEED				/* Decomment if you want to print clock speed at boot (BIOS_INFO log level) */
+// #define PRINT_UCODE_REV					/* Decomment if you want to print microcode revision at boot (BIOS_INFO log level) */
 // #define TARGET_MUL
 // #define TARGET_LOAD
 // #define TARGET_CMP
 // #define TARGET_RDRAND_1337
-#define TARGET_RDRAND_CMP_NE
+// #define TARGET_RDRAND_CMP_NE
 // #define TARGET_RDRAND_CMP_NE_JMP
 // #define TARGET_RDRAND_SUB_ADD
 // #define TARGET_RDRAND_ADD
 // #define TARGET_RDRAND_ADD_MANY
-// #define TARGET_RDRAND_MOVE_REGS
+#define TARGET_RDRAND_MOVE_REGS
 #if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
 	 defined(TARGET_RDRAND_1337) + \
 	 defined(TARGET_RDRAND_CMP_NE) + defined(TARGET_RDRAND_CMP_NE_JMP) + \
@@ -297,7 +299,7 @@ void red_unlock_payload(void)
 	 * NOTE: This is not compatible with the glitcher as it does not expect this data to be printed.
 	 */
 	#ifdef PRINT_CLOCK_SPEED
-	printk(BIOS_EMERG, "Current clock: %ld kHz\n", curr_clock_khz());
+	printk(BIOS_INFO, "Current clock: %ld kHz\n", curr_clock_khz());
 	#endif
 
 	/* Enable ucode debug */
@@ -307,6 +309,17 @@ void red_unlock_payload(void)
 	if (high != 0 || low != MAGIC_UNLOCK) {
 		die("\tFailed to write APL_UCODE_CRBUS_UNLOCK MSR\n");
 	}
+
+	#ifdef PRINT_UCODE_REV
+	/* Print ucode revision as it is running (comes from FIT package) */
+	uint32_t ucode_rev;
+	ucode_rev = read_microcode_rev(); // 0x20
+	printk(BIOS_INFO, "Microcode FIT revision: 0x%x\n", ucode_rev);
+	/* Install ucode update from bios image and print new version */
+	intel_update_microcode_from_cbfs();
+	ucode_rev = read_microcode_rev(); // 0x28
+	printk(BIOS_INFO, "Microcode CBFS revision: 0x%x\n", ucode_rev);
+	#endif
 
 	do_fix_IN_patch();
 	do_rdrand_patch();
