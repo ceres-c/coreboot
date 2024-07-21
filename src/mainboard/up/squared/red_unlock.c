@@ -8,6 +8,7 @@
 #pragma GCC push_options
 #pragma GCC optimize ("O0")
 
+#include <timestamp.h>
 #include <soc/ramstage.h>
 #include <console/console.h>
 #include <console/uart.h>
@@ -40,13 +41,14 @@
 // #define TARGET_RDRAND_ADD
 // #define TARGET_RDRAND_ADD_MANY
 // #define TARGET_RDRAND_MOVE_REGS
-#define TARGET_RDRAND_OR_REGS
+// #define TARGET_RDRAND_OR_REGS
+#define TARGET_UCODE_UPDATE
 #if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
 	 defined(TARGET_RDRAND_1337) + \
 	 defined(TARGET_RDRAND_CMP_NE) + defined(TARGET_RDRAND_CMP_NE_JMP) + \
 	 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
 	 defined(TARGET_RDRAND_ADD_MANY) + defined(TARGET_RDRAND_MOVE_REGS)) + \
-	 defined(TARGET_RDRAND_OR_REGS) != 1
+	 defined(TARGET_RDRAND_OR_REGS) + defined(TARGET_UCODE_UPDATE) != 1
 #error You should pick exactly one glitch target
 #endif
 
@@ -267,7 +269,11 @@ void do_rdrand_patch(void) {
 		#endif
 	};
 
-	#if !defined(TARGET_MUL) && !defined(TARGET_LOAD) && !defined(TARGET_CMP)
+	#if (defined(TARGET_RDRAND_1337) + \
+		 defined(TARGET_RDRAND_CMP_NE) + defined(TARGET_RDRAND_CMP_NE_JMP) + \
+		 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
+		 defined(TARGET_RDRAND_ADD_MANY) + defined(TARGET_RDRAND_MOVE_REGS)) + \
+		 defined(TARGET_RDRAND_OR_REGS) == 1
 	patch_ucode(patch_addr, ucode_patch, ARRAY_SZ(ucode_patch));
 	hook_match_and_patch(0, RDRAND_XLAT, patch_addr);
 	printk(BIOS_INFO, "RDRAND patched\n");
@@ -329,6 +335,31 @@ void red_unlock_payload(void)
 	printk(BIOS_INFO, "Current clock: %ld kHz\n", curr_clock_khz());
 	#endif
 
+	#ifdef PRINT_UCODE_REV
+	/* Print ucode revision as it is running (comes from FIT package) */
+	uint32_t print_ucode_rev = read_microcode_rev(); // 0x20
+	printk(BIOS_INFO, "Microcode FIT revision: 0x%x\n", print_ucode_rev);
+
+	/* No need for spinlocks here, I assume. We are still running a single core */
+	const void *print_patch = intel_microcode_find();
+	const struct microcode *ucode_print_patch = print_patch;
+	if (!ucode_print_patch)
+		die("microcode: failed because no ucode was found\n");
+	if (print_ucode_rev == ucode_print_patch->rev)
+		die("microcode: Update skipped, already up-to-date\n");
+	unsigned long ucode_print_patch_addr = (unsigned long)ucode_print_patch + sizeof(struct microcode);
+	uint64_t ucode_print_tsc = timestamp_get();
+	__asm__ __volatile__ (
+		"wrmsr"
+		: /* No outputs */
+		: "c" (IA32_BIOS_UPDT_TRIG), "a" (ucode_print_patch_addr), "d" (0)
+	);
+	uint64_t ucode_print_tsc2 = timestamp_get();
+	print_ucode_rev = read_microcode_rev();
+	printk(BIOS_INFO, "Microcode CBFS revision: 0x%x\n", print_ucode_rev);
+	printk(BIOS_INFO, "Microcode update took %lld cycles\n", ucode_print_tsc2 - ucode_print_tsc);
+	#endif /* PRINT_UCODE_REV */
+
 	/* Enable ucode debug */
 	unsigned int low = 0, high = 0;
 	__asm__ volatile ("wrmsr" : : "a" (MAGIC_UNLOCK), "d" (0), "c" (APL_UCODE_CRBUS_UNLOCK));
@@ -337,21 +368,23 @@ void red_unlock_payload(void)
 		die("\tFailed to write APL_UCODE_CRBUS_UNLOCK MSR\n");
 	}
 
-	#ifdef PRINT_UCODE_REV
-	/* Print ucode revision as it is running (comes from FIT package) */
-	uint32_t ucode_rev;
-	ucode_rev = read_microcode_rev(); // 0x20
-	printk(BIOS_INFO, "Microcode FIT revision: 0x%x\n", ucode_rev);
-	/* Install ucode update from bios image and print new version */
-	intel_update_microcode_from_cbfs();
-	ucode_rev = read_microcode_rev(); // 0x28
-	printk(BIOS_INFO, "Microcode CBFS revision: 0x%x\n", ucode_rev);
-	#endif
-
-	do_fix_IN_patch();
+	/* Patch IN instruction and apply our patch to rdrand */
+	do_fix_IN_patch(); /* See 'Backdoor in the Core' talk to see why this is needed */
 	do_rdrand_patch();
 
 	void* uart_base = uart_platform_baseptr(CONFIG(UART_FOR_CONSOLE));
+
+	#ifdef TARGET_UCODE_UPDATE
+	uint32_t ucode_rev = read_microcode_rev(); // 0x20
+	const void *patch = intel_microcode_find();
+	const struct microcode *ucode_patch = patch;
+	if (!ucode_patch)
+		die("microcode: failed because no ucode was found\n");
+	if (ucode_rev == ucode_patch->rev)
+		die("microcode: failed because already up-to-date\n");
+	unsigned long ucode_patch_addr = (unsigned long)ucode_patch + sizeof(struct microcode);
+	#endif /* TARGET_UCODE_UPDATE */
+
 	while (true) {
 		/*
 		 * Will send to the glitcher 2 main commands/responses:
@@ -595,6 +628,19 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, output);
 		// Careful with sending too many bytes in a row or the fifo will fill up
+		#elif defined(TARGET_UCODE_UPDATE) /* NOTE: One iteration of this actually takes ~5.2 ms (MILLI!) */
+		/* To be more precise, it's ~5.27 ms when performing an update on top of the same update with a valid RSA
+		 * signature, and ~5.18 ms when performing an update on top of the same update when the signature check fails.
+		 */
+		__asm__ __volatile__ (
+			"wrmsr"
+			: /* No outputs */
+			: "c" (IA32_BIOS_UPDT_TRIG), "a" (ucode_patch_addr), "d" (0)
+		);
+
+		uint32_t updated_ucode_rev = read_microcode_rev();
+		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
+		putu32(uart_base, updated_ucode_rev);
 		#endif
 	}
 }

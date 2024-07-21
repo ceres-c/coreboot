@@ -13,22 +13,6 @@
 
 DECLARE_SPIN_LOCK(microcode_lock)
 
-struct microcode {
-	u32 hdrver;	/* Header Version */
-	u32 rev;	/* Update Revision */
-	u32 date;	/* Date */
-	u32 sig;	/* Processor Signature */
-
-	u32 cksum;	/* Checksum */
-	u32 ldrver;	/* Loader Revision */
-	u32 pf;		/* Processor Flags */
-
-	u32 data_size;	/* Data Size */
-	u32 total_size;	/* Total Size */
-
-	u32 reserved[3];
-};
-
 struct ext_sig_table {
 	u32 ext_sig_cnt;
 	u32 ext_tbl_chksm;

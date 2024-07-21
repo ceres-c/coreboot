@@ -5,6 +5,22 @@
 #include <stdint.h>
 #include <cpu/x86/msr.h>
 
+struct microcode {
+	u32 hdrver;	/* Header Version */
+	u32 rev;	/* Update Revision */
+	u32 date;	/* Date */
+	u32 sig;	/* Processor Signature */
+
+	u32 cksum;	/* Checksum */
+	u32 ldrver;	/* Loader Revision */
+	u32 pf;		/* Processor Flags */
+
+	u32 data_size;	/* Data Size */
+	u32 total_size;	/* Total Size */
+
+	u32 reserved[3];
+};
+
 static inline u32 read_microcode_rev(void)
 {
 	/* Some Intel CPUs can be very finicky about the
