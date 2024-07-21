@@ -39,12 +39,14 @@
 // #define TARGET_RDRAND_SUB_ADD
 // #define TARGET_RDRAND_ADD
 // #define TARGET_RDRAND_ADD_MANY
-#define TARGET_RDRAND_MOVE_REGS
+// #define TARGET_RDRAND_MOVE_REGS
+#define TARGET_RDRAND_OR_REGS
 #if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
 	 defined(TARGET_RDRAND_1337) + \
 	 defined(TARGET_RDRAND_CMP_NE) + defined(TARGET_RDRAND_CMP_NE_JMP) + \
 	 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
-	 defined(TARGET_RDRAND_ADD_MANY) + defined(TARGET_RDRAND_MOVE_REGS)) != 1
+	 defined(TARGET_RDRAND_ADD_MANY) + defined(TARGET_RDRAND_MOVE_REGS)) + \
+	 defined(TARGET_RDRAND_OR_REGS) != 1
 #error You should pick exactly one glitch target
 #endif
 
@@ -235,6 +237,31 @@ void do_rdrand_patch(void) {
 			ZEROEXT_DSZ32_DR(TMP9, TMP8),
 			ZEROEXT_DSZ32_DR(TMP10, TMP9),
 			ZEROEXT_DSZ32_DR(RCX, TMP10),
+			END_SEQWORD
+		},
+		#elif defined(TARGET_RDRAND_OR_REGS) /* rcx = rcx */
+		{ /* Move around the current value of rcx without explicitly changing it, then store back to rcx. Test issues with register file */
+			OR_DSZ32_DRI(TMP0, RCX, 0),
+			OR_DSZ32_DRI(TMP1, TMP0, 0),
+			OR_DSZ32_DRI(TMP2, TMP1, 0),
+			NOP_SEQWORD
+		},
+		{
+			OR_DSZ32_DRI(TMP3, TMP2, 0),
+			OR_DSZ32_DRI(TMP4, TMP3, 0),
+			OR_DSZ32_DRI(TMP5, TMP4, 0),
+			NOP_SEQWORD
+		},
+		{
+			OR_DSZ32_DRI(TMP6, TMP5, 0),
+			OR_DSZ32_DRI(TMP7, TMP6, 0),
+			OR_DSZ32_DRI(TMP8, TMP7, 0),
+			NOP_SEQWORD
+		},
+		{
+			OR_DSZ32_DRI(TMP9, TMP8, 0),
+			OR_DSZ32_DRI(TMP10, TMP9, 0),
+			OR_DSZ32_DRI(RCX, TMP10, 0),
 			END_SEQWORD
 		},
 		#endif
@@ -543,7 +570,7 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, summation);
 		// Careful with sending too many bytes in a row or the fifo will fill up
-		#elif defined(TARGET_RDRAND_MOVE_REGS)
+		#elif defined(TARGET_RDRAND_MOVE_REGS) || defined (TARGET_RDRAND_OR_REGS)
 		#define CODE_BODY_RDRAND_MOVE_REGS \
 			"rdrand %%ecx;\t\n"
 
