@@ -628,12 +628,19 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, output);
 		// Careful with sending too many bytes in a row or the fifo will fill up
-		#elif defined(TARGET_UCODE_UPDATE) /* NOTE: One iteration of this actually takes ~5.2 ms (MILLI!) */
+		#elif defined(TARGET_UCODE_UPDATE) /* NOTE: One iteration of this actually takes ~5.55 ms (MILLI!) */
 		/* To be more precise, it's ~5.27 ms when performing an update on top of the same update with a valid RSA
 		 * signature, and ~5.18 ms when performing an update on top of the same update when the signature check fails.
 		 */
+		#define CODE_BODY_UCODE_UPDATE_DELAY \
+			"nop;\t\n"
 		__asm__ __volatile__ (
-			"wrmsr"
+			"wrmsr;\t\n"
+			REP10(REP100(REP100(CODE_BODY_UCODE_UPDATE_DELAY))) // This is the extra 300us delay, added to allow
+			REP10(REP100(REP100(CODE_BODY_UCODE_UPDATE_DELAY))) // the glitcher to restore voltage before UART tx
+			REP10(REP100(REP100(CODE_BODY_UCODE_UPDATE_DELAY)))
+			REP10(REP100(REP100(CODE_BODY_UCODE_UPDATE_DELAY)))
+			REP10(REP100(REP100(CODE_BODY_UCODE_UPDATE_DELAY)))
 			: /* No outputs */
 			: "c" (IA32_BIOS_UPDT_TRIG), "a" (ucode_patch_addr), "d" (0)
 		);
