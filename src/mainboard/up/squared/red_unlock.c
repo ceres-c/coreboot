@@ -34,6 +34,10 @@
 // #define TARGET_MUL
 // #define TARGET_LOAD
 // #define TARGET_CMP
+#define TARGET_UCODE_UPDATE
+#if defined(TARGET_MUL) || defined(TARGET_LOAD) || defined(TARGET_CMP) || defined(TARGET_UCODE_UPDATE)
+	#define TARGET_NOT_UCODE
+#endif
 // #define TARGET_RDRAND_1337
 // #define TARGET_RDRAND_CMP_NE
 // #define TARGET_RDRAND_CMP_NE_JMP
@@ -42,7 +46,6 @@
 // #define TARGET_RDRAND_ADD_MANY
 // #define TARGET_RDRAND_MOVE_REGS
 // #define TARGET_RDRAND_OR_REGS
-#define TARGET_UCODE_UPDATE
 #if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
 	 defined(TARGET_RDRAND_1337) + \
 	 defined(TARGET_RDRAND_CMP_NE) + defined(TARGET_RDRAND_CMP_NE_JMP) + \
@@ -269,11 +272,7 @@ void do_rdrand_patch(void) {
 		#endif
 	};
 
-	#if (defined(TARGET_RDRAND_1337) + \
-		 defined(TARGET_RDRAND_CMP_NE) + defined(TARGET_RDRAND_CMP_NE_JMP) + \
-		 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
-		 defined(TARGET_RDRAND_ADD_MANY) + defined(TARGET_RDRAND_MOVE_REGS)) + \
-		 defined(TARGET_RDRAND_OR_REGS) == 1
+	#ifndef TARGET_NOT_UCODE
 	patch_ucode(patch_addr, ucode_patch, ARRAY_SZ(ucode_patch));
 	hook_match_and_patch(0, RDRAND_XLAT, patch_addr);
 	printk(BIOS_INFO, "RDRAND patched\n");
