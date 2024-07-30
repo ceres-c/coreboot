@@ -34,10 +34,9 @@
 // #define TARGET_MUL
 // #define TARGET_LOAD
 // #define TARGET_CMP
-// #define TARGET_UCODE_UPDATE					/* Tries to update ucode and returns the current version after the update */
-#define TARGET_UCODE_UPDATE_TIME			/* Tries to update ucode and returns the time it took to update */
+#define TARGET_UCODE_UPDATE
 #if defined(TARGET_MUL) || defined(TARGET_LOAD) || defined(TARGET_CMP) || \
-	defined(TARGET_UCODE_UPDATE) || defined(TARGET_UCODE_UPDATE_TIME)
+	defined(TARGET_UCODE_UPDATE)
 #define TARGET_NO_REDUNLOCK
 #endif
 // #define TARGET_RDRAND_1337
@@ -53,8 +52,7 @@
 	 defined(TARGET_RDRAND_CMP_NE) + defined(TARGET_RDRAND_CMP_NE_JMP) + \
 	 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
 	 defined(TARGET_RDRAND_ADD_MANY) + defined(TARGET_RDRAND_MOVE_REGS)) + \
-	 defined(TARGET_RDRAND_OR_REGS) + defined(TARGET_UCODE_UPDATE) + \
-	 defined(TARGET_UCODE_UPDATE_TIME) != 1
+	 defined(TARGET_RDRAND_OR_REGS) + defined(TARGET_UCODE_UPDATE) != 1
 #error You should pick exactly one glitch target
 #endif
 
@@ -376,7 +374,7 @@ void red_unlock_payload(void)
 
 	void* uart_base = uart_platform_baseptr(CONFIG(UART_FOR_CONSOLE));
 
-	#if defined(TARGET_UCODE_UPDATE) || defined(TARGET_UCODE_UPDATE_TIME)
+	#ifdef TARGET_UCODE_UPDATE
 	uint32_t ucode_rev = read_microcode_rev(); // 0x20
 	const void *patch = intel_microcode_find();
 	const struct microcode *ucode_patch = patch;
@@ -385,7 +383,7 @@ void red_unlock_payload(void)
 	if (ucode_rev == ucode_patch->rev)
 		die("microcode: failed because already up-to-date\n");
 	unsigned long ucode_patch_addr = (unsigned long)ucode_patch + sizeof(struct microcode);
-	#endif /* TARGET_UCODE_UPDATE || TARGET_UCODE_UPDATE_TIME */
+	#endif /* TARGET_UCODE_UPDATE */
 
 	while (true) {
 		/*
@@ -630,7 +628,7 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, output);
 		// Careful with sending too many bytes in a row or the fifo will fill up
-		#elif defined(TARGET_UCODE_UPDATE) || defined(TARGET_UCODE_UPDATE_TIME)
+		#elif defined(TARGET_UCODE_UPDATE)
 		/* NOTE: One iteration of this actually takes ~5.55 ms (MILLI!) */
 		/* To be more precise, it's ~5.27 ms when performing an update on top of the same update with a valid RSA
 		 * signature, and ~5.18 ms when performing an update on top of the same update when the signature check fails.
@@ -638,10 +636,7 @@ void red_unlock_payload(void)
 		#define CODE_BODY_UCODE_UPDATE_DELAY \
 			"nop;\t\n"
 
-		#if defined(TARGET_UCODE_UPDATE_TIME)
 		uint64_t ucode_tsc_start = timestamp_get();
-		#endif /* TARGET_UCODE_UPDATE_TIME */
-
 		__asm__ __volatile__ (
 			"wrmsr;\t\n"
 			REP10(REP100(REP100(CODE_BODY_UCODE_UPDATE_DELAY))) // This is the extra 300us delay, added to allow
@@ -652,19 +647,14 @@ void red_unlock_payload(void)
 			: /* No outputs */
 			: "c" (IA32_BIOS_UPDT_TRIG), "a" (ucode_patch_addr), "d" (0)
 		);
-
-		#if defined(TARGET_UCODE_UPDATE)
+		uint64_t ucode_tsc_end = timestamp_get();
 		uint32_t updated_ucode_rev = read_microcode_rev();
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, updated_ucode_rev);
-		#elif defined(TARGET_UCODE_UPDATE_TIME)
-		uint64_t ucode_tsc_end = timestamp_get();
-		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		if (ucode_tsc_end - ucode_tsc_start > 0xFFFFFFFF)
 			/* The board will be reset by the glitcher */
 			die("[-] ucode update took %llx cycles > 0xFFFFFFFF\n", ucode_tsc_end - ucode_tsc_start);
 		putu32(uart_base, ucode_tsc_end - ucode_tsc_start);
-		#endif /* TARGET_UCODE_UPDATE || TARGET_UCODE_UPDATE_TIME */
 		#endif
 	}
 }
