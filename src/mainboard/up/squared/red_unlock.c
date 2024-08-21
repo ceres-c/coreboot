@@ -31,10 +31,10 @@
 #define MAGIC_UNLOCK 0x200
 // #define PRINT_CLOCK_SPEED				/* Decomment if you want to print clock speed at boot (BIOS_INFO log level) */
 // #define PRINT_UCODE_REV					/* Decomment if you want to print microcode revision at boot (BIOS_INFO log level) */
-// #define TARGET_MUL
+#define TARGET_MUL
 // #define TARGET_LOAD
 // #define TARGET_CMP
-#define TARGET_UCODE_UPDATE
+// #define TARGET_UCODE_UPDATE
 #if defined(TARGET_MUL) || defined(TARGET_LOAD) || defined(TARGET_CMP) || \
 	defined(TARGET_UCODE_UPDATE)
 #define TARGET_NO_REDUNLOCK
@@ -402,42 +402,42 @@ void red_unlock_payload(void)
 		 */
 		#if defined(TARGET_MUL)
 		#define CODE_BODY_MUL \
-			"xor %%ecx, %%ecx;\n\t" \
-			"movl %[op1], %%eax;\n\t" \
-			"imull %[op2], %%eax;\n\t" \
-			"movl %[op1], %%ebx;\n\t" \
-			"imull %[op2], %%ebx;\n\t" \
-			"cmp %%eax, %%ebx;\n\t" \
-			"setne %%cl;\n\t" \
-			"addl %%ecx, %[fault_count];\n\t"
+			"movl %%eax, %%edx;\n\t" \
+			"imull %%ebx, %%edx;\n\t" \
+			"movl %%eax, %%edi;\n\t" \
+			"imull %%ebx, %%edi;\n\t" \
+			"cmp %%edx, %%edi;\n\t" \
+			"setne %%dl;\n\t" \
+			"addb %%dl, %%cl;\n\t" // Might actually overflow at 256 and wrap around, but heh
 
 		uint32_t operand1 = 0x80000, operand2 = 0x4; // Taken from plundervolt paper
-		uint32_t fault_count = 0, result_a = 0, result_b = 0;
+		uint32_t fault_count = 0;
 
 		// AT&T syntax
 		__asm__ volatile (
-			REP100(REP100(CODE_BODY_MUL)) // 54k iterations
+			"xor %%ecx, %%ecx;\n\t" \
+
+			REP100(REP100(CODE_BODY_MUL)) // 57k iterations
 			REP100(REP100(CODE_BODY_MUL))
 			REP100(REP100(CODE_BODY_MUL))
 			REP100(REP100(CODE_BODY_MUL))
 			REP100(REP100(CODE_BODY_MUL))
+			REP10(REP100(CODE_BODY_MUL))
+			REP10(REP100(CODE_BODY_MUL))
 			REP10(REP100(CODE_BODY_MUL))
 			REP10(REP100(CODE_BODY_MUL))
 			REP10(REP100(CODE_BODY_MUL))
 			REP10(REP100(CODE_BODY_MUL))
 
-			: [fault_count]	"+r" (fault_count)				// Output operands
-			: [op1]			"r" (operand1),					// Input operands
-			  [op2]			"r" (operand2)
-			: "%eax", // result_a							// Clobbered register
-			  "%ebx", // result_b
-			  "%ecx"  // scratch
+			: "+c" (fault_count)							// Output operands
+			: "a" (operand1),								// Input operands
+			  "b" (operand2)
+			: "%edx", // result_a							// Clobbered register
+			  "%edi"  // result_b
 		);
 
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, fault_count);
-		putu32(uart_base, result_a);
-		putu32(uart_base, result_b);
 		// Careful with sending too many bytes in a row, or the UART FIFO (64 bytes) will fill up
 		#elif defined(TARGET_LOAD) /* NOTE: One iteration of this actually takes ~600 us */
 		#define CODE_BODY_LOAD \
