@@ -31,9 +31,9 @@
 #define MAGIC_UNLOCK 0x200
 // #define PRINT_CLOCK_SPEED				/* Decomment if you want to print clock speed at boot (BIOS_INFO log level) */
 // #define PRINT_UCODE_REV					/* Decomment if you want to print microcode revision at boot (BIOS_INFO log level) */
-#define TARGET_MUL
+// #define TARGET_MUL
 // #define TARGET_LOAD
-// #define TARGET_CMP
+#define TARGET_CMP
 // #define TARGET_UCODE_UPDATE
 #if defined(TARGET_MUL) || defined(TARGET_LOAD) || defined(TARGET_CMP) || \
 	defined(TARGET_UCODE_UPDATE)
@@ -410,14 +410,15 @@ void red_unlock_payload(void)
 			"setne %%dl;\n\t" \
 			"addb %%dl, %%cl;\n\t" // Might actually overflow at 256 and wrap around, but heh
 
-		uint32_t operand1 = 0x80000, operand2 = 0x4; // Taken from plundervolt paper
+		// uint32_t operand1 = 0x80000, operand2 = 0x4; // Taken from plundervolt paper
+		uint32_t operand1 = 0x4, operand2 = 0x80000; // Taken from plundervolt paper
 		uint32_t fault_count = 0;
 
 		// AT&T syntax
 		__asm__ volatile (
 			"xor %%ecx, %%ecx;\n\t" \
 
-			REP100(REP100(CODE_BODY_MUL)) // 57k iterations
+			REP100(REP100(CODE_BODY_MUL)) // 56k iterations
 			REP100(REP100(CODE_BODY_MUL))
 			REP100(REP100(CODE_BODY_MUL))
 			REP100(REP100(CODE_BODY_MUL))
@@ -477,27 +478,28 @@ void red_unlock_payload(void)
 		// Careful with sending too many bytes in a row or the fifo will fill up
 		#elif defined(TARGET_CMP)
 		#define CODE_BODY_CMP \
-			"xor %%ecx, %%ecx;\n\t" \
 			"cmp %%eax, %%ebx;\n\t" \
-			"setne %%cl;\n\t" \
-			"addl %%ecx, %[fault_count];\n\t"
+			"setne %%dl;\n\t" \
+			"addb %%dl, %%cl;\n\t" // Might actually overflow at 256 and wrap around, but heh
 
-		uint32_t stack_storage = 0xAAAAAAAA; // 10101010...
+		uint32_t source_value = 0xAAAAAAAA; // 10101010...
 		uint32_t fault_count = 0;
 
 		// AT&T syntax
 		__asm__ volatile (
-			"movl %[stack_storage], %%eax;\n\t"
-			"movl %[stack_storage], %%ebx;\n\t"
+			"xor %%edx, %%edx;\n\t"
 
-			REP10(REP100(REP100(CODE_BODY_CMP))) // 110k iterations
+			REP10(REP100(REP100(CODE_BODY_CMP))) // 150k iterations
+			REP100(REP100(CODE_BODY_CMP))
+			REP100(REP100(CODE_BODY_CMP))
+			REP100(REP100(CODE_BODY_CMP))
+			REP100(REP100(CODE_BODY_CMP))
 			REP100(REP100(CODE_BODY_CMP))
 
-			: [fault_count]		"+r" (fault_count)
-			: [stack_storage]	"m" (stack_storage)
-			: "%eax",	// Copy a of stack_storage
-			  "%ebx",	// Copy b of stack_storage
-			  "%ecx"	// Scratch
+			: "+c" (fault_count)
+			: "a" (source_value),
+			  "b" (source_value)
+			: "%edx"	// Scratch
 		);
 
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
