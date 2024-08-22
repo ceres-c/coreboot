@@ -33,11 +33,12 @@
 // #define PRINT_UCODE_REV					/* Decomment if you want to print microcode revision at boot (BIOS_INFO log level) */
 // #define TARGET_MUL
 // #define TARGET_LOAD
-#define TARGET_CMP
+// #define TARGET_CMP
+#define TARGET_REG
 // #define TARGET_UCODE_UPDATE
 #if defined(TARGET_MUL) || defined(TARGET_LOAD) || defined(TARGET_CMP) || \
-	defined(TARGET_UCODE_UPDATE)
-#define TARGET_NO_REDUNLOCK
+	defined(TARGET_REG) || defined(TARGET_UCODE_UPDATE)
+	#define TARGET_NO_REDUNLOCK
 #endif
 // #define TARGET_RDRAND_1337
 // #define TARGET_RDRAND_CMP_NE
@@ -48,7 +49,7 @@
 // #define TARGET_RDRAND_MOVE_REGS
 // #define TARGET_RDRAND_OR_REGS
 #if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
-	 defined(TARGET_RDRAND_1337) + \
+	 defined(TARGET_REG) + defined(TARGET_RDRAND_1337) + \
 	 defined(TARGET_RDRAND_CMP_NE) + defined(TARGET_RDRAND_CMP_NE_JMP) + \
 	 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
 	 defined(TARGET_RDRAND_ADD_MANY) + defined(TARGET_RDRAND_MOVE_REGS)) + \
@@ -505,6 +506,37 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, fault_count);
 		// Careful with sending too many bytes in a row or the fifo will fill up
+		#elif defined(TARGET_REG)
+		#define CODE_BODY_REG \
+			"movb %%al, %%bl;\n\t" \
+			"add %%ebx, %%ecx;\n\t"
+
+		uint32_t summation = 0;
+
+		// AT&T syntax
+		__asm__ volatile (
+			"xor %%ecx, %%ecx;\n\t"
+			"xor %%ebx, %%ebx;\n\t"
+			"mov $0x0101, %%eax;\n\t"
+
+			REP10(REP100(REP100(CODE_BODY_REG))) // 271k iterations
+			REP10(REP100(REP100(CODE_BODY_REG)))
+			REP100(REP100(CODE_BODY_REG))
+			REP100(REP100(CODE_BODY_REG))
+			REP100(REP100(CODE_BODY_REG))
+			REP100(REP100(CODE_BODY_REG))
+			REP100(REP100(CODE_BODY_REG))
+			REP100(REP100(CODE_BODY_REG))
+			REP100(REP100(CODE_BODY_REG))
+			REP10(REP100(CODE_BODY_REG))
+
+			: "+c" (summation)
+			:
+			: "%eax"
+		);
+
+		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
+		putu32(uart_base, summation);
 		#elif defined(TARGET_RDRAND_1337)
 		#define CODE_BODY_RDRAND_1337 \
 			"rdrand %%ecx;\t\n"
