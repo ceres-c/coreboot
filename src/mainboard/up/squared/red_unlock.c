@@ -34,14 +34,14 @@
 // #define TARGET_MUL
 // #define TARGET_LOAD
 // #define TARGET_CMP
-#define TARGET_REG
+// #define TARGET_REG
 // #define TARGET_UCODE_UPDATE
 #if defined(TARGET_MUL) || defined(TARGET_LOAD) || defined(TARGET_CMP) || \
 	defined(TARGET_REG) || defined(TARGET_UCODE_UPDATE)
 	#define TARGET_NO_REDUNLOCK
 #endif
 // #define TARGET_RDRAND_1337
-// #define TARGET_RDRAND_CMP_NE
+#define TARGET_RDRAND_CMP_NE
 // #define TARGET_RDRAND_CMP_NE_JMP
 // #define TARGET_RDRAND_SUB_ADD
 // #define TARGET_RDRAND_ADD
@@ -561,7 +561,7 @@ void red_unlock_payload(void)
 		#define CODE_BODY_RDRAND_CMP_NE \
 			"rdrand %%ecx;\t\n"
 
-		uint32_t operand1 = 0b01, operand2 = 0b01; // Can really be anything, as long as they're equal, I guess?
+		uint32_t operand1 = 0xAAAAAAAA, operand2 = 0xAAAAAAAA; // Can really be anything, as long as they're equal, I guess?
 		uint32_t diff_count = 0;
 
 		#ifdef TARGET_RDRAND_CMP_NE_JMP
