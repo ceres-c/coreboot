@@ -35,7 +35,7 @@
 // #define TARGET_LOAD
 // #define TARGET_CMP
 // #define TARGET_REG
-// #define TARGET_UCODE_UPDATE
+// #define TARGET_UCODE_UPDATE				/* See note in section below for usage instructions */
 #if defined(TARGET_MUL) || defined(TARGET_LOAD) || defined(TARGET_CMP) || \
 	defined(TARGET_REG) || defined(TARGET_UCODE_UPDATE)
 	#define TARGET_NO_REDUNLOCK
@@ -666,6 +666,10 @@ void red_unlock_payload(void)
 		/* NOTE: One iteration of this actually takes ~5.55 ms (MILLI!) */
 		/* To be more precise, it's ~5.27 ms when performing an update on top of the same update with a valid RSA
 		 * signature, and ~5.18 ms when performing an update on top of the same update when the signature check fails.
+		 *
+		 * HOWTO: If you want to test loading different microcode updates, you need to change the microcode file
+		 * embedded in the coreboot image. This can be done through `make menuconfig` and going into
+		 * `Chipset` -> `Include CPU microcode in CBFS` -> `Include external microcode binary`.
 		 */
 		#define CODE_BODY_UCODE_UPDATE_DELAY \
 			"nop;\t\n"
