@@ -35,13 +35,13 @@
 // #define TARGET_LOAD
 // #define TARGET_CMP
 // #define TARGET_REG
-// #define TARGET_UCODE_UPDATE				/* See note in section below for usage instructions */
+#define TARGET_UCODE_UPDATE				/* See note in section below for usage instructions */
 #if defined(TARGET_MUL) || defined(TARGET_LOAD) || defined(TARGET_CMP) || \
 	defined(TARGET_REG) || defined(TARGET_UCODE_UPDATE)
 	#define TARGET_NO_REDUNLOCK
 #endif
 // #define TARGET_RDRAND_1337
-#define TARGET_RDRAND_CMP_NE
+// #define TARGET_RDRAND_CMP_NE
 // #define TARGET_RDRAND_CMP_NE_JMP
 // #define TARGET_RDRAND_SUB_ADD
 // #define TARGET_RDRAND_ADD
@@ -673,6 +673,19 @@ void red_unlock_payload(void)
 		 */
 		#define CODE_BODY_UCODE_UPDATE_DELAY \
 			"nop;\t\n"
+
+		/* This code adds a ~30ms wait before the ucode update is actually performed. Do not use this with the glitcher
+		 * as it will not handle the 'L' character sent over UART. This is useful ONLY to estimate how much slower the cpu
+		 * is when it executes a ucode update straight after power-on.
+		 * Spoiler: it is quite a lot slower (10ms vs 6.2ms).
+		 */
+		// for (int i = 0; i < 0x000FFFFF; i++) {
+		// 	__asm__ __volatile__ (
+		// 		REP100(CODE_BODY_UCODE_UPDATE_DELAY)
+		// 	::
+		// 	);
+		// }
+		// uart8250_mem_tx_byte(uart_base, 'L');
 
 		uint64_t ucode_tsc_start = timestamp_get();
 		__asm__ __volatile__ (
