@@ -14,10 +14,15 @@ img/nvramcui-file := payloads/nvramcui/build/nvramcui.elf
 img/nvramcui-type := payload
 img/nvramcui-compression := $(CBFS_SECONDARY_PAYLOAD_COMPRESS_FLAG)
 
+cbfs-files-$(CONFIG_PAYLOAD_UCODEUPDATE) += img/ucodeupdate
+img/ucodeupdate-file := payloads/ucodeupdate/build/ucodeupdate.elf
+img/ucodeupdate-type := payload
+
 PAYLOADS_LIST=\
 payloads/coreinfo \
 payloads/nvramcui \
 payloads/libpayload \
+payloads/ucodeupdate \
 payloads/external/depthcharge \
 payloads/external/SeaBIOS \
 payloads/external/U-Boot \
@@ -40,6 +45,10 @@ payloads/nvramcui/build/nvramcui.elf nvramcui: export CCACHE := $(CCACHE)
 payloads/nvramcui/build/nvramcui.elf nvramcui: force-payload
 	$(MAKE) -C payloads/nvramcui
 
+payloads/ucodeupdate/build/ucodeupdate.elf ucodeupdate: export CCACHE := $(CCACHE)
+payloads/ucodeupdate/build/ucodeupdate.elf ucodeupdate: force-payload
+	$(MAKE) -C payloads/ucodeupdate
+
 clean-payloads:
 	$(foreach payload, $(PAYLOADS_LIST), $(MAKE) -C $(payload) clean; )
 
@@ -60,5 +69,5 @@ warn_no_payload:
 	printf "flash chip will result in a non-booting system. You\n"
 	printf "can use cbfstool to add a payload to the image.\n\n"
 
-.PHONY: force-payload coreinfo nvramcui
+.PHONY: force-payload coreinfo nvramcui ucodeupdate
 .PHONY: clean-payloads distclean-payloads print-repo-info-payloads warn_no_payload

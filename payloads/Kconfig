@@ -28,6 +28,12 @@ config PAYLOAD_ELF
 	  You will be able to specify the location and file name of the
 	  payload image later.
 
+config PAYLOAD_UCODEUPDATE
+	bool "Ucode update"
+	depends on ARCH_X86
+	help
+	  Will run ucode updates on Intel CPUs in a loop forever.
+
 config PAYLOAD_FIT
 	bool "A FIT payload"
 	depends on ARCH_ARM64 || ARCH_RISCV || ARCH_ARM
@@ -48,9 +54,10 @@ source "payloads/external/*/Kconfig"
 
 config PAYLOAD_FILE
 	string "Payload path and filename"
-	depends on PAYLOAD_ELF || PAYLOAD_FIT
+	depends on PAYLOAD_ELF || PAYLOAD_FIT || PAYLOAD_UCODEUPDATE
 	default "payload.elf" if PAYLOAD_ELF
 	default "uImage" if PAYLOAD_FIT
+	default "payloads/ucodeupdate/build/ucodeupdate.elf" if PAYLOAD_UCODEUPDATE
 	help
 	  The path and filename of the ELF executable file to use as payload.
 
