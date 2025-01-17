@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASRock H110M-DVS &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ASUS A88XM-E" href="../asus/a88xm-e.html" />
+    <link rel="prev" title="ASRock H81M-HDS" href="h81m-hds.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#asrock">ASRock</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="h77pro4-m.html">H77 Pro4-M</a></li>
+<li class="toctree-l3"><a class="reference internal" href="h81m-hds.html">H81M-HDS</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">H110M-DVS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#required-proprietary-blobs">Required proprietary blobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-coreboot">Building coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flashing-coreboot">Flashing coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#untested">Untested</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#working">Working</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#todo">TODO</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#technology">Technology</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hp">HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">ASRock H110M-DVS</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/asrock/h110m-dvs.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="asrock-h110m-dvs">
+<h1>ASRock H110M-DVS<a class="headerlink" href="#asrock-h110m-dvs" title="Link to this heading"></a></h1>
+<p>This page describes how to run coreboot on the <a class="reference external" href="https://www.asrock.com/mb/Intel/H110M-DVS%20R2.0/">ASRock H110M-DVS</a>.</p>
+<section id="required-proprietary-blobs">
+<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Link to this heading"></a></h2>
+<p>Mainboard is based on Intel Skylake/Kaby Lake processor and H110 Chipset.
+Intel company provides <a class="reference internal" href="../../soc/intel/fsp/index.html"><span class="doc">Firmware Support Package (2.0)</span></a>
+(intel FSP 2.0) to initialize this generation silicon. Please see this
+<a class="reference internal" href="../../soc/intel/code_development_model/code_development_model.html"><span class="doc">document</span></a>.</p>
+<p>FSP Information:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>FSP Project Name</p></td>
+<td><p>Directory</p></td>
+<td><p>Specification</p></td>
+</tr>
+<tr class="row-even"><td><p>7th Generation Intel® Core™
+processors  and chipsets
+(formerly Kaby Lake)</p></td>
+<td><p>KabylakeFspBinPkg</p></td>
+<td><p>2.0</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="building-coreboot">
+<h2>Building coreboot<a class="headerlink" href="#building-coreboot" title="Link to this heading"></a></h2>
+<p>The following steps set the default parameters for this board to build a
+fully working image:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>distclean
+touch<span class="w"> </span>.config
+./util/scripts/config<span class="w"> </span>--enable<span class="w"> </span>VENDOR_ASROCK
+./util/scripts/config<span class="w"> </span>--enable<span class="w"> </span>BOARD_ASROCK_H110M_DVS
+./util/scripts/config<span class="w"> </span>--set-str<span class="w"> </span>REALTEK_8168_MACADDRESS<span class="w"> </span><span class="s2">&quot;xx:xx:xx:xx:xx:xx&quot;</span>
+make<span class="w"> </span>olddefconfig
+</pre></div>
+</div>
+<p>However, it is strongly advised to use <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code> afterwards
+(or instead), so that you can see all of the settings.</p>
+<p>Use the following command to disable the serial console if debugging
+output is not required:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./util/scripts/config<span class="w"> </span>--disable<span class="w"> </span>CONSOLE_SERIAL
+</pre></div>
+</div>
+<p>However, a more flexible method is to change the console log level from
+within an OS using <code class="docutils literal notranslate"><span class="pre">util/nvramtool</span></code>, or with the <code class="docutils literal notranslate"><span class="pre">nvramcui</span></code> payload.</p>
+<p>Now, run <code class="docutils literal notranslate"><span class="pre">make</span></code> to build the coreboot image.</p>
+</section>
+<section id="flashing-coreboot">
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<section id="internal-programming">
+<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Link to this heading"></a></h3>
+<p>The main SPI flash can be accessed using <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a>. By default, only
+the BIOS region of the flash is writable. If you wish to change any
+other region, such as the Management Engine or firmware descriptor, then
+an external programmer is required (unless you find a clever way around
+the flash protection). More information about this <a class="reference internal" href="../../tutorial/flashing_firmware/index.html"><span class="doc">here</span></a>.</p>
+</section>
+<section id="external-programming">
+<h3>External programming<a class="headerlink" href="#external-programming" title="Link to this heading"></a></h3>
+<p>The flash chip is a 8 MiB socketed DIP-8 chip. Specifically, it’s a
+Macronix MX25L6473E, whose datasheet can be found <a class="reference external" href="http://www.macronix.com/Lists/Datasheet/Attachments/7380/MX25L6473E,%203V,%2064Mb,%20v1.4.pdf">here</a>.
+The chip is located to the bottom right-hand side of the board. For
+a precise location, refer to section 1.3 (Motherboard Layout) of the
+<a class="reference external" href="https://web.archive.org/web/20191023230631/http://asrock.pc.cdn.bitgravity.com/Manual/H110M-DVS%20R2.0.pdf">H110M-DVS manual</a>, where the chip is labelled “64Mb BIOS”. Take note of
+the chip’s orientation, remove it from its socket, and flash it with
+an external programmer. For reference, the notch in the chip should be
+facing towards the bottom of the board.</p>
+</section>
+</section>
+<section id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The VGA port doesn’t work. Discrete graphic card is used as primary
+device for display output (if CONFIG_ONBOARD_VGA_IS_PRIMARY is not
+set). Dynamic switching between iGPU and PEG is not yet supported.</p></li>
+<li><p>SuperIO GPIO pin is used to reset Realtek chip. However, since the
+Logical Device 7 (GPIO6, GPIO7, GPIO8) is not initialized, the network
+chip is in a reset state all the time.</p></li>
+</ul>
+</section>
+<section id="untested">
+<h2>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>parallel port</p></li>
+<li><p>PS/2 keyboard</p></li>
+<li><p>PS/2 mouse</p></li>
+<li><p>EHCI debug</p></li>
+<li><p>TPM</p></li>
+<li><p>infrared module</p></li>
+<li><p>chassis intrusion header</p></li>
+<li><p>chassis speaker header</p></li>
+</ul>
+</section>
+<section id="working">
+<h2>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>integrated graphics init with libgfxinit (see <a class="reference external" href="#known-issues">Known issues</a>)</p></li>
+<li><p>PCIe x1</p></li>
+<li><p>PEG x16 Gen3</p></li>
+<li><p>SATA</p></li>
+<li><p>USB</p></li>
+<li><p>serial port</p></li>
+<li><p>onboard audio</p></li>
+<li><p>using <code class="docutils literal notranslate"><span class="pre">me_cleaner</span></code></p></li>
+<li><p>using <code class="docutils literal notranslate"><span class="pre">flashrom</span></code></p></li>
+</ul>
+</section>
+<section id="todo">
+<h2>TODO<a class="headerlink" href="#todo" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>NCT6791D GPIOs</p></li>
+<li><p>onboard network (see <a class="reference external" href="#known-issues">Known issues</a>)</p></li>
+<li><p>S3 suspend/resume</p></li>
+<li><p>Wake-on-LAN</p></li>
+<li><p>hardware monitor</p></li>
+</ul>
+</section>
+<section id="technology">
+<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>CPU</p></td>
+<td><p>Intel Skylake/Kaby Lake (LGA1151)</p></td>
+</tr>
+<tr class="row-even"><td><p>PCH</p></td>
+<td><p>Intel Sunrise Point H110</p></td>
+</tr>
+<tr class="row-odd"><td><p>Super I/O</p></td>
+<td><p>Nuvoton NCT6791D</p></td>
+</tr>
+<tr class="row-even"><td><p>EC</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p>Coprocessor</p></td>
+<td><p>Intel Management Engine</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="h81m-hds.html" class="btn btn-neutral float-left" title="ASRock H81M-HDS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../asus/a88xm-e.html" class="btn btn-neutral float-right" title="ASUS A88XM-E" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

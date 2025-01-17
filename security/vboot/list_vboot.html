@@ -1,0 +1,621 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vboot-enabled devices &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Measured Boot" href="measured_boot.html" />
+    <link rel="prev" title="vboot - Verified Boot Support" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Security</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#vendor">Vendor</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Verified Boot</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">List of supported Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#root-of-trust">Root of Trust</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#firmware-layout">Firmware Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#firmware-updates">Firmware Updates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#build-flags">Build Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#signing-the-coreboot-image">Signing the coreboot Image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#boot-flow">Boot Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#chromebook-special-features">Chromebook Special Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="measured_boot.html">Measured Boot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../memory_clearing.html">Memory clearing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel-txt">Intel TXT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#smm">SMM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Security</a></li>
+          <li class="breadcrumb-item"><a href="index.html">vboot - Verified Boot Support</a></li>
+      <li class="breadcrumb-item active">vboot-enabled devices</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/security/vboot/list_vboot.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vboot-enabled-devices">
+<h1>vboot-enabled devices<a class="headerlink" href="#vboot-enabled-devices" title="Link to this heading"></a></h1>
+<section id="amd">
+<h2>AMD<a class="headerlink" href="#amd" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Birman for Phoenix SoC using FSP</p></li>
+<li><p>Birman for Phoenix SoC using openSIL</p></li>
+<li><p>Birman for Glinda SoC</p></li>
+<li><p>Chausie</p></li>
+<li><p>Majolica</p></li>
+<li><p>Mayan for Phoenix SoC</p></li>
+</ul>
+</section>
+<section id="clevo">
+<h2>Clevo<a class="headerlink" href="#clevo" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>N130WU / N131WU</p></li>
+</ul>
+</section>
+<section id="emulation">
+<h2>Emulation<a class="headerlink" href="#emulation" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>QEMU x86 i440fx/piix4 (aka qemu -M pc)</p></li>
+<li><p>QEMU x86 q35/ich9 (aka qemu -M q35, since v1.4)</p></li>
+</ul>
+</section>
+<section id="facebook">
+<h2>Facebook<a class="headerlink" href="#facebook" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>fbg1701</p></li>
+<li><p>Facebook Monolith</p></li>
+</ul>
+</section>
+<section id="google">
+<h2>Google<a class="headerlink" href="#google" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Asurada</p></li>
+<li><p>Hayato</p></li>
+<li><p>Spherion</p></li>
+<li><p>Auron_Paine (Acer C740 Chromebook)</p></li>
+<li><p>Auron_Yuna (Acer Chromebook 15 (C910/CB5-531))</p></li>
+<li><p>Buddy (Acer Chromebase 24)</p></li>
+<li><p>Gandof (Toshiba Chromebook 2 (2015))</p></li>
+<li><p>Lulu (Dell Chromebook 13 7310)</p></li>
+<li><p>Samus (Google Chromebook Pixel (2015))</p></li>
+<li><p>Mccloud (Acer Chromebox CXI)</p></li>
+<li><p>Monroe (LG Chromebase 22CV241 &amp; 22CB25S)</p></li>
+<li><p>Panther (ASUS Chromebox CN60)</p></li>
+<li><p>Tricky (Dell Chromebox 3010)</p></li>
+<li><p>Zako (HP Chromebox G1)</p></li>
+<li><p>Brox</p></li>
+<li><p>Agah</p></li>
+<li><p>Anahera</p></li>
+<li><p>Anahera4ES</p></li>
+<li><p>Anraggar</p></li>
+<li><p>Aurash</p></li>
+<li><p>Banshee</p></li>
+<li><p>Brask</p></li>
+<li><p>Brya 0</p></li>
+<li><p>Craask</p></li>
+<li><p>Craaskov</p></li>
+<li><p>Constitution</p></li>
+<li><p>Crota</p></li>
+<li><p>Dochi</p></li>
+<li><p>Felwinter</p></li>
+<li><p>Gaelin</p></li>
+<li><p>Gimble</p></li>
+<li><p>Gimble4ES</p></li>
+<li><p>Gladios</p></li>
+<li><p>Gothrax</p></li>
+<li><p>Hades</p></li>
+<li><p>Kano</p></li>
+<li><p>Kinox</p></li>
+<li><p>Kuldax</p></li>
+<li><p>Joxer</p></li>
+<li><p>Lisbon</p></li>
+<li><p>Marasov</p></li>
+<li><p>Mithrax</p></li>
+<li><p>Moli</p></li>
+<li><p>Nivviks</p></li>
+<li><p>Nereid</p></li>
+<li><p>Nokris</p></li>
+<li><p>Omnigul</p></li>
+<li><p>Osiris</p></li>
+<li><p>Pirrha</p></li>
+<li><p>Primus</p></li>
+<li><p>Pujjo</p></li>
+<li><p>Quandiso</p></li>
+<li><p>Redrix</p></li>
+<li><p>Redrix4ES</p></li>
+<li><p>Skolas</p></li>
+<li><p>Skolas4ES</p></li>
+<li><p>Taeko</p></li>
+<li><p>Taeko4ES</p></li>
+<li><p>Taniks</p></li>
+<li><p>Uldren</p></li>
+<li><p>Vell</p></li>
+<li><p>Volmar</p></li>
+<li><p>Xivu</p></li>
+<li><p>Yaviks</p></li>
+<li><p>Yavilla</p></li>
+<li><p>Zydron</p></li>
+<li><p>Xol</p></li>
+<li><p>Butterfly (HP Pavilion Chromebook 14)</p></li>
+<li><p>Cherry</p></li>
+<li><p>Dojo</p></li>
+<li><p>Tomato</p></li>
+<li><p>Kingler</p></li>
+<li><p>Steelix</p></li>
+<li><p>Voltorb</p></li>
+<li><p>Ponyta</p></li>
+<li><p>Krabby</p></li>
+<li><p>Tentacruel</p></li>
+<li><p>Magikarp</p></li>
+<li><p>Chinchou</p></li>
+<li><p>Starmie</p></li>
+<li><p>Banon (Acer Chromebook 15 (CB3-532))</p></li>
+<li><p>Celes (Samsung Chromebook 3)</p></li>
+<li><p>Cyan (Acer Chromebook R11 (C738T))</p></li>
+<li><p>Edgar (Acer Chromebook 14 (CB3-431))</p></li>
+<li><p>Kefka (Dell Chromebook 11 3180/3189)</p></li>
+<li><p>Reks (Lenovo N22/N42 Chromebook)</p></li>
+<li><p>Relm</p></li>
+<li><p>Setzer (HP Chromebook 11 G5)</p></li>
+<li><p>Terra (ASUS Chromebook C202SA/C300SA/C301SA)</p></li>
+<li><p>Ultima (Lenovo Yoga 11e G3)</p></li>
+<li><p>Wizpig</p></li>
+<li><p>Drallion</p></li>
+<li><p>Eve (Google Pixelbook)</p></li>
+<li><p>Fizz</p></li>
+<li><p>Karma</p></li>
+<li><p>Endeavour</p></li>
+<li><p>Foster</p></li>
+<li><p>Gale (Google WiFi)</p></li>
+<li><p>Geralt</p></li>
+<li><p>Ciri</p></li>
+<li><p>Asuka (Dell Chromebook 13 3380)</p></li>
+<li><p>Caroline (Samsung Chromebook Pro)</p></li>
+<li><p>Cave (Asus Chromebook Flip C302SA)</p></li>
+<li><p>Chell (HP Chromebook 13 G1)</p></li>
+<li><p>Glados Skylake Reference Board</p></li>
+<li><p>Lars (Acer Chromebook 14 for Work (CP5-471))</p></li>
+<li><p>Sentry (Lenovo Thinkpad 13 Chromebook)</p></li>
+<li><p>Kevin (Samsung Chromebook Plus)</p></li>
+<li><p>Gru</p></li>
+<li><p>Bob (Asus Chromebook Flip C101PA)</p></li>
+<li><p>Scarlet</p></li>
+<li><p>Nefario</p></li>
+<li><p>Rainier</p></li>
+<li><p>Dewatt (Acer Chromebook Spin 514)</p></li>
+<li><p>Guybrush</p></li>
+<li><p>Nipperkin (HP Elite c645 G2 Chromebook)</p></li>
+<li><p>Akemi (IdeaPad Flex 5/5i Chromebook)</p></li>
+<li><p>Dratini (HP Pro c640 Chromebook)</p></li>
+<li><p>Hatch</p></li>
+<li><p>Helios (ASUS Chromebook Flip C436FA)</p></li>
+<li><p>Helios_Diskswap</p></li>
+<li><p>Jinlon (HP Elite c1030 Chromebook)</p></li>
+<li><p>Kindred (Acer Chromebook 712)</p></li>
+<li><p>Kohaku (Samsung Galaxy Chromebook)</p></li>
+<li><p>Mushu</p></li>
+<li><p>Nightfury (Samsung Galaxy Chromebook 2)</p></li>
+<li><p>Palkia</p></li>
+<li><p>Herobrine</p></li>
+<li><p>Herobrine_Rev0</p></li>
+<li><p>Senor</p></li>
+<li><p>Piglin</p></li>
+<li><p>Hoglin</p></li>
+<li><p>Villager</p></li>
+<li><p>Evoker</p></li>
+<li><p>Zoglin</p></li>
+<li><p>Zombie</p></li>
+<li><p>Guado (ASUS Chromebox CN62)</p></li>
+<li><p>Jecht</p></li>
+<li><p>Rikku (Acer Chromebox CXI2)</p></li>
+<li><p>Tidus (Lenovo ThinkCentre Chromebox)</p></li>
+<li><p>Aleena/Kasumi (Acer Chromebook  315 (CB315-2H), 311 (C721) / Spin 311 (R721T))</p></li>
+<li><p>Barla/Careena (HP Chromebook 11A G6/G8 EE, 14A G5/G6)</p></li>
+<li><p>Grunt</p></li>
+<li><p>Liara (Lenovo 14e Chromebook, Chromebook S345-14)</p></li>
+<li><p>Nuwani</p></li>
+<li><p>Treeya (Lenovo 100e/300e Gen2 AMD)</p></li>
+<li><p>Kukui</p></li>
+<li><p>Krane (Lenovo Chromebook Duet/Lenovo IdeaPad Duet Chromebook)</p></li>
+<li><p>Kodama (Lenovo 10e Chromebook Tablet)</p></li>
+<li><p>Kakadu</p></li>
+<li><p>Flapjack</p></li>
+<li><p>Katsu</p></li>
+<li><p>Jacuzzi</p></li>
+<li><p>Juniper (Acer Chromebook Spin 311 (CP311-3H))</p></li>
+<li><p>Kappa</p></li>
+<li><p>Damu (ASUS Chromebook Flip CM3 (CM3200))</p></li>
+<li><p>Cerise</p></li>
+<li><p>Stern</p></li>
+<li><p>Willow</p></li>
+<li><p>Esche (HP Chromebook 11MK G9 EE)</p></li>
+<li><p>Burnet (HP Chromebook x360 11MK G3 EE)</p></li>
+<li><p>Fennel</p></li>
+<li><p>Cozmo</p></li>
+<li><p>Makomo</p></li>
+<li><p>Munna</p></li>
+<li><p>Pico</p></li>
+<li><p>Link (Google Chromebook Pixel (2013))</p></li>
+<li><p>Mistral</p></li>
+<li><p>Myst</p></li>
+<li><p>Nyan</p></li>
+<li><p>Nyan Big (Acer Chromebook 13 (CB5-311))</p></li>
+<li><p>Nyan Blaze (HP Chromebook 14 G3)</p></li>
+<li><p>Oak</p></li>
+<li><p>Elm (Acer Chromebook R13)</p></li>
+<li><p>Hana (Lenovo N23 Yoga Chromebook)</p></li>
+<li><p>Parrot (Acer C7/C710 Chromebook)</p></li>
+<li><p>Atlas (Google Pixelbook Go)</p></li>
+<li><p>Poppy</p></li>
+<li><p>Nami</p></li>
+<li><p>Nautilus (Samsung Chromebook Plus V2, V2 LTE)</p></li>
+<li><p>Nocturne (Google Pixel Slate)</p></li>
+<li><p>Rammus</p></li>
+<li><p>Soraka (HP Chromebook x2)</p></li>
+<li><p>Ambassador</p></li>
+<li><p>Dooly</p></li>
+<li><p>Duffy Legacy (32MB)</p></li>
+<li><p>Duffy (ASUS Chromebox 4)</p></li>
+<li><p>Faffy (ASUS Fanless Chromebox)</p></li>
+<li><p>Genesis</p></li>
+<li><p>Kaisa Legacy (32MB)</p></li>
+<li><p>Kaisa (Acer Chromebox CXI4)</p></li>
+<li><p>Moonbuggy</p></li>
+<li><p>Noibat (HP Chromebox G3)</p></li>
+<li><p>Puff</p></li>
+<li><p>Scout</p></li>
+<li><p>Wyvern (CTL Chromebox CBx2)</p></li>
+<li><p>Reef/Electro (Acer Chromebook Spin 11 R751T)</p></li>
+<li><p>Pyro (Lenovo Thinkpad (Yoga) 11e Chromebook)</p></li>
+<li><p>Sand (Acer Chromebook 15 CB515-1HT/1H)</p></li>
+<li><p>Snappy (HP Chromebook x360 11 G1 EE)</p></li>
+<li><p>Coral</p></li>
+<li><p>Deku</p></li>
+<li><p>Deku4ES</p></li>
+<li><p>Karis</p></li>
+<li><p>Karis4ES</p></li>
+<li><p>Ovis</p></li>
+<li><p>Ovis4ES</p></li>
+<li><p>Rex 0</p></li>
+<li><p>Rex EC ISH</p></li>
+<li><p>Rex4ES</p></li>
+<li><p>Rex4ES EC ISH</p></li>
+<li><p>Screebo</p></li>
+<li><p>Screebo4ES</p></li>
+<li><p>Arcada (Latitude 5300 2-in-1 Chromebook Enterprise)</p></li>
+<li><p>Sarien (Dell Latitude 5400 Chromebook Enterprise)</p></li>
+<li><p>Crystaldrift</p></li>
+<li><p>Frostflow (ASUS Chromebook CM34 Flip)</p></li>
+<li><p>Markarth (Acer Chromebook Plus 514)</p></li>
+<li><p>Skyrim</p></li>
+<li><p>Winterhold (Dell Latitude 3445 Chromebook)</p></li>
+<li><p>Falco (HP Chromebook 14)</p></li>
+<li><p>Leon (Toshiba Chromebook)</p></li>
+<li><p>Peppy (Acer C720/C720P Chromebook)</p></li>
+<li><p>Wolf (Dell Chromebook 11)</p></li>
+<li><p>Smaug (Google Pixel C)</p></li>
+<li><p>Storm (OnHub Router TGR1900)</p></li>
+<li><p>Stout (Lenovo Thinkpad X131e Chromebook)</p></li>
+<li><p>Bubs</p></li>
+<li><p>Coachz</p></li>
+<li><p>Gelarshie</p></li>
+<li><p>Homestar</p></li>
+<li><p>Kingoftown</p></li>
+<li><p>Lazor</p></li>
+<li><p>Marzipan</p></li>
+<li><p>Mrbland</p></li>
+<li><p>Pazquel</p></li>
+<li><p>Pompom</p></li>
+<li><p>Quackingstick</p></li>
+<li><p>Wormdingler</p></li>
+<li><p>Trogdor</p></li>
+<li><p>Veyron_Jaq (Haier Chromebook 11)</p></li>
+<li><p>Veyron_Jerry (Hisense Chromebook 11)</p></li>
+<li><p>Veyron_Mighty (Haier Chromebook 11(edu))</p></li>
+<li><p>Veyron_Minnie (ASUS Chromebook Flip C100)</p></li>
+<li><p>Veyron_Speedy (ASUS C201 Chromebook)</p></li>
+<li><p>Veyron_Mickey (Asus Chromebit CS10)</p></li>
+<li><p>Veyron_Rialto</p></li>
+<li><p>Chronicler (FMV Chromebook 14F)</p></li>
+<li><p>Collis (Asus Chromebook Flip CX3)</p></li>
+<li><p>Copano (ASUS Chromebook Flip CX5400)</p></li>
+<li><p>Delbin (ASUS Chromebook Flip CX5)</p></li>
+<li><p>Drobit (ASUS Chromebook CX9400)</p></li>
+<li><p>Eldrid (HP Chromebook x360 14c)</p></li>
+<li><p>Elemi (HP Pro c640 G2 Chromebook)</p></li>
+<li><p>Halvor</p></li>
+<li><p>Lindar (Lenovo 5i-14/Slim 5 Chromebook)</p></li>
+<li><p>Malefor</p></li>
+<li><p>Terrador</p></li>
+<li><p>Todor</p></li>
+<li><p>Trondo</p></li>
+<li><p>Voema (Acer Chromebook Spin 514)</p></li>
+<li><p>Volet (Acer Chromebook 515)</p></li>
+<li><p>Volteer</p></li>
+<li><p>Volteer2</p></li>
+<li><p>Volteer2_Ti50</p></li>
+<li><p>Voxel (Acer Chromebook Spin 713 (CP713-3W))</p></li>
+<li><p>Berknip (HP Pro c645 Chromebook Enterprise)</p></li>
+<li><p>Dalboz</p></li>
+<li><p>Dirinboz (HP Chromebook 14a-nd0097nr)</p></li>
+<li><p>Ezkinil (Acer Chromebook Spin 514)</p></li>
+<li><p>Gumboz (HP Chromebook x360 14a)</p></li>
+<li><p>Morphius (Lenovo ThinkPad C13 Yoga Chromebook)</p></li>
+<li><p>Shuboz</p></li>
+<li><p>Trembyle</p></li>
+<li><p>Vilboz (Lenovo 100e/300e Gen3 AMD)</p></li>
+<li><p>Woomax (ASUS Chromebook Flip CM5)</p></li>
+</ul>
+</section>
+<section id="hp">
+<h2>HP<a class="headerlink" href="#hp" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Z220 CMT Workstation</p></li>
+<li><p>Z220 SFF Workstation</p></li>
+</ul>
+</section>
+<section id="intel">
+<h2>Intel<a class="headerlink" href="#intel" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Alderlake-P RVP</p></li>
+<li><p>Alderlake-P RVP with Chrome EC</p></li>
+<li><p>Alderlake-P RVP with Microchip EC</p></li>
+<li><p>Alderlake-M RVP</p></li>
+<li><p>Alderlake-M RVP with Chrome EC</p></li>
+<li><p>Alderlake-N RVP</p></li>
+<li><p>Alderlake-N RVP with Chrome EC</p></li>
+<li><p>Raptorlake silicon with Alderlake-P RVP</p></li>
+<li><p>Raptorlake silicon with Alderlake-P RVP and Chrome EC</p></li>
+<li><p>Basking Ridge CRB</p></li>
+<li><p>Coffeelake U SO-DIMM DDR4 RVP</p></li>
+<li><p>Coffeelake H SO-DIMM DDR4 RVP11</p></li>
+<li><p>Whiskeylake U DDR4 RVP</p></li>
+<li><p>Coffeelake S U-DIMM DDR4 RVP8</p></li>
+<li><p>Cometlake U DDR4 RVP</p></li>
+<li><p>Elkhartlake LPDDR4x CRB</p></li>
+<li><p>Glkrvp</p></li>
+<li><p>Jasperlake DDR4/LPDDR4 RVP</p></li>
+<li><p>Jasperlake DDR4/LPDDR4 RVP with Chrome EC</p></li>
+<li><p>Kabylake LPDDR3 RVP3</p></li>
+<li><p>Kabylake DDR3L RVP7</p></li>
+<li><p>Kabylake DDR4 RVP8</p></li>
+<li><p>Kabylake DDR4 RVP11</p></li>
+<li><p>Kunimitsu</p></li>
+<li><p>Meteorlake-P RVP</p></li>
+<li><p>Meteorlake-P RVP with Chrome EC for Prod Silicon</p></li>
+<li><p>Meteorlake-P RVP with Chrome EC for non-Prod Silicon</p></li>
+<li><p>Meteorlake-P RVP with Microchip EC</p></li>
+<li><p>shadowmountain</p></li>
+<li><p>Strago</p></li>
+<li><p>Tigerlake UP3 RVP</p></li>
+<li><p>Tigerlake UP4 RVP</p></li>
+<li><p>Whitetip Mountain 2 CRB</p></li>
+</ul>
+</section>
+<section id="lenovo">
+<h2>Lenovo<a class="headerlink" href="#lenovo" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>ThinkPad T440p</p></li>
+<li><p>ThinkPad W541</p></li>
+<li><p>ThinkPad T400</p></li>
+<li><p>ThinkPad T500</p></li>
+<li><p>ThinkPad R400</p></li>
+<li><p>ThinkPad R500</p></li>
+<li><p>ThinkPad W500</p></li>
+<li><p>ThinkPad T410</p></li>
+<li><p>ThinkPad T420</p></li>
+<li><p>ThinkPad T420s</p></li>
+<li><p>ThinkPad T430</p></li>
+<li><p>ThinkPad T430s</p></li>
+<li><p>ThinkPad T431s</p></li>
+<li><p>ThinkPad T520</p></li>
+<li><p>ThinkPad W520</p></li>
+<li><p>ThinkPad T530</p></li>
+<li><p>ThinkPad W530</p></li>
+<li><p>ThinkPad X131e</p></li>
+<li><p>ThinkPad X1 carbon gen 1</p></li>
+<li><p>ThinkPad X200 / X200s / X200t</p></li>
+<li><p>ThinkPad X301</p></li>
+<li><p>ThinkPad X201 / X201i / X201s / X201t</p></li>
+<li><p>ThinkPad X220</p></li>
+<li><p>ThinkPad X220i</p></li>
+<li><p>ThinkPad X1</p></li>
+<li><p>ThinkPad X230</p></li>
+<li><p>ThinkPad X230t</p></li>
+<li><p>ThinkPad X230s</p></li>
+<li><p>ThinkPad X60 / X60s / X60t</p></li>
+</ul>
+</section>
+<section id="msi">
+<h2>MSI<a class="headerlink" href="#msi" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>PRO Z690-A (WIFI) DDR4</p></li>
+<li><p>PRO Z690-A (WIFI)</p></li>
+<li><p>PRO Z790-P (WIFI) DDR4</p></li>
+<li><p>PRO Z790-P (WIFI)</p></li>
+</ul>
+</section>
+<section id="opencellular">
+<h2>OpenCellular<a class="headerlink" href="#opencellular" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Elgon (GBCv2)</p></li>
+</ul>
+</section>
+<section id="protectli">
+<h2>Protectli<a class="headerlink" href="#protectli" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>VP4630/VP4650</p></li>
+<li><p>VP4670</p></li>
+<li><p>VP2420</p></li>
+</ul>
+</section>
+<section id="samsung">
+<h2>SAMSUNG<a class="headerlink" href="#samsung" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Lumpy</p></li>
+<li><p>Stumpy</p></li>
+</ul>
+</section>
+<section id="siemens">
+<h2>Siemens<a class="headerlink" href="#siemens" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>MC APL1</p></li>
+<li><p>MC APL2</p></li>
+<li><p>MC APL3</p></li>
+<li><p>MC APL4</p></li>
+<li><p>MC APL5</p></li>
+<li><p>MC APL6</p></li>
+<li><p>MC APL7</p></li>
+</ul>
+</section>
+<section id="star-labs">
+<h2>Star Labs<a class="headerlink" href="#star-labs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Star Labs Lite Mk III (N5000)</p></li>
+<li><p>Star Labs Lite Mk IV (N5030)</p></li>
+<li><p>Star Labs LabTop Mk III (i7-8550u)</p></li>
+<li><p>Star Labs LabTop Mk IV (i3-10110U and i7-10710U)</p></li>
+<li><p>Star Labs StarBook Mk V (i3-1115G4 and i7-1165G7)</p></li>
+<li><p>Star Labs StarBook Mk VI (i3-1220P and i7-1260P)</p></li>
+<li><p>Star Labs StarBook Mk VI (i3-1315U and i7-1360P)</p></li>
+</ul>
+</section>
+<section id="supermicro">
+<h2>Supermicro<a class="headerlink" href="#supermicro" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>X11SSH-TF</p></li>
+<li><p>X11SSM-F</p></li>
+<li><p>X11SSH-F/LN4F</p></li>
+<li><p>X11SSW-F</p></li>
+</ul>
+</section>
+<section id="up">
+<h2>UP<a class="headerlink" href="#up" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Squared</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="vboot - Verified Boot Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="measured_boot.html" class="btn btn-neutral float-right" title="Measured Boot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

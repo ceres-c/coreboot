@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coreboot FAQ &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorial" href="../tutorial/index.html" />
+    <link rel="prev" title="Adding new devices to a device tree" href="devicetree.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">coreboot architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_system.html">Build System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kconfig.html">Kconfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_documentation.html">Writing Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">Setting up GPIOs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devicetree.html">Adding devices to a device tree</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Frequently Asked Questions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-coreboot-questions">General coreboot questions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#what-is-coreboot">What is coreboot?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#what-is-a-coreboot-payload">What is a coreboot payload?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#is-coreboot-the-same-as-uefi">Is coreboot the same as UEFI?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#what-s-the-difference-between-coreboot-and-uefi">What’s the difference between coreboot and UEFI?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#can-coreboot-boot-operating-systems-that-require-uefi">Can coreboot boot operating systems that require UEFI?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#what-non-uefi-payloads-does-coreboot-support">What non-UEFI payloads does coreboot support?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#what-does-coreboot-leave-in-memory-after-it-s-done-initializing-the-hardware">What does coreboot leave in memory after it’s done initializing the hardware?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#platforms">Platforms</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#whats-the-best-coreboot-platform-for-a-user">What’s the best coreboot platform for a user?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#whats-the-best-platform-for-coreboot-development">What’s the best platform for coreboot development?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#what-platforms-does-coreboot-support">What platforms does coreboot support?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#coreboot-development">coreboot Development</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#can-coreboot-be-ported-to-this-board">Can coreboot be ported to [this board]?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-do-i-port-coreboot-to-this-board">How do I port coreboot to [this board]?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#what-about-the-intel-me">What about the Intel ME?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Getting Started</a></li>
+      <li class="breadcrumb-item active">coreboot FAQ</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started/faq.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coreboot-faq">
+<h1>coreboot FAQ<a class="headerlink" href="#coreboot-faq" title="Link to this heading"></a></h1>
+<section id="general-coreboot-questions">
+<h2>General coreboot questions<a class="headerlink" href="#general-coreboot-questions" title="Link to this heading"></a></h2>
+<section id="what-is-coreboot">
+<h3>What is coreboot?<a class="headerlink" href="#what-is-coreboot" title="Link to this heading"></a></h3>
+<p>coreboot is a free and open software project designed to initialize
+computers and embedded systems in a fast, secure, and auditable fashion.
+The focus is on minimal hardware initialization: to do only what is
+absolutely needed, then pass control to other software (a payload, in
+coreboot parlance) in order to boot the operating system securely.</p>
+</section>
+<section id="what-is-a-coreboot-payload">
+<h3>What is a coreboot payload?<a class="headerlink" href="#what-is-a-coreboot-payload" title="Link to this heading"></a></h3>
+<p>coreboot itself does not deal with boot media such as hard-drives,
+SSDs, or USB flash-drives, beyond initializing the underlying hardware.
+So in order to actually boot an operating system, another piece of
+software which does do those things must be used. coreboot supports
+a large number of diverse payloads; see below for more details.</p>
+</section>
+<section id="is-coreboot-the-same-as-uefi">
+<h3>Is coreboot the same as UEFI?<a class="headerlink" href="#is-coreboot-the-same-as-uefi" title="Link to this heading"></a></h3>
+<p>No. coreboot and UEFI are both system firmware that handle the
+initialization of the hardware, but are otherwise not similar.
+coreboot’s goal is to <strong>just</strong> initialize the hardware and exit.
+This makes coreboot smaller and simpler, leading to faster boot times,
+and making it easier to find and fix bugs. The result is a higher
+overall security.</p>
+</section>
+<section id="what-s-the-difference-between-coreboot-and-uefi">
+<h3>What’s the difference between coreboot and UEFI?<a class="headerlink" href="#what-s-the-difference-between-coreboot-and-uefi" title="Link to this heading"></a></h3>
+<p>UEFI is actually a firmware specification, not a specific software
+implementation. Intel, along with the rest of the Tianocore project,
+has released an open-source implementation of the overall framework,
+EDK2, but it does not come with hardware support. Most hardware running
+UEFI uses a proprietary implementation built on top of EDK2.</p>
+<p>coreboot does not implement the UEFI specification, but it can be used to
+initialize the system, then launch a UEFI payload such as EDK2 in order
+to provide UEFI boot services.</p>
+<p>The UEFI specification also defines and allows for many things that are
+outside of coreboot’s scope, including (but not limited to):</p>
+<ul class="simple">
+<li><p>Boot device selection</p></li>
+<li><p>Updating the firmware</p></li>
+<li><p>A CLI shell</p></li>
+<li><p>Network communication</p></li>
+<li><p>An integrated setup menu</p></li>
+</ul>
+</section>
+<section id="can-coreboot-boot-operating-systems-that-require-uefi">
+<h3>Can coreboot boot operating systems that require UEFI?<a class="headerlink" href="#can-coreboot-boot-operating-systems-that-require-uefi" title="Link to this heading"></a></h3>
+<p>Yes, but… again, coreboot <strong>just</strong> initializes the hardware. coreboot
+itself doesn’t load operating systems from storage media other than the
+flash chip. Unlike UEFI, coreboot does not, and will not contain a Wi-Fi
+driver or communicate directly with any sort of network. That sort of
+functionality is not related to hardware initialization.</p>
+<p>To boot operating systems that require UEFI, coreboot can be compiled with
+EDK2 as the payload. This allows coreboot to perform the hardware init,
+with EDK2 supplying the UEFI boot interface and runtime services to
+the operating system.</p>
+</section>
+<section id="what-non-uefi-payloads-does-coreboot-support">
+<h3>What non-UEFI payloads does coreboot support?<a class="headerlink" href="#what-non-uefi-payloads-does-coreboot-support" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>SeaBIOS, behaves like a classic BIOS, allowing you to boot operating
+systems that rely on the legacy interrupts.</p></li>
+<li><p>GRUB can be used as a coreboot payload, and is currently the most
+common approach to full disk encryption (FDE).</p></li>
+<li><p>A Linux kernel and initramfs stored alongside coreboot in the boot
+ROM can also be used as a payload. In this scenario coreboot
+initializes hardware, loads Linux from boot ROM into RAM, and
+executes it. The embedded Linux environment can look for a target OS
+kernel to load from local storage or over a network and execute it
+using kexec. This is sometimes called LinuxBoot.</p></li>
+<li><p>U-boot, depthcharge, FILO, etc.</p></li>
+</ul>
+<p>There’s [https://doc.coreboot.org/payloads.html](https://doc.coreboot.org/payloads.
+html) with a list, although it’s not complete.</p>
+</section>
+<section id="what-does-coreboot-leave-in-memory-after-it-s-done-initializing-the-hardware">
+<h3>What does coreboot leave in memory after it’s done initializing the hardware?<a class="headerlink" href="#what-does-coreboot-leave-in-memory-after-it-s-done-initializing-the-hardware" title="Link to this heading"></a></h3>
+<p>While coreboot tries to remove itself completely from memory after
+finishing, some tables and data need to remain for the OS. coreboot
+reserves an area in memory known as CBMEM, to save this data after it
+has finished booting. This contains things such as the boot log, tables
+that get passed to the payload, SMBIOS, and ACPI tables for the OS.</p>
+<p>In addition to CBMEM, on X86 systems, coreboot will typically set up
+SMM, which will remain resident after coreboot exits.</p>
+</section>
+</section>
+<section id="platforms">
+<h2>Platforms<a class="headerlink" href="#platforms" title="Link to this heading"></a></h2>
+<section id="whats-the-best-coreboot-platform-for-a-user">
+<h3>What’s the best coreboot platform for a user?<a class="headerlink" href="#whats-the-best-coreboot-platform-for-a-user" title="Link to this heading"></a></h3>
+<p>The choice of the best coreboot platform for a user can vary depending
+on their specific needs, preferences, and use cases.</p>
+<p>Typically, people who want a system with a minimum of proprietary
+firmware are restricted to older systems like the Lenovo X220, or more
+expensive, non-x86 solutions like TALOS, from Raptor Engineering.</p>
+<p>There are a number of companies selling modern systems, but those all
+require more proprietary binaries in addition to coreboot (e.g., Intel
+FSP). However, unlike the older ThinkPads, many of these newer devices
+use open-source embedded controller (EC) firmware, so there are
+tradeoffs with either option.</p>
+<p>The coreboot project mantains a list of companies selling machines
+which use coreboot on the <a class="reference external" href="https://coreboot.org/users.html">website</a>.</p>
+</section>
+<section id="whats-the-best-platform-for-coreboot-development">
+<h3>What’s the best platform for coreboot development?<a class="headerlink" href="#whats-the-best-platform-for-coreboot-development" title="Link to this heading"></a></h3>
+<p>Similar to the best platform for users, the best platform for
+developers very much depends on what a developer is trying to do.</p>
+<ul class="simple">
+<li><p>QEMU is generally the easiest platform for coreboot development, just
+because it’s easy to run anywhere. However, it’s possible for things
+to work properly in QEMU but fail miserably on actual hardware.</p></li>
+</ul>
+<p>While laptops tend to be harder to develop than desktop platforms, a
+majority of newer platforms on coreboot tend to be laptops. The
+development difficulty is due to a few different factors:</p>
+<ol class="simple">
+<li><p>The EC (Embedded Controller) is a specialized microcontroller that
+typically handles keyboard and sometimes mouse input for a laptop.
+It also controls many power management functions such as fans, USB-C
+power delivery, etc. ECs run mainboard-specific firmware, which is
+typically undocumented.</p></li>
+<li><p>ThinkPads (X230, 30-series, 20-series, T430, T540, T520). Sandy
+Bridge and Ivy Bridge are well-supported. Some may have
+difficult-to-reach SPI flash chips. Boards with two flash chips (e.g.
+30-series ThinkPads) are harder to externally reflash as one needs to
+make sure the non-targeted flash chip remains disabled at all times.
+The X230 is notoriously sensitive to external reflashing issues.</p></li>
+<li><p>Laptops often lack a convenient method to obtain firmware boot logs.
+One can use EHCI debug on older systems and Chromebook-specific
+solutions for Chromebooks, but one often has to resort to flashconsole
+(writing coreboot logs to the flash chip where coreboot resides). On
+the other hand, several desktop mainboards still have a RS-232 serial
+port.</p></li>
+</ol>
+<p>Some of the easiest physical systems to use for coreboot development
+are Chromebooks. Newer Chromebooks allow for debug without opening the
+case. Look for SuzyQ Cables or SuzyQables or instructions on how to
+build one. These cables only work on a specific port in a specific
+orientation. Google <a class="reference external" href="https://chromium.googlesource.com/chromiumos/third_party/hdctools/+/master/docs/ccd.md#SuzyQ-SuzyQable">supplies
+specifications</a>
+for these cables.</p>
+</section>
+<section id="what-platforms-does-coreboot-support">
+<h3>What platforms does coreboot support?<a class="headerlink" href="#what-platforms-does-coreboot-support" title="Link to this heading"></a></h3>
+<p>The most accurate way to determine what systems coreboot supports is by
+browsing the src/mainboard tree or running “make menuconfig” and going
+through the “Mainboard” submenu. You can also search Gerrit to see if
+there are any unmerged ports for your board.</p>
+<p>There is also the board status page
+(<a class="reference external" href="https://coreboot.org/status/board-status.html">https://coreboot.org/status/board-status.html</a>),
+however this does not currently show supported board variants.</p>
+</section>
+</section>
+<section id="coreboot-development">
+<h2>coreboot Development<a class="headerlink" href="#coreboot-development" title="Link to this heading"></a></h2>
+<section id="can-coreboot-be-ported-to-this-board">
+<h3>Can coreboot be ported to [this board]?<a class="headerlink" href="#can-coreboot-be-ported-to-this-board" title="Link to this heading"></a></h3>
+<p>The best way to determine if coreboot can be ported to a system is to
+see if the processor and chipset is supported. The next step is to see
+whether the system is locked to the proprietary firmware which comes
+with the board.</p>
+<p>Intel Platforms:</p>
+<ul class="simple">
+<li><p>coreboot only supports a few northbridges (back when northbridges
+were on a separate package), and there’s next to no support for
+“server” platforms (multi-socket and similar things). Here’s a list
+of more recent supported Intel processors:</p>
+<ul>
+<li><p>Alder Lake (2021 - Core Gen 12)</p></li>
+<li><p>Apollo Lake (2016 - Atom)</p></li>
+<li><p>Baytrail (2014 - Atom)</p></li>
+<li><p>Braswell (2016 - Atom)</p></li>
+<li><p>Broadwell (2014 - Core Gen 5)</p></li>
+<li><p>Comet Lake (2019 - Core Gen 10)</p></li>
+<li><p>Cannon Lake (2018 - Core Gen 8/9)</p></li>
+<li><p>Denverton (2017)</p></li>
+<li><p>Elkhart lake (2021 - Atom)</p></li>
+<li><p>Haswell (2013 - Core Gen 4)</p></li>
+<li><p>Ivy Bridge (2012 - Core Gen 3)</p></li>
+<li><p>Jasper Lake (2021 - Atom)</p></li>
+<li><p>Kaby Lake (2016 - Core Gen 7/8)</p></li>
+<li><p>Meteor Lake (2023 - Gen 1 Ultra-mobile)</p></li>
+<li><p>Sandy Bridge (2011 - Core Gen 2)</p></li>
+<li><p>Sky Lake (2015 - Core Gen 6)</p></li>
+<li><p>Tiger Lake (2020 - Core Gen 11)</p></li>
+<li><p>Whiskey Lake (2018 - Core Gen 8)</p></li>
+</ul>
+</li>
+<li><p>Intel Boot Guard is a security feature which tries to prevent loading
+unauthorized firmware by the mainboard. If supported by the platform,
+and the platform is supported by intelmetool, you should check if Boot
+Guard is enabled. If it is, then getting coreboot to run will be
+difficult or impossible even if it is ported. You can run
+<code class="docutils literal notranslate"><span class="pre">intelmetool</span> <span class="pre">-b</span></code> on supported platforms to see if Boot Guard is
+enabled (although it can fail because it wants to probe the ME
+beforehand).</p></li>
+</ul>
+<p>AMD Ryzen-based platforms:</p>
+<ul class="simple">
+<li><p>The AMD platforms Ryzen-based platforms unfortunately are currently
+not well supported outside of the Chromebooks (and AMD reference
+boards) currently in the tree.
+The responsible teams are trying to fix this, but currently it’s
+<strong>very</strong> difficult to do a new port. Recent supported SoCs:</p>
+<ul>
+<li><p>Stoney Ridge</p></li>
+<li><p>Picasso</p></li>
+<li><p>Cezanne</p></li>
+<li><p>Mendocino</p></li>
+<li><p>Phoenix</p></li>
+</ul>
+</li>
+</ul>
+<p>General notes:</p>
+<ul class="simple">
+<li><p>Check the output of <code class="docutils literal notranslate"><span class="pre">lspci</span></code> to determine what processor/chipset
+family your system has. Processor/chipset support is the most
+important to determine if a board can be ported.</p></li>
+<li><p>Check the output of <code class="docutils literal notranslate"><span class="pre">superiotool</span></code> to see if it detects the Super I/O
+on the system. You can also check board schematics and/or boardviews
+if you can find them, or physically look at the mainboard for a chip
+from one of the common superio vendors.</p></li>
+<li><p>Check what EC your system has (mostly applicable to laptops, but some
+desktops have EC-like chips). You will likely need to refer to the
+actual board or schematics/boardviews for this. Physical observation
+is the most accurate identification procedure; software detection can
+then be used to double-check if the chip is correct, but one should
+not rely on software detection alone to identify an EC.</p></li>
+</ul>
+</section>
+<section id="how-do-i-port-coreboot-to-this-board">
+<h3>How do I port coreboot to [this board]?<a class="headerlink" href="#how-do-i-port-coreboot-to-this-board" title="Link to this heading"></a></h3>
+<p>A critical piece for anyone attempting to do a board port is to make
+sure that you have a method to recover your system from a failed flash.</p>
+<p>We need an updated motherboard porting guide, but currently the guide
+on the <a class="reference external" href="https://www.coreboot.org/Motherboard_Porting_Guide">wiki</a> looks
+to be the best reference.</p>
+<p>At the moment, the best answer to this question is to ask for help on
+one of the <a class="reference external" href="https://doc.coreboot.org/community/forums.html">various community
+forums</a>.</p>
+</section>
+<section id="what-about-the-intel-me">
+<h3>What about the Intel ME?<a class="headerlink" href="#what-about-the-intel-me" title="Link to this heading"></a></h3>
+<p>There seems to be a lot of FUD about what the ME can and can’t do.
+coreboot currently does not have a clear recommendation on how to
+handle the ME. We understand that there are serious concerns about the
+ME, and would like to flatly recommend removing as much as possible,
+however modifying the ME can cause serious stability issues.</p>
+<p>Additionally, coreboot and the Intel ME are completely separate entites
+which in many cases simply happen to occupy the same flash chip. It is
+not necessary to run coreboot to modify the ME, and running coreboot
+does not imply anything about the ME’s operational state.</p>
+<section id="a-word-of-caution-about-the-modifying-me">
+<h4>A word of caution about the modifying ME<a class="headerlink" href="#a-word-of-caution-about-the-modifying-me" title="Link to this heading"></a></h4>
+<p>Messing with the ME firmware can cause issues, and this is outside the
+scope of the coreboot project.</p>
+<p>If you do decide to modify the ME firmware, please make sure coreboot
+works <strong>before</strong> messing with it. Even if the vendor boot firmware
+works when the ME isn’t operating normally, it’s possible that coreboot
+doesn’t handle it the same way and something breaks. If someone asks
+for help with coreboot and we think the ME state may be a factor, we’ll
+ask them to try reproducing the issue with the ME running normally to
+reduce the number of variables involved. This is especially important
+when flashing coreboot for the first time, as it’s best for newbies to
+start with small steps: start by flashing coreboot to the BIOS region
+and leaving the remaining regions untouched, then tinker around with
+coreboot options (e.g. other payloads, bootsplash, RAM overclock…),
+or try messing with the ME firmware <strong>without changing coreboot</strong>.</p>
+<p>Most people don’t understand the implications of messing with the ME
+firmware, especially the use of <code class="docutils literal notranslate"><span class="pre">me_cleaner</span></code>. We admit that we don’t
+know everything about the ME, but we try to understand it as much as
+possible. The ME is designed to operate correctly with the HAP (or
+AltMeDisable) bit set, and it will gracefully enter a debug state (not
+normal, but not an error). However, when using <code class="docutils literal notranslate"><span class="pre">me_cleaner</span></code> to remove
+parts of the ME firmware, the ME will often end up in an error state
+because parts of its FW are missing. It is known that removing some of
+these parts (<a class="reference external" href="https://review.coreboot.org/c/coreboot/+/27798/6/src/mainboard/asus/p8h61-m_lx/Kconfig#63"><code class="docutils literal notranslate"><span class="pre">EFFS</span></code> and <code class="docutils literal notranslate"><span class="pre">FCRS</span></code> on Cougar Point,
+c.f.</a>)
+can cause problems. We do not know whether the state the ME ends up in
+after applying <code class="docutils literal notranslate"><span class="pre">me_cleaner</span></code> is as secure as the state the ME goes to
+when only the HAP bit is set: the removed FW modules could contain
+steps to lock down important settings for security reasons.</p>
+<p>To sum up, <strong>we do not recommend messing with the ME firmware</strong>. But if
+you have to, please use <code class="docutils literal notranslate"><span class="pre">ifdtool</span></code> to set the HAP bit initially before
+progressing to <code class="docutils literal notranslate"><span class="pre">me_cleaner</span></code> if necessary.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="devicetree.html" class="btn btn-neutral float-left" title="Adding new devices to a device tree" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tutorial/index.html" class="btn btn-neutral float-right" title="Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

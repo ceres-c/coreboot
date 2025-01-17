@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driver Devicetree Entries &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Driver Devicetree Entries</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/drivers/dt_entries.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="driver-devicetree-entries">
+<h1>Driver Devicetree Entries<a class="headerlink" href="#driver-devicetree-entries" title="Link to this heading"></a></h1>
+<p>Let’s take a look at an example entry from
+<code class="docutils literal notranslate"><span class="pre">src/mainboard/google/hatch/variants/hatch/overridetree.cb</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">device</span> <span class="n">pci</span> <span class="mf">15.0</span> <span class="n">on</span>
+	<span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">i2c</span><span class="o">/</span><span class="n">generic</span>
+		<span class="n">register</span> <span class="s2">&quot;hid&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="n">ELAN0000</span><span class="s2">&quot;&quot;</span>
+		<span class="n">register</span> <span class="s2">&quot;desc&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="n">ELAN</span> <span class="n">Touchpad</span><span class="s2">&quot;&quot;</span>
+		<span class="n">register</span> <span class="s2">&quot;irq&quot;</span> <span class="o">=</span> <span class="s2">&quot;ACPI_IRQ_LEVEL_LOW(GPP_A21_IRQ)&quot;</span>
+		<span class="n">register</span> <span class="s2">&quot;detect&quot;</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+		<span class="n">register</span> <span class="s2">&quot;wake&quot;</span> <span class="o">=</span> <span class="s2">&quot;GPE0_DW0_21&quot;</span>
+		<span class="n">device</span> <span class="n">i2c</span> <span class="mi">15</span> <span class="n">on</span> <span class="n">end</span>
+	<span class="n">end</span>
+<span class="n">end</span> <span class="c1"># I2C #0</span>
+</pre></div>
+</div>
+<p>When this entry is processed during ramstage, it will create a device in the
+ACPI SSDT table (all devices in devicetrees end up in the SSDT table).  The ACPI
+generation routines in coreboot actually generate the raw bytecode that
+represents the device’s structure, but looking at ASL code is easier to
+understand; see below for what the disassembled bytecode looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Scope</span> <span class="p">(</span>\<span class="n">_SB</span><span class="o">.</span><span class="n">PCI0</span><span class="o">.</span><span class="n">I2C0</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Device</span> <span class="p">(</span><span class="n">D015</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Name</span> <span class="p">(</span><span class="n">_HID</span><span class="p">,</span> <span class="s2">&quot;ELAN0000&quot;</span><span class="p">)</span>  <span class="o">//</span> <span class="n">_HID</span><span class="p">:</span> <span class="n">Hardware</span> <span class="n">ID</span>
+        <span class="n">Name</span> <span class="p">(</span><span class="n">_UID</span><span class="p">,</span> <span class="n">Zero</span><span class="p">)</span>  <span class="o">//</span> <span class="n">_UID</span><span class="p">:</span> <span class="n">Unique</span> <span class="n">ID</span>
+        <span class="n">Name</span> <span class="p">(</span><span class="n">_DDN</span><span class="p">,</span> <span class="s2">&quot;ELAN Touchpad&quot;</span><span class="p">)</span>  <span class="o">//</span> <span class="n">_DDN</span><span class="p">:</span> <span class="n">DOS</span> <span class="n">Device</span> <span class="n">Name</span>
+        <span class="n">Method</span> <span class="p">(</span><span class="n">_STA</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">NotSerialized</span><span class="p">)</span>  <span class="o">//</span> <span class="n">_STA</span><span class="p">:</span> <span class="n">Status</span>
+        <span class="p">{</span>
+            <span class="n">Return</span> <span class="p">(</span><span class="mh">0x0F</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">Name</span> <span class="p">(</span><span class="n">_CRS</span><span class="p">,</span> <span class="n">ResourceTemplate</span> <span class="p">()</span>  <span class="o">//</span> <span class="n">_CRS</span><span class="p">:</span> <span class="n">Current</span> <span class="n">Resource</span> <span class="n">Settings</span>
+        <span class="p">{</span>
+            <span class="n">I2cSerialBusV2</span> <span class="p">(</span><span class="mh">0x0015</span><span class="p">,</span> <span class="n">ControllerInitiated</span><span class="p">,</span> <span class="mi">400000</span><span class="p">,</span>
+                <span class="n">AddressingMode7Bit</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">_SB.PCI0.I2C0&quot;</span><span class="p">,</span>
+                <span class="mh">0x00</span><span class="p">,</span> <span class="n">ResourceConsumer</span><span class="p">,</span> <span class="p">,</span> <span class="n">Exclusive</span><span class="p">,</span> <span class="p">)</span>
+            <span class="n">Interrupt</span> <span class="p">(</span><span class="n">ResourceConsumer</span><span class="p">,</span> <span class="n">Level</span><span class="p">,</span> <span class="n">ActiveLow</span><span class="p">,</span> <span class="n">Exclusive</span><span class="p">,</span> <span class="p">,,</span> <span class="p">)</span>
+            <span class="p">{</span>
+                <span class="mh">0x0000002D</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+        <span class="n">Name</span> <span class="p">(</span><span class="n">_S0W</span><span class="p">,</span> <span class="n">ACPI_DEVICE_SLEEP_D3_HOT</span><span class="p">)</span>  <span class="o">//</span> <span class="n">_S0W</span><span class="p">:</span> <span class="n">S0</span> <span class="n">Device</span> <span class="n">Wake</span> <span class="n">State</span>
+        <span class="n">Name</span> <span class="p">(</span><span class="n">_PRW</span><span class="p">,</span> <span class="n">Package</span> <span class="p">(</span><span class="mh">0x02</span><span class="p">)</span>  <span class="o">//</span> <span class="n">_PRW</span><span class="p">:</span> <span class="n">Power</span> <span class="n">Resources</span> <span class="k">for</span> <span class="n">Wake</span>
+        <span class="p">{</span>
+            <span class="mh">0x15</span><span class="p">,</span> <span class="o">//</span> <span class="n">GPE</span> <span class="c1">#21</span>
+            <span class="mh">0x03</span>  <span class="o">//</span> <span class="n">Sleep</span> <span class="n">state</span> <span class="n">S3</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can see it generates _HID, _UID, _DDN, _STA, _CRS, _S0W, and _PRW
+names/methods in the Device’s scope.</p>
+<section id="utilizing-a-device-driver">
+<h2>Utilizing a device driver<a class="headerlink" href="#utilizing-a-device-driver" title="Link to this heading"></a></h2>
+<p>The device driver must be enabled for your build.  There will be a CONFIG option
+in the Kconfig file in the directory that the driver is in (e.g.,
+<code class="docutils literal notranslate"><span class="pre">src/drivers/i2c/generic</span></code> contains a Kconfig file; the option here is named
+CONFIG_DRIVERS_I2C_GENERIC).  The config option will need to be added to your
+mainboard’s Kconfig file (e.g., <code class="docutils literal notranslate"><span class="pre">src/mainboard/google/hatch/Kconfig</span></code>) in order
+to be compiled into your build.</p>
+</section>
+<section id="diving-into-the-above-example">
+<h2>Diving into the above example:<a class="headerlink" href="#diving-into-the-above-example" title="Link to this heading"></a></h2>
+<p>Let’s take a look at how the devicetree language corresponds to the generated
+ASL.</p>
+<p>First, note this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">i2c</span><span class="o">/</span><span class="n">generic</span>
+</pre></div>
+</div>
+<p>This means that the device driver we’re using has a corresponding structure,
+located at <code class="docutils literal notranslate"><span class="pre">src/drivers/i2c/generic/chip.h</span></code>, named <strong>struct
+drivers_i2c_generic_config</strong> and it contains many properties you can specify to
+be included in the ACPI table.</p>
+<section id="hid">
+<h3>hid<a class="headerlink" href="#hid" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">register</span> <span class="s2">&quot;hid&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="n">ELAN0000</span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+<p>This corresponds to <strong>const char *hid</strong> in the struct.  In the ACPI ASL, it
+translates to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Name</span> <span class="p">(</span><span class="n">_HID</span><span class="p">,</span> <span class="s2">&quot;ELAN0000&quot;</span><span class="p">)</span> <span class="o">//</span> <span class="n">_HID</span><span class="p">:</span> <span class="n">Hardware</span> <span class="n">ID</span>
+</pre></div>
+</div>
+<p>under the device.  <strong>This property is used to match the device to its driver
+during enumeration in the OS.</strong></p>
+</section>
+<section id="desc">
+<h3>desc<a class="headerlink" href="#desc" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">register</span> <span class="s2">&quot;desc&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="n">ELAN</span> <span class="n">Touchpad</span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+<p>corresponds to <strong>const char *desc</strong> and in ASL:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Name</span> <span class="p">(</span><span class="n">_DDN</span><span class="p">,</span> <span class="s2">&quot;ELAN Touchpad&quot;</span><span class="p">)</span> <span class="o">//</span> <span class="n">_DDN</span><span class="p">:</span> <span class="n">DOS</span> <span class="n">Device</span> <span class="n">Name</span>
+</pre></div>
+</div>
+</section>
+<section id="irq">
+<h3>irq<a class="headerlink" href="#irq" title="Link to this heading"></a></h3>
+<p>It also adds the interrupt,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Interrupt</span> <span class="p">(</span><span class="n">ResourceConsumer</span><span class="p">,</span> <span class="n">Level</span><span class="p">,</span> <span class="n">ActiveLow</span><span class="p">,</span> <span class="n">Exclusive</span><span class="p">,</span> <span class="p">,,</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="mh">0x0000002D</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>which comes from:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">register</span> <span class="s2">&quot;irq&quot;</span> <span class="o">=</span> <span class="s2">&quot;ACPI_IRQ_LEVEL_LOW(GPP_A21_IRQ)&quot;</span>
+</pre></div>
+</div>
+<p>The IRQ settings control the “Trigger” and “Polarity” settings seen above (level
+means it is a level-triggered interrupt as opposed to
+edge-triggered; active low means the interrupt is triggered when the signal is
+low).</p>
+<p>Also note that the IRQ names are SoC-specific, and you will need to
+find the names in your SoC’s header file.  The ACPI_* macros are defined in
+<code class="docutils literal notranslate"><span class="pre">src/arch/x86/include/acpi/acpi_device.h</span></code>.</p>
+<p>Using a GPIO as an IRQ requires that it is configured in coreboot correctly.
+This is often done in a mainboard-specific file named <code class="docutils literal notranslate"><span class="pre">gpio.c</span></code>.</p>
+<p>AMD platforms don’t have the ability to route GPIOs to the IO-APIC. Instead the
+GPIO controller needs to be used directly. You can do this by setting the
+<code class="docutils literal notranslate"><span class="pre">irq_gpio</span></code> register and using the <code class="docutils literal notranslate"><span class="pre">ACPI_GPIO_IRQ_X_X</span></code> macros.</p>
+<p>i.e.,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">register</span> <span class="s2">&quot;irq_gpio&quot;</span> <span class="o">=</span> <span class="s2">&quot;ACPI_GPIO_IRQ_EDGE_LOW(GPIO_40)&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="detect">
+<h3>detect<a class="headerlink" href="#detect" title="Link to this heading"></a></h3>
+<p>The next register is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">register</span> <span class="s2">&quot;detect&quot;</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+</pre></div>
+</div>
+<p>This flag tells the I2C driver that it should attempt to detect the presence of
+the device (using an I2C zero-byte write), and only generate a SSDT entry if the
+device is actually present. This alleviates the OS from having to determine if
+a device is present or not (ChromeOS/Linux) and prevents resource conflict/
+driver issues (Windows).</p>
+<p>Currently, the detect feature works and is hooked up for all I2C touchpads,
+and should be used any time a board has multiple touchpad options.
+I2C audio devices should also work without issue.</p>
+<p>Touchscreens can use this feature as well, but special care is needed to
+implement the proper power sequencing for the device to be detected. Generally,
+this means driving the enable GPIO high and holding the reset GPIO low in early
+GPIO init (bootblock/romstage), then releasing reset in ramstage. The first
+mainboards in the tree to implement this are google/skyrim and google/guybrush.
+This feature has also been used in downstream forks without issue for some time
+now on several other boards.</p>
+</section>
+<section id="wake">
+<h3>wake<a class="headerlink" href="#wake" title="Link to this heading"></a></h3>
+<p>The last register is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">register</span> <span class="s2">&quot;wake&quot;</span> <span class="o">=</span> <span class="s2">&quot;GPE0_DW0_21&quot;</span>
+</pre></div>
+</div>
+<p>which indicates that the method of waking the system using the touchpad will be
+through a GPE, #21 associated with DW0, which is set up in devicetree.cb from
+this example.  The “21” indicates GPP_X21, where GPP_X is mapped onto DW0
+elsewhere in the devicetree.</p>
+</section>
+<section id="device">
+<h3>device<a class="headerlink" href="#device" title="Link to this heading"></a></h3>
+<p>The last bit of the definition of that device includes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">device</span> <span class="n">i2c</span> <span class="mi">15</span> <span class="n">on</span> <span class="n">end</span>
+</pre></div>
+</div>
+<p>which means it’s an I2C device, with 7-bit address 0x15, and the device is “on”,
+meaning it will be exposed in the ACPI table.  The PCI device that the
+controller is located in determines which I2C bus the device is expected to be
+found on.  In this example, this is I2C bus 0.  This also determines the ACPI
+“Scope” that the device names and methods will live under, in this case
+“_SB.PCI0.I2C0”.</p>
+</section>
+</section>
+<section id="wake-sources">
+<h2>Wake sources<a class="headerlink" href="#wake-sources" title="Link to this heading"></a></h2>
+<p>The ACPI spec defines two methods to describe how a device can wake the system.
+Only one of these methods should be used, otherwise duplicate wake events will
+be generated.</p>
+<section id="using-gpes-as-a-wake-source">
+<h3>Using GPEs as a wake source<a class="headerlink" href="#using-gpes-as-a-wake-source" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">wake</span></code> property specified above is used to tell the ACPI subsystem that the
+device can use a GPE to wake the system. The OS can control whether to enable
+or disable the wake source by unmasking/masking off the GPE.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">GPIO</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">GPE</span></code> mapping must be configured in firmware. On AMD platforms this is
+generally done by a mainboard specific <code class="docutils literal notranslate"><span class="pre">gpio.c</span></code> file that defines the GPIO
+using <code class="docutils literal notranslate"><span class="pre">PAD_SCI</span></code>. The <code class="docutils literal notranslate"><span class="pre">GPIO</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">GPE</span></code> mapping is returned by the
+<code class="docutils literal notranslate"><span class="pre">soc_get_gpio_event_table</span></code> method that is defined in the SoC specific <code class="docutils literal notranslate"><span class="pre">gpio.c</span></code>
+file. On Intel platforms, you fill in the <code class="docutils literal notranslate"><span class="pre">pmc_gpe0_dw0</span></code>, <code class="docutils literal notranslate"><span class="pre">pmc_gpe0_dw1</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">pmc_gpe0_dw2</span></code> fields in the devicetree to map 3 GPIO communities to <code class="docutils literal notranslate"><span class="pre">tier-1</span></code>
+GPEs (the rest are available as <code class="docutils literal notranslate"><span class="pre">tier-2</span></code> GPEs).</p>
+<p>Windows has a large caveat when using this method. If you use the <code class="docutils literal notranslate"><span class="pre">gpio_irq</span></code>
+property to define a <code class="docutils literal notranslate"><span class="pre">GpioInt</span></code> in the <code class="docutils literal notranslate"><span class="pre">_CRS</span></code>, and then use the <code class="docutils literal notranslate"><span class="pre">wake</span></code> property
+to define a <code class="docutils literal notranslate"><span class="pre">GPE</span></code>, Windows will
+<a class="reference external" href="https://github.com/MicrosoftDocs/windows-driver-docs/blob/staging/windows-driver-docs-pr/debugger/bug-check-0xa5--acpi-bios-error.md">BSOD</a>
+complaining about an invalid ACPI configuration.</p>
+<blockquote>
+<div><p>0x1000D - A device used both GPE and GPIO interrupts, which is not supported.</p>
+</div></blockquote>
+<p>In order to avoid this error, you should use the <code class="docutils literal notranslate"><span class="pre">irq</span></code> property instead. AMD
+platforms don’t support routing GPIOs to the IO-APIC, so this workaround isn’t
+feasible. The other option is to use a wake capable GPIO as described below.</p>
+</section>
+<section id="using-gpio-interrupts-as-a-wake-source">
+<h3>Using GPIO interrupts as a wake source<a class="headerlink" href="#using-gpio-interrupts-as-a-wake-source" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">ACPI_IRQ_WAKE_{EDGE,LEVEL}_{LOW,HIGH}</span></code> macros can be used when setting the
+<code class="docutils literal notranslate"><span class="pre">irq</span></code> or <code class="docutils literal notranslate"><span class="pre">gpio_irq</span></code> properties. This ends up setting <code class="docutils literal notranslate"><span class="pre">ExclusiveAndWake</span></code> or
+<code class="docutils literal notranslate"><span class="pre">SharedAndWake</span></code> on the <code class="docutils literal notranslate"><span class="pre">Interrupt</span></code> or <code class="docutils literal notranslate"><span class="pre">GpioInt</span></code> ACPI resource.</p>
+<p>This method has a few caveats:</p>
+<ul class="simple">
+<li><p>On Intel and AMD platforms the IO-APIC can’t wake the system. This means using
+the <code class="docutils literal notranslate"><span class="pre">ACPI_IRQ_WAKE_*</span></code> macros with the <code class="docutils literal notranslate"><span class="pre">irq</span></code> property won’t actually wake the
+system. Instead you need to use the <code class="docutils literal notranslate"><span class="pre">gpio_irq</span></code> property, or a <code class="docutils literal notranslate"><span class="pre">GPE</span></code> as
+described above.</p></li>
+<li><p>The OS needs to know how to enable the <code class="docutils literal notranslate"><span class="pre">wake</span></code> bit on the GPIO. For linux this
+means the platform specific GPIO controller driver must implement the
+<code class="docutils literal notranslate"><span class="pre">irq_set_wake</span></code> callback. For AMD systems this wasn’t
+<a class="reference external" href="https://github.com/torvalds/linux/commit/d62bd5ce12d79bcd6a6c3e4381daa7375dc21158">implemented</a>
+until linux v5.15. If the controller doesn’t define this callback, it’s
+possible for the firmware to manually set the <code class="docutils literal notranslate"><span class="pre">wake</span></code> bit on the GPIO. This is
+often done in a mainboard-specific file named <code class="docutils literal notranslate"><span class="pre">gpio.c</span></code>. This is not
+recommended because then it’s not possible for the OS to disable the wake
+source.</p></li>
+<li><p>As of
+<a class="reference external" href="https://github.com/torvalds/linux/releases/tag/v6.0-rc5">linux v6.0-rc5</a>,
+the ACPI subsystem doesn’t take the interrupt <code class="docutils literal notranslate"><span class="pre">wake</span></code> bit into account when
+deciding on which power state to put the device in before suspending the
+system. This means that if you define a power resource for a device via
+<code class="docutils literal notranslate"><span class="pre">has_power_resource</span></code>, <code class="docutils literal notranslate"><span class="pre">enable_gpio</span></code>, etc, then the linux kernel will place the
+device into D3Cold. i.e., power off the device.</p></li>
+</ul>
+</section>
+</section>
+<section id="other-auto-generated-names">
+<h2>Other auto-generated names<a class="headerlink" href="#other-auto-generated-names" title="Link to this heading"></a></h2>
+<p>(see <a class="reference external" href="https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf">ACPI specification
+6.3</a>
+for more details on ACPI methods)</p>
+<section id="s0w-s0-device-wake-state">
+<h3>_S0W (S0 Device Wake State)<a class="headerlink" href="#s0w-s0-device-wake-state" title="Link to this heading"></a></h3>
+<p>_S0W indicates the deepest S0 sleep state this device can wake itself from,
+which in this case is <code class="docutils literal notranslate"><span class="pre">ACPI_DEVICE_SLEEP_D3_HOT</span></code>, representing <em>D3hot</em>.
+D3Hot means the <code class="docutils literal notranslate"><span class="pre">PR3</span></code> power resources are still on and the device is still
+responsive on the bus. For i2c devices this is generally the same state as <code class="docutils literal notranslate"><span class="pre">D0</span></code>.</p>
+</section>
+<section id="prw-power-resources-for-wake">
+<h3>_PRW (Power Resources for Wake)<a class="headerlink" href="#prw-power-resources-for-wake" title="Link to this heading"></a></h3>
+<p>_PRW indicates the power resources and events required for wake.  There are no
+dependent power resources, but the GPE (GPE0_DW0_21) is mentioned here (0x15),
+as well as the deepest sleep state supporting waking the system (3), which is
+S3.</p>
+</section>
+<section id="sta-status">
+<h3>_STA (Status)<a class="headerlink" href="#sta-status" title="Link to this heading"></a></h3>
+<p>The _STA method is generated automatically, and its values, 0xF, indicates the
+following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Bit [0] – Set if the device is present.
+Bit [1] – Set if the device is enabled and decoding its resources.
+Bit [2] – Set if the device should be shown in the UI.
+Bit [3] – Set if the device is functioning properly (cleared if device failed its diagnostics).
+</pre></div>
+</div>
+</section>
+<section id="crs-current-resource-settings">
+<h3>_CRS (Current resource settings)<a class="headerlink" href="#crs-current-resource-settings" title="Link to this heading"></a></h3>
+<p>The _CRS method is generated automatically, as the driver knows it is an I2C
+controller, and so specifies how to configure the controller for proper
+operation with the touchpad.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span> <span class="p">(</span><span class="n">_CRS</span><span class="p">,</span> <span class="n">ResourceTemplate</span> <span class="p">()</span>  <span class="o">//</span> <span class="n">_CRS</span><span class="p">:</span> <span class="n">Current</span> <span class="n">Resource</span> <span class="n">Settings</span>
+<span class="p">{</span>
+    <span class="n">I2cSerialBusV2</span> <span class="p">(</span><span class="mh">0x0015</span><span class="p">,</span> <span class="n">ControllerInitiated</span><span class="p">,</span> <span class="mi">400000</span><span class="p">,</span>
+                    <span class="n">AddressingMode7Bit</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">_SB.PCI0.I2C0&quot;</span><span class="p">,</span>
+                    <span class="mh">0x00</span><span class="p">,</span> <span class="n">ResourceConsumer</span><span class="p">,</span> <span class="p">,</span> <span class="n">Exclusive</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>All device driver entries in devicetrees end up in the SSDT table, and are
+generated in coreboot’s ramstage</strong>
+(The lone exception to this rule is i2c touchpads with the ‘detect’ flag set;
+in this case, devices not present will not be added to the SSDT)</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

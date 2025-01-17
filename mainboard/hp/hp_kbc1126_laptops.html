@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HP Laptops with KBC1126 Embedded Controller &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="HP Sure Start" href="hp_sure_start.html" />
+    <link rel="prev" title="HP Z220 SFF Workstation" href="z220_sff.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#hp">HP</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="compaq_8200_sff.html">Compaq 8200 Elite SFF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compaq_8300_usdt.html">Compaq Elite 8300 USDT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="z220_sff.html">Z220 Workstation SFF</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#elitebook-series">EliteBook series</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">HP Laptops with KBC1126 EC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hp_sure_start.html">HP Sure Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2170p.html">EliteBook 2170p</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2560p.html">EliteBook 2560p</a></li>
+<li class="toctree-l4"><a class="reference internal" href="8760w.html">EliteBook 8760w</a></li>
+<li class="toctree-l4"><a class="reference internal" href="folio_9480m.html">EliteBook Folio 9480m</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elitebook_820_g2.html">EliteBook 820 G2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">HP Laptops with KBC1126 Embedded Controller</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/hp/hp_kbc1126_laptops.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hp-laptops-with-kbc1126-embedded-controller">
+<h1>HP Laptops with KBC1126 Embedded Controller<a class="headerlink" href="#hp-laptops-with-kbc1126-embedded-controller" title="Link to this heading"></a></h1>
+<p>This document is about HP EliteBook series laptops up to Ivy Bridge era
+which use SMSC KBC1126 as embedded controller.</p>
+<p>SMSC KBC1126 (and older similar chips like KBC1098) has been used in
+HP EliteBooks for many generations.  BIOS and EC firmware share an SPI
+flash chip in these laptops, so we need to put firmware blobs for the
+EC to the coreboot image.</p>
+<section id="ec-firmware-extraction-and-coreboot-building">
+<h2>EC firmware extraction and coreboot building<a class="headerlink" href="#ec-firmware-extraction-and-coreboot-building" title="Link to this heading"></a></h2>
+<p>The following document takes EliteBook 2760p as an example.</p>
+<p>First, you need to extract the blobs needed by EC firmware using util/kbc1126.
+You can extract them from your backup firmware image, or firmware update
+provided by HP with <a class="reference external" href="https://theunarchiver.com/command-line">unar</a> as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://ftp.hp.com/pub/softpaq/sp79501-80000/sp79710.exe
+unar<span class="w"> </span>sp79710.exe
+<span class="si">${</span><span class="nv">COREBOOT_DIR</span><span class="si">}</span>/util/kbc1126/kbc1126_ec_dump<span class="w"> </span>sp79710/Rompaq/68SOU.BIN
+mv<span class="w"> </span>68SOU.BIN.fw1<span class="w"> </span><span class="si">${</span><span class="nv">COREBOOT_DIR</span><span class="si">}</span>/2760p-fw1.bin
+mv<span class="w"> </span>68SOU.BIN.fw2<span class="w"> </span><span class="si">${</span><span class="nv">COREBOOT_DIR</span><span class="si">}</span>/2760p-fw2.bin
+</pre></div>
+</div>
+<p>When you config coreboot, select:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Chipset ---&gt;
+  [*] Add firmware images for KBC1126 EC
+      (2760p-fw1.bin) KBC1126 firmware #1 path and filename
+      (2760p-fw2.bin) KBC1126 filename #2 path and filename
+</pre></div>
+</div>
+</section>
+<section id="porting-guide-for-hp-laptops-with-kbc1126">
+<h2>Porting guide for HP laptops with KBC1126<a class="headerlink" href="#porting-guide-for-hp-laptops-with-kbc1126" title="Link to this heading"></a></h2>
+<p>To port coreboot to an HP laptop with KBC1126, you need to do the
+following:</p>
+<ul class="simple">
+<li><p>select Kconfig option <code class="docutils literal notranslate"><span class="pre">EC_HP_KBC1126</span></code></p></li>
+<li><p>select Kconfig option <code class="docutils literal notranslate"><span class="pre">SUPERIO_SMSC_LPC47N217</span></code> if there is LPC47n217
+Super I/O, usually in EliteBook 8000 series, which can be used for
+debugging via serial port</p></li>
+<li><p>initialize EC and Super I/O in romstage</p></li>
+<li><p>add EC and Super I/O support to devicetree.cb</p></li>
+</ul>
+<p>To get the related values for EC in devicetree.cb, you need to extract the EFI
+module EcThermalInit from the vendor UEFI firmware with <a class="reference external" href="https://github.com/LongSoft/UEFITool">UEFITool</a>. Usually,
+<code class="docutils literal notranslate"><span class="pre">ec_data_port</span></code>, <code class="docutils literal notranslate"><span class="pre">ec_cmd_port</span></code> and <code class="docutils literal notranslate"><span class="pre">ec_ctrl_reg</span></code> has the following values:</p>
+<ul class="simple">
+<li><p>For EliteBook xx60 series: 0x60, 0x64, 0xca</p></li>
+<li><p>For EliteBook xx70 series: 0x62, 0x66, 0x81</p></li>
+</ul>
+<p>You can use <a class="reference external" href="https://radare.org/">radare2</a> and the following <a class="reference external" href="https://github.com/radare/radare2-r2pipe">r2pipe</a> Python script to find
+these values from the EcThermalInit EFI module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1"># install radare2 and use `pip3 install --user r2pipe` to install r2pipe</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">r2pipe</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="s2">&quot;ecthermalinit.efi&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">r2</span> <span class="o">=</span> <span class="n">r2pipe</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+<span class="n">r2</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s2">&quot;aa&quot;</span><span class="p">)</span>
+<span class="n">entryf</span> <span class="o">=</span> <span class="n">r2</span><span class="o">.</span><span class="n">cmdj</span><span class="p">(</span><span class="s2">&quot;pdfj&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">insn</span> <span class="ow">in</span> <span class="n">entryf</span><span class="p">[</span><span class="s2">&quot;ops&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="s2">&quot;lea r8&quot;</span> <span class="ow">in</span> <span class="n">insn</span><span class="p">[</span><span class="s2">&quot;opcode&quot;</span><span class="p">]:</span>
+        <span class="n">_callback</span> <span class="o">=</span> <span class="n">insn</span><span class="p">[</span><span class="s2">&quot;ptr&quot;</span><span class="p">]</span>
+        <span class="k">break</span>
+
+<span class="n">r2</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s2">&quot;af @ </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_callback</span><span class="p">))</span>
+<span class="n">callbackf_insns</span> <span class="o">=</span> <span class="n">r2</span><span class="o">.</span><span class="n">cmdj</span><span class="p">(</span><span class="s2">&quot;pdfj @ </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_callback</span><span class="p">))[</span><span class="s2">&quot;ops&quot;</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_port</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
+    <span class="n">ops</span> <span class="o">=</span> <span class="n">r2</span><span class="o">.</span><span class="n">cmdj</span><span class="p">(</span><span class="s2">&quot;pdfj @ </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">addr</span><span class="p">))[</span><span class="s2">&quot;ops&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">insn</span> <span class="ow">in</span> <span class="n">ops</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;lea r8d&quot;</span> <span class="ow">in</span> <span class="n">insn</span><span class="p">[</span><span class="s2">&quot;opcode&quot;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">insn</span><span class="p">[</span><span class="s2">&quot;ptr&quot;</span><span class="p">]</span>
+
+<span class="n">ctrl_reg_found</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">callbackf_insns</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ctrl_reg_found</span> <span class="ow">and</span> <span class="s2">&quot;mov cl&quot;</span> <span class="ow">in</span> <span class="n">callbackf_insns</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;opcode&quot;</span><span class="p">]:</span>
+        <span class="n">ctrl_reg_found</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">ctrl_reg</span> <span class="o">=</span> <span class="n">callbackf_insns</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;ptr&quot;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ec_ctrl_reg = 0x</span><span class="si">%02x</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">ctrl_reg</span><span class="p">)</span>
+        <span class="n">cmd_port</span> <span class="o">=</span> <span class="n">find_port</span><span class="p">(</span><span class="n">callbackf_insns</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;jump&quot;</span><span class="p">])</span>
+        <span class="n">data_port</span> <span class="o">=</span> <span class="n">find_port</span><span class="p">(</span><span class="n">callbackf_insns</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">][</span><span class="s2">&quot;jump&quot;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ec_cmd_port = 0x</span><span class="si">%02x</span><span class="se">\n</span><span class="s2">ec_data_port = 0x</span><span class="si">%02x</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cmd_port</span><span class="p">,</span> <span class="n">data_port</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="s2">&quot;mov bl&quot;</span> <span class="ow">in</span> <span class="n">callbackf_insns</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;opcode&quot;</span><span class="p">]:</span>
+        <span class="n">ctrl_value</span> <span class="o">=</span> <span class="n">callbackf_insns</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;ptr&quot;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ec_fan_ctrl_value = 0x</span><span class="si">%02x</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">ctrl_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="z220_sff.html" class="btn btn-neutral float-left" title="HP Z220 SFF Workstation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hp_sure_start.html" class="btn btn-neutral float-right" title="HP Sure Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

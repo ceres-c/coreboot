@@ -1,0 +1,213 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Communication templates related to release management &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Communication templates related to release management</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/releases/templates.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="communication-templates-related-to-release-management">
+<h1>Communication templates related to release management<a class="headerlink" href="#communication-templates-related-to-release-management" title="Link to this heading"></a></h1>
+<section id="deprecation-notices">
+<h2>Deprecation notices<a class="headerlink" href="#deprecation-notices" title="Link to this heading"></a></h2>
+<p>Deprecation notices are part of release notes to act as a warning: at some
+point in the future some part of coreboot gets removed. That point must be
+at least 6 months after the release of the notice and it must be right after
+some release: That is, the specified release must still contain the part in
+question while one git commit later it might be removed.</p>
+<p>The usual reason is progress: Infrastructure module X has been replaced by
+infrastructure module X+1. Removing X helps keep the sources manageable
+and likely opens opportunities to improve the codebase even more.
+Sometimes everything using some module has been converted to its successor
+already and it’s natural for such modules to be removed. Even then it might
+be useful to add an entry to the release notes to make everybody aware of
+such a change, for maintainers of incomplete boards that they might keep in
+their local trees and also to give credit to the developers of that change.</p>
+<p>However this template isn’t about such cases. Sometimes the tree contains
+mainboards that rely on X and can’t be easily migrated to X+1, often because
+no active developer has access to these mainboards, and that is where this
+type of deprecation notice comes in:</p>
+<p>A deprecation notice shall outline what is being removed, when it is planned
+for removal (always directly <em>after</em> a future release so it remains clear when
+something is part of coreboot and when it isn’t anymore) and which devices
+would be affected at the time of writing. Since past deprecation notices have
+been read as “we plan to remove mainboards A, B, and C”, sparking outrage
+with the devoted users of A, B, or C, some care is necessary to make clear
+which parts are slated for removal and which parts are merely consequences
+if no action is taken. Or put differently: It should be obvious that besides
+the deprecation plan, there is a call to action to save a couple of devices
+from becoming officially unsupported.</p>
+<p>As such, consider the following template when announcing a deprecation:</p>
+<section id="the-thing-to-remove">
+<h3>The Thing to remove<a class="headerlink" href="#the-thing-to-remove" title="Link to this heading"></a></h3>
+<p>A short description of the Thing slated for removal.</p>
+<p>A short rationale why it’s being removed (e.g. new and better Thing exists
+in parallel; new Thing already demonstrated to work in this many releases;
+removing Thing enables this or that improvement)</p>
+<p>Timeline: Announced here, Thing will be removed right after the release X
+months out (where X &gt;= 6)</p>
+<section id="call-to-action">
+<h4>Call to action<a class="headerlink" href="#call-to-action" title="Link to this heading"></a></h4>
+<p>Removing Thing requires work on a number of (boards, chipsets, …) that didn’t
+make the switch yet. The work approximately looks like this: (e.g. pointers to
+commits where a board has been successfully migrated from Thing to new Thing).</p>
+<p>Working on migrating away from Thing involves (hardware components, coreboot
+systems, …) 1, 2, and 3. It’s difficult to do on the remaining devices because
+…</p>
+<p>Parts of the tree that need work to become independent of Thing.</p>
+<ul class="simple">
+<li><p>chipset A</p>
+<ul>
+<li><p>board A1</p></li>
+<li><p>board A2</p></li>
+</ul>
+</li>
+<li><p>chipset B</p>
+<ul>
+<li><p>board B1</p></li>
+</ul>
+</li>
+</ul>
+<p>We prefer to move them along, but if we don’t see any maintenance in our tree
+we’ll have to assume that there’s no more interest in these platforms. As a
+consequence these devices either have to work without Thing by the removal
+date or they will be removed together with Thing. (side note: these removals
+aren’t the law, so if there’s work in progress to move boards off X and a
+roadmap that makes it probable to succeed, just not within the announced
+deprecation timeline, we can still decide to postpone the actual removal by
+one release. This needn’t be put in the release notes themselves though or
+it might encourage people to look for simple escape hatches.)</p>
+<p>(If there are developers offering to write patches: )
+There are developers interested in helping move these forward but they can’t
+test any changes for lack of equipment. If you have an affected device and
+can run tests on it, please reach out to developers α, β, and γ.</p>
+<p>(Otherwise maybe something more generic like this: )
+If you want to take this on, the coreboot developer community will try to
+help you: Reach out through one of our <a class="reference internal" href="../community/forums.html"><span class="doc">forums</span></a>.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

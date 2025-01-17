@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xeon Scalable processor coreboot Community Preview Guide &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Qualcomm SOC-specific documentation" href="../../qualcomm/index.html" />
+    <link rel="prev" title="Xeon Scalable processor documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">System on Chip</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#vendor">Vendor</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../amd/index.html">AMD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cavium/index.html">Cavium</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Intel</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#platforms">Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../qualcomm/index.html">Qualcomm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">SOC-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Intel SOC-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Xeon Scalable processor documentation</a></li>
+      <li class="breadcrumb-item active">Xeon Scalable processor coreboot Community Preview Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/soc/intel/xeon_sp/community_preview_guide.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="xeon-scalable-processor-coreboot-community-preview-guide">
+<h1>Xeon Scalable processor coreboot Community Preview Guide<a class="headerlink" href="#xeon-scalable-processor-coreboot-community-preview-guide" title="Link to this heading"></a></h1>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Link to this heading"></a></h2>
+<p>Sapphire Rapids coreboot was already merged into coreboot mainline.
+Granite Rapids coreboot upstreaming is coming.</p>
+<p>For Granite Rapids coreboot, we are going to perform a phased
+upstreaming strategy according to the maturity of the code. A community
+preview branch is opensource at:
+https://review.coreboot.org/plugins/gitiles/intel-dev-pub/.</p>
+<p>The community preview branch initially contains codes on legacy feature
+enabling and matured patch set for platform support. More platform
+support code will come with the platform development. The subsequent
+upstreaming work will be based on this branch. It provides 2 board
+targets,</p>
+<ol class="simple">
+<li><p>Avenue City CRB (Granite Rapids-AP)</p></li>
+<li><p>Beechnut City CRB (Granite Rapids-SP)</p></li>
+</ol>
+<p>The above targets can pass build with Granite Rapids n-1 FSP headers,
+which is a set of stub FSP headers used for compilation sanity check.</p>
+</section>
+<section id="build-steps">
+<h2>Build steps<a class="headerlink" href="#build-steps" title="Link to this heading"></a></h2>
+<section id="prepare-workspace">
+<h3>Prepare workspace<a class="headerlink" href="#prepare-workspace" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create workspace</span>
+
+<span class="n">mkdir</span> <span class="n">workspace</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="n">workspace</span>
+
+<span class="c1"># Prepare coreboot codebase</span>
+
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">review</span><span class="o">.</span><span class="n">coreboot</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">intel</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">pub</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="n">intel</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">pub</span><span class="o">/</span>
+<span class="n">coreboot</span>
+
+<span class="c1"># Prepare stub binaries and update their path in</span>
+<span class="c1"># configs/builder/config.intel.crb.avc.n-1</span>
+
+<span class="c1"># Granite Rapids coreboot uses FSP 2.4, where FSP-I is newly introduced</span>
+<span class="c1"># as an optional module to provide FSP based SMM capability. For FSP 2.4</span>
+<span class="c1"># and FSP-I, please further refer to:</span>
+<span class="c1"># https://cdrdv2-public.intel.com/736809/736809_FSP_EAS_v2.4_Errata_A.pdf</span>
+
+<span class="n">CONFIG_IFD_BIN_PATH</span><span class="o">=&lt;</span><span class="n">path</span> <span class="n">of</span> <span class="n">intel</span> <span class="n">flash</span> <span class="n">descriptor</span> <span class="n">blob</span><span class="o">&gt;</span>
+<span class="n">CONFIG_CPU_UCODE_BINARIES</span><span class="o">=&lt;</span><span class="n">path</span> <span class="n">of</span> <span class="n">ucode</span><span class="o">&gt;</span>
+<span class="n">CONFIG_FSP_T_FILE</span><span class="o">=&lt;</span><span class="n">path</span> <span class="n">of</span> <span class="n">FSP</span><span class="o">-</span><span class="n">T</span> <span class="n">binary</span><span class="o">&gt;</span>
+<span class="n">CONFIG_FSP_M_FILE</span><span class="o">=&lt;</span><span class="n">path</span> <span class="n">of</span> <span class="n">FSP</span><span class="o">-</span><span class="n">M</span> <span class="n">binary</span><span class="o">&gt;</span>
+<span class="n">CONFIG_FSP_S_FILE</span><span class="o">=&lt;</span><span class="n">path</span> <span class="n">of</span> <span class="n">FSP</span><span class="o">-</span><span class="n">S</span> <span class="n">binary</span><span class="o">&gt;</span>
+<span class="n">CONFIG_FSP_I_FILE</span><span class="o">=&lt;</span><span class="n">path</span> <span class="n">of</span> <span class="n">FSP</span><span class="o">-</span><span class="n">I</span> <span class="n">binary</span><span class="o">&gt;</span>
+<span class="n">CONFIG_PAYLOAD_FILE</span><span class="o">=&lt;</span><span class="n">path</span> <span class="n">of</span> <span class="n">payload</span> <span class="n">binary</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="download-necessary-submodules">
+<h3>Download necessary submodules<a class="headerlink" href="#download-necessary-submodules" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span> <span class="o">--</span><span class="n">init</span> <span class="o">--</span><span class="n">checkout</span> <span class="mi">3</span><span class="n">rdparty</span><span class="o">/</span><span class="n">vboot</span>
+</pre></div>
+</div>
+</section>
+<section id="or-take-below-alternative-if-the-network-connection-is-not-good">
+<h3>Or take below alternative if the network connection is not good<a class="headerlink" href="#or-take-below-alternative-if-the-network-connection-is-not-good" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">coreboot</span><span class="o">/</span><span class="n">vboot</span><span class="o">.</span><span class="n">git</span> <span class="mi">3</span><span class="n">rdparty</span><span class="o">/</span><span class="n">vboot</span><span class="o">/</span>
+</pre></div>
+</div>
+</section>
+<section id="build-toolchain">
+<h3>Build toolchain<a class="headerlink" href="#build-toolchain" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>make crossgcc-i386 CPUS=$(nproc)
+</pre></div>
+</div>
+</section>
+<section id="build-bios-avenue-city-crb">
+<h3>Build BIOS (Avenue City CRB)<a class="headerlink" href="#build-bios-avenue-city-crb" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>make distclean
+
+make defconfig KBUILD_DEFCONFIG=configs/builder/config.intel.crb.avc.n-1
+
+make olddefconfig
+
+make clean
+
+make UPDATED_SUBMODULES=1 -j`nproc`
+</pre></div>
+</div>
+</section>
+<section id="build-bios-beechnut-city-crb">
+<h3>Build BIOS (Beechnut City CRB)<a class="headerlink" href="#build-bios-beechnut-city-crb" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>make distclean
+
+make defconfig KBUILD_DEFCONFIG=configs/builder/config.intel.crb.bnc.n-1
+
+make olddefconfig
+
+make clean
+
+make UPDATED_SUBMODULES=1 -j`nproc`
+</pre></div>
+</div>
+</section>
+<section id="obtain-the-preview-patch-list">
+<h3>Obtain the preview patch list<a class="headerlink" href="#obtain-the-preview-patch-list" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The tag ‘upstream’ points to the upstream commit that the preview</span>
+<span class="c1"># branch is based on.</span>
+
+<span class="n">git</span> <span class="nb">format</span><span class="o">-</span><span class="n">patch</span> <span class="n">upstream</span><span class="o">..</span><span class="n">HEAD</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="about-granite-rapids-n-1-fsp-headers">
+<h2>About Granite Rapids n-1 FSP Headers<a class="headerlink" href="#about-granite-rapids-n-1-fsp-headers" title="Link to this heading"></a></h2>
+<p>This is a set of stub FSP headers for Granite Rapids server, which will
+be forward compatible with the formal Granite Rapids FSP headers which
+will be opensource at a later stage. For the n-1 FSP headers, there are
+no corresponding n-1 FSP binaries. To pass build, users need to use stub
+binaries which could be generated in arbitrary ways.  Granite Rapids n-1
+FSP headers are at: <code class="docutils literal notranslate"><span class="pre">src/vendorcode/intel/fsp/fsp2_0/graniterapids_n-1</span></code>.</p>
+<p>For the formal Granite Rapids FSP headers and binaries, they will be
+published at in
+https://github.com/coreboot/coreboot/tree/main/src/vendorcode/intel/fsp/fsp2_0
+(headers only) and https://github.com/intel/FSP (headers and binaries)
+at a later stage.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Xeon Scalable processor documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../qualcomm/index.html" class="btn btn-neutral float-right" title="Qualcomm SOC-specific documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

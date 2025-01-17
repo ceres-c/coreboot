@@ -1,0 +1,216 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RISC-V architecture documentation &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="x86 architecture documentation" href="../x86/index.html" />
+    <link rel="prev" title="Architecture-specific documentation" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">CPU Architecture</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#risc-v">RISC-V</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">RISC-V documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mode-usage">Mode usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stage-handoff-protocol">Stage handoff protocol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-payload-handoff-requirements">Additional payload handoff requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opensbi">OpenSBI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trap-delegation">Trap delegation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smp-within-a-stage">SMP within a stage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#x86">x86</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Architecture-specific documentation</a></li>
+      <li class="breadcrumb-item active">RISC-V architecture documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/arch/riscv/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="risc-v-architecture-documentation">
+<h1>RISC-V architecture documentation<a class="headerlink" href="#risc-v-architecture-documentation" title="Link to this heading"></a></h1>
+<p>This section contains documentation about coreboot on RISC-V architecture.</p>
+<section id="mode-usage">
+<h2>Mode usage<a class="headerlink" href="#mode-usage" title="Link to this heading"></a></h2>
+<p>All stages run in M mode.</p>
+<p>Payloads have a choice of managing M mode activity: they can control
+everything or nothing.</p>
+<p>Payloads run from the romstage (i.e. rampayloads) are started in M mode.
+The payload must, for example, prepare and install its own SBI.</p>
+<p>Payloads run from the ramstage are started in S mode, and trap delegation
+will have been done. These payloads rely on the SBI and can not replace it.</p>
+</section>
+<section id="stage-handoff-protocol">
+<h2>Stage handoff protocol<a class="headerlink" href="#stage-handoff-protocol" title="Link to this heading"></a></h2>
+<p>On entry to a stage or payload (including SELF payloads),</p>
+<ul class="simple">
+<li><p>all harts are running.</p></li>
+<li><p>A0 is the hart ID.</p></li>
+<li><p>A1 is the pointer to the Flattened Device Tree (FDT).</p></li>
+<li><p>A2 contains the additional program calling argument:</p>
+<ul>
+<li><p>cbmem_top for ramstage</p></li>
+<li><p>the address of the payload for opensbi</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="additional-payload-handoff-requirements">
+<h2>Additional payload handoff requirements<a class="headerlink" href="#additional-payload-handoff-requirements" title="Link to this heading"></a></h2>
+<p>The location of cbmem should be placed in a node in the FDT.</p>
+</section>
+<section id="opensbi">
+<h2>OpenSBI<a class="headerlink" href="#opensbi" title="Link to this heading"></a></h2>
+<p>In case the payload doesn’t install it’s own SBI, like the <a class="reference external" href="https://github.com/riscv/riscv-pk">RISCV-PK</a> does,
+<a class="reference external" href="https://github.com/riscv/opensbi">OpenSBI</a> can be used instead.
+It’s loaded into RAM after coreboot has finished loading the payload.
+coreboot then will jump to OpenSBI providing a pointer to the real payload,
+which OpenSBI will jump to once the SBI is installed.</p>
+<p>Besides providing SBI it also sets protected memory regions and provides
+a platform independent console.</p>
+<p>The OpenSBI code is always run in M mode.</p>
+</section>
+<section id="trap-delegation">
+<h2>Trap delegation<a class="headerlink" href="#trap-delegation" title="Link to this heading"></a></h2>
+<p>Traps are delegated to the payload.</p>
+</section>
+<section id="smp-within-a-stage">
+<h2>SMP within a stage<a class="headerlink" href="#smp-within-a-stage" title="Link to this heading"></a></h2>
+<p>At the beginning of each stage, all harts save 0 are spinning in a loop on
+a semaphore.  At the end of the stage harts 1..max are released by changing
+the semaphore.</p>
+<p>A possible way to do this is to have a pointer to a struct containing
+variables, e.g.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">blocker</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">fn</span><span class="p">)();</span><span class="w"> </span><span class="c1">// never returns</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The hart blocks until fn is non-null, and then calls it.  If fn returns, we
+will panic if possible, but behavior is largely undefined.</p>
+<p>Only hart 0 runs through most of the code in each stage.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Architecture-specific documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../x86/index.html" class="btn btn-neutral float-right" title="x86 architecture documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

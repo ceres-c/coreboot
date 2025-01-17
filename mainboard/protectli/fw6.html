@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Protectli Vault FW6 series &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Protectli Vault VP2420" href="vp2420.html" />
+    <link rel="prev" title="Protectli Vault FW2B and FW4B" href="fw2b_fw4b.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hp">HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#protectli">Protectli</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="fw2b_fw4b.html">FW2B / FW4B</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">FW6A / FW6B / FW6C</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#required-proprietary-blobs">Required proprietary blobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flashing-coreboot">Flashing coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#untested">Untested</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#working">Working</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#technology">Technology</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vp2420.html">VP2420</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vp46xx.html">VP4630 / VP4650 / VP4670</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">Protectli Vault FW6 series</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/protectli/fw6.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="protectli-vault-fw6-series">
+<h1>Protectli Vault FW6 series<a class="headerlink" href="#protectli-vault-fw6-series" title="Link to this heading"></a></h1>
+<p>This page describes how to run coreboot on the <a class="reference external" href="https://protectli.com/vault-6-port/">Protectli FW6</a>.</p>
+<p><img alt="../../_images/fw6.jpg" src="../../_images/fw6.jpg" /></p>
+<section id="required-proprietary-blobs">
+<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Link to this heading"></a></h2>
+<p>To build a minimal working coreboot image some blobs are required (assuming
+only the BIOS region is being modified).</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Binary file</p></th>
+<th class="head"><p>Apply</p></th>
+<th class="head"><p>Required / Optional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FSP-M, FSP-S</p></td>
+<td><p>Intel Firmware Support Package</p></td>
+<td><p>Required</p></td>
+</tr>
+<tr class="row-odd"><td><p>microcode</p></td>
+<td><p>CPU microcode</p></td>
+<td><p>Required</p></td>
+</tr>
+<tr class="row-even"><td><p>vgabios</p></td>
+<td><p>VGA Option ROM</p></td>
+<td><p>Optional</p></td>
+</tr>
+</tbody>
+</table>
+<p>FSP-M and FSP-S are obtained after splitting the Kaby Lake FSP binary (done
+automatically by the coreboot build system and included into the image) from
+the <code class="docutils literal notranslate"><span class="pre">3rdparty/fsp</span></code> submodule.</p>
+<p>Microcode updates are automatically included into the coreboot image by build
+system from the <code class="docutils literal notranslate"><span class="pre">3rdparty/intel-microcode</span></code> submodule.</p>
+<p>VGA Option ROM is not required to boot, but if one needs graphics in pre-OS
+stage, it should be included (if not using libgfxinit).</p>
+</section>
+<section id="flashing-coreboot">
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<section id="internal-programming">
+<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Link to this heading"></a></h3>
+<p>The main SPI flash can be accessed using <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a>. The first version
+supporting the chipset is flashrom v1.1. Firmware an be easily flashed
+with internal programmer (either BIOS region or full image).</p>
+</section>
+<section id="external-programming">
+<h3>External programming<a class="headerlink" href="#external-programming" title="Link to this heading"></a></h3>
+<p>The system has an internal flash chip which is a 8 MiB soldered SOIC-8 chip.
+This chip is located on the bottom side of the case (the radiator side). One
+has to remove all screws (in order): 4 top cover screws, 4 side cover screws
+(one side is enough), 4 mainboard screws, 4 CPU screws (under DIMMs). Lift up
+the mainboard and turn around it. The flash chip is near the SoC on the DIMM
+slots side. Use a clip (or solder the wires) to program the chip. Specifically,
+it’s a Macronix MX25L6406E (3.3V) -<a class="reference external" href="https://www.macronix.com/Lists/Datasheet/Attachments/7370/MX25L6406E,%203V,%2064Mb,%20v1.9.pdf">datasheet</a>.</p>
+</section>
+</section>
+<section id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>After flashing with external programmer it is always required to reset RTC
+with jumper or disconnect coin cell temporarily. Only then the platform will
+boot after flashing.</p></li>
+<li><p>FW6A does not always work reliably with all DIMMs. Linux happens to hang or
+gives many panics. This issue was present also with vendor BIOS.</p></li>
+<li><p>Sometimes FSPMemoryInit return errors or hangs (especially with 2 DIMMs
+connected). A workaround is to power cycle the board (even a few times) or
+temporarily disconnect DIMM when platform is powered off.</p></li>
+<li><p>When using libgfxinit and SeaBIOS bootsplash, the red color is dim</p></li>
+</ul>
+</section>
+<section id="untested">
+<h2>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h2>
+<p>Not all mainboard’s peripherals and functions were tested because of lack of
+the cables or not being populated on the board case.</p>
+<ul class="simple">
+<li><p>Internal USB 2.0 headers</p></li>
+<li><p>Boot with cleaned ME</p></li>
+</ul>
+</section>
+<section id="working">
+<h2>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>USB 3.0 front ports (SeaBIOS and Linux)</p></li>
+<li><p>6 Ethernet ports</p></li>
+<li><p>HDMI port with libgfxinit and VGA Option ROM</p></li>
+<li><p>flashrom</p></li>
+<li><p>PCIe WiFi</p></li>
+<li><p>SATA and mSATA</p></li>
+<li><p>Super I/O serial port 0 (RS232 via front RJ45 connector)</p></li>
+<li><p>SMBus (reading SPD from DIMMs)</p></li>
+<li><p>Initialization with KBL FSP 2.0 (with MemoryInit issues)</p></li>
+<li><p>SeaBIOS payload (version rel-1.12.1)</p></li>
+<li><p>Mini PCIe debug card connected to mSATA (mSATA slot has LPC signals routed)</p></li>
+<li><p>Reset switch</p></li>
+<li><p>Booting Debian, Ubuntu, FreeBSD</p></li>
+</ul>
+</section>
+<section id="technology">
+<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<p>There are 3 variants of FW6 boards: FW6A, FW6B and FW6C. They differ only in
+used SoC.</p>
+<ul class="simple">
+<li><p>FW6A:</p></li>
+</ul>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>CPU</p></td>
+<td><p>Intel Celeron 3865U</p></td>
+</tr>
+<tr class="row-even"><td><p>PCH</p></td>
+<td><p>Kaby Lake U w/ iHDCP2.2 Base</p></td>
+</tr>
+<tr class="row-odd"><td><p>Super I/O, EC</p></td>
+<td><p>ITE IT8772E</p></td>
+</tr>
+<tr class="row-even"><td><p>Coprocessor</p></td>
+<td><p>Intel Management Engine</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>FW6B:</p></li>
+</ul>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>CPU</p></td>
+<td><p>Intel Core i3-7100U</p></td>
+</tr>
+<tr class="row-even"><td><p>PCH</p></td>
+<td><p>Kaby Lake U w/ iHDCP2.2 Premium</p></td>
+</tr>
+<tr class="row-odd"><td><p>Super I/O, EC</p></td>
+<td><p>ITE IT8772E</p></td>
+</tr>
+<tr class="row-even"><td><p>Coprocessor</p></td>
+<td><p>Intel Management Engine</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>FW6C:</p></li>
+</ul>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>CPU</p></td>
+<td><p>Intel Core i5-7200U</p></td>
+</tr>
+<tr class="row-even"><td><p>PCH</p></td>
+<td><p>Kaby Lake U w/ iHDCP2.2 Premium</p></td>
+</tr>
+<tr class="row-odd"><td><p>Super I/O, EC</p></td>
+<td><p>ITE IT8772E</p></td>
+</tr>
+<tr class="row-even"><td><p>Coprocessor</p></td>
+<td><p>Intel Management Engine</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fw2b_fw4b.html" class="btn btn-neutral float-left" title="Protectli Vault FW2B and FW4B" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vp2420.html" class="btn btn-neutral float-right" title="Protectli Vault VP2420" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

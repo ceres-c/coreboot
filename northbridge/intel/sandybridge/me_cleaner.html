@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ME Cleaner &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="SOC-specific documentation" href="../../../soc/index.html" />
+    <link rel="prev" title="RAM initialization feature matrix" href="nri_features.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Northbridge</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#vendor">Vendor</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Intel</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#platforms">Platforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Northbridge-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Intel Northbridge-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Intel Sandy Bridge-specific documentation</a></li>
+      <li class="breadcrumb-item active">ME Cleaner</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/northbridge/intel/sandybridge/me_cleaner.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="me-cleaner">
+<h1>ME Cleaner<a class="headerlink" href="#me-cleaner" title="Link to this heading"></a></h1>
+<p>It’s possible to ‘clean’ the ME partition within the flash medium as part
+of the build process. While cleaning as much code as possible is removed
+from the ME firmware partition. In this state the ME errors out and doesn’t
+operate any more.</p>
+<p><strong>Using a ‘cleaned’ ME partition may lead to issues and its use should be
+carefully evaluated.</strong></p>
+<section id="observations-with-cleaned-me">
+<h2>Observations with ‘cleaned’ ME<a class="headerlink" href="#observations-with-cleaned-me" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Instable LPC bus</p>
+<ul>
+<li><p>SuperIO is malfunctioning</p></li>
+<li><p>TPM is malfunctioning</p></li>
+<li><p>Random system shutdowns on high bus activity</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="filing-bug-reports">
+<h2>Filing bug reports<a class="headerlink" href="#filing-bug-reports" title="Link to this heading"></a></h2>
+<p>Always test with unmodified IFD and ME section before reporting bugs to the
+coreboot project.</p>
+</section>
+<section id="tutorial-reducing-the-intel-me-firmware-size">
+<h2>Tutorial reducing the Intel ME firmware size<a class="headerlink" href="#tutorial-reducing-the-intel-me-firmware-size" title="Link to this heading"></a></h2>
+<p>By default the cleaned ME firmware will still occupy the same space in
+the firmware image. It’s possible to change the firmware partition layout
+and reclaim the space for the use by coreboot.
+With the reduced Intel ME firmware the <code class="docutils literal notranslate"><span class="pre">ifd</span></code>, <code class="docutils literal notranslate"><span class="pre">gbe</span></code> and <code class="docutils literal notranslate"><span class="pre">me</span></code> regions require
+less than 128 KiB of space in the ROM, which leaves the remaining for the
+<code class="docutils literal notranslate"><span class="pre">bios</span></code> region.</p>
+<p>This tutorial will guide you through the steps necessary.</p>
+<section id="obtain-a-full-rom">
+<h3>1. Obtain a full ROM<a class="headerlink" href="#obtain-a-full-rom" title="Link to this heading"></a></h3>
+<p>You need a full and working ROM with a full Intel ME firmware.</p>
+</section>
+<section id="running-me-cleaner">
+<h3>2. Running me_cleaner<a class="headerlink" href="#running-me-cleaner" title="Link to this heading"></a></h3>
+<p>You need to run the <em>me_cleaner</em> on a full ROM, here called <code class="docutils literal notranslate"><span class="pre">fulldump.rom</span></code>:
+The full ROM contains:</p>
+<ul class="simple">
+<li><p>IFD</p></li>
+<li><p>fully working Intel ME</p></li>
+<li><p>GbE (optional)</p></li>
+<li><p>BIOS (any firmware)</p></li>
+</ul>
+<p>Running the command will generate two new files:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./util/me_cleaner/me_cleaner.py -D patched_desciptor.bin -M stripped_me.bin fulldump.rom -t -r -S</span>
+</pre></div>
+</div>
+<p>The generated files are:</p>
+<ul class="simple">
+<li><p>a patched IFD called <code class="docutils literal notranslate"><span class="pre">patched_desciptor.bin</span></code></p></li>
+<li><p>stripped Intel ME called <code class="docutils literal notranslate"><span class="pre">stripped_me.bin</span></code></p></li>
+</ul>
+<p>The patched IFD has the <em>AltMeDisable</em> bit set and a modified flash layout.</p>
+<p><em>Note:</em> coreboot allows to select <code class="docutils literal notranslate"><span class="pre">CONFIG_ME_CLEANER</span></code> as part of the
+build-process, but that doesn’t rework the flash layout, it only removes
+files from ME and sets the <em>AltMeDisable</em>-bit.</p>
+</section>
+<section id="build-coreboot">
+<h3>3. Build coreboot<a class="headerlink" href="#build-coreboot" title="Link to this heading"></a></h3>
+<ol class="simple">
+<li><p>Now include the two new files from the previous step into coreboot’s
+build system.</p></li>
+<li><p>Make sure to also increase the CBFS size</p>
+<ul class="simple">
+<li><p>0x7E0000 for a 8MiB ROM</p></li>
+<li><p>0xBE0000 for a 12MiB ROM</p></li>
+<li><p>0xFE0000 for a 16MiB ROM</p></li>
+</ul>
+</li>
+<li><p>Make sure to <strong>not</strong> enable me_cleaner in Kconfig again as
+you have already run it</p></li>
+</ol>
+</section>
+<section id="flashing-the-rom">
+<h3>4. Flashing the ROM<a class="headerlink" href="#flashing-the-rom" title="Link to this heading"></a></h3>
+<p>As you have modified the layout you need to write the <strong>full ROM</strong> to flash
+using an <a class="reference internal" href="../../../tutorial/flashing_firmware/index.html"><span class="doc">external programmer</span></a>.
+Make sure to include all partitions into the ROM:</p>
+<ul class="simple">
+<li><p>IFD</p></li>
+<li><p>EC (might be unused)</p></li>
+<li><p>GbE (might be unused)</p></li>
+<li><p>ME</p></li>
+<li><p>BIOS</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nri_features.html" class="btn btn-neutral float-left" title="RAM initialization feature matrix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../soc/index.html" class="btn btn-neutral float-right" title="SOC-specific documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,543 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firmware Configuration Interface in coreboot &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Option API" href="option.html" />
+    <link rel="prev" title="Timestamps" href="timestamp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="payloads/index.html">Payloads</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="flashmap.html">Flashmap and Flashmap Descriptor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abi-data-consumption.html">ABI data consumption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timestamp.html">Timestamps</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Firmware Configuration Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device-presence">Device Presence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#acpi">ACPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gpio">GPIO</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fsp-upd">FSP UPD</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#firmware-configuration-interface">Firmware Configuration Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#firmware-configuration-value">Firmware Configuration Value</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cbfs">CBFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#embedded-controller">Embedded Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#firmware-configuration-table">Firmware Configuration Table</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#firmware-configuration-table-example">Firmware Configuration Table Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#device-probing">Device Probing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#probing-example">Probing Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#probe-overrides">Probe Overrides</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#automatic-device-probing">Automatic Device Probing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#runtime-probing">Runtime Probing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Library-specific documentation</a></li>
+      <li class="breadcrumb-item active">Firmware Configuration Interface in coreboot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/lib/fw_config.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="firmware-configuration-interface-in-coreboot">
+<h1>Firmware Configuration Interface in coreboot<a class="headerlink" href="#firmware-configuration-interface-in-coreboot" title="Link to this heading"></a></h1>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h2>
+<p>The firmware configuration interface in coreboot is designed to support a wide variety of
+configuration options in that are dictated by the hardware at runtime.  This allows a single
+BIOS image to be used across a wide variety of devices which may have key differences but are
+otherwise similar enough to use the same coreboot build target.</p>
+<p>The initial implementation is designed to take advantage of a bitmask returned by the Embedded
+Controller on Google ChromeOS devices which allows the manufacturer to use the same firmware
+image across multiple devices by selecting various options at runtime.  See the ChromiumOS
+<a class="reference external" href="http://chromium.googlesource.com/chromiumos/docs/+/HEAD/design_docs/firmware_config.md">Firmware Config</a> documentation for more information.</p>
+<p>This firmware configuration interface differs from the CMOS option interface in that this
+bitmask value is not intended as a user-configurable setting as the configuration values must
+match the actual hardware.  In the case where a user was to swap their hardware this value
+would need to be updated or overridden.</p>
+</section>
+<section id="device-presence">
+<h2>Device Presence<a class="headerlink" href="#device-presence" title="Link to this heading"></a></h2>
+<p>One common example of why a firmware configuration interface is important is determining if a
+device is present in the system.  With some bus topologies and hardware mechanisms it is
+possible to probe and enumerate this at runtime:</p>
+<ul class="simple">
+<li><p>PCI is a self-discoverable bus and is very easy to handle.</p></li>
+<li><p>I2C devices can often be probed with a combination of bus and address.</p></li>
+<li><p>The use of GPIOs with external strap to ground or different voltages can be used to detect
+presence of a device.</p></li>
+</ul>
+<p>However there are several cases where this is insufficient:</p>
+<ul class="simple">
+<li><p>I2C peripherals that require different drivers but have the same bus address cannot be
+uniquely identified at runtime.</p></li>
+<li><p>A mainboard may be designed with multiple daughter board combinations which contain devices
+and configurations that cannot be detected.</p></li>
+<li><p>While presence detect GPIOs are a convenient way for a single device presence, they are
+unable to distinguish between different devices so it can require a large number of GPIOs to
+support relatively few options.</p></li>
+</ul>
+<p>This presence detection can impact different stages of boot:</p>
+<section id="acpi">
+<h3>ACPI<a class="headerlink" href="#acpi" title="Link to this heading"></a></h3>
+<p>Devices that are not present should not provide an ACPI device indicating that they are
+present or the operating system may not be able to handle it correctly.</p>
+<p>The ACPI devices are largely driven by chips defined in the mainboard <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> and
+the variant overridetree.cb.  This means it is important to be able to specify when a device
+is present or not directly in <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> itself.  Otherwise each mainboard needs custom
+code to parse the tree and disable unused devices.</p>
+</section>
+<section id="gpio">
+<h3>GPIO<a class="headerlink" href="#gpio" title="Link to this heading"></a></h3>
+<p>GPIOs with multiple functions may need to be configured correctly depending on the attached
+device.  Given the wide variety of GPIO configuration possibilities it is not feasible to
+specify all combinations directly in <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> and it is best left to code provided by
+the mainboard.</p>
+</section>
+<section id="fsp-upd">
+<h3>FSP UPD<a class="headerlink" href="#fsp-upd" title="Link to this heading"></a></h3>
+<p>Enabling and disabling devices may require altering FSP UPD values that are provided to the
+various stages of FSP.  These options are also not easy to specify multiple times for
+different configurations in <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> and can be provided by the mainboard as code.</p>
+</section>
+</section>
+<section id="firmware-configuration-interface">
+<h2>Firmware Configuration Interface<a class="headerlink" href="#firmware-configuration-interface" title="Link to this heading"></a></h2>
+<p>The firmware configuration interface can be enabled by selecting <code class="docutils literal notranslate"><span class="pre">CONFIG_FW_CONFIG</span></code> and also
+providing a source for the value by defining an additional Kconfig option defined below.</p>
+<p>If the firmware configuration interface is disabled via Kconfig then all probe attempts will
+return true.</p>
+</section>
+<section id="firmware-configuration-value">
+<h2>Firmware Configuration Value<a class="headerlink" href="#firmware-configuration-value" title="Link to this heading"></a></h2>
+<p>The 64-bit value used as the firmware configuration bitmask is meant to be determined at runtime
+but could also be defined at compile time if needed.</p>
+<p>There are two supported sources for providing this information to coreboot.</p>
+<section id="cbfs">
+<h3>CBFS<a class="headerlink" href="#cbfs" title="Link to this heading"></a></h3>
+<p>The value can be provided with a 64-bit raw value in CBFS that is read by coreboot.  The value
+can be set at build time but also adjusted in an existing image with <code class="docutils literal notranslate"><span class="pre">cbfstool</span></code>.</p>
+<p>To enable this select the <code class="docutils literal notranslate"><span class="pre">CONFIG_FW_CONFIG_CBFS</span></code> option in the build configuration and add a
+raw 64-bit value to CBFS with the name of the current prefix at <code class="docutils literal notranslate"><span class="pre">CONFIG_FW_PREFIX/fw_config</span></code>.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">fw_config_probe_device()</span></code> or <code class="docutils literal notranslate"><span class="pre">fw_config_probe()</span></code> is called it will look for the specified
+file in CBFS use the value it contains when matching fields and options.</p>
+</section>
+<section id="embedded-controller">
+<h3>Embedded Controller<a class="headerlink" href="#embedded-controller" title="Link to this heading"></a></h3>
+<p>Google ChromeOS devices support an Embedded Controller interface for reading and writing the
+firmware configuration value, along with other board-specific information.  It is possible for
+coreboot to read this value at boot on systems that support this feature.</p>
+<p>This option is selected by default for the mainboards that use it with
+<code class="docutils literal notranslate"><span class="pre">CONFIG_FW_CONFIG_CHROME_EC_CBI</span></code> and it is not typically necessary to adjust the value.  It is
+possible by enabling the CBFS source and coreboot will look in CBFS first for a valid value
+before asking the embedded controller.</p>
+<p>It is also possible to adjust the value in the embedded controller <em>(after disabling write
+protection)</em> with the <code class="docutils literal notranslate"><span class="pre">ectool</span></code> command in a ChromeOS environment.</p>
+<p>For more information on the firmware configuration field on ChromeOS devices see the Chromium
+documentation for <a class="reference external" href="http://chromium.googlesource.com/chromiumos/docs/+/HEAD/design_docs/firmware_config.md">Firmware Config</a> and <a class="reference external" href="http://chromium.googlesource.com/chromiumos/docs/+/HEAD/design_docs/cros_board_info.md">Board Info</a>.</p>
+</section>
+</section>
+<section id="firmware-configuration-table">
+<h2>Firmware Configuration Table<a class="headerlink" href="#firmware-configuration-table" title="Link to this heading"></a></h2>
+<p>The firmware configuration table itself is defined in the mainboard <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> with
+special tokens for defining fields and options.</p>
+<p>The table itself is enclosed in a <code class="docutils literal notranslate"><span class="pre">fw_config</span></code> token and terminated with <code class="docutils literal notranslate"><span class="pre">end</span></code> and it contains
+a mix of field and option definitions.</p>
+<p>Each field is defined by providing the field name and the start and end bit marking the exact
+location in the bitmask.  Field names must be at least three characters long in order to
+satisfy the sconfig parser requirements and they must be unique with non-overlapping masks.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">field</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">start</span><span class="o">-</span><span class="n">bit</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">end</span><span class="o">-</span><span class="n">bit</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">option</span><span class="o">...</span><span class="p">]</span> <span class="n">end</span>
+</pre></div>
+</div>
+<p>For single-bit fields only one number is needed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">field</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">bit</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">option</span><span class="o">...</span><span class="p">]</span> <span class="n">end</span>
+</pre></div>
+</div>
+<p>A field definition can also contain multiple sets of bit masks, which can be dis-contiguous.
+They are treated as if they are contiguous when defining option values.  This allows for
+extending fields even after the bits after its current masks are occupied.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">field</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">start</span><span class="o">-</span><span class="n">bit0</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">end</span><span class="o">-</span><span class="n">bit0</span><span class="o">&gt;</span> <span class="o">|</span> <span class="o">&lt;</span><span class="n">start</span><span class="o">-</span><span class="n">bit1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">end</span><span class="o">-</span><span class="n">bit1</span><span class="o">&gt;</span> <span class="o">|</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>For example, if more audio options need to be supported:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">field</span> <span class="n">AUDIO</span> <span class="mi">3</span> <span class="mi">3</span>
+	<span class="n">option</span> <span class="n">AUDIO_0</span>  <span class="mi">0</span>
+	<span class="n">option</span> <span class="n">AUDIO_1</span>  <span class="mi">1</span>
+<span class="n">end</span>
+<span class="n">field</span> <span class="n">OTHER</span> <span class="mi">4</span> <span class="mi">4</span>
+	<span class="o">...</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+<p>the following can be done:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">field</span> <span class="n">AUDIO</span> <span class="mi">3</span> <span class="mi">3</span> <span class="o">|</span> <span class="mi">5</span> <span class="mi">5</span>
+	<span class="n">option</span> <span class="n">AUDIO_FOO</span>   <span class="mi">0</span>
+	<span class="n">option</span> <span class="n">AUDIO_BLAH</span>  <span class="mi">1</span>
+	<span class="n">option</span> <span class="n">AUDIO_BAR</span>   <span class="mi">2</span>
+	<span class="n">option</span> <span class="n">AUDIO_BAZ</span>   <span class="mi">3</span>
+<span class="n">end</span>
+<span class="n">field</span> <span class="n">OTHER</span> <span class="mi">4</span> <span class="mi">4</span>
+	<span class="o">...</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+<p>In that case, the AUDIO masks are extended like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define FW_CONFIG_FIELD_AUDIO_MASK						0x28</span>
+<span class="c1">#define FW_CONFIG_FIELD_AUDIO_OPTION_AUDIO_FOO_VALUE	0x0</span>
+<span class="c1">#define FW_CONFIG_FIELD_AUDIO_OPTION_AUDIO_BLAH_VALUE	0x8</span>
+<span class="c1">#define FW_CONFIG_FIELD_AUDIO_OPTION_AUDIO_BAR_VALUE	0x20</span>
+<span class="c1">#define FW_CONFIG_FIELD_AUDIO_OPTION_AUDIO_BAz_VALUE	0x28</span>
+</pre></div>
+</div>
+<p>Each <code class="docutils literal notranslate"><span class="pre">field</span></code> definition starts a new block that can be composed of zero or more field options,
+and it is terminated with <code class="docutils literal notranslate"><span class="pre">end</span></code>.</p>
+<p>Inside the field block the options can be defined by providing the option name and the field
+value that this option represents when the bit offsets are used to apply a mask and shift.
+Option names must also be at least three characters for the sconfig parser.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">option</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>It is possible for there to be multiple <code class="docutils literal notranslate"><span class="pre">fw_config</span></code> blocks and for subsequent <code class="docutils literal notranslate"><span class="pre">field</span></code> blocks
+to add additional <code class="docutils literal notranslate"><span class="pre">option</span></code> definitions to the existing field.  These subsequent definitions
+should not provide the field bitmask as it has already been defined earlier in the file and
+this is just matching an existing field by name.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">field</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">option</span><span class="o">...</span><span class="p">]</span> <span class="n">end</span>
+</pre></div>
+</div>
+<p>This allows a baseboard to define the major fields and options in <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> and a board
+variant to add specific options to fields in or define new fields in the unused bitmask in
+<code class="docutils literal notranslate"><span class="pre">overridetree.cb</span></code>.</p>
+<p>It is not possible to redefine a field mask or override the value of an existing option this
+way, only to add new options to a field or new fields to the table.</p>
+<section id="firmware-configuration-table-example">
+<h3>Firmware Configuration Table Example<a class="headerlink" href="#firmware-configuration-table-example" title="Link to this heading"></a></h3>
+<p>In this example a baseboard defines a simple boolean feature that is enabled or disabled
+depending on the value of bit 0, and a field at bits 1-2 that indicates which daughter board
+is attached.</p>
+<p>The baseboard itself defines one daughter board and the variant adds two more possibilities.
+This way each variant can support multiple possible daughter boards in addition to the one
+that was defined by the baseboard.</p>
+<section id="devicetree-cb">
+<h4>devicetree.cb<a class="headerlink" href="#devicetree-cb" title="Link to this heading"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fw_config</span>
+    <span class="n">field</span> <span class="n">FEATURE</span> <span class="mi">0</span>
+        <span class="n">option</span> <span class="n">DISABLED</span> <span class="mi">0</span>
+        <span class="n">option</span> <span class="n">ENABLED</span> <span class="mi">1</span>
+    <span class="n">end</span>
+    <span class="n">field</span> <span class="n">DAUGHTER_BOARD</span> <span class="mi">1</span> <span class="mi">2</span>
+        <span class="n">option</span> <span class="n">NONE</span> <span class="mi">0</span>
+        <span class="n">option</span> <span class="n">REFERENCE_DB</span> <span class="mi">1</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+</section>
+<section id="overridetree-cb">
+<h4>overridetree.cb<a class="headerlink" href="#overridetree-cb" title="Link to this heading"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fw_config</span>
+    <span class="n">field</span> <span class="n">DAUGHTER_BOARD</span>
+        <span class="n">option</span> <span class="n">VARIANT_DB_ONE</span> <span class="mi">2</span>
+        <span class="n">option</span> <span class="n">VARIANT_DB_TWO</span> <span class="mi">3</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+<p>The result of this table defined in <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> is a list of constants that can be used
+to check if fields match the firmware configuration options determined at runtime with a
+simple check of the field mask and the option value.</p>
+</section>
+<section id="static-h">
+<h4>static.h<a class="headerlink" href="#static-h" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* field: FEATURE */</span>
+<span class="cp">#define FW_CONFIG_FIELD_FEATURE_NAME &quot;FEATURE&quot;</span>
+<span class="cp">#define FW_CONFIG_FIELD_FEATURE_MASK 0x00000001</span>
+<span class="cp">#define FW_CONFIG_FIELD_FEATURE_OPTION_DISABLED_NAME &quot;DISABLED&quot;</span>
+<span class="cp">#define FW_CONFIG_FIELD_FEATURE_OPTION_DISABLED_VALUE 0x00000000</span>
+<span class="cp">#define FW_CONFIG_FIELD_FEATURE_OPTION_ENABLED_NAME &quot;ENABLED&quot;</span>
+<span class="cp">#define FW_CONFIG_FIELD_FEATURE_OPTION_ENABLED_VALUE 0x00000001</span>
+
+<span class="cm">/* field: DAUGHTER_BOARD */</span>
+<span class="cp">#define FW_CONFIG_FIELD_DAUGHTER_BOARD_NAME &quot;DAUGHTER_BOARD&quot;</span>
+<span class="cp">#define FW_CONFIG_FIELD_DAUGHTER_BOARD_MASK 0x00000006</span>
+<span class="cp">#define FW_CONFIG_FIELD_DAUGHTER_BOARD_OPTION_NONE_NAME &quot;NONE&quot;</span>
+<span class="cp">#define FW_CONFIG_FIELD_DAUGHTER_BOARD_OPTION_NONE_VALUE 0x00000000</span>
+<span class="cp">#define FW_CONFIG_FIELD_DAUGHTER_BOARD_OPTION_REFERENCE_DB_NAME &quot;REFERENCE_DB&quot;</span>
+<span class="cp">#define FW_CONFIG_FIELD_DAUGHTER_BOARD_OPTION_REFERENCE_DB_VALUE 0x00000002</span>
+<span class="cp">#define FW_CONFIG_FIELD_DAUGHTER_BOARD_OPTION_VARIANT_DB_ONE_NAME &quot;VARIANT_DB_ONE&quot;</span>
+<span class="cp">#define FW_CONFIG_FIELD_DAUGHTER_BOARD_OPTION_VARIANT_DB_ONE_VALUE 0x00000004</span>
+<span class="cp">#define FW_CONFIG_FIELD_DAUGHTER_BOARD_OPTION_VARIANT_DB_TWO_NAME &quot;VARIANT_DB_TWO&quot;</span>
+<span class="cp">#define FW_CONFIG_FIELD_DAUGHTER_BOARD_OPTION_VARIANT_DB_TWO_VALUE 0x00000006</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="device-probing">
+<h2>Device Probing<a class="headerlink" href="#device-probing" title="Link to this heading"></a></h2>
+<p>One use of the firmware configuration interface in devicetree is to allow device probing to be
+specified directly with the devices themselves.  A new <code class="docutils literal notranslate"><span class="pre">probe</span></code> token is introduced to allow a
+device to be probed by field and option name.  Multiple <code class="docutils literal notranslate"><span class="pre">probe</span></code> entries may be present for
+each device and any successful probe will consider the device to be present.</p>
+<section id="probing-example">
+<h3>Probing Example<a class="headerlink" href="#probing-example" title="Link to this heading"></a></h3>
+<p>Continuing with the previous example this device would be considered present if the field
+<code class="docutils literal notranslate"><span class="pre">DAUGHTER_BOARD</span></code> was set to either <code class="docutils literal notranslate"><span class="pre">VARIANT_DB_ONE</span></code> or <code class="docutils literal notranslate"><span class="pre">VARIANT_DB_TWO</span></code>:</p>
+<section id="id1">
+<h4>overridetree.cb<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">generic</span><span class="o">/</span><span class="n">example</span>
+    <span class="n">device</span> <span class="n">generic</span> <span class="mi">0</span> <span class="n">on</span>
+        <span class="n">probe</span> <span class="n">DAUGHTER_BOARD</span> <span class="n">VARIANT_DB_ONE</span>
+        <span class="n">probe</span> <span class="n">DAUGHTER_BOARD</span> <span class="n">VARIANT_DB_TWO</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+<p>If the field were set to any other option, including <code class="docutils literal notranslate"><span class="pre">NONE</span></code> and <code class="docutils literal notranslate"><span class="pre">REFERENCE_DB</span></code> and any
+undefined value then the device would be disabled.</p>
+</section>
+</section>
+<section id="probe-overrides">
+<h3>Probe Overrides<a class="headerlink" href="#probe-overrides" title="Link to this heading"></a></h3>
+<p>When a device is declared with a probe in the baseboard <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> and the same device
+is also present in the <code class="docutils literal notranslate"><span class="pre">overridetree.cb</span></code> then the probing information from the baseboard
+is discarded and the override device must provide all necessary probing information.</p>
+<p>In this example a device is listed in the baseboard with <code class="docutils literal notranslate"><span class="pre">DAUGHTER_BOARD</span></code> field probing for
+<code class="docutils literal notranslate"><span class="pre">REFERENCE_DB</span></code> as a field option,  It is also defined as an override device with the field
+probing for the <code class="docutils literal notranslate"><span class="pre">VARIANT_DB_ONE</span></code> option instead.</p>
+<p>In this case only the probe listed in the override is checked and a field option of
+<code class="docutils literal notranslate"><span class="pre">REFERENCE_DB</span></code> will not mark this device present.  If both options are desired then the
+override device must list both.  This allows an override device to remove a probe entry that
+was defined in the baseboard.</p>
+<section id="id2">
+<h4>devicetree.cb<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">generic</span><span class="o">/</span><span class="n">example</span>
+    <span class="n">device</span> <span class="n">generic</span> <span class="mi">0</span> <span class="n">on</span>
+	    <span class="n">probe</span> <span class="n">DAUGHTER_BOARD</span> <span class="n">REFERENCE_DB</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h4>overridetree.cb<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">generic</span><span class="o">/</span><span class="n">example</span>
+    <span class="n">device</span> <span class="n">generic</span> <span class="mi">0</span> <span class="n">on</span>
+	    <span class="n">probe</span> <span class="n">DAUGHTER_BOARD</span> <span class="n">VARIANT_DB_ONE</span>
+    <span class="n">end</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="automatic-device-probing">
+<h3>Automatic Device Probing<a class="headerlink" href="#automatic-device-probing" title="Link to this heading"></a></h3>
+<p>At boot time the firmware configuration interface will walk the device tree and apply any
+probe entries that were defined in <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code>.  This probing takes effect before the
+<code class="docutils literal notranslate"><span class="pre">BS_DEV_ENUMERATE</span></code> step during the boot state machine in ramstage.</p>
+<p>Devices that have a probe list but do do not find a match are disabled by setting
+<code class="docutils literal notranslate"><span class="pre">dev-&gt;enabled</span> <span class="pre">=</span> <span class="pre">0</span></code> but the chip <code class="docutils literal notranslate"><span class="pre">enable_dev()</span></code> and device <code class="docutils literal notranslate"><span class="pre">enable()</span></code> handlers will still
+be executed to allow any device disable code to execute.</p>
+<p>The result of this probe definition is to provide an array of structures describing each
+field and option to check.</p>
+<section id="fw-config-h">
+<h4>fw_config.h<a class="headerlink" href="#fw-config-h" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * struct fw_config - Firmware configuration field and option.</span>
+<span class="cm"> * @field_name: Name of the field that this option belongs to.</span>
+<span class="cm"> * @option_name: Name of the option within this field.</span>
+<span class="cm"> * @mask: Bitmask of the field.</span>
+<span class="cm"> * @value: Value of the option within the mask.</span>
+<span class="cm"> */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">fw_config</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">field_name</span><span class="p">;</span>
+<span class="w">	</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">option_name</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">mask</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="static-c">
+<h4>static.c<a class="headerlink" href="#static-c" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">STORAGE</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">fw_config</span><span class="w"> </span><span class="n">__devN_probe_list</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="p">.</span><span class="n">field_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FW_CONFIG_FIELD_DAUGHTER_BOARD_NAME</span><span class="p">,</span>
+<span class="w">		</span><span class="p">.</span><span class="n">option_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FW_CONFIG_FIELD_DAUGHTER_BOARD_OPTION_VARIANT_DB_ONE_NAME</span><span class="p">,</span>
+<span class="w">		</span><span class="p">.</span><span class="n">mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FW_CONFIG_FIELD_DAUGHTER_BOARD_MASK</span><span class="p">,</span>
+<span class="w">		</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FW_CONFIG_FIELD_DAUGHTER_BOARD_OPTION_VARIANT_DB_ONE_VALUE</span>
+<span class="w">	</span><span class="p">},</span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="p">.</span><span class="n">field_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FW_CONFIG_FIELD_DAUGHTER_BOARD_NAME</span><span class="p">,</span>
+<span class="w">		</span><span class="p">.</span><span class="n">option_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FW_CONFIG_FIELD_DAUGHTER_BOARD_OPTION_VARIANT_DB_TWO_NAME</span><span class="p">,</span>
+<span class="w">		</span><span class="p">.</span><span class="n">mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FW_CONFIG_FIELD_DAUGHTER_BOARD_MASK</span><span class="p">,</span>
+<span class="w">		</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FW_CONFIG_FIELD_DAUGHTER_BOARD_OPTION_VARIANT_DB_TWO_VALUE</span>
+<span class="w">	</span><span class="p">},</span>
+<span class="w">	</span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="runtime-probing">
+<h3>Runtime Probing<a class="headerlink" href="#runtime-probing" title="Link to this heading"></a></h3>
+<p>The device driver probing allows for seamless integration with the mainboard but it is only
+effective in ramstage and for specific devices declared in devicetree.cb.  There are other
+situations where code may need to probe or check the value of a field in romstage or at other
+points in ramstage.  For this reason it is also possible to use the firmware configuration
+interface directly.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * fw_config_probe() - Check if field and option matches.</span>
+<span class="cm"> * @match: Structure containing field and option to probe.</span>
+<span class="cm"> *</span>
+<span class="cm"> * Return %true if match is found, %false if match is not found.</span>
+<span class="cm"> */</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">fw_config_probe</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">fw_config</span><span class="w"> </span><span class="o">*</span><span class="n">match</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The argument provided to this function can be created from a macro for easy use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FW_CONFIG</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This example has a mainboard check if a feature is disabled and set an FSP UPD before memory
+training.  This example expects that the default value of this <code class="docutils literal notranslate"><span class="pre">register</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> in
+<code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> and this code is disabling that feature before FSP is executed.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fw_config.h&gt;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">mainboard_memory_init_params</span><span class="p">(</span><span class="n">FSPM_UPD</span><span class="w"> </span><span class="o">*</span><span class="n">mupd</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fw_config_probe</span><span class="p">(</span><span class="n">FW_CONFIG</span><span class="p">(</span><span class="n">FEATURE</span><span class="p">,</span><span class="w"> </span><span class="n">DISABLED</span><span class="p">))</span>
+<span class="w">		</span><span class="n">mupd</span><span class="o">-&gt;</span><span class="n">ExampleFeature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="timestamp.html" class="btn btn-neutral float-left" title="Timestamps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="option.html" class="btn btn-neutral float-right" title="Option API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

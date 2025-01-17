@@ -1,0 +1,233 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Background &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Background</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/RFC/intel-gpio-cleanup.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="background">
+<h1>Background<a class="headerlink" href="#background" title="Link to this heading"></a></h1>
+<p>CB:31250 (”soc/intel/cannonlake: Configure GPIOs again after FSP-S is
+done”) introduced a workaround in coreboot for <code class="docutils literal notranslate"><span class="pre">soc/intel/cannonlake</span></code>
+platforms to save and restore GPIO configuration performed by
+mainboard across call to FSP Silicon Init (FSP-S). This workaround was
+required because FSP-S was configuring GPIOs differently than
+mainboard resulting in boot and runtime issues because of
+misconfigured GPIOs. This issue was observed on <code class="docutils literal notranslate"><span class="pre">google/hatch</span></code>
+mainboard and was raised with Intel to get the FSP behavior
+fixed. Until the fix in FSP was available, this workaround was used to
+ensure that the mainboards can operate correctly and were not impacted
+by the GPIO misconfiguration in FSP-S.</p>
+<p>The issues observed on <code class="docutils literal notranslate"><span class="pre">google/hatch</span></code> mainboard were fixed by adding
+(if required) and initializing appropriate FSP UPDs. This UPD
+initialization ensured that FSP did not configure any GPIOs
+differently than the mainboard configuration. Fixes included:</p>
+<ul class="simple">
+<li><p>CB:31375 (”soc/intel/cannonlake: Configure serial debug uart”)</p></li>
+<li><p>CB:31520 (”soc/intel/cannonlake: Assign FSP UPDs for HPD and Data/CLK of DDI ports”)</p></li>
+<li><p>CB:32176 (”mb/google/hatch: Update GPIO settings for SD card and SPI1 Chip select”)</p></li>
+<li><p>CB:34900 (”soc/intel/cnl: Add provision to configure SD controller write protect pin”)</p></li>
+</ul>
+<p>With the above changes merged, it was verified on <code class="docutils literal notranslate"><span class="pre">google/hatch</span></code>
+mainboard that the workaround for GPIO reconfiguration was not
+needed. However, at the time, we missed dropping the workaround in
+‘soc/intel/cannonlake`. Currently, this workaround is used by the
+following mainboards:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">google/drallion</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">google/sarien</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">purism/librem_cnl</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">system76/lemp9</span></code></p></li>
+</ul>
+<p>As verified on <code class="docutils literal notranslate"><span class="pre">google/hatch</span></code>, FSP v1263 included all UPD additions
+that were required for addressing this issue.</p>
+</section>
+<section id="proposal">
+<h1>Proposal<a class="headerlink" href="#proposal" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>The workaround can be safely dropped from <code class="docutils literal notranslate"><span class="pre">soc/intel/cannonlake</span></code>
+only after the above mainboards have verified that FSP-S does not
+configure any pads differently than the mainboard in coreboot. Since
+the fix included initialization of FSP UPDs correctly, the above
+mainboards can use the following diff to check what pads change
+after FSP-S has run:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">diff</span> <span class="o">--</span><span class="n">git</span> <span class="n">a</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">soc</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">block</span><span class="o">/</span><span class="n">gpio</span><span class="o">/</span><span class="n">gpio</span><span class="o">.</span><span class="n">c</span> <span class="n">b</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">soc</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">block</span><span class="o">/</span><span class="n">gpio</span><span class="o">/</span><span class="n">gpio</span><span class="o">.</span><span class="n">c</span>
+<span class="n">index</span> <span class="mf">28e78</span><span class="n">fb366</span><span class="o">.</span><span class="mf">.0</span><span class="n">cce41b316</span> <span class="mi">100644</span>
+<span class="o">---</span> <span class="n">a</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">soc</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">block</span><span class="o">/</span><span class="n">gpio</span><span class="o">/</span><span class="n">gpio</span><span class="o">.</span><span class="n">c</span>
+<span class="o">+++</span> <span class="n">b</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">soc</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">block</span><span class="o">/</span><span class="n">gpio</span><span class="o">/</span><span class="n">gpio</span><span class="o">.</span><span class="n">c</span>
+<span class="o">@@</span> <span class="o">-</span><span class="mi">303</span><span class="p">,</span><span class="mi">10</span> <span class="o">+</span><span class="mi">303</span><span class="p">,</span><span class="mi">10</span> <span class="o">@@</span> <span class="n">static</span> <span class="n">void</span> <span class="n">gpio_configure_pad</span><span class="p">(</span><span class="n">const</span> <span class="n">struct</span> <span class="n">pad_config</span> <span class="o">*</span><span class="n">cfg</span><span class="p">)</span>
+                <span class="o">/*</span> <span class="n">Patch</span> <span class="n">GPIO</span> <span class="n">settings</span> <span class="k">for</span> <span class="n">SoC</span> <span class="n">specifically</span> <span class="o">*/</span>
+                <span class="n">soc_pad_conf</span> <span class="o">=</span> <span class="n">soc_gpio_pad_config_fixup</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">soc_pad_conf</span><span class="p">);</span>
+
+<span class="o">-</span>               <span class="k">if</span> <span class="p">(</span><span class="n">CONFIG</span><span class="p">(</span><span class="n">DEBUG_GPIO</span><span class="p">))</span>
+<span class="o">+</span>               <span class="k">if</span> <span class="p">(</span><span class="n">soc_pad_conf</span> <span class="o">!=</span> <span class="n">pad_conf</span><span class="p">)</span>
+                        <span class="n">printk</span><span class="p">(</span><span class="n">BIOS_DEBUG</span><span class="p">,</span>
+<span class="o">-</span>                       <span class="s2">&quot;gpio_padcfg [0x</span><span class="si">%02x</span><span class="s2">, %02zd] DW</span><span class="si">%d</span><span class="s2"> [0x</span><span class="si">%08x</span><span class="s2"> : 0x</span><span class="si">%08x</span><span class="s2">&quot;</span>
+<span class="o">-</span>                       <span class="s2">&quot; : 0x</span><span class="si">%08x</span><span class="s2">]</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="o">+</span>                       <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">: gpio_padcfg [0x</span><span class="si">%02x</span><span class="s2">, %02zd] DW</span><span class="si">%d</span><span class="s2"> [0x</span><span class="si">%08x</span><span class="s2"> : 0x</span><span class="si">%08x</span><span class="s2">&quot;</span>
+<span class="o">+</span>                       <span class="s2">&quot; : 0x</span><span class="si">%08x</span><span class="s2">]</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cfg</span><span class="o">-&gt;</span><span class="n">pad</span><span class="p">,</span>
+                        <span class="n">comm</span><span class="o">-&gt;</span><span class="n">port</span><span class="p">,</span> <span class="n">relative_pad_in_comm</span><span class="p">(</span><span class="n">comm</span><span class="p">,</span> <span class="n">cfg</span><span class="o">-&gt;</span><span class="n">pad</span><span class="p">),</span> <span class="n">i</span><span class="p">,</span>
+                        <span class="n">pad_conf</span><span class="p">,</span><span class="o">/*</span> <span class="n">old</span> <span class="n">value</span> <span class="o">*/</span>
+                        <span class="n">cfg</span><span class="o">-&gt;</span><span class="n">pad_config</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="o">/*</span> <span class="n">value</span> <span class="n">passed</span> <span class="kn">from</span><span class="w"> </span><span class="nn">gpio</span> <span class="n">table</span> <span class="o">*/</span>
+</pre></div>
+</div>
+<p>Depending upon the pads that are misconfigured by FSP-S, these
+mainboards will have to set UPDs appropriately. Once this is verified
+by the above mainboards, the workaround implemented in CB:31250 can be
+dropped.</p>
+<ul class="simple">
+<li><p>The fix implemented in FSP/coreboot for <code class="docutils literal notranslate"><span class="pre">soc/intel/cannonlake</span></code>
+platforms is not really the right long term solution for the
+problem. Ideally, FSP should not be touching any GPIO configuration
+and letting coreboot configure the pads as per mainboard
+design. This recommendation was accepted and implemented by Intel
+starting with Jasper Lake and Tiger Lake platforms using a single
+UPD <code class="docutils literal notranslate"><span class="pre">GpioOverride</span></code> that coreboot can set so that FSP does not change
+any GPIO configuration. However, this implementation is not
+backported to any older platforms. Given the issues that we have
+observed across different platforms, the second proposal is to:</p>
+<ul>
+<li><p>Add a Kconfig <code class="docutils literal notranslate"><span class="pre">CHECK_GPIO_CONFIG_CHANGES</span></code> that enables checks
+in coreboot to stash GPIO pad configuration before various calls
+to FSP and compares the configuration on return from FSP.</p></li>
+<li><p>This will have to be implemented as part of
+drivers/intel/fsp/fsp2_0/ to check for the above config selection
+and make callbacks <code class="docutils literal notranslate"><span class="pre">gpio_snapshot()</span></code> and <code class="docutils literal notranslate"><span class="pre">gpio_verify_snapshot()</span></code>
+to identify and print information about pads that have changed
+configuration after calls to FSP.</p></li>
+<li><p>This config can be kept disabled by default and mainboard
+developers can enable them as and when required for debug.</p></li>
+<li><p>This will be helpful not just for the <code class="docutils literal notranslate"><span class="pre">soc/intel/cannonlake</span></code>
+platforms that want to get rid of the above workaround, but also
+for all future platforms using FSP to identify and catch any GPIO
+misconfigurations that might slip in to any platforms (in case the
+<code class="docutils literal notranslate"><span class="pre">GpioOverride</span></code> UPD is not honored by any code path within FSP).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

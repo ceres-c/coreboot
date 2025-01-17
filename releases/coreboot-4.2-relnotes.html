@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coreboot 4.2 release notes &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="coreboot 4.1 release notes" href="coreboot-4.1-relnotes.html" />
+    <link rel="prev" title="coreboot 4.3 release notes" href="coreboot-4.3-relnotes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#upcoming-release">Upcoming release</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#previous-releases">Previous releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.22-relnotes.html">4.22 - November 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.21-relnotes.html">4.21   - August 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.20.1-relnotes.html">4.20.1 - May 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.19-relnotes.html">4.19   - January 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.18-relnotes.html">4.18   - October 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.17-relnotes.html">4.17   - May 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.16-relnotes.html">4.16   - February 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.15-relnotes.html">4.15   - November 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.14-relnotes.html">4.14   - May 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.13-relnotes.html">4.13   - November 2020</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.12-relnotes.html">4.12   - May 2020</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.11-relnotes.html">4.11   - November 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.10-relnotes.html">4.10   - July 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.9-relnotes.html">4.9    - December 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.8.1-relnotes.html">4.8.1  - May 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.7-relnotes.html">4.7    - January 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.6-relnotes.html">4.6    - April 2017</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.5-relnotes.html">4.5    - October 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.4-relnotes.html">4.4    - May 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.3-relnotes.html">4.3    - January 2016</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.2    - October 2015</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#changes-between-4-1-and-4-2">Changes between 4.1 and 4.2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.1-relnotes.html">4.1    - July 2015</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Release notes</a></li>
+      <li class="breadcrumb-item active">coreboot 4.2 release notes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/releases/coreboot-4.2-relnotes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coreboot-4-2-release-notes">
+<h1>coreboot 4.2 release notes<a class="headerlink" href="#coreboot-4-2-release-notes" title="Link to this heading"></a></h1>
+<p>Halloween 2015 release - just as scary as that sounds</p>
+<p>Dear coreboot community,
+today marks the release of coreboot 4.2, the second release on our time
+based release schedule. Since 4.1 there were 936 commits by 90 authors,
+increasing the code base by approximately 17000 lines of code. We saw 35
+new contributors - welcome to coreboot! More than 34 developers were
+active as reviewers in that period. Thanks go to all contributors who
+helped shape this release.</p>
+<p>As with 4.1, the release tarballs are available at
+http://www.coreboot.org/releases/. There’s also a 4.2 tag and branch in
+the git repository.</p>
+<p>This marks the first release that features a changelog comparing it to
+the previous release. There was some limited testing to make sure that
+the code is usable, and it boots on some devices. A structured test plan
+will only become part of the release procedure of future versions. I’m
+grateful to Martin for assembling this release’s changelog.</p>
+<p>This is also the first release that will be followed by the removal of
+old, unused code. There will be a policy on how to announce deprecation
+and removal of mainboard and chipset code for future releases.</p>
+<p>Regards,
+Patrick</p>
+<p>Log of commit d5e6618a4f076610e683b174c4dd5108d960c785 to
+commit 439a527014fa0cb3e4ef60ba59e5c57c737b4444</p>
+<section id="changes-between-4-1-and-4-2">
+<h2>Changes between 4.1 and 4.2<a class="headerlink" href="#changes-between-4-1-and-4-2" title="Link to this heading"></a></h2>
+<section id="build-system">
+<h3>Build system:<a class="headerlink" href="#build-system" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Store a minimized coreboot config file in cbfs instead of the full
+config</p></li>
+<li><p>Store the payload config and revision in CBFS when that info is
+available</p></li>
+<li><p>Add -compression option for cbfs-files-y. Valid entries are now -file,
+-type, -align, and -compression</p></li>
+<li><p>Change Microcode inclusion method from building .h files to pre-built
+binaries</p></li>
+<li><p>Update Builder tests for each commit to test utilities and run lint
+tools</p></li>
+<li><p>Many other small makefile and build changes and fixes</p></li>
+<li><p>Remove expert mode as a Kconfig option</p></li>
+</ul>
+</section>
+<section id="utilities">
+<h3>Utilities:<a class="headerlink" href="#utilities" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Many fixes and updates to many utilities (158 total commits)</p></li>
+<li><p>ifdtool: Update for skylake, handle region masks correctly</p></li>
+<li><p>crossgcc: Update to gcc 5.2.0</p></li>
+<li><p>kconfig: Add strict mode to fail on kconfig errors and warnings</p></li>
+<li><p>vgabios: Significant fixes to remove issues in linking into coreboot
+code</p></li>
+<li><p>Add script to parse MAINTAINERS file</p></li>
+<li><p>Add Kconfig lint tool</p></li>
+<li><p>Create a common library to share coreboot routines with utilities</p></li>
+</ul>
+<section id="significant-changes-and-cleanup-to-cbfstool-81-commits">
+<h4>Significant changes and cleanup to cbfstool (81 commits)<a class="headerlink" href="#significant-changes-and-cleanup-to-cbfstool-81-commits" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Update cbfstool to change the internal location of FSP binaries when
+adding them</p></li>
+<li><p>Decompress stage files on extraction and turn them into ELF binaries</p></li>
+<li><p>Header sizes are now variable, containing extended attributes</p></li>
+<li><p>Add compression tags to all cbfs headers so all cbfs files can be
+compressed</p></li>
+<li><p>Add and align CBFS components in one pass instead of two</p></li>
+<li><p>Add XIP support for X86 to relocate the romstage when it’™s added</p></li>
+<li><p>Removed locate command as it’™s no longer needed</p></li>
+<li><p>Add bootblock and cbfs_header file types so the master header knows
+about them</p></li>
+<li><p>Prefer FMAP data to CBFS master header if FMAP data exists</p></li>
+<li><p>Add hashes to cbfs file metadata for verification of images</p></li>
+</ul>
+</section>
+</section>
+<section id="payloads">
+<h3>Payloads:<a class="headerlink" href="#payloads" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>SeaBIOS: update stable release from 1.7.5 to 1.8.2</p></li>
+<li><p>Libpayload had some significant changes (61 commits). Major changes:</p></li>
+<li><p>Add support for fmap tables</p></li>
+<li><p>Add support for SuperSpeed (3.0) USB hubs</p></li>
+<li><p>Updates and bugfixes for DesignWare OTG controller (DWC2)</p></li>
+<li><p>Add video_printf to print text with specified foreground &amp; background
+colors</p></li>
+<li><p>Updates to match changes to cbfs/cbfstool</p></li>
+<li><p>Add cbgfx, a library to show graphics and text on a display</p></li>
+<li><p>Read cbfs offset and size from sysinfo when available</p></li>
+</ul>
+</section>
+<section id="vendorcode">
+<h3>Vendorcode:<a class="headerlink" href="#vendorcode" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>fsp_baytrail: Support Baytrail FSP Gold 4 release</p></li>
+<li><p>AMD binary PI: add support for fan control</p></li>
+<li><p>Work to get AMD AGESA to compile correctly as 64-bit code</p></li>
+<li><p>Add standalone (XIP) verstage support for x86 to verify romstage</p></li>
+</ul>
+</section>
+<section id="mainboards">
+<h3>Mainboards:<a class="headerlink" href="#mainboards" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>New Mainboards:</p></li>
+<li><p>apple/macbookair4_2 * Sandy/Ivy Bridge with Panther / Cougar point
+chipset</p></li>
+<li><p>asus/kgpe-d16 - AMD Family 10, SB700/SR5650 platform</p></li>
+<li><p>emulation/spike-riscv - RISCV virtualized platform</p></li>
+<li><p>google/chell - Intel Skylake chrome platform</p></li>
+<li><p>google/cyan - Intel Braswell chrome platform</p></li>
+<li><p>google/glados - Intel Skylake chrome platform</p></li>
+<li><p>google/lars - Intel Skylake chrome platform</p></li>
+<li><p>intel/kunimitsu - Intel Skylake chrome platform</p></li>
+<li><p>intel/sklrvp - Intel Skylake reference platform</p></li>
+<li><p>intel/strago - Intel Braswell chrome platform</p></li>
+<li><p>Cleanups of many mainboards - several patches each for:</p></li>
+<li><p>amd/bettong</p></li>
+<li><p>getac/p470</p></li>
+<li><p>google/auron, google/smaug and google/veyron_rialto</p></li>
+<li><p>pcengines/apu1</p></li>
+<li><p>siemens/mc_tcu3</p></li>
+<li><p>Combine the google/veyron_(jerry, mighty, minnie, pinkie, shark &amp;
+speedy) mainboards into the single google/veyron mainboard directory</p></li>
+</ul>
+</section>
+<section id="console">
+<h3>Console:<a class="headerlink" href="#console" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Add EM100 ˜hyper term” spi console support in ramstage &amp; smm</p></li>
+<li><p>Add console support for verstage</p></li>
+</ul>
+</section>
+<section id="arm">
+<h3>ARM:<a class="headerlink" href="#arm" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>armv7: use asm coded memory operations for 32/16 bit read/write</p></li>
+<li><p>Many cleanups to the nvidia tegra chips (40 patches)</p></li>
+</ul>
+</section>
+<section id="risc-v">
+<h3>RISC-V:<a class="headerlink" href="#risc-v" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Add trap handling</p></li>
+<li><p>Add virtual Memory setup</p></li>
+</ul>
+</section>
+<section id="x86">
+<h3>X86:<a class="headerlink" href="#x86" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Remove and re-add Rangeley and Ivy Bridge / panther point FSP
+platforms</p></li>
+<li><p>Update microcode update parser to use stock AMD microcode blobs from
+CBFS</p></li>
+<li><p>ACPI: Align FACS to 64 byte boundary. Fixes FWTS error</p></li>
+<li><p>AMD/SB700: Init devices in early boot, restore power state after power
+failure. Add IDE/SATA asl code</p></li>
+<li><p>Add initial support for AMD Socket G34 processors</p></li>
+<li><p>Add tick frequency to timestamp table to calculate boot times more
+accurately</p></li>
+<li><p>Unify X86 romstage / ramstage linking to match other platforms</p></li>
+<li><p>Start preparing X86 bootblock for non-memory-mapped BIOS media</p></li>
+<li><p>cpu/amd/car: Add Suspend to RAM (S3) support</p></li>
+<li><p>Native VGA init fixes on several platforms</p></li>
+<li><p>Significant updates to FSP 1.1 code for cleanup and cbfstool changes</p></li>
+<li><p>SMMhandler: on i945..nehalem, crash if LAPIC overlaps with ASEG to
+prevent the memory sinkhole smm hack</p></li>
+</ul>
+</section>
+<section id="drivers">
+<h3>Drivers:<a class="headerlink" href="#drivers" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Add native text mode support for the Aspeed AST2050</p></li>
+<li><p>w83795: Add support for for fan control and voltage monitoring</p></li>
+<li><p>Intel GMA ACPI consolidation and improvements</p></li>
+<li><p>Set up the 8254 timer before running option ROMs</p></li>
+<li><p>Resource allocator: Page align memory mapped PCI resources</p></li>
+</ul>
+</section>
+<section id="lib">
+<h3>Lib:<a class="headerlink" href="#lib" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Derive fmap name from offset/size</p></li>
+<li><p>Several edid fixes</p></li>
+<li><p>Updates to cbfs matching changes in cbfstool</p></li>
+</ul>
+</section>
+</section>
+<section id="submodules">
+<h2>Submodules:<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<section id="rdparty-blobs">
+<h3>3rdparty/blobs:<a class="headerlink" href="#rdparty-blobs" title="Link to this heading"></a></h3>
+<p>Total commits: 16
+Log of commit 61d663e3 to commit aab093f0</p>
+<ul class="simple">
+<li><p>AMD Merlin Falcon: Update to CarrizoPI 1.1.0.0 (Binary PI 1.4)</p></li>
+<li><p>AMD Steppe Eagle: Update to MullinsPI 1.0.0.A (Binary PI 1.1)</p></li>
+<li><p>Update microcode to binary blobs. Remove old .h microcode files</p></li>
+</ul>
+</section>
+<section id="rdparty-arm-trusted-firmware">
+<h3>3rdparty/arm-trusted-firmware:<a class="headerlink" href="#rdparty-arm-trusted-firmware" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>No Changes</p></li>
+</ul>
+</section>
+<section id="rdparty-vboot">
+<h3>3rdparty/vboot:<a class="headerlink" href="#rdparty-vboot" title="Link to this heading"></a></h3>
+<p>Total commits: 41
+Log of commit fbf631c8 to commit d6723ed1</p>
+<ul class="simple">
+<li><p>Update the code to determine the write protect line gpio value</p></li>
+<li><p>Several updates to futility and image_signing scripts</p></li>
+<li><p>Update crossystem to accommodate Android mosys location</p></li>
+<li><p>Support reboot requested by secdata</p></li>
+<li><p>Add NV flag to default boot legacy OS</p></li>
+</ul>
+</section>
+<section id="util-nvidia-cbootimage">
+<h3>util/nvidia/cbootimage:<a class="headerlink" href="#util-nvidia-cbootimage" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>No Changes</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="coreboot-4.3-relnotes.html" class="btn btn-neutral float-left" title="coreboot 4.3 release notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="coreboot-4.1-relnotes.html" class="btn btn-neutral float-right" title="coreboot 4.1 release notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coreboot 4.7 release notes &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="coreboot 4.6 release notes" href="coreboot-4.6-relnotes.html" />
+    <link rel="prev" title="coreboot 4.8 &amp; 4.8.1 release notes" href="coreboot-4.8.1-relnotes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#upcoming-release">Upcoming release</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#previous-releases">Previous releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.22-relnotes.html">4.22 - November 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.21-relnotes.html">4.21   - August 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.20.1-relnotes.html">4.20.1 - May 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.19-relnotes.html">4.19   - January 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.18-relnotes.html">4.18   - October 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.17-relnotes.html">4.17   - May 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.16-relnotes.html">4.16   - February 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.15-relnotes.html">4.15   - November 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.14-relnotes.html">4.14   - May 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.13-relnotes.html">4.13   - November 2020</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.12-relnotes.html">4.12   - May 2020</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.11-relnotes.html">4.11   - November 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.10-relnotes.html">4.10   - July 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.9-relnotes.html">4.9    - December 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.8.1-relnotes.html">4.8.1  - May 2018</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.7    - January 2018</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#new-chipsets">New chipsets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#added-47-mainboards-variants">Added 47 mainboards &amp; variants:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#removed-2-mainboards">Removed 2 mainboards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#new-embedded-controller">New Embedded Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#general-changes">General changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#google-chromeos-devices">Google ChromeOS devices:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lenovo-thinkpads">Lenovo Thinkpads:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intel-braswell">Intel Braswell:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy-intel-boards">Legacy Intel Boards:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intel-sandy-bridge">Intel Sandy Bridge:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intel-x4x">Intel X4X:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intel-gm45">Intel GM45:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intel-pineview">Intel Pineview:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intel-i440bx">Intel I440BX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#amd-agesa">AMD AGESA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#amd-binarypi">AMD binaryPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#libgfxinit">libgfxinit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intelmetool">intelmetool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#toolchain">Toolchain</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.6-relnotes.html">4.6    - April 2017</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.5-relnotes.html">4.5    - October 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.4-relnotes.html">4.4    - May 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.3-relnotes.html">4.3    - January 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.2-relnotes.html">4.2    - October 2015</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.1-relnotes.html">4.1    - July 2015</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Release notes</a></li>
+      <li class="breadcrumb-item active">coreboot 4.7 release notes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/releases/coreboot-4.7-relnotes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coreboot-4-7-release-notes">
+<h1>coreboot 4.7 release notes<a class="headerlink" href="#coreboot-4-7-release-notes" title="Link to this heading"></a></h1>
+<p>The 4.7 release covers commit 0a4a4f7ae4 to commit fd470f7163
+Since the last release in April 2017, the coreboot project had 2573 commits by 150 authors.</p>
+<p>There is a pgp signed 4.7 tag in the git repository, and a branch will be created as needed.</p>
+<section id="new-chipsets">
+<h2>New chipsets<a class="headerlink" href="#new-chipsets" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>AMD Stoney Ridge</p></li>
+<li><p>Intel i82801jx Southbridge (ICH10)</p></li>
+<li><p>Intel Denverton and Denverton-NS</p></li>
+<li><p>Work has started on Intel Cannon Lake</p></li>
+</ul>
+</section>
+<section id="added-47-mainboards-variants">
+<h2>Added 47 mainboards &amp; variants:<a class="headerlink" href="#added-47-mainboards-variants" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Acer Chromebook 14 CB3-431 [google/edgar]           Intel Braswell</p></li>
+<li><p>Acer Chromebook 15 CB3-532 [google/banon]           Intel Braswell</p></li>
+<li><p>Acer Chromebook N7 C731 [google/relm]               Intel Braswell</p></li>
+<li><p>ASRock B75 Pro3-M                                   Intel Ivy Bridge</p></li>
+<li><p>ASRock G41C-GS R2.0                                 Intel G41/ICH7</p></li>
+<li><p>Asus AM1I-A                                         AMD Kabini</p></li>
+<li><p>Asus Chromebook C202SA/C300SA/C301SA (google/terra) Intel Braswell</p></li>
+<li><p>Biostar A68N-5200                                   AMD Kabini</p></li>
+<li><p>Compulab Intense-PC                                 Intel Ivy Bridge</p></li>
+<li><p>Dell Chromebook 11 3180/3189 (google/kefka)         Intel Braswell</p></li>
+<li><p>Foxconn G41S-K                                      Intel G41/ICH7</p></li>
+<li><p>Google Coral                                        Intel Apollo Lake</p></li>
+<li><p>Google Grunt                                        AMD Stoney Ridge</p></li>
+<li><p>Google Kahlee                                       AMD Stoney Ridge</p></li>
+<li><p>Google Meowth                                       Intel Cannon Lake</p></li>
+<li><p>Google Nami                                         Intel Kaby Lake</p></li>
+<li><p>Google Nautilus                                     Intel Kaby Lake</p></li>
+<li><p>Google Nefario                                      Rockchip RK3399</p></li>
+<li><p>Google Rainier                                      Rockchip RK3399</p></li>
+<li><p>Google Soraka                                       Intel Kaby Lake</p></li>
+<li><p>Google Zoombini                                     Intel Cannon Lake</p></li>
+<li><p>HP Chromebook 11 G5 (google/setzer)                 Intel Braswell</p></li>
+<li><p>HP EliteBook 2570p                                  Intel Ivy Bridge</p></li>
+<li><p>HP EliteBook 2760p                                  Intel Sandy Bridge</p></li>
+<li><p>HP EliteBook 8460p                                  Intel Sandy Bridge</p></li>
+<li><p>HP EliteBook 8470p                                  Intel Ivy Bridge</p></li>
+<li><p>HP EliteBook Revolve 810 G1                         Intel Ivy Bridge</p></li>
+<li><p>Intel Cannnlake RVPU                                Intel Cannon Lake</p></li>
+<li><p>Intel Cannonlake RVPY                               Intel Cannon Lake</p></li>
+<li><p>Intel D410PT                                        Intel Atom D410</p></li>
+<li><p>Intel DG43GT                                        Intel G43/ICH10</p></li>
+<li><p>Intel GLKRVP                                        Intel Gemini Lake</p></li>
+<li><p>Intel Harcuvar                                      Intel Denverton</p></li>
+<li><p>Intel NUC DCP847SKE                                 Intel Sandy Bridge</p></li>
+<li><p>Intel Saddle Brook reference board                  Intel Skylake</p></li>
+<li><p>Lenovo N22/N42 Chromebook (google/reks)             Intel Braswell</p></li>
+<li><p>Lenovo T430                                         Intel Ivy Bridge</p></li>
+<li><p>Lenovo Thinkpad 11e/Yoga Chromebook G3
+(google/ultima)                                     Intel Braswell</p></li>
+<li><p>Lenovo ThinkPad X131e                               Intel Sandy Bridge</p></li>
+<li><p>Lenovo Z61T                                         Intel i945/ICH7</p></li>
+<li><p>PC Engines APU3                                     AMD Steppe Eagle</p></li>
+<li><p>PC Engines APU4                                     AMD Steppe Eagle</p></li>
+<li><p>PC Engines APU5                                     AMD Steppe Eagle</p></li>
+<li><p>Purism Librem 13 v2                                 Intel Skylake</p></li>
+<li><p>Purism Librem 15 v3                                 Intel Skylake</p></li>
+<li><p>Samsung Chromebook 3 (google/celes)                 Intel Braswell</p></li>
+<li><p>White label Chromebook (google/wizpig)              Intel Braswell</p></li>
+<li><p>WinNET G170                                         VIA CN700</p></li>
+</ul>
+</section>
+<section id="removed-2-mainboards">
+<h2>Removed 2 mainboards<a class="headerlink" href="#removed-2-mainboards" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Biferos Bifferboard</p></li>
+<li><p>Google Cosmos</p></li>
+</ul>
+</section>
+<section id="new-embedded-controller">
+<h2>New Embedded Controller<a class="headerlink" href="#new-embedded-controller" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>KBC1126 used in HP EliteBooks</p></li>
+</ul>
+</section>
+<section id="general-changes">
+<h2>General changes<a class="headerlink" href="#general-changes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Integrate me_cleaner</p></li>
+<li><p>Add flashconsole implementation</p></li>
+<li><p>Build edk2 UEFI payload from upstream source</p></li>
+<li><p>Remove CMOS NVRAM configurable baud rates</p></li>
+<li><p>A common mrc_cache driver to store romstage settings in SPI flash</p></li>
+</ul>
+</section>
+<section id="google-chromeos-devices">
+<h2>Google ChromeOS devices:<a class="headerlink" href="#google-chromeos-devices" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Add ACPI USB port definitions for many boards</p></li>
+<li><p>Fix preprocessor guards for LPC TPM</p></li>
+<li><p>Remove non-existent IRQ for LPC TPM</p></li>
+<li><p>Fix LED control for mccloud</p></li>
+<li><p>Enable keyboard backlight at boot on equipped boards</p></li>
+<li><p>Fix ACPI data for non-google EC’s to improve Windows compatibility</p></li>
+<li><p>Add missing SPD files for chell, fixing support for &gt; 4GB boards</p></li>
+</ul>
+</section>
+<section id="lenovo-thinkpads">
+<h2>Lenovo Thinkpads:<a class="headerlink" href="#lenovo-thinkpads" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Add support for passive cooling</p></li>
+<li><p>Add ACPI fan control</p></li>
+<li><p>Add BDC detection and power saving</p></li>
+<li><p>Unify hybrid graphics and improved power saving</p></li>
+</ul>
+</section>
+<section id="intel-braswell">
+<h2>Intel Braswell:<a class="headerlink" href="#intel-braswell" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Add support for all outstanding Braswell ChromeOS devices</p></li>
+<li><p>Update FSP 1.1 header to v1.1.7.0</p></li>
+<li><p>Adjust FSP header revision check to be less stringent</p></li>
+<li><p>Upstream numerous commits from Chromium tree</p></li>
+<li><p>Fix ACPI scope for I2C devices</p></li>
+<li><p>Fix SPI write after flash lockdown set</p></li>
+</ul>
+</section>
+<section id="legacy-intel-boards">
+<h2>Legacy Intel Boards:<a class="headerlink" href="#legacy-intel-boards" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Unify Intel VBT handling</p></li>
+<li><p>Add support for loading external VBT</p></li>
+<li><p>Provide the VBT through Intel OpRegion method on all platforms</p></li>
+<li><p>Fix low memory corruption on S3 resume path</p></li>
+</ul>
+</section>
+<section id="intel-sandy-bridge">
+<h2>Intel Sandy Bridge:<a class="headerlink" href="#intel-sandy-bridge" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Add a Kconfig option to ignore XMP max DIMMs</p></li>
+<li><p>Add Kconfig option for max. DRAM frequency fuses</p></li>
+<li><p>Advertise correct DRAM frequency on Ivy Bridge</p></li>
+<li><p>Improve CAS/frequency selection</p></li>
+<li><p>Use command rate 2T on channels with two DIMMs installed for improved
+stability</p></li>
+</ul>
+</section>
+<section id="intel-x4x">
+<h2>Intel X4X:<a class="headerlink" href="#intel-x4x" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Fix booting with FSB800 DDR667 combination</p></li>
+<li><p>Rework ram DQS receiver enable training sequence</p></li>
+<li><p>Rework and fix SPD reading and decoding</p></li>
+<li><p>Allow external GPU to take VGA cycles</p></li>
+</ul>
+</section>
+<section id="intel-gm45">
+<h2>Intel GM45:<a class="headerlink" href="#intel-gm45" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Improve compatibility with mixed DIMMs</p></li>
+<li><p>Add romstage timings</p></li>
+<li><p>Set the display backlight PWM correctly</p></li>
+</ul>
+</section>
+<section id="intel-pineview">
+<h2>Intel Pineview:<a class="headerlink" href="#intel-pineview" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Enable remapping of memory to allow for 4G or more memory</p></li>
+</ul>
+</section>
+<section id="intel-i440bx">
+<h2>Intel I440BX<a class="headerlink" href="#intel-i440bx" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Implement early CBMEM support</p></li>
+<li><p>Fix RAM init programming</p></li>
+</ul>
+</section>
+<section id="amd-agesa">
+<h2>AMD AGESA<a class="headerlink" href="#amd-agesa" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Move boards to early CBMEM and add timestamps</p></li>
+<li><p>Refactor boards away from using agesawrapper</p></li>
+<li><p>Wipe unused sources under vendorcode</p></li>
+<li><p>Re-enable ACPI S3 after fixing low memory corruptions</p></li>
+</ul>
+</section>
+<section id="amd-binarypi">
+<h2>AMD binaryPI<a class="headerlink" href="#amd-binarypi" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Move boards to early CBMEM</p></li>
+<li><p>Continue work on cleaning up headers</p></li>
+</ul>
+</section>
+<section id="libgfxinit">
+<h2>libgfxinit<a class="headerlink" href="#libgfxinit" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Support new hardware: Broxton/APL (DP and HDMI only), Skylake</p></li>
+<li><p>Handle framebuffer mapping in the library</p></li>
+<li><p>Make DP training more compatible and tolerant</p></li>
+<li><p>Enhance compatibility for VGA adaptors</p></li>
+</ul>
+</section>
+<section id="intelmetool">
+<h2>intelmetool<a class="headerlink" href="#intelmetool" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Add support for Sunrise Point LP</p></li>
+<li><p>Add Intel Boot Guard detection</p></li>
+</ul>
+</section>
+<section id="toolchain">
+<h2>Toolchain<a class="headerlink" href="#toolchain" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>buildgcc now verifies downloaded files against hashes</p></li>
+<li><p>Improve GNAT detection</p></li>
+<li><p>Update binutils to 2.29.1</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="coreboot-4.8.1-relnotes.html" class="btn btn-neutral float-left" title="coreboot 4.8 &amp; 4.8.1 release notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="coreboot-4.6-relnotes.html" class="btn btn-neutral float-right" title="coreboot 4.6 release notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

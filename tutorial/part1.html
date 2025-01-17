@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial, part 1: Starting from scratch &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorial, part 2: Submitting a patch to coreboot.org" href="part2.html" />
+    <link rel="prev" title="Tutorial" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Part 1: Starting from scratch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#download-configure-and-build-coreboot">Download, configure, and build coreboot</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-install-tools-and-libraries-needed-for-coreboot">Step 1 - Install tools and libraries needed for coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-download-coreboot-source-tree">Step 2 - Download coreboot source tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-3-build-the-coreboot-toolchain">Step 3 - Build the coreboot toolchain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-4-build-the-payload-coreinfo">Step 4 - Build the payload - coreinfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-configure-the-build">Step 5 - Configure the build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-6-build-coreboot">Step 6 - Build coreboot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#test-the-image-using-qemu">Test the image using QEMU</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-7-install-qemu">Step 7 - Install QEMU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-8-run-qemu">Step 8 - Run QEMU</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-summary-install-tools-and-libraries-needed-for-coreboot">Step 1 summary - Install tools and libraries needed for coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-summary-download-coreboot-source-tree">Step 2 summary - Download coreboot source tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-3-summary-build-the-coreboot-toolchain">Step 3 summary - Build the coreboot toolchain.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-4-summary-build-the-payload">Step 4 summary - Build the payload</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5-summary-configure-the-build">Step 5 summary - Configure the build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-6-summary-build-coreboot">Step 6 summary - Build coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-7-summary-install-qemu">Step 7 summary - Install QEMU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-8-summary-run-qemu">Step 8 summary - Run QEMU</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="part2.html">Part 2: Submitting a patch to coreboot.org</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part3.html">Part 3: Writing unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_local_additions.html">Managing local additions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flashing_firmware/index.html">Flashing firmware</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Tutorial</a></li>
+      <li class="breadcrumb-item active">Tutorial, part 1: Starting from scratch</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorial/part1.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorial-part-1-starting-from-scratch">
+<h1>Tutorial, part 1: Starting from scratch<a class="headerlink" href="#tutorial-part-1-starting-from-scratch" title="Link to this heading"></a></h1>
+<p>This tutorial will guide you through the process of setting up a working
+coreboot toolchain. In same cases you will find specific instructions
+for Debian (apt-get), Fedora (dnf) and Arch Linux (pacman) based package
+management systems. Use the instructions according to your system.</p>
+<p>To test the toolchain and make sure it works, we will build coreboot for
+an emulated system provided by QEMU. This allows you to get familiar
+with the general process of configuring and building coreboot without
+needing to flash any hardware.</p>
+<p><strong>IMPORTANT:</strong>
+<strong>Do not attempt to flash the coreboot ROM built here to a real board</strong></p>
+<p>coreboot is board specific, so a ROM built for one board model (such as
+the QEMU emulation boards) cannot be expected to work on a different
+board. You must reconfigure coreboot for your board and rebuild the ROM
+before flashing it to a physical system.</p>
+<p><strong>Note: Summaries of each of the steps are at the end of the document.</strong></p>
+<section id="download-configure-and-build-coreboot">
+<h2>Download, configure, and build coreboot<a class="headerlink" href="#download-configure-and-build-coreboot" title="Link to this heading"></a></h2>
+<section id="step-1-install-tools-and-libraries-needed-for-coreboot">
+<h3>Step 1 - Install tools and libraries needed for coreboot<a class="headerlink" href="#step-1-install-tools-and-libraries-needed-for-coreboot" title="Link to this heading"></a></h3>
+<p>Debian based distros:
+<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">bison</span> <span class="pre">build-essential</span> <span class="pre">curl</span> <span class="pre">flex</span> <span class="pre">git</span> <span class="pre">gnat</span></code>
+<code class="docutils literal notranslate"><span class="pre">libncurses5-dev</span> <span class="pre">m4</span> <span class="pre">zlib1g-dev</span></code></p>
+<p>Arch based distros:
+<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">base-devel</span> <span class="pre">curl</span> <span class="pre">git</span> <span class="pre">gcc-ada</span> <span class="pre">ncurses</span> <span class="pre">zlib</span></code></p>
+<p>Redhat based distros:
+<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">git</span> <span class="pre">make</span> <span class="pre">gcc-gnat</span> <span class="pre">flex</span> <span class="pre">bison</span> <span class="pre">xz</span> <span class="pre">bzip2</span> <span class="pre">gcc</span> <span class="pre">g++</span></code>
+<code class="docutils literal notranslate"><span class="pre">ncurses-devel</span> <span class="pre">wget</span> <span class="pre">zlib-devel</span> <span class="pre">patch</span></code></p>
+</section>
+<section id="step-2-download-coreboot-source-tree">
+<h3>Step 2 - Download coreboot source tree<a class="headerlink" href="#step-2-download-coreboot-source-tree" title="Link to this heading"></a></h3>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://review.coreboot.org/coreboot
+<span class="nb">cd</span><span class="w"> </span>coreboot
+</pre></div>
+</div>
+</section>
+<section id="step-3-build-the-coreboot-toolchain">
+<h3>Step 3 - Build the coreboot toolchain<a class="headerlink" href="#step-3-build-the-coreboot-toolchain" title="Link to this heading"></a></h3>
+<p>Please note that this can take a significant amount of time. Use <code class="docutils literal notranslate"><span class="pre">CPUS=</span></code>
+to specify number of <code class="docutils literal notranslate"><span class="pre">make</span></code> jobs to run in parallel.</p>
+<p>This will list toolchain options and supported architectures:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>help_toolchain
+</pre></div>
+</div>
+<p>Here are some examples:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>crossgcc-i386<span class="w"> </span><span class="nv">CPUS</span><span class="o">=</span><span class="k">$(</span>nproc<span class="k">)</span><span class="w">       </span><span class="c1"># build i386 toolchain</span>
+make<span class="w"> </span>crossgcc-aarch64<span class="w"> </span><span class="nv">CPUS</span><span class="o">=</span><span class="k">$(</span>nproc<span class="k">)</span><span class="w">    </span><span class="c1"># build Aarch64 toolchain</span>
+make<span class="w"> </span>crossgcc-riscv<span class="w"> </span><span class="nv">CPUS</span><span class="o">=</span><span class="k">$(</span>nproc<span class="k">)</span><span class="w">      </span><span class="c1"># build RISC-V toolchain</span>
+</pre></div>
+</div>
+<p>Note that the i386 toolchain is currently used for all x86 platforms,
+including x86_64. For this tutorial we only need the i386 toolchain.</p>
+<p>Also note that you can possibly use your system toolchain, but the
+results are not reproducible, and may have issues, so this is not
+recommended.  See step 5 to use your system toolchain.</p>
+</section>
+<section id="step-4-build-the-payload-coreinfo">
+<h3>Step 4 - Build the payload - coreinfo<a class="headerlink" href="#step-4-build-the-payload-coreinfo" title="Link to this heading"></a></h3>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>payloads/coreinfo<span class="w"> </span>olddefconfig
+make<span class="w"> </span>-C<span class="w"> </span>payloads/coreinfo
+</pre></div>
+</div>
+</section>
+<section id="step-5-configure-the-build">
+<h3>Step 5 - Configure the build<a class="headerlink" href="#step-5-configure-the-build" title="Link to this heading"></a></h3>
+<section id="configure-your-mainboard">
+<h4>Configure your mainboard<a class="headerlink" href="#configure-your-mainboard" title="Link to this heading"></a></h4>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>menuconfig
+</pre></div>
+</div>
+<p>Do the next steps in the menu:</p>
+<div class="highlight-Text notranslate"><div class="highlight"><pre><span></span>select &#39;Mainboard&#39; menu
+Beside &#39;Mainboard vendor&#39; should be &#39;(Emulation)&#39;
+Beside &#39;Mainboard model&#39; should be &#39;QEMU x86 i440fx/piix4&#39;
+select &lt; Exit &gt;
+</pre></div>
+</div>
+<p>These should be the default selections, so if anything else was set, run
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">distclean</span></code> to remove your old config file and start over.</p>
+</section>
+<section id="optionally-use-your-system-toolchain-again-not-recommended">
+<h4>Optionally use your system toolchain (Again, not recommended)<a class="headerlink" href="#optionally-use-your-system-toolchain-again-not-recommended" title="Link to this heading"></a></h4>
+<div class="highlight-Text notranslate"><div class="highlight"><pre><span></span>select &#39;General Setup&#39; menu
+select &#39;Allow building with any toolchain&#39;
+select &lt; Exit &gt;
+</pre></div>
+</div>
+</section>
+<section id="select-the-payload">
+<h4>Select the payload<a class="headerlink" href="#select-the-payload" title="Link to this heading"></a></h4>
+<div class="highlight-Text notranslate"><div class="highlight"><pre><span></span>select &#39;Payload&#39; menu
+select &#39;Payload to add (SeaBIOS) ---&gt;&#39;
+choose &#39;An ELF executable payload&#39;
+select &#39;Payload path and filename&#39;
+enter &#39;payloads/coreinfo/build/coreinfo.elf&#39;
+select &lt; Exit &gt;
+select &lt; Exit &gt;
+select &lt; Yes &gt;
+</pre></div>
+</div>
+</section>
+<section id="check-your-configuration-optional-step">
+<h4>Check your configuration (optional step):<a class="headerlink" href="#check-your-configuration-optional-step" title="Link to this heading"></a></h4>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>savedefconfig
+cat<span class="w"> </span>defconfig
+</pre></div>
+</div>
+<p>There should only be 9 lines (or 10 if you’re using the system
+toolchain):</p>
+<div class="highlight-Text notranslate"><div class="highlight"><pre><span></span>CONFIG_CBFS_SIZE=0x00400000
+CONFIG_CONSOLE_CBMEM_BUFFER_SIZE=0x20000
+CONFIG_SUBSYSTEM_VENDOR_ID=0x0000
+CONFIG_SUBSYSTEM_DEVICE_ID=0x0000
+CONFIG_I2C_TRANSFER_TIMEOUT_US=500000
+CONFIG_CONSOLE_QEMU_DEBUGCON_PORT=0x402
+CONFIG_POST_IO_PORT=0x80
+CONFIG_PAYLOAD_ELF=y
+CONFIG_PAYLOAD_FILE=&quot;payloads/coreinfo/build/coreinfo.elf&quot;
+</pre></div>
+</div>
+<p>Note that this may differ depending on the revision of the coreboot
+source you are building from and should not be taken as the required
+contents of defconfig.</p>
+</section>
+</section>
+<section id="step-6-build-coreboot">
+<h3>Step 6 - Build coreboot<a class="headerlink" href="#step-6-build-coreboot" title="Link to this heading"></a></h3>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>make
+</pre></div>
+</div>
+<p>At the end of the build, you should see:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Built</span> <span class="pre">emulation/qemu-i440fx</span> <span class="pre">(QEMU</span> <span class="pre">x86</span> <span class="pre">i440fx/piix4)</span></code></p>
+<p>This means your build was successful. The output from the build is in
+the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory. <code class="docutils literal notranslate"><span class="pre">build/coreboot.rom</span></code> is the full rom file.</p>
+</section>
+</section>
+<section id="test-the-image-using-qemu">
+<h2>Test the image using QEMU<a class="headerlink" href="#test-the-image-using-qemu" title="Link to this heading"></a></h2>
+<section id="step-7-install-qemu">
+<h3>Step 7 - Install QEMU<a class="headerlink" href="#step-7-install-qemu" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Debian: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">qemu-system</span></code></p></li>
+<li><p>Arch: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">qemu</span></code></p></li>
+<li><p>Redhat: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">qemu</span></code></p></li>
+</ul>
+</section>
+<section id="step-8-run-qemu">
+<h3>Step 8 - Run QEMU<a class="headerlink" href="#step-8-run-qemu" title="Link to this heading"></a></h3>
+<p>Start QEMU, and point it to the ROM you just built:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>qemu-system-x86_64<span class="w"> </span>-bios<span class="w"> </span>build/coreboot.rom<span class="w"> </span>-serial<span class="w"> </span>stdio
+</pre></div>
+</div>
+<p>You should see the serial output of coreboot in the original console
+window, and a new window will appear running the coreinfo payload.</p>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<section id="step-1-summary-install-tools-and-libraries-needed-for-coreboot">
+<h3>Step 1 summary - Install tools and libraries needed for coreboot<a class="headerlink" href="#step-1-summary-install-tools-and-libraries-needed-for-coreboot" title="Link to this heading"></a></h3>
+<p>Depending on your distribution you have installed the minimum additional
+software requirements to continue with downloading and building
+coreboot.  Not every distribution has the tools, that would be required,
+installed by default. In the following we shortly introduce the purpose
+of the installed packages:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">build-essential</span></code> or <code class="docutils literal notranslate"><span class="pre">base-devel</span></code> are the basic tools for building software.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span></code> is needed to download coreboot from the coreboot git repository.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libncurses5-dev</span></code> or <code class="docutils literal notranslate"><span class="pre">ncurses</span></code> is needed to build the menu for ‘make menuconfig’</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m4,</span> <span class="pre">bison,</span> <span class="pre">curl,</span> <span class="pre">flex,</span> <span class="pre">zlib1g-dev,</span> <span class="pre">gcc,</span> <span class="pre">gnat</span></code> and <code class="docutils literal notranslate"><span class="pre">g++</span></code> or <code class="docutils literal notranslate"><span class="pre">clang</span></code>
+are needed to build the coreboot toolchain. <code class="docutils literal notranslate"><span class="pre">gcc</span></code> and <code class="docutils literal notranslate"><span class="pre">gnat</span></code> have to be
+of the same version.</p></li>
+</ul>
+<p>If you started with a different distribution or package management
+system you might need to install other packages. Most likely they are
+named slightly different. If that is the case for you, we’d like to
+encourage you to contribute to the project and submit a pull request
+with an update for this documentation for your system.</p>
+</section>
+<section id="step-2-summary-download-coreboot-source-tree">
+<h3>Step 2 summary - Download coreboot source tree<a class="headerlink" href="#step-2-summary-download-coreboot-source-tree" title="Link to this heading"></a></h3>
+<p>This will download a ‘read-only’ copy of the coreboot tree. This just
+means that if you made changes to the coreboot tree, you couldn’t
+immediately contribute them back to the community. To pull a copy of
+coreboot that would allow you to contribute back, you would first need
+to sign up for an account on gerrit.</p>
+</section>
+<section id="step-3-summary-build-the-coreboot-toolchain">
+<h3>Step 3 summary - Build the coreboot toolchain.<a class="headerlink" href="#step-3-summary-build-the-coreboot-toolchain" title="Link to this heading"></a></h3>
+<p>This builds one of the coreboot cross-compiler toolchains for X86
+platforms.  Because of the variability of compilers and the other
+required tools between the various operating systems that coreboot can
+be built on, coreboot supplies and uses its own cross-compiler toolchain
+to build the binaries that end up as part of the coreboot ROM. The
+toolchain provided by the operating system (the ‘host toolchain’) is
+used to build various tools that will run on the local system during the
+build process.</p>
+</section>
+<section id="step-4-summary-build-the-payload">
+<h3>Step 4 summary - Build the payload<a class="headerlink" href="#step-4-summary-build-the-payload" title="Link to this heading"></a></h3>
+<p>To actually do anything useful with coreboot, you need to build a
+payload to include into the rom. The idea behind coreboot is that it
+does the minimum amount possible before passing control of the machine
+to a payload. There are various payloads such as grub or SeaBIOS that
+are typically used to boot the operating system. Instead, we used
+coreinfo, a small demonstration payload that allows the user to look at
+various things such as memory and the contents of the coreboot file
+system (CBFS) - the pieces that make up the coreboot rom.</p>
+<p>Usually, the coreboot build system automatically builds the payload
+selected in the “Payload to add” menu and sets it as the default payload
+(also known as the “primary payload”). Such payloads are able to boot an
+operating system and may be able to load another payload. Although
+coreinfo can be found in the “Secondary Payloads” menu, in which case it
+would be handled automatically, it is not available as a primary payload
+since it cannot load an OS or another payload. Secondary payloads must
+be loaded from other primary or secondary payloads and will not be run
+when coreboot hands off execution after initializing hardware. Thus, to
+get coreinfo to run as if it were a primary payload, it must be manually
+built and explicitly set as the primary payload using the “ELF
+executable payload” option.</p>
+</section>
+<section id="step-5-summary-configure-the-build">
+<h3>Step 5 summary - Configure the build<a class="headerlink" href="#step-5-summary-configure-the-build" title="Link to this heading"></a></h3>
+<p>This step configures coreboot’s build options using the menuconfig
+interface to Kconfig. Kconfig is the same configuration program used by
+the linux kernel. It allows you to enable, disable, and change various
+values to control the coreboot build process, including which
+mainboard(motherboard) to use, which toolchain to use, and how the
+runtime debug console should be presented and saved.  Anytime you change
+mainboards in Kconfig, you should always run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">distclean</span></code> before
+running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code>. Due to the way that Kconfig works, values
+will be kept from the previous mainboard if you skip the clean step.
+This leads to a hybrid configuration which may or may not work as
+expected.</p>
+</section>
+<section id="step-6-summary-build-coreboot">
+<h3>Step 6 summary - Build coreboot<a class="headerlink" href="#step-6-summary-build-coreboot" title="Link to this heading"></a></h3>
+<p>You may notice that a number of other pieces are downloaded at the
+beginning of the build process. These are the git submodules used in
+various coreboot builds.  By default, the <em>blobs</em> submodule is not
+downloaded. This git submodule may be required for other builds for
+microcode or other binaries. To enable downloading this submodule,
+select the option “Allow use of binary-only repository” in the “General
+Setup” menu of Kconfig This attempts to build the coreboot rom. The rom
+file itself ends up in the build directory as ‘coreboot.rom’. At the end
+of the build process, the build displayed the contents of the rom file.</p>
+</section>
+<section id="step-7-summary-install-qemu">
+<h3>Step 7 summary - Install QEMU<a class="headerlink" href="#step-7-summary-install-qemu" title="Link to this heading"></a></h3>
+<p>QEMU is a processor emulator which we can use to show the coreboot boot
+process in a virtualised environment.</p>
+</section>
+<section id="step-8-summary-run-qemu">
+<h3>Step 8 summary - Run QEMU<a class="headerlink" href="#step-8-summary-run-qemu" title="Link to this heading"></a></h3>
+<p>Here’s the command line instruction broken down:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">qemu-system-x86_64</span></code>
+This starts the QEMU emulator with the i440FX host PCI bridge and PIIX3
+PCI to ISA bridge.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-bios</span> <span class="pre">build/coreboot.rom</span></code>
+Use the coreboot rom image that we just built. If this flag is left out,
+the standard SeaBIOS image that comes with QEMU is used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-serial</span> <span class="pre">stdio</span></code>
+Send the serial output to the console. This allows you to view the
+coreboot boot log.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="part2.html" class="btn btn-neutral float-right" title="Tutorial, part 2: Submitting a patch to coreboot.org" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

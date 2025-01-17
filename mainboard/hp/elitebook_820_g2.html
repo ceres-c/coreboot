@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HP EliteBook 820 G2 &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Intel DG43GT" href="../intel/dg43gt.html" />
+    <link rel="prev" title="HP EliteBook Folio 9480m" href="folio_9480m.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#hp">HP</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="compaq_8200_sff.html">Compaq 8200 Elite SFF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compaq_8300_usdt.html">Compaq Elite 8300 USDT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="z220_sff.html">Z220 Workstation SFF</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#elitebook-series">EliteBook series</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="hp_kbc1126_laptops.html">HP Laptops with KBC1126 EC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hp_sure_start.html">HP Sure Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2170p.html">EliteBook 2170p</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2560p.html">EliteBook 2560p</a></li>
+<li class="toctree-l4"><a class="reference internal" href="8760w.html">EliteBook 8760w</a></li>
+<li class="toctree-l4"><a class="reference internal" href="folio_9480m.html">EliteBook Folio 9480m</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">EliteBook 820 G2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">HP EliteBook 820 G2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/hp/elitebook_820_g2.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hp-elitebook-820-g2">
+<h1>HP EliteBook 820 G2<a class="headerlink" href="#hp-elitebook-820-g2" title="Link to this heading"></a></h1>
+<p>This page is about the notebook <a class="reference external" href="https://support.hp.com/us-en/product/HP-EliteBook-820-G2-Notebook-PC/7343192/">HP EliteBook 820 G2</a>.</p>
+<section id="release-status">
+<h2>Release status<a class="headerlink" href="#release-status" title="Link to this heading"></a></h2>
+<p>HP EliteBook 820 G2 was released in 2015 and is now end of life.
+It can be bought from a secondhand market like Taobao or eBay.</p>
+</section>
+<section id="required-proprietary-blobs">
+<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Link to this heading"></a></h2>
+<p>The following blobs are required to operate the hardware:</p>
+<ol class="simple">
+<li><p>EC firmware</p></li>
+<li><p>Intel ME firmware</p></li>
+<li><p>Broadwell mrc.bin and refcode.elf</p></li>
+</ol>
+<p>HP EliteBook 820 G2 uses SMSC MEC1324 as its embedded controller.
+The EC firmware is stored in the flash chip, but we don’t need to touch it
+or use it in the coreboot build process.</p>
+<p>Intel ME firmware is in the flash chip. It is not needed when building coreboot.</p>
+<p>The Broadwell memory reference code binary and reference code blob is needed
+when building coreboot. Read the document <a class="reference internal" href="../../soc/intel/broadwell/blobs.html"><span class="doc">Blobs used in Intel Broadwell boards</span></a>
+on how to get these blobs.</p>
+</section>
+<section id="programming">
+<h2>Programming<a class="headerlink" href="#programming" title="Link to this heading"></a></h2>
+<p>Before flashing, remove the battery and the hard drive cover according to the
+<a class="reference external" href="http://h10032.www1.hp.com/ctg/Manual/c04775894.pdf">Maintenance and Service Guide</a> of this laptop.</p>
+<p>HP EliteBook 820 G2 has two flash chips, a 16MiB system flash, and a 2MiB
+private flash. To install coreboot, we need to program both flash chips.
+Read <a class="reference internal" href="hp_sure_start.html"><span class="doc">HP Sure Start</span></a> for detailed information.</p>
+<p><img alt="HP EliteBook 820 G2 flash chip" src="../../_images/elitebook_820_g2_flash.jpg" /></p>
+<p>To access the system flash, we need to connect the AC adapter to the machine,
+then clip on the flash chip with an SOIC-8 clip. An <a class="reference external" href="https://github.com/dword1511/stm32-vserprog">STM32-based flash programmer</a>
+made with an STM32 development board is tested to work.</p>
+<p>To access the private flash chip, we can use a ch341a based flash programmer and
+flash the chip with the AC adapter disconnected.</p>
+<p>To flash coreboot on a board running OME firmware, create a backup for both flash
+chips, then do the following:</p>
+<ol class="simple">
+<li><p>Erase the private flash to disable the IFD protection</p></li>
+<li><p>Modify the IFD to shrink the BIOS region, so that we can put the firmware outside
+the protected flash region</p></li>
+</ol>
+<p>To erase the private flash chip, attach it with the flash programmer via the SOIC-8 clip,
+then run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flashrom</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">programmer</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">erase</span>
+</pre></div>
+</div>
+<p>To modify the IFD, write the following flash layout to a file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">00000000</span><span class="p">:</span><span class="mi">00000</span><span class="n">fff</span> <span class="n">fd</span>
+<span class="mi">00001000</span><span class="p">:</span><span class="mi">00002</span><span class="n">fff</span> <span class="n">gbe</span>
+<span class="mi">00003000</span><span class="p">:</span><span class="mi">005</span><span class="n">fffff</span> <span class="n">me</span>
+<span class="mi">00600000</span><span class="p">:</span><span class="mi">00</span><span class="n">bfffff</span> <span class="n">bios</span>
+<span class="mi">00</span><span class="n">eb5000</span><span class="p">:</span><span class="mi">00</span><span class="n">ffffff</span> <span class="n">pd</span>
+</pre></div>
+</div>
+<p>Suppose the above layout file is <code class="docutils literal notranslate"><span class="pre">layout.txt</span></code> and the origin content of the system flash
+is in <code class="docutils literal notranslate"><span class="pre">factory-sys.rom</span></code>, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ifdtool</span> <span class="o">-</span><span class="n">n</span> <span class="n">layout</span><span class="o">.</span><span class="n">txt</span> <span class="n">factory</span><span class="o">-</span><span class="n">sys</span><span class="o">.</span><span class="n">rom</span>
+</pre></div>
+</div>
+<p>Then a flash image with a new IFD will be in <code class="docutils literal notranslate"><span class="pre">factory-sys.rom.new</span></code>.</p>
+<p>Flash the IFD of the system flash:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flashrom</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">programmer</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">ifd</span> <span class="o">-</span><span class="n">i</span> <span class="n">fd</span> <span class="o">-</span><span class="n">w</span> <span class="n">factory</span><span class="o">-</span><span class="n">sys</span><span class="o">.</span><span class="n">rom</span><span class="o">.</span><span class="n">new</span>
+</pre></div>
+</div>
+<p>Then flash the coreboot image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># first extend the 12M coreboot.rom to 16M</span>
+<span class="n">fallocate</span> <span class="o">-</span><span class="n">l</span> <span class="mi">16</span><span class="n">M</span> <span class="n">build</span><span class="o">/</span><span class="n">coreboot</span><span class="o">.</span><span class="n">rom</span>
+<span class="n">flashrom</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">programmer</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">ifd</span> <span class="o">-</span><span class="n">i</span> <span class="n">bios</span> <span class="o">-</span><span class="n">w</span> <span class="n">build</span><span class="o">/</span><span class="n">coreboot</span><span class="o">.</span><span class="n">rom</span>
+</pre></div>
+</div>
+<p>After coreboot is installed, the coreboot firmware can be updated with internal flashing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flashrom</span> <span class="o">-</span><span class="n">p</span> <span class="n">internal</span> <span class="o">--</span><span class="n">ifd</span> <span class="o">-</span><span class="n">i</span> <span class="n">bios</span> <span class="o">--</span><span class="n">noverify</span><span class="o">-</span><span class="nb">all</span> <span class="o">-</span><span class="n">w</span> <span class="n">build</span><span class="o">/</span><span class="n">coreboot</span><span class="o">.</span><span class="n">rom</span>
+</pre></div>
+</div>
+</section>
+<section id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Link to this heading"></a></h2>
+<p>The board can be debugged with EHCI debug. The EHCI debug port is the USB port on the left.</p>
+</section>
+<section id="test-status">
+<h2>Test status<a class="headerlink" href="#test-status" title="Link to this heading"></a></h2>
+<section id="untested">
+<h3>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>NFC module</p></li>
+<li><p>Fingerprint reader</p></li>
+<li><p>Smart Card reader</p></li>
+</ul>
+</section>
+<section id="working">
+<h3>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>mainboards with i3-5010U, i5-5300U CPU, 16G+8G DDR3L memory</p></li>
+<li><p>SATA and M.2 SATA disk</p></li>
+<li><p>PCIe SSD</p></li>
+<li><p>Webcam</p></li>
+<li><p>Touch screen</p></li>
+<li><p>Audio output from speaker and headphone jack</p></li>
+<li><p>Intel GbE (needs a modified refcode documented in <a class="reference internal" href="../../soc/intel/broadwell/blobs.html"><span class="doc">Blobs used in Intel Broadwell boards</span></a>)</p></li>
+<li><p>WLAN</p></li>
+<li><p>WWAN</p></li>
+<li><p>SD card reader</p></li>
+<li><p>Internal LCD, DisplayPort and VGA video outputs</p></li>
+<li><p>Dock</p></li>
+<li><p>USB</p></li>
+<li><p>Keyboard and touchpad</p></li>
+<li><p>EC ACPI</p></li>
+<li><p>S3 resume</p></li>
+<li><p>TPM</p></li>
+<li><p>Arch Linux with Linux 5.11.16</p></li>
+<li><p>Broadwell MRC version 2.6.0 Build 0 and refcode from Purism Librem 13 v1</p></li>
+<li><p>Graphics initialization with libgfxinit</p></li>
+<li><p>Payload: SeaBIOS 1.16.2</p></li>
+<li><p>EC firmware: KBC Revision 96.54 from OEM firmware version 01.05</p></li>
+<li><p>Internal flashing under coreboot</p></li>
+</ul>
+</section>
+</section>
+<section id="technology">
+<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>SoC</p></td>
+<td><p>Intel Broadwell</p></td>
+</tr>
+<tr class="row-even"><td><p>EC</p></td>
+<td><p>SMSC MEC1324</p></td>
+</tr>
+<tr class="row-odd"><td><p>Coprocessor</p></td>
+<td><p>Intel Management Engine</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="folio_9480m.html" class="btn btn-neutral float-left" title="HP EliteBook Folio 9480m" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../intel/dg43gt.html" class="btn btn-neutral float-right" title="Intel DG43GT" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

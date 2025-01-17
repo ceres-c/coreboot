@@ -1,0 +1,1519 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Platforms supported on branches &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Release notes" href="index.html" />
+    <link rel="prev" title="Coverity Scan for open source firmware" href="../infrastructure/coverity.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Boards supported in each release directory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#release">4.19 Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">4.18 Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">4.17 Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">4.16 Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">4.15 Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">4.14 Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">4.13 Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">4.12 Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">4.11 Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">4.10 Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">4.9 Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">4.8.1 Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">4.7 Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">4.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">4.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">4.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">4.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id17">4.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">4.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Platforms supported on branches</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/releases/boards_supported_on_branches.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="platforms-supported-on-branches">
+<h1>Platforms supported on branches<a class="headerlink" href="#platforms-supported-on-branches" title="Link to this heading"></a></h1>
+<p>For one reason or another, platforms have been deleted from the master
+branch at times in the past.  Early on, there was no real policy on
+removing boards.  Now the policy is that boards will only be removed if
+they’re causing issues in the tree or if they’re preventing progress.</p>
+<p>This does not mean that these boards are gone forever.  The release or
+commit prior to where they were removed can be checked out, and the
+boards can still be built there and updated in a release branch if
+desired.</p>
+<p>Currently, <a class="reference external" href="https://qa.coreboot.org">jenkins</a>, our continuous
+integration system is configured to build the 4.11, 4.12, 4.14, 4.15,
+4.16, 4.18, and 4.19 branches.  Builders for other branches can be
+added upon request.  Likewise, some releases are only marked with tags,
+and branches would need to be created to push new code.  These branches
+can also be created on request.</p>
+<p>Patches can be backported from the master branch to any of these other
+branches as needed. The coreboot project may take care of backporting
+critical security fixes, but other patches will need to handled by
+anyone using that release.</p>
+<section id="release">
+<h2><a class="reference internal" href="coreboot-4.19-relnotes.html"><span class="doc">4.19 Release</span></a><a class="headerlink" href="#release" title="Link to this heading"></a></h2>
+<p>Branch created, builder configured</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vendor/Board</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>Date added</p></th>
+<th class="head"><p>Brd type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>intel/icelake_rvp</p></td>
+<td><p>INTEL_ICELAKE</p></td>
+<td><p>2018-10-26</p></td>
+<td><p>eval</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id1">
+<h2><a class="reference internal" href="coreboot-4.18-relnotes.html"><span class="doc">4.18 Release</span></a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>Branch created, builder configured</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vendor/Board</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>Date added</p></th>
+<th class="head"><p>Brd type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>amd/inagua</p></td>
+<td><p>AMD_FAMILY14</p></td>
+<td><p>2011-02-14</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>amd/olivehill</p></td>
+<td><p>AMD_FAMILY16_KB</p></td>
+<td><p>2013-08-05</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>amd/parmer</p></td>
+<td><p>AMD_FAMILY15_TN</p></td>
+<td><p>2012-07-22</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>amd/persimmon</p></td>
+<td><p>AMD_FAMILY14</p></td>
+<td><p>2011-02-14</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>amd/south_station</p></td>
+<td><p>AMD_FAMILY14</p></td>
+<td><p>2011-11-18</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>amd/thatcher</p></td>
+<td><p>AMD_FAMILY15_TN</p></td>
+<td><p>2012-08-02</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>amd/union_station</p></td>
+<td><p>AMD_FAMILY14</p></td>
+<td><p>2011-11-18</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>asrock/e350m1</p></td>
+<td><p>AMD_FAMILY14</p></td>
+<td><p>2011-02-24</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-even"><td><p>asrock/imb-a180</p></td>
+<td><p>AMD_FAMILY16_KB</p></td>
+<td><p>2013-08-27</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-odd"><td><p>asus/a88xm-e</p></td>
+<td><p>AMD_FAMILY15_TN</p></td>
+<td><p>2020-08-13</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>asus/am1i-a</p></td>
+<td><p>AMD_FAMILY16_KB</p></td>
+<td><p>2018-01-14</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-odd"><td><p>asus/f2a85-m</p></td>
+<td><p>AMD_FAMILY15_TN</p></td>
+<td><p>2013-03-22</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>bap/ode_e20XX</p></td>
+<td><p>AMD_FAMILY16_KB</p></td>
+<td><p>2015-05-27</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>biostar/a68n_5200</p></td>
+<td><p>AMD_FAMILY16_KB</p></td>
+<td><p>2017-10-14</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>biostar/am1ml</p></td>
+<td><p>AMD_FAMILY16_KB</p></td>
+<td><p>2015-04-10</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-odd"><td><p>elmex/pcm205400</p></td>
+<td><p>AMD_FAMILY14</p></td>
+<td><p>2016-09-29</p></td>
+<td><p>sbc</p></td>
+</tr>
+<tr class="row-even"><td><p>gizmosphere/gizmo2</p></td>
+<td><p>AMD_FAMILY16_KB</p></td>
+<td><p>2014-12-09</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>gizmosphere/gizmo</p></td>
+<td><p>AMD_FAMILY14</p></td>
+<td><p>2014-01-03</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-even"><td><p>hp/abm</p></td>
+<td><p>AMD_FAMILY16_KB</p></td>
+<td><p>2015-01-05</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-odd"><td><p>hp/pavilion_m6_1035dx</p></td>
+<td><p>AMD_FAMILY15_TN</p></td>
+<td><p>2014-03-28</p></td>
+<td><p>laptop</p></td>
+</tr>
+<tr class="row-even"><td><p>jetway/nf81-t56n-lf</p></td>
+<td><p>AMD_FAMILY14</p></td>
+<td><p>2014-02-16</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-odd"><td><p>lenovo/g505s</p></td>
+<td><p>AMD_FAMILY15_TN</p></td>
+<td><p>2014-11-27</p></td>
+<td><p>laptop</p></td>
+</tr>
+<tr class="row-even"><td><p>lippert/frontrunner-af</p></td>
+<td><p>AMD_FAMILY14</p></td>
+<td><p>2013-03-02</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>msi/ms7721</p></td>
+<td><p>AMD_FAMILY15_TN</p></td>
+<td><p>2016-11-22</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>pcengines/apu1</p></td>
+<td><p>AMD_FAMILY14</p></td>
+<td><p>2015-02-23</p></td>
+<td><p>half</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id2">
+<h2><a class="reference internal" href="coreboot-4.17-relnotes.html"><span class="doc">4.17 Release</span></a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>No Branch or builder</p>
+<ul class="simple">
+<li><p>No platforms maintained on this release</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2><a class="reference internal" href="coreboot-4.16-relnotes.html"><span class="doc">4.16 Release</span></a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>Branch created, builder configured</p>
+<ul class="simple">
+<li><p>No platforms maintained on this release</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><a class="reference internal" href="coreboot-4.15-relnotes.html"><span class="doc">4.15 Release</span></a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>Branch created, builder configured</p>
+<ul class="simple">
+<li><p>No platforms maintained on this release</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><a class="reference internal" href="coreboot-4.14-relnotes.html"><span class="doc">4.14 Release</span></a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>Branch created, builder configured</p>
+<ul class="simple">
+<li><p>No platforms maintained on this release</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2><a class="reference internal" href="coreboot-4.13-relnotes.html"><span class="doc">4.13 Release</span></a><a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>Tag only</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vendor/Board</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>Date added</p></th>
+<th class="head"><p>Brd type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>intel/cannonlake_rvp</p></td>
+<td><p>INTEL_CANNONLAKE</p></td>
+<td><p>2017-07-19</p></td>
+<td><p>eval</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id7">
+<h2><a class="reference internal" href="coreboot-4.12-relnotes.html"><span class="doc">4.12 Release</span></a><a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p>Branch created, builder configured</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vendor/Board</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>Date added</p></th>
+<th class="head"><p>Brd type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bap/ode_e21XX</p></td>
+<td><p>AMD_PI_00730F01</p></td>
+<td><p>2016-07-30</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>lippert/toucan-af</p></td>
+<td><p>AMD_FAMILY14</p></td>
+<td><p>2013-03-02</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-even"><td><p>ocp/sonorapass</p></td>
+<td><p>INTEL_COOPERLAKE_SP</p></td>
+<td><p>2020-05-01</p></td>
+<td><p>server</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id8">
+<h2><a class="reference internal" href="coreboot-4.11-relnotes.html"><span class="doc">4.11 Release</span></a><a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>Branch created, builder configured</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vendor/Board</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>Date added</p></th>
+<th class="head"><p>Brd type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>adi/rcc-dff</p></td>
+<td><p>INTEL_FSP_RANGELEY</p></td>
+<td><p>2016-06-08</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>advansus/a785e-i</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2011-05-07</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-even"><td><p>amd/bettong</p></td>
+<td><p>AMD_PI_00660F01</p></td>
+<td><p>2015-06-23</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>amd/bimini_fam10</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2011-01-01</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>amd/db-ft3b-lc</p></td>
+<td><p>AMD_PI_00730F01</p></td>
+<td><p>2016-07-20</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>amd/gardenia</p></td>
+<td><p>AMD_STONEYRIDGE_FP4</p></td>
+<td><p>2016-12-16</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>amd/lamar</p></td>
+<td><p>AMD_PI_00630F01</p></td>
+<td><p>2015-04-23</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>amd/mahogany_fam10</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2010-03-16</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>amd/olivehillplus</p></td>
+<td><p>AMD_PI_00730F01</p></td>
+<td><p>2014-09-04</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>amd/serengeti_cheetah_fam10</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>amd/tilapia_fam10</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2010-04-23</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>amd/torpedo</p></td>
+<td><p>AMD_FAMILY12</p></td>
+<td><p>2011-06-28</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>asus/kcma-d8</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2016-02-05</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>asus/kfsn4-dre</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2015-01-28</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>asus/kgpe-d16</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2015-10-28</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>asus/m4a785-m</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2010-09-13</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>asus/m4a785t-m</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2011-12-02</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>asus/m4a78-em</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2010-12-06</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>asus/m5a88-v</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2011-10-28</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>avalue/eax-785e</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2011-09-14</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>esd/atom15</p></td>
+<td><p>INTEL_FSP_BAYTRAIL</p></td>
+<td><p>2015-12-04</p></td>
+<td><p>sbc</p></td>
+</tr>
+<tr class="row-odd"><td><p>facebook/watson</p></td>
+<td><p>INTEL_FSP_BROADWELL_DE</p></td>
+<td><p>2018-06-26</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>gigabyte/ma785gm</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2012-04-23</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>gigabyte/ma785gmt</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2010-08-17</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>gigabyte/ma78gm</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2010-08-17</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>google/urara</p></td>
+<td><p>IMGTEC_PISTACHIO</p></td>
+<td><p>2015-03-27</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>hp/dl165_g6_fam10</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2010-09-24</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>iei/kino-780am2-fam10</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2010-09-13</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-even"><td><p>intel/bayleybay_fsp</p></td>
+<td><p>INTEL_FSP_BAYTRAIL</p></td>
+<td><p>2014-05-30</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>intel/camelbackmountain_fsp</p></td>
+<td><p>INTEL_FSP_BROADWELL_DE</p></td>
+<td><p>2016-04-15</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>intel/littleplains</p></td>
+<td><p>INTEL_FSP_RANGELEY</p></td>
+<td><p>2015-11-30</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>intel/minnowmax</p></td>
+<td><p>INTEL_FSP_BAYTRAIL</p></td>
+<td><p>2014-08-11</p></td>
+<td><p>sbc</p></td>
+</tr>
+<tr class="row-even"><td><p>intel/mohonpeak</p></td>
+<td><p>INTEL_FSP_RANGELEY</p></td>
+<td><p>2014-07-30</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>jetway/pa78vm5</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2010-08-17</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>msi/ms9652_fam10</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2010-03-01</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>ocp/monolake</p></td>
+<td><p>INTEL_FSP_BROADWELL_DE</p></td>
+<td><p>2018-05-05</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>ocp/wedge100s</p></td>
+<td><p>INTEL_FSP_BROADWELL_DE</p></td>
+<td><p>2018-05-05</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>opencellular/rotundu</p></td>
+<td><p>INTEL_FSP_BAYTRAIL</p></td>
+<td><p>2018-06-26</p></td>
+<td><p>sbc</p></td>
+</tr>
+<tr class="row-even"><td><p>siemens/mc_bdx1</p></td>
+<td><p>INTEL_FSP_BROADWELL_DE</p></td>
+<td><p>2016-04-29</p></td>
+<td><p>misc</p></td>
+</tr>
+<tr class="row-odd"><td><p>siemens/mc_tcu3</p></td>
+<td><p>INTEL_FSP_BAYTRAIL</p></td>
+<td><p>2015-03-05</p></td>
+<td><p>misc</p></td>
+</tr>
+<tr class="row-even"><td><p>siemens/mc_tcu3</p></td>
+<td><p>INTEL_FSP_BAYTRAIL_MD</p></td>
+<td><p>2015-03-05</p></td>
+<td><p>misc</p></td>
+</tr>
+<tr class="row-odd"><td><p>supermicro/h8dmr_fam10</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>supermicro/h8qme_fam10</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2010-02-03</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>supermicro/h8scm_fam10</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2011-03-28</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>tyan/s2912_fam10</p></td>
+<td><p>AMD_AMDFAM10</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>via/epia-m850</p></td>
+<td><p>VIA_NANO</p></td>
+<td><p>2013-06-10</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-even"><td><p>via/epia-m850</p></td>
+<td><p>VIA_VX900</p></td>
+<td><p>2013-06-10</p></td>
+<td><p>mini</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id9">
+<h2><a class="reference internal" href="coreboot-4.10-relnotes.html"><span class="doc">4.10 Release</span></a><a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+<p>Branch created</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vendor/Board</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>Date added</p></th>
+<th class="head"><p>Brd type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>cubietech/cubieboard</p></td>
+<td><p>ALLWINNER_A10</p></td>
+<td><p>2014-01-08</p></td>
+<td><p>sbc</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id10">
+<h2><a class="reference internal" href="coreboot-4.9-relnotes.html"><span class="doc">4.9 Release</span></a><a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<p>Tag only</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vendor/Board</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>Date added</p></th>
+<th class="head"><p>Brd type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pcengines/alix1c</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>pcengines/alix1c</p></td>
+<td><p>AMD_LX</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-even"><td><p>pcengines/alix2d</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2010-08-31</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>pcengines/alix2d</p></td>
+<td><p>AMD_LX</p></td>
+<td><p>2010-08-31</p></td>
+<td><p>half</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id11">
+<h2><a class="reference internal" href="coreboot-4.8.1-relnotes.html"><span class="doc">4.8.1 Release</span></a><a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+<p>Branch created</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vendor/Board</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>Date added</p></th>
+<th class="head"><p>Brd type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>aaeon/pfm-540i_revb</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2011-06-29</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>amd/db800</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>amd/dbm690t</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>amd/f2950</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2016-07-17</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-even"><td><p>amd/mahogany</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2010-03-16</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>amd/norwich</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>amd/pistachio</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>amd/serengeti_cheetah</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-08-12</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>artecgroup/dbe61</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>settop</p></td>
+</tr>
+<tr class="row-odd"><td><p>asrock/939a785gmh</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2010-04-05</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>asus/a8n_e</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>asus/a8v-e_deluxe</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2010-11-14</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>asus/a8v-e_se</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>asus/k8v-x</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2011-12-02</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>asus/kfsn4-dre_k8</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2015-10-30</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>asus/m2n-e</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2010-12-13</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>asus/m2v</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2010-11-07</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>asus/m2v-mx_se</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-08-26</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>bachmann/ot200</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2012-07-13</p></td>
+<td><p>settop</p></td>
+</tr>
+<tr class="row-odd"><td><p>bcom/winnetp680</p></td>
+<td><p>VIA_C7</p></td>
+<td><p>2009-10-07</p></td>
+<td><p>settop</p></td>
+</tr>
+<tr class="row-even"><td><p>broadcom/blast</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>digitallogic/msm800sev</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-even"><td><p>gigabyte/ga_2761gxdk</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-07</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>gigabyte/m57sli</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-03</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>google/purin</p></td>
+<td><p>BROADCOM_CYGNUS</p></td>
+<td><p>2015-04-17</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>google/rotor</p></td>
+<td><p>MARVELL_MVMAP2315</p></td>
+<td><p>2016-09-13</p></td>
+<td><p>laptop</p></td>
+</tr>
+<tr class="row-even"><td><p>google/zoombini</p></td>
+<td><p>INTEL_CANNONLAKE</p></td>
+<td><p>2017-09-28</p></td>
+<td><p>laptop</p></td>
+</tr>
+<tr class="row-odd"><td><p>hp/dl145_g1</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2010-08-20</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>hp/dl145_g3</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>iei/pcisa-lx-800-r10</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-even"><td><p>iei/pm-lx2-800-r10</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2012-10-28</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>iei/pm-lx-800-r11</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2012-07-06</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-even"><td><p>intel/cougar_canyon2</p></td>
+<td><p>INTEL_FSP_IVYBRIDGE</p></td>
+<td><p>2013-12-04</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>intel/stargo2</p></td>
+<td><p>INTEL_FSP_IVYBRIDGE</p></td>
+<td><p>2015-11-10</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>iwill/dk8_htx</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>jetway/j7f2</p></td>
+<td><p>VIA_C7</p></td>
+<td><p>2014-01-19</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-even"><td><p>kontron/kt690</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-15</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-odd"><td><p>lippert/hurricane-lx</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2010-09-10</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-even"><td><p>lippert/literunner-lx</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2010-09-07</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>lippert/roadrunner-lx</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-even"><td><p>lippert/spacerunner-lx</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>lowrisc/nexys4ddr</p></td>
+<td><p>LOWRISC_LOWRISC</p></td>
+<td><p>2016-10-28</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>msi/ms7135</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-07</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>msi/ms7260</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-07</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>msi/ms9185</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-07</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>msi/ms9282</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-07</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>nvidia/l1_2pvv</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-07</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>siemens/sitemp_g1p1</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2011-05-11</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-even"><td><p>sunw/ultra40</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-09-25</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>sunw/ultra40m2</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2015-11-10</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>supermicro/h8dme</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-09-25</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>supermicro/h8dmr</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>technexion/tim5690</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-13</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>technexion/tim8690</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-even"><td><p>traverse/geos</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2010-05-20</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>tyan/s2912</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>via/epia-cn</p></td>
+<td><p>VIA_C7</p></td>
+<td><p>2009-09-25</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-odd"><td><p>via/epia-m700</p></td>
+<td><p>VIA_C7</p></td>
+<td><p>2009-09-25</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-even"><td><p>via/pc2500e</p></td>
+<td><p>VIA_C7</p></td>
+<td><p>2009-09-25</p></td>
+<td><p>mini</p></td>
+</tr>
+<tr class="row-odd"><td><p>via/vt8454c</p></td>
+<td><p>VIA_C7</p></td>
+<td><p>2009-08-20</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>winent/mb6047</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2013-10-19</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>winent/pl6064</p></td>
+<td><p>AMD_GEODE_LX</p></td>
+<td><p>2010-02-24</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>winnet/g170</p></td>
+<td><p>VIA_C7</p></td>
+<td><p>2017-08-28</p></td>
+<td><p>mini</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id12">
+<h2><a class="reference internal" href="coreboot-4.7-relnotes.html"><span class="doc">4.7 Release</span></a><a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<p>Tag only</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vendor/Board</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>Date added</p></th>
+<th class="head"><p>Brd type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>abit/be6-ii_v2_0</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2009-08-26</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>amd/dinar</p></td>
+<td><p>AMD_FAMILY15</p></td>
+<td><p>2012-02-17</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>amd/rumba</p></td>
+<td><p>AMD_GEODE_GX2</p></td>
+<td><p>2009-08-29</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>asus/dsbf</p></td>
+<td><p>INTEL_I5000</p></td>
+<td><p>2012-07-14</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>asus/mew-am</p></td>
+<td><p>INTEL_I82810</p></td>
+<td><p>2009-08-28</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>asus/mew-vm</p></td>
+<td><p>INTEL_I82810</p></td>
+<td><p>2009-08-28</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>a-trend/atc-6220</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2009-08-26</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>a-trend/atc-6240</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2009-08-26</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>azza/pt-6ibd</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2009-08-26</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>biostar/m6tba</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2009-08-26</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>compaq/deskpro_en_sff_p600</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2009-08-26</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>dmp/vortex86ex</p></td>
+<td><p>DMP_VORTEX86EX</p></td>
+<td><p>2013-07-05</p></td>
+<td><p>sbc</p></td>
+</tr>
+<tr class="row-even"><td><p>ecs/p6iwp-fe</p></td>
+<td><p>INTEL_I82810</p></td>
+<td><p>2010-06-09</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>gigabyte/ga-6bxc</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2009-08-26</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>gigabyte/ga-6bxe</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2010-05-14</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>hp/e_vectra_p2706t</p></td>
+<td><p>INTEL_I82810</p></td>
+<td><p>2009-10-20</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>intel/d810e2cb</p></td>
+<td><p>INTEL_I82810</p></td>
+<td><p>2010-06-21</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>intel/eagleheights</p></td>
+<td><p>INTEL_I3100</p></td>
+<td><p>2009-09-25</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>intel/mtarvon</p></td>
+<td><p>INTEL_I3100</p></td>
+<td><p>2009-09-25</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>intel/truxton</p></td>
+<td><p>INTEL_I3100</p></td>
+<td><p>2009-09-25</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>iwave/iWRainbowG6</p></td>
+<td><p>INTEL_SCH</p></td>
+<td><p>2010-12-18</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>lanner/em8510</p></td>
+<td><p>INTEL_I855</p></td>
+<td><p>2010-08-30</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>lippert/frontrunner</p></td>
+<td><p>AMD_GEODE_GX2</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>mitac/6513wu</p></td>
+<td><p>INTEL_I82810</p></td>
+<td><p>2009-08-28</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>msi/ms6119</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2009-08-26</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>msi/ms6147</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2009-08-26</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>msi/ms6156</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2009-10-13</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>msi/ms6178</p></td>
+<td><p>INTEL_I82810</p></td>
+<td><p>2009-08-28</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>nec/powermate2000</p></td>
+<td><p>INTEL_I82810</p></td>
+<td><p>2009-08-28</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>nokia/ip530</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2010-04-19</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>rca/rm4100</p></td>
+<td><p>INTEL_I82830</p></td>
+<td><p>2009-10-07</p></td>
+<td><p>settop</p></td>
+</tr>
+<tr class="row-odd"><td><p>soyo/sy-6ba-plus-iii</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2009-08-26</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>supermicro/h8qgi</p></td>
+<td><p>AMD_FAMILY15</p></td>
+<td><p>2011-07-22</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>supermicro/h8scm</p></td>
+<td><p>AMD_FAMILY15</p></td>
+<td><p>2012-11-30</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>supermicro/x7db8</p></td>
+<td><p>INTEL_I5000</p></td>
+<td><p>2012-06-23</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>thomson/ip1000</p></td>
+<td><p>INTEL_I82830</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>settop</p></td>
+</tr>
+<tr class="row-even"><td><p>tyan/s1846</p></td>
+<td><p>INTEL_I440BX</p></td>
+<td><p>2009-08-26</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>tyan/s8226
+wyse/s50</p></td>
+<td><p>AMD_FAMILY15
+AMD_GEODE_GX2</p></td>
+<td><p>2012-10-04
+2010-05-08</p></td>
+<td><p>server
+settop</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id13">
+<h2><a class="reference internal" href="coreboot-4.6-relnotes.html"><span class="doc">4.6</span></a><a class="headerlink" href="#id13" title="Link to this heading"></a></h2>
+<p>Tag only</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vendor/Board</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>Date added</p></th>
+<th class="head"><p>Brd type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bifferos/bifferboard</p></td>
+<td><p>RDC_R8610</p></td>
+<td><p>2012-03-27</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>google/cosmos</p></td>
+<td><p>MARVELL_BG4CD</p></td>
+<td><p>2015-04-09</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>intel/bakersport_fsp</p></td>
+<td><p>INTEL_FSP_BAYTRAIL</p></td>
+<td><p>2014-08-11</p></td>
+<td><p>eval</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id14">
+<h2><a class="reference internal" href="coreboot-4.5-relnotes.html"><span class="doc">4.5</span></a><a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
+<p>Tag only</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vendor/Board</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>Date added</p></th>
+<th class="head"><p>Brd type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>google/enguarde</p></td>
+<td><p>INTEL_BAYTRAIL</p></td>
+<td><p>2016-09-21</p></td>
+<td><p>laptop</p></td>
+</tr>
+<tr class="row-odd"><td><p>google/falco</p></td>
+<td><p>INTEL_HASWELL</p></td>
+<td><p>2013-11-25</p></td>
+<td><p>laptop</p></td>
+</tr>
+<tr class="row-even"><td><p>google/guado</p></td>
+<td><p>INTEL_BROADWELL</p></td>
+<td><p>2016-01-12</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>google/ninja</p></td>
+<td><p>INTEL_BAYTRAIL</p></td>
+<td><p>2016-05-31</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-even"><td><p>google/panther</p></td>
+<td><p>INTEL_HASWELL</p></td>
+<td><p>2014-07-12</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>google/peppy</p></td>
+<td><p>INTEL_HASWELL</p></td>
+<td><p>2013-11-25</p></td>
+<td><p>laptop</p></td>
+</tr>
+<tr class="row-even"><td><p>google/rikku</p></td>
+<td><p>INTEL_BROADWELL</p></td>
+<td><p>2016-06-16</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-odd"><td><p>google/samus</p></td>
+<td><p>INTEL_BROADWELL</p></td>
+<td><p>2014-08-29</p></td>
+<td><p>laptop</p></td>
+</tr>
+<tr class="row-even"><td><p>google/tidus</p></td>
+<td><p>INTEL_BROADWELL</p></td>
+<td><p>2016-01-21</p></td>
+<td><p>half</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id15">
+<h2><a class="reference internal" href="coreboot-4.4-relnotes.html"><span class="doc">4.4</span></a><a class="headerlink" href="#id15" title="Link to this heading"></a></h2>
+<p>Branch created</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vendor/Board</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>Date added</p></th>
+<th class="head"><p>Brd type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>google/bolt</p></td>
+<td><p>INTEL_HASWELL</p></td>
+<td><p>2013-12-12</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>google/rush</p></td>
+<td><p>NVIDIA_TEGRA132</p></td>
+<td><p>2015-01-26</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>google/rush_ryu</p></td>
+<td><p>NVIDIA_TEGRA132</p></td>
+<td><p>2015-03-05</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>google/slippy</p></td>
+<td><p>INTEL_HASWELL</p></td>
+<td><p>2013-11-24</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-even"><td><p>intel/amenia</p></td>
+<td><p>INTEL_APOLLOLAKE</p></td>
+<td><p>2016-04-20</p></td>
+<td><p>eval</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id16">
+<h2><a class="reference internal" href="coreboot-4.3-relnotes.html"><span class="doc">4.3</span></a><a class="headerlink" href="#id16" title="Link to this heading"></a></h2>
+<p>Branch created</p>
+<ul class="simple">
+<li><p>No platforms maintained on this release</p></li>
+</ul>
+</section>
+<section id="id17">
+<h2><a class="reference internal" href="coreboot-4.2-relnotes.html"><span class="doc">4.2</span></a><a class="headerlink" href="#id17" title="Link to this heading"></a></h2>
+<p>Branch created</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Vendor/Board</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>Date added</p></th>
+<th class="head"><p>Brd type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>arima/hdama</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>digitallogic/adl855pc</p></td>
+<td><p>INTEL_I855</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>half</p></td>
+</tr>
+<tr class="row-even"><td><p>ibm/e325</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>ibm/e326</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>intel/sklrvp</p></td>
+<td><p>INTEL_SKYLAKE</p></td>
+<td><p>2015-07-17</p></td>
+<td><p>eval</p></td>
+</tr>
+<tr class="row-odd"><td><p>iwill/dk8s2</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>iwill/dk8x</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-09</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>newisys/khepri</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-07</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>tyan/s2735</p></td>
+<td><p>INTEL_E7501</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>tyan/s2850</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-09-25</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>tyan/s2875</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-09-25</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>tyan/s2880</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>tyan/s2881</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-09-23</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>tyan/s2882</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>tyan/s2885</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-odd"><td><p>tyan/s2891</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-09-22</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-even"><td><p>tyan/s2892</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-09-22</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>tyan/s2895</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-09-22</p></td>
+<td><p>desktop</p></td>
+</tr>
+<tr class="row-even"><td><p>tyan/s4880</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>server</p></td>
+</tr>
+<tr class="row-odd"><td><p>tyan/s4882</p></td>
+<td><p>AMD_AMDK8</p></td>
+<td><p>2009-10-08</p></td>
+<td><p>server</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id18">
+<h2><a class="reference internal" href="coreboot-4.1-relnotes.html"><span class="doc">4.1</span></a><a class="headerlink" href="#id18" title="Link to this heading"></a></h2>
+<p>Branch Created</p>
+<ul class="simple">
+<li><p>No platforms maintained on this release</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../infrastructure/coverity.html" class="btn btn-neutral float-left" title="Coverity Scan for open source firmware" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-right" title="Release notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

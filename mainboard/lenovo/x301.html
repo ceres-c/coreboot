@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lenovo X301 &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Lenovo T410" href="t410.html" />
+    <link rel="prev" title="Lenovo X200 / T400 / T500 / X301 common" href="montevina_series.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hp">HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#lenovo">Lenovo</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="codenames.html">Mainboard codenames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thinkpad_hmm.html">Hardware Maintenance Manual of ThinkPads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="r60.html">R60</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t4xx_series.html">T4xx common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="x2xx_series.html">X2xx common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vboot.html">vboot</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#gm45-series">GM45 series</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="montevina_series.html">X200 / T400 / T500 / X301 common</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">X301</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#arrandale-series">Arrandale series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#sandy-bridge-series">Sandy Bridge series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#ivy-bridge-series">Ivy Bridge series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#haswell-series">Haswell series</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">Lenovo X301</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/lenovo/x301.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lenovo-x301">
+<h1>Lenovo X301<a class="headerlink" href="#lenovo-x301" title="Link to this heading"></a></h1>
+<section id="disassembly-instructions">
+<h2>Disassembly Instructions<a class="headerlink" href="#disassembly-instructions" title="Link to this heading"></a></h2>
+<p>You must remove the following parts to access the SPI flash:</p>
+<p><img alt="X301 with WSON8 chip replaced with SOIC8 chip" src="../../_images/x301_kb_removed.jpg" /></p>
+<ul class="simple">
+<li><p>Battery pack</p></li>
+<li><p>Keyboard</p></li>
+</ul>
+<p>Its <a class="reference external" href="https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/43y9441.pdf">Hardware Maintenance Manual</a> can be used as a guidance of disassembly.</p>
+<p>The WSON-8 flash chip (surrounded with red circle in the photo above,
+already replaced with a SOIC-8 one) sits under a piece of insulating
+tape. If solders between the chip and soldering pads fortunately
+overflows beside the chip as tiny tin balls attached to soldering pads,
+it will be possible to use a pomona 5250 clip to hold the chip, with
+its metal tips just attached to tin balls, thus connecting the chip to
+the programmer. Otherwise, it may be recommended to replace it with a
+SOIC-8 one (you might need to add the chip to the IFD VSCC list), as
+what is done in the photo.</p>
+<p>The vendor IFD VSCC list contains:</p>
+<ul class="simple">
+<li><p>MACRONIX_MX25L6405 (0xc2, 0x2017)</p></li>
+<li><p>WINBOND_NEX_W25X64 (0xef, 0x3017)</p></li>
+<li><p>ATMEL_AT25DF641 (0x1f, 0x4800)</p></li>
+</ul>
+<p>The general <a class="reference internal" href="../../tutorial/flashing_firmware/ext_power.html"><span class="doc">flashing tutorial</span></a> has more details.</p>
+<p>Tested:</p>
+<ul class="simple">
+<li><p>Core 2 Duo U9400 CPU</p></li>
+<li><p>Slotted DIMM 4GiB*2 from Samsung</p></li>
+<li><p>Camera</p></li>
+<li><p>PCI-e slots</p></li>
+<li><p>SATA and USB2</p></li>
+<li><p>libgfxinit-based graphics init</p></li>
+<li><p>NVRAM options for North and South bridges</p></li>
+<li><p>Sound</p></li>
+<li><p>ThinkPad EC</p></li>
+<li><p>S3</p></li>
+<li><p>Linux 4.19.67-2 within Debian GNU/Linux stable, loaded from
+Linux payload (Heads) and SeaBIOS.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="montevina_series.html" class="btn btn-neutral float-left" title="Lenovo X200 / T400 / T500 / X301 common" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="t410.html" class="btn btn-neutral float-right" title="Lenovo T410" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

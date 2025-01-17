@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coreboot 4.10 release notes &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="coreboot 4.9 release notes" href="coreboot-4.9-relnotes.html" />
+    <link rel="prev" title="coreboot 4.11" href="coreboot-4.11-relnotes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#upcoming-release">Upcoming release</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#previous-releases">Previous releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.22-relnotes.html">4.22 - November 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.21-relnotes.html">4.21   - August 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.20.1-relnotes.html">4.20.1 - May 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.19-relnotes.html">4.19   - January 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.18-relnotes.html">4.18   - October 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.17-relnotes.html">4.17   - May 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.16-relnotes.html">4.16   - February 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.15-relnotes.html">4.15   - November 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.14-relnotes.html">4.14   - May 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.13-relnotes.html">4.13   - November 2020</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.12-relnotes.html">4.12   - May 2020</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.11-relnotes.html">4.11   - November 2019</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.10   - July 2019</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#what-s-new">What’s New</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clean-up">Clean Up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#release-notes-maintenance">Release Notes maintenance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deprecations">Deprecations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#added-28-mainboards">Added 28 mainboards:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#removed-7-mainboards">Removed 7 mainboards:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#removed-3-processors">Removed 3 processors:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#added-2-socs">Added 2 socs:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#toolchain">Toolchain</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.9-relnotes.html">4.9    - December 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.8.1-relnotes.html">4.8.1  - May 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.7-relnotes.html">4.7    - January 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.6-relnotes.html">4.6    - April 2017</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.5-relnotes.html">4.5    - October 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.4-relnotes.html">4.4    - May 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.3-relnotes.html">4.3    - January 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.2-relnotes.html">4.2    - October 2015</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.1-relnotes.html">4.1    - July 2015</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Release notes</a></li>
+      <li class="breadcrumb-item active">coreboot 4.10 release notes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/releases/coreboot-4.10-relnotes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coreboot-4-10-release-notes">
+<h1>coreboot 4.10 release notes<a class="headerlink" href="#coreboot-4-10-release-notes" title="Link to this heading"></a></h1>
+<p>The 4.10 release covers commit a2faaa9a2 to commit ae317695e3
+There is a pgp signed 4.10 tag in the git repository, and a branch will
+be created as needed.</p>
+<p>In nearly 8 months since 4.9 we had 198 authors commit 2538 changes
+to master.  Of these, 85 authors made their first commit to coreboot:
+Welcome!</p>
+<p>Between the releases the tree grew by about 11000 lines of code plus
+5000 lines of comments.</p>
+<p>Again, a big Thank You to all contributors who helped shape the coreboot
+project, community and code with their effort, no matter if through
+development, review, testing, documentation or by helping people asking
+questions on our venues like IRC or our mailing list.</p>
+<section id="what-s-new">
+<h2>What’s New<a class="headerlink" href="#what-s-new" title="Link to this heading"></a></h2>
+<p>Most of the changes were to mainboards, and on the chipset side, lots
+of activity concentrated on x86. However compared to previous releases
+activity (and therefore interest, probably) increased in vboot and in
+non-x86 architectures. However it’s harder this time to give this release
+a single topic like the last: This release accumulates some of everything.</p>
+</section>
+<section id="clean-up">
+<h2>Clean Up<a class="headerlink" href="#clean-up" title="Link to this heading"></a></h2>
+<p>As usual, there was a lot of cleaning up going on, and there notably,
+a good chunk of this year’s Google Summer of Code project to clean out
+the issues reported by Coverity Scan is already in.</p>
+<p>The only larger scale change that was registered in the pre-release
+notes was also about cleaning up the tree:</p>
+<section id="device-t-is-no-more">
+<h3><code class="docutils literal notranslate"><span class="pre">device_t</span></code> is no more<a class="headerlink" href="#device-t-is-no-more" title="Link to this heading"></a></h3>
+<p>coreboot used to have a data type, <code class="docutils literal notranslate"><span class="pre">device_t</span></code> that changed shape depending on
+whether it is compiled for romstage (with limited memory) or ramstage (with
+unlimited memory as far as coreboot is concerned). It’s an old relic from the
+time when romstage wasn’t operated in Cache-As-RAM mode, but compiled with
+our romcc compiler.</p>
+<p>That data type is now gone.</p>
+</section>
+</section>
+<section id="release-notes-maintenance">
+<h2>Release Notes maintenance<a class="headerlink" href="#release-notes-maintenance" title="Link to this heading"></a></h2>
+<p>Speaking of pre-release notes: After 4.10 we’ll start a document for
+4.11 in the git repository. Feel free to add notable achievements there
+so we remember to give them a shout out in the next release’s notes.</p>
+</section>
+<section id="known-issues">
+<h2>Known Issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<p>Sadly, Google Cyan is broken in this release. It doesn’t work with the
+“C environment” bootblock (as compared to the old romcc type bootblock)
+which is now the default. Sadly it doesn’t help to simply revert that
+change because doing so breaks other boards.</p>
+<p>If you want to use Google Cyan with the release (or if
+you’re tracking the master branch), please keep an eye on
+https://review.coreboot.org/c/coreboot/+/34304 where a solution for this
+issue is sought.</p>
+</section>
+<section id="deprecations">
+<h2>Deprecations<a class="headerlink" href="#deprecations" title="Link to this heading"></a></h2>
+<p>As announced in the 4.9 release notes, there are no deprecations after 4.10.
+While 4.10 is also released late and we target a 4.11 release in October we
+nonetheless want to announce deprecations this time: These are under
+discussion since January, people are working on mitigations for about as long
+and so it should be possible to resolve the outstanding issues by the end of
+October.</p>
+<p>Specifically, we want to require code to work with the following Kconfig
+options so we can remove the options and the code they disable:</p>
+<ul class="simple">
+<li><p>C_ENVIRONMENT_BOOTBLOCK</p></li>
+<li><p>NO_CAR_GLOBAL_MIGRATION</p></li>
+<li><p>RELOCATABLE_RAMSTAGE</p></li>
+</ul>
+<p>These only affect x86. If your platform only works without them, please
+look into fixing that.</p>
+</section>
+<section id="added-28-mainboards">
+<h2>Added 28 mainboards:<a class="headerlink" href="#added-28-mainboards" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>ASROCK H110M-DVS</p></li>
+<li><p>ASUS H61M-CS</p></li>
+<li><p>ASUS P5G41T-M-LX</p></li>
+<li><p>ASUS P5QPL-AM</p></li>
+<li><p>ASUS P8Z77-M-PRO</p></li>
+<li><p>FACEBOOK FBG1701</p></li>
+<li><p>FOXCONN G41M</p></li>
+<li><p>GIGABYTE GA-H61MA-D3V</p></li>
+<li><p>GOOGLE BLOOG</p></li>
+<li><p>GOOGLE FLAPJACK</p></li>
+<li><p>GOOGLE GARG</p></li>
+<li><p>GOOGLE HATCH-WHL</p></li>
+<li><p>GOOGLE HELIOS</p></li>
+<li><p>GOOGLE KINDRED</p></li>
+<li><p>GOOGLE KODAMA</p></li>
+<li><p>GOOGLE KOHAKU</p></li>
+<li><p>GOOGLE KRANE</p></li>
+<li><p>GOOGLE MISTRAL</p></li>
+<li><p>HP COMPAQ-8200-ELITE-SFF-PC</p></li>
+<li><p>INTEL COMETLAKE-RVP</p></li>
+<li><p>INTEL KBLRVP11</p></li>
+<li><p>LENOVO R500</p></li>
+<li><p>LENOVO X1</p></li>
+<li><p>MSI MS7707</p></li>
+<li><p>PORTWELL M107</p></li>
+<li><p>PURISM LIBREM13-V4</p></li>
+<li><p>PURISM LIBREM15-V4</p></li>
+<li><p>SUPERMICRO X10SLM-PLUS-F</p></li>
+<li><p>UP SQUARED</p></li>
+</ul>
+</section>
+<section id="removed-7-mainboards">
+<h2>Removed 7 mainboards:<a class="headerlink" href="#removed-7-mainboards" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>GOOGLE BIP</p></li>
+<li><p>GOOGLE DELAN</p></li>
+<li><p>GOOGLE ROWAN</p></li>
+<li><p>PCENGINES ALIX1C</p></li>
+<li><p>PCENGINES ALIX2C</p></li>
+<li><p>PCENGINES ALIX2D</p></li>
+<li><p>PCENGINES ALIX6</p></li>
+</ul>
+</section>
+<section id="removed-3-processors">
+<h2>Removed 3 processors:<a class="headerlink" href="#removed-3-processors" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>src/cpu/amd/geode_lx</p></li>
+<li><p>src/cpu/intel/model_69x</p></li>
+<li><p>src/cpu/intel/model_6dx</p></li>
+</ul>
+</section>
+<section id="added-2-socs">
+<h2>Added 2 socs:<a class="headerlink" href="#added-2-socs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>src/soc/amd/picasso</p></li>
+<li><p>src/soc/qualcomm/qcs405</p></li>
+</ul>
+</section>
+<section id="toolchain">
+<h2>Toolchain<a class="headerlink" href="#toolchain" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Update to gcc 8.3.0, binutils 2.32, IASL 20190509, clang 8</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="coreboot-4.11-relnotes.html" class="btn btn-neutral float-left" title="coreboot 4.11" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="coreboot-4.9-relnotes.html" class="btn btn-neutral float-right" title="coreboot 4.9 release notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

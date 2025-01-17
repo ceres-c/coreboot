@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Squared &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Payload-specific documentation" href="../../../lib/payloads/index.html" />
+    <link rel="prev" title="Beaglebone Black" href="../../ti/beaglebone-black.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#hp">HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#up">UP</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Squared</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mainboard-components">Mainboard components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-and-flashing-coreboot">Building and flashing coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#board-status">Board status</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">Squared</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/mainboard/up/squared/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="squared">
+<h1>Squared<a class="headerlink" href="#squared" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<section id="top">
+<h3>Top<a class="headerlink" href="#top" title="Link to this heading"></a></h3>
+<p><img alt="../../../_images/top.jpg" src="../../../_images/top.jpg" /></p>
+</section>
+<section id="bottom">
+<h3>Bottom<a class="headerlink" href="#bottom" title="Link to this heading"></a></h3>
+<p><img alt="../../../_images/bottom.jpg" src="../../../_images/bottom.jpg" /></p>
+<ul class="simple">
+<li><p><strong>Legend</strong></p>
+<ul>
+<li><p><a class="reference external" href="#uart0-cn16">BLUE</a>: UART0 / USB connector</p></li>
+<li><p><a class="reference external" href="#uart1-gpio-header">GREEN</a>: UART1 / GPIO header</p></li>
+<li><p><a class="reference external" href="#using-the-spi-header">RED</a>: SPI header</p></li>
+<li><p>YELLOW: Indicates pin 1</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="mainboard-components">
+<h2>Mainboard components<a class="headerlink" href="#mainboard-components" title="Link to this heading"></a></h2>
+<section id="platform">
+<h3>Platform<a class="headerlink" href="#platform" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>CPU</p></td>
+<td><p>Intel Atom, Celeron, Pentium</p></td>
+</tr>
+<tr class="row-even"><td><p>PCH</p></td>
+<td><p>Intel Apollo Lake</p></td>
+</tr>
+<tr class="row-odd"><td><p>EC / Super IO</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>Coprocessor</p></td>
+<td><p>Intel TXE 3.0</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="flash-chip">
+<h3>Flash chip<a class="headerlink" href="#flash-chip" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Socketed flash</p></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-odd"><td><p>Vendor</p></td>
+<td><p>Winbond</p></td>
+</tr>
+<tr class="row-even"><td><p>Model</p></td>
+<td><p>W25Q128FW</p></td>
+</tr>
+<tr class="row-odd"><td><p>Voltage</p></td>
+<td><p>1.8V</p></td>
+</tr>
+<tr class="row-even"><td><p>Size</p></td>
+<td><p>16 MiB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>SOIC-8</p></td>
+</tr>
+<tr class="row-even"><td><p>Write protection</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Internal flashing</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>In circuit flashing</p></td>
+<td><p>Yes</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="debugging">
+<h3>Debugging<a class="headerlink" href="#debugging" title="Link to this heading"></a></h3>
+<section id="uart0-cn16">
+<h4>UART0 (CN16)<a class="headerlink" href="#uart0-cn16" title="Link to this heading"></a></h4>
+<p>This connector is located on the <strong>bottom</strong> side (see <a class="reference external" href="#bottom">here</a>).
+<img alt="../../../_images/header_cn16_10pin_uart0.svg" src="../../../_images/header_cn16_10pin_uart0.svg" /></p>
+</section>
+<section id="uart1-gpio-header">
+<h4>UART1 (GPIO header)<a class="headerlink" href="#uart1-gpio-header" title="Link to this heading"></a></h4>
+<p>The GPIO header is located on the <strong>bottom</strong> side (see <a class="reference external" href="#bottom">here</a>).
+<img alt="../../../_images/header_40pin_gpio_uart1.svg" src="../../../_images/header_40pin_gpio_uart1.svg" /></p>
+</section>
+</section>
+</section>
+<section id="building-and-flashing-coreboot">
+<h2>Building and flashing coreboot<a class="headerlink" href="#building-and-flashing-coreboot" title="Link to this heading"></a></h2>
+<section id="using-the-spi-header">
+<h3>Using the SPI header<a class="headerlink" href="#using-the-spi-header" title="Link to this heading"></a></h3>
+<p>The SPI header is located on the <strong>bottom</strong> side (see <a class="reference external" href="#bottom">here</a>).
+<img alt="../../../_images/header_cn22_12pin_spi.svg" src="../../../_images/header_cn22_12pin_spi.svg" /></p>
+</section>
+<section id="preparations">
+<h3>Preparations<a class="headerlink" href="#preparations" title="Link to this heading"></a></h3>
+<p>In order to build coreboot, it’s necessary to extract some files from the vendor firmware. Make sure that you have a fully working dump.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>upsquared<span class="o">]</span>$<span class="w"> </span>ls
+firmware_vendor.rom
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>upsquared<span class="o">]</span>$<span class="w"> </span>mkdir<span class="w"> </span>extracted<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>extracted
+<span class="o">[</span>extracted<span class="o">]</span>$<span class="w"> </span>ifdtool<span class="w"> </span>-x<span class="w"> </span>../firmware_vendor.rom
+File<span class="w"> </span>../firmware_vendor.rom<span class="w"> </span>is<span class="w"> </span><span class="m">16777216</span><span class="w"> </span>bytes
+Peculiar<span class="w"> </span>firmware<span class="w"> </span>descriptor,<span class="w"> </span>assuming<span class="w"> </span>Ibex<span class="w"> </span>Peak<span class="w"> </span>compatibility.
+<span class="w">  </span>Flash<span class="w"> </span>Region<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>Flash<span class="w"> </span>Descriptor<span class="o">)</span>:<span class="w"> </span><span class="m">00000000</span><span class="w"> </span>-<span class="w"> </span>00000fff
+<span class="w">  </span>Flash<span class="w"> </span>Region<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>BIOS<span class="o">)</span>:<span class="w"> </span><span class="m">00001000</span><span class="w"> </span>-<span class="w"> </span>00efefff
+<span class="w">  </span>Flash<span class="w"> </span>Region<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">(</span>Intel<span class="w"> </span>ME<span class="o">)</span>:<span class="w"> </span>07fff000<span class="w"> </span>-<span class="w"> </span>00000fff<span class="w"> </span><span class="o">(</span>unused<span class="o">)</span>
+<span class="w">  </span>Flash<span class="w"> </span>Region<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">(</span>GbE<span class="o">)</span>:<span class="w"> </span>07fff000<span class="w"> </span>-<span class="w"> </span>00000fff<span class="w"> </span><span class="o">(</span>unused<span class="o">)</span>
+<span class="w">  </span>Flash<span class="w"> </span>Region<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">(</span>Platform<span class="w"> </span>Data<span class="o">)</span>:<span class="w"> </span>07fff000<span class="w"> </span>-<span class="w"> </span>00000fff<span class="w"> </span><span class="o">(</span>unused<span class="o">)</span>
+<span class="w">  </span>Flash<span class="w"> </span>Region<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="o">(</span>Reserved<span class="o">)</span>:<span class="w"> </span>00eff000<span class="w"> </span>-<span class="w"> </span>00ffefff
+<span class="w">  </span>Flash<span class="w"> </span>Region<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="o">(</span>Reserved<span class="o">)</span>:<span class="w"> </span>07fff000<span class="w"> </span>-<span class="w"> </span>00000fff<span class="w"> </span><span class="o">(</span>unused<span class="o">)</span>
+<span class="w">  </span>Flash<span class="w"> </span>Region<span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="o">(</span>Reserved<span class="o">)</span>:<span class="w"> </span>07fff000<span class="w"> </span>-<span class="w"> </span>00000fff<span class="w"> </span><span class="o">(</span>unused<span class="o">)</span>
+<span class="w">  </span>Flash<span class="w"> </span>Region<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="o">(</span>EC<span class="o">)</span>:<span class="w"> </span>07fff000<span class="w"> </span>-<span class="w"> </span>00000fff<span class="w"> </span><span class="o">(</span>unused<span class="o">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flashregion_0_flashdescriptor.bin
+flashregion_1_bios.bin
+flashregion_5_reserved.bin
+</pre></div>
+</div>
+</section>
+<section id="clean-up">
+<h3>Clean up<a class="headerlink" href="#clean-up" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>make<span class="w"> </span>distclean
+</pre></div>
+</div>
+</section>
+<section id="configuring">
+<h3>Configuring<a class="headerlink" href="#configuring" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>touch<span class="w"> </span>.config
+<span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>./util/scripts/config<span class="w"> </span>--enable<span class="w"> </span>VENDOR_UP
+<span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>./util/scripts/config<span class="w"> </span>--enable<span class="w"> </span>BOARD_UP_SQUARED
+<span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>./util/scripts/config<span class="w"> </span>--enable<span class="w"> </span>NEED_IFWI
+<span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>./util/scripts/config<span class="w"> </span>--enable<span class="w"> </span>HAVE_IFD_BIN
+<span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>./util/scripts/config<span class="w"> </span>--set-str<span class="w"> </span>IFWI_FILE_NAME<span class="w"> </span><span class="s2">&quot;&lt;flashregion_1_bios.bin&gt;&quot;</span>
+<span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>./util/scripts/config<span class="w"> </span>--set-str<span class="w"> </span>IFD_BIN_PATH<span class="w"> </span><span class="s2">&quot;&lt;flashregion_0_flashdescriptor.bin&gt;&quot;</span>
+<span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>make<span class="w"> </span>olddefconfig
+</pre></div>
+</div>
+</section>
+<section id="red-unlock">
+<h3>Red Unlock<a class="headerlink" href="#red-unlock" title="Link to this heading"></a></h3>
+<p>If you want to red unlock the CPU at boot and execute code at ramstage (see <code class="docutils literal notranslate"><span class="pre">mainboard/up/squared/red_unlock.c</span></code>),
+you can enable the RED_UNLOCK option. Note the IFWI file you configured above must be coming from a
+<a class="reference external" href="https://libmicro.dev/about.html">red unlocked firmware</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>./util/scripts/config<span class="w"> </span>--enable<span class="w"> </span>RED_UNLOCK
+<span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>./util/scripts/config<span class="w"> </span>--disable<span class="w"> </span><span class="s2">&quot;DEFAULT_CONSOLE_LOGLEVEL_</span><span class="k">$(</span>./util/scripts/config<span class="w"> </span>--state<span class="w"> </span>DEFAULT_CONSOLE_LOGLEVEL<span class="k">)</span><span class="s2">&quot;</span>
+<span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>./util/scripts/config<span class="w"> </span>--enable<span class="w"> </span>DEFAULT_CONSOLE_LOGLEVEL_0
+<span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>make<span class="w"> </span>olddefconfig
+</pre></div>
+</div>
+</section>
+<section id="building">
+<h3>Building<a class="headerlink" href="#building" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>make
+</pre></div>
+</div>
+<p>Now you should have a working and ready to use coreboot build at <code class="docutils literal notranslate"><span class="pre">build/coreboot.rom</span></code>.</p>
+</section>
+<section id="flashing">
+<h3>Flashing<a class="headerlink" href="#flashing" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>coreboot<span class="o">]</span>$<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>&lt;your_programmer&gt;<span class="w"> </span>-w<span class="w"> </span>build/coreboot.rom
+</pre></div>
+</div>
+</section>
+</section>
+<section id="board-status">
+<h2>Board status<a class="headerlink" href="#board-status" title="Link to this heading"></a></h2>
+<section id="working">
+<h3>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>bootblock, romstage, ramstage</p></li>
+<li><p>Serial console UART0, UART1</p></li>
+<li><p>SPI flash console</p></li>
+<li><p>iGPU init with libgfxinit</p></li>
+<li><p>LAN1, LAN2</p></li>
+<li><p>USB2, USB3</p></li>
+<li><p>HDMI, DisplayPort</p></li>
+<li><p>eMMC</p></li>
+<li><p>flashing with flashrom externally</p></li>
+</ul>
+</section>
+<section id="work-in-progress">
+<h3>Work in progress<a class="headerlink" href="#work-in-progress" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Documentation</p></li>
+<li><p>ACPI</p></li>
+</ul>
+</section>
+<section id="not-working-known-issues">
+<h3>Not working / Known issues<a class="headerlink" href="#not-working-known-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Generally SeaBIOS works, but it can’t find the CBFS region and therefore it can’t load seavgabios. This is because of changes at the Apollolake platform.</p></li>
+</ul>
+</section>
+<section id="untested">
+<h3>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>GPIO pin header</p></li>
+<li><p>60 pin EXHAT</p></li>
+<li><p>Camera interface</p>
+<ul>
+<li><p>MIPI-CSI2 2-lane (2MP)</p></li>
+<li><p>MIPI-CSI2 4-lane (8MP)</p></li>
+</ul>
+</li>
+<li><p>SATA3</p></li>
+<li><p>USB3 OTG</p></li>
+<li><p>embedded DisplayPort</p></li>
+<li><p>M.2 slot</p></li>
+<li><p>mini PCIe</p></li>
+<li><p>flashing with flashrom internally using Linux</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../ti/beaglebone-black.html" class="btn btn-neutral float-left" title="Beaglebone Black" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../lib/payloads/index.html" class="btn btn-neutral float-right" title="Payload-specific documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

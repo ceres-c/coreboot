@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flattened uImage Tree documentation &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Library-specific documentation" href="../index.html" />
+    <link rel="prev" title="Payload-specific documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Payloads</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#fit">FIT</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">uImage.FIT support</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#supported-architectures">Supported architectures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#supported-fit-sections">Supported FIT sections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#architecture-specifics">Architecture specifics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#supported-compression">Supported compression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compat-string">Compat string</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-fit-image">Building FIT image</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Payload-specific documentation</a></li>
+      <li class="breadcrumb-item active">Flattened uImage Tree documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/lib/payloads/fit.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="flattened-uimage-tree-documentation">
+<h1>Flattened uImage Tree documentation<a class="headerlink" href="#flattened-uimage-tree-documentation" title="Link to this heading"></a></h1>
+<p><a class="reference external" href="https://github.com/u-boot/u-boot/blob/master/doc/usage/fit/howto.rst">uImage.FIT</a> is the new format used for uImage payloads developed by
+<a class="reference external" href="https://www.denx.de/wiki/U-Boot">U-boot</a>.</p>
+<section id="supported-architectures">
+<h2>Supported architectures<a class="headerlink" href="#supported-architectures" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>aarch32</p></li>
+<li><p>aarch64</p></li>
+<li><p>riscv</p></li>
+</ul>
+</section>
+<section id="supported-fit-sections">
+<h2>Supported FIT sections<a class="headerlink" href="#supported-fit-sections" title="Link to this heading"></a></h2>
+<p>The FIT can contain multiple sections, each holding a unique
+kernel, initrd or config. Out of the sections one kernel and
+one initrd is chosen, depending on the matching config.</p>
+<p>The config is selected depending on the compat string.</p>
+<p>The section must be named in order to be found by the FIT parser:</p>
+<ul class="simple">
+<li><p>kernel</p></li>
+<li><p>fdt</p></li>
+<li><p>ramdisk</p></li>
+</ul>
+</section>
+<section id="architecture-specifics">
+<h2>Architecture specifics<a class="headerlink" href="#architecture-specifics" title="Link to this heading"></a></h2>
+<p>The FIT parser needs architecture support.</p>
+<section id="aarch32">
+<h3>aarch32<a class="headerlink" href="#aarch32" title="Link to this heading"></a></h3>
+<p>The source code can be found in <code class="docutils literal notranslate"><span class="pre">src/arch/arm/fit_payload.c</span></code>.</p>
+<p>On aarch32 the kernel (a section named ‘kernel’) must be in <strong>Image</strong>
+format and it needs a devicetree (a section named ‘fdt’) to boot.
+The kernel will be placed close to “<em>DRAMSTART</em>”.</p>
+</section>
+<section id="aarch64">
+<h3>aarch64<a class="headerlink" href="#aarch64" title="Link to this heading"></a></h3>
+<p>The source code can be found in <code class="docutils literal notranslate"><span class="pre">src/arch/arm64/fit_payload.c</span></code>.</p>
+<p>On aarch64 the kernel (a section named ‘kernel’) must be in <strong>Image</strong>
+format and it needs a devicetree (a section named ‘fdt’) to boot.
+The kernel will be placed close to “<em>DRAMSTART</em>”.</p>
+</section>
+<section id="risc-v">
+<h3>RISC-V<a class="headerlink" href="#risc-v" title="Link to this heading"></a></h3>
+<p>The source code can be found in <code class="docutils literal notranslate"><span class="pre">src/arch/riscv/fit_payload.c</span></code>.</p>
+<p>On RISC-V the kernel (a section named ‘kernel’) must be in <strong>Image</strong>
+format and it needs a devicetree (a section named ‘fdt’) to boot.
+The kernel will be placed close to “<em>DRAMSTART</em>”.</p>
+</section>
+<section id="other">
+<h3>Other<a class="headerlink" href="#other" title="Link to this heading"></a></h3>
+<p>Other architectures aren’t supported.</p>
+</section>
+</section>
+<section id="supported-compression">
+<h2>Supported compression<a class="headerlink" href="#supported-compression" title="Link to this heading"></a></h2>
+<p>The FIT image has to be included uncompressed into the CBFS. The sections
+inside the FIT image can use different compression schemes.</p>
+<p>Supported compression algorithms:</p>
+<ul class="simple">
+<li><p>LZMA</p></li>
+<li><p>LZ4</p></li>
+<li><p>none</p></li>
+</ul>
+</section>
+<section id="compat-string">
+<h2>Compat string<a class="headerlink" href="#compat-string" title="Link to this heading"></a></h2>
+<p>The config entries contain a compatible string, that is used to find a
+matching config.</p>
+<p>The following mainboard specific functions provide the BOARDID and SKUID:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint32_t</span><span class="w"> </span><span class="nf">board_id</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint32_t</span><span class="w"> </span><span class="nf">sku_id</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>By default the following compat strings are added:</p>
+<ul class="simple">
+<li><p><em>CONFIG_MAINBOARD_VENDOR</em>,<em>CONFIG_MAINBOARD_PART_NUMBER</em></p></li>
+<li><p><em>CONFIG_MAINBOARD_VENDOR</em>,<em>CONFIG_MAINBOARD_PART_NUMBER</em>-rev<em>BOARDID</em></p></li>
+<li><p><em>CONFIG_MAINBOARD_VENDOR</em>,<em>CONFIG_MAINBOARD_PART_NUMBER</em>-rev<em>BOARDID</em>-sku<em>SKUID</em></p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cavium</span><span class="p">,</span><span class="n">cn8100_sff_evb</span>
+</pre></div>
+</div>
+<p>If <em>board_id()</em> or <em>sku_id()</em> return invalid, the single comapt string isn’t added.</p>
+<p>You can add custom compat strings by calling:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">fit_add_compat_string</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">str</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If no matching compat string is found, the default config is chosen.</p>
+</section>
+<section id="building-fit-image">
+<h2>Building FIT image<a class="headerlink" href="#building-fit-image" title="Link to this heading"></a></h2>
+<p>The FIT image has to be built by calling <code class="docutils literal notranslate"><span class="pre">mkimage</span></code>. You can use
+the following example configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span>
+ <span class="o">*</span> <span class="n">Simple</span> <span class="n">U</span><span class="o">-</span><span class="n">Boot</span> <span class="n">uImage</span> <span class="n">source</span> <span class="n">file</span> <span class="n">containing</span> <span class="n">a</span> <span class="n">single</span> <span class="n">kernel</span> <span class="ow">and</span> <span class="n">FDT</span> <span class="n">blob</span>
+ <span class="o">*/</span>
+
+<span class="o">/</span><span class="n">dts</span><span class="o">-</span><span class="n">v1</span><span class="o">/</span><span class="p">;</span>
+
+<span class="o">/</span> <span class="p">{</span>
+	<span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Simple image with single Linux kernel and FDT blob&quot;</span><span class="p">;</span>
+	<span class="c1">#address-cells = &lt;1&gt;;</span>
+
+	<span class="n">images</span> <span class="p">{</span>
+		<span class="n">kernel</span> <span class="p">{</span>
+			<span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Vanilla Linux kernel&quot;</span><span class="p">;</span>
+			<span class="n">data</span> <span class="o">=</span> <span class="o">/</span><span class="n">incbin</span><span class="o">/</span><span class="p">(</span><span class="s2">&quot;Image.lzma&quot;</span><span class="p">);</span>
+			<span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;kernel&quot;</span><span class="p">;</span>
+			<span class="n">arch</span> <span class="o">=</span> <span class="s2">&quot;arm64&quot;</span><span class="p">;</span>
+			<span class="n">os</span> <span class="o">=</span> <span class="s2">&quot;linux&quot;</span><span class="p">;</span>
+			<span class="n">compression</span> <span class="o">=</span> <span class="s2">&quot;lzma&quot;</span><span class="p">;</span>
+			<span class="n">load</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mh">0x80000</span><span class="o">&gt;</span><span class="p">;</span>
+			<span class="n">entry</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mh">0x80000</span><span class="o">&gt;</span><span class="p">;</span>
+			<span class="nb">hash</span><span class="o">-</span><span class="mi">1</span> <span class="p">{</span>
+				<span class="n">algo</span> <span class="o">=</span> <span class="s2">&quot;crc32&quot;</span><span class="p">;</span>
+			<span class="p">};</span>
+		<span class="p">};</span>
+		<span class="n">fdt</span><span class="o">-</span><span class="mi">1</span> <span class="p">{</span>
+			<span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Flattened Device Tree blob&quot;</span><span class="p">;</span>
+			<span class="n">data</span> <span class="o">=</span> <span class="o">/</span><span class="n">incbin</span><span class="o">/</span><span class="p">(</span><span class="s2">&quot;target.dtb&quot;</span><span class="p">);</span>
+			<span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;flat_dt&quot;</span><span class="p">;</span>
+			<span class="n">arch</span> <span class="o">=</span> <span class="s2">&quot;arm64&quot;</span><span class="p">;</span>
+			<span class="n">compression</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">;</span>
+			<span class="nb">hash</span><span class="o">-</span><span class="mi">1</span> <span class="p">{</span>
+				<span class="n">algo</span> <span class="o">=</span> <span class="s2">&quot;crc32&quot;</span><span class="p">;</span>
+			<span class="p">};</span>
+		<span class="p">};</span>
+		<span class="n">ramdisk</span><span class="o">-</span><span class="mi">1</span> <span class="p">{</span>
+			<span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Compressed Initramfs&quot;</span><span class="p">;</span>
+			<span class="n">data</span> <span class="o">=</span> <span class="o">/</span><span class="n">incbin</span><span class="o">/</span><span class="p">(</span><span class="s2">&quot;initramfs.cpio.xz&quot;</span><span class="p">);</span>
+			<span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;ramdisk&quot;</span><span class="p">;</span>
+			<span class="n">arch</span> <span class="o">=</span> <span class="s2">&quot;arm64&quot;</span><span class="p">;</span>
+			<span class="n">os</span> <span class="o">=</span> <span class="s2">&quot;linux&quot;</span><span class="p">;</span>
+			<span class="n">compression</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">;</span>
+			<span class="n">load</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">00000000</span><span class="o">&gt;</span><span class="p">;</span>
+			<span class="n">entry</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">00000000</span><span class="o">&gt;</span><span class="p">;</span>
+			<span class="nb">hash</span><span class="o">-</span><span class="mi">1</span> <span class="p">{</span>
+				<span class="n">algo</span> <span class="o">=</span> <span class="s2">&quot;sha1&quot;</span><span class="p">;</span>
+			<span class="p">};</span>
+		<span class="p">};</span>
+	<span class="p">};</span>
+
+	<span class="n">configurations</span> <span class="p">{</span>
+		<span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;conf-1&quot;</span><span class="p">;</span>
+		<span class="n">conf</span><span class="o">-</span><span class="mi">1</span> <span class="p">{</span>
+			<span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Boot Linux kernel with FDT blob&quot;</span><span class="p">;</span>
+			<span class="n">kernel</span> <span class="o">=</span> <span class="s2">&quot;kernel&quot;</span><span class="p">;</span>
+			<span class="n">fdt</span> <span class="o">=</span> <span class="s2">&quot;fdt-1&quot;</span><span class="p">;</span>
+			<span class="n">ramdisk</span> <span class="o">=</span> <span class="s2">&quot;ramdisk-1&quot;</span><span class="p">;</span>
+		<span class="p">};</span>
+	<span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Save it as ITS file <code class="docutils literal notranslate"><span class="pre">config.its</span></code> along with the other files defined here:</p>
+<ul class="simple">
+<li><p>target.dtb</p></li>
+<li><p>initramfs.cpio.xz</p></li>
+<li><p>Image.lzma</p></li>
+</ul>
+<p>Generate the <code class="docutils literal notranslate"><span class="pre">uImage</span></code> that will be included into the CBFS by calling</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkimage<span class="w"> </span>-f<span class="w"> </span>config.its<span class="w"> </span>uImage
+</pre></div>
+</div>
+<p>The generated file includes a compressed initrd <strong>initramfs.cpio.xz</strong>, which
+will be decompressed by the Linux kernel, a compressed kernel <strong>Image.lzma</strong>,
+which will be decompressed by the FIT loader and an uncompressed devicetree blob.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Payload-specific documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral float-right" title="Library-specific documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

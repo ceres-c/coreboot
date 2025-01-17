@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Address Sanitizer &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="coreboot Console" href="console.html" />
+    <link rel="prev" title="Unit Test Code Coverage" href="2021-05-code-coverage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Technotes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2017-02-dealing-with-untrusted-input-in-smm.html">Dealing with Untrusted Input in SMM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2015-11-rebuilding-coreboot-image-generation.html">Rebuilding coreboot image generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2020-03-unit-testing-coreboot.html">Unit testing coreboot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-05-code-coverage.html">Unit Test Code Coverage</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Address Sanitizer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#types-of-errors-detected">Types of errors detected</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#stack-buffer-overflow">Stack buffer overflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#global-buffer-overflow">Global buffer overflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-after-scope">Use after scope</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#using-asan">Using ASan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#supported-platforms">Supported platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#future-work">Future work</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#heap-buffer-overflow">Heap buffer overflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asan-on-other-architectures">ASan on other architectures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#post-processing-script">Post-processing script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="console.html">coreboot Consoles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Technotes</a></li>
+      <li class="breadcrumb-item active">Address Sanitizer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technotes/asan.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="address-sanitizer">
+<h1>Address Sanitizer<a class="headerlink" href="#address-sanitizer" title="Link to this heading"></a></h1>
+<p>Memory safety is hard to achieve. We, as humans, are bound to make mistakes in
+our code. While it may be straightforward to detect memory corruption bugs in
+few lines of code, it becomes quite challenging to find those bugs in a massive
+code. In such cases, ‘Address Sanitizer’ may prove to be useful and could help
+save time.</p>
+<p><a class="reference external" href="https://github.com/google/sanitizers/wiki/AddressSanitizer">Address Sanitizer</a>
+, also known as ASan, is a runtime memory debugger designed to find
+out-of-bounds accesses and use-after-scope bugs. coreboot has an in-built
+Address Sanitizer. Therefore, it is advised to take advantage of this debugging
+tool while working on large patches. This would further help to ensure code
+quality and make runtime code more robust.</p>
+<section id="types-of-errors-detected">
+<h2>Types of errors detected<a class="headerlink" href="#types-of-errors-detected" title="Link to this heading"></a></h2>
+<p>ASan in coreboot catches the following types of memory bugs:</p>
+<section id="stack-buffer-overflow">
+<h3>Stack buffer overflow<a class="headerlink" href="#stack-buffer-overflow" title="Link to this heading"></a></h3>
+<p>Example stack-out-of-bounds:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">stack_array</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">		</span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stack_array</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, the array is of length 5 but it is being read even beyond the
+index 4.</p>
+</section>
+<section id="global-buffer-overflow">
+<h3>Global buffer overflow<a class="headerlink" href="#global-buffer-overflow" title="Link to this heading"></a></h3>
+<p>Example global-out-of-bounds:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="n">a</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;I use coreboot&quot;</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">b</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;proprietary BIOS&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">strcpy</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example,</p>
+<blockquote>
+<div><p>well, you are replacing coreboot with proprietary BIOS. In any case, that’s
+an “error”.</p>
+</div></blockquote>
+<p>Let’s come to the memory bug. The string ‘a’ is of length 14 but it is being
+written to even beyond that.</p>
+</section>
+<section id="use-after-scope">
+<h3>Use after scope<a class="headerlink" href="#use-after-scope" title="Link to this heading"></a></h3>
+<p>Example use-after-scope:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">volatile</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, the value 5 is written to an undefined address instead of the
+variable ‘x’. This happens because ‘x’ can’t be accessed outside its scope.</p>
+</section>
+</section>
+<section id="using-asan">
+<h2>Using ASan<a class="headerlink" href="#using-asan" title="Link to this heading"></a></h2>
+<p>In order to enable ASan on a supported platform,
+select <code class="docutils literal notranslate"><span class="pre">Address</span> <span class="pre">sanitizer</span> <span class="pre">support</span></code> from <code class="docutils literal notranslate"><span class="pre">General</span> <span class="pre">setup</span></code> menu while configuring
+coreboot.</p>
+<p>Then build coreboot and run the image as usual. If your code contains any of the
+above-mentioned memory bugs, ASan will report them in the console log as shown
+below:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ASan: &lt;bug type&gt; in &lt;ip&gt;
+&lt;access type&gt; of &lt;access size&gt; bytes at addr &lt;access address&gt;
+</pre></div>
+</div>
+<p>where,</p>
+<p><code class="docutils literal notranslate"><span class="pre">bug</span> <span class="pre">type</span></code> is either <code class="docutils literal notranslate"><span class="pre">stack-out-of-bounds</span></code>, <code class="docutils literal notranslate"><span class="pre">global-out-of-bounds</span></code> or
+<code class="docutils literal notranslate"><span class="pre">use-after-scope</span></code>,</p>
+<p><code class="docutils literal notranslate"><span class="pre">ip</span></code> is the address of the last good instruction before the bad access,</p>
+<p><code class="docutils literal notranslate"><span class="pre">access</span> <span class="pre">type</span></code> is either <code class="docutils literal notranslate"><span class="pre">Read</span></code> or <code class="docutils literal notranslate"><span class="pre">Write</span></code>,</p>
+<p><code class="docutils literal notranslate"><span class="pre">access</span> <span class="pre">size</span></code> is the number of bytes read or written, and</p>
+<p><code class="docutils literal notranslate"><span class="pre">access</span> <span class="pre">address</span></code> is the memory location which is accessed while the error
+occurs.</p>
+<p>Next, you have to use <code class="docutils literal notranslate"><span class="pre">ip</span></code> to retrieve the instruction which causes the error.
+Since stages in coreboot are relocated, you need to normalize <code class="docutils literal notranslate"><span class="pre">ip</span></code>. For this,
+first subtract the start address of the stage from <code class="docutils literal notranslate"><span class="pre">ip</span></code>. Then, read the section
+headers from <code class="docutils literal notranslate"><span class="pre">&lt;stage&gt;.debug</span></code> file to determine the offset of the text segment.
+Add this offset to the difference you calculated earlier. Let’s call the
+resultant address <code class="docutils literal notranslate"><span class="pre">ip'</span></code>.</p>
+<p>Next, read the contents of the symbol table and search for a function having
+an address closest to <code class="docutils literal notranslate"><span class="pre">ip'</span></code>. This is the function in which our memory bug is
+present. Let’s denote the address of this function by <code class="docutils literal notranslate"><span class="pre">ip''</span></code>.</p>
+<p>Finally, read the assembly contents of the object file where this function is
+present. Look for the affected function. Here, the instruction which exists at
+the offset <code class="docutils literal notranslate"><span class="pre">ip'</span> <span class="pre">-</span> <span class="pre">ip''</span></code> corresponds to the address <code class="docutils literal notranslate"><span class="pre">ip</span></code>. Therefore, the very
+next instruction is the one which causes the error.</p>
+<p>To see ASan in action, let’s take an example. Suppose, there is a
+stack-out-of-bounds error in cbfs.c that we aren’t aware of and we want ASan
+to help us detect it.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">cbfs_boot_region_device</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">region_device</span><span class="w"> </span><span class="o">*</span><span class="n">rdev</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">	</span><span class="n">boot_device_init</span><span class="p">();</span>
+
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span>
+<span class="w">		</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="n">vboot_locate_cbfs</span><span class="p">(</span><span class="n">rdev</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">	       </span><span class="n">fmap_locate_area_as_rdev</span><span class="p">(</span><span class="s">&quot;COREBOOT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rdev</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>First, we enable ASan from the configuration menu as shown above. Then, we
+build coreboot and run the image.</p>
+<p>ASan reports the following error in the console log:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ASan: stack-out-of-bounds in 0x7f7432fd
+Write of 4 bytes at addr 0x7f7c2ac8
+</pre></div>
+</div>
+<p>Here 0x7f7432fd is <code class="docutils literal notranslate"><span class="pre">ip</span></code> i.e. the address of the last good instruction before
+the bad access. First we have to normalize this address as stated above.
+As per the console log, this error happened in ramstage and the stage starts
+from 0x7f72c000. So, let’s look at the sections headers of ramstage from
+<code class="docutils literal notranslate"><span class="pre">ramstage.debug</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ objdump -h build/cbfs/fallback/ramstage.debug
+
+build/cbfs/fallback/ramstage.debug:     file format elf32-i386
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00070b20  00e00000  00e00000  00001000  2**12
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  1 .ctors        0000036c  00e70b20  00e70b20  00071b20  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, DATA
+  2 .data         0001c8f4  00e70e8c  00e70e8c  00071e8c  2**2
+                  CONTENTS, ALLOC, LOAD, RELOC, DATA
+  3 .bss          00012940  00e8d780  00e8d780  0008e780  2**7
+                  ALLOC
+  4 .heap         00004000  00ea00c0  00ea00c0  0008e780  2**0
+                  ALLOC
+</pre></div>
+</div>
+<p>As you can see, the offset of the text segment is 0x00e00000. Let’s subtract the
+start address of the stage from <code class="docutils literal notranslate"><span class="pre">ip</span></code> and add this offset to the difference. The
+resultant address i.e. <code class="docutils literal notranslate"><span class="pre">ip'</span></code> is 0x00e172fd.</p>
+<p>Next, we read the contents of the symbol table and search for a function having
+an address closest to 0x00e172fd.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ nm -n build/cbfs/fallback/ramstage.debug
+........
+........
+00e17116 t _GLOBAL__sub_I_65535_1_gfx_get_init_done
+00e17129 t tohex16
+00e171db T cbfs_load_and_decompress
+00e1729b T cbfs_boot_region_device
+00e17387 T cbfs_boot_locate
+00e1740d T cbfs_boot_map_with_leak
+00e174ef T cbfs_boot_map_optionrom
+........
+........
+</pre></div>
+</div>
+<p>The symbol having an address closest to 0x00e172fd is <code class="docutils literal notranslate"><span class="pre">cbfs_boot_region_device</span></code> and
+its address i.e. <code class="docutils literal notranslate"><span class="pre">ip''</span></code> is 0x00e1729b.</p>
+<p>Now, as we know the affected function, let’s read the assembly contents of
+<code class="docutils literal notranslate"><span class="pre">cbfs_boot_region_device()</span></code> which is present in <code class="docutils literal notranslate"><span class="pre">cbfs.o</span></code> to find the faulty
+instruction.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ objdump -d build/ramstage/lib/cbfs.o
+........
+........
+  51:   e8 fc ff ff ff          call   52 &lt;cbfs_boot_region_device+0x52&gt;
+  56:   83 ec 0c                sub    $0xc,%esp
+  59:   57                      push   %edi
+  5a:   83 ef 04                sub    $0x4,%edi
+  5d:   e8 fc ff ff ff          call   5e &lt;cbfs_boot_region_device+0x5e&gt;
+  62:   83 c4 10                add    $0x10,%esp
+  65:   89 5f 04                mov    %ebx,0x4(%edi)
+  68:   4b                      dec    %ebx
+  69:   75 eb                   jne    56 &lt;cbfs_boot_region_device+0x56&gt;
+........
+........
+</pre></div>
+</div>
+<p>Here, we look for the instruction present at the offset 62 i.e. <code class="docutils literal notranslate"><span class="pre">ip'</span> <span class="pre">-</span> <span class="pre">ip''</span></code>.
+The instruction is <code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">$0x10,%esp</span></code> and it corresponds to
+<code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">(i</span> <span class="pre">=</span> <span class="pre">10;</span> <span class="pre">i</span> <span class="pre">&gt;</span> <span class="pre">0;</span> <span class="pre">i--)</span></code> in our code. It means the very next instruction
+i.e. <code class="docutils literal notranslate"><span class="pre">mov</span> <span class="pre">%ebx,0x4(%edi)</span></code> is the one that causes the error. Now, as we look at
+C code of <code class="docutils literal notranslate"><span class="pre">cbfs_boot_region_device()</span></code> again, we find that this instruction
+corresponds to <code class="docutils literal notranslate"><span class="pre">array[i]</span> <span class="pre">=</span> <span class="pre">i</span></code>.</p>
+<p>Voilà! We just caught the memory bug using ASan.</p>
+</section>
+<section id="supported-platforms">
+<h2>Supported platforms<a class="headerlink" href="#supported-platforms" title="Link to this heading"></a></h2>
+<p>Presently, the following architectures support ASan in ramstage:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Architecture</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>x86</p></td>
+<td><p>Support for all x86 platforms</p></td>
+</tr>
+</tbody>
+</table>
+<p>And in romstage ASan is available on the following platforms:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Platform</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>QEMU i440-fx</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Intel Apollo Lake</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Intel Haswell</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Alternatively, you can use <code class="docutils literal notranslate"><span class="pre">grep</span></code> to view the list of platforms that support
+ASan in romstage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git grep &quot;select HAVE_ASAN_IN_ROMSTAGE&quot;
+</pre></div>
+</div>
+<p>If the x86 platform you are using is not listed here, there is
+still a chance that it supports ASan in romstage.</p>
+<p>To test it, select <code class="docutils literal notranslate"><span class="pre">HAVE_ASAN_IN_ROMSTAGE</span></code> from the Kconfig file in the
+platform’s dedicated directory. Then, enable ASan from the config menu as
+indicated in the previous section.</p>
+<p>If you are able to build coreboot without any errors and boot cleanly, that
+means the platform supports ASan in romstage. In that case, please upload a
+patch on Gerrit selecting this config option using ‘ASan’ topic. Also, update
+the platform name in the table.</p>
+<p>However, if you end up in compilation errors or the linker error saying that
+the cache got full, additional steps need to be taken to enable ASan in
+romstage on the platform. While compile errors could be resolved easily and
+therefore ASan in romstage has a good chance to be supported, a full cache is
+an indication that it is way more work or even likely impossible to enable
+ASan in romstage.</p>
+</section>
+<section id="future-work">
+<h2>Future work<a class="headerlink" href="#future-work" title="Link to this heading"></a></h2>
+<section id="heap-buffer-overflow">
+<h3>Heap buffer overflow<a class="headerlink" href="#heap-buffer-overflow" title="Link to this heading"></a></h3>
+<p>Presently, ASan doesn’t detect out-of-bounds accesses for the objects defined
+in heap.</p>
+<p>To add support for these type of memory bugs, you have to make sure that
+whenever some block of memory is allocated in the heap, the surrounding areas
+(redzones) are poisoned. Correspondingly, these redzones should be unpoisoned
+when the memory block is de-allocated.</p>
+</section>
+<section id="asan-on-other-architectures">
+<h3>ASan on other architectures<a class="headerlink" href="#asan-on-other-architectures" title="Link to this heading"></a></h3>
+<p>The following points should help when adding support for ASan to other
+architectures like ARM or RISC-V:</p>
+<ul class="simple">
+<li><p>Enabling ASan in ramstage on other architectures should be easy. You just
+have to make sure the shadow memory is initialized as early as possible when
+ramstage is loaded. This can be done by making a function call to <code class="docutils literal notranslate"><span class="pre">asan_init()</span></code>
+at the appropriate place.</p></li>
+<li><p>For romstage, you have to find out if there is enough room in the cache to fit
+the shadow memory region. For this, find the boundary linker symbols for the
+region you’d want to run ASan on, excluding the hardware mapped addresses.
+Then define a new linker section named <code class="docutils literal notranslate"><span class="pre">asan_shadow</span></code> of size
+<code class="docutils literal notranslate"><span class="pre">(_end</span> <span class="pre">-</span> <span class="pre">_start)</span> <span class="pre">&gt;&gt;</span> <span class="pre">3</span></code>, where <code class="docutils literal notranslate"><span class="pre">_start</span></code> and <code class="docutils literal notranslate"><span class="pre">_end</span></code> are the linker symbols you
+found earlier. This section should be appended to the region already occupied
+by the coreboot program. Now build coreboot. If you don’t see any errors while
+building with the current translation function, ASan can be enabled on that
+platform.</p></li>
+<li><p>The shadow region we currently use consumes memory equal to 1/8th of the
+program memory. So, if you end up in a linker error saying that the memory got
+full, you’ll have to use a more compact shadow region. In that case, the
+translation function could be something like
+<code class="docutils literal notranslate"><span class="pre">shadow</span> <span class="pre">=</span> <span class="pre">(mem</span> <span class="pre">&gt;&gt;</span> <span class="pre">7)</span> <span class="pre">|</span> <span class="pre">shadow_offset</span></code>. Since the stack buffers are protected by
+the compiler, you’ll also have to create a GCC patch forcing it to use the new
+translation function for this particular architecture.</p></li>
+<li><p>Once you are sure that the architecture supports ASan in ramstage, select
+<code class="docutils literal notranslate"><span class="pre">HAVE_ASAN_IN_RAMSTAGE</span></code> from the Kconfig file of that architecture. Similarly,
+if the platform supports ASan in romstage, select <code class="docutils literal notranslate"><span class="pre">HAVE_ASAN_IN_ROMSTAGE</span></code> from
+the platform’s dedicated Kconfig file.</p></li>
+</ul>
+</section>
+<section id="post-processing-script">
+<h3>Post-processing script<a class="headerlink" href="#post-processing-script" title="Link to this heading"></a></h3>
+<p>Unlike Linux, coreboot doesn’t have <code class="docutils literal notranslate"><span class="pre">%pS</span></code> printk format to dereference pointer
+to its symbolic name. Therefore, we normalise the pointer address manually to
+determine the name of the affected function and further use it to find the
+instruction which causes the error.</p>
+<p>A custom script can be written to automate this process.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2021-05-code-coverage.html" class="btn btn-neutral float-left" title="Unit Test Code Coverage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="console.html" class="btn btn-neutral float-right" title="coreboot Console" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

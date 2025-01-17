@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation Ideas &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Google Summer of Code" href="gsoc.html" />
+    <link rel="prev" title="Project Ideas" href="project_ideas.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Contributing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="coding_style.html">Coding Style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gerrit_guidelines.html">Gerrit Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_ideas.html">Project Ideas</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Documentation Ideas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#restructure-existing-documentation">Restructure Existing Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mentors">Mentors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#update-howto-guides">Update Howto/Guides</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Mentors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-support-a-new-board">How to Support a New Board</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Mentors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#payloads">Payloads</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Mentors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#coreboot-util-documentation">coreboot Util Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Mentors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cbmem-developer-guide">CBMEM Developer Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Mentors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cbfs-developer-guide">CBFS Developer Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id11">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">Mentors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#region-api-developer-guide">Region API Developer Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id13">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">Mentors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gsoc.html">Google Summer of Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Contributing</a></li>
+      <li class="breadcrumb-item active">Documentation Ideas</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/contributing/documentation_ideas.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="documentation-ideas">
+<h1>Documentation Ideas<a class="headerlink" href="#documentation-ideas" title="Link to this heading"></a></h1>
+<p>This section collects ideas to improve the coreboot documentation and
+should serve as a pool of ideas for people who want to improve the current
+documentation status of coreboot.</p>
+<p>The main purpose of this document is to gather documentation ideas for technical
+writers of the seasons of docs. Nevertheless anyone who wants to help improving
+the current documentation situation can take one of the projects.</p>
+<p>Each entry should outline what would be done, the benefit it brings
+to the project, the pre-requisites, both in knowledge and parts. They
+should also list people interested in supporting people who want to work
+on them.</p>
+<section id="restructure-existing-documentation">
+<h2>Restructure Existing Documentation<a class="headerlink" href="#restructure-existing-documentation" title="Link to this heading"></a></h2>
+<p>The goal is to improve the user experience and structure the documentation more
+logically. The current situation makes it very hard for beginners, but also for
+experienced developers to find anything in the coreboot documentation.</p>
+<p>One possible approach to restructure the documentation is to split it up such
+that we divide the group of users into:</p>
+<ul class="simple">
+<li><p>(End-)users
+Most probably users which <em>just</em> want to use coreboot as fast as possible. This
+section should include guidelines on how to build coreboot, how to flash coreboot
+and also which hardware is currently supported.</p></li>
+<li><p>Developers
+This section should more focus on the developer side-of-view. This section would
+include how to get started developing coreboot, explaining the basic concepts of
+coreboot and also give guideance on how to proceed after the first steps.</p></li>
+<li><p>Knowledge area
+This section is very tighlight coupled to the developer section and might be merged
+into it. The <em>Knowledge area</em> can give a technical deep dive on various drivers,
+technologies, etc.</p></li>
+<li><p>Community area
+This section gives some room for the community: Youtube channels, conferences,
+meetups, forums, chat, etc.</p></li>
+</ul>
+<p>A <a class="reference external" href="https://review.coreboot.org/c/coreboot/+/40327">first approach</a> has already been made here and might be a basis for the work.
+Most of the documentation is already there, but scattered around the documentation
+folder.</p>
+<section id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Understanding on how a different groups of users might use the documentation area</p></li>
+<li><p>Basic understanding of how coreboot works (Can be worked out <em>on-the-fly</em>)</p></li>
+</ul>
+</section>
+<section id="mentors">
+<h3>Mentors<a class="headerlink" href="#mentors" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>christian.walter&#64;9elements.com</p></li>
+<li><p>TBD</p></li>
+</ul>
+</section>
+</section>
+<section id="update-howto-guides">
+<h2>Update Howto/Guides<a class="headerlink" href="#update-howto-guides" title="Link to this heading"></a></h2>
+<p>An important part to involve new people in the project, either as developer or
+as enduser, are guides and how-to’s. There are already some guides which need
+to be updated to work, and could also be extended to multiple platforms, like
+Fedora or Arch-Linux. Also guidance for setting up coreboot with a Windows
+environment would be helpful.</p>
+<p>In addition, the vboot guidance needs an update/extensions, that the security
+features within coreboot can be used by non-technical people.</p>
+<p>For developers, how to debug coreboot and various debugging techniques need
+documentation.</p>
+<section id="id1">
+<h3>Requirements<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Knowledge of virtual machines, how to install different OSs and set up the
+toolchain on different operating systems</p></li>
+<li><p>Knowledge of debugging tools like gdb</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Mentors<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>christian.walter&#64;9elements.com</p></li>
+<li><p>TBD</p></li>
+</ul>
+</section>
+</section>
+<section id="how-to-support-a-new-board">
+<h2>How to Support a New Board<a class="headerlink" href="#how-to-support-a-new-board" title="Link to this heading"></a></h2>
+<p>coreboot benefits from running on as many platforms as possible. Therefore we
+want to encourage new developers on porting existing hardware to coreboot.
+Guidance for those new developers need to be made such that they are able to
+take the first steps supporting new mainboards, when the SoC support already
+exists. There should be a ‘how-to’ guide for this. Also what are common problems
+and how to solve those.</p>
+<section id="id3">
+<h3>Requirements<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Knowledge of how to add support for a new mainboard in coreboot</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>Mentors<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>christian.walter&#64;9elements.com</p></li>
+<li><p>TBD</p></li>
+</ul>
+</section>
+</section>
+<section id="payloads">
+<h2>Payloads<a class="headerlink" href="#payloads" title="Link to this heading"></a></h2>
+<p>The current documentation of the payloads is not very effective. There should be
+more detailed documentation on the payloads that can be selected via the make
+menuconfig within coreboot. Also the use-cases should be described in more
+detail: When to use which payload? What are the benefits of using payload X over
+Y in a specific use-case ?</p>
+<p>In addition it should be made clear how additional functionality e.g. extend
+LinuxBoot with more commands, can be achieved.</p>
+<section id="id5">
+<h3>Requirements<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Basic knowledge of the supported payloads like SeaBIOS, TinanoCore, LinuxBoot,
+GRUB, Linux, …</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>Mentors<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>christian.walter&#64;9elements.com</p></li>
+<li><p>TBD</p></li>
+</ul>
+</section>
+</section>
+<section id="coreboot-util-documentation">
+<h2>coreboot Util Documentation<a class="headerlink" href="#coreboot-util-documentation" title="Link to this heading"></a></h2>
+<p>coreboot inherits a variaty of utilities. The current documentation only
+provides a “one-liner” as an explanation. The list of util should be updated
+with a more detailed explanation where possible. Also more “in-depths”
+explanations should be added with examples if possible.</p>
+<section id="id7">
+<h3>Requirements<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>coreboot utilities</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>Mentors<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>christian.walter&#64;9elements.com</p></li>
+<li><p>TBD</p></li>
+</ul>
+</section>
+</section>
+<section id="cbmem-developer-guide">
+<h2>CBMEM Developer Guide<a class="headerlink" href="#cbmem-developer-guide" title="Link to this heading"></a></h2>
+<p>CBMEM is the API that provides memory buffers for the use at OS runtime. It’s a
+core component and thus should be documented. Dos, don’ts and pitfalls when
+using CBMEM. This “in-depth” guide is clearly for developers.</p>
+<section id="id9">
+<h3>Requirements<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Deep understanding of coreboot’s internals</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>Mentors<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>TBD</p></li>
+<li><p>TBD</p></li>
+</ul>
+</section>
+</section>
+<section id="cbfs-developer-guide">
+<h2>CBFS Developer Guide<a class="headerlink" href="#cbfs-developer-guide" title="Link to this heading"></a></h2>
+<p>CBFS is the in-flash filesystem that is used by coreboot. It’s a core component
+and thus should be documented. Update the existing CBFS.txt that still shows
+version 1 of the implementation. A <a class="reference external" href="https://review.coreboot.org/c/coreboot/+/33663/2">first approach</a>
+has been made here.
+This “in-depth” guide is clearly for developers.</p>
+<section id="id11">
+<h3>Requirements<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Deep understanding of coreboot’s internals</p></li>
+</ul>
+</section>
+<section id="id12">
+<h3>Mentors<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>TBD</p></li>
+<li><p>TBD</p></li>
+</ul>
+</section>
+</section>
+<section id="region-api-developer-guide">
+<h2>Region API Developer Guide<a class="headerlink" href="#region-api-developer-guide" title="Link to this heading"></a></h2>
+<p>The region API is used by coreboot when dealing with memory mapped objects that
+can be split into chunks. It’s a core component and thus should be documented.
+This “in-depth” guide is clearly for developers.</p>
+<section id="id13">
+<h3>Requirements<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Deep understanding of coreboot’s internals</p></li>
+</ul>
+</section>
+<section id="id14">
+<h3>Mentors<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>TBD</p></li>
+<li><p>TBD</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="project_ideas.html" class="btn btn-neutral float-left" title="Project Ideas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gsoc.html" class="btn btn-neutral float-right" title="Google Summer of Code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

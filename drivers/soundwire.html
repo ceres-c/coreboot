@@ -1,0 +1,620 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoundWire Implementation in coreboot &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="USB4 Retimers" href="retimer.html" />
+    <link rel="prev" title="SMM based flash storage driver Version 2" href="smmstorev2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Platform independent drivers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dptf.html">Intel DPTF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipmi_kcs.html">IPMI KCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smmstore.html">SMMSTORE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smmstorev2.html">SMMSTOREv2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SoundWire</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bus">Bus</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#controller">Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#master">Master</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#slave">Slave</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#monitor">Monitor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-soundwire-bus">Example SoundWire Bus</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#coreboot">coreboot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#acpi-implementation">ACPI Implementation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#codec">Codec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generating-codec-properties">Generating Codec Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mainboard">Mainboard</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#volteer-example">Volteer Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="retimer.html">USB4 Retimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbfs_smbios.html">CBFS SMBIOS hooks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Platform independent drivers documentation</a></li>
+      <li class="breadcrumb-item active">SoundWire Implementation in coreboot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/drivers/soundwire.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="soundwire-implementation-in-coreboot">
+<h1>SoundWire Implementation in coreboot<a class="headerlink" href="#soundwire-implementation-in-coreboot" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>SoundWire is an audio interface specification from the MIPI Alliance.</p>
+<ul class="simple">
+<li><p>Low complexity</p></li>
+<li><p>Low power</p></li>
+<li><p>Low latency</p></li>
+<li><p>Two pins (clock and data)</p></li>
+<li><p>Multi-drop capable</p></li>
+<li><p>Multiple audio streams</p></li>
+<li><p>Embedded control/command channel</p></li>
+</ul>
+<p>The main <em>SoundWire Specification</em> is at version 1.2 and can be downloaded from
+<a class="reference external" href="https://mipi.org">https://mipi.org</a> but it is unfortunately only available to MIPI Alliance members.</p>
+<p>There is a separate <em>SoundWire Discovery and Configuration (DisCo) Specification</em> which
+is at version 1.0 and is available for non-members after providing name and email at
+<a class="reference external" href="https://resources.mipi.org/disco_soundwire">https://resources.mipi.org/disco_soundwire</a>.</p>
+<p>The coreboot implementation is based on the SoundWire DisCo Specification which defines
+object hierarchy and properties for providing topology and configuration information to
+OS kernel drivers via ACPI or DeviceTree.</p>
+<p>SoundWire itself is architecture independent and the coreboot basic definition is also not
+specific to any to any SoC.  The examples in this document use ACPI to generate properties,
+but the same structures and properties would be needed in a DeviceTree implementation.</p>
+</section>
+<section id="bus">
+<h2>Bus<a class="headerlink" href="#bus" title="Link to this heading"></a></h2>
+<p>The SoundWire bus commonly consists of two pins:</p>
+<ul class="simple">
+<li><p>Clock: A common clock signal distributed from the master to all of the slaves.</p></li>
+<li><p>Data: A shared data signal that can be driven by any of the devices, and has a defined
+value when no device is driving it.</p></li>
+</ul>
+<p>While most designs have one data lane it is possible for a multi-lane device to have up
+to 8 data lanes and thus would have more than two pins.</p>
+<p>A SoundWire bus consists of one master device, up to 11 slave devices, and an optional
+monitor interface for debug.</p>
+<p>SoundWire is an enumerable bus, but not a discoverable one.  That means it is required
+for firmware to provide details about the connected devices to the OS.</p>
+<section id="controller">
+<h3>Controller<a class="headerlink" href="#controller" title="Link to this heading"></a></h3>
+<p>A SoundWire controller contains one or more master devices.  The handling of multiple
+masters is left up to the implementation, they may share a clock or be operated
+independently or entirely in tandem.  The master devices connected to a controller are
+also referred to as links.</p>
+<p>In coreboot the controller device is provided by the SoC or an add-in PCI card.</p>
+</section>
+<section id="master">
+<h3>Master<a class="headerlink" href="#master" title="Link to this heading"></a></h3>
+<p>A SoundWire master (or link) device is responsible for clock and data handling, bus
+management, and bit slot allocation.</p>
+<p>In coreboot the definition of the master device is left up to the controller and the
+mainboard should only need to know the controller’s SoundWire topology (number of masters)
+to configure <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code>.</p>
+<p>It may however be expected to provide some additional SoC-specific configuration data to
+the controller, such as an input clock rate or a list of available masters that cannot
+be determined at run time.</p>
+</section>
+<section id="slave">
+<h3>Slave<a class="headerlink" href="#slave" title="Link to this heading"></a></h3>
+<p>SoundWire slave devices are connected to a master and respond to the two-wire control
+information on the SoundWire bus.  There can be up to 11 slave devices on a bus and they
+are capable of interrupting and waking the host.</p>
+<p>Slave devices may also have master links which can be connected to other slave devices.
+It is also possible for a multi-lane slave device to have multiple data lanes connected
+to different combinations of master and slave devices.</p>
+<p>In coreboot the slave device is defined by a codec driver which should be found in the
+source tree at <code class="docutils literal notranslate"><span class="pre">src/drivers/soundwire</span></code>.</p>
+<p>The mainboard provides:</p>
+<ul class="simple">
+<li><p>Master link that this slave device is connected to.</p></li>
+<li><p>Unique ID that this codec responds to on the SoundWire bus.</p></li>
+<li><p>Multi-lane mapping. (optional)</p></li>
+</ul>
+<p>The codec driver provides:</p>
+<ul class="simple">
+<li><p>Slave device properties.</p></li>
+<li><p>Audio Mode properties including bus frequencies and sampling rates.</p></li>
+<li><p>Data Port 1-14 properties such as word lengths, interrupt support, channels.</p></li>
+<li><p>Data Port 0 and Bulk Register Access properties. (optional)</p></li>
+</ul>
+</section>
+<section id="monitor">
+<h3>Monitor<a class="headerlink" href="#monitor" title="Link to this heading"></a></h3>
+<p>A SoundWire monitor device is defined that allows for test equipment to snoop the bus and
+take over and issue commands.  The monitor interface is not defined for coreboot.</p>
+</section>
+<section id="example-soundwire-bus">
+<h3>Example SoundWire Bus<a class="headerlink" href="#example-soundwire-bus" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---------------+</span>                                       <span class="o">+---------------+</span>
+<span class="o">|</span>               <span class="o">|</span>                       <span class="n">Clock</span> <span class="n">Signal</span>    <span class="o">|</span>               <span class="o">|</span>
+<span class="o">|</span>    <span class="n">Master</span>     <span class="o">|-------+-------------------------------|</span>    <span class="n">Slave</span>      <span class="o">|</span>
+<span class="o">|</span>   <span class="n">Interface</span>   <span class="o">|</span>       <span class="o">|</span>               <span class="n">Data</span> <span class="n">Signal</span>     <span class="o">|</span>  <span class="n">Interface</span> <span class="mi">1</span>  <span class="o">|</span>
+<span class="o">|</span>               <span class="o">|-------|-------+-----------------------|</span>               <span class="o">|</span>
+<span class="o">+---------------+</span>       <span class="o">|</span>       <span class="o">|</span>                       <span class="o">+---------------+</span>
+                        <span class="o">|</span>       <span class="o">|</span>
+                        <span class="o">|</span>       <span class="o">|</span>
+                        <span class="o">|</span>       <span class="o">|</span>
+                     <span class="o">+--+-------+--+</span>
+                     <span class="o">|</span>             <span class="o">|</span>
+                     <span class="o">|</span>   <span class="n">Slave</span>     <span class="o">|</span>
+                     <span class="o">|</span> <span class="n">Interface</span> <span class="mi">2</span> <span class="o">|</span>
+                     <span class="o">|</span>             <span class="o">|</span>
+                     <span class="o">+-------------+</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="coreboot">
+<h2>coreboot<a class="headerlink" href="#coreboot" title="Link to this heading"></a></h2>
+<p>The coreboot implementation of SoundWire integrates with the device model and takes
+advantage of the hierarchical nature of <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> to populate the topology.</p>
+<p>The architecture-independent SoundWire tables are defined at</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">src</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">device</span><span class="o">/</span><span class="n">soundwire</span><span class="o">.</span><span class="n">h</span>
+</pre></div>
+</div>
+<p>Support for new devices comes in three forms:</p>
+<ol>
+<li><p>New controller and master drivers.  The first implementation in coreboot is for an Intel
+SoC but the SoundWire specification is in wide use on various ARM SoCs.</p>
+<p>Controller drivers can be implemented in <code class="docutils literal notranslate"><span class="pre">src/soc</span></code> or <code class="docutils literal notranslate"><span class="pre">src/drivers</span></code> and should
+strive to re-use code as much as possible between different SoC generations from the
+same vendor.</p>
+</li>
+<li><p>New codec drivers.  These should be implemented for each codec that is added which
+supports SoundWire.  The properties vary between codecs and careful study of the data sheet
+is necessary to ensure proper operation.</p>
+<p>Codec drivers should be implemented in <code class="docutils literal notranslate"><span class="pre">src/drivers/soundwire</span></code> as separate chip drivers.
+As every codec is different there may not be opportunities of code re-use except between
+similar codecs from the same vendor.</p>
+</li>
+<li><p>New mainboards with SoundWire support.  The mainboard will combine controllers and codecs
+to form a topology that is described in <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code>.  Some devices may need to provide
+board-specific configuration information, and multi-lane devices will need to provide the
+master/slave lane map.</p></li>
+</ol>
+</section>
+<section id="acpi-implementation">
+<h2>ACPI Implementation<a class="headerlink" href="#acpi-implementation" title="Link to this heading"></a></h2>
+<p>The implementation for x86 devices relies on ACPI for providing device properties to the OS
+kernel drivers.</p>
+<p>The ACPI implementation can be found at</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">src</span><span class="o">/</span><span class="n">acpi</span><span class="o">/</span><span class="n">soundwire</span><span class="o">.</span><span class="n">c</span>
+</pre></div>
+</div>
+<p>And used by including</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;acpi/acpi_soundwire.h&gt;</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3>Controller<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>The controller driver should populate a <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">soundwire_controller</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * struct soundwire_controller - SoundWire controller properties.</span>
+<span class="cm"> * @master_count: Number of masters present on this device.</span>
+<span class="cm"> * @master_list: One entry for each master device.</span>
+<span class="cm"> */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">soundwire_controller</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">master_list_count</span><span class="p">;</span>
+<span class="w">	</span><span class="k">struct</span><span class="w"> </span><span class="nc">soundwire_link</span><span class="w"> </span><span class="n">master_list</span><span class="p">[</span><span class="n">SOUNDWIRE_MAX_DEV</span><span class="p">];</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Once the detail of the master links are specified in the <code class="docutils literal notranslate"><span class="pre">master_list</span></code> variable, the controller
+properties for the ACPI object can be generated:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">acpi_dp</span><span class="w"> </span><span class="o">*</span><span class="n">dsd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acpi_dp_new_table</span><span class="p">(</span><span class="s">&quot;_DSD&quot;</span><span class="p">);</span>
+<span class="n">soundwire_gen_controller</span><span class="p">(</span><span class="n">dsd</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">soc_controller</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="n">acpi_dp_write</span><span class="p">(</span><span class="n">dsd</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If the controller needs to generate custom properties for links it can provide a callback
+function to <code class="docutils literal notranslate"><span class="pre">soundwire_gen_controller()</span></code> instead of passing NULL:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">controller_link_prop_cb</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">acpi_dp</span><span class="w"> </span><span class="o">*</span><span class="n">dsd</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">,</span>
+<span class="w">                                    </span><span class="k">struct</span><span class="w"> </span><span class="nc">soundwire_controller</span><span class="w"> </span><span class="o">*</span><span class="n">controller</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">acpi_dp_add_integer</span><span class="p">(</span><span class="n">dsd</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;custom-link-property&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="codec">
+<h3>Codec<a class="headerlink" href="#codec" title="Link to this heading"></a></h3>
+<p>The codec driver should populate a <em>struct soundwire_codec</em> with necessary properties:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * struct soundwire_codec - Contains all configuration for a SoundWire codec slave device.</span>
+<span class="cm"> * @slave: Properties for slave device.</span>
+<span class="cm"> * @audio_mode: Properties for Audio Mode for Data Ports 1-14.</span>
+<span class="cm"> * @dpn: Properties for Data Ports 1-14.</span>
+<span class="cm"> * @multilane: Properties for slave multilane device. (optional)</span>
+<span class="cm"> * @dp0_bra_mode: Properties for Bulk Register Access mode for Data Port 0. (optional)</span>
+<span class="cm"> * @dp0: Properties for Data Port 0 for Bulk Register Access. (optional)</span>
+<span class="cm"> */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">soundwire_codec</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">struct</span><span class="w"> </span><span class="nc">soundwire_slave</span><span class="w"> </span><span class="o">*</span><span class="n">slave</span><span class="p">;</span>
+<span class="w">	</span><span class="k">struct</span><span class="w"> </span><span class="nc">soundwire_audio_mode</span><span class="w"> </span><span class="o">*</span><span class="n">audio_mode</span><span class="p">[</span><span class="n">SOUNDWIRE_MAX_DEV</span><span class="p">];</span>
+<span class="w">	</span><span class="k">struct</span><span class="w"> </span><span class="nc">soundwire_dpn_entry</span><span class="w"> </span><span class="n">dpn</span><span class="p">[</span><span class="n">SOUNDWIRE_MAX_DPN</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">SOUNDWIRE_MIN_DPN</span><span class="p">];</span>
+<span class="w">	</span><span class="k">struct</span><span class="w"> </span><span class="nc">soundwire_multilane</span><span class="w"> </span><span class="o">*</span><span class="n">multilane</span><span class="p">;</span>
+<span class="w">	</span><span class="k">struct</span><span class="w"> </span><span class="nc">soundwire_bra_mode</span><span class="w"> </span><span class="o">*</span><span class="n">dp0_bra_mode</span><span class="p">[</span><span class="n">SOUNDWIRE_MAX_DEV</span><span class="p">];</span>
+<span class="w">	</span><span class="k">struct</span><span class="w"> </span><span class="nc">soundwire_dp0</span><span class="w"> </span><span class="o">*</span><span class="n">dp0</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Many of these properties are optional, and depending on the codec will not be supported.</p>
+<section id="slave-device-properties">
+<h4>Slave Device Properties<a class="headerlink" href="#slave-device-properties" title="Link to this heading"></a></h4>
+<p>These properties provide information about the codec device and what features it supports:</p>
+<ul class="simple">
+<li><p>Wake capability</p></li>
+<li><p>Clock stop behavior</p></li>
+<li><p>Clock and channel state machine behavior</p></li>
+<li><p>Features like register pages, broadcast read, bank delay, and high performance PHY</p></li>
+</ul>
+</section>
+<section id="multi-lane-slave-device-properties">
+<h4>Multi-lane Slave Device Properties<a class="headerlink" href="#multi-lane-slave-device-properties" title="Link to this heading"></a></h4>
+<p>Most slave devices have a single data pin and a single lane, but it is possible for up to
+7 other lanes to be supported on a device.  These lanes can be connected to other master
+links or to other slave devices.</p>
+<p>If a codec supports this feature it must indicate that by providing an entry for
+<code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">soundwire_multilane</span></code> in the chip configuration.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * struct drivers_soundwire_example_config - Example codec configuration.</span>
+<span class="cm"> * @multilane: Multi-lane slave configuration.</span>
+<span class="cm"> */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">drivers_soundwire_example_config</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">struct</span><span class="w"> </span><span class="nc">soundwire_multilane</span><span class="w"> </span><span class="n">multilane</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The mainboard is required to provide the lane map in <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> for any codec that has
+multiple lanes connected.  This includes the definition up to 7 entries that indicate which
+lane number on the slave devices (array index starting at 1) maps to which other device:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">soundwire</span><span class="o">/</span><span class="n">multilane_codec</span>
+	<span class="n">register</span> <span class="s2">&quot;multilane.lane_mapping&quot;</span> <span class="o">=</span> <span class="s2">&quot;{</span>
+		<span class="p">{</span>
+			<span class="c1"># Slave Lane 1 maps to Master Lane 2</span>
+			<span class="o">.</span><span class="n">lane</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+			<span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">MASTER_LANE</span><span class="p">,</span>
+			<span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">master_lane</span> <span class="o">=</span> <span class="mi">2</span>
+		<span class="p">},</span>
+		<span class="p">{</span>
+			<span class="c1"># Slave Lane 3 maps to Slave Link B</span>
+			<span class="o">.</span><span class="n">lane</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+			<span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">SLAVE_LINK</span><span class="p">,</span>
+			<span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">slave_link</span> <span class="o">=</span> <span class="mi">1</span>
+		<span class="p">}</span>
+	<span class="p">}</span><span class="s2">&quot;</span>
+	<span class="n">device</span> <span class="n">generic</span> <span class="mf">0.0</span> <span class="n">on</span> <span class="n">end</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+</section>
+<section id="data-port-0-properties">
+<h4>Data Port 0 Properties<a class="headerlink" href="#data-port-0-properties" title="Link to this heading"></a></h4>
+<p>SoundWire Data Port 0 (DP0) is a special port used for control and status operation relating
+to the whole device interface, and as a special data port for bulk read/write operations.</p>
+<p>The properties for data port 0 are different from that of data ports 1-14 and are about the
+control channel behavior and the overall bulk register mode.</p>
+<p>Data port 0 is not required to be supported by the slave device.</p>
+</section>
+<section id="bulk-register-access-mode-properties">
+<h4>Bulk Register Access Mode Properties<a class="headerlink" href="#bulk-register-access-mode-properties" title="Link to this heading"></a></h4>
+<p>Bulk Register Access (BRA) is an optional mechanism for transporting higher bandwidth of
+register operations than the typical command mechanism.  The BRA protocol is a particular
+format of the data on the (optional) data port 0 connection between the master and slave.</p>
+<p>The BRA protocol may have alignment or timing requirements that are directly related to the
+bus frequencies.  As a result there may be several configurations listed, for symmetry with
+the audio modes paired with data ports 1-14.</p>
+</section>
+<section id="data-port-1-14-properties">
+<h4>Data Port 1-14 Properties<a class="headerlink" href="#data-port-1-14-properties" title="Link to this heading"></a></h4>
+<p>Data ports 1-14 are typically dedicated to streaming audio payloads, and each data port can
+have from 1 to 8 channels.  There are different levels of data ports, with some registers
+being required and supported on all data ports and some optional registers only being used
+on some data ports.</p>
+<p>Data ports can have both a sink and a source component, and the codec may support one or
+both of these on each port.</p>
+<p>Similar to data port 0 the properties defined here describe the capabilities and supported
+features of each data port, and they may be configured separately.  For example the Maxim
+MAX98373 codec supports a 32bit source data port for speaker output, and a 16bit sink data
+port for speaker sense data.</p>
+</section>
+<section id="audio-mode-properties">
+<h4>Audio Mode Properties<a class="headerlink" href="#audio-mode-properties" title="Link to this heading"></a></h4>
+<p>Each data port may be tied to one or more audio modes.  The audio mode describes the actual
+audio capabilities of the codec, including supported frequencies and sample rates.  These
+modes can be shared by multiple data ports and do not need to be duplicated.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">struct</span> <span class="n">soundwire_audio_mode</span> <span class="n">audio_mode</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="o">.</span><span class="n">bus_frequency_max</span> <span class="o">=</span> <span class="mi">24</span> <span class="o">*</span> <span class="n">MHz</span><span class="p">,</span>
+	<span class="o">.</span><span class="n">bus_frequency_min</span> <span class="o">=</span> <span class="mi">24</span> <span class="o">*</span> <span class="n">KHz</span><span class="p">,</span>
+	<span class="o">.</span><span class="n">max_sampling_frequency</span> <span class="o">=</span> <span class="mi">192</span> <span class="o">*</span> <span class="n">KHz</span><span class="p">,</span>
+	<span class="o">.</span><span class="n">min_sampling_frequency</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">KHz</span><span class="p">,</span>
+<span class="p">};</span>
+<span class="n">static</span> <span class="n">struct</span> <span class="n">soundwire_dpn</span> <span class="n">codec_dp1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+	<span class="o">.</span><span class="n">port_audio_mode_count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+	<span class="o">.</span><span class="n">port_audio_mode_list</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">}</span>
+<span class="p">};</span>
+<span class="n">static</span> <span class="n">struct</span> <span class="n">soundwire_dpn</span> <span class="n">codec_dp3</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+	<span class="o">.</span><span class="n">port_audio_mode_count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+	<span class="o">.</span><span class="n">port_audio_mode_list</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="generating-codec-properties">
+<h3>Generating Codec Properties<a class="headerlink" href="#generating-codec-properties" title="Link to this heading"></a></h3>
+<p>Once the properties are known it can generate the ACPI code with:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">acpi_dp</span><span class="w"> </span><span class="o">*</span><span class="n">dsd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acpi_dp_new_table</span><span class="p">(</span><span class="s">&quot;_DSD&quot;</span><span class="p">);</span>
+<span class="n">soundwire_gen_codec</span><span class="p">(</span><span class="n">dsd</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">soundwire_codec</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="n">acpi_dp_write</span><span class="p">(</span><span class="n">dsd</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If the codec needs to generate custom properties for links it can provide a callback
+function to <code class="docutils literal notranslate"><span class="pre">soundwire_gen_codec()</span></code> instead of passing NULL:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">codec_dp_prop_cb</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">acpi_dp</span><span class="w"> </span><span class="o">*</span><span class="n">dsd</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">,</span>
+<span class="w">                             </span><span class="k">struct</span><span class="w"> </span><span class="nc">soundwire_codec</span><span class="w"> </span><span class="o">*</span><span class="n">codec</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">acpi_dp_add_integer</span><span class="p">(</span><span class="n">dsd</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;custom-dp-property&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="codec-address">
+<h4>Codec Address<a class="headerlink" href="#codec-address" title="Link to this heading"></a></h4>
+<p>SoundWire slave devices use a SoundWire defined ACPI _ADR that requires a 64-bit integer
+and uses the master link ID and slave device unique ID to form a unique address for the
+device on this controller.</p>
+<p>SoundWire addresses must be distinguishable from all other slave devices on the same master
+link, so multiple instances of the same manufacturer and part on the same master link will
+need different unique IDs.  The value is typically determined by strapping pins on the codec
+chip and can be decoded for this table with the codec datasheet and board schematics.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * struct soundwire_address - SoundWire ACPI Device Address Encoding.</span>
+<span class="cm"> * @version: SoundWire specification version from &amp;enum soundwire_version.</span>
+<span class="cm"> * @link_id: Zero-based SoundWire Link Number.</span>
+<span class="cm"> * @unique_id: Unique ID for multiple devices.</span>
+<span class="cm"> * @manufacturer_id: Manufacturer ID from include/mipi/ids.h.</span>
+<span class="cm"> * @part_id: Vendor defined part ID.</span>
+<span class="cm"> * @class: MIPI class encoding in &amp;enum mipi_class.</span>
+<span class="cm"> */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">soundwire_address</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">enum</span><span class="w"> </span><span class="n">soundwire_version</span><span class="w"> </span><span class="n">version</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">link_id</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">unique_id</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">manufacturer_id</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">part_id</span><span class="p">;</span>
+<span class="w">	</span><span class="k">enum</span><span class="w"> </span><span class="n">mipi_class</span><span class="w"> </span><span class="n">class</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This ACPI address can be generated by calling the provided acpigen function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">acpigen_write_ADR_soundwire_device</span><span class="p">(</span><span class="n">const</span> <span class="n">struct</span> <span class="n">soundwire_address</span> <span class="o">*</span><span class="n">sdw</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="mainboard">
+<h3>Mainboard<a class="headerlink" href="#mainboard" title="Link to this heading"></a></h3>
+<p>The mainboard needs to select appropriate drivers in <code class="docutils literal notranslate"><span class="pre">Kconfig</span></code> and define the topology in
+<code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> with the controllers and codecs that exist on the board.</p>
+<p>The topology uses the <strong>generic</strong> device to describe SoundWire:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">generic_path</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">       </span><span class="cm">/* SoundWire Master Link ID */</span>
+<span class="w">	</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">subid</span><span class="p">;</span><span class="w">    </span><span class="cm">/* SoundWire Slave Unique ID */</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This allows devices to be specified in <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> with the necessary information to
+generate ACPI address and device properties.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">soundwire</span>
+	<span class="c1"># SoundWire Controller 0</span>
+	<span class="n">device</span> <span class="n">generic</span> <span class="mi">0</span> <span class="n">on</span>
+		<span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">soundwire</span><span class="o">/</span><span class="n">codec1</span>
+			<span class="c1"># SoundWire Link 0 ID 0</span>
+			<span class="n">device</span> <span class="n">generic</span> <span class="mf">0.0</span> <span class="n">on</span> <span class="n">end</span>
+		<span class="n">end</span>
+		<span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">soundwire</span><span class="o">/</span><span class="n">codec2</span>
+			<span class="c1"># SoundWire Link 1 ID 2</span>
+			<span class="n">device</span> <span class="n">generic</span> <span class="mf">1.2</span> <span class="n">on</span> <span class="n">end</span>
+		<span class="n">end</span>
+	<span class="n">end</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="volteer-example">
+<h2>Volteer Example<a class="headerlink" href="#volteer-example" title="Link to this heading"></a></h2>
+<p>This is an example of an Intel Tiger Lake reference board using SoundWire Link 0 for the
+headphone codec connection, and Link 1 for connecting two speaker amps for stereo speakers.</p>
+<p>The mainboard can be found at</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">src</span><span class="o">/</span><span class="n">mainboard</span><span class="o">/</span><span class="n">google</span><span class="o">/</span><span class="n">volteer</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">+------------------+</span>         <span class="o">+-------------------+</span>
+  <span class="o">|</span>                  <span class="o">|</span>         <span class="o">|</span> <span class="n">Headphone</span> <span class="n">Codec</span>   <span class="o">|</span>
+  <span class="o">|</span> <span class="n">Intel</span> <span class="n">Tiger</span> <span class="n">Lake</span> <span class="o">|</span>    <span class="o">+---&gt;|</span> <span class="n">Realtek</span> <span class="n">ALC5682</span>   <span class="o">|</span>
+  <span class="o">|</span>    <span class="n">SoundWire</span>     <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>       <span class="n">ID</span> <span class="mi">1</span>        <span class="o">|</span>
+  <span class="o">|</span>    <span class="n">Controller</span>    <span class="o">|</span>    <span class="o">|</span>    <span class="o">+-------------------+</span>
+  <span class="o">|</span>                  <span class="o">|</span>    <span class="o">|</span>
+  <span class="o">|</span>           <span class="n">Link</span> <span class="mi">0</span> <span class="o">+----+</span>    <span class="o">+-------------------+</span>
+  <span class="o">|</span>                  <span class="o">|</span>         <span class="o">|</span> <span class="n">Left</span> <span class="n">Speaker</span> <span class="n">Amp</span>  <span class="o">|</span>
+  <span class="o">|</span>           <span class="n">Link</span> <span class="mi">1</span> <span class="o">+----+---&gt;|</span> <span class="n">Maxim</span> <span class="n">MAX98373</span>    <span class="o">|</span>
+  <span class="o">|</span>                  <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span>       <span class="n">ID</span> <span class="mi">3</span>        <span class="o">|</span>
+  <span class="o">|</span>           <span class="n">Link</span> <span class="mi">2</span> <span class="o">|</span>    <span class="o">|</span>    <span class="o">+-------------------+</span>
+  <span class="o">|</span>                  <span class="o">|</span>    <span class="o">|</span>
+  <span class="o">|</span>           <span class="n">Link</span> <span class="mi">3</span> <span class="o">|</span>    <span class="o">|</span>    <span class="o">+-------------------+</span>
+  <span class="o">|</span>                  <span class="o">|</span>    <span class="o">|</span>    <span class="o">|</span> <span class="n">Right</span> <span class="n">Speaker</span> <span class="n">Amp</span> <span class="o">|</span>
+  <span class="o">+------------------+</span>    <span class="o">+---&gt;|</span> <span class="n">Maxim</span> <span class="n">MAX98373</span>    <span class="o">|</span>
+                               <span class="o">|</span>       <span class="n">ID</span> <span class="mi">7</span>        <span class="o">|</span>
+                               <span class="o">+-------------------+</span>
+</pre></div>
+</div>
+<p>This implementation requires a controller driver for the Intel Tigerlake SoC and a codec
+driver for the Realtek and Maxim chips.  If those drivers did not already exist they would
+need to be added and reviewed separately before adding the support to the mainboard.</p>
+<p>The volteer example requires some <code class="docutils literal notranslate"><span class="pre">Kconfig</span></code> options to be selected:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="n">BOARD_GOOGLE_BASEBOARD_VOLTEER</span>
+	<span class="n">select</span> <span class="n">DRIVERS_INTEL_SOUNDWIRE</span>
+	<span class="n">select</span> <span class="n">DRIVERS_SOUNDWIRE_ALC5682</span>
+	<span class="n">select</span> <span class="n">DRIVERS_SOUNDWIRE_MAX98373</span>
+</pre></div>
+</div>
+<p>And the following <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> entries to define this topology:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">device</span> <span class="n">pci</span> <span class="mi">1</span><span class="n">f</span><span class="mf">.3</span> <span class="n">on</span>
+	<span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">soundwire</span>
+		<span class="c1"># SoundWire Controller 0</span>
+		<span class="n">device</span> <span class="n">generic</span> <span class="mi">0</span> <span class="n">on</span>
+			<span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">soundwire</span><span class="o">/</span><span class="n">alc5682</span>
+				<span class="c1"># SoundWire Link 0 ID 1</span>
+				<span class="n">register</span> <span class="s2">&quot;desc&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="n">Headphone</span> <span class="n">Jack</span><span class="s2">&quot;&quot;</span>
+				<span class="n">device</span> <span class="n">generic</span> <span class="mf">0.1</span> <span class="n">on</span> <span class="n">end</span>
+			<span class="n">end</span>
+			<span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">soundwire</span><span class="o">/</span><span class="n">max98373</span>
+				<span class="c1"># SoundWire Link 0 ID 1</span>
+				<span class="n">register</span> <span class="s2">&quot;desc&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="n">Left</span> <span class="n">Speaker</span> <span class="n">Amp</span><span class="s2">&quot;&quot;</span>
+				<span class="n">device</span> <span class="n">generic</span> <span class="mf">1.3</span> <span class="n">on</span> <span class="n">end</span>
+			<span class="n">end</span>
+			<span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">soundwire</span><span class="o">/</span><span class="n">max98373</span>
+				<span class="c1"># SoundWire Link 1 ID 7</span>
+				<span class="n">register</span> <span class="s2">&quot;desc&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="n">Right</span> <span class="n">Speaker</span> <span class="n">Amp</span><span class="s2">&quot;&quot;</span>
+				<span class="n">device</span> <span class="n">generic</span> <span class="mf">1.7</span> <span class="n">on</span> <span class="n">end</span>
+			<span class="n">end</span>
+		<span class="n">end</span>
+	<span class="n">end</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="smmstorev2.html" class="btn btn-neutral float-left" title="SMM based flash storage driver Version 2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="retimer.html" class="btn btn-neutral float-right" title="USB4 Retimers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

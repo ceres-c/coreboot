@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intel DQ67SW &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Intel Kaby lake RVP11" href="kblrvp11.html" />
+    <link rel="prev" title="Intel DG43GT" href="dg43gt.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hp">HP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#intel">Intel</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dg43gt.html">DG43GT</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">DQ67SW</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#technology">Technology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flashing-coreboot">Flashing coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-monitoring-and-fan-control">Hardware monitoring and fan control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#serial-port-header">Serial port header</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kblrvp11.html">KBLRVP11</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">Intel DQ67SW</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/intel/dq67sw.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intel-dq67sw">
+<h1>Intel DQ67SW<a class="headerlink" href="#intel-dq67sw" title="Link to this heading"></a></h1>
+<p>The Intel DQ67SW is a microATX-sized desktop board for Intel Sandy Bridge CPUs.</p>
+<section id="technology">
+<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Northbridge</p></td>
+<td><p><a class="reference internal" href="../../northbridge/intel/sandybridge/index.html"><span class="doc">Intel Sandy Bridge-specific documentation</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Southbridge</p></td>
+<td><p>Intel Q67 (bd82x6x)</p></td>
+</tr>
+<tr class="row-odd"><td><p>CPU socket</p></td>
+<td><p>LGA 1155</p></td>
+</tr>
+<tr class="row-even"><td><p>RAM</p></td>
+<td><p>4 x DDR3-1333</p></td>
+</tr>
+<tr class="row-odd"><td><p>Super I/O</p></td>
+<td><p>Nuvoton/Winbond W83677HG-i</p></td>
+</tr>
+<tr class="row-even"><td><p>Audio</p></td>
+<td><p>Realtek ALC888S</p></td>
+</tr>
+<tr class="row-odd"><td><p>Network</p></td>
+<td><p>Intel 82579LM Gigabit Ethernet</p></td>
+</tr>
+<tr class="row-even"><td><p>Serial</p></td>
+<td><p>Internal header</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="status">
+<h2>Status<a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<section id="working">
+<h3>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Sandy Bridge and Ivy Bridge CPUs (tested: i5-2500, Pentium G2120)</p></li>
+<li><p>Native RAM initialization with four DIMMs</p></li>
+<li><p>Integrated GPU with libgfxinit</p></li>
+<li><p>PCIe graphics in the PEG slot</p></li>
+<li><p>Additional PCIe slots</p></li>
+<li><p>PCI slot</p></li>
+<li><p>All rear (4x) and internal (8x) USB2 ports</p></li>
+<li><p>Rear USB3 ports (2x)</p></li>
+<li><p>All four internal SATA ports (two 6 Gb/s, two 3 Gb/s)</p></li>
+<li><p>Two rear eSATA connectors (3 Gb/s)</p></li>
+<li><p>SATA at 6 Gb/s</p></li>
+<li><p>Gigabit Ethernet</p></li>
+<li><p>SeaBIOS 1.16.1 + libgfxinit (legacy VGA) to boot slackware64 (Linux 5.15)</p></li>
+<li><p>SeaBIOS 1.16.1 + extracted VGA BIOS to boot Windows 10 (21H2)</p></li>
+<li><p>edk2 UefiPayload (uefipayload_202207) + libgfxinit (high-res) to boot:</p>
+<ul>
+<li><p>slackware64 (Linux 5.15)</p></li>
+<li><p>Windows 10 (22H2)</p></li>
+</ul>
+</li>
+<li><p>External in-circuit flashing with flashrom-1.2 and a Raspberry Pi 1</p></li>
+<li><p>Poweroff</p></li>
+<li><p>Resume from S3</p></li>
+<li><p>Console output on the serial port</p></li>
+</ul>
+</section>
+<section id="not-working">
+<h3>Not working<a class="headerlink" href="#not-working" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Automatic fan control. One can still use OS-based fan control programs,
+such as fancontrol on Linux or SpeedFan on Windows.</p></li>
+<li><p>Windows 10 booted from SeaBIOS + libgfxinit (high-res). The installation
+works, but once Windows Update installs drivers, it crashes and enters a
+bootloop.</p></li>
+</ul>
+</section>
+<section id="untested">
+<h3>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Firewire (LSI L-FW3227-100)</p></li>
+<li><p>EHCI debug</p></li>
+<li><p>S/PDIF audio</p></li>
+<li><p>Audio jacks other than the green one</p></li>
+</ul>
+</section>
+</section>
+<section id="flashing-coreboot">
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Socketed flash</p></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-odd"><td><p>Model</p></td>
+<td><p>W25Q64.V</p></td>
+</tr>
+<tr class="row-even"><td><p>Size</p></td>
+<td><p>8 MiB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>SOIC-8</p></td>
+</tr>
+<tr class="row-even"><td><p>Write protection</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dual BIOS feature</p></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-even"><td><p>Internal flashing</p></td>
+<td><p>see below</p></td>
+</tr>
+<tr class="row-odd"><td><p>In circuit flashing</p></td>
+<td><p>see below</p></td>
+</tr>
+</tbody>
+</table>
+<p>The flash is divided into the following regions, as obtained with
+<code class="docutils literal notranslate"><span class="pre">ifdtool</span> <span class="pre">-f</span> <span class="pre">rom.layout</span> <span class="pre">backup.rom</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">00000000</span><span class="p">:</span><span class="mi">00000</span><span class="n">fff</span> <span class="n">fd</span>
+<span class="mi">00580000</span><span class="p">:</span><span class="mi">007</span><span class="n">fffff</span> <span class="n">bios</span>
+<span class="mi">00003000</span><span class="p">:</span><span class="mi">0057</span><span class="n">ffff</span> <span class="n">me</span>
+<span class="mi">00001000</span><span class="p">:</span><span class="mi">00002</span><span class="n">fff</span> <span class="n">gbe</span>
+</pre></div>
+</div>
+<p>Unfortunately the SPI interface to the chip is locked down by the vendor
+firmware. The BIOS Lock Enable (BLE) bit of the <code class="docutils literal notranslate"><span class="pre">BIOS_CNTL</span></code> register, part of
+the PCI configuration space of the LPC Interface Bridge, is set.</p>
+<p>It is possible to program the chip is to attach an external programmer
+with an SOIC-8 clip.</p>
+<p>Another way is to boot the vendor firmware in UEFI mode and exploit the
+unpatched S3 Boot Script vulnerability. See this page for a similar procedure:
+<a class="reference internal" href="../lenovo/ivb_internal_flashing.html"><span class="doc">Ivy Bridge Lenovo ThinkPad Internal Flashing</span></a>.</p>
+<p>On this specific board it is possible to prevent the BLE bit from being set
+when it resumes from S3. One entry in the S3 Boot Script must be modified,
+e.g. with a patched version of <a class="reference external" href="https://github.com/chipsec/chipsec">CHIPSEC</a>
+that supports this specific type of S3 Boot Script, for example from strobo5:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone -b headerless https://github.com/strobo5/chipsec.git
+$ cd chipsec
+$ python setup.py build_ext -i
+$ sudo python chipsec_main.py -m tools.uefi.s3script_modify -a replace_op,mmio_wr,0xe00f80dc,0x00,1
+</pre></div>
+</div>
+<p>The boot script contains an entry that writes 0x02 to memory at address
+0xe00f80dc. This address points at the PCIe configuration register at offset
+0xdc for the PCIe device 0:1f.0, which is the BIOS Control Register of the LPC
+Interface Bridge [0][1]. The value 0x02 sets the BLE bit, and the modification
+prevents this by making it write a 0 instead.</p>
+<p>After suspending and resuming the board, the BIOS region can be flashed with
+a coreboot image, e.g. using flashrom. Note that the ME region is not readable,
+so the <cite>–noverify-all</cite> flag is necessary. Please refer to the
+<a class="reference internal" href="../../tutorial/flashing_firmware/index.html"><span class="doc">Flashing firmware tutorial</span></a>.</p>
+</section>
+<section id="hardware-monitoring-and-fan-control">
+<h2>Hardware monitoring and fan control<a class="headerlink" href="#hardware-monitoring-and-fan-control" title="Link to this heading"></a></h2>
+<p>Currently there is no automatic, OS-independent fan control.</p>
+</section>
+<section id="serial-port-header">
+<h2>Serial port header<a class="headerlink" href="#serial-port-header" title="Link to this heading"></a></h2>
+<p>Serial port 1, provided by the Super I/O, is exposed on a pin header. The
+RS-232 signals are assigned to the header so that its pin numbers map directly
+to the pin numbers of a DE-9 connector. If your serial port doesn’t seem to
+work, check if your bracket expects a different assignment.</p>
+<p>Here is a top view of the serial port header found on this board:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>             <span class="o">+---+---+</span>
+         <span class="n">N</span><span class="o">/</span><span class="n">C</span> <span class="o">|</span>   <span class="o">|</span> <span class="mi">9</span> <span class="o">|</span> <span class="n">RI</span>  <span class="o">-&gt;</span> <span class="n">pin</span> <span class="mi">9</span>
+             <span class="o">+---+---+</span>
+<span class="n">Pin</span> <span class="mi">8</span> <span class="o">&lt;-</span> <span class="n">CTS</span> <span class="o">|</span> <span class="mi">8</span> <span class="o">|</span> <span class="mi">7</span> <span class="o">|</span> <span class="n">RTS</span> <span class="o">-&gt;</span> <span class="n">pin</span> <span class="mi">7</span>
+             <span class="o">+---+---+</span>
+<span class="n">Pin</span> <span class="mi">6</span> <span class="o">&lt;-</span> <span class="n">DSR</span> <span class="o">|</span> <span class="mi">6</span> <span class="o">|</span> <span class="mi">5</span> <span class="o">|</span> <span class="n">GND</span> <span class="o">-&gt;</span> <span class="n">pin</span> <span class="mi">5</span>
+             <span class="o">+---+---+</span>
+<span class="n">Pin</span> <span class="mi">4</span> <span class="o">&lt;-</span> <span class="n">DTR</span> <span class="o">|</span> <span class="mi">4</span> <span class="o">|</span> <span class="mi">3</span> <span class="o">|</span> <span class="n">TxD</span> <span class="o">-&gt;</span> <span class="n">pin</span> <span class="mi">3</span>
+             <span class="o">+---+---+</span>
+<span class="n">Pin</span> <span class="mi">2</span> <span class="o">&lt;-</span> <span class="n">RxD</span> <span class="o">|</span> <span class="mi">2</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">DCD</span> <span class="o">-&gt;</span> <span class="n">pin</span> <span class="mi">1</span>
+             <span class="o">+---+---+</span>
+</pre></div>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<p>[0]: Intel 6 Series Chipset and Intel C200 Series Chipset Datasheet,
+May 2011,
+Document number 324645-006</p>
+<p>[1]: Accessing PCI Express Configuration Registers Using Intel Chipsets,
+December 2008,
+Document number 321090</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dg43gt.html" class="btn btn-neutral float-left" title="Intel DG43GT" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="kblrvp11.html" class="btn btn-neutral float-right" title="Intel Kaby lake RVP11" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

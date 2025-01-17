@@ -1,0 +1,187 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>USB4 Retimers &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CBFS SMBIOS hooks" href="cbfs_smbios.html" />
+    <link rel="prev" title="SoundWire Implementation in coreboot" href="soundwire.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Platform independent drivers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dptf.html">Intel DPTF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipmi_kcs.html">IPMI KCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smmstore.html">SMMSTORE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smmstorev2.html">SMMSTOREv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="soundwire.html">SoundWire</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">USB4 Retimer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#driver-usage">Driver Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cbfs_smbios.html">CBFS SMBIOS hooks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Platform independent drivers documentation</a></li>
+      <li class="breadcrumb-item active">USB4 Retimers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/drivers/retimer.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usb4-retimers">
+<h1>USB4 Retimers<a class="headerlink" href="#usb4-retimers" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>As USB speeds continue to increase (up to 5G, 10G, and even 20G or higher in
+newer revisions of the spec), it becomes more difficult to maintain signal
+integrity for longer traces. Devices such as retimers and redrivers can be used
+to help signals maintain their integrity over long distances.</p>
+<p>A redriver is a device that boosts the high-frequency content of a signal in
+order to compensate for the attenuation typically caused by travelling through
+various circuit components (PCB, connectors, CPU, etc.). Redrivers are not
+protocol-aware, which makes them relatively simple. However, their effectiveness
+is limited, and may not work at all in some scenarios.</p>
+<p>A retimer is a device that retransmits a fresh copy of the signal it receives,
+by doing CDR and retransmitting the data (i.e., it is protocol-aware). Since
+this is a digital component, it may have firmware.</p>
+</section>
+<section id="driver-usage">
+<h2>Driver Usage<a class="headerlink" href="#driver-usage" title="Link to this heading"></a></h2>
+<p>Some operating systems may have the ability to update firmware on USB4 retimers,
+and ultimately will need some way to power the device on and off so that its new
+firmware can be loaded. This is achieved by providing a GPIO signal that can be
+used for this purpose; its active state must be the one in which power is
+applied to the retimer. This driver will generate the required ACPI AML code
+which will toggle the GPIO in response to the kernel’s request (through the
+<code class="docutils literal notranslate"><span class="pre">_DSM</span></code> ACPI method). Simply put something like the following in your devicetree:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">device</span> <span class="n">pci</span> <span class="mf">0.0</span> <span class="n">on</span>
+	<span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">usb4</span><span class="o">/</span><span class="n">retimer</span>
+		<span class="n">register</span> <span class="s2">&quot;power_gpio&quot;</span> <span class="o">=</span> <span class="s2">&quot;ACPI_GPIO_OUTPUT_ACTIVE_HIGH(GPP_A0)&quot;</span>
+		<span class="n">device</span> <span class="n">generic</span> <span class="mi">0</span> <span class="n">on</span> <span class="n">end</span>
+	<span class="n">end</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+<p>replacing the GPIO with the appropriate pin and polarity.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="soundwire.html" class="btn btn-neutral float-left" title="SoundWire Implementation in coreboot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cbfs_smbios.html" class="btn btn-neutral float-right" title="CBFS SMBIOS hooks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

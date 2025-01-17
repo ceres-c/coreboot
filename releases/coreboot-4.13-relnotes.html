@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coreboot 4.13 &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="coreboot 4.12" href="coreboot-4.12-relnotes.html" />
+    <link rel="prev" title="coreboot 4.14" href="coreboot-4.14-relnotes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#upcoming-release">Upcoming release</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#previous-releases">Previous releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.22-relnotes.html">4.22 - November 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.21-relnotes.html">4.21   - August 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.20.1-relnotes.html">4.20.1 - May 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.19-relnotes.html">4.19   - January 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.18-relnotes.html">4.18   - October 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.17-relnotes.html">4.17   - May 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.16-relnotes.html">4.16   - February 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.15-relnotes.html">4.15   - November 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.14-relnotes.html">4.14   - May 2021</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.13   - November 2020</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#new-mainboards">New mainboards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#removed-mainboards">Removed mainboards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#significant-changes">Significant changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deprecations">Deprecations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.12-relnotes.html">4.12   - May 2020</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.11-relnotes.html">4.11   - November 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.10-relnotes.html">4.10   - July 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.9-relnotes.html">4.9    - December 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.8.1-relnotes.html">4.8.1  - May 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.7-relnotes.html">4.7    - January 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.6-relnotes.html">4.6    - April 2017</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.5-relnotes.html">4.5    - October 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.4-relnotes.html">4.4    - May 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.3-relnotes.html">4.3    - January 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.2-relnotes.html">4.2    - October 2015</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.1-relnotes.html">4.1    - July 2015</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Release notes</a></li>
+      <li class="breadcrumb-item active">coreboot 4.13</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/releases/coreboot-4.13-relnotes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coreboot-4-13">
+<h1>coreboot 4.13<a class="headerlink" href="#coreboot-4-13" title="Link to this heading"></a></h1>
+<p>coreboot 4.13 was released on November 20th, 2020.</p>
+<p>Since 4.12 there were 4200 new commits by over 234 developers.
+Of these, about 72 contributed to coreboot for the first time.</p>
+<p>Thank you to all developers who again helped made coreboot better
+than ever, and a big welcome to our new contributors!</p>
+<section id="new-mainboards">
+<h2>New mainboards<a class="headerlink" href="#new-mainboards" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Acer G43T-AM3</p></li>
+<li><p>AMD Cereme</p></li>
+<li><p>Asus A88XM-E FM2+</p></li>
+<li><p>Biostar TH61-ITX</p></li>
+<li><p>BostenTech GBYT4</p></li>
+<li><p>Clevo L140CU/L141CU</p></li>
+<li><p>Dell OptiPlex 9010</p></li>
+<li><p>Example Min86 (fake board)</p></li>
+<li><p>Google Ambassador</p></li>
+<li><p>Google Asurada</p></li>
+<li><p>Google Berknip</p></li>
+<li><p>Google Boldar</p></li>
+<li><p>Google Boten</p></li>
+<li><p>Google Burnet</p></li>
+<li><p>Google Cerise</p></li>
+<li><p>Google Coachz</p></li>
+<li><p>Google Dalboz</p></li>
+<li><p>Google Dauntless</p></li>
+<li><p>Google Delbin</p></li>
+<li><p>Google Dirinboz</p></li>
+<li><p>Google Dooly</p></li>
+<li><p>Google Drawcia</p></li>
+<li><p>Google Eldrid</p></li>
+<li><p>Google Elemi</p></li>
+<li><p>Google Esche</p></li>
+<li><p>Google Ezkinil</p></li>
+<li><p>Google Faffy</p></li>
+<li><p>Google Fennel</p></li>
+<li><p>Google Genesis</p></li>
+<li><p>Google Hayato</p></li>
+<li><p>Google Lantis</p></li>
+<li><p>Google Lindar</p></li>
+<li><p>Google Madoo</p></li>
+<li><p>Google Magolor</p></li>
+<li><p>Google Metaknight</p></li>
+<li><p>Google Morphius</p></li>
+<li><p>Google Noibat</p></li>
+<li><p>Google Pompom</p></li>
+<li><p>Google Shuboz</p></li>
+<li><p>Google Stern</p></li>
+<li><p>Google Terrador</p></li>
+<li><p>Google Todor</p></li>
+<li><p>Google Trembyle</p></li>
+<li><p>Google Vilboz</p></li>
+<li><p>Google Voema</p></li>
+<li><p>Google Volteer2</p></li>
+<li><p>Google Voxel</p></li>
+<li><p>Google Willow</p></li>
+<li><p>Google Woomax</p></li>
+<li><p>Google Wyvern</p></li>
+<li><p>HP EliteBook 2560p</p></li>
+<li><p>HP EliteBook Folio 9480m</p></li>
+<li><p>HP ProBook 6360b</p></li>
+<li><p>Intel Alderlake-P RVP</p></li>
+<li><p>Kontron COMe-bSL6</p></li>
+<li><p>Lenovo ThinkPad X230s</p></li>
+<li><p>Open Compute Project DeltaLake</p></li>
+<li><p>Prodrive Hermes</p></li>
+<li><p>Purism Librem Mini</p></li>
+<li><p>Purism Librem Mini v2</p></li>
+<li><p>Siemens Chili</p></li>
+<li><p>Supermicro X11SSH-F</p></li>
+<li><p>System76 lemp9</p></li>
+</ul>
+</section>
+<section id="removed-mainboards">
+<h2>Removed mainboards<a class="headerlink" href="#removed-mainboards" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Google Cheza</p></li>
+<li><p>Google DragonEgg</p></li>
+<li><p>Google Ripto</p></li>
+<li><p>Google Sushi</p></li>
+<li><p>Open Compute Project SonoraPass</p></li>
+</ul>
+</section>
+<section id="significant-changes">
+<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Link to this heading"></a></h2>
+<section id="native-refcode-implementation-for-bay-trail">
+<h3>Native refcode implementation for Bay Trail<a class="headerlink" href="#native-refcode-implementation-for-bay-trail" title="Link to this heading"></a></h3>
+<p>Bay Trail no longer needs a refcode binary to function properly. The refcode
+was reimplemented as coreboot code, which should be functionally equivalent.
+Thus, coreboot only needs to run the MRC.bin to successfully boot Bay Trail.</p>
+</section>
+<section id="unusual-config-files-to-build-test-more-code">
+<h3>Unusual config files to build test more code<a class="headerlink" href="#unusual-config-files-to-build-test-more-code" title="Link to this heading"></a></h3>
+<p>There’s some new highly-unusual config files, whose only purpose is to coerce
+Jenkins into build-testing several disabled-by-default coreboot config options.
+This prevents them from silently decaying over time because of build failures.</p>
+</section>
+<section id="initial-support-for-intel-trusted-execution-technology">
+<h3>Initial support for Intel Trusted eXecution Technology<a class="headerlink" href="#initial-support-for-intel-trusted-execution-technology" title="Link to this heading"></a></h3>
+<p>coreboot now supports enabling Intel TXT. Though it’s not feature-complete yet,
+the code allows successfully launching tboot, a Measured Launch Environment. It
+was tested on Haswell using an Asrock B85M Pro4 mainboard with TPM 2.0 on LPC.
+Though support for other platforms is still not ready, it is being worked on.
+The Haswell MRC.bin needs to be patched so as to enable DPR. Given that the MRC
+binary cannot be redistributed, the best long-term solution is to replace it.</p>
+</section>
+<section id="hidden-pci-devices">
+<h3>Hidden PCI devices<a class="headerlink" href="#hidden-pci-devices" title="Link to this heading"></a></h3>
+<p>This new functionality takes advantage of the existing ‘hidden’ keyword in the
+devicetree. Since no existing boards were using the keyword, its usage was
+repurposed to make dealing with some unique PCI devices easier. The particular
+case here is Intel’s PMC (Power Management Controller). During the FSP-S run,
+the PMC device is made hidden, meaning that its config space looks as if there
+is no device there (Vendor ID reads as 0xFFFF_FFFF). However, the device does
+have fixed resources, both MMIO and I/O. These were previously recorded in
+different places (MMIO was typically an SA fixed resource, and I/O was treated
+as an LPC resource). With this change, when a device in the tree is marked as
+‘hidden’, it is not probed (<code class="docutils literal notranslate"><span class="pre">pci_probe_dev()</span></code>) but rather assumed to exist so
+that its resources can be placed in a more natural location. This also adds the
+ability for the device to participate in SSDT generation.</p>
+</section>
+<section id="tools-for-generating-spds-for-lp4x-memory-on-tgl-and-jsl">
+<h3>Tools for generating SPDs for LP4x memory on TGL and JSL<a class="headerlink" href="#tools-for-generating-spds-for-lp4x-memory-on-tgl-and-jsl" title="Link to this heading"></a></h3>
+<p>A set of new tools <code class="docutils literal notranslate"><span class="pre">gen_spd.go</span></code> and <code class="docutils literal notranslate"><span class="pre">gen_part_id.go</span></code> are added to automate the
+process of generating SPDs for LP4x memory and assigning hardware strap IDs for
+memory parts used on TGL and JSL based boards. The SPD data obtained from memory
+part vendors has to be massaged to format it correctly as per JEDEC and Intel MRC
+expectations. These tools take a list of memory parts describing their physical
+attributes as per their datasheet and convert those attributes into SPD files for
+the platforms. More details about the tools are added in
+<a class="reference external" href="https://review.coreboot.org/plugins/gitiles/coreboot/+/refs/heads/master/util/spd_tools/intel/lp4x/README.md">README.md</a>.</p>
+</section>
+<section id="new-version-of-smm-loader">
+<h3>New version of SMM loader<a class="headerlink" href="#new-version-of-smm-loader" title="Link to this heading"></a></h3>
+<p>A new version of the SMM loader which accommodates platforms with over 32
+CPU threads.  The existing version of SMM loader uses a 64K code/data
+segment and only a limited number of CPU threads can fit into one segment
+(because of save state, STM, other features, etc). This loader extends beyond
+the 64K segment to accommodate additional CPUs and in theory allows as many
+CPU threads as possible limited only by SMRAM space and not by 64K. By default
+this loader version is disabled. Please see cpu/x86/Kconfig for more info.</p>
+</section>
+<section id="address-sanitizer">
+<h3>Address Sanitizer<a class="headerlink" href="#address-sanitizer" title="Link to this heading"></a></h3>
+<p>coreboot now has an in-built Address Sanitizer, a runtime memory debugger
+designed to find out-of-bounds access and use-after-scope bugs. It is made
+available on all x86 platforms in ramstage and on QEMU i440fx, Intel Apollo
+Lake, and Haswell in romstage. Further, it can be enabled in romstage on other
+x86 platforms as well. Refer <a class="reference internal" href="../technotes/asan.html"><span class="doc">ASan documentation</span></a> for
+more info.</p>
+</section>
+<section id="initial-support-for-x86-64">
+<h3>Initial support for x86_64<a class="headerlink" href="#initial-support-for-x86-64" title="Link to this heading"></a></h3>
+<p>The x86_64 code support has been revived and enabled for QEMU. While it started
+as PoC and the only supported platform is an emulator, there’s interest in
+enabling additional platforms. It would allow to access more than 4GiB of memory
+at runtime and possibly brings optimised code for faster execution times.
+It still needs changes in assembly, fixed integer to pointer conversions in C,
+wrappers for blobs, support for running Option ROMs, among other things.</p>
+</section>
+<section id="preparations-to-minimize-enabling-pci-bus-mastering">
+<h3>Preparations to minimize enabling PCI bus mastering<a class="headerlink" href="#preparations-to-minimize-enabling-pci-bus-mastering" title="Link to this heading"></a></h3>
+<p>For security reasons, bus mastering should be enabled as late as possible. In
+coreboot, it’s usually not necessary and payloads should only enable it for
+devices they use. Since not all payloads enable bus mastering properly yet,
+some Kconfig options were added as an intermediate step to give some sort of
+“backwards compatibility”, which allow enabling or disabling bus mastering by
+groups.</p>
+<p>Currently available groups are:</p>
+<ul class="simple">
+<li><p>PCI bridges</p></li>
+<li><p>Any devices</p></li>
+</ul>
+<p>For now, “Any devices” is enabled by default to keep the traditional behaviour,
+which also includes all other options. This is currently necessary, for instance,
+for libpayload-based payloads as the drivers don’t enable bus mastering for PCI
+bridges.</p>
+<p>Exceptional cases, that may still need early bus master enabling in the future,
+should get their own per-reason Kconfig option. Ideally before the next release.</p>
+</section>
+<section id="early-runtime-configurability-of-the-console-log-level">
+<h3>Early runtime configurability of the console log level<a class="headerlink" href="#early-runtime-configurability-of-the-console-log-level" title="Link to this heading"></a></h3>
+<p>Traditionally, we didn’t allow the log level of the <code class="docutils literal notranslate"><span class="pre">romstage</span></code> console
+to be changed at runtime (e.g. via <code class="docutils literal notranslate"><span class="pre">get_option()</span></code>). It turned out that
+the technical constraints for this (no global variables in <code class="docutils literal notranslate"><span class="pre">romstage</span></code>)
+vanished long ago, though. The new behaviour is to query <code class="docutils literal notranslate"><span class="pre">get_option()</span></code>
+now from the second stage that uses the console on. In other words, if
+the <code class="docutils literal notranslate"><span class="pre">bootblock</span></code> already enables the console, the <code class="docutils literal notranslate"><span class="pre">romstage</span></code> log level
+can be changed via <code class="docutils literal notranslate"><span class="pre">get_option()</span></code>. Keeping the log level of the first
+console static ensures that we can see console output even if there’s
+a bug in the more involved code to query options.</p>
+</section>
+<section id="resource-allocator-v4">
+<h3>Resource allocator v4<a class="headerlink" href="#resource-allocator-v4" title="Link to this heading"></a></h3>
+<p>A new revision of resource allocator v4 is now added to coreboot that supports
+multiple ranges for allocating resources. Unlike the previous allocator (v3), it does
+not use the topmost available window for allocation. Instead, it uses the first
+window within the address space that is available and satisfies the resource request.
+This allows utilization of the entire available address space and also allows
+allocation above the 4G boundary. The old resource allocator v3 is still retained for
+some AMD platforms that do not conform to the requirements of the allocator.</p>
+</section>
+</section>
+<section id="deprecations">
+<h2>Deprecations<a class="headerlink" href="#deprecations" title="Link to this heading"></a></h2>
+<section id="pci-bus-master-configuration-options">
+<h3>PCI bus master configuration options<a class="headerlink" href="#pci-bus-master-configuration-options" title="Link to this heading"></a></h3>
+<p>In order to minimize the usage of PCI bus mastering, the options we introduced in
+this release will be dropped in a future release again. For more details, please
+see <a class="reference external" href="#preparations-to-minimize-enabling-pci-bus-mastering-in-coreboot">Preparations to minimize enabling PCI bus mastering</a>.</p>
+</section>
+<section id="resource-allocator-v3">
+<h3>Resource allocator v3<a class="headerlink" href="#resource-allocator-v3" title="Link to this heading"></a></h3>
+<p>Resource allocator v3 is retained in coreboot tree because the following platforms
+do not conform to the requirements of the resource allocation i.e. not all the fixed
+resources of the platform are provided during the <code class="docutils literal notranslate"><span class="pre">read_resources()</span></code> operation:</p>
+<ul class="simple">
+<li><p>northbridge/amd/pi/00630F01</p></li>
+<li><p>northbridge/amd/pi/00730F01</p></li>
+<li><p>northbridge/amd/pi/00660F01</p></li>
+<li><p>northbridge/amd/agesa/family14</p></li>
+<li><p>northbridge/amd/agesa/family15tn</p></li>
+<li><p>northbridge/amd/agesa/family16kb</p></li>
+</ul>
+<p>In order to have a single unified allocator in coreboot, this notice is being added
+to ensure that the platforms listed above are fixed before the next release. If there
+is interest in maintaining support for these platforms beyond the next release,
+please ensure that the platforms are fixed to conform to the expectations of resource
+allocation.</p>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="intel-microcode-updates">
+<h3>Intel microcode updates<a class="headerlink" href="#intel-microcode-updates" title="Link to this heading"></a></h3>
+<p>Intel microcode updates tagged <em>microcode-20200616</em> are still included in our
+builds. Note, [Intel released new microcode updates]
+(https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/blob/main/releasenote.md)
+tagged</p>
+<ol class="simple">
+<li><p><em>microcode-20201110</em></p></li>
+<li><p><em>microcode-20201112</em></p></li>
+<li><p><em>microcode-20201118</em></p></li>
+</ol>
+<p>with security updates for [INTEL-SA-00381]
+(https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-00381.html)
+and [INTEL-SA-00389]
+(https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-00389.html).</p>
+<p>Due to too short time for rigorous testing and bad experience with botched
+microcode updates in the past, these new updates are not included. Users wanting
+to use those, can apply them in the operating system, or update the submodule
+pointer themselves.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="coreboot-4.14-relnotes.html" class="btn btn-neutral float-left" title="coreboot 4.14" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="coreboot-4.12-relnotes.html" class="btn btn-neutral float-right" title="coreboot 4.12" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

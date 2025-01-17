@@ -1,0 +1,411 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AMD Family 17h in coreboot &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="License Agreement for amd_blobs Repository" href="amdblobs_license.html" />
+    <link rel="prev" title="1. AMD Platform Security Processor (PSP) Firmware Integration Guide" href="psp_integration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">System on Chip</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#vendor">Vendor</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">AMD</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#technology">Technology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#amd-blobs-repository-license">amd_blobs Repository License</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cavium/index.html">Cavium</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intel/index.html">Intel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../qualcomm/index.html">Qualcomm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">SOC-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">AMD SOC-specific documentation</a></li>
+      <li class="breadcrumb-item active">AMD Family 17h in coreboot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/soc/amd/family17h.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="amd-family-17h-in-coreboot">
+<h1>AMD Family 17h in coreboot<a class="headerlink" href="#amd-family-17h-in-coreboot" title="Link to this heading"></a></h1>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading"></a></h2>
+<p>Beginning with Family 17h products (a.k.a. “Zen” cores), AMD
+changed their paradigm for initializing the system and this requires
+major modifications to the execution flow of coreboot.  This file
+discusses the new boot flow, and challenges, and the tradeoffs of the
+initial port into coreboot.</p>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Family 17h products are x86-based designs.  This documentation assumes
+familiarity with x86, its reset state and its early initialization
+requirements.</p>
+<p>To the extent necessary, the role of the AMD Secure Processor (a.k.a.
+Platform Security Processor or PSP) in system initialization is addressed
+here.  The PSP specification<sup>1</sup> is available only with an NDA.
+coreboot relies on util/amdfwtool to build the structures and add various
+other firmware to the final image<sup>2</sup>.  The Family 17h PSP design
+guide adds a new BIOS Directory Table, similar to the PSP Directory Table.</p>
+<p>Support in coreboot for modern AMD products is based on AMD’s
+reference code:  AMD Generic Encapsulated Software Architecture
+(AGESA<sup>TM</sup>).  AGESA contains the technology for enabling DRAM,
+configuring proprietary core logic, assistance with generating ACPI
+tables, and other features.</p>
+<p>AGESA for products earlier than Family 17h is known as v5 or
+Arch2008<sup>3</sup>.  Also note that coreboot currently contains both
+open source AGESA and closed source implementations (binaryPI) compiled
+from AGESA.</p>
+<p>The first AMD Family 17h device ported to coreboot is codenamed
+“Picasso”<sup>4</sup>, and will be added to soc/amd/picasso.</p>
+</section>
+<section id="additional-definitions">
+<h2>Additional Definitions<a class="headerlink" href="#additional-definitions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>PSP, Platform Security Processor:  Onboard ARM processor that runs
+alongside the main x86 processor; may be viewed as analogous to the
+Intel<sup>R</sup> Management Engine</p></li>
+<li><p>FCH, Fusion Control Hub, the logical southbridge within the SOC</p></li>
+<li><p>ABL - AGESA Bootloader - Processor initialization code that runs on
+the PSP</p></li>
+<li><p>PSP Directory Table - A structured list of pointers to PSP firmware
+and other controller binaries</p></li>
+<li><p>BIOS Directory Table - A structured list of pointers to BIOS
+related firmware images</p></li>
+<li><p>Embedded Firmware Structure - Signature and pointers used by the
+PSP to locate the PSP Directory Table and BIOS Directory Table; these
+items are generated during coreboot build and are located in the SPI ROM</p></li>
+<li><p>vboot - The generic technology name for verifying/choosing a RW A/B
+or fallback RO path.</p></li>
+<li><p>verstage - The code (vboot) to verify the firmware contained in the
+writable section of the SPI ROM, traditionally run on the x86 processor,
+and in some cases a separate stage added to coreboot</p></li>
+<li><p>vboot app - A portion of vboot technology designed and compiled
+to run on the PSP</p></li>
+<li><p>APCB - AMD PSP Customization Block - A binary containing PSP and
+system configuration preferences (analogous to v5 BUILDOPT_ options),
+and generated by APCBTool to be added to coreboot/utils later</p></li>
+<li><p>APOB - AGESA PSP Output Buffer - A buffer in main memory for
+storing AGESA BootLoader output.  There are no plans for this to be
+parsed by coreboot</p></li>
+</ul>
+</section>
+<section id="problem-statements">
+<h2>Problem Statements<a class="headerlink" href="#problem-statements" title="Link to this heading"></a></h2>
+<p>AMD has ported early AGESA features to the PSP, which now discovers,
+enables and trains DRAM.  Unlike any other x86 device in coreboot, a
+Picasso system has DRAM online prior to the first instruction fetch.</p>
+<p>Cache-as-RAM (CAR) is no longer a supportable feature in AMD hardware.
+Early code expecting CAR behavior <span
+style="text-decoration:underline;">must</span> account for writes
+escaping the L2 cache and going to DRAM.</p>
+<p>Without any practical need for CAR, or DRAM initialization, coreboot
+should arguably skip bootblock and romstage, and possibly use ramstage
+as the BIOS image.  This approach presents a number of challenges:</p>
+<ul class="simple">
+<li><p>At the entry of ramstage, x86 processors are in flat protected
+mode.  Picasso’s initial state is nearly identical to any other x86
+at reset, except its CS shadow register’s base and limit put its
+execution within DRAM, not at 0xfffffff0.  Picasso requires initial
+programming and entry into protected mode prior to ramstage.</p></li>
+<li><p>coreboot expects cbmem initialization during romstage.</p></li>
+</ul>
+<p>AGESA supporting Picasso is now at v9.  Unlike Arch2008, which defines
+granular entry points for easy inclusion to a legacy BIOS, v9 is
+rewritten for compilation into a UEFI.  The source follows UEFI
+standards, i.e. assumes the presence of UEFI phases, implements
+dependency expressions, much functionality is rewritten as libraries,
+etc.  It would, in no way, fit into the v5 model used in coreboot.</p>
+<ul class="simple">
+<li><p>For the foreseeable future, AGESA source will distributed only
+under NDA.  Furthermore, because AGESA’s integrated debug services divulge
+NDA information, no debug builds will be released to the general public.</p></li>
+</ul>
+</section>
+<section id="basic-pre-x86-boot-flow">
+<h2>Basic Pre-x86 Boot Flow<a class="headerlink" href="#basic-pre-x86-boot-flow" title="Link to this heading"></a></h2>
+<p>The following steps occur prior to x86 processor operation.</p>
+<ul class="simple">
+<li><p>System power on</p></li>
+<li><p>PSP executes immutable on-chip boot ROM</p></li>
+<li><p>PSP locates the Embedded Firmware Table and PSP Directory Table in
+the SPI ROM</p></li>
+<li><p>PSP verifies and executes the PSP off-chip bootloader</p></li>
+<li><p>ChromeOS systems:</p>
+<ul>
+<li><p>Off-chip bootloader attempts to locate vboot app via the RO BIOS
+Directory Table</p></li>
+<li><p>If vboot app is not found, booting continues with ABLs below</p></li>
+<li><p>vboot app initializes, setting up GPIOs, UART if needed,
+communication path to the EC, and the SPI controller for direct access
+to the flash device.</p></li>
+<li><p>vboot app verifies the RW sections (as is typically performed by
+the main processor)</p></li>
+<li><p>vboot app locates the Embedded Firmware Directory within the
+verified FMAP section and passes a pointer to the PSP bootloader.  If
+the verification fails, it passes a pointer to the RO header to the
+bootloader.</p></li>
+</ul>
+</li>
+<li><p>PSP parses the PSP Directory Table to find the ABLs and executes
+them</p></li>
+<li><p>An ABL parses the APCB for system configuration preferences</p></li>
+<li><p>An ABL initializes system main memory, locates the compressed BIOS
+image in the SPI ROM, and decompresses it into DRAM</p></li>
+<li><p>An ABL writes the APOB to DRAM  for consumption by the x86-based
+AGESA</p></li>
+<li><p>PSP releases the x86 processor from reset.  The x86 core fetches
+and executes instructions from the reset vector</p></li>
+</ul>
+</section>
+<section id="picasso-reset-vector-and-first-instructions">
+<h2>Picasso Reset Vector and First Instructions<a class="headerlink" href="#picasso-reset-vector-and-first-instructions" title="Link to this heading"></a></h2>
+<p>As mentioned above, prior to releasing the x86 main core from reset,
+the PSP decompresses a BIOS image into DRAM.  The PSP uses a specific
+BIOS Directory Table entry type to determine the source address (in
+flash), the destination address (in DRAM), and the destination size.
+The decompressed image is at the top of the destination region.  The
+PSP then</p>
+<p>Calculates the x86 reset vector as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reset_vector</span>	<span class="o">=</span> <span class="n">dest_addr</span> <span class="o">+</span> <span class="n">dest_size</span> <span class="o">-</span> <span class="mh">0x10</span>
+</pre></div>
+</div>
+<p>Sets x86 CS descriptor shadow register to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">base</span>		<span class="o">=</span> <span class="n">dest_addr</span> <span class="o">+</span> <span class="n">dest_size</span> <span class="o">-</span> <span class="mh">0x10000</span>
+<span class="n">limit</span>		<span class="o">=</span> <span class="mh">0xffff</span>
+</pre></div>
+</div>
+<p>Like all x86 devices, the main core is allowed to begin executing
+instructions with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CS</span><span class="p">:</span><span class="n">IP</span>		<span class="o">=</span> <span class="mh">0xf000</span><span class="p">:</span><span class="mh">0xfff0</span>
+</pre></div>
+</div>
+<p>For example, assume the BIOS Directory Table indicates</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">destination</span>	<span class="o">=</span> <span class="mh">0x9b00000</span>
+<span class="n">size</span>		<span class="o">=</span> <span class="mh">0x300000</span>
+</pre></div>
+</div>
+<p>… then the BIOS image is placed at the topmost position the region
+0x9b00000-0x9dfffff and</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reset_vector</span>	<span class="o">=</span> <span class="mh">0x9dffff0</span>
+<span class="n">CS_shdw_base</span>	<span class="o">=</span> <span class="mh">0x9df0000</span>
+<span class="n">CS</span><span class="p">:</span><span class="n">IP</span>		<span class="o">=</span> <span class="mh">0xf000</span><span class="p">:</span><span class="mh">0xfff0</span>
+</pre></div>
+</div>
+<p>Although the x86 behaves as though it began executing at 0xfffffff0
+i.e. 0xf000:0xfff0, the initial GDT load must use the physical address
+of the table and not the typical CS-centric address.  And, the first
+jump to protected mode must jump to the physical address in DRAM.  Any
+code that is position-dependent must be linked to run at the final
+destination.</p>
+</section>
+<section id="implementation-for-coreboot">
+<h2>Implementation for coreboot<a class="headerlink" href="#implementation-for-coreboot" title="Link to this heading"></a></h2>
+<p>Supporting Picasso doesn’t fit perfectly with many of the coreboot
+assumptions about x86 processors.  Changes are introduced primarily
+into arch/x86 to accommodate a processor starting in DRAM and at a
+nontraditional reset vector.</p>
+<section id="car-and-early-stages">
+<h3>CAR and early stages<a class="headerlink" href="#car-and-early-stages" title="Link to this heading"></a></h3>
+<p>The traditional coreboot bootblock and romstage rely on cache-as-RAM
+and a linker script that positions temporary storage accordingly.  A
+substitute for the DCACHE variables, called EARLYRAM, is introduced.
+Like DCACHE, this allows for a consistent mapping of early regions
+required across multiple stages prior to cbmem coming online.
+Examples are the _preram_cbmem_console and _timestamp.</p>
+<p>Due to Picasso’s unique nature of starting with DRAM already available,
+no early stages run as execute-in-place (XIP).  All post-bootblock
+stages are copied from the BIOS flash into DRAM for faster
+performance, and these regions are marked reserved later in POST.</p>
+<p>Unlike CAR-based systems, and because Picasso does not run early
+stages as XIP, its early stages are not constrained in their use
+of .bss or .data sections.  All stages’ .bss is zeroed, and all
+.data sections are fully R/W at load time.</p>
+</section>
+<section id="bootblock">
+<h3>bootblock<a class="headerlink" href="#bootblock" title="Link to this heading"></a></h3>
+<p>Picasso uses a bootblock that mirrors a traditional bootblock as much
+as possible.  Because the image is loaded by the PSP, the bootblock is
+not restricted to the top of the BIOS flash device.  The compressed
+image is added into the PSP’s <code class="docutils literal notranslate"><span class="pre">amdfw.rom</span></code> build.</p>
+</section>
+<section id="vboot-app-and-verstage">
+<h3>vboot app and verstage<a class="headerlink" href="#vboot-app-and-verstage" title="Link to this heading"></a></h3>
+<p>Development is currently underway for the vboot app, and potentially
+an x86-based verstage companion.  This document shall be updated once
+the design is finalized and functioning.  Support for the PSP honoring
+the presence of the vboot app is available only in certain SKUs.</p>
+</section>
+<section id="romstage-and-postcar">
+<h3>romstage and postcar<a class="headerlink" href="#romstage-and-postcar" title="Link to this heading"></a></h3>
+<p>A traditional romstage is maintained for Picasso.  The primary reason for
+this choice is to remain compatible with coreboot conventions and
+to support the FSP 2.0 driver.  Picasso’s romstage uses an
+fsp_memory_init() call to glean the memory map from AGESA.  (See below.)
+fsp_memory_init() brings cbmem online before returning to the caller.</p>
+<p>No postcar stage is required or supported.</p>
+</section>
+</section>
+<section id="agesa-v9-on-picasso">
+<h2>AGESA v9 on Picasso<a class="headerlink" href="#agesa-v9-on-picasso" title="Link to this heading"></a></h2>
+<p>Due to the current restriction on publishing AGESA source, a pre-built
+binary solution remains a requirement.  Modifying v9 to conform to the
+existing v5 binaryPI interface was considered impractical.</p>
+<p>Given the UEFI nature of modern AGESA, and the existing open source
+work from Intel, Picasso shall support AGESA via an FSP-like prebuilt
+image.  The Intel Firmware Support Package<sup>5</sup> combines
+reference code with EDK II source to create a modular image with
+discoverable entry points.  coreboot source already contains knowledge
+of FSP, how to parse it, integrate it, and how to communicate with it.
+Picasso’s FSP is compatible with rev. 2.0 of the External Architecture
+Specification.  Deviations, e.g., no FSP-T support, shall be published
+in an Integration Guide.</p>
+</section>
+<section id="apcb-setup">
+<h2>APCB setup<a class="headerlink" href="#apcb-setup" title="Link to this heading"></a></h2>
+<p>APCBs are used to provide the PSP with SPD information and optionally a set of
+GPIOs to use for selecting which SPD to load. A list of APCB files should be
+specified in <code class="docutils literal notranslate"><span class="pre">APCB_SOURCES</span></code>.</p>
+<section id="generating-apcbs">
+<h3>Generating APCBs<a class="headerlink" href="#generating-apcbs" title="Link to this heading"></a></h3>
+<p>If you have a template APCB file, the <code class="docutils literal notranslate"><span class="pre">apcb_edit</span></code> tool can be used to inject the
+SPD and GPIOs used to select the correct slot.</p>
+</section>
+</section>
+<section id="footnotes">
+<h2>Footnotes<a class="headerlink" href="#footnotes" title="Link to this heading"></a></h2>
+<ol class="simple">
+<li><p><em>AMD Platform Security Processor BIOS Architecture Design Guide
+for AMD Family 17h Processors</em> (PID #55758) and <em>AMD Platform
+Security Processor BIOS Architecture Design Guide</em> (PID #54267) for
+earlier products</p></li>
+<li><p><a class="reference internal" href="psp_integration.html"><span class="doc">PSP Integration</span></a></p></li>
+<li><p><a class="reference external" href="https://www.amd.com/system/files/TechDocs/44065_Arch2008.pdf">https://www.amd.com/system/files/TechDocs/44065_Arch2008.pdf</a></p></li>
+<li><p><a class="reference external" href="https://en.wikichip.org/wiki/amd/cores/picasso">https://en.wikichip.org/wiki/amd/cores/picasso</a></p></li>
+<li><p><a class="reference external" href="https://www.intel.com/content/www/us/en/intelligent-systems/intel-firmware-support-package/intel-fsp-overview.html">https://www.intel.com/content/www/us/en/intelligent-systems/intel-firmware-support-package/intel-fsp-overview.html</a></p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="psp_integration.html" class="btn btn-neutral float-left" title="1. AMD Platform Security Processor (PSP) Firmware Integration Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="amdblobs_license.html" class="btn btn-neutral float-right" title="License Agreement for amd_blobs Repository" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

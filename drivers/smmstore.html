@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMM based flash storage driver &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SMM based flash storage driver Version 2" href="smmstorev2.html" />
+    <link rel="prev" title="IPMI KCS driver" href="ipmi_kcs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Platform independent drivers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dptf.html">Intel DPTF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipmi_kcs.html">IPMI KCS</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SMMSTORE</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#smmstore">SMMSTORE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api">API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#storage-region">Storage region</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generating-the-smi">generating the SMI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#return-values">Return values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calling-arguments">Calling arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#external-links">External links</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="smmstorev2.html">SMMSTOREv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="soundwire.html">SoundWire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="retimer.html">USB4 Retimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbfs_smbios.html">CBFS SMBIOS hooks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Platform independent drivers documentation</a></li>
+      <li class="breadcrumb-item active">SMM based flash storage driver</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/drivers/smmstore.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="smm-based-flash-storage-driver">
+<h1>SMM based flash storage driver<a class="headerlink" href="#smm-based-flash-storage-driver" title="Link to this heading"></a></h1>
+<p>This documents the API exposed by the x86 system management based
+storage driver.</p>
+<section id="smmstore">
+<h2>SMMSTORE<a class="headerlink" href="#smmstore" title="Link to this heading"></a></h2>
+<p>SMMSTORE is a <a class="reference internal" href="../security/smm.html"><span class="doc">SMM</span></a> mediated driver to read from, write to and erase a
+predefined region in flash. It can be enabled by setting
+<code class="docutils literal notranslate"><span class="pre">CONFIG_SMMSTORE=y</span></code> in menuconfig.</p>
+<p>This can be used by the OS or the payload to implement persistent
+storage to hold for instance configuration data, without needing
+to implement a (platform specific) storage driver in the payload
+itself.</p>
+<p>The API provides append-only semantics for key/value pairs.</p>
+</section>
+<section id="api">
+<h2>API<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<section id="storage-region">
+<h3>Storage region<a class="headerlink" href="#storage-region" title="Link to this heading"></a></h3>
+<p>By default SMMSTORE will operate on a separate FMAP region called
+<code class="docutils literal notranslate"><span class="pre">SMMSTORE</span></code>. The default generated FMAP will include such a region.
+On systems with a locked FMAP, e.g. in an existing vboot setup
+with a locked RO region, the option exists to add a cbfsfile
+called <code class="docutils literal notranslate"><span class="pre">smm_store</span></code> in the <code class="docutils literal notranslate"><span class="pre">RW_LEGACY</span></code> (if CHROMEOS) or in the
+<code class="docutils literal notranslate"><span class="pre">COREBOOT</span></code> FMAP regions. It is recommended for new builds using
+a handcrafted FMD that intend to make use of SMMSTORE to include a
+sufficiently large <code class="docutils literal notranslate"><span class="pre">SMMSTORE</span></code> FMAP region. It is recommended to
+align the <code class="docutils literal notranslate"><span class="pre">SMMSTORE</span></code> region to 64KiB for the largest flash erase
+op compatibility.</p>
+<p>When a default generated FMAP is used the size of the FMAP region
+is equal to <code class="docutils literal notranslate"><span class="pre">CONFIG_SMMSTORE_SIZE</span></code>. UEFI payloads expect at least
+64KiB. Given that the current implementation lacks a way to rewrite
+key-value pairs at least a multiple of this is recommended.</p>
+</section>
+<section id="generating-the-smi">
+<h3>generating the SMI<a class="headerlink" href="#generating-the-smi" title="Link to this heading"></a></h3>
+<p>SMMSTORE is called via an SMI, which is generated via a write to the
+IO port defined in the smi_cmd entry of the FADT ACPI table. <code class="docutils literal notranslate"><span class="pre">%al</span></code>
+contains <code class="docutils literal notranslate"><span class="pre">APM_CNT_SMMSTORE=0xed</span></code> and is written to the smi_cmd IO
+port. <code class="docutils literal notranslate"><span class="pre">%ah</span></code> contains the SMMSTORE command. <code class="docutils literal notranslate"><span class="pre">%ebx</span></code> contains the
+parameter buffer to the SMMSTORE command.</p>
+</section>
+<section id="return-values">
+<h3>Return values<a class="headerlink" href="#return-values" title="Link to this heading"></a></h3>
+<p>If a command succeeds, SMMSTORE will return with
+<code class="docutils literal notranslate"><span class="pre">SMMSTORE_RET_SUCCESS=0</span></code> on <code class="docutils literal notranslate"><span class="pre">%eax</span></code>. On failure SMMSTORE will return
+<code class="docutils literal notranslate"><span class="pre">SMMSTORE_RET_FAILURE=1</span></code>. For unsupported SMMSTORE commands
+<code class="docutils literal notranslate"><span class="pre">SMMSTORE_REG_UNSUPPORTED=2</span></code> is returned.</p>
+<p><strong>NOTE1</strong>: The caller <strong>must</strong> check the return value and should make
+no assumption on the returned data if <code class="docutils literal notranslate"><span class="pre">%eax</span></code> does not contain
+<code class="docutils literal notranslate"><span class="pre">SMMSTORE_RET_SUCCESS</span></code>.</p>
+<p><strong>NOTE2</strong>: If the SMI returns without changing <code class="docutils literal notranslate"><span class="pre">%ax</span></code> assume that the
+SMMSTORE feature is not installed.</p>
+</section>
+<section id="calling-arguments">
+<h3>Calling arguments<a class="headerlink" href="#calling-arguments" title="Link to this heading"></a></h3>
+<p>SMMSTORE supports 3 subcommands that are passed via <code class="docutils literal notranslate"><span class="pre">%ah</span></code>, the additional
+calling arguments are passed via <code class="docutils literal notranslate"><span class="pre">%ebx</span></code>.</p>
+<p><strong>NOTE</strong>: The size of the struct entries are in the native word size of
+smihandler. This means 32 bits in almost all cases.</p>
+<section id="smmstore-cmd-clear-1">
+<h4>- SMMSTORE_CMD_CLEAR = 1<a class="headerlink" href="#smmstore-cmd-clear-1" title="Link to this heading"></a></h4>
+<p>This clears the <code class="docutils literal notranslate"><span class="pre">SMMSTORE</span></code> storage region. The argument in <code class="docutils literal notranslate"><span class="pre">%ebx</span></code> is
+unused.</p>
+</section>
+<section id="smmstore-cmd-read-2">
+<h4>- SMMSTORE_CMD_READ = 2<a class="headerlink" href="#smmstore-cmd-read-2" title="Link to this heading"></a></h4>
+<p>The additional parameter buffer <code class="docutils literal notranslate"><span class="pre">%ebx</span></code> contains a pointer to
+the following struct:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">smmstore_params_read</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">ssize_t</span><span class="w"> </span><span class="n">bufsize</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>INPUT:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">buf</span></code>: is a pointer to where the data needs to be read</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bufsize</span></code>: is the size of the buffer</p></li>
+</ul>
+<p>OUTPUT:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">buf</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bufsize</span></code>: returns the amount of data that has actually been read.</p></li>
+</ul>
+</section>
+<section id="smmstore-cmd-append-3">
+<h4>- SMMSTORE_CMD_APPEND = 3<a class="headerlink" href="#smmstore-cmd-append-3" title="Link to this heading"></a></h4>
+<p>SMMSTORE takes a key-value approach to appending data. key-value pairs
+are never updated, they are always appended. It is up to the caller to
+walk through the key-value pairs after reading SMMSTORE to find the
+latest one.</p>
+<p>The additional parameter buffer <code class="docutils literal notranslate"><span class="pre">%ebx</span></code> contains a pointer to
+the following struct:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">smmstore_params_append</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">key</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">size_t</span><span class="w"> </span><span class="n">keysize</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">val</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">size_t</span><span class="w"> </span><span class="n">valsize</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>INPUT:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code>: pointer to the key data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">keysize</span></code>: size of the key data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">val</span></code>: pointer to the value data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">valsize</span></code>: size of the value data</p></li>
+</ul>
+</section>
+<section id="security">
+<h4>Security<a class="headerlink" href="#security" title="Link to this heading"></a></h4>
+<p>Pointers provided by the payload or OS are checked to not overlap with the SMM.
+That protects the SMM handler from being manipulated.</p>
+<p><em>However there’s no validation done on the source or destination pointing to
+DRAM. A malicious application that is able to issue SMIs could extract arbitrary
+data or modify the currently running kernel.</em></p>
+</section>
+</section>
+</section>
+<section id="external-links">
+<h2>External links<a class="headerlink" href="#external-links" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://software.intel.com/sites/default/files/managed/cf/ea/a_tour_beyond_bios_implementing_uefi_authenticated_variables_in_smm_with_edkii.pdf">A Tour Beyond BIOS Implementing UEFI Authenticated Variables in SMM with EDKI</a>
+Note, this differs significantly from coreboot’s implementation.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ipmi_kcs.html" class="btn btn-neutral float-left" title="IPMI KCS driver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="smmstorev2.html" class="btn btn-neutral float-right" title="SMM based flash storage driver Version 2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

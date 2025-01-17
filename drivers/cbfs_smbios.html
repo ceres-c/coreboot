@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CBFS SMBIOS hooks &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Northbridge-specific documentation" href="../northbridge/index.html" />
+    <link rel="prev" title="USB4 Retimers" href="retimer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Platform independent drivers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dptf.html">Intel DPTF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipmi_kcs.html">IPMI KCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smmstore.html">SMMSTORE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smmstorev2.html">SMMSTOREv2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="soundwire.html">SoundWire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="retimer.html">USB4 Retimer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CBFS SMBIOS hooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#smbios-serial-number">SMBIOS Serial Number</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#smbios-system-uuid">SMBIOS System UUID</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Platform independent drivers documentation</a></li>
+      <li class="breadcrumb-item active">CBFS SMBIOS hooks</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/drivers/cbfs_smbios.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cbfs-smbios-hooks">
+<h1>CBFS SMBIOS hooks<a class="headerlink" href="#cbfs-smbios-hooks" title="Link to this heading"></a></h1>
+<p>The document describes the coreboot options how to make CBFS files populate
+platform-unique SMBIOS data.</p>
+<section id="smbios-serial-number">
+<h2>SMBIOS Serial Number<a class="headerlink" href="#smbios-serial-number" title="Link to this heading"></a></h2>
+<p>The <a class="reference external" href="https://www.dmtf.org/standards/smbios">DMTF SMBIOS specification</a> defines a field in the type 1 System
+Information and type 2 Baseboard Information called Serial Number. It
+is a null-terminated string field assumed to be unique per platform. Certain
+mainboard ports have SMBIOS hooks to generate the Serial Numbers from external
+data, e.g. Lenovo Thinkpads (see DRIVER_LENOVO_SERIALS). This driver aims to
+provide an option to populate the Serial Numbers from CBFS for boards that
+can’t generate the it from any source.</p>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h3>
+<p>In the coreboot configuration menu (<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code>) go to <code class="docutils literal notranslate"><span class="pre">Generic</span> <span class="pre">Drivers</span></code>
+and select an option <code class="docutils literal notranslate"><span class="pre">Serial</span> <span class="pre">number</span> <span class="pre">in</span> <span class="pre">CBFS</span></code>. The Kconfig system will enable
+<code class="docutils literal notranslate"><span class="pre">DRIVERS_GENERIC_CBFS_SERIAL</span></code> and the relevant code parts will be compiled into
+coreboot image.</p>
+<p>After the coreboot build for your board completes, use the cbfstool to include
+the file containing the serial number:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>add<span class="w"> </span>-n<span class="w"> </span>serial_number<span class="w"> </span>-t<span class="w"> </span>raw<span class="w"> </span>-f<span class="w"> </span>/path/to/serial_file.txt
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">serial_file.txt</span></code> is the unterminated string representation of the SMBIOS
+type 1 or type 2 Serial Number, e.g. <code class="docutils literal notranslate"><span class="pre">5Q4Q7Y1</span></code>. If you use vboot with 1 or 2 RW
+partitions you will have to specify the RW regions where the file is going to
+be added too. By default the RW CBFS partitions are truncated, so the files
+would probably not fit, one needs to expand them first.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>expand<span class="w"> </span>-r<span class="w"> </span>FW_MAIN_A
+./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>add<span class="w"> </span>-n<span class="w"> </span>serial_number<span class="w"> </span>-t<span class="w"> </span>raw<span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>-f<span class="w"> </span>/path/to/serial_file.txt<span class="w"> </span>-r<span class="w"> </span>FW_MAIN_A
+./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>truncate<span class="w"> </span>-r<span class="w"> </span>FW_MAIN_A
+
+./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>expand<span class="w"> </span>-r<span class="w"> </span>FW_MAIN_B
+./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>add<span class="w"> </span>-n<span class="w"> </span>serial_number<span class="w"> </span>-t<span class="w"> </span>raw<span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>-f<span class="w"> </span>/path/to/serial_file.txt<span class="w"> </span>-r<span class="w"> </span>FW_MAIN_B
+./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>truncate<span class="w"> </span>-r<span class="w"> </span>FW_MAIN_B
+</pre></div>
+</div>
+<p>By default cbfstool adds files to COREBOOT region only, so when vboot is
+enabled and the platform is booting from RW partition, the file would not be
+picked up by the driver.</p>
+<p>One may retrieve the Serial Number from running system (if it exists) using one
+of the following commands:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Type 1</span>
+<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="sb">`</span>sudo<span class="w"> </span>dmidecode<span class="w"> </span>-s<span class="w"> </span>system-serial-number<span class="sb">`</span><span class="w"> </span>&gt;<span class="w"> </span>serial_file.txt
+<span class="c1"># OR Type 2</span>
+<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="sb">`</span>sudo<span class="w"> </span>dmidecode<span class="w"> </span>-s<span class="w"> </span>baseboard-serial-number<span class="sb">`</span><span class="w"> </span>&gt;<span class="w"> </span>serial_file.txt
+</pre></div>
+</div>
+<p>Ensure the file does not end with whitespaces like LF and/or CR. The above
+commands will not add any whitespaces. The driver automatically terminates the
+Serial Number with the NULL character. If the CBFS file is not present, the
+driver will fall back to the string defined in <code class="docutils literal notranslate"><span class="pre">MAINBOARD_SERIAL_NUMBER</span></code> build
+option.</p>
+<p>Please note that this driver provides <code class="docutils literal notranslate"><span class="pre">smbios_mainboard_serial_number</span></code> hook
+overriding the default implementation which returns <code class="docutils literal notranslate"><span class="pre">MAINBOARD_SERIAL_NUMBER</span></code>
+build option. If you wish to populate only type 2 Serial Number field your
+board code needs to implement <code class="docutils literal notranslate"><span class="pre">smbios_system_serial_number</span></code>, otherwise the weak
+implementation of <code class="docutils literal notranslate"><span class="pre">smbios_system_serial_number</span></code> will call
+<code class="docutils literal notranslate"><span class="pre">smbios_mainboard_serial_number</span></code> from the <code class="docutils literal notranslate"><span class="pre">DRIVERS_GENERIC_CBFS_SERIAL</span></code>
+implementation overriding it. So selecting the <code class="docutils literal notranslate"><span class="pre">DRIVERS_GENERIC_CBFS_SERIAL</span></code>
+has a side-effect of populating both SMBIOS type 1 and type 2 Serial Numbers
+if the board does not implement its own <code class="docutils literal notranslate"><span class="pre">smbios_system_serial_number</span></code>.</p>
+<p>There is also SMBIOS type 3 Chassis Information Serial Number, but it is not
+populated by <code class="docutils literal notranslate"><span class="pre">DRIVERS_GENERIC_CBFS_SERIAL</span></code> nor by the default weak
+implementation (returns empty string). If you wish to populate type 3 Serial
+Number, your board code should override the default
+<code class="docutils literal notranslate"><span class="pre">smbios_chassis_serial_number</span></code> weak implementation.</p>
+</section>
+</section>
+<section id="smbios-system-uuid">
+<h2>SMBIOS System UUID<a class="headerlink" href="#smbios-system-uuid" title="Link to this heading"></a></h2>
+<p>The <a class="reference external" href="https://www.dmtf.org/standards/smbios">DMTF SMBIOS specification</a> defines a field in the type 1 System
+Information Structure called System UUID. It is a 16 bytes value compliant with
+<a class="reference external" href="https://www.ietf.org/rfc/rfc4122.txt">RFC4122</a> and assumed to be unique per platform. Certain mainboard ports have
+SMBIOS hooks to generate the UUID from external data, e.g. Lenovo Thinkpads
+(see DRIVER_LENOVO_SERIALS). This driver aims to provide an option to populate
+the UUID from CBFS for boards that can’t generate the UUID from any source.</p>
+<section id="id1">
+<h3>Usage<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>In the coreboot configuration menu (<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code>) go to <code class="docutils literal notranslate"><span class="pre">Generic</span> <span class="pre">Drivers</span></code>
+and select an option <code class="docutils literal notranslate"><span class="pre">System</span> <span class="pre">UUID</span> <span class="pre">in</span> <span class="pre">CBFS</span></code>. The Kconfig system will enable
+<code class="docutils literal notranslate"><span class="pre">DRIVERS_GENERIC_CBFS_UUID</span></code> and the relevant code parts will be compiled into
+coreboot image.</p>
+<p>After the coreboot build for your board completes, use the cbfstool to include
+the file containing the UUID:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>add<span class="w"> </span>-n<span class="w"> </span>system_uuid<span class="w"> </span>-t<span class="w"> </span>raw<span class="w"> </span>-f<span class="w"> </span>/path/to/uuid_file.txt
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">uuid_file.txt</span></code> is the unterminated string representation of the SMBIOS
+type 1 UUID, e.g. <code class="docutils literal notranslate"><span class="pre">4c4c4544-0051-3410-8051-b5c04f375931</span></code>. If you use vboot with
+1 or 2 RW partitions you will have to specify the RW regions where the file is
+going to be added too. By default the RW CBFS partitions are truncated, so the
+files would probably not fit, one needs to expand them first.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>expand<span class="w"> </span>-r<span class="w"> </span>FW_MAIN_A
+./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>add<span class="w"> </span>-n<span class="w"> </span>system_uuid<span class="w"> </span>-t<span class="w"> </span>raw<span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>-f<span class="w"> </span>/path/to/uuid_file.txt<span class="w"> </span>-r<span class="w"> </span>FW_MAIN_A
+./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>truncate<span class="w"> </span>-r<span class="w"> </span>FW_MAIN_A
+
+./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>expand<span class="w"> </span>-r<span class="w"> </span>FW_MAIN_B
+./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>add<span class="w"> </span>-n<span class="w"> </span>system_uuid<span class="w"> </span>-t<span class="w"> </span>raw<span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>-f<span class="w"> </span>/path/to/uuid_file.txt<span class="w"> </span>-r<span class="w"> </span>FW_MAIN_B
+./build/cbfstool<span class="w"> </span>build/coreboot.rom<span class="w"> </span>truncate<span class="w"> </span>-r<span class="w"> </span>FW_MAIN_B
+</pre></div>
+</div>
+<p>By default cbfstool adds files to COREBOOT region only, so when vboot is
+enabled and the platform is booting from RW partition, the file would not be
+picked up by the driver.</p>
+<p>One may retrieve the UUID from running system (if it exists) using the
+following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="sb">`</span>sudo<span class="w"> </span>dmidecode<span class="w"> </span>-s<span class="w"> </span>system-uuid<span class="sb">`</span><span class="w"> </span>&gt;<span class="w"> </span>uuid_file.txt
+</pre></div>
+</div>
+<p>The above command ensures the file does not end with whitespaces like LF and/or
+CR. The above command will not add any whitespaces. But the driver will handle
+situations where up to 2 additional bytes like CR and LF will be included in
+the file. Any more than that will make the driver fail to populate UUID in
+SMBIOS.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="retimer.html" class="btn btn-neutral float-left" title="USB4 Retimers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../northbridge/index.html" class="btn btn-neutral float-right" title="Northbridge-specific documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

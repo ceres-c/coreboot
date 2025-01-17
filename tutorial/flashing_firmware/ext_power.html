@@ -1,0 +1,188 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flashing firmware externally supplying direct power &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Flashing firmware externally supplying no power" href="no_ext_power.html" />
+    <link rel="prev" title="Flashing firmware standalone" href="ext_standalone.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../part1.html">Part 1: Starting from scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part2.html">Part 2: Submitting a patch to coreboot.org</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../part3.html">Part 3: Writing unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../managing_local_additions.html">Managing local additions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Flashing firmware</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#contents">Contents</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="int_flashrom.html">Flashing internally</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ext_standalone.html">Flashing firmware standalone</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Flashing firmware externally supplying direct power</a></li>
+<li class="toctree-l4"><a class="reference internal" href="no_ext_power.html">Flashing firmware externally without supplying direct power</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#general-advice">General advice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#internal-method">Internal method</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#external-method">External method</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ext_standalone.html">Flashing firmware standalone</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Flashing firmware externally supplying direct power</a></li>
+<li class="toctree-l4"><a class="reference internal" href="no_ext_power.html">Flashing firmware externally without supplying direct power</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#using-a-layout-file">Using a layout file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#using-an-ifd-to-determine-the-layout">Using an IFD to determine the layout</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Tutorial</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Flashing firmware tutorial</a></li>
+      <li class="breadcrumb-item active">Flashing firmware externally supplying direct power</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/tutorial/flashing_firmware/ext_power.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="flashing-firmware-externally-supplying-direct-power">
+<h1>Flashing firmware externally supplying direct power<a class="headerlink" href="#flashing-firmware-externally-supplying-direct-power" title="Link to this heading"></a></h1>
+<p><strong>WARNING:</strong> Never use a high current rated power supply, like PC ATX power
+supply. It’ll literally melt your PCB traces on short circuit.</p>
+<p>On some mainboards the flash IC Vcc pin is connected to a diode, which prevents
+powering the rest of the board.</p>
+<p><img alt="../../_images/flash_ic_diode.svg" src="../../_images/flash_ic_diode.svg" /></p>
+<p>Please have a look at the mainboard specific documentation for details.</p>
+<p>On those boards it’s safe to use a programmer and supply power externally.</p>
+<p><strong>WARNING:</strong> Verify that you apply the correct voltage!</p>
+<section id="usb-programmer">
+<h2>USB programmer<a class="headerlink" href="#usb-programmer" title="Link to this heading"></a></h2>
+<p>USB programmers are usually current limited by the host USB hub. On USB 2.0
+ports the limit is 500mA, which is sufficient to power the flash. Those are
+the best choice as they are stateless and have a fast power on reset cycle.</p>
+</section>
+<section id="single-board-computers-like-beaglebone-black-rpi">
+<h2>Single board computers (like BeagleBone Black / RPi)<a class="headerlink" href="#single-board-computers-like-beaglebone-black-rpi" title="Link to this heading"></a></h2>
+<p>Be careful when connecting a flash chip, especially when using a Pomona
+test-clip. A short circuit or overcurrent (250mA) causes a brown-out reset,
+resulting in a reboot of the running operating system (and possible loss of
+remote shell).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ext_standalone.html" class="btn btn-neutral float-left" title="Flashing firmware standalone" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="no_ext_power.html" class="btn btn-neutral float-right" title="Flashing firmware externally supplying no power" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Distributions &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=36d40e99"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Technotes" href="technotes/index.html" />
+    <link rel="prev" title="Payloads" href="payloads.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="payloads.html">Payloads</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Distributions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-shipping-with-coreboot">Hardware shipping with coreboot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#chromeos-devices">ChromeOS Devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nitrokey">Nitrokey</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#novacustom-laptops">NovaCustom laptops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pc-engines-apus">PC Engines APUs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#protectli">Protectli</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#purism">Purism</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#star-labs">Star Labs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system76">System76</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#after-market-firmware">After-market firmware</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dasharo">Dasharo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#heads">Heads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#libreboot">Libreboot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mrchromebox">MrChromebox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#skulls">Skulls</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Distributions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/distributions.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="distributions">
+<h1>Distributions<a class="headerlink" href="#distributions" title="Link to this heading"></a></h1>
+<p>coreboot doesn’t provide binaries but provides a toolbox that others can use
+to build boot firmware for all kinds of purposes. These third-parties can be
+broadly separated in two groups: Those shipping coreboot on their hardware,
+and those providing after-market firmware to extend the usefulness of devices.</p>
+<section id="hardware-shipping-with-coreboot">
+<h2>Hardware shipping with coreboot<a class="headerlink" href="#hardware-shipping-with-coreboot" title="Link to this heading"></a></h2>
+<section id="chromeos-devices">
+<h3>ChromeOS Devices<a class="headerlink" href="#chromeos-devices" title="Link to this heading"></a></h3>
+<p>All ChromeOS devices (<a class="reference external" href="https://chromebookdb.com/">Chromebooks</a>, Chromeboxes,
+Chromebit, etc) released from 2012 onward use coreboot for their main system
+firmware. Additionally, starting with the 2013 Chromebook Pixel, the firmware
+running on the Embedded Controller (EC) – a small microcontroller which provides
+functions like battery management, keyboard support, and sensor interfacing –
+is open source as well.</p>
+</section>
+<section id="nitrokey">
+<h3>Nitrokey<a class="headerlink" href="#nitrokey" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://nitrokey.com">Nitrokey</a> is a german IT security hardware vendor which
+offers a range of laptops, PCs, HSMs, and networking devices with coreboot and
+<a class="reference external" href="https://dasharo.com/">Dasharo</a>. The devices come with neutralized Intel
+Management Engine (ME) and with pre-installed <a class="reference external" href="http://osresearch.net">Heads</a> or
+EDK2 payload providing measured boot and verified boot protection. For
+additional security the systems can be physically sealed and pictures of those
+sealings are sent via encrypted email.</p>
+</section>
+<section id="novacustom-laptops">
+<h3>NovaCustom laptops<a class="headerlink" href="#novacustom-laptops" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://configurelaptop.eu/">NovaCustom</a> sells configurable laptops with
+<a class="reference external" href="https://dasharo.com/">Dasharo</a> coreboot based firmware on board, maintained by
+<a class="reference external" href="https://3mdeb.com/">3mdeb</a>. NovaCustom offers full GNU/Linux and Microsoft
+Windows compatibility. NovaCustom ensures security updates via fwupd for 5 years
+and the firmware is equipped with important security features such as measured
+boot, verified boot, TPM integration and UEFI Secure Boot.</p>
+</section>
+<section id="pc-engines-apus">
+<h3>PC Engines APUs<a class="headerlink" href="#pc-engines-apus" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://pcengines.ch">PC Engines</a> designs and sells embedded PC hardware that
+ships with coreboot and support upstream maintenance for the devices through a
+third party, <a class="reference external" href="https://3mdeb.com">3mdeb</a>. They provide current and tested
+firmware binaries on <a class="reference external" href="https://pcengines.github.io">GitHub</a>.</p>
+</section>
+<section id="protectli">
+<h3>Protectli<a class="headerlink" href="#protectli" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://protectli.com">Protectli</a> is dedicated to providing reliable,
+cost-effective, and secure computer equipment with coreboot-based firmware
+tailored for their hardware. It comes with the <a class="reference external" href="#dasharo">Dasharo</a>
+firmware, maintained by <a class="reference external" href="https://3mdeb.com/">3mdeb</a>. Protectli hardware has
+verified support for many popular operating systems, such as Linux distributions,
+FreeBSD, and Windows. Support includes Debian, Ubuntu, OPNsense, pfSense,
+ProxMox VE, VMware ESXi, Windows 10 and 11, and many more.</p>
+</section>
+<section id="purism">
+<h3>Purism<a class="headerlink" href="#purism" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://www.puri.sm">Purism</a> sells laptops with a focus on user privacy and
+security; part of that effort is to minimize the amount of proprietary and/or
+binary code. Their laptops ship with a blob-free OS and coreboot firmware
+with a neutralized Intel Management Engine (ME) and SeaBIOS as the payload.</p>
+</section>
+<section id="star-labs">
+<h3>Star Labs<a class="headerlink" href="#star-labs" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://starlabs.systems/">Star Labs</a> offers a range of laptops designed and
+built specifically for Linux that are available with coreboot firmware. They
+use edk2 as the payload and include an NVRAM option to disable the Intel
+Management Engine.</p>
+</section>
+<section id="system76">
+<h3>System76<a class="headerlink" href="#system76" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://system76.com/">System76</a> manufactures Linux laptops, desktops, and
+servers. Some models are sold with <a class="reference external" href="https://github.com/system76/firmware-open">System76 Open
+Firmware</a>, an open source
+distribution of coreboot, edk2, and System76 firmware applications.</p>
+</section>
+</section>
+<section id="after-market-firmware">
+<h2>After-market firmware<a class="headerlink" href="#after-market-firmware" title="Link to this heading"></a></h2>
+<section id="dasharo">
+<h3>Dasharo<a class="headerlink" href="#dasharo" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://dasharo.com/">Dasharo</a> is an open-source based firmware distribution
+focusing on clean and simple code, long-term maintenance, transparent
+validation, privacy-respecting implementation, liberty for the owners, and
+trustworthiness for all.</p>
+<p>Contributions are welcome,
+<a class="reference external" href="https://docs.dasharo.com/ways-you-can-help-us/">this document</a>.</p>
+</section>
+<section id="heads">
+<h3>Heads<a class="headerlink" href="#heads" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="http://osresearch.net">Heads</a> is an open source custom firmware and OS
+configuration for laptops and servers that aims to provide slightly better
+physical security and protection for data on the system. Unlike
+<a class="reference external" href="https://tails.boum.org/">Tails</a>, which aims to be a stateless OS that leaves
+no trace on the computer of its presence, Heads is intended for the case where
+you need to store data and state on the computer.</p>
+<p>Heads is not just another Linux distribution – it combines physical hardening
+of specific hardware platforms and flash security features with custom coreboot
+firmware and a Linux boot loader in ROM.</p>
+</section>
+<section id="libreboot">
+<h3>Libreboot<a class="headerlink" href="#libreboot" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://libreboot.org">Libreboot</a> is a downstream coreboot distribution that
+provides ready-made firmware images for supported devices: those which can be
+built entirely from source code. Their copy of the coreboot repository is
+therefore stripped of all devices that require binary components to boot.</p>
+</section>
+<section id="mrchromebox">
+<h3>MrChromebox<a class="headerlink" href="#mrchromebox" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://mrchromebox.tech/">MrChromebox</a> provides upstream coreboot firmware
+images for the vast majority of x86-based Chromebooks and Chromeboxes, using
+edk2 as the payload to provide a modern UEFI bootloader. Why replace
+coreboot with coreboot? Mr Chromebox’s images are built using upstream
+coreboot (vs Google’s older, static tree/branch), include many features and
+fixes not found in the stock firmware, and offer much broader OS compatibility
+(i.e., they run Windows as well as Linux). They also offer updated CPU
+microcode, as well as firmware updates for the device’s embedded controller
+(EC). This firmware “takes the training wheels off” your ChromeOS device :)</p>
+</section>
+<section id="skulls">
+<h3>Skulls<a class="headerlink" href="#skulls" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://github.com/merge/skulls">Skulls</a> provides firmware images for
+laptops like the Lenovo Thinkpad X230. It uses upstream coreboot, an easy
+to use payload like SeaBIOS and Intel’s latest microcode update.</p>
+<p>It simplifies installation and includes compact documentation. Skulls also
+enables easy switching to <a class="reference external" href="#heads">Heads</a> and back.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="payloads.html" class="btn btn-neutral float-left" title="Payloads" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="technotes/index.html" class="btn btn-neutral float-right" title="Technotes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

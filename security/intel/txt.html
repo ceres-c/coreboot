@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intel Trusted Execution Technology &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Intel TXT Initial Boot Block" href="txt_ibb.html" />
+    <link rel="prev" title="Memory clearing" href="../memory_clearing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Security</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#vendor">Vendor</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#intel-txt">Intel TXT</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Intel TXT in general</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#authenticated-code-modules">Authenticated Code Modules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modified-bootflow-with-intel-txt">Modified bootflow with Intel TXT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#for-developers">For developers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="txt_ibb.html">Intel TXT Initial Boot Block</a></li>
+<li class="toctree-l3"><a class="reference internal" href="acm.html">Intel Authenticated Code Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#smm">SMM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Security</a></li>
+      <li class="breadcrumb-item active">Intel Trusted Execution Technology</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/security/intel/txt.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intel-trusted-execution-technology">
+<h1>Intel Trusted Execution Technology<a class="headerlink" href="#intel-trusted-execution-technology" title="Link to this heading"></a></h1>
+<p>Intel TXT allows</p>
+<ol class="simple">
+<li><p>Attestation of the authenticity of a platform and its operating system.</p></li>
+<li><p>Assuring that an authentic operating system starts in a
+trusted environment, which can then be considered trusted.</p></li>
+<li><p>Providing of a trusted operating system with additional
+security capabilities not available to an unproven one.</p></li>
+</ol>
+<p>Intel TXT requirements:</p>
+<ol class="simple">
+<li><p>Intel TXT requires a <strong>TPM</strong> to measure parts of the firmware before it’s
+run on the BSP.</p></li>
+<li><p>Intel TXT requires signed <strong>Authenticated Code Modules</strong> (<a class="reference internal" href="acm.html"><span class="doc">ACM</span></a>s), provided
+by Intel.</p></li>
+<li><p>Intel TXT requires <strong>CPU and Chipset</strong> support (supported since
+Intel Core 2 Duo/ICH9).</p></li>
+</ol>
+<section id="authenticated-code-modules">
+<h2>Authenticated Code Modules<a class="headerlink" href="#authenticated-code-modules" title="Link to this heading"></a></h2>
+<p>The ACMs are Intel digitally signed modules that contain code to be run
+before the traditional x86 CPU reset vector.</p>
+<p>More details can be found here: <a class="reference internal" href="acm.html"><span class="doc">Intel ACM</span></a>.</p>
+</section>
+<section id="modified-bootflow-with-intel-txt">
+<h2>Modified bootflow with Intel TXT<a class="headerlink" href="#modified-bootflow-with-intel-txt" title="Link to this heading"></a></h2>
+<p>With Intel TXT the first instruction executed on the BSP isn’t the
+<em>reset vector</em>, but the <a class="reference internal" href="acm.html"><span class="doc">Intel ACM</span></a>.
+It initializes the TPM and measures parts of the firmware, the IBB.</p>
+<section id="marking-the-initial-boot-block">
+<h3>Marking the Initial Boot Block<a class="headerlink" href="#marking-the-initial-boot-block" title="Link to this heading"></a></h3>
+<p>Individual files in the CBFS can be marked as IBB.</p>
+<p>More details can be found in the <a class="reference internal" href="txt_ibb.html"><span class="doc">Intel TXT IBB</span></a> chapter.</p>
+</section>
+<section id="measurements">
+<h3>Measurements<a class="headerlink" href="#measurements" title="Link to this heading"></a></h3>
+<p>The IBBs (Initial Boot Blocks) are measured into TPM’s PCR0 by the BIOS <a class="reference internal" href="acm.html"><span class="doc">ACM</span></a>
+before the CPU reset vector is executed. To identify the regions that need
+to be measured, the <a class="reference internal" href="../../soc/intel/fit.html"><span class="doc">FIT</span></a> contains one ore multiple <em>Type 7</em> entries, that
+point to the IBBs.</p>
+</section>
+<section id="authentication">
+<h3>Authentication<a class="headerlink" href="#authentication" title="Link to this heading"></a></h3>
+<p>After the IBBs have been measured, the ACM decides if the boot firmware is
+trusted. There exists two validation modes:</p>
+<ol class="simple">
+<li><p>HASH Autopromotion</p>
+<ul class="simple">
+<li><p>Uses a known good HASH stored in TPM NVRAM</p></li>
+<li><p>Doesn’t allow to boot a fallback IBB</p></li>
+</ul>
+</li>
+<li><p>Signed BIOS policy</p>
+<ul class="simple">
+<li><p>Uses a signed policy stored in flash containing multiple HASHes</p></li>
+<li><p>The public key HASH of BIOS policy is burned into TPM by manufacturer</p></li>
+<li><p>Can be updated by firmware</p></li>
+<li><p>Allows to boot a fallback IBB</p></li>
+</ul>
+</li>
+</ol>
+<p>At the moment only <em>Autopromotion mode</em> is implemented and tested well.</p>
+<p>In the next step the ACM terminates and the regular x86 CPU reset vector
+is being executed on the BSP.</p>
+</section>
+<section id="protecting-secrets-in-memory">
+<h3>Protecting Secrets in Memory<a class="headerlink" href="#protecting-secrets-in-memory" title="Link to this heading"></a></h3>
+<p>Intel TXT sets the <code class="docutils literal notranslate"><span class="pre">Secrets</span> <span class="pre">in</span> <span class="pre">Memory</span></code> bit, whenever the launch of the SINIT
+ACM was successful.
+The bit is reset when leaving the <em>MLE</em> by a regular shutdown or by removing
+the CMOS battery.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">Secrets</span> <span class="pre">in</span> <span class="pre">Memory</span></code> bit is set and the IBB isn’t trusted, the memory
+controller won’t be unlocked, resulting in a platform that cannot access DRAM.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">Secrets</span> <span class="pre">in</span> <span class="pre">Memory</span></code> bit is set and the IBB is trusted, the memory
+controller will be unlocked, and it’s the responsibility of the firmware to
+<a class="reference internal" href="../memory_clearing.html"><span class="doc">clear all DRAM</span></a> and wipe any secrets of the MLE.
+The platform will be reset after all DRAM has been wiped and will boot
+with the <code class="docutils literal notranslate"><span class="pre">Secrets</span> <span class="pre">in</span> <span class="pre">Memory</span></code> bit cleared.</p>
+</section>
+<section id="configuring-protected-regions-for-sinit-acm">
+<h3>Configuring protected regions for SINIT ACM<a class="headerlink" href="#configuring-protected-regions-for-sinit-acm" title="Link to this heading"></a></h3>
+<p>The memory regions used by the SINIT ACM need to be prepared and protected
+against DMA attacks.
+The SINIT ACM as well as the SINIT handoff data are placed in memory.</p>
+</section>
+<section id="locking-txt-register">
+<h3>Locking TXT register<a class="headerlink" href="#locking-txt-register" title="Link to this heading"></a></h3>
+<p>As last step the TXT registers are locked.</p>
+<p>Whenever the SINIT ACM is invoked, it verifies that the hardware is in the
+correct state. If it’s not the SINIT ACM will reset the platform.</p>
+</section>
+</section>
+<section id="for-developers">
+<h2>For developers<a class="headerlink" href="#for-developers" title="Link to this heading"></a></h2>
+<section id="configuring-intel-txt-in-kconfig">
+<h3>Configuring Intel TXT in Kconfig<a class="headerlink" href="#configuring-intel-txt-in-kconfig" title="Link to this heading"></a></h3>
+<p>Enable <code class="docutils literal notranslate"><span class="pre">INTEL_TXT</span></code> and set the following:</p>
+<p><code class="docutils literal notranslate"><span class="pre">INTEL_TXT_BIOSACM_FILE</span></code> to the path of the BIOS ACM provided by Intel</p>
+<p><code class="docutils literal notranslate"><span class="pre">INTEL_TXT_SINITACM_FILE</span></code> to the path of the SINIT ACM provided by Intel</p>
+</section>
+<section id="print-txt-status-as-early-as-possible">
+<h3>Print TXT status as early as possible<a class="headerlink" href="#print-txt-status-as-early-as-possible" title="Link to this heading"></a></h3>
+<p>Add platform code to print the TXT status as early as possible, as the register
+is cleared on cold reset.</p>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<p>More information can be found here:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.intel.com/content/dam/www/public/us/en/documents/guides/intel-txt-software-development-guide.pdf">Intel TXT Software Development Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.intel.com/content/dam/www/public/us/en/documents/guides/txt-enabling-guide.pdf">Intel TXT enabling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/intel/fit.html">FIT</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://downloadmirror.intel.com/18931/eng/Intel%20TXT%20LAB%20Handout.pdf">Intel TXT Lab Handout</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../memory_clearing.html" class="btn btn-neutral float-left" title="Memory clearing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="txt_ibb.html" class="btn btn-neutral float-right" title="Intel TXT Initial Boot Block" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

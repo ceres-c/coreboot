@@ -1,0 +1,211 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multiple Processor (MP) Initialization &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Microcode updates" href="../microcode.html" />
+    <link rel="prev" title="Blobs used in Intel Broadwell boards" href="../broadwell/blobs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">System on Chip</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#vendor">Vendor</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../amd/index.html">AMD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cavium/index.html">Cavium</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Intel</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#platforms">Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../qualcomm/index.html">Qualcomm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">SOC-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Intel SOC-specific documentation</a></li>
+      <li class="breadcrumb-item active">Multiple Processor (MP) Initialization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/soc/intel/mp_init/mp_init.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="multiple-processor-mp-initialization">
+<h1>Multiple Processor (MP) Initialization<a class="headerlink" href="#multiple-processor-mp-initialization" title="Link to this heading"></a></h1>
+<p>This section is intended to document the purpose of performing multiprocessor
+initialization and its possible ways in coreboot space.</p>
+<p>Entire CPU multiprocessor initialization can be divided into two parts</p>
+<ol class="simple">
+<li><p>BSP (Boot Strap Processor) Initialization</p></li>
+<li><p>AP (Application Processor) Initialization</p></li>
+</ol>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-3a-part-1-manual.pdf">Multiple Processor Init</a> - section 8.4</p></li>
+</ul>
+<section id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Link to this heading"></a></h2>
+<ol class="simple">
+<li><p>coreboot is capable enough to handle multiprocessor initialization on
+IA platforms.</p></li>
+<li><p>With restricted CPU programming logic, there might be some cases where
+certain feature programming can’t be open sourced at early development of SOC.</p></li>
+</ol>
+<p>Platform code might need to compromise on those closed source nature of CPU
+programming if we don’t plan to provide an alternate interface which can be
+used by coreboot to get rid of such close sourced CPU programming.</p>
+</section>
+<section id="possible-solution-space">
+<h2>Possible Solution Space<a class="headerlink" href="#possible-solution-space" title="Link to this heading"></a></h2>
+<p>Considering these facts, there are 3 possible solutions to perform MP
+initialization from coreboot + FSP space.</p>
+<ol class="simple">
+<li><p>coreboot to perform complete MP initialization by its own. This includes
+BSP and AP programming of CPU features mostly non-restricted one. This is
+the default configuration. Most SoCs like SKL, KBL, APL are okay to make use
+of this MP initialization method.</p></li>
+<li><p>Alternatively, SoC users also can skip coreboot doing MP initialization
+and make use of FSP binary to perform same task. This can be achieved by using
+Kconfig name USE_INTEL_FSP_MP_INIT. As of 2019 all Google Chrome products are
+using coreboot native MP initialization mechanism and some IOTG platforms
+are using FSP MP Init solution as well.</p></li>
+<li><p>Final option is to let coreboot publish PPI (PEIM to PEIM Interface) to
+perform some restricted (closed source) CPU programming. In that case,
+coreboot will use its native MP init and additionally publish MP service PPI
+for FSP to consume. FSP will execute some CPU programming using same PPI
+service from its own context. One can use
+USE_INTEL_FSP_TO_CALL_COREBOOT_PUBLISH_MP_PPI Kconfig to perform this
+operation.</p></li>
+</ol>
+<p>For latest SoCs like CNL, WHL, ICL, etc, its recommended to make use of this
+option in order to perform SGX and C6DRAM enabling.</p>
+<p>Typically all platforms supported by FSP 2.1 specification will have
+external PPI service feature implemented.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../fsp/ppi/ppi.html">PPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fsp/ppi/mp_service_ppi.html">MP Service PPI</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../broadwell/blobs.html" class="btn btn-neutral float-left" title="Blobs used in Intel Broadwell boards" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../microcode.html" class="btn btn-neutral float-right" title="Microcode updates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

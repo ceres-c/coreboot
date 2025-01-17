@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Summer of Code &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Community" href="../community/index.html" />
+    <link rel="prev" title="Documentation Ideas" href="documentation_ideas.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Contributing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="coding_style.html">Coding Style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gerrit_guidelines.html">Gerrit Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_ideas.html">Project Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation_ideas.html">Documentation Ideas</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Google Summer of Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#organization-admins">Organization admins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contacts">Contacts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-work-on-coreboot-for-gsoc">Why work on coreboot for GSoC?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collection-of-official-gsoc-guides-documents">Collection of official GSoC guides &amp; documents</a><ul>
+<li class="toctree-l4"><a class="reference external" href="https://developers.google.com/open-source/gsoc/timeline">Timeline</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://developers.google.com/open-source/gsoc/help/responsibilities">Roles and Responsibilities</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://google.github.io/gsocguides/student">Contributor Guide</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://developers.google.com/open-source/gsoc/help/student-advice">Contributor Advice</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://google.github.io/gsocguides/mentor">Mentor Guide</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://developers.google.com/open-source/gsoc/faq">FAQ</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://summerofcode.withgoogle.com/rules">Rules</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://developers.google.com/open-source/gsoc/resources/glossary">Glossary</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://developers.google.com/open-source/gsoc/help/oa-tips">Organization Admin Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#contributor-requirements-commitments">Contributor requirements &amp; commitments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#before-applying">Before applying</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#during-the-program">During the program</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#projects">Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#coreboot-summer-of-code-application">coreboot Summer of Code Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#advice-on-how-to-apply">Advice on how to apply</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mentors">Mentors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#volunteering-to-be-a-mentor">Volunteering to be a mentor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Contributing</a></li>
+      <li class="breadcrumb-item active">Google Summer of Code</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/contributing/gsoc.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="google-summer-of-code">
+<h1>Google Summer of Code<a class="headerlink" href="#google-summer-of-code" title="Link to this heading"></a></h1>
+<section id="organization-admins">
+<h2>Organization admins<a class="headerlink" href="#organization-admins" title="Link to this heading"></a></h2>
+<p>The <em>organization admins</em> are managing the GSoC program for the coreboot
+organization.</p>
+<p>The organization admins are:</p>
+<ul class="simple">
+<li><p>Felix Singer (primary)</p></li>
+<li><p>Martin Roth</p></li>
+<li><p>David Hendricks</p></li>
+</ul>
+</section>
+<section id="contacts">
+<h2>Contacts<a class="headerlink" href="#contacts" title="Link to this heading"></a></h2>
+<p>If you are interested in participating in GSoC as a contributor or mentor,
+please have a look at our <a class="reference internal" href="../community/forums.html"><span class="doc">community forums</span></a> and reach out to us. Working closely
+with the community is highly encouraged, as we’ve seen that our most successful
+contributors are generally very involved.</p>
+</section>
+<section id="why-work-on-coreboot-for-gsoc">
+<h2>Why work on coreboot for GSoC?<a class="headerlink" href="#why-work-on-coreboot-for-gsoc" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>coreboot offers you the opportunity to work with various architectures
+right on the iron. coreboot supports both current and older silicon for a
+wide variety of chips and technologies.</p></li>
+<li><p>coreboot has a worldwide developer and user base.</p></li>
+<li><p>We are a very passionate team, so you will interact directly with the
+project initiators and project leaders.</p></li>
+<li><p>We have a large, helpful community. coreboot has some extremely talented
+and helpful experts in firmware involved in the project. They are ready to
+assist and mentor contributors participating in GSoC.</p></li>
+<li><p>One of the last areas where open source software is not common is firmware.
+Running proprietary firmware can have severe effects on user’s freedom and
+security. coreboot has a mission to change that by providing a common
+framework for initial hardware initialization and you can help us succeed.</p></li>
+</ul>
+</section>
+<section id="collection-of-official-gsoc-guides-documents">
+<h2>Collection of official GSoC guides &amp; documents<a class="headerlink" href="#collection-of-official-gsoc-guides-documents" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://developers.google.com/open-source/gsoc/timeline">Timeline</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developers.google.com/open-source/gsoc/help/responsibilities">Roles and Responsibilities</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://google.github.io/gsocguides/student">Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developers.google.com/open-source/gsoc/help/student-advice">Contributor Advice</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://google.github.io/gsocguides/mentor">Mentor Guide</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developers.google.com/open-source/gsoc/faq">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://summerofcode.withgoogle.com/rules">Rules</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developers.google.com/open-source/gsoc/resources/glossary">Glossary</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developers.google.com/open-source/gsoc/help/oa-tips">Organization Admin Tips</a></li>
+</ul>
+</div>
+</section>
+<section id="contributor-requirements-commitments">
+<h2>Contributor requirements &amp; commitments<a class="headerlink" href="#contributor-requirements-commitments" title="Link to this heading"></a></h2>
+<p>Google Summer of Code is a significant time commitment for you. Medium-sized
+projects are estimated to take 175 hours, while large-sized projects are
+estimated to take 350 hours. Depending on the project size, this means we
+expect you to work roughly half-time or full-time on your project during the
+three months of coding. We expect to be able to see this level of effort in the
+results.</p>
+<p>The standard program duration is 12 weeks and in consultation with the mentor
+it can be extended up to 22 weeks. Please keep in mind that the actual number
+of hours you spend on the project highly depends on your skills and previous
+experience.</p>
+<p>Make sure that your schedule (exams, courses, day job) gives you a sufficient
+amount of spare time. If this is not the case, then you should not apply.</p>
+<section id="before-applying">
+<h3>Before applying<a class="headerlink" href="#before-applying" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Join the <a class="reference external" href="https://mail.coreboot.org/postorius/lists/coreboot.coreboot.org">mailing list</a> and our other <a class="reference internal" href="../community/forums.html"><span class="doc">community forums</span></a>. Introduce yourself
+and mention that you are a prospective GSoC contributor. Ask questions and
+discuss the project that you are considering. Community involvement is a
+key component of coreboot development.</p></li>
+<li><p>You accept our <a class="reference internal" href="../community/code_of_conduct.html"><span class="doc">Code of Conduct</span></a> and <a class="reference internal" href="../community/language_style.html"><span class="doc">Language style</span></a>.</p></li>
+<li><p>Demonstrate that you can work with the coreboot codebase.</p>
+<ul>
+<li><p>Look over some of the development processes guidelines: <a class="reference internal" href="../getting_started/index.html"><span class="doc">Getting started</span></a>,
+<a class="reference internal" href="../tutorial/index.html"><span class="doc">Tutorial</span></a>, <a class="reference internal" href="../tutorial/flashing_firmware/index.html"><span class="doc">Flashing firmware tutorial</span></a> and <a class="reference internal" href="coding_style.html"><span class="doc">Coding style</span></a>.</p></li>
+<li><p>Download, build and boot coreboot in QEMU or on real hardware. Please email
+your serial output results to the <a class="reference external" href="https://mail.coreboot.org/postorius/lists/coreboot.coreboot.org">mailing list</a>.</p></li>
+<li><p>Look through some patches on Gerrit to get an understanding of the review
+process and common issues.</p></li>
+<li><p>Get signed up for Gerrit and push at least one patch to Gerrit for review.
+Check the <a class="reference internal" href="project_ideas.html"><span class="doc">small project list</span></a> or ask for simple tasks on
+the <a class="reference external" href="https://mail.coreboot.org/postorius/lists/coreboot.coreboot.org">mailing list</a> or on our other <a class="reference internal" href="../community/forums.html"><span class="doc">community forums</span></a> if you need ideas.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="during-the-program">
+<h3>During the program<a class="headerlink" href="#during-the-program" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>To pass and to be paid by Google requires that you meet certain milestones.</p>
+<ul>
+<li><p>First, you must be in good standing with the community before the official
+start of the program. We expect you to post some design emails to the
+<a class="reference external" href="https://mail.coreboot.org/postorius/lists/coreboot.coreboot.org">mailing list</a>, and get feedback on them, both before applying, and during
+the “community bonding period” between acceptance and official start.</p></li>
+<li><p>You must have made progress and committed significant code before the
+mid-term point and by the final.</p></li>
+<li><p>We require that accepted contributors to maintain a blog, where you are
+expected to write about your project <em>WEEKLY</em>. This is a way to measure
+progress and for the community at large to be able to help you. GSoC is
+<em>NOT</em> a private contract between your mentor and you.</p></li>
+</ul>
+</li>
+<li><p>You must be active in the community on IRC and the <a class="reference external" href="https://mail.coreboot.org/postorius/lists/coreboot.coreboot.org">mailing list</a>.</p></li>
+<li><p>You are expected to work on development publicly, and to push commits to the
+project on a regular basis. Depending on the project and what your mentor
+agrees to, these can be published directly to the project or to a public
+repository such as Gitlab or Github. If you are not publishing directly to
+the project codebase, be aware that we do not want large dumps of code that
+need to be rushed to meet the mid-term and final goals.</p></li>
+</ul>
+<p>We don’t expect our contributors to be experts in our problem domain, but we
+don’t want you to fail because some basic misunderstanding was in your way of
+completing the task.</p>
+</section>
+</section>
+<section id="projects">
+<h2>Projects<a class="headerlink" href="#projects" title="Link to this heading"></a></h2>
+<p>There are many development tasks available in coreboot. We prepared some ideas
+for Summer of Code projects. These are projects that we think can be managed in
+the timeline of GSoC, and they cover areas where coreboot is trying to reach
+new users and new use cases.</p>
+<p>Of course your application does not have to be based on any of the ideas listed.
+It is entirely possible that you have a great idea that we just didn’t think of
+yet. Please let us know!</p>
+<p>The blog posts related to previous GSoC projects might give some insights to
+what it is like to be a coreboot GSoC contributor.</p>
+</section>
+<section id="coreboot-summer-of-code-application">
+<h2>coreboot Summer of Code Application<a class="headerlink" href="#coreboot-summer-of-code-application" title="Link to this heading"></a></h2>
+<p>coreboot welcomes contributors from all backgrounds and levels of experience.</p>
+<p>Your application should include a complete project proposal. You should
+document that you have the knowledge and the ability to complete your proposed
+project. This may require a little research and understanding of coreboot prior
+to sending your application. The community and coreboot project mentors are your
+best resource in fleshing out your project ideas and helping with a project
+timeline. We recommend that you get feedback and recommendations on your
+proposal before the application deadline.</p>
+<p>Please complete the standard GSoC application and project proposal. Provide the
+following information as part of your application. Make sure to provide multiple
+ways of communicating in case your equipment (such as a laptop) is lost,
+damaged, or stolen, or in case of a natural disaster that disrupts internet
+service. You risk automatically failing if your mentor cannot contact you and if
+you cannot provide updates according to GSoC deadlines.</p>
+<p><strong>Personal Information</strong></p>
+<ul class="simple">
+<li><p>Name</p></li>
+<li><p>Email and contact options (IRC, Matrix, …)</p></li>
+<li><p>Phone number (optional, but recommended)</p></li>
+<li><p>Timezone, Usual working hours (UTC)</p></li>
+<li><p>School / University, Degree Program, expected graduation date</p></li>
+<li><p>Short bio / Overview of your background</p></li>
+<li><p>What are your other time commitments? Do you have a job, classes, vacations?
+When and how long?</p></li>
+</ul>
+<p><strong>Software experience</strong></p>
+<p>If applicable, please provide the following information:</p>
+<ul class="simple">
+<li><p>Portfolio, Website, blog, microblog, Github, Gitlab, …</p></li>
+<li><p>Links to one or more patches submitted</p></li>
+<li><p>Links to posts on the <a class="reference external" href="https://mail.coreboot.org/postorius/lists/coreboot.coreboot.org">mailing list</a> with the serial output of your build.</p></li>
+<li><p>Please comment on your software and firmware experience.</p></li>
+<li><p>Have you contributed to an open source project? Which one? What was your
+experience?</p></li>
+<li><p>What was your experience while building and running coreboot? Did you have
+problems?</p></li>
+</ul>
+<p><strong>Your project</strong></p>
+<ul class="simple">
+<li><p>Provide an overview of your project (in your own words).</p></li>
+<li><p>Provide a breakdown of your project in small specific weekly goals. Think
+about the potential timeline.</p></li>
+<li><p>How will you accomplish this goal? What is your working style?</p></li>
+<li><p>Explain what risks or potential problems your project might experience.</p></li>
+<li><p>What would you expect as a minimum level of success?</p></li>
+<li><p>Do you have a stretch goal?</p></li>
+</ul>
+<p><strong>Other</strong></p>
+<ul class="simple">
+<li><p>Resume (optional)</p></li>
+</ul>
+<section id="advice-on-how-to-apply">
+<h3>Advice on how to apply<a class="headerlink" href="#advice-on-how-to-apply" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://google.github.io/gsocguides/student">GSoC Contributor Guide</a></p></li>
+<li><p>The Drupal project has a great page on how to write an GSoC application.</p></li>
+<li><p>Secrets for GSoC success: [2]</p></li>
+</ul>
+</section>
+</section>
+<section id="mentors">
+<h2>Mentors<a class="headerlink" href="#mentors" title="Link to this heading"></a></h2>
+<p>Each accepted project will have at least one mentor. We will match mentors and
+contributors based on the project and experience level. If possible, we also
+will try to match their time zones.</p>
+<p>Mentors are expected to stay in frequent contact with the contributor and
+provide guidance such as code reviews, pointers to useful documentation, etc.
+This should generally be a time commitment of several hours per week.</p>
+<p>Some projects might have more than one mentor, who can serve as a backup. They
+are expected to coordinate with each other and a contributor on a regular basis,
+and keep track of the contributor process. They should be able to take over
+mentoring duty if one of the mentors is unavailable (vacations, sickness,
+emergencies).</p>
+<section id="volunteering-to-be-a-mentor">
+<h3>Volunteering to be a mentor<a class="headerlink" href="#volunteering-to-be-a-mentor" title="Link to this heading"></a></h3>
+<p>If you’d like to volunteer to be a mentor, please read the <a class="reference external" href="https://google.github.io/gsocguides/mentor">GSoC Mentor Guide</a>.
+This will give you a better idea of expectations, and where to go for help.
+After that, contact Org Admins (see coreboot contacts section above).</p>
+<p>The following coreboot developers have volunteered to be GSoC 2022 mentors.
+Please stop by in our community forums and say hi to them and ask them
+questions.</p>
+<ul class="simple">
+<li><p>Tim Wawrzynczak</p></li>
+<li><p>Raul Rangel</p></li>
+<li><p>Ron Minnich</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="documentation_ideas.html" class="btn btn-neutral float-left" title="Documentation Ideas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../community/index.html" class="btn btn-neutral float-right" title="Community" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intel DG43GT &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Intel DQ67SW" href="dq67sw.html" />
+    <link rel="prev" title="HP EliteBook 820 G2" href="../hp/elitebook_820_g2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hp">HP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#intel">Intel</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">DG43GT</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#flashing-coreboot">Flashing coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#technology">Technology</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dq67sw.html">DQ67SW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kblrvp11.html">KBLRVP11</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">Intel DG43GT</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/intel/dg43gt.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intel-dg43gt">
+<h1>Intel DG43GT<a class="headerlink" href="#intel-dg43gt" title="Link to this heading"></a></h1>
+<p>This page describes how to run coreboot on the <a class="reference external" href="https://ark.intel.com/products/41036/Intel-Desktop-Board-DG43GT">Intel DG43GT</a> desktop.</p>
+<section id="flashing-coreboot">
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Socketed flash</p></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-odd"><td><p>Model</p></td>
+<td><p>W25X32</p></td>
+</tr>
+<tr class="row-even"><td><p>Size</p></td>
+<td><p>4 MiB</p></td>
+</tr>
+<tr class="row-odd"><td><p>In circuit flashing</p></td>
+<td><p>NO!</p></td>
+</tr>
+<tr class="row-even"><td><p>Package</p></td>
+<td><p>SOIC-8</p></td>
+</tr>
+<tr class="row-odd"><td><p>Write protection</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>Dual BIOS feature</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Internal flashing</p></td>
+<td><p>yes</p></td>
+</tr>
+</tbody>
+</table>
+<section id="internal-programming">
+<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Link to this heading"></a></h3>
+<p>The SPI flash can be accessed internally using <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a>.
+Only the BIOS region can and needs to be written to.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">     </span>$<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal<span class="w"> </span>--ifd<span class="w"> </span>-i<span class="w"> </span>bios<span class="w"> </span>-w<span class="w"> </span>coreboot.rom<span class="w"> </span>--noverify-all
+</pre></div>
+</div>
+</section>
+<section id="external-programming">
+<h3>External programming<a class="headerlink" href="#external-programming" title="Link to this heading"></a></h3>
+<p>ISP (in circuit programming) seems to be impossible on this board, which
+is a property it shares with many boards featuring the ICH10 southbridge.
+<strong>Recovering from a bad flash will require desoldering the flash!</strong>
+Desoldering the SPI flash can easily be done with a hot air station.
+Apply some flux around the SPI flash, set the hot air station to 350-400°C
+and after heating the chip up for a minute it should be possible to remove it.</p>
+<p>Having removed the flash chip, you can reprogram it externally then resolder
+it using a soldering iron.
+Another option would be to hook up a SPI flash (socket) to the SPI header,
+for easier flash removing in the future (if you expect to be hacking on this
+board). To do this you first need to solder the SPI header to the board.</p>
+<p><strong>NOTE: This header cannot be used for ISP either.</strong></p>
+<p><strong>NOTE2: Don’t forget to connect the WP# and HOLD# pin on the SPI flash to 3.3V.</strong></p>
+<p>The layout of the header is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                  <span class="o">+---+---+</span>
+           <span class="n">GND</span> <span class="o">&lt;-</span> <span class="o">|</span> <span class="n">x</span> <span class="o">|</span> <span class="n">x</span> <span class="o">|</span> <span class="o">-&gt;</span> <span class="n">SPI_CLK</span>
+                  <span class="o">+---+---+</span>
+          <span class="mi">3</span><span class="n">VSB</span> <span class="o">&lt;-</span> <span class="o">|</span> <span class="n">x</span> <span class="o">|</span> <span class="n">x</span> <span class="o">|</span> <span class="o">-&gt;</span> <span class="n">SPI_MISO</span>
+                  <span class="o">+---+---+</span>
+                  <span class="o">|</span>   <span class="o">|</span> <span class="n">x</span> <span class="o">|</span> <span class="o">-&gt;</span> <span class="n">SPI_MOSI</span>
+                  <span class="o">+---+---+</span>
+        <span class="n">SPI_CS</span><span class="c1"># &lt;-| x | x | -&gt; SPI_CS# (again)</span>
+                  <span class="o">+---+---+</span>
+</pre></div>
+</div>
+<p><strong>Picture of the board with the flash hooked on externally</strong>
+<img alt="../../_images/dg43gt_full.jpg" src="../../_images/dg43gt_full.jpg" /></p>
+<p><strong>Close up picture of the SPI flash pads and recovery header</strong>
+<img alt="../../_images/dg43gt_closeup.jpg" src="../../_images/dg43gt_closeup.jpg" /></p>
+</section>
+</section>
+<section id="technology">
+<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Northbridge</p></td>
+<td><p>Intel G43 (called x4x in coreboot code)</p></td>
+</tr>
+<tr class="row-even"><td><p>Southbridge</p></td>
+<td><p>Intel ICH10 (called i82801jx in coreboot code)</p></td>
+</tr>
+<tr class="row-odd"><td><p>CPU (LGA775)</p></td>
+<td><p>model f4x, f6x, 6fx, 1067x (pentium 4, d, core 2)</p></td>
+</tr>
+<tr class="row-even"><td><p>SuperIO</p></td>
+<td><p>Winbond W83627DHG</p></td>
+</tr>
+<tr class="row-odd"><td><p>Coprocessor</p></td>
+<td><p>Intel ME (optionally enabled)</p></td>
+</tr>
+<tr class="row-even"><td><p>Clockgen (CK505)</p></td>
+<td><p>SLG8XP549T</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../hp/elitebook_820_g2.html" class="btn btn-neutral float-left" title="HP EliteBook 820 G2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dq67sw.html" class="btn btn-neutral float-right" title="Intel DQ67SW" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

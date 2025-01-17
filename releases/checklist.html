@@ -1,0 +1,437 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coreboot Release Process &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">coreboot Release Process</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/releases/checklist.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coreboot-release-process">
+<h1>coreboot Release Process<a class="headerlink" href="#coreboot-release-process" title="Link to this heading"></a></h1>
+<p>This document describes our release process and all prerequisites to
+implement it successfully.</p>
+<section id="purpose-of-coreboot-releases">
+<h2>Purpose of coreboot releases<a class="headerlink" href="#purpose-of-coreboot-releases" title="Link to this heading"></a></h2>
+<p>Our releases aren’t primarily a vehicle for code that is stable across
+all boards: The logistics of testing the more than 100 boards that are
+spread out all continents (except Antarctica, probably) on a given tree
+state are prohibitive for project of our size.</p>
+<p>Instead, the releases are regular breakpoints that serve multiple
+purposes: They support cooperation between multiple groups (corporations
+or otherwise) in that it’s easier to keep source trees synchronized
+based on a limited set of commits. They allow a quick assessment of the
+age of any given build or source tree based on its git version (4.8-1234
+was merged into master a few months after 4.8, which came out in April
+of 2018. 4.0-21718’s age is harder to guess).</p>
+<p>And finally we use releases to as points in time where we remove old
+code: Once we decide that a certain part of coreboot gets in the way of
+future development, we announce on the next release that we intend to
+remove that part - and everything that depends on it - after the
+following release. So removing feature FOO will be announced in release
+X for release X+1. The first commit after X+1 is fair game for such
+removal.</p>
+<p>Together with our 3 months release horizon, this provides time to plan
+any migrations necessary to keep older boards in the tree by bringing
+them up to current standards.</p>
+</section>
+<section id="coreboot-release-team">
+<h2>coreboot release team<a class="headerlink" href="#coreboot-release-team" title="Link to this heading"></a></h2>
+<p>To avoid issues of blocking the release on a single person, a release
+team has been formed. Please see the <code class="docutils literal notranslate"><span class="pre">COREBOOT</span> <span class="pre">RELEASES</span></code> section of the
+MAINTAINERS file for the current members.</p>
+<p>These individuals work together to make sure releases are done on time,
+follow the steps of this document, and update the release processes and
+scripts.</p>
+</section>
+<section id="needed-credentials-authorizations">
+<h2>Needed credentials &amp; authorizations<a class="headerlink" href="#needed-credentials-authorizations" title="Link to this heading"></a></h2>
+<section id="coreboot-admins-only">
+<h3>coreboot admins only<a class="headerlink" href="#coreboot-admins-only" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Website access is required to post the release files to the website.</p></li>
+</ul>
+</section>
+<section id="all-release-team-members">
+<h3>All release team members<a class="headerlink" href="#all-release-team-members" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>IRC topic access is required to update the topic.</p></li>
+<li><p>Git access rights are needed to post the tag.</p></li>
+<li><p>Blog post access is needed to do the blog post.</p></li>
+<li><p>A PGP key is required to sign the release tarballs and git tag.</p></li>
+</ul>
+<p>Most of the steps in the release process can be done by anyone on the
+release team. Only adding the files to the website needs to be done
+by a coreboot administrator.</p>
+</section>
+</section>
+<section id="when-to-release">
+<h2>When to release<a class="headerlink" href="#when-to-release" title="Link to this heading"></a></h2>
+<p>Releases are done roughly on a 3-month schedule. If a release is
+delayed, the next release will still be 3 months after the last release.</p>
+</section>
+<section id="checklist">
+<h2>Checklist<a class="headerlink" href="#checklist" title="Link to this heading"></a></h2>
+<section id="weeks-prior-to-release">
+<h3>~2 weeks prior to release<a class="headerlink" href="#weeks-prior-to-release" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ ] Announce upcoming release to mailing list, ask people to test and
+to update release notes.</p></li>
+<li><p>[ ] Start marking patches that should to go into the release with a
+tag “coreboot_release_X.yy”</p></li>
+</ul>
+</section>
+<section id="week-prior-to-release">
+<h3>~1 week prior to release<a class="headerlink" href="#week-prior-to-release" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ ] Send reminder email to mailing list, ask for people to test,
+and to update the release notes.</p></li>
+<li><p>[ ] Update the topic in the IRC channel with the date of the upcoming
+release.</p></li>
+<li><p>[ ] If there are any deprecations announced for the following release,
+make sure that a list of currently affected boards and chipsets is
+part of the release notes.</p></li>
+<li><p>[ ] Finalize release notes as much as possible</p></li>
+<li><p>[ ] Prepare release notes template for following release</p></li>
+<li><p>[ ] Update <code class="docutils literal notranslate"><span class="pre">Documentation/releases/index.md</span></code></p></li>
+<li><p>[ ] Check which branches need to be released. Any branch with changes
+should get a new release. Announce these branch releases and
+prepare release notes.</p></li>
+</ul>
+</section>
+<section id="day-before-release">
+<h3>Day before release<a class="headerlink" href="#day-before-release" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ ] Make sure patches with tags for the release are merged.</p></li>
+<li><p>[ ] Announce to IRC that the release will be tomorrow and ask for
+testing.</p></li>
+<li><p>[ ] Run <code class="docutils literal notranslate"><span class="pre">util/vboot_list/vboot_list.sh</span></code> script to update the list of
+boards supported by vboot.</p></li>
+</ul>
+</section>
+<section id="day-of-release">
+<h3>Day of release<a class="headerlink" href="#day-of-release" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ ] Review the full documentation about doing the release below.</p></li>
+<li><p>[ ] Select a commit ID to base the release upon.</p></li>
+<li><p>[ ] Test the commit selected for release.</p></li>
+<li><p>[ ] Submit last pre-release release notes.</p></li>
+<li><p>[ ] Run the release script.</p></li>
+<li><p>[ ] Test the release from the actual release tarballs.</p></li>
+<li><p>[ ] Push signed Tag to repo. <em>This is the actual release step.</em>
+Once this patch is pushed, the release itself has been done.
+everything after this step is packaging and delivering the
+release.</p></li>
+<li><p>[ ] Announce that the release tag is done on IRC.</p></li>
+<li><p>[ ] Update the topic in the IRC channel that the release is done.</p></li>
+<li><p>[ ] Do the final release notes - Fill in the release date, remove
+“Upcoming release” and other filler from the current release
+notes.</p></li>
+<li><p>[ ] ADMIN: Upload release files to web server.</p></li>
+<li><p>[ ] ADMIN: Upload the final release notes to the web server.</p></li>
+<li><p>[ ] ADMIN: Upload crossgcc sources to web server.</p></li>
+<li><p>[ ] Create coreboot-sdk and coreboot-jenkins-node docker images
+based on the release ID and push them to dockerhub. These
+can be used as release builders.</p></li>
+</ul>
+</section>
+<section id="week-following-the-release">
+<h3>Week following the release<a class="headerlink" href="#week-following-the-release" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ ] Update download page to point to files, push to repo.</p></li>
+<li><p>[ ] Write and publish blog post with release final notes. Branch
+releases notes should be included in the same post.</p></li>
+<li><p>[ ] Remove code that was announced it was going to be removed.</p></li>
+<li><p>[ ] Update <code class="docutils literal notranslate"><span class="pre">Documentation/releases/boards_supported_on_branches.md</span></code></p></li>
+</ul>
+</section>
+<section id="creating-a-branch">
+<h3>Creating a branch<a class="headerlink" href="#creating-a-branch" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ ] Branches are named 4.xx_branch to differentiate from the tags.
+Instructions on creating branches are listed below.</p></li>
+</ul>
+</section>
+</section>
+<section id="pre-release-tasks">
+<h2>Pre-Release tasks<a class="headerlink" href="#pre-release-tasks" title="Link to this heading"></a></h2>
+<p>Announce the upcoming release to the mailing list release 2 weeks ahead
+of the planned release date.</p>
+<p>The announcement should state the planned release date, point to the
+release notes that are in the making and ask people to test the hardware
+they have to make sure it’s working with the current master branch,
+from which the release will ultimately be derived from.</p>
+<p>People should be encouraged to provide additions to the release notes.</p>
+<p>The final release notes will reside in coreboot’s Documentation/releases
+directory, so asking for additions to that through the regular Gerrit
+process works as well. Note that git requires lots of conflict
+resolution on heavily edited text files though.</p>
+<p>Frequently, we will want to wait until particular things are in the
+release. Once those are in, you can select the commit ID that you want
+to use for your release. For the 4.6 release, we waited until we had
+time to do the release, then pulled in a few patches that we wanted
+to have in the release. The release was based on the final of those
+patches to be pulled in.</p>
+<p>When a release candidate has been selected, announce the commit ID to
+the #coreboot IRC channel, and request that it get some testing, just
+to make sure that everything is sane.</p>
+</section>
+<section id="generate-the-release">
+<h2>Generate the release<a class="headerlink" href="#generate-the-release" title="Link to this heading"></a></h2>
+<p>After the commit for the release has been selected and verified, run the
+release script - util/release/build-release. This will download a new
+tree, checkout the commit that you specified, download the submodules,
+create a tag, then generate and sign the tarballs.</p>
+<p><strong>Be prepared to type in your PGP key’s passphrase.</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: util/release/build-release &lt;version&gt; [commit id] [username] [gpg key id]
+Tags a new coreboot version and creates a tar archive
+
+version:    New version name to tag the tree with
+commit id:  check out this commit-id after cloning the coreboot tree
+username:   clone the tree using ssh://USERNAME - defaults to https://
+gpg key id: used to tag the version, and generate a gpg signature
+</pre></div>
+</div>
+<p>After running the script, you should have a new directory for the
+release, along with 4 files: 2 tarballs, and 2 signature files.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>drwxr-xr-x   9 martin martin      4096 Apr 30 19:57 coreboot-4.6
+-rw-r--r--   1 martin martin  29156788 Apr 30 19:58 coreboot-4.6.tar.xz
+-rw-r--r--   1 martin martin       836 Apr 30 19:58 coreboot-4.6.tar.xz.sig
+-rw-r--r--   1 martin martin   5902076 Apr 30 19:58 coreboot-blobs-4.6.tar.xz
+-rw-r--r--   1 martin martin       836 Apr 30 19:58 coreboot-blobs-4.6.tar.xz.sig
+</pre></div>
+</div>
+<p>Here’s the command that was used to generate the 4.6 release:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>util/release/build-release<span class="w"> </span><span class="m">4</span>.6<span class="w"> </span>db508565<span class="w"> </span>Gaumless<span class="w"> </span>3E4F7DF7
+</pre></div>
+</div>
+</section>
+<section id="test-the-release-from-the-tarballs">
+<h2>Test the release from the tarballs<a class="headerlink" href="#test-the-release-from-the-tarballs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Run “make what-jenkins-does” and verify that everything is building.</p></li>
+<li><p>Build and test qemu</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>configs/config.emulation_qemu_x86_i440fx<span class="w"> </span>.config
+make<span class="w"> </span>olddefconfig
+make
+qemu-system-x86_64<span class="w"> </span>-bios<span class="w"> </span>build/coreboot.rom<span class="w"> </span>-serial<span class="w"> </span>stdio
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Build and test any other platforms you can.</p></li>
+<li><p>Compare the directory from the tarballs to the coreboot repo to make
+sure nothing went wrong.</p></li>
+<li><p>Push the tag to git</p></li>
+</ul>
+<p>A good tag will look like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>% git show 4.6
+tag 4.6
+Tagger: Martin Roth &lt;martinroth@google.com&gt;
+Date:   Sun Apr 30 19:48:38 2017 -0600
+
+coreboot version 4.6
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQIcBAABCQAGBQJZBpP2AAoJEBl5bCs+T333xfgQAKhilfDTzqlr3MLJC4VChbmr
+...
+678e0NzyWsyqU1Vx2rdFdLANx6hghH1R7E5ybzHHUQrhb55BoEsnQMU1oS0npnT4
+dwfLho1afk0ZLPUU1JFW
+=25y8
+-----END PGP SIGNATURE-----
+
+commit db508565d2483394b709654c57533e55eebace51 (HEAD, tag: 4.6, origin/master, origin/HEAD)
+...
+</pre></div>
+</div>
+<p>When you used the script to generate the release, a signed tag was
+generated in the tree that was downloaded. From the coreboot-X.Y tree,
+just run: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">X.Y</span></code>. In case you pushed the wrong tag
+already, you have to force push the new one.</p>
+<p>You will need write access for tags to the coreboot git repo to do this.</p>
+</section>
+<section id="after-the-release-is-tagged-in-git">
+<h2>After the release is tagged in git<a class="headerlink" href="#after-the-release-is-tagged-in-git" title="Link to this heading"></a></h2>
+<p>Announce that the release has been tagged - this lets people know that
+they should update their trees to grab the new tag. Until they do this,
+the version number in build.h will still be based on the previous tag.</p>
+<p>Copy the tarballs and .sig files generated by the script to
+the coreboot server, and put them in the release directory at
+<code class="docutils literal notranslate"><span class="pre">/srv/docker/www.coreboot.org-staticfiles/releases/</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update the sha256sum file</span>
+sha256sum<span class="w"> </span>-b<span class="w"> </span>coreboot-*.tar.xz<span class="w"> </span>&gt;<span class="w"> </span>sha256suma.txt
+
+<span class="c1"># make sure the two new files are present (and nothing else has changed)</span>
+diff<span class="w"> </span>sha256sum.txt<span class="w"> </span>sha256suma.txt
+
+mv<span class="w"> </span>sha256suma.txt<span class="w"> </span>sha256sum.txt
+</pre></div>
+</div>
+<p>People can now see the release tarballs on the website at
+<a class="reference external" href="https://www.coreboot.org/releases/">https://www.coreboot.org/releases/</a></p>
+<p>The downloads page is the official place to download the releases from,
+and it needs to be updated with links to the new release tarballs and
+.sig files. It can be found at:
+<a class="reference external" href="https://review.coreboot.org/cgit/homepage.git/tree/downloads.html">https://review.coreboot.org/cgit/homepage.git/tree/downloads.html</a></p>
+<p>Here is an example commit to change it:
+<a class="reference external" href="https://review.coreboot.org/c/homepage/+/19515">https://review.coreboot.org/c/homepage/+/19515</a></p>
+</section>
+<section id="upload-crossgcc-sources">
+<h2>Upload crossgcc sources<a class="headerlink" href="#upload-crossgcc-sources" title="Link to this heading"></a></h2>
+<p>Sometimes the source files for older revisions of
+crossgcc disappear. To deal with that we maintain a mirror at
+<a class="reference external" href="https://www.coreboot.org/releases/crossgcc-sources/">https://www.coreboot.org/releases/crossgcc-sources/</a> where we host the
+sources used by the crossgcc scripts that are part of coreboot releases.</p>
+<p>Run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>util/crossgcc/buildgcc<span class="w"> </span>-u
+</pre></div>
+</div>
+<p>This will output the set of URLs that the script uses to download the
+sources. Download them yourself and copy them into the crossgcc-sources
+directory on the server.</p>
+</section>
+<section id="after-the-release-is-complete">
+<h2>After the release is complete<a class="headerlink" href="#after-the-release-is-complete" title="Link to this heading"></a></h2>
+<p>Post the final release notes on <a class="reference external" href="https://blogs.coreboot.org">https://blogs.coreboot.org</a></p>
+</section>
+<section id="making-a-branch">
+<h2>Making a branch<a class="headerlink" href="#making-a-branch" title="Link to this heading"></a></h2>
+<p>At times we will need to create a branch, generally for patch fixes.
+When making a branch, do NOT name it the same as the release tag: X.Y -
+this creates trouble when trying to check it out, as git can’t tell
+whether you want the tag or the branch. Instead, name it X.Y_branch:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span><span class="m">4</span>.8
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="m">4</span>.8_branch
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span><span class="m">4</span>.8_branch
+</pre></div>
+</div>
+<p>You can then cherry-pick changes and push them up to the branch:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>cherry-pick<span class="w"> </span>c6d134988c856d0025153fb885045d995bc8c397
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>HEAD:refs/for/4.8_branch
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

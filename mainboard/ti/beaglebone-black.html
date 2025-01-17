@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beaglebone Black &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Squared" href="../up/squared/index.html" />
+    <link rel="prev" title="System76 Serval Workstation 13 (serw13)" href="../system76/serw13.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hp">HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Beaglebone Black</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#supported-boards">Supported Boards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-cases">Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quickstart">Quickstart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#serial-console">Serial Console</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boot-process">Boot Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clock-initialization-and-pmic">Clock Initialization and PMIC</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#todo">Todo</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">Beaglebone Black</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/ti/beaglebone-black.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="beaglebone-black">
+<h1>Beaglebone Black<a class="headerlink" href="#beaglebone-black" title="Link to this heading"></a></h1>
+<p>This page gives some details about the <a class="reference external" href="https://beagleboard.org/black">BeagleBone Black</a> coreboot port and
+describes how to build and run it.</p>
+<p>The port currently only supports booting coreboot from a micro SD card and has
+some other limitations listed below.</p>
+<section id="supported-boards">
+<h2>Supported Boards<a class="headerlink" href="#supported-boards" title="Link to this heading"></a></h2>
+<p>The Beaglebone port supports the following boards:</p>
+<ul class="simple">
+<li><p>Beaglebone Black</p></li>
+<li><p>Beaglebone Black Wireless</p></li>
+<li><p>Beaglebone Pocket (untested, may need tweaking)</p></li>
+<li><p>Beaglebone Blue (untested, may need tweaking)</p></li>
+<li><p>Beaglebone Original (untested, may need tweaking)</p></li>
+</ul>
+</section>
+<section id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p>This port was primarily developed as a learning exercise and there is
+potentially little reason to use it compared to the defacto bootloader choice of
+U-Boot. However, it does have some interesting practical use cases compared to
+U-Boot:</p>
+<ol class="simple">
+<li><p>Choosing coreboot as a lightweight alternative to U-Boot. In this case,
+coreboot is used to do the absolute minimum necessary to boot Linux, forgoing
+some U-Boot features and functionality. Complex boot logic can then instead
+be moved into Linux where it can be more flexibly and safely executed. This
+is essentially the LinuxBoot philosophy. <a class="reference external" href="https://elixir.bootlin.com/u-boot/v2020.07/source/doc/README.falcon">U-Boot Falcon mode</a> has similar
+goals to this as well.</p></li>
+<li><p>Facilitating experimenting with coreboot on real hardware. The Beaglebone
+Black is widely available at a low pricepoint (~$65) making it a great way to
+experiment with coreboot on real ARMv7 hardware. It also works well as a
+development platform as it has exposed pads for JTAG and, due to the way it
+boots, is effectively impossible to brick.</p></li>
+<li><p>The Beaglebone Black is often used as a external flasher and EHCI debug
+gadget in the coreboot community, so many members have access to it and can
+use it as a reference platform.</p></li>
+</ol>
+</section>
+<section id="quickstart">
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading"></a></h2>
+<ol class="simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code> and select <em>TI</em>/<em>Beaglebone</em> in the <em>Mainboard</em> menu.</p></li>
+<li><p>Add a payload as normal.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p></li>
+<li><p>Copy the resulting <code class="docutils literal notranslate"><span class="pre">build/MLO</span></code> file to the micro SD card at offset 128k - ie
+<code class="docutils literal notranslate"><span class="pre">dd</span> <span class="pre">if=build/MLO</span> <span class="pre">of=/dev/sdcard</span> <span class="pre">seek=1</span> <span class="pre">bs=128k</span></code>.</p></li>
+</ol>
+<p><strong>NOTE</strong>: By default, the Beaglebone is configured to try to boot first from
+eMMC before booting from SD card. To ensure that the Beaglebone boots from SD,
+either erase the internal eMMC or hold the <em>S2</em> button while powering on (note
+that this has to be while powering on - ie when plugging in the USB or DC barrel
+jack - the boot order doesn’t change on reset) to prioritize SD in the boot
+order.</p>
+</section>
+<section id="serial-console">
+<h2>Serial Console<a class="headerlink" href="#serial-console" title="Link to this heading"></a></h2>
+<p>By default, coreboot uses UART0 as the serial console. UART0 is available
+through the J1 header on both the Beaglebone Black and Beaglebone Black
+Wireless. The serial runs at 3.3V and 115200 8n1.</p>
+<p>The pin mapping is shown below for J1.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```eval_rst
++----------------------------+------------+
+| Pin number                 | Function   |
++============================+============+
+| 1 (Closest to barrel jack) | GND        |
++----------------------------+------------+
+| 4                          | RX         |
++----------------------------+------------+
+| 5                          | TX         |
++----------------------------+------------+
+```
+</pre></div>
+</div>
+</section>
+<section id="boot-process">
+<h2>Boot Process<a class="headerlink" href="#boot-process" title="Link to this heading"></a></h2>
+<p>The AM335x contains ROM code to allow booting in a number of different
+configurations. More information about the boot ROM code can be found in the
+AM335x technical reference manual (<em>SPRUH73Q</em>) in the <em>Initialization</em> section.</p>
+<p>This coreboot port is currently configured to boot in “SD Raw Mode” where the
+boot binary, with header (”Table of Contents” in TI’s nomenclature), is placed
+at the offset of 0x20000 (128KB) on the SD card. The boot ROM loads the coreboot
+bootblock stage into SRAM and executes it.</p>
+<p>The bootblock and subsequent romstage and ramstage coreboot stages expect that
+the coreboot image, containing the CBFS, is located at 0x20000 on the SD card.
+All stages directly read from the SD card in order to load the next stage in
+sequence.</p>
+</section>
+<section id="clock-initialization-and-pmic">
+<h2>Clock Initialization and PMIC<a class="headerlink" href="#clock-initialization-and-pmic" title="Link to this heading"></a></h2>
+<p>To simplify the port, the TPS65217C Power Management IC (PMIC) on the Beaglebone
+Black is not configured by coreboot. By default, the PMIC reset values for
+VDD_MPU (1.1V) and VDD_CORE (1.8V) are within the Operating Performance Point
+(OPP) for the MPU PLL configuration set by the boot ROM of 500 MHz.</p>
+<p>When using Linux as a payload, the kernel will appropriately scale the core
+voltages for the desired MPU clock frequency as defined in the device tree.</p>
+<p>One significant difference because of this to the U-Boot port is that the DCDC1
+rail that powers the DDR3 RAM will be 1.5V by default. The Micron DDR3 supports
+both 1.35V and 1.5V and U-Boot makes use of this by setting it to 1.35V to
+conserve power. Fortunately, Linux is again able to configure this rail but it
+involves adding an entry to the device tree:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">dcdc1_reg</span> <span class="p">{</span>
+<span class="n">regulator</span><span class="o">-</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;vdd_ddr3&quot;</span><span class="p">;</span>
+<span class="n">regulator</span><span class="o">-</span><span class="nb">min</span><span class="o">-</span><span class="n">microvolt</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">1350000</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">regulator</span><span class="o">-</span><span class="nb">max</span><span class="o">-</span><span class="n">microvolt</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">1350000</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">regulator</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
+<span class="n">regulator</span><span class="o">-</span><span class="n">always</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>If this port was to be extended to work with boards or SoCs with different
+requirements for the MPU clock frequency or different Operating Performance
+Points, then the port may need to be extended to set the core voltages and MPU
+PLL within coreboot, prior to loading a payload. Extending coreboot so that it
+can configure the PMIC would also be necessary if there was a requirement for
+coreboot to run at a different MPU frequency than the 500 MHz set by the boot
+ROM.</p>
+</section>
+</section>
+<section id="todo">
+<h1>Todo<a class="headerlink" href="#todo" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Allow coreboot to run from the Beaglebone Black’s internal eMMC. This would
+require updating the <code class="docutils literal notranslate"><span class="pre">mmc.c</span></code> driver to support running from both SD and eMMC.</p></li>
+<li><p>Support the boot ROMs <em>FAT mode</em> so that the coreboot binary can be placed on
+a FAT partition.</p></li>
+<li><p>Increase the MMC read speed, it currently takes ~15s to read ~20MB which is a
+bit slow. To do this, it should be possible to update the MMC driver to:</p>
+<ul>
+<li><p>Increase the supported blocksize (currently is always set to 1)</p></li>
+<li><p>Support 4-bit data width (currently only supports 1-bit data width)</p></li>
+</ul>
+</li>
+<li><p>Convert the while loops in the MMC driver to timeout so that coreboot does not
+hang on a bad SD card or when the SD card is removed during boot.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../system76/serw13.html" class="btn btn-neutral float-left" title="System76 Serval Workstation 13 (serw13)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../up/squared/index.html" class="btn btn-neutral float-right" title="Squared" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

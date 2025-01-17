@@ -1,0 +1,372 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>abuild &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="cbfstool" href="../cbfstool/index.html" />
+    <link rel="prev" title="Utilities" href="../../util.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../util.html">Utilities</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../util.html#list-of-utils">List of utils</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../util.html#in-depth-documentation">In depth documentation</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">abuild</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#basic-usage">Basic usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#where-builds-and-logs-are-stored">Where builds and logs are stored</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#payloads">Payloads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-non-default-configurations">Build non-default configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#selectively-build-certain-targets-only-also-config-file-naming-caveats">Selectively build certain targets only (also config file naming caveats)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-examples">Additional Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#full-options-list">Full options list</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cbfstool/index.html">cbfstool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ifdtool/index.html">ifdtool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intelp2m/index.html">intelp2m</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../util.html#generated-documentation">Generated documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../util.html">Utilities</a></li>
+      <li class="breadcrumb-item active">abuild</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/util/abuild/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="abuild">
+<h1>abuild<a class="headerlink" href="#abuild" title="Link to this heading"></a></h1>
+<p>This utility is a great tool to check whether your coreboot tree
+compiles for one or all targets. It compiles the ‘default’ build for a
+mainboard. This is roughly equivalent to removing the .config file,
+running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code>, selecting the manufacturer and mainboard,
+then saving the config without making any other changes.</p>
+<p>It is run on all patches submitted via gerrit as part of the process.
+Before submitting a patch, it is a very good idea to run abuild first
+to make sure your patch compiles cleanly for all.</p>
+<p>Note that abuild is a tool to do a simple build test, and binaries it
+produces may well not boot if flashed to a system.</p>
+<section id="basic-usage">
+<h2>Basic usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h2>
+<p>abuild needs to be run from the coreboot directory. If you cd into the
+coreboot/util/abuild directory and try to run it from there, it will
+not run correctly.</p>
+<p>If you invoke abuild with no parameters, it will build all boards
+automatically.</p>
+<p>You can also specify a single board to build with the -t option. For
+example, to build the Lenovo X230 target, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>util/abuild/abuild<span class="w"> </span>-t<span class="w"> </span>lenovo/x230
+</pre></div>
+</div>
+</section>
+<section id="where-builds-and-logs-are-stored">
+<h2>Where builds and logs are stored<a class="headerlink" href="#where-builds-and-logs-are-stored" title="Link to this heading"></a></h2>
+<p>The resulting images and logs are stored in directory coreboot-builds/
+under your current directory. This can be overridden with –outdir:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>util/abuild/abuild<span class="w"> </span>--outdir<span class="w"> </span>/mnt/portable/coreboot-builds
+</pre></div>
+</div>
+<p>This is useful if you want to divert the build to an external hard
+drive, e.g. to keep the solid-state drive holding the coreboot tree
+young.</p>
+<p>(We will still refer to this directory as “coreboot-builds” below.)</p>
+<p>After running the X230 build above, the build log will be in
+coreboot-builds/LENOVO_X230/make.log.</p>
+<p>For an overview of what passed and what failed, look at
+coreboot-builds/passing_boards and coreboot-builds/failing_boards.
+<strong>These logs are overwritten with each abuild run.</strong> Save them elsewhere
+if you feel a need to reference the results later.</p>
+</section>
+<section id="payloads">
+<h2>Payloads<a class="headerlink" href="#payloads" title="Link to this heading"></a></h2>
+<p>You can also specify a payload directory with -p:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>payloads
+cp<span class="w"> </span>/somewhere/filo.elf<span class="w"> </span>payloads
+</pre></div>
+</div>
+<p>Then add a file payloads/payload.sh which prints the name of the
+payload to use (and takes the mainboard as a parameter) such as:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;`dirname </span><span class="nv">$0</span><span class="s2">`/build/filo.elf&quot;</span>
+</pre></div>
+</div>
+<p>Then you can build an image with payload by specifying:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>util/abuild/abuild<span class="w"> </span>-t<span class="w"> </span>lenovo/x230<span class="w"> </span>-p<span class="w"> </span>./payloads
+</pre></div>
+</div>
+<p>You can also tell abuild not to use a payload:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>util/abuild/abuild<span class="w"> </span>-t<span class="w"> </span>lenovo/x230<span class="w"> </span>-p<span class="w"> </span>none
+</pre></div>
+</div>
+</section>
+<section id="build-non-default-configurations">
+<h2>Build non-default configurations<a class="headerlink" href="#build-non-default-configurations" title="Link to this heading"></a></h2>
+<p>Sometimes you do need to build test a custom, non-default configuration.
+This can be accomplished by placing a config file in configs/.</p>
+<p>First, clean your slate with <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">distclean</span></code> or <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">.config</span></code>.</p>
+<p>Then run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code>, select the manufacturer and mainboard, and
+configure the options you need to test building for.</p>
+<p>Then save a minimal config file omitting options that did not change
+from default:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>savedefconfig
+</pre></div>
+</div>
+<p>This file is saved as <code class="docutils literal notranslate"><span class="pre">defconfig</span></code> and can be edited further.</p>
+<p>Now this file can be saved in configs/ which will form the basis of a
+custom configuration included in an abuild. However, it needs to be
+named in a specific way for abuild to pick it up:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.&lt;</span><span class="n">board</span><span class="o">&gt;</span><span class="n">_</span><span class="o">&lt;</span><span class="n">suffix</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><board> is effectively the BOARD_xxx Kconfig option without “BOARD_”.
+<suffix> is a free form description of the configuration being built.</p>
+<p>For example, a config for ASUS P8Z77-M PRO that tests building with MRC
+raminit code (as opposed to the default native raminit) would be named
+<code class="docutils literal notranslate"><span class="pre">config.asus_p8z77_m_pro_mrc_bin</span></code> and contains:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONFIG_VENDOR_ASUS</span><span class="o">=</span><span class="n">y</span>
+<span class="n">CONFIG_BOARD_ASUS_P8Z77_M_PRO</span><span class="o">=</span><span class="n">y</span>
+<span class="c1"># CONFIG_USE_NATIVE_RAMINIT is not set</span>
+<span class="n">CONFIG_CPU_MICROCODE_CBFS_NONE</span><span class="o">=</span><span class="n">y</span>
+<span class="c1"># CONFIG_BOOTBLOCK_CONSOLE is not set</span>
+<span class="c1"># CONFIG_POSTCAR_CONSOLE is not set</span>
+</pre></div>
+</div>
+<p>For what we are trying to do, not setting USE_NATIVE_RAMINIT is the
+important part. The other three optional changes are meant to speed
+things up. All these options can be selected during <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code>.</p>
+<p>Path to MRC binary blob remains default and thus not included here.</p>
+<p>Custom configurations can also be put in a file and applied to an entire
+abuild run using -K. Assume for example you are not interested in
+the postcar stage at all and just want it to shut up, you can create
+a file named <code class="docutils literal notranslate"><span class="pre">myconfig</span></code> with this line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># CONFIG_POSTCAR_CONSOLE is not set</span>
+</pre></div>
+</div>
+<p>and run <code class="docutils literal notranslate"><span class="pre">abuild</span> <span class="pre">-K</span> <span class="pre">myconfig</span></code> to build everything with a silent postcar
+stage.</p>
+</section>
+<section id="selectively-build-certain-targets-only-also-config-file-naming-caveats">
+<h2>Selectively build certain targets only (also config file naming caveats)<a class="headerlink" href="#selectively-build-certain-targets-only-also-config-file-naming-caveats" title="Link to this heading"></a></h2>
+<p>The P8Z77-M PRO example above would fail for P8Z77-M, because the
+config file name is ambiguous. <code class="docutils literal notranslate"><span class="pre">abuild</span></code> would pick up this config when
+building for P8Z77-M, but fails when it sees that this config isn’t
+meant for P8Z77-M (but for P8Z77-M PRO). To avoid this error, you have
+to skip this config using –skip_set:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>util/abuild/abuild<span class="w"> </span>--skip_set<span class="w"> </span>BOARD_ASUS_P8Z77_M_PRO
+</pre></div>
+</div>
+<p>To complete the test, run abuild again specifically for this board
+variant (see next section).</p>
+<p>You can skip building other targets based on other Kconfigs. To skip
+building targets without a Kconfig set, use –skip_unset:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>util/abuild/abuild<span class="w"> </span>--skip_unset<span class="w"> </span>USE_NATIVE_RAMINIT
+</pre></div>
+</div>
+<p>This example skips building configs not using (Sandy/Ivy Bridge) native
+RAM init.</p>
+</section>
+<section id="additional-examples">
+<h2>Additional Examples<a class="headerlink" href="#additional-examples" title="Link to this heading"></a></h2>
+<p>Many boards have multiple variants. You can build for a specific
+variant of a board:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>util/abuild/abuild<span class="w"> </span>-t<span class="w"> </span>asus/p8x7x-series<span class="w"> </span>-b<span class="w"> </span>p8z77-m_pro<span class="w"> </span>-p<span class="w"> </span>none
+</pre></div>
+</div>
+<p>Many of the boards need files from the ‘blobs’ repository, which will
+be initialized by the -B option. If the blobs repo has already been
+initialized in your local tree, it won’t hurt to add the -B.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>util/abuild/abuild<span class="w"> </span>-B<span class="w"> </span>-t<span class="w"> </span>lenovo/x230<span class="w"> </span>-p<span class="w"> </span>none
+</pre></div>
+</div>
+<p>Adding ccache to your system and telling abuild to use it with the -y
+option will speed things up a bit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>util/abuild/abuild<span class="w"> </span>-B<span class="w"> </span>-y<span class="w"> </span>-t<span class="w"> </span>lenovo/x230<span class="w"> </span>-p<span class="w"> </span>none
+</pre></div>
+</div>
+<p>Telling abuild to use multiple cores with the -c option helps speed
+things up as well:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>util/abuild/abuild<span class="w"> </span>-B<span class="w"> </span>-y<span class="w"> </span>-c<span class="w"> </span><span class="m">8</span><span class="w"> </span>-t<span class="w"> </span>lenovo/x230<span class="w"> </span>-p<span class="w"> </span>none
+</pre></div>
+</div>
+<p>Of course, the real power of abuild is in testing multiple boards.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>util/abuild/abuild<span class="w"> </span>-B<span class="w"> </span>-y<span class="w"> </span>-c<span class="w"> </span><span class="m">8</span><span class="w"> </span>-p<span class="w"> </span>none
+</pre></div>
+</div>
+</section>
+<section id="full-options-list">
+<h2>Full options list<a class="headerlink" href="#full-options-list" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>coreboot autobuild v0.11.01 (Feb 3, 2023)
+[...]
+Usage: util/abuild/abuild [options]
+       util/abuild/abuild [-V|--version]
+       util/abuild/abuild [-h|--help]
+
+Options:
+    [-a|--all]                    Build previously succeeded ports as well
+    [-A|--any-toolchain]          Use any toolchain
+    [-b|--board-variant &lt;name&gt;]   Build specific board variant under the
+                                  given target.
+    [-B|--blobs]                  Allow using binary files
+    [--checksum &lt;path/basefile&gt;]  Store checksums at path/basefile
+    [-c|--cpus &lt;numcpus&gt;]         Build on &lt;numcpus&gt; at the same time
+    [-C|--config]                 Configure-only mode
+    [-d|--dir &lt;dir&gt;]              Directory containing config files
+    [-e|--exitcode]               Exit with a non-zero errorlevel on failure
+    [-J|--junit]                  Write JUnit formatted xml log file
+    [-K|--kconfig &lt;name&gt;]         Prepend file to generated Kconfig
+    [-l|--loglevel &lt;num&gt;]         Set loglevel
+    [-L|--clang]                  Use clang on supported arch
+    [-n|--name]                   Set build name - also sets xmlfile if not
+                                  already set
+    [-o|--outdir &lt;path&gt;]          Store build results in path
+                                  (defaults to coreboot-builds)
+    [-p|--payloads &lt;dir&gt;]         Use payloads in &lt;dir&gt; to build images
+    [-P|--prefix &lt;name&gt;]          File name prefix in CBFS
+    [-q|--quiet]                  Print fewer messages
+    [-r|--remove]                 Remove output dir after build
+    [-R|--root &lt;path&gt;]            Absolute path to coreboot sources
+                                  (defaults to /usr/src/coreboot)
+    [--scan-build]                Use clang&#39;s static analyzer
+    [--skip_set &lt;value&gt;]          Skip building boards with this Kconfig set
+    [--skip_unset &lt;value&gt;]        Skip building boards with this Kconfig not set
+    [--timeless]                  Generate timeless builds
+    [-t|--target &lt;vendor/board&gt;]  Attempt to build target vendor/board only
+    [-T|--test]                   Submit image(s) to automated test system
+    [-u|--update]                 Update existing image
+    [-v|--verbose]                Print more messages
+    [-x|--chromeos]               Build with CHROMEOS enabled
+                                  Skip boards without ChromeOS support
+    [-X|--xmlfile &lt;name&gt;]         Set JUnit XML log file filename
+                                  (defaults to /usr/src/coreboot/abuild.xml)
+    [-y|--ccache]                 Use ccache
+    [-z|--clean]                  Remove build results when finished
+    [-Z|--clean-somewhat]         Remove build but keep coreboot.rom + config
+
+    [-V|--version]                Print version number and exit
+    [-h|--help]                   Print this help and exit
+
+    [-s|--silent]                 obsolete
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../util.html" class="btn btn-neutral float-left" title="Utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../cbfstool/index.html" class="btn btn-neutral float-right" title="cbfstool" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

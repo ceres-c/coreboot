@@ -1,0 +1,228 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coverity Scan for open source firmware &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Platforms supported on branches" href="../releases/boards_supported_on_branches.html" />
+    <link rel="prev" title="Jenkins builder setup and configuration" href="builders.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Project infrastructure</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#services">Services</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#jenkins-builders-and-builds">Jenkins builders and builds</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="builders.html">Setting up Jenkins build machines</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Coverity Scan integration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#whats-coverity-and-coverity-scan">What’s Coverity and Coverity Scan?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#logging-into-coverity-scan">Logging into Coverity Scan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coreboot-friends-and-coverity-scan">coreboot &amp; friends and Coverity Scan</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Project infrastructure &amp; services</a></li>
+      <li class="breadcrumb-item active">Coverity Scan for open source firmware</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/infrastructure/coverity.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coverity-scan-for-open-source-firmware">
+<h1>Coverity Scan for open source firmware<a class="headerlink" href="#coverity-scan-for-open-source-firmware" title="Link to this heading"></a></h1>
+<section id="whats-coverity-and-coverity-scan">
+<h2>What’s Coverity and Coverity Scan?<a class="headerlink" href="#whats-coverity-and-coverity-scan" title="Link to this heading"></a></h2>
+<p>Coverity is a static analysis tool. It hooks into the build process
+and in addition to the compiler creating object files, Coverity collects
+information about the code. That data is then processed in a separate pass
+to identify common programming errors, like out of bounds accesses in C.</p>
+<p>Coverity Scan is an online service for Open Source projects providing this
+analysis for free. The analysis pass is done on their servers and issues
+can be handled in their <a class="reference external" href="https://scan.coverity.com/">web UI</a>.</p>
+<p>The Scan service has some quotas based on code size to avoid overloading
+the system, but even at one build per week, that’s usually good enough
+because the identified issues still need to be triaged and fixed or they
+will simply be re-identified next week.</p>
+<section id="triage">
+<h3>Triage?<a class="headerlink" href="#triage" title="Link to this heading"></a></h3>
+<p>The Web UI looks a bit like an issue tracker, even if it’s not a very
+good one. It’s possible to mark identified issues as valid or invalid,
+and annotate them with metadata which CLs fix them. The latter isn’t
+strictly necessary because Coverity Scan simply marks issues it can’t
+find anymore as fixed, but at times it helped identify issues that made
+a comeback.</p>
+</section>
+<section id="alternatives">
+<h3>Alternatives<a class="headerlink" href="#alternatives" title="Link to this heading"></a></h3>
+<p>There’s also clang’s scan-build, which is fully open-source, and
+finds different issues. As such, it’s less of an alternative and more
+of a complement.</p>
+<p>There’s a regular run of that for coreboot but not for the other projects
+hosted at coreboot.org.</p>
+<p>One downside is that it emits a bunch of HTML to report on issues,
+but there’s no interactivity (e.g. marking issues solved), no way
+to merge multiple builds (e.g. multiple board builds of a single tree)
+or a simple way to extract burndown charts and the like from that.</p>
+<section id="looking-for-a-project">
+<h4>Looking for a project?<a class="headerlink" href="#looking-for-a-project" title="Link to this heading"></a></h4>
+<p>On the upside, it can emit the data in a machine readable format, so if
+anybody needs a project, a scan-build web-frontend like Coverity Scan would
+be feasible without having to go through scan-build’s guts, just by parsing
+text files - plus all the stateful and web parts to build on top.</p>
+</section>
+</section>
+</section>
+<section id="logging-into-coverity-scan">
+<h2>Logging into Coverity Scan<a class="headerlink" href="#logging-into-coverity-scan" title="Link to this heading"></a></h2>
+<p>Coverity Scan needs an account. It supports its own accounts and GitHub
+OAuth.</p>
+<p>Access to the dashboards needs approval: Request and you shall receive.</p>
+</section>
+<section id="coreboot-friends-and-coverity-scan">
+<h2>coreboot &amp; friends and Coverity Scan<a class="headerlink" href="#coreboot-friends-and-coverity-scan" title="Link to this heading"></a></h2>
+<p>coreboot, flashrom, Chromium EC and other projects of that family have
+been made Coverity aware, that is, their build systems support building
+with a custom compiler configuration passed in “just right” to enable
+Coverity to add its hooks.</p>
+<p>The public coreboot CI system at
+<a class="reference external" href="https://qa.coreboot.org/">https://qa.coreboot.org/</a> regularly does
+builds with Coverity and sends them off to Coverity Scan.</p>
+<p>Specifically, it covers:</p>
+<ul class="simple">
+<li><p>Chromium EC: <a class="reference external" href="https://scan.coverity.com/projects/chromium-ec">Coverity Scan site</a> (<a class="reference external" href="https://qa.coreboot.org/view/coverity/job/ChromeEC-Coverity/">build job</a>)</p></li>
+<li><p>coreboot: <a class="reference external" href="https://scan.coverity.com/projects/coreboot">Coverity Scan site</a> (<a class="reference external" href="https://qa.coreboot.org/view/coverity/job/coreboot-coverity/">build job</a>), <a class="reference external" href="https://www.coreboot.org/scan-build/">scan-build output</a> (<a class="reference external" href="https://qa.coreboot.org/view/coverity/job/coreboot_scanbuild/">build job</a>)</p></li>
+<li><p>em100: <a class="reference external" href="https://scan.coverity.com/projects/em100">Coverity Scan site</a> (<a class="reference external" href="https://qa.coreboot.org/view/coverity/job/em100-coverity/">build job</a>)</p></li>
+<li><p>fcode-utils: <a class="reference external" href="https://scan.coverity.com/projects/fcode-utils">Coverity Scan site</a> (<a class="reference external" href="https://qa.coreboot.org/view/coverity/job/fcode-utils-coverity/">build job</a>)</p></li>
+<li><p>flashrom: <a class="reference external" href="https://scan.coverity.com/projects/flashrom">Coverity Scan site</a> (<a class="reference external" href="https://qa.coreboot.org/view/coverity/job/flashrom-coverity/">build job</a>)</p></li>
+<li><p>memtest86+: <a class="reference external" href="https://scan.coverity.com/projects/memtest86">Coverity Scan site</a> (<a class="reference external" href="https://qa.coreboot.org/view/coverity/job/memtest86plus-coverity/">build job</a>)</p></li>
+<li><p>vboot: <a class="reference external" href="https://scan.coverity.com/projects/vboot">Coverity Scan site</a> (<a class="reference external" href="https://qa.coreboot.org/view/coverity/job/vboot-coverity/">build job</a>)</p></li>
+</ul>
+<p>Some projects (e.g. Chromium EC) build a different subset of boards on
+each run, ensuring that everything is analyzed eventually. The downside
+is that coverity issues pop up and disappear somewhat randomly as they
+are discovered and go unnoticed in a later build.</p>
+<p>More projects that are hosted on review.coreboot.org (potentially as a
+mirror, like vboot and EC) could be served through that pipeline. Reach
+out to {stepan,patrick,martin}&#64;coreboot.org.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="builders.html" class="btn btn-neutral float-left" title="Jenkins builder setup and configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../releases/boards_supported_on_branches.html" class="btn btn-neutral float-right" title="Platforms supported on branches" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

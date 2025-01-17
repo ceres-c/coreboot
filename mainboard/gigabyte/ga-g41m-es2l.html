@@ -1,0 +1,453 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gigabyte GA-G41M-ES2L rev 1.1 &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Gigabyte GA-H61M-S2PV" href="ga-h61m-s2pv.html" />
+    <link rel="prev" title="Foxconn D41S" href="../foxconn/d41s.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">GA-G41M-ES2L</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#technology">Technology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#preparation">Preparation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure">Configure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build">Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flashing-coreboot">Flashing coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-text-mode-for-grub">Set text mode for GRUB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boot-with-new-firmware">Boot with new firmware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#status">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interesting-facts">Interesting facts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ga-h61m-s2pv.html">GA-H61M-S2PV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hp">HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">Gigabyte GA-G41M-ES2L rev 1.1</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/gigabyte/ga-g41m-es2l.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gigabyte-ga-g41m-es2l-rev-1-1">
+<h1>Gigabyte GA-G41M-ES2L rev 1.1<a class="headerlink" href="#gigabyte-ga-g41m-es2l-rev-1-1" title="Link to this heading"></a></h1>
+<p>This page describes how to use coreboot on the <a class="reference external" href="https://www.gigabyte.com/Motherboard/GA-G41M-ES2L-rev-11">Gigabyte GA-G41M-ES2L rev 1.1</a> mainboard.</p>
+<p>This motherboard <a class="reference external" href="https://libreboot.org/docs/install/ga-g41m-es2l.html">also works with Libreboot</a>.</p>
+<section id="technology">
+<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BIOS flash chips</p></td>
+<td><p>2 x SST25VF080B (8 Mbit SPI) (DUAL BIOS)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Northbridge</p></td>
+<td><p>Intel G41</p></td>
+</tr>
+<tr class="row-even"><td><p>Southbridge</p></td>
+<td><p>Intel ICH7</p></td>
+</tr>
+<tr class="row-odd"><td><p>CPU socket</p></td>
+<td><p>LGA775</p></td>
+</tr>
+<tr class="row-even"><td><p>RAM</p></td>
+<td><p>2 x DDR2 800, max. 8 GiB</p></td>
+</tr>
+<tr class="row-odd"><td><p>SuperIO</p></td>
+<td><p>ITE IT8718F-S</p></td>
+</tr>
+<tr class="row-even"><td><p>Audio</p></td>
+<td><p>Realtek ALC888B</p></td>
+</tr>
+<tr class="row-odd"><td><p>Network</p></td>
+<td><p>Realtek RTL8111C PCIe Gigabit Ethernet</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Link to this heading"></a></h2>
+<p>For more datails how to get sources and build the toolchain, see <a class="reference internal" href="../../tutorial/part1.html"><span class="doc">Tutorial, part 1: Starting from scratch</span></a>.</p>
+<section id="devuan-4-chimaera">
+<h3>Devuan 4 Chimaera<a class="headerlink" href="#devuan-4-chimaera" title="Link to this heading"></a></h3>
+<p>This probably works also for any fresh Debian/Ubuntu-based distros.</p>
+<p>Install tools and libraries needed for coreboot:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>-V<span class="w"> </span>install<span class="w"> </span>bison<span class="w"> </span>build-essential<span class="w"> </span>curl<span class="w"> </span>flex<span class="w"> </span>git<span class="w"> </span>gnat<span class="w"> </span>libncurses5-dev<span class="w"> </span>m4<span class="w"> </span>zlib1g-dev<span class="w"> </span>wget<span class="w"> </span>python2<span class="w"> </span>python-is-python2<span class="w"> </span>flashrom
+</pre></div>
+</div>
+</section>
+<section id="get-sources">
+<h3>Get sources<a class="headerlink" href="#get-sources" title="Link to this heading"></a></h3>
+<p>You need about 700 MB disk space for sources only and ~2GB disk space for sources + build results</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://review.coreboot.org/coreboot.git
+</pre></div>
+</div>
+</section>
+<section id="build-toolchain">
+<h3>Build toolchain<a class="headerlink" href="#build-toolchain" title="Link to this heading"></a></h3>
+<p>Your system compilers can be different with versions, tested by coreboot developers.
+So, it is recommended to build cross-compilers with special versions, which were tested with coreboot.</p>
+<p>It is possible to skip this time-consuming part and use <code class="docutils literal notranslate"><span class="pre">ANY_TOOLCHAIN=y</span></code>, but this not recommended.</p>
+<p>You can build them for all platforms: <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">crossgcc</span> <span class="pre">CPUS=2</span></code> but this takes ~2 hours with Intel core2duo E8400.</p>
+<p>The best way, probably, is to build cross-compilers for your platform (this takes ~20 minutes with Intel core2duo E8400):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>crossgcc-i386<span class="w"> </span><span class="nv">CPUS</span><span class="o">=</span><span class="m">2</span>
+</pre></div>
+</div>
+</section>
+<section id="save-mac-address-of-internal-lan">
+<h3>Save MAC-address of internal LAN<a class="headerlink" href="#save-mac-address-of-internal-lan" title="Link to this heading"></a></h3>
+<p>Run <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">-c</span> <span class="pre">link</span> <span class="pre">show</span></code>, you will find MAC-address like 6c:f0:49:xx:xx:xx</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="p">:</span> <span class="n">lo</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">LOOPBACK</span><span class="p">,</span><span class="n">UP</span><span class="p">,</span><span class="n">LOWER_UP</span><span class="o">&gt;</span> <span class="n">mtu</span> <span class="mi">65536</span> <span class="n">qdisc</span> <span class="n">noqueue</span> <span class="n">state</span> <span class="n">UNKNOWN</span> <span class="n">mode</span> <span class="n">DEFAULT</span> <span class="n">group</span> <span class="n">default</span> <span class="n">qlen</span> <span class="mi">1000</span>
+    <span class="n">link</span><span class="o">/</span><span class="n">loopback</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">brd</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+<span class="mi">2</span><span class="p">:</span> <span class="n">eth0</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">MULTICAST</span><span class="p">,</span><span class="n">UP</span><span class="p">,</span><span class="n">LOWER_UP</span><span class="o">&gt;</span> <span class="n">mtu</span> <span class="mi">1500</span> <span class="n">qdisc</span> <span class="n">pfifo_fast</span> <span class="n">state</span> <span class="n">UP</span> <span class="n">mode</span> <span class="n">DEFAULT</span> <span class="n">group</span> <span class="n">default</span> <span class="n">qlen</span> <span class="mi">1000</span>
+    <span class="n">link</span><span class="o">/</span><span class="n">ether</span> <span class="mi">6</span><span class="n">c</span><span class="p">:</span><span class="n">f0</span><span class="p">:</span><span class="mi">49</span><span class="p">:</span><span class="n">xx</span><span class="p">:</span><span class="n">xx</span><span class="p">:</span><span class="n">xx</span> <span class="n">brd</span> <span class="n">ff</span><span class="p">:</span><span class="n">ff</span><span class="p">:</span><span class="n">ff</span><span class="p">:</span><span class="n">ff</span><span class="p">:</span><span class="n">ff</span><span class="p">:</span><span class="n">ff</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configure">
+<h2>Configure<a class="headerlink" href="#configure" title="Link to this heading"></a></h2>
+<p>Create file <code class="docutils literal notranslate"><span class="pre">payloads/external/SeaBIOS/.config_seabios</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">CONFIG_COREBOOT</span><span class="o">=</span>y
+<span class="nv">CONFIG_ATA_DMA</span><span class="o">=</span>y
+<span class="nv">CONFIG_VGA_COREBOOT</span><span class="o">=</span>y
+</pre></div>
+</div>
+<p>Edit file <code class="docutils literal notranslate"><span class="pre">configs/config.gigabyte_ga-g41m-es2l</span></code>, replace <code class="docutils literal notranslate"><span class="pre">CONFIG_REALTEK_8168_MACADDRESS</span></code> value with your MAC-address.</p>
+<p>Run</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>defconfig<span class="w"> </span><span class="nv">KBUILD_DEFCONFIG</span><span class="o">=</span><span class="s2">&quot;configs/config.gigabyte_ga-g41m-es2l&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="build">
+<h2>Build<a class="headerlink" href="#build" title="Link to this heading"></a></h2>
+<p>Just execute:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make
+</pre></div>
+</div>
+<p>It takes ~2 minutes with Intel core2duo E8400.</p>
+<p>Example of last part in the output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">CBFSPRINT</span>  <span class="n">coreboot</span><span class="o">.</span><span class="n">rom</span>
+
+<span class="n">FMAP</span> <span class="n">REGION</span><span class="p">:</span> <span class="n">COREBOOT</span>
+<span class="n">Name</span>                           <span class="n">Offset</span>     <span class="n">Type</span>           <span class="n">Size</span>   <span class="n">Comp</span>
+<span class="n">cbfs</span> <span class="n">master</span> <span class="n">header</span>             <span class="mh">0x0</span>        <span class="n">cbfs</span> <span class="n">header</span>        <span class="mi">32</span> <span class="n">none</span>
+<span class="n">fallback</span><span class="o">/</span><span class="n">romstage</span>              <span class="mh">0x80</span>       <span class="n">stage</span>           <span class="mi">62316</span> <span class="n">none</span>
+<span class="n">cpu_microcode_blob</span><span class="o">.</span><span class="n">bin</span>         <span class="mh">0xf480</span>     <span class="n">microcode</span>      <span class="mi">180224</span> <span class="n">none</span>
+<span class="n">fallback</span><span class="o">/</span><span class="n">ramstage</span>              <span class="mh">0x3b500</span>    <span class="n">stage</span>           <span class="mi">98745</span> <span class="n">none</span>
+<span class="n">vgaroms</span><span class="o">/</span><span class="n">seavgabios</span><span class="o">.</span><span class="n">bin</span>         <span class="mh">0x53700</span>    <span class="n">raw</span>             <span class="mi">28672</span> <span class="n">none</span>
+<span class="n">config</span>                         <span class="mh">0x5a740</span>    <span class="n">raw</span>               <span class="mi">301</span> <span class="n">none</span>
+<span class="n">revision</span>                       <span class="mh">0x5a8c0</span>    <span class="n">raw</span>               <span class="mi">675</span> <span class="n">none</span>
+<span class="n">build_info</span>                     <span class="mh">0x5abc0</span>    <span class="n">raw</span>               <span class="mi">103</span> <span class="n">none</span>
+<span class="n">fallback</span><span class="o">/</span><span class="n">dsdt</span><span class="o">.</span><span class="n">aml</span>              <span class="mh">0x5ac80</span>    <span class="n">raw</span>              <span class="mi">8447</span> <span class="n">none</span>
+<span class="n">rt8168</span><span class="o">-</span><span class="n">macaddress</span>              <span class="mh">0x5cdc0</span>    <span class="n">raw</span>                <span class="mi">17</span> <span class="n">none</span>
+<span class="n">vbt</span><span class="o">.</span><span class="n">bin</span>                        <span class="mh">0x5ce40</span>    <span class="n">raw</span>               <span class="mi">802</span> <span class="n">LZMA</span> <span class="p">(</span><span class="mi">1899</span> <span class="n">decompressed</span><span class="p">)</span>
+<span class="n">cmos</span><span class="o">.</span><span class="n">default</span>                   <span class="mh">0x5d1c0</span>    <span class="n">cmos_default</span>      <span class="mi">256</span> <span class="n">none</span>
+<span class="n">cmos_layout</span><span class="o">.</span><span class="n">bin</span>                <span class="mh">0x5d300</span>    <span class="n">cmos_layout</span>      <span class="mi">1040</span> <span class="n">none</span>
+<span class="n">fallback</span><span class="o">/</span><span class="n">postcar</span>               <span class="mh">0x5d740</span>    <span class="n">stage</span>           <span class="mi">20844</span> <span class="n">none</span>
+<span class="n">fallback</span><span class="o">/</span><span class="n">payload</span>               <span class="mh">0x62900</span>    <span class="n">simple</span> <span class="n">elf</span>      <span class="mi">70270</span> <span class="n">none</span>
+<span class="n">payload_config</span>                 <span class="mh">0x73bc0</span>    <span class="n">raw</span>              <span class="mi">1699</span> <span class="n">none</span>
+<span class="n">payload_revision</span>               <span class="mh">0x742c0</span>    <span class="n">raw</span>               <span class="mi">237</span> <span class="n">none</span>
+<span class="p">(</span><span class="n">empty</span><span class="p">)</span>                        <span class="mh">0x74400</span>    <span class="n">null</span>           <span class="mi">482904</span> <span class="n">none</span>
+<span class="n">bootblock</span>                      <span class="mh">0xea280</span>    <span class="n">bootblock</span>       <span class="mi">23360</span> <span class="n">none</span>
+    <span class="n">HOSTCC</span>     <span class="n">cbfstool</span><span class="o">/</span><span class="n">ifwitool</span><span class="o">.</span><span class="n">o</span>
+    <span class="n">HOSTCC</span>     <span class="n">cbfstool</span><span class="o">/</span><span class="n">ifwitool</span> <span class="p">(</span><span class="n">link</span><span class="p">)</span>
+
+<span class="n">Built</span> <span class="n">gigabyte</span><span class="o">/</span><span class="n">ga</span><span class="o">-</span><span class="n">g41m</span><span class="o">-</span><span class="n">es2l</span> <span class="p">(</span><span class="n">GA</span><span class="o">-</span><span class="n">G41M</span><span class="o">-</span><span class="n">ES2L</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="flashing-coreboot">
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<p>In addition to the information here, please see the
+<a class="reference internal" href="../../tutorial/flashing_firmware/index.html"><span class="doc">Flashing firmware tutorial</span></a>.</p>
+<section id="do-backup">
+<h3>Do backup<a class="headerlink" href="#do-backup" title="Link to this heading"></a></h3>
+<p>The above commands read the SPI flash chip(s), write into file and then verify content again with the chip:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal:dualbiosindex<span class="o">=</span><span class="m">0</span><span class="w"> </span>-r<span class="w"> </span>m_bios.rom
+sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal:dualbiosindex<span class="o">=</span><span class="m">0</span><span class="w"> </span>-v<span class="w"> </span>m_bios.rom
+sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal:dualbiosindex<span class="o">=</span><span class="m">1</span><span class="w"> </span>-r<span class="w"> </span>b_bios.rom
+sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal:dualbiosindex<span class="o">=</span><span class="m">1</span><span class="w"> </span>-v<span class="w"> </span>b_bios.rom
+</pre></div>
+</div>
+<p>If access error appeared, then add <code class="docutils literal notranslate"><span class="pre">iomem=relaxed</span></code> to Linux kernel parameters and restart your Linux system.</p>
+<p>You can also repeat backup and compare checksums manually.</p>
+<p>Backup file should be stored elsewhere, so that in case the coreboot build is faulty, some external procedure can be used without having to extract the backup from the target device first.</p>
+</section>
+<section id="write-new-flash-image">
+<h3>Write new flash image<a class="headerlink" href="#write-new-flash-image" title="Link to this heading"></a></h3>
+<p>Let’s write new image into SPI flash chip, verify checksum again and erase second flash chip:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal:dualbiosindex<span class="o">=</span><span class="m">0</span><span class="w"> </span>-w<span class="w"> </span>build/coreboot.rom
+sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal:dualbiosindex<span class="o">=</span><span class="m">0</span><span class="w"> </span>-v<span class="w"> </span>build/coreboot.rom
+sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal:dualbiosindex<span class="o">=</span><span class="m">1</span><span class="w"> </span>-E
+</pre></div>
+</div>
+</section>
+</section>
+<section id="set-text-mode-for-grub">
+<h2>Set text mode for GRUB<a class="headerlink" href="#set-text-mode-for-grub" title="Link to this heading"></a></h2>
+<p>Update your <code class="docutils literal notranslate"><span class="pre">/etc/default/grub</span></code> with:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">GRUB_TERMINAL</span><span class="o">=</span>console
+</pre></div>
+</div>
+<p>And recreate GRUB configuration <code class="docutils literal notranslate"><span class="pre">/boot/grub/grub.cfg</span></code> by command</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>update-grub
+</pre></div>
+</div>
+</section>
+<section id="boot-with-new-firmware">
+<h2>Boot with new firmware<a class="headerlink" href="#boot-with-new-firmware" title="Link to this heading"></a></h2>
+<p>Restart your system:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>shutdown<span class="w"> </span>-r<span class="w"> </span>now
+</pre></div>
+</div>
+<p>If it is needed, use <kbd>Esc</kbd> key to choose boot device.</p>
+<p>Remove <code class="docutils literal notranslate"><span class="pre">iomem=relaxed</span></code> from Linux kernel parameters.</p>
+<p>Enjoy!</p>
+</section>
+<section id="status">
+<h2>Status<a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-----------------------+--------------------------+--------+-------------------------------+</span>
+<span class="o">|</span> <span class="n">coreboot</span> <span class="n">version</span>      <span class="o">|</span> <span class="n">Date</span> <span class="n">of</span> <span class="n">sources</span> <span class="n">checkout</span> <span class="o">|</span> <span class="n">Status</span> <span class="o">|</span> <span class="n">Comment</span>                       <span class="o">|</span>
+<span class="o">+-----------------------+--------------------------+--------+-------------------------------+</span>
+<span class="o">|</span> <span class="mf">4.13</span><span class="o">-</span><span class="mi">1531</span><span class="o">-</span><span class="n">g2fae1c0494</span> <span class="o">|</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">28</span>               <span class="o">|</span> <span class="n">Good</span>   <span class="o">|</span>                               <span class="o">|</span>
+<span class="o">+-----------------------+--------------------------+--------+-------------------------------+</span>
+<span class="o">|</span> <span class="mf">4.13</span><span class="o">-</span><span class="mi">2182</span><span class="o">-</span><span class="n">g6410a0002f</span> <span class="o">|</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">18</span>               <span class="o">|</span> <span class="n">Good</span>   <span class="o">|</span>                               <span class="o">|</span>
+<span class="o">+-----------------------+--------------------------+--------+-------------------------------+</span>
+</pre></div>
+</div>
+<section id="known-issues">
+<h3>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h3>
+<p>Lm-sensors shows wrong values from it87:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>coretemp-isa-0000
+Adapter: ISA adapter
+Core 0:       +27.0°C  (high = +80.0°C, crit = +100.0°C)
+Core 1:       +31.0°C  (high = +80.0°C, crit = +100.0°C)
+
+it8718-isa-0290
+Adapter: ISA adapter
+in0:           1.06 V  (min =  +0.00 V, max =  +4.08 V)
+in1:           1.90 V  (min =  +0.00 V, max =  +4.08 V)
+in2:           3.34 V  (min =  +0.00 V, max =  +4.08 V)
++5V:           2.96 V  (min =  +0.00 V, max =  +4.08 V)
+in4:         224.00 mV (min =  +0.00 V, max =  +4.08 V)
+in5:           4.08 V  (min =  +0.00 V, max =  +4.08 V)  ALARM
+in6:           4.08 V  (min =  +0.00 V, max =  +4.08 V)  ALARM
+in7:           3.09 V  (min =  +0.00 V, max =  +4.08 V)
+Vbat:          2.82 V
+fan1:        1290 RPM  (min =    0 RPM)
+fan2:           0 RPM  (min =    0 RPM)
+temp1:        -54.0°C  (low  =  +0.0°C, high = +127.0°C)  sensor = thermistor
+temp2:         -1.0°C  (low  =  +0.0°C, high = +127.0°C)  sensor = thermistor
+temp3:        +44.0°C  (low  =  +0.0°C, high = +127.0°C)  sensor = thermal diode
+cpu0_vid:    +1.100 V
+intrusion0:  ALARM
+</pre></div>
+</div>
+</section>
+<section id="working">
+<h3>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>RAM 1,2x1GiB DDR2 PC2-6400 Kingston KTC1G-UDIMM (1.8V, 2Rx8 ?)</p></li>
+<li><p>RAM 1x1GiB DDR2 PC2-5300 Brooktree AU1G08E32-667P005 / Apogee AU1G082-667P005 CL6 (1.8V, 2Rx8 ?)</p></li>
+<li><p>CPU E8400</p></li>
+<li><p>ACPI</p></li>
+<li><p>CPU frequency scaling</p></li>
+<li><p>flashrom under coreboot</p></li>
+<li><p>Gigabit Ethernet</p></li>
+<li><p>Hardware monitoring</p></li>
+<li><p>Integrated graphics</p></li>
+<li><p>SATA</p></li>
+<li><p>PCI POST card</p></li>
+</ul>
+</section>
+<section id="not-working">
+<h3>Not working<a class="headerlink" href="#not-working" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>SuperIO based fan control: PWM fan speed is not changing in depend of CPU temperature</p></li>
+<li><p>RAM 1,2x4GiB DDR2 PC2-6400 Samsung M378T5263AZ3-CF7 (2Rx4 PC2-6400U-666-12-E3)</p></li>
+</ul>
+</section>
+<section id="not-tested">
+<h3>Not tested<a class="headerlink" href="#not-tested" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>KVM virtualization</p></li>
+<li><p>Onboard audio</p></li>
+<li><p>PCI</p></li>
+<li><p>PCIe</p></li>
+<li><p>PS/2 keyboard mouse (during payload, bootloader)</p></li>
+<li><p>Serial port</p></li>
+<li><p>USB (disabling XHCI controller makes to work as fallback USB2.0 ports)</p></li>
+<li><p>IOMMU</p></li>
+</ul>
+</section>
+</section>
+<section id="interesting-facts">
+<h2>Interesting facts<a class="headerlink" href="#interesting-facts" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">lshw</span></code> output is different for BIOS and coreboot.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>diff<span class="w"> </span>--side-by-side<span class="w"> </span>--ignore-all-space<span class="w"> </span>--strip-trailing-cr<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>Documentation/mainboard/gigabyte/ga-g41m-es2l_lshw_before_coreboot.txt<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>Documentation/mainboard/gigabyte/ga-g41m-es2l_lshw_after_coreboot.txt
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../foxconn/d41s.html" class="btn btn-neutral float-left" title="Foxconn D41S" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ga-h61m-s2pv.html" class="btn btn-neutral float-right" title="Gigabyte GA-H61M-S2PV" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuring a mainboard’s GPIOs in coreboot &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Adding new devices to a device tree" href="devicetree.html" />
+    <link rel="prev" title="coreboot documentation guidelines" href="writing_documentation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">coreboot architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_system.html">Build System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kconfig.html">Kconfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_documentation.html">Writing Documentation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Setting up GPIOs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boot-stages">Boot stages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intel-socs">Intel SoCs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#older-intel-socs">Older Intel SoCs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#amd-socs">AMD SoCs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#register-details">Register details</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-gpios-for-pre-ramstage">Configuring GPIOs for pre-ramstage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-gpios-for-ramstage-and-beyond">Configuring GPIOs for ramstage and beyond…</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unconnected-and-unused-pads">Unconnected and unused pads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#potential-issues-gotchas">Potential issues (gotchas!)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Intel SoCs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#soft-straps">Soft Straps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pad-related-known-issues-and-workarounds">Pad-related known issues and workarounds</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lpc-clkrunb-blocks-s0ix-states-when-board-uses-espi">LPC_CLKRUNB blocks S0ix states when board uses eSPI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="devicetree.html">Adding devices to a device tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Getting Started</a></li>
+      <li class="breadcrumb-item active">Configuring a mainboard’s GPIOs in coreboot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started/gpio.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuring-a-mainboard-s-gpios-in-coreboot">
+<h1>Configuring a mainboard’s GPIOs in coreboot<a class="headerlink" href="#configuring-a-mainboard-s-gpios-in-coreboot" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Every mainboard needs to appropriately configure its General Purpose Inputs /
+Outputs (GPIOs). There are many facets of this issue, including which boot
+stage a GPIO might need to be configured.</p>
+</section>
+<section id="boot-stages">
+<h2>Boot stages<a class="headerlink" href="#boot-stages" title="Link to this heading"></a></h2>
+<p>Typically, coreboot does most of its non-memory related initialization work in
+ramstage, when DRAM is available for use. Hence, the bulk of a mainboard’s GPIOs
+are configured in this stage. However, some boards might need a few GPIOs
+configured before that; think of memory strapping pins which indicate what kind
+of DRAM is installed. These pins might need to be read before initializing the
+memory, so these GPIOs are then typically configured in bootblock or romstage.</p>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<p>Most mainboards will have a <code class="docutils literal notranslate"><span class="pre">gpio.c</span></code> file in their mainboard directory. This
+file typically contains tables which describe the configuration of the GPIO
+registers. Since these registers could be different on a per-SoC or per
+SoC-family basis, you may need to consult the datasheet for your SoC to find out
+how to appropriately set these registers. In addition, some mainboards are
+based on a baseboard/variant model, where several variant mainboards may share a
+lot of their circuitry and ICs and the commonality between the boards is
+collected into a virtual <code class="docutils literal notranslate"><span class="pre">baseboard.</span></code> In that case, the GPIOs which are shared
+between multiple boards are placed in the baseboard’s <code class="docutils literal notranslate"><span class="pre">gpio.c</span></code> file, while the
+ones that are board-specific go into each variant’s <code class="docutils literal notranslate"><span class="pre">gpio.c</span></code> file.</p>
+</section>
+<section id="intel-socs">
+<h2>Intel SoCs<a class="headerlink" href="#intel-socs" title="Link to this heading"></a></h2>
+<p>Many newer Intel SoCs share a common IP block for GPIOs, and that commonality
+has been taken advantage of in coreboot, which has a large set of macros that
+can be used to describe the configuration of each GPIO pad. This file lives in
+<code class="docutils literal notranslate"><span class="pre">src/soc/intel/common/block/include/intelblocks/gpio_defs.h</span></code>.</p>
+<section id="older-intel-socs">
+<h3>Older Intel SoCs<a class="headerlink" href="#older-intel-socs" title="Link to this heading"></a></h3>
+<p>Baytrail and Braswell, for example, simply expect the mainboard to supply a
+callback, <code class="docutils literal notranslate"><span class="pre">mainboard_get_gpios</span></code> which returns an array of <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">soc_gpio</span></code>
+objects, defining the configuration of each pin.</p>
+</section>
+<section id="amd-socs">
+<h3>AMD SoCs<a class="headerlink" href="#amd-socs" title="Link to this heading"></a></h3>
+<p>Some AMD SoCs use a list of <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">soc_amd_gpio</span></code> objects to define the
+register values configuring each pin, similar to Intel.</p>
+</section>
+<section id="register-details">
+<h3>Register details<a class="headerlink" href="#register-details" title="Link to this heading"></a></h3>
+<p>GPIO configuration registers typically control properties such as:</p>
+<ol class="simple">
+<li><p>Input / Output</p></li>
+<li><p>Pullups / Pulldowns</p></li>
+<li><p>Termination</p></li>
+<li><p>Tx / Rx Disable</p></li>
+<li><p>Which reset signal to use</p></li>
+<li><p>Native Function / IO</p></li>
+<li><p>Interrupts</p>
+<ul class="simple">
+<li><p>IRQ routing (e.g. on x86, APIC, SCI, SMI)</p></li>
+<li><p>Edge or Level Triggered</p></li>
+<li><p>Active High or Active Low</p></li>
+</ul>
+</li>
+<li><p>Debouncing</p></li>
+</ol>
+</section>
+</section>
+<section id="configuring-gpios-for-pre-ramstage">
+<h2>Configuring GPIOs for pre-ramstage<a class="headerlink" href="#configuring-gpios-for-pre-ramstage" title="Link to this heading"></a></h2>
+<p>coreboot provides for several SoC-specific and mainboard-specific callbacks at
+specific points in time, such as bootblock-early, bootblock, romstage entry,
+pre-silicon init, pre-RAM init, or post-RAM init. The GPIOs that are
+configured in either bootblock or romstage, depending on when they are needed,
+are denoted the “early” GPIOs. Some mainboard will use
+<code class="docutils literal notranslate"><span class="pre">bootblock_mainboard_init()</span></code> to configure their early GPIOs, and this is
+probably a good place to start. Many mainboards will declare their GPIO
+configuration as structs, i.e. (Intel),</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">pad_config</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* offset of pad within community */</span>
+<span class="w">        </span><span class="kt">int</span><span class="w">             </span><span class="n">pad</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* Pad config data corresponding to DW0, DW1,.... */</span>
+<span class="w">        </span><span class="kt">uint32_t</span><span class="w">        </span><span class="n">pad_config</span><span class="p">[</span><span class="n">GPIO_NUM_PAD_CFG_REGS</span><span class="p">];</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>and will usually place these in an array, one for each pad to be configured.
+Mainboards using Intel SoCs can use a library which combines common
+configurations together into a set of macros, e.g.,</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="cm">/* Native function configuration */</span>
+<span class="w">    </span><span class="cp">#define PAD_CFG_NF(pad, pull, rst, func)</span>
+<span class="w">    </span><span class="cm">/* General purpose output, no pullup/down. */</span>
+<span class="w">    </span><span class="cp">#define PAD_CFG_GPO(pad, val, rst)</span>
+<span class="w">    </span><span class="cm">/* General purpose output, with termination specified */</span>
+<span class="w">    </span><span class="cp">#define PAD_CFG_TERM_GPO(pad, val, pull, rst)</span>
+<span class="w">    </span><span class="cm">/* General purpose output, no pullup/down. */</span>
+<span class="w">    </span><span class="cp">#define PAD_CFG_GPO_GPIO_DRIVER(pad, val, rst, pull)</span>
+<span class="w">    </span><span class="cm">/* General purpose input */</span>
+<span class="w">    </span><span class="cp">#define PAD_CFG_GPI(pad, pull, rst)</span>
+</pre></div>
+</div>
+<p>etc.</p>
+</section>
+<section id="configuring-gpios-for-ramstage-and-beyond">
+<h2>Configuring GPIOs for ramstage and beyond…<a class="headerlink" href="#configuring-gpios-for-ramstage-and-beyond" title="Link to this heading"></a></h2>
+<p>In ramstage, most mainboards will configure the rest of their GPIOs for the
+function they will be performing while the device is active. The goal is the
+same as above in bootblock; another <code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">const</span></code> array is created, and the
+rest of the GPIO registers are programmed.</p>
+<p>In the baseboard/variant model described above, the baseboard will provide the
+configuration for the GPIOs which are configured identically between variants,
+and will provide a mechanism for a variant to override the baseboard’s
+configuration. This is usually done via two tables: the baseboard table and the
+variant’s override table.</p>
+<p>This configuration is often hooked into the mainboard’s <code class="docutils literal notranslate"><span class="pre">enable_dev</span></code> callback,
+defined in its <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">chip_operations</span></code>.</p>
+</section>
+<section id="unconnected-and-unused-pads">
+<h2>Unconnected and unused pads<a class="headerlink" href="#unconnected-and-unused-pads" title="Link to this heading"></a></h2>
+<p>In digital electronics, it is generally recommended to tie unconnected GPIOs to
+a defined signal like VCC or GND by setting their direction to output, adding an
+external pull resistor or configuring an internal pull resistor. This is done to
+prevent floating of the pin state, which can cause various issues like EMI,
+higher power usage due to continuously switching logic, etc.</p>
+<p>On Intel PCHs from Sunrise Point onwards, termination of unconnected GPIOs is
+explicitly not required, when the input buffer is disabled by setting the bit
+<code class="docutils literal notranslate"><span class="pre">GPIORXDIS</span></code> which effectively disconnects the pad from the internal logic. All
+pads defaulting to GPIO mode have this bit set. However, in the mainboard’s
+GPIO configuration the macro <code class="docutils literal notranslate"><span class="pre">PAD_NC(pad,</span> <span class="pre">NONE)</span></code> can be used to explicitly
+configure a pad as unconnected.</p>
+<p>In case there are no schematics available for a board and the vendor set a
+pad to something like <code class="docutils literal notranslate"><span class="pre">GPIORXDIS=1</span></code>, <code class="docutils literal notranslate"><span class="pre">GPIOTXDIS=1</span></code> with an internal pull
+resistor, an unconnected or otherwise unused pad can be assumed. In this case it
+is recommended to keep the pull resistor, because the external circuit might
+rely on it.</p>
+<p>Unconnected pads defaulting to a native function (input and output) usually
+don’t need to be configured as GPIO with the <code class="docutils literal notranslate"><span class="pre">GPIORXDIS</span></code> bit set. For clarity
+and documentation purpose the macro may be used as well for them.</p>
+<p>Some pads configured as native input function explicitly require external
+pull-ups when being unused, according to the PDGs:</p>
+<ul class="simple">
+<li><p>eDP_HPD</p></li>
+<li><p>SMBCLK/SMBDATA</p></li>
+<li><p>SML0CLK/SML0DATA/SML0ALERT</p></li>
+<li><p>SATAGP*</p></li>
+</ul>
+<p>When the board was designed correctly, nothing needs to be done for them
+explicitly, while using <code class="docutils literal notranslate"><span class="pre">PAD_NC(pad,</span> <span class="pre">NONE)</span></code> can act as documentation. If such a
+pad is missing the external pull resistor due to bad board design, the pad
+should be configured with <code class="docutils literal notranslate"><span class="pre">PAD_NC(pad,</span> <span class="pre">NONE)</span></code> anyway to disconnect it
+internally.</p>
+</section>
+<section id="potential-issues-gotchas">
+<h2>Potential issues (gotchas!)<a class="headerlink" href="#potential-issues-gotchas" title="Link to this heading"></a></h2>
+<p>There are a couple of configurations that you need to especially careful about,
+as they can have a large impact on your mainboard.</p>
+<p>The first is configuring a pin as an output, when it was designed to be an
+input. There is a real risk in this case of short-circuiting a component which
+could cause catastrophic failures, up to and including your mainboard!</p>
+<section id="id1">
+<h3>Intel SoCs<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>As per Intel Platform Controller Hub (PCH) EDS since Skylake, a GPIO PAD register
+supports four different types of GPIO reset as:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" rowspan="2"><p>PAD Reset Config</p></th>
+<th class="head" rowspan="2"><p>Platform Reset</p></th>
+<th class="head" colspan="2"><p>PAD Reset ?</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>GPP</p></th>
+<th class="head"><p>GPD</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><div class="line-block">
+<div class="line">00 - Power Good</div>
+<div class="line">(GPP: RSMRST,</div>
+<div class="line">GPD: DSW_PWROK)</div>
+</div>
+</td>
+<td><p>Warm Reset</p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-even"><td><p>Cold Reset</p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>S3/S4/S5</p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-even"><td><p>Global Reset</p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>Deep Sx</p></td>
+<td><p>Y</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-even"><td><p>G3</p></td>
+<td><p>Y</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="6"><p>01 - Deep</p></td>
+<td><p>Warm Reset</p></td>
+<td><p>Y</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-even"><td><p>Cold Reset</p></td>
+<td><p>Y</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>S3/S4/S5</p></td>
+<td><p>N</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-even"><td><p>Global Reset</p></td>
+<td><p>Y</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>Deep Sx</p></td>
+<td><p>Y</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-even"><td><p>G3</p></td>
+<td><p>Y</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="6"><p>10 - Host Reset/PLTRST</p></td>
+<td><p>Warm Reset</p></td>
+<td><p>Y</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-even"><td><p>Cold Reset</p></td>
+<td><p>Y</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>S3/S4/S5</p></td>
+<td><p>Y</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-even"><td><p>Global Reset</p></td>
+<td><p>Y</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>Deep Sx</p></td>
+<td><p>Y</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-even"><td><p>G3</p></td>
+<td><p>Y</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="6"><div class="line-block">
+<div class="line">11 - Resume Reset</div>
+<div class="line">(GPP: Reserved,</div>
+<div class="line">GPD: RSMRST)</div>
+</div>
+</td>
+<td><p>Warm Reset</p></td>
+<td><p>n/a</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-even"><td><p>Cold Reset</p></td>
+<td><p>n/a</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>S3/S4/S5</p></td>
+<td><p>n/a</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-even"><td><p>Global Reset</p></td>
+<td><p>n/a</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>Deep Sx</p></td>
+<td><p>n/a</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-even"><td><p>G3</p></td>
+<td><p>n/a</p></td>
+<td><p>Y</p></td>
+</tr>
+</tbody>
+</table>
+<p>Each GPIO Community has a Pad Configuration Lock register for a GPP allowing locking
+specific register fields in the PAD configuration register.</p>
+<p>The Pad Config Lock registers reset type is default hardcoded to <strong>Power Good</strong> and
+it’s <strong>not</strong> configurable by GPIO PAD DW0.PadRstCfg. Hence, it may appear that for a GPP,
+the Pad Reset Config (DW0 Bit 31) is configured differently from <code class="docutils literal notranslate"><span class="pre">Power</span> <span class="pre">Good</span></code>.</p>
+<p>This would create confusion where the Pad configuration is returned to its <code class="docutils literal notranslate"><span class="pre">default</span></code>
+value but remains <code class="docutils literal notranslate"><span class="pre">locked</span></code>, this would prevent software to reprogram the GPP.
+Additionally, this means software can’t rely on GPIOs being reset by PLTRST# or Sx entry.</p>
+<p>Hence, as per GPIO BIOS Writers Guide (BWG) it’s recommended to change the Pad Reset
+Configuration for lock GPP as <code class="docutils literal notranslate"><span class="pre">Power</span> <span class="pre">Good</span></code> so that pad configuration and lock bit are
+always in sync and can be reset at the same time.</p>
+</section>
+</section>
+<section id="soft-straps">
+<h2>Soft Straps<a class="headerlink" href="#soft-straps" title="Link to this heading"></a></h2>
+<p>Soft straps, that can be configured by the vendor in the Intel Flash Image Tool
+(FIT), can influence some pads’ default mode. It is possible to select either a
+native function or GPIO mode for some pads on non-server SoCs, while on server
+SoCs most pads can be controlled. Thus, it is generally recommended to always
+configure all pads and don’t just rely on the defaults mentioned in the
+datasheet(s) which might not reflect what the vendor configured.</p>
+</section>
+<section id="pad-related-known-issues-and-workarounds">
+<h2>Pad-related known issues and workarounds<a class="headerlink" href="#pad-related-known-issues-and-workarounds" title="Link to this heading"></a></h2>
+<section id="lpc-clkrunb-blocks-s0ix-states-when-board-uses-espi">
+<h3>LPC_CLKRUNB blocks S0ix states when board uses eSPI<a class="headerlink" href="#lpc-clkrunb-blocks-s0ix-states-when-board-uses-espi" title="Link to this heading"></a></h3>
+<p>When using eSPI, the pad implementing <code class="docutils literal notranslate"><span class="pre">LPC_CLKRUNB</span></code> must be set to GPIO mode.
+Other pin settings i.e. Rx path enable/disable, Tx path enable/disable, pull up
+enable/disable etc are ignored. Leaving this pin in native mode will keep the
+LPC Controller awake and prevent S0ix entry. This issues is know at least on
+Apollolake and Geminilake.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="writing_documentation.html" class="btn btn-neutral float-left" title="coreboot documentation guidelines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devicetree.html" class="btn btn-neutral float-right" title="Adding new devices to a device tree" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

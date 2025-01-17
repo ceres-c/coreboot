@@ -1,0 +1,219 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cbfstool: Handling memory mapped boot media &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ifdtool" href="../ifdtool/index.html" />
+    <link rel="prev" title="cbfstool" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../util.html">Utilities</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../util.html#list-of-utils">List of utils</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../util.html#in-depth-documentation">In depth documentation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../abuild/index.html">abuild</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">cbfstool</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Handling memory mapped boot media</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ifdtool/index.html">ifdtool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intelp2m/index.html">intelp2m</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../util.html#generated-documentation">Generated documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../util.html">Utilities</a></li>
+          <li class="breadcrumb-item"><a href="index.html">cbfstool</a></li>
+      <li class="breadcrumb-item active">cbfstool: Handling memory mapped boot media</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/util/cbfstool/mmap_windows.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cbfstool-handling-memory-mapped-boot-media">
+<h1>cbfstool: Handling memory mapped boot media<a class="headerlink" href="#cbfstool-handling-memory-mapped-boot-media" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">cbfstool</span></code> is a utility used for managing coreboot file system (CBFS)
+components in a ROM image. x86 platforms are special since they have
+the SPI flash boot media memory mapped into host address space at
+runtime. This requires <code class="docutils literal notranslate"><span class="pre">cbfstool</span></code> to deal with two separate address
+spaces for any CBFS components that are eXecute-In-Place (XIP) - one
+is the SPI flash address space and other is the host address space
+where the SPI flash gets mapped.</p>
+<p>By default, all x86 platforms map a maximum of 16MiB of SPI flash at
+the top of 4G in host address space. If the flash is greater than
+16MiB, then only the top 16MiB of the flash is mapped in the host
+address space. If the flash is smaller than 16MiB, then the entire SPI
+flash is mapped at the top of 4G and the rest of the space remains
+unused.</p>
+<p>In more recent platforms like Tiger Lake (TGL), it is possible to map
+more than 16MiB of SPI flash. Since the host address space has legacy
+fixed device addresses mapped below <code class="docutils literal notranslate"><span class="pre">4G</span> <span class="pre">-</span> <span class="pre">16M</span></code>, the SPI flash is split
+into separate windows when being mapped to the host address space.
+Default decode window of maximum 16MiB size still lives just below the
+4G boundary. The additional decode window is free to live in any
+available MMIO space that the SoC chooses.</p>
+<p>Following diagram shows different combinations of SPI flash being
+mapped into host address space when using multiple windows:</p>
+<p><img alt="MMAP window combinations with different flash sizes" src="../../_images/mmap_windows.svg" /></p>
+<p><em>(a) SPI flash of size 16MiB (b) SPI flash smaller than 16MiB (c) SPI flash
+of size (16MiB+ext window size) (d) SPI flash smaller than (16MiB+ext
+window size)</em></p>
+<p>The location of standard decode window is fixed in host address space
+<code class="docutils literal notranslate"><span class="pre">(4G</span> <span class="pre">-</span> <span class="pre">16M)</span> <span class="pre">to</span> <span class="pre">4G</span></code>. However, the platform is free to choose where the
+extended window lives in the host address space. Since <code class="docutils literal notranslate"><span class="pre">cbfstool</span></code>
+needs to know the exact location of the extended window, it allows the
+platform to pass in two parameters <code class="docutils literal notranslate"><span class="pre">ext-win-base</span></code> and <code class="docutils literal notranslate"><span class="pre">ext-win-size</span></code>
+that provide the base and the size of the extended window in host
+address space.</p>
+<p><code class="docutils literal notranslate"><span class="pre">cbfstool</span></code> creates two memory map windows using the knowledge about the
+standard decode window and the information passed in by the platform
+about the extended decode window. These windows are useful in
+converting addresses from one space to another (flash space and host
+space) when dealing with XIP components.</p>
+<section id="assumptions">
+<h2>Assumptions<a class="headerlink" href="#assumptions" title="Link to this heading"></a></h2>
+<ol class="simple">
+<li><p>Top 16MiB is still decoded in the fixed decode window just below 4G
+boundary.</p></li>
+<li><p>Rest of the SPI flash below the top 16MiB is mapped at the top of
+the extended window. Even though the platform might support a
+larger extended window, the SPI flash part used by the mainboard
+might not be large enough to be mapped in the entire window. In
+such cases, the mapping is assumed to be in the top part of the
+extended window with the bottom part remaining unused.</p></li>
+</ol>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<p>If the platform supports extended window and the SPI flash size is
+greater, then <code class="docutils literal notranslate"><span class="pre">cbfstool</span></code> creates a mapping for the extended window as
+well.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ext_win_base</span> <span class="o">=</span> <span class="mh">0xF8000000</span>
+<span class="n">ext_win_size</span> <span class="o">=</span> <span class="mi">32</span> <span class="o">*</span> <span class="n">MiB</span>
+<span class="n">ext_win_limit</span> <span class="o">=</span> <span class="n">ext_win_base</span> <span class="o">+</span> <span class="n">ext_win_size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">=</span> <span class="mh">0xF9FFFFFF</span>
+</pre></div>
+</div>
+<p>If SPI flash is 32MiB, then top 16MiB is mapped from <code class="docutils literal notranslate"><span class="pre">0xFF000000</span> <span class="pre">-</span> <span class="pre">0xFFFFFFFF</span></code> whereas the bottom 16MiB is mapped from <code class="docutils literal notranslate"><span class="pre">0xF9000000</span> <span class="pre">-</span> <span class="pre">0xF9FFFFFF</span></code>. The extended window <code class="docutils literal notranslate"><span class="pre">0xF8000000</span> <span class="pre">-</span> <span class="pre">0xF8FFFFFF</span></code> remains
+unused.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="cbfstool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ifdtool/index.html" class="btn btn-neutral float-right" title="ifdtool" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

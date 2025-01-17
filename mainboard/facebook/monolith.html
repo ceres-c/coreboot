@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facebook Monolith &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Foxconn D41S" href="../foxconn/d41s.html" />
+    <link rel="prev" title="Facebook FBG-1701" href="fbg1701.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#facebook">Facebook</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="fbg1701.html">FBG-1701</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Monolith</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#required-blobs">Required blobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flash-components">Flash components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flashing-coreboot">Flashing coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#untested">Untested</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#working">Working</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#technology">Technology</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hp">HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">Facebook Monolith</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/facebook/monolith.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="facebook-monolith">
+<h1>Facebook Monolith<a class="headerlink" href="#facebook-monolith" title="Link to this heading"></a></h1>
+<p>This page describes how to run coreboot on the Facebook Monolith.</p>
+<p>Please note: the coreboot implementation for this board is in its
+Beta state and isn’t fully tested yet.</p>
+<section id="required-blobs">
+<h2>Required blobs<a class="headerlink" href="#required-blobs" title="Link to this heading"></a></h2>
+<p>Mainboard is based on the Intel Kaby Lake U SoC.
+Intel company provides <a class="reference internal" href="../../soc/intel/fsp/index.html"><span class="doc">Firmware Support Package (2.0)</span></a>
+(intel FSP 2.0) to initialize this generation silicon. Please see this
+<a class="reference internal" href="../../soc/intel/code_development_model/code_development_model.html"><span class="doc">document</span></a>.</p>
+<p>FSP Information:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>FSP Project Name</p></td>
+<td><p>Directory</p></td>
+<td><p>Specification</p></td>
+</tr>
+<tr class="row-even"><td><p>7th Generation Intel® Core™
+processors  and chipsets
+(formerly Kaby Lake)</p></td>
+<td><p>KabylakeFspBinPkg</p></td>
+<td><p>2.0</p></td>
+</tr>
+</tbody>
+</table>
+<p>Microcode: 3rdparty/intel-microcode/intel-ucode</p>
+</section>
+<section id="flash-components">
+<h2>Flash components<a class="headerlink" href="#flash-components" title="Link to this heading"></a></h2>
+<p>To create a complete flash image, the flash descriptor, GBE and ME blobs are required. The
+complete image can be used when e.g. a blank flash should be programmed. In other cases (when
+only coreboot needs to be replaced) placeholders can be used for the GBE and ME regions.</p>
+<p>These can be extracted from the original flash image as follows:</p>
+<ol class="simple">
+<li><p>Read the complete image from flash.</p></li>
+<li><p>Create a layout file with the following content:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">00000000</span><span class="p">:</span><span class="mi">00000</span><span class="n">fff</span> <span class="n">fd</span>
+<span class="mi">00700000</span><span class="p">:</span><span class="mi">00</span><span class="n">ffffff</span> <span class="n">bios</span>
+<span class="mi">00003000</span><span class="p">:</span><span class="mi">006</span><span class="n">FFFFF</span> <span class="n">me</span>
+<span class="mi">00001000</span><span class="p">:</span><span class="mi">00002</span><span class="n">fff</span> <span class="n">gbe</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">ifdtool</span> <span class="pre">-n</span> <span class="pre">&lt;layout_file&gt;</span> <span class="pre">&lt;flash_image&gt;</span></code> to resize the <em>bios</em> region from the default 6 MiB
+to 9 MiB, this is required to create sufficient space for LinuxBoot.
+NOTE: Please make sure only the firmware descriptor (<em>fd</em>) region is changed. Older versions
+of the ifdtool corrupt the <em>me</em> region.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">ifdtool</span> <span class="pre">-x</span> <span class="pre">&lt;resized_flash_image&gt;</span></code> to extract the components.</p></li>
+</ol>
+<p>The regions extracted can be used to generate a full flash image. The <em>bios</em> region is
+not needed as this is replaced by the coreboot image.</p>
+<p>NOTE: The gbe region contains the MAC address so be careful. When updating the flash using
+flashrom it is advisable to leave out the <em>gbe</em> area.</p>
+</section>
+<section id="flashing-coreboot">
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<section id="internal-programming">
+<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Link to this heading"></a></h3>
+<p>The SPI flash can be accessed using <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a>.</p>
+<p>The descriptor area needs to be updated once to resize the <em>bios</em> region.
+<code class="docutils literal notranslate"><span class="pre">flashrom</span> <span class="pre">-p</span> <span class="pre">internal</span> <span class="pre">--ifd</span> <span class="pre">-i</span> <span class="pre">fd</span> <span class="pre">-w</span> <span class="pre">&lt;coreboot.bin&gt;</span></code></p>
+<p>After that only the bios area should to be updated.
+<code class="docutils literal notranslate"><span class="pre">flashrom</span> <span class="pre">-p</span> <span class="pre">internal</span> <span class="pre">--ifd</span> <span class="pre">-i</span> <span class="pre">bios</span> <span class="pre">-w</span> <span class="pre">&lt;coreboot.bin&gt;</span></code></p>
+<p>The <em>gbe</em> and <em>me</em> regions should not be updated.</p>
+<p>NOTE: As <code class="docutils literal notranslate"><span class="pre">flashrom</span> <span class="pre">--ifd</span></code> uses the flash descriptor it is required to update the
+descriptor and bios regions in the right sequence. Don’t update both in one command.</p>
+</section>
+<section id="external-programming">
+<h3>External programming<a class="headerlink" href="#external-programming" title="Link to this heading"></a></h3>
+<p>The system has an internal flash chip which is a 16 MiB soldered SOIC-8 chip.
+Specifically, it’s a Winbond W25Q128JVSIQ (3.3V).</p>
+<p>The system has an external flash chip which is a 16 MiB soldered SOIC-8 chip.
+Specifically, it’s a Winbond W25Q128JVSIM (3.3V).</p>
+<p>Flashing of these devices is very difficult, disassembling the system destroys the cooling
+solution. Wires need to be connected to be able to flash using an external programmer.</p>
+</section>
+</section>
+<section id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>None</p></li>
+</ul>
+</section>
+<section id="untested">
+<h2>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Hardware monitor</p></li>
+<li><p>Full Embedded Controller support</p></li>
+<li><p>SATA</p></li>
+<li><p>xDCI</p></li>
+</ul>
+</section>
+<section id="working">
+<h2>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>USB</p></li>
+<li><p>Gigabit Ethernet (i219 and i210)</p></li>
+<li><p>Graphics (Using FSP GOP)</p></li>
+<li><p>flashrom</p></li>
+<li><p>PCIe including hotplug on FPGA root port</p></li>
+<li><p>EC serial port</p></li>
+<li><p>EC CPU temperature</p></li>
+<li><p>SMBus</p></li>
+<li><p>Initialization with FSP</p></li>
+<li><p>SeaBIOS payload (commit a5cab58e9a3fb6e168aba919c5669bea406573b4)</p></li>
+<li><p>edk2 payload (commit 860a8d95c2ee89c9916d6e11230f246afa1cd629)</p></li>
+<li><p>LinuxBoot (kernel kernel-4_19_97) (uroot commit 9c9db9dbd6b532f5f91a511a0de885c6562aadd7)</p></li>
+<li><p>eMMC</p></li>
+</ul>
+<p>All of the above has been briefly tested by booting Linux from eMMC using the edk2 payload
+and LinuxBoot.</p>
+<p>SeaBios has been checked to the extend that it runs to the boot selection and provides display
+output.</p>
+</section>
+<section id="technology">
+<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>SoC</p></td>
+<td><p>Intel Kaby Lake U</p></td>
+</tr>
+<tr class="row-even"><td><p>CPU</p></td>
+<td><p>Intel i3-7100U</p></td>
+</tr>
+<tr class="row-odd"><td><p>Super I/O, EC</p></td>
+<td><p>ITE8528</p></td>
+</tr>
+<tr class="row-even"><td><p>Coprocessor</p></td>
+<td><p>Intel Management Engine</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fbg1701.html" class="btn btn-neutral float-left" title="Facebook FBG-1701" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../foxconn/d41s.html" class="btn btn-neutral float-right" title="Foxconn D41S" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

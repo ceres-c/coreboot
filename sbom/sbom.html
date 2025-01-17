@@ -1,0 +1,290 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software Bill of Materials (SBOM) &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Project infrastructure &amp; services" href="../infrastructure/index.html" />
+    <link rel="prev" title="Intel Pad to Macro (intelp2m) converter" href="../util/intelp2m/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Software Bill of Materials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#swid-coswid">SWID/CoSWID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coreboot-implementation">coreboot implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-coreboot-with-sbom">Build coreboot with SBOM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-to-do-as-developer-of-a-binary-blob-which-is-used-in-coreboot">What to do as Developer of a binary blob (which is used in coreboot)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-to-do-as-developer-of-an-open-source-project-which-is-used-in-coreboot">What to do as Developer of an open source project (which is used in coreboot)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#problems">Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Software Bill of Materials (SBOM)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sbom/sbom.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="software-bill-of-materials-sbom">
+<h1>Software Bill of Materials (SBOM)<a class="headerlink" href="#software-bill-of-materials-sbom" title="Link to this heading"></a></h1>
+<p>SBOM is a collection of information of each software component
+you are supplying/building. Similar to a package manager on Linux
+based systems, it holds information of as many software parts as
+possible. This information can be a version, name of the software, URL,
+license information and more. A SBOM can be saved in various formats.
+In coreboot it’s saved as “uSWID” file. uSWID is not a standard or
+specification but it doesn’t need to be, since it’s basically just an
+array/list of CoSWID (Concise Software Identification) files which in
+turn are specified by a RFC specification. CoSWID files are saved in a
+CBOR format. CBOR is like JSON if JSON were a binary format. Similar
+to a package manager the CoSWID format can link multiple softwares
+together. For example on most modern Intel systems FSP is included as
+a dependency of coreboot. That kind of relationship between software
+components (among others) can be expressed in an uSWID file. That makes
+firmware/software much more transparent. One could for example create a
+software that takes a coreboot firmware image as input and
+automatically creates a graph with all software components the coreboot
+image contains and their relationship to each other.</p>
+<section id="swid-coswid">
+<h2>SWID/CoSWID<a class="headerlink" href="#swid-coswid" title="Link to this heading"></a></h2>
+<p>SWID is a standard hidden behind an ISO paywall.
+It generally identifies/describes Software components. Since SWID files
+are written in XML, they can get too large for devices with network and
+storage constraints. CoSWID is basically SWID but in CBOR binary
+format, which makes it far smaller compared to its big brother. Also,
+CoSWID is a RFC specification (so publicly accessible). Therefore
+CoSWID is the standard used in coreboot SBOM. But one CoSWID file/tag
+can only describe one single software, but since software is usually
+composed of multiple parts (especially in firmware with many binary
+blobs) uSWID was born as a container format to hold multiple CoSWID
+files. It also has a magic value, that makes software capable of
+extracting uSWID/CoSWID data without the need to understand the
+underlying format of the binary (in coreboot it’s the CBFS and in EDK2
+it’s the COFF). To get a simple overview of how a SWID/CoSWID file
+looks like, just take a look at the various “templates” in src/sbom/.
+There are of course other SBOM specifications out there, but most of
+them are rather blown up and don’t support a binary format at all.</p>
+</section>
+<section id="coreboot-implementation">
+<h2>coreboot implementation<a class="headerlink" href="#coreboot-implementation" title="Link to this heading"></a></h2>
+<p>Quick overview of how things are generated:</p>
+<p><img alt="Generation of an SBOM File in coreboot" src="../_images/sbom_generation.svg" /></p>
+<p>After all SBOM data has been fetched from all the software components,
+the ‘goswid’ tool links them all together into one sbom.uswid file.
+Therefore the goswid tool is basically a linker that takes multiple
+CoSWID/SWID files and converts them into one uSWID file. Although the
+image shows only Files in JSON format it is also possible to supply
+them in XML or CBOR format.</p>
+<p>The final SBOM file is located inside the CBFS.
+For each software component in coreboot SBOM, there is an option in
+Kconfig (usually called <code class="docutils literal notranslate"><span class="pre">CONFIG_INCLUDE_[software-name]_SBOM</span></code>) to either
+include or not include SBOM metadata for the specified software.
+Furthermore there is a <code class="docutils literal notranslate"><span class="pre">CONFIG_SBOM_[software-name]_PATH</span></code> option which
+contains a path to a SWID/CoSWID file in a format of choice
+(being either JSON, XML or CBOR). <code class="docutils literal notranslate"><span class="pre">CONFIG_SBOM_[software-name]_PATH</span></code>
+option usually defaults to a very generic CoSWID file in JSON format
+(which are stored in src/sbom/). That at least gives minimal
+information like the name of the software and maybe a version.
+But it is always preferred, that the <code class="docutils literal notranslate"><span class="pre">CONFIG_SBOM_[software-name]_PATH</span></code>
+is set to a custom CoSWID/SWID file that contains much more information
+(like version/commit-hash, license, URL, dependencies, …).
+Therefore using the defaults is by any means to be avoided, since they
+hold very little information or even worse wrong information.
+Furthermore some of these Kconfig options have a suboption
+(usually called <code class="docutils literal notranslate"><span class="pre">CONFIG_SBOM_[software-name]_GENERATE</span></code>) to generate
+some basic SBOM data for the specified software component, in order to
+get at least some bit of information about it by analyzing the binary
+(for binary blobs) or querying information via git (for open source
+projects). This is for example currently done for all payloads. For
+each payload the commit hash used in the build is taken and put into
+the SBOM file. For open-source projects (like all payloads) crucial
+information like the current commit-hash of the payload can easily be
+put into the SBOM file. Extracting information out of binary blobs is a
+bit trickier for obvious reasons. For closed source binary blobs it is
+therefore recommended that vendors and software-engineers create a SBOM
+file as part of their build process and add a path to that SBOM file
+via Kconfig options in coreboot (<code class="docutils literal notranslate"><span class="pre">CONFIG_SBOM_[software-name]_PATH</span></code>).
+That way the final SBOM has much more useful and correct data.</p>
+</section>
+<section id="build-coreboot-with-sbom">
+<h2>Build coreboot with SBOM<a class="headerlink" href="#build-coreboot-with-sbom" title="Link to this heading"></a></h2>
+<p>Directly under the ‘General setup’ Kconfig menu is a
+‘Software Bill of Materials (SBOM)’ submenu where all options are to
+enable/disable SBOM integration in to the corebeoot build.
+Therefore one can just enable/disable them via <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code>.</p>
+</section>
+<section id="what-to-do-as-developer-of-a-binary-blob-which-is-used-in-coreboot">
+<h2>What to do as Developer of a binary blob (which is used in coreboot)<a class="headerlink" href="#what-to-do-as-developer-of-a-binary-blob-which-is-used-in-coreboot" title="Link to this heading"></a></h2>
+<ol class="simple">
+<li><p>Generate a SWID/CoSWID/uSWID File in either JSON, XML or CBOR Format
+as part of your software build process</p></li>
+<li><p>Supply that generated File along with your binary blob (preferably
+not inside the blob)</p></li>
+<li><p>To build coreboot: Add <code class="docutils literal notranslate"><span class="pre">CONFIG_SBOM_[software-name]_PATH</span></code> to your
+defconfig pointing to your [software-name] generated File.</p></li>
+</ol>
+</section>
+<section id="what-to-do-as-developer-of-an-open-source-project-which-is-used-in-coreboot">
+<h2>What to do as Developer of an open source project (which is used in coreboot)<a class="headerlink" href="#what-to-do-as-developer-of-an-open-source-project-which-is-used-in-coreboot" title="Link to this heading"></a></h2>
+<ol class="simple">
+<li><p>Generate a SWID/CoSWID/uSWID file in either JSON, XML or CBOR format
+as part of your software’s build process. For example in form of a
+Makefile target.</p></li>
+<li><p>Change src/sbom/Makefile.mk (in order to know where to find the
+CoSWID/SWID/uSWID file) as well as the Makefile in coreboot which
+builds said software. For example for GRUB2 that could mean to add a
+Makefile target in payloads/external/GRUB2/Makefile.</p></li>
+</ol>
+</section>
+<section id="problems">
+<h2>Problems<a class="headerlink" href="#problems" title="Link to this heading"></a></h2>
+<p>What to do if the binary blob that is included in coreboot’s build
+already has a SBOM file embedded in the binary? One could supply the
+path of the software binary itself (e.g. me.bin) as SBOM file path for
+the software in question. Which would basically mean to set
+<code class="docutils literal notranslate"><span class="pre">CONFIG_SBOM_[software-name]_PATH=/path/to/me.bin</span></code>. This is possible
+since the ‘goswid’ tooling is able to extract uSWID information out of
+an unknown binary format because of uSWIDs magic value. But even if
+coreboot can extract the uSWID data there is still the question of what
+to do next. One can do one of the following:</p>
+<ul class="simple">
+<li><p>Do not include the Software’s SBOM data in the final SBOM of
+coreboot. Data would not be duplicated, but therefore not included
+in coreboot SBOM file.</p></li>
+<li><p>Extract the uSWID/CoSWID information from the binary and also
+include it in the coreboot SBOM. That would mean, that SBOM data
+is duplicated.</p></li>
+</ul>
+<p>The first solution should in general be preferred, since its no
+problem if SBOM data is located at multiple locations/binaries if they
+don’t have a direct dependency on each other. It would be good if
+software that cannot run on its own only supplies the SBOM data along
+with it as kind of extra file instead of embedded in an unknown binary
+blob. coreboot can then just take it and include it in its own SBOM
+file. If on the other hand the binary can function on its own (e.g. EC
+or BMC binary), it is generally preferred that the software supplies
+its own SBOM data and coreboot just simply doesn’t include it in its
+own SBOM file. That would make a more or less clear distinction and
+avoids duplication in case the BMC or EC is updated (without updating
+coreboot). The distinction is not always easy and this problem is
+currently not considered in the implementation, since none of the
+software components currently create a SBOM file on their own.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../util/intelp2m/index.html" class="btn btn-neutral float-left" title="Intel Pad to Macro (intelp2m) converter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../infrastructure/index.html" class="btn btn-neutral float-right" title="Project infrastructure &amp; services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

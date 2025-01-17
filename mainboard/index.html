@@ -1,0 +1,775 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mainboard-specific documentation &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="51NB X210" href="51nb/x210.html" />
+    <link rel="prev" title="Qualcomm SC7280 documentation" href="../soc/qualcomm/sc7280/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Mainboard</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nb">51NB</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="51nb/x210.html">X210</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#acer">Acer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="acer/g43t-am3.html">G43T-AM3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#amd">AMD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="amd/pademelon/pademelon.html">pademelon</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#asrock">ASRock</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="asrock/h77pro4-m.html">H77 Pro4-M</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asrock/h81m-hds.html">H81M-HDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asrock/h110m-dvs.html">H110M-DVS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#asus">ASUS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="asus/a88xm-e.html">A88XM-E</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asus/f2a85-m.html">F2A85-M</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asus/p2b-ls.html">P2B-LS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asus/p3b-f.html">P3B-F</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asus/p5q.html">P5Q</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asus/p8c_ws.html">P8C WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asus/p8h61-m_lx.html">P8H61-M LX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asus/p8h61-m_pro.html">P8H61-M Pro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asus/p8h77-v.html">P8H77-V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asus/p8z77-m.html">P8Z77-M</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asus/p8z77-m_pro.html">P8Z77-M Pro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asus/p8z77-v.html">P8Z77-V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asus/wifigo_v1.html">wifigo</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cavium">Cavium</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cavium/cn8100_sff_evb.html">CN81XX EVB SFF</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#clevo">Clevo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clevo/n130wu/index.html">N130WU / N131WU</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dell">Dell</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dell/optiplex_9010.html">OptiPlex 9010 SFF</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#emulation">Emulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="emulation/spike-riscv.html">Spike RISC-V emulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="emulation/qemu-riscv.html">QEMU RISC-V emulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="emulation/qemu-aarch64.html">QEMU AArch64 emulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="emulation/qemu-q35.html">QEMU x86 Q35</a></li>
+<li class="toctree-l3"><a class="reference internal" href="emulation/qemu-i440fx.html">QEMU x86 PC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="emulation/qemu-power9.html">QEMU POWER9</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#facebook">Facebook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="facebook/fbg1701.html">FBG-1701</a></li>
+<li class="toctree-l3"><a class="reference internal" href="facebook/monolith.html">Monolith</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#foxconn">Foxconn</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="foxconn/d41s.html">D41S</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gigabyte">Gigabyte</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gigabyte/ga-g41m-es2l.html">GA-G41M-ES2L</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gigabyte/ga-h61m-s2pv.html">GA-H61M-S2PV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hp">HP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hp/compaq_8200_sff.html">Compaq 8200 Elite SFF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hp/compaq_8300_usdt.html">Compaq Elite 8300 USDT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hp/z220_sff.html">Z220 Workstation SFF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elitebook-series">EliteBook series</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hp/hp_kbc1126_laptops.html">HP Laptops with KBC1126 EC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hp/hp_sure_start.html">HP Sure Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hp/2170p.html">EliteBook 2170p</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hp/2560p.html">EliteBook 2560p</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hp/8760w.html">EliteBook 8760w</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hp/folio_9480m.html">EliteBook Folio 9480m</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hp/elitebook_820_g2.html">EliteBook 820 G2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#intel">Intel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="intel/dg43gt.html">DG43GT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intel/dq67sw.html">DQ67SW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intel/kblrvp11.html">KBLRVP11</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kontron">Kontron</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kontron/mal10.html">mAL-10</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#lenovo">Lenovo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lenovo/codenames.html">Mainboard codenames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lenovo/thinkpad_hmm.html">Hardware Maintenance Manual of ThinkPads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lenovo/r60.html">R60</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lenovo/t4xx_series.html">T4xx common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lenovo/x2xx_series.html">X2xx common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lenovo/vboot.html">vboot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gm45-series">GM45 series</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lenovo/montevina_series.html">X200 / T400 / T500 / X301 common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lenovo/x301.html">X301</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#arrandale-series">Arrandale series</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lenovo/t410.html">T410</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sandy-bridge-series">Sandy Bridge series</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lenovo/t420.html">T420</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lenovo/Sandy_Bridge_series.html">T420 / T520 / X220 / T420s / W520 common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lenovo/x1.html">X1</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ivy-bridge-series">Ivy Bridge series</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lenovo/t430.html">T430</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lenovo/w530.html">T530 / W530</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lenovo/Ivy_Bridge_series.html">T430 / T530 / X230 / W530 common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lenovo/t431s.html">T431s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lenovo/x230s.html">X230s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lenovo/ivb_internal_flashing.html">Internal flashing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#haswell-series">Haswell series</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lenovo/t440p.html">T440p</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#libretrend">Libretrend</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="libretrend/lt1000.html">LT1000</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#msi">MSI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="msi/ms7707/ms7707.html">MS-7707</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ocp">OCP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ocp/deltalake.html">Delta Lake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ocp/tiogapass.html">Tioga Pass</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#open-cellular">Open Cellular</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opencellular/elgon.html">Elgon</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pc-engines">PC Engines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcengines/apu1.html">APU1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcengines/apu2.html">APU2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#portwell">Portwell</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="portwell/pq7-m107.html">PQ7-M107</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#prodrive">Prodrive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prodrive/hermes.html">Hermes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#purism">Purism</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="purism/librem_14.html">Librem 14</a></li>
+<li class="toctree-l3"><a class="reference internal" href="purism/librem_mini.html">Librem Mini</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#protectli">Protectli</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="protectli/fw2b_fw4b.html">FW2B / FW4B</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protectli/fw6.html">FW6A / FW6B / FW6C</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protectli/vp2420.html">VP2420</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protectli/vp46xx.html">VP4630 / VP4650 / VP4670</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#roda">Roda</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="roda/rk9/flash_header.html">RK9 Flash Header</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sifive">SiFive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sifive/hifive-unleashed.html">SiFive HiFive Unleashed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#star-labs-systems">Star Labs Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="starlabs/labtop_kbl.html">LabTop Mk III</a></li>
+<li class="toctree-l3"><a class="reference internal" href="starlabs/labtop_cml.html">LabTop Mk IV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="starlabs/lite_glk.html">StarLite Mk III</a></li>
+<li class="toctree-l3"><a class="reference internal" href="starlabs/lite_glkr.html">StarLite Mk IV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="starlabs/starbook_tgl.html">StarBook Mk V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="starlabs/starbook_adl.html">StarBook Mk VI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="starlabs/common/flashing.html">Flashing devices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#supermicro">Supermicro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="supermicro/x9sae.html">X9SAE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="supermicro/x10slm-f.html">X10SLM+-F</a></li>
+<li class="toctree-l3"><a class="reference internal" href="supermicro/x11-lga1151-series/x11-lga1151-series.html">X11 LGA1151 series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="supermicro/flashing_on_vendorbmc.html">Flashing using the BMC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#system76">System76</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="system76/addw1.html">Adder Workstation 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/addw2.html">Adder Workstation 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/addw3.html">Adder Workstation 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/bonw14.html">Bonobo Workstation 14</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/bonw15.html">Bonobo Workstation 15</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/darp6.html">Darter Pro 6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/darp7.html">Darter Pro 7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/darp8.html">Darter Pro 8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/darp9.html">Darter Pro 9</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/galp4.html">Galago Pro 4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/galp5.html">Galago Pro 5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/galp6.html">Galago Pro 6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/galp7.html">Galago Pro 7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/gaze15.html">Gazelle 15</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/gaze16.html">Gazelle 16</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/gaze17.html">Gazelle 17</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/gaze18.html">Gazelle 18</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/lemp9.html">Lemur Pro 9</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/lemp10.html">Lemur Pro 10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/lemp11.html">Lemur Pro 11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/lemp12.html">Lemur Pro 12</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/oryp5.html">Oryx Pro 5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/oryp6.html">Oryx Pro 6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/oryp7.html">Oryx Pro 7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/oryp8.html">Oryx Pro 8</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/oryp9.html">Oryx Pro 9</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/oryp10.html">Oryx Pro 10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/oryp11.html">Oryx Pro 11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system76/serw13.html">Serval Workstation 13</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#texas-instruments">Texas Instruments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ti/beaglebone-black.html">Beaglebone Black</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ti/beaglebone-black.html#todo">Todo</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#up">UP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="up/squared/index.html">Squared</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Mainboard-specific documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/mainboard/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mainboard-specific-documentation">
+<h1>Mainboard-specific documentation<a class="headerlink" href="#mainboard-specific-documentation" title="Link to this heading"></a></h1>
+<p>This section contains documentation about coreboot on specific mainboards.</p>
+<section id="nb">
+<h2>51NB<a class="headerlink" href="#nb" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="51nb/x210.html">X210</a></li>
+</ul>
+</div>
+</section>
+<section id="acer">
+<h2>Acer<a class="headerlink" href="#acer" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="acer/g43t-am3.html">G43T-AM3</a></li>
+</ul>
+</div>
+</section>
+<section id="amd">
+<h2>AMD<a class="headerlink" href="#amd" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="amd/pademelon/pademelon.html">pademelon</a></li>
+</ul>
+</div>
+</section>
+<section id="asrock">
+<h2>ASRock<a class="headerlink" href="#asrock" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asrock/h77pro4-m.html">H77 Pro4-M</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asrock/h81m-hds.html">H81M-HDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asrock/h110m-dvs.html">H110M-DVS</a></li>
+</ul>
+</div>
+</section>
+<section id="asus">
+<h2>ASUS<a class="headerlink" href="#asus" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asus/a88xm-e.html">A88XM-E</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asus/f2a85-m.html">F2A85-M</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asus/p2b-ls.html">P2B-LS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asus/p3b-f.html">P3B-F</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asus/p5q.html">P5Q</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asus/p8c_ws.html">P8C WS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asus/p8h61-m_lx.html">P8H61-M LX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asus/p8h61-m_pro.html">P8H61-M Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asus/p8h77-v.html">P8H77-V</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asus/p8z77-m.html">P8Z77-M</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asus/p8z77-m_pro.html">P8Z77-M Pro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asus/p8z77-v.html">P8Z77-V</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asus/wifigo_v1.html">wifigo</a></li>
+</ul>
+</div>
+</section>
+<section id="cavium">
+<h2>Cavium<a class="headerlink" href="#cavium" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cavium/cn8100_sff_evb.html">CN81XX EVB SFF</a></li>
+</ul>
+</div>
+</section>
+<section id="clevo">
+<h2>Clevo<a class="headerlink" href="#clevo" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="clevo/n130wu/index.html">N130WU / N131WU</a></li>
+</ul>
+</div>
+</section>
+<section id="dell">
+<h2>Dell<a class="headerlink" href="#dell" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dell/optiplex_9010.html">OptiPlex 9010 SFF</a></li>
+</ul>
+</div>
+</section>
+<section id="emulation">
+<h2>Emulation<a class="headerlink" href="#emulation" title="Link to this heading"></a></h2>
+<p>The boards in this section are not real mainboards, but emulators.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="emulation/spike-riscv.html">Spike RISC-V emulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation/qemu-riscv.html">QEMU RISC-V emulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation/qemu-aarch64.html">QEMU AArch64 emulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation/qemu-q35.html">QEMU x86 Q35</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation/qemu-i440fx.html">QEMU x86 PC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulation/qemu-power9.html">QEMU POWER9</a></li>
+</ul>
+</div>
+</section>
+<section id="facebook">
+<h2>Facebook<a class="headerlink" href="#facebook" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="facebook/fbg1701.html">FBG-1701</a></li>
+<li class="toctree-l1"><a class="reference internal" href="facebook/monolith.html">Monolith</a></li>
+</ul>
+</div>
+</section>
+<section id="foxconn">
+<h2>Foxconn<a class="headerlink" href="#foxconn" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="foxconn/d41s.html">D41S</a></li>
+</ul>
+</div>
+</section>
+<section id="gigabyte">
+<h2>Gigabyte<a class="headerlink" href="#gigabyte" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gigabyte/ga-g41m-es2l.html">GA-G41M-ES2L</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gigabyte/ga-h61m-s2pv.html">GA-H61M-S2PV</a></li>
+</ul>
+</div>
+</section>
+<section id="hp">
+<h2>HP<a class="headerlink" href="#hp" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hp/compaq_8200_sff.html">Compaq 8200 Elite SFF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hp/compaq_8300_usdt.html">Compaq Elite 8300 USDT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hp/z220_sff.html">Z220 Workstation SFF</a></li>
+</ul>
+</div>
+<section id="elitebook-series">
+<h3>EliteBook series<a class="headerlink" href="#elitebook-series" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hp/hp_kbc1126_laptops.html">HP Laptops with KBC1126 EC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hp/hp_sure_start.html">HP Sure Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hp/2170p.html">EliteBook 2170p</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hp/2560p.html">EliteBook 2560p</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hp/8760w.html">EliteBook 8760w</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hp/folio_9480m.html">EliteBook Folio 9480m</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hp/elitebook_820_g2.html">EliteBook 820 G2</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="intel">
+<h2>Intel<a class="headerlink" href="#intel" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intel/dg43gt.html">DG43GT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intel/dq67sw.html">DQ67SW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intel/kblrvp11.html">KBLRVP11</a></li>
+</ul>
+</div>
+</section>
+<section id="kontron">
+<h2>Kontron<a class="headerlink" href="#kontron" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="kontron/mal10.html">mAL-10</a></li>
+</ul>
+</div>
+</section>
+<section id="lenovo">
+<h2>Lenovo<a class="headerlink" href="#lenovo" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/codenames.html">Mainboard codenames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/thinkpad_hmm.html">Hardware Maintenance Manual of ThinkPads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/r60.html">R60</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/t4xx_series.html">T4xx common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/x2xx_series.html">X2xx common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/vboot.html">vboot</a></li>
+</ul>
+</div>
+<section id="gm45-series">
+<h3>GM45 series<a class="headerlink" href="#gm45-series" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/montevina_series.html">X200 / T400 / T500 / X301 common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/x301.html">X301</a></li>
+</ul>
+</div>
+</section>
+<section id="arrandale-series">
+<h3>Arrandale series<a class="headerlink" href="#arrandale-series" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/t410.html">T410</a></li>
+</ul>
+</div>
+</section>
+<section id="sandy-bridge-series">
+<h3>Sandy Bridge series<a class="headerlink" href="#sandy-bridge-series" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/t420.html">T420</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/Sandy_Bridge_series.html">T420 / T520 / X220 / T420s / W520 common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/x1.html">X1</a></li>
+</ul>
+</div>
+</section>
+<section id="ivy-bridge-series">
+<h3>Ivy Bridge series<a class="headerlink" href="#ivy-bridge-series" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/t430.html">T430</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/w530.html">T530 / W530</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/Ivy_Bridge_series.html">T430 / T530 / X230 / W530 common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/t431s.html">T431s</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/x230s.html">X230s</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/ivb_internal_flashing.html">Internal flashing</a></li>
+</ul>
+</div>
+</section>
+<section id="haswell-series">
+<h3>Haswell series<a class="headerlink" href="#haswell-series" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lenovo/t440p.html">T440p</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="libretrend">
+<h2>Libretrend<a class="headerlink" href="#libretrend" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="libretrend/lt1000.html">LT1000</a></li>
+</ul>
+</div>
+</section>
+<section id="msi">
+<h2>MSI<a class="headerlink" href="#msi" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="msi/ms7707/ms7707.html">MS-7707</a></li>
+</ul>
+</div>
+</section>
+<section id="ocp">
+<h2>OCP<a class="headerlink" href="#ocp" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ocp/deltalake.html">Delta Lake</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ocp/tiogapass.html">Tioga Pass</a></li>
+</ul>
+</div>
+</section>
+<section id="open-cellular">
+<h2>Open Cellular<a class="headerlink" href="#open-cellular" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="opencellular/elgon.html">Elgon</a></li>
+</ul>
+</div>
+</section>
+<section id="pc-engines">
+<h2>PC Engines<a class="headerlink" href="#pc-engines" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pcengines/apu1.html">APU1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcengines/apu2.html">APU2</a></li>
+</ul>
+</div>
+</section>
+<section id="portwell">
+<h2>Portwell<a class="headerlink" href="#portwell" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="portwell/pq7-m107.html">PQ7-M107</a></li>
+</ul>
+</div>
+</section>
+<section id="prodrive">
+<h2>Prodrive<a class="headerlink" href="#prodrive" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prodrive/hermes.html">Hermes</a></li>
+</ul>
+</div>
+</section>
+<section id="purism">
+<h2>Purism<a class="headerlink" href="#purism" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="purism/librem_14.html">Librem 14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="purism/librem_mini.html">Librem Mini</a></li>
+</ul>
+</div>
+</section>
+<section id="protectli">
+<h2>Protectli<a class="headerlink" href="#protectli" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="protectli/fw2b_fw4b.html">FW2B / FW4B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protectli/fw6.html">FW6A / FW6B / FW6C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protectli/vp2420.html">VP2420</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protectli/vp46xx.html">VP4630 / VP4650 / VP4670</a></li>
+</ul>
+</div>
+</section>
+<section id="roda">
+<h2>Roda<a class="headerlink" href="#roda" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roda/rk9/flash_header.html">RK9 Flash Header</a></li>
+</ul>
+</div>
+</section>
+<section id="sifive">
+<h2>SiFive<a class="headerlink" href="#sifive" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sifive/hifive-unleashed.html">SiFive HiFive Unleashed</a></li>
+</ul>
+</div>
+</section>
+<section id="star-labs-systems">
+<h2>Star Labs Systems<a class="headerlink" href="#star-labs-systems" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="starlabs/labtop_kbl.html">LabTop Mk III</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starlabs/labtop_cml.html">LabTop Mk IV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starlabs/lite_glk.html">StarLite Mk III</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starlabs/lite_glkr.html">StarLite Mk IV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starlabs/starbook_tgl.html">StarBook Mk V</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starlabs/starbook_adl.html">StarBook Mk VI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="starlabs/common/flashing.html">Flashing devices</a></li>
+</ul>
+</div>
+</section>
+<section id="supermicro">
+<h2>Supermicro<a class="headerlink" href="#supermicro" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="supermicro/x9sae.html">X9SAE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supermicro/x10slm-f.html">X10SLM+-F</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supermicro/x11-lga1151-series/x11-lga1151-series.html">X11 LGA1151 series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supermicro/flashing_on_vendorbmc.html">Flashing using the BMC</a></li>
+</ul>
+</div>
+</section>
+<section id="system76">
+<h2>System76<a class="headerlink" href="#system76" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="system76/addw1.html">Adder Workstation 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/addw2.html">Adder Workstation 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/addw3.html">Adder Workstation 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/bonw14.html">Bonobo Workstation 14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/bonw15.html">Bonobo Workstation 15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/darp6.html">Darter Pro 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/darp7.html">Darter Pro 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/darp8.html">Darter Pro 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/darp9.html">Darter Pro 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/galp4.html">Galago Pro 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/galp5.html">Galago Pro 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/galp6.html">Galago Pro 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/galp7.html">Galago Pro 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/gaze15.html">Gazelle 15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/gaze16.html">Gazelle 16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/gaze17.html">Gazelle 17</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/gaze18.html">Gazelle 18</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/lemp9.html">Lemur Pro 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/lemp10.html">Lemur Pro 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/lemp11.html">Lemur Pro 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/lemp12.html">Lemur Pro 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/oryp5.html">Oryx Pro 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/oryp6.html">Oryx Pro 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/oryp7.html">Oryx Pro 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/oryp8.html">Oryx Pro 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/oryp9.html">Oryx Pro 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/oryp10.html">Oryx Pro 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/oryp11.html">Oryx Pro 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system76/serw13.html">Serval Workstation 13</a></li>
+</ul>
+</div>
+</section>
+<section id="texas-instruments">
+<h2>Texas Instruments<a class="headerlink" href="#texas-instruments" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ti/beaglebone-black.html">Beaglebone Black</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ti/beaglebone-black.html#todo">Todo</a></li>
+</ul>
+</div>
+</section>
+<section id="up">
+<h2>UP<a class="headerlink" href="#up" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="up/squared/index.html">Squared</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../soc/qualcomm/sc7280/index.html" class="btn btn-neutral float-left" title="Qualcomm SC7280 documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="51nb/x210.html" class="btn btn-neutral float-right" title="51NB X210" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

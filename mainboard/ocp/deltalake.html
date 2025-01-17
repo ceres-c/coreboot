@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCP Delta Lake &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="OCP Tioga Pass" href="tiogapass.html" />
+    <link rel="prev" title="MSI MS-7707 V1.1" href="../msi/ms7707/ms7707.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hp">HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#ocp">OCP</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Delta Lake</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-build">How to build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-verify-delta-lake-osf-image">How to verify Delta Lake OSF image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-work-on-coreboot-for-delta-lake">How to work on coreboot for Delta Lake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#firmware-configurations">Firmware configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stress-performance-tests-passed">Stress/performance tests passed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-on-par-with-traditional-firmware">Performance on par with traditional firmware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-tests-passed">Other tests passed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#feature-gaps">Feature gaps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#technology">Technology</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tiogapass.html">Tioga Pass</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">OCP Delta Lake</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/ocp/deltalake.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ocp-delta-lake">
+<h1>OCP Delta Lake<a class="headerlink" href="#ocp-delta-lake" title="Link to this heading"></a></h1>
+<p>This page describes coreboot support status for the <a class="reference external" href="https://www.opencompute.org">OCP</a> (Open Compute Project)
+Delta Lake server platform.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>OCP Delta Lake server platform is a component of multi-host server system
+Yosemite-V3. Both <a class="reference external" href="https://www.opencompute.org/documents/delta-lake-1s-server-design-specification-1v05-pdf">Delta Lake server design spec</a> and <a class="reference external" href="https://www.opencompute.org/documents/ocp-yosemite-v3-platform-design-specification-1v16-pdf">Yosemite-V3 design
+spec</a> were <a class="reference external" href="https://www.opencompute.org">OCP</a> accepted.</p>
+<p>On the other hand, Wiwynn’s Yosemite-V3 system and Delta Lake server product
+along with its OSF implementation, which is based on FSP/coreboot/LinuxBoot
+stack, was <a class="reference external" href="https://www.opencompute.org">OCP</a> accepted; For details, check:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.opencompute.org/blog/open-system-firmware-for-ocp-server-deltalake-is-published">The OCP blog</a></p></li>
+<li><p><a class="reference external" href="https://www.prnewswire.com/news-releases/wiwynn-successfully-implemented-open-system-firmware-on-its-ocp-yosemite-v3-server-301417374.html?tc=eml_cleartime">The Wiwynn Press Release</a></p></li>
+<li><p><a class="reference external" href="https://www.opencompute.org/products/423/wiwynn-yosemite-v3-server">The Wiwynn’s Yosemite-V3 product in OCP market place</a>
+Wiwynn and 9Elements formed a partnership to offer the Wiwynn’s Yosemite-V3
+product and OSF for it.</p></li>
+</ul>
+<p>Delta Lake server is a single socket Cooper Lake Scalable Processor (CPX-SP) server.
+Intel Cooper Lake Scalable Processor was launched in Q2 2020.</p>
+<p>Yosemite-V3 has multiple configurations. Depending on configurations, it may
+host up to 4 Delta Lake servers (blades) in one sled.</p>
+<p>The Yosemite-V3 system is in mass production. Meta, Intel and partners
+jointly develop Open System Firmware (OSF) solution on Delta Lake as an alternative
+solution. The OSF solution reached production quality for some use cases
+in July, 2021.</p>
+</section>
+<section id="how-to-build">
+<h2>How to build<a class="headerlink" href="#how-to-build" title="Link to this heading"></a></h2>
+<p>OSF code base is publicly available at
+https://github.com/opencomputeproject/OpenSystemFirmware</p>
+<p>Run following commands to build Delta Lake OSF image from scratch:
+git clone https://github.com/opencomputeproject/OpenSystemFirmware.git
+cd OpenSystemFirmware/Wiwynn/deltalake &amp;&amp; ./download_and_build.sh</p>
+<p>The Delta Lake OSF code base leverages <a class="reference external" href="https://github.com/facebookincubator/osf-builder">osf-builder</a> to sync down coreboot,
+Linux kernel and u-root code from their upstream repo, and sync down needed
+binary blobs. <a class="reference external" href="https://github.com/facebookincubator/osf-builder">osf-builder</a> also provides the top level build system.</p>
+<p>Besides coreboot, the Delta Lake OSF solution includes following components:</p>
+<ul class="simple">
+<li><p>FSP blob: The blobs (Intel Cooper Lake Scalable Processor Firmware Support Package)
+is downloaded from https://github.com/intel/FSP/tree/master/CedarIslandFspBinPkg.</p></li>
+<li><p>Microcode: downloaded from github.com/intel/Intel-Linux-Processor-Microcode-Data-Files.</p></li>
+<li><p>ME ignition binary: downloaded from
+https://github.com/tianocore/edk2-non-osi/tree/master/Silicon/Intel/PurleySiliconBinPkg/MeFirmware</p></li>
+<li><p>ACM binaries: only required for CBnT enablement. Available under NDA with Intel.</p></li>
+<li><p>Payload: LinuxBoot is necessary when LinuxBoot is used as the coreboot payload.
+U-root as initramfs, is used in the joint development. It is built
+following <a class="reference external" href="https://github.com/linuxboot/book/tree/master/u-root">All about u-root</a>.</p></li>
+</ul>
+<p>The Delta Lake OSF solution is updated periodically to newer versions of
+upstream coreboot code base and other components.</p>
+</section>
+<section id="how-to-verify-delta-lake-osf-image">
+<h2>How to verify Delta Lake OSF image<a class="headerlink" href="#how-to-verify-delta-lake-osf-image" title="Link to this heading"></a></h2>
+<p>To do in-band FW image update, use <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a>:
+flashrom -p internal:ich_spi_mode=hwseq -c “Opaque flash chip” –ifd <br />-i bios –noverify-all -w <path to coreboot image></p>
+<p>From OpenBMC, to update FW image:
+fw-util slotx –update bios <path to coreboot image></p>
+<p>To power off/on the host:
+power-util slotx off
+power-util slotx on</p>
+<p>To connect to console through SOL (Serial Over Lan):
+sol-util slotx</p>
+</section>
+<section id="how-to-work-on-coreboot-for-delta-lake">
+<h2>How to work on coreboot for Delta Lake<a class="headerlink" href="#how-to-work-on-coreboot-for-delta-lake" title="Link to this heading"></a></h2>
+<p>After the OSF image for Delta Lake is built and verified, under
+OpenSystemFirmware/Wiwynn/deltalake directory:
+cd src/osf-builder/projects/craterlake/coreboot</p>
+<p>Run “git remote -v” to confirm the origin is from coreboot upstream repo.</p>
+<p>Run “git branch -v” to know the confirmed working coreboot commit ID for the
+Delta Lake OSF solution.</p>
+<p>Fetch down the tip of coreboot upstream repo, run “make” to build a new OSF
+image for Delta Lake, verify that it works.</p>
+<p>Now you are in a familiar coreboot environment, happy coding!</p>
+</section>
+<section id="firmware-configurations">
+<h2>Firmware configurations<a class="headerlink" href="#firmware-configurations" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://chromium.googlesource.com/chromiumos/platform/vpd/+/master/README.md">ChromeOS VPD</a> is used to store most of the firmware configurations.
+RO_VPD region holds default values, while RW_VPD region holds customized
+values.</p>
+<p>VPD variables supported are:</p>
+<ul class="simple">
+<li><p>firmware_version: This variable holds overall firmware version. coreboot
+uses that value to populate smbios type 1 version field.</p></li>
+<li><p>bmc_bootorder_override: When it’s set to 1 IPMI OEM command can override boot
+order. The boot order override is done in the u-root LinuxBoot payload.</p></li>
+<li><p>systemboot_log_level: u-root package systemboot log levels, would be mapped to
+quiet/verbose in systemboot as that is all we have for now. 5 to 8 would be
+mapped to verbose, 0 to 4 and 9 would be mapped to quiet.</p></li>
+<li><p>VPDs affecting coreboot are listed/documented in <a class="reference external" href="https://review.coreboot.org/plugins/gitiles/coreboot/+/HEAD/src/mainboard/ocp/deltalake/vpd.h">src/mainboard/ocp/deltalake/vpd.h</a>.</p></li>
+</ul>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<p>The solution is developed using LinuxBoot payload with Linux kernel 5.2.9,
+and <a class="reference external" href="https://u-root.org/">u-root</a> as initramfs.</p>
+<ul class="simple">
+<li><p>SMBIOS:</p>
+<ul>
+<li><p>Type 0 – BIOS Information</p></li>
+<li><p>Type 1 – System Information</p></li>
+<li><p>Type 2 – Baseboard Information</p></li>
+<li><p>Type 3 – System Enclosure or Chassis</p></li>
+<li><p>Type 4 – Processor Information</p></li>
+<li><p>Type 7 – Cache Information</p></li>
+<li><p>Type 8 – Port Connector Information</p></li>
+<li><p>Type 9 – PCI Slot Information</p></li>
+<li><p>Type 11 – OEM String</p></li>
+<li><p>Type 16 – Physical Memory Array</p></li>
+<li><p>Type 17 – Memory Device</p></li>
+<li><p>Type 19 – Memory Array Mapped Address</p></li>
+<li><p>Type 32 – System Boot Information</p></li>
+<li><p>Type 38 – IPMI Device Information</p></li>
+<li><p>Type 41 – Onboard Devices Extended Information</p></li>
+<li><p>Type 127 – End-of-Table</p></li>
+</ul>
+</li>
+<li><p>BMC integration:</p>
+<ul>
+<li><p>BMC readiness check</p></li>
+<li><p>IPMI commands</p></li>
+<li><p>watchdog timer</p></li>
+<li><p>POST complete pin acknowledgement</p></li>
+<li><p>Check BMC version: ipmidump -device</p></li>
+</ul>
+</li>
+<li><p>SEL record generation</p></li>
+<li><p>Converged Bootguard and TXT (CBnT)</p>
+<ul>
+<li><p>TPM</p></li>
+<li><p>Bootguard profile 0T</p></li>
+<li><p>TXT</p></li>
+<li><p>SRTM</p></li>
+<li><p>DRTM (verified through tboot)</p>
+<ul>
+<li><p>unsigned KM/BPM generation</p></li>
+<li><p>KM/BPM signing</p></li>
+<li><p>memory secret clearance upon ungraceful shutdown</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Early serial output</p></li>
+<li><p>port 80h direct to GPIO</p></li>
+<li><p>ACPI tables: APIC/DMAR/DSDT/EINJ/FACP/FACS/HEST/HPET/MCFG/SPMI/SRAT/SLIT/SSDT</p></li>
+<li><p>Skipping memory training upon subsequent reboots by using MRC cache</p></li>
+<li><p>BMC crash dump</p></li>
+<li><p>Error injection through ITP</p></li>
+<li><p>Versions</p>
+<ul>
+<li><p>Check FSP version: cbmem | grep LB_TAG_PLATFORM_BLOB_VERSION</p></li>
+<li><p>Check Microcode version: cat /proc/cpuinfo | grep microcode</p></li>
+</ul>
+</li>
+<li><p>Devices:</p>
+<ul>
+<li><p>Boot drive</p></li>
+<li><p>All 5 data drives</p></li>
+<li><p>NIC card</p></li>
+</ul>
+</li>
+<li><p>Power button</p></li>
+<li><p>localboot</p></li>
+<li><p>netboot from IPv6</p></li>
+<li><p>RAS (SMI handlers not upstreamed)</p>
+<ul>
+<li><p>EINJ/HEST</p></li>
+<li><p>error injection through ITP</p></li>
+<li><p>memory error handling</p></li>
+<li><p>PCIe error handling</p></li>
+<li><p>PCIe live error recovery (LER)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="stress-performance-tests-passed">
+<h2>Stress/performance tests passed<a class="headerlink" href="#stress-performance-tests-passed" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>OS warm reboot (1000 cycles)</p></li>
+<li><p>DC reboot (1000 cycles)</p></li>
+<li><p>AC reboot (1000 cycle)</p></li>
+<li><p>Mprime test (6 hours)</p></li>
+<li><p>StressAppTest (6 hours)</p></li>
+<li><p>Ptugen (6 hours)</p></li>
+</ul>
+</section>
+<section id="performance-on-par-with-traditional-firmware">
+<h2>Performance on par with traditional firmware<a class="headerlink" href="#performance-on-par-with-traditional-firmware" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>coremark</p></li>
+<li><p>FIO</p></li>
+<li><p>Iperf(IPv6)</p></li>
+<li><p>Linpack</p></li>
+<li><p>Intel MLC (memory latency and bandwidth)</p></li>
+<li><p>SpecCPU</p></li>
+<li><p>stream</p></li>
+</ul>
+</section>
+<section id="other-tests-passed">
+<h2>Other tests passed<a class="headerlink" href="#other-tests-passed" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Power</p></li>
+<li><p>Thermal</p></li>
+<li><p>coreboot address sanitizer (both romstage and ramstage)</p></li>
+<li><p>Intel selftest tool (all errors analyzed; applicable errors clean)</p></li>
+</ul>
+</section>
+<section id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>HECI access at OS run time:</p>
+<ul>
+<li><p>spsInfoLinux64 command fail to return ME version</p></li>
+<li><p>ptugen command fail to get memory power</p></li>
+</ul>
+</li>
+<li><p>CLTT (Closed Loop Thermal Throttling, eg. thermal protection for DIMMs)</p></li>
+<li><p>ProcHot (thermal protection for processors)</p></li>
+</ul>
+</section>
+<section id="feature-gaps">
+<h2>Feature gaps<a class="headerlink" href="#feature-gaps" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>flashrom command not able to update ME region</p></li>
+<li><p>ACPI BERT table</p></li>
+<li><p>PCIe hotplug through VPP (Virtual Pin Ports)</p></li>
+<li><p>RO_VPD region as well as other RO regions are not write protected</p></li>
+<li><p>Not able to selectively enable/disable core</p></li>
+</ul>
+</section>
+<section id="technology">
+<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Processor (1 socket)</p></td>
+<td><p>Intel Cooper Lake Scalable Processor</p></td>
+</tr>
+<tr class="row-even"><td><p>BMC</p></td>
+<td><p>Aspeed AST 2500</p></td>
+</tr>
+<tr class="row-odd"><td><p>PCH</p></td>
+<td><p>Intel Lewisburg C620 Series</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../msi/ms7707/ms7707.html" class="btn btn-neutral float-left" title="MSI MS-7707 V1.1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tiogapass.html" class="btn btn-neutral float-right" title="OCP Tioga Pass" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

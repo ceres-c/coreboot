@@ -1,0 +1,251 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IFD Layout &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Intel Pad to Macro (intelp2m) converter" href="../intelp2m/index.html" />
+    <link rel="prev" title="Intel IFD Binary Extraction Tutorial" href="binary_extraction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../util.html">Utilities</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../util.html#list-of-utils">List of utils</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../util.html#in-depth-documentation">In depth documentation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../abuild/index.html">abuild</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cbfstool/index.html">cbfstool</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">ifdtool</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="binary_extraction.html">Intel IFD Binary Extraction</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">IFD Layout</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../intelp2m/index.html">intelp2m</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../util.html#generated-documentation">Generated documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../util.html">Utilities</a></li>
+          <li class="breadcrumb-item"><a href="index.html">ifdtool</a></li>
+      <li class="breadcrumb-item active">IFD Layout</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/util/ifdtool/layout.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ifd-layout">
+<h1>IFD Layout<a class="headerlink" href="#ifd-layout" title="Link to this heading"></a></h1>
+<p>A coreboot image for an Intel SoC contains two separate definitions of the
+layout of the flash. The Intel Flash Descriptor (IFD) which defines offsets and
+sizes of various regions of flash and the <a class="reference internal" href="../../lib/flashmap.html"><span class="doc">coreboot FMAP</span></a>.</p>
+<p>The FMAP should define all of the of the regions defined by the IFD to ensure
+that those regions are accounted for by coreboot and will not be accidentally
+modified.</p>
+<section id="ifd-mapping">
+<h2>IFD mapping<a class="headerlink" href="#ifd-mapping" title="Link to this heading"></a></h2>
+<p>The names of the IFD regions in the FMAP should follow the convention of
+starting with the prefix <code class="docutils literal notranslate"><span class="pre">SI_</span></code> which stands for <code class="docutils literal notranslate"><span class="pre">silicon</span> <span class="pre">initialization</span></code> as a
+way to categorize anything required by the SoC but not provided by coreboot.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>IFD Region
+index</p></th>
+<th class="head"><p>IFD Region name</p></th>
+<th class="head"><p>FMAP Name</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Flash Descriptor</p></td>
+<td><p>SI_DESC</p></td>
+<td><p>Always the top 4 KiB of flash</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>BIOS</p></td>
+<td><p>SI_BIOS</p></td>
+<td><p>This is the region that contains coreboot</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Intel ME</p></td>
+<td><p>SI_ME</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Gigabit Ethernet</p></td>
+<td><p>SI_GBE</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Platform Data</p></td>
+<td><p>SI_PDR</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>EC Firmware</p></td>
+<td><p>SI_EC</p></td>
+<td><p>Most ChromeOS devices do not use this
+region; EC firmware is stored in BIOS
+region of flash</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading"></a></h2>
+<p>The ifdtool can be used to manipulate a firmware image with a IFD. This tool
+will not take into account the FMAP while modifying the image which can lead to
+unexpected and hard to debug issues with the firmware image. For example if the
+ME region is defined at 6 MiB in the IFD but the FMAP only allocates 4 MiB for
+the ME, then when the ME is added by the ifdtool 6 MiB will be written which
+could overwrite 2 MiB of the BIOS.</p>
+<p>In order to validate that the FMAP and the IFD are compatible the ifdtool
+provides –validate (-t) option. <code class="docutils literal notranslate"><span class="pre">ifdtool</span> <span class="pre">-t</span></code> will read both the IFD and the
+FMAP in the image and for every non empty region in the IFD if that region is
+defined in the FMAP but the offset or size is different then the tool will
+return an error.</p>
+<p>Example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">foo@bar:~$ </span>ifdtool<span class="w"> </span>-t<span class="w"> </span>bad_image.bin
+<span class="go">Region mismatch between bios and SI_BIOS</span>
+<span class="go"> Descriptor region bios:</span>
+<span class="go">  offset: 0x00400000</span>
+<span class="go">  length: 0x01c00000</span>
+<span class="go"> FMAP area SI_BIOS:</span>
+<span class="go">  offset: 0x00800000</span>
+<span class="go">  length: 0x01800000</span>
+<span class="go">Region mismatch between me and SI_ME</span>
+<span class="go"> Descriptor region me:</span>
+<span class="go">  offset: 0x00103000</span>
+<span class="go">  length: 0x002f9000</span>
+<span class="go"> FMAP area SI_ME:</span>
+<span class="go">  offset: 0x00103000</span>
+<span class="go">  length: 0x006f9000</span>
+<span class="go">Region mismatch between pd and SI_PDR</span>
+<span class="go"> Descriptor region pd:</span>
+<span class="go">  offset: 0x003fc000</span>
+<span class="go">  length: 0x00004000</span>
+<span class="go"> FMAP area SI_PDR:</span>
+<span class="go">  offset: 0x007fc000</span>
+<span class="go">  length: 0x00004000</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="binary_extraction.html" class="btn btn-neutral float-left" title="Intel IFD Binary Extraction Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../intelp2m/index.html" class="btn btn-neutral float-right" title="Intel Pad to Macro (intelp2m) converter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

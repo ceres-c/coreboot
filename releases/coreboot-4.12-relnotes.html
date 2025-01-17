@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coreboot 4.12 &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="coreboot 4.11" href="coreboot-4.11-relnotes.html" />
+    <link rel="prev" title="coreboot 4.13" href="coreboot-4.13-relnotes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#upcoming-release">Upcoming release</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#previous-releases">Previous releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.22-relnotes.html">4.22 - November 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.21-relnotes.html">4.21   - August 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.20.1-relnotes.html">4.20.1 - May 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.19-relnotes.html">4.19   - January 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.18-relnotes.html">4.18   - October 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.17-relnotes.html">4.17   - May 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.16-relnotes.html">4.16   - February 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.15-relnotes.html">4.15   - November 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.14-relnotes.html">4.14   - May 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.13-relnotes.html">4.13   - November 2020</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.12   - May 2020</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#maintainers">Maintainers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-support">Hardware support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cleanup">Cleanup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deprecations">Deprecations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#significant-changes">Significant changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#final-notes">Final Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.11-relnotes.html">4.11   - November 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.10-relnotes.html">4.10   - July 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.9-relnotes.html">4.9    - December 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.8.1-relnotes.html">4.8.1  - May 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.7-relnotes.html">4.7    - January 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.6-relnotes.html">4.6    - April 2017</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.5-relnotes.html">4.5    - October 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.4-relnotes.html">4.4    - May 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.3-relnotes.html">4.3    - January 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.2-relnotes.html">4.2    - October 2015</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.1-relnotes.html">4.1    - July 2015</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Release notes</a></li>
+      <li class="breadcrumb-item active">coreboot 4.12</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/releases/coreboot-4.12-relnotes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coreboot-4-12">
+<h1>coreboot 4.12<a class="headerlink" href="#coreboot-4-12" title="Link to this heading"></a></h1>
+<p>coreboot 4.12 was released on May 12th, 2020.</p>
+<p>Since 4.11 there were 2692 new commits by over 190 developers and of
+these, 59 contributed for the first time, which is quite an amazing
+increase.</p>
+<p>Thank you to all developers who again helped made coreboot better
+than ever, and a big welcome to our new contributors!</p>
+<section id="maintainers">
+<h2>Maintainers<a class="headerlink" href="#maintainers" title="Link to this heading"></a></h2>
+<p>This release saw some activity on the MAINTAINERS file, showing more
+persons, teams and companies declare publicly that they intend to
+take care of mainboards and subsystems.</p>
+<p>To all new maintainers, thanks a lot!</p>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
+<p>Our documentation efforts in the code tree are picking up steam, with
+some 70 commits in that general area. Everything from typo fixes to
+documenting mainboard support or coreboot APIs.</p>
+<p>There’s still room to improve, but the contributions are getting more
+and better.</p>
+</section>
+<section id="hardware-support">
+<h2>Hardware support<a class="headerlink" href="#hardware-support" title="Link to this heading"></a></h2>
+<p>The removals due to the announced deprecations as well as the
+deduplication of boards into variants skew the stats a bit, so at
+a top level view this is a rare coreboot release in that it removes
+more boards (51) than it adds (49).</p>
+<p>After accounting for the variant moves the numbers in favor of more
+hardware supported than the previous version. Besides a whole lot
+of Chrome OS devices (again), this release features a whole bunch
+of retrofits for devices originally shipping with non-coreboot OEM
+firmware, but also support for devices that come with coreboot right
+out of the box.</p>
+<p>For that, a shout out to System76, Protectli, Libretrend and the
+Open Compute Project!</p>
+</section>
+<section id="cleanup">
+<h2>Cleanup<a class="headerlink" href="#cleanup" title="Link to this heading"></a></h2>
+<p>We simplified the header that comes at the top of every file:
+Instead of a lengthy reference to the license any given file
+is under, or even the license text itself, we opted for simple
+<a class="reference external" href="https://www.spdx.org">SPDX</a> identifiers.</p>
+<p>Since people also handled copyright lines differently, we now opt for
+collecting authors in AUTHORS and let git history tell the whole story.</p>
+<p>While at it, the content-free “This file is part of this-and-that
+project” header was also dropped.</p>
+<p>Besides that, there has also been more work to sort out the headers
+we include across the tree to minimize the code impacting every
+compilation unit.</p>
+<p>Now that our board-variant mechanism matured, many boards that were
+individual models so far were converted into variants, making it
+easier to maintain families of devices.</p>
+</section>
+<section id="deprecations">
+<h2>Deprecations<a class="headerlink" href="#deprecations" title="Link to this heading"></a></h2>
+<p>For the 4.12 release a few features on x86 became mandatory. These are
+relocatable ramstage, postcar stage and C_ENVIRONMENT_BOOTBLOCK.</p>
+<section id="relocatable-ramstage">
+<h3>Relocatable ramstage<a class="headerlink" href="#relocatable-ramstage" title="Link to this heading"></a></h3>
+<p>Relocatable stages are a feature implemented only on x86, where stages
+can be relocated at runtime. This is used to place ramstage in a better
+location that does not collide with memory the OS or the payload tends
+to use. The rationale behind making this mandatory is that you always
+want cbmem to be cached so it’s a good location to run ramstage from.
+It avoids using lower memory altogether so the OS can make use of it
+and no backing up needs to happen on S3 resume.</p>
+</section>
+<section id="postcar-stage">
+<h3>Postcar stage<a class="headerlink" href="#postcar-stage" title="Link to this heading"></a></h3>
+<p>With Postcar stage tearing down Cache-as-Ram is done in a separate
+stage. This means that romstage has a clean program boundary and
+that all variables in romstage can be accessed via their linked
+addresses without runtime resolution. There is no need to link
+global and static variables via the CAR_GLOBAL macro and no need
+to access them with car_set/get_var/ptr functions.</p>
+</section>
+<section id="c-environment-bootblock">
+<h3>C_ENVIRONMENT_BOOTBLOCK<a class="headerlink" href="#c-environment-bootblock" title="Link to this heading"></a></h3>
+<p>Historically the bootblock on x86 platforms has been compiled with
+romcc. This means that the generated code only uses CPU registers
+and therefore no stack. This 20K+ LOC compiler is limited and hard
+to maintain and so is the code that one has to write in that
+environment. A different solution is to set up Cache-as-Ram in the
+bootblock and run GCC compiled code in the bootblock. The advantages
+are increased flexibility and consistency with other architectures as
+well as other stages: e.g. printing to console is possible and
+VBOOT can run before romstage, making romstage updatable via RW FMAP
+regions.</p>
+</section>
+<section id="platforms-dropped-from-master">
+<h3>Platforms dropped from master<a class="headerlink" href="#platforms-dropped-from-master" title="Link to this heading"></a></h3>
+<p>The following platforms did not implement those feature are dropped
+from master to allow the master branch to move on:</p>
+<ul class="simple">
+<li><p>AMDFAM10</p></li>
+<li><p>all FSP1.0 platforms: BROADWELL_DE, FSP_BAYTRAIL, RANGELEY</p></li>
+<li><p>VIA VX900</p></li>
+</ul>
+<p>In particular on FSP1.0 it is impossible to implement POSTCAR stage.
+The reason is that FSP1.0 relocates the CAR region to the HOB before
+returning to coreboot. This means that after FSP returns to coreboot
+accessing variables via their original address is not possible. One
+way of obtaining that behavior would be to set up Cache-as-Ram again
+(but with open source code) and copy the relocated data from the HOB
+there. This solution is deemed too hacky. Maybe a lesson can be
+learned from this: blobs should not interfere with the execution
+environment, as this makes proper integration much harder.</p>
+</section>
+<section id="branch">
+<h3>4.11_branch<a class="headerlink" href="#branch" title="Link to this heading"></a></h3>
+<p>Given that some platforms supported by FSP1.0 are being produced and
+popular, the 4.11 release was made into a branch in which further
+development can happen.</p>
+</section>
+</section>
+<section id="significant-changes">
+<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Link to this heading"></a></h2>
+<section id="smmstore-is-now-production-ready">
+<h3>SMMSTORE is now production ready<a class="headerlink" href="#smmstore-is-now-production-ready" title="Link to this heading"></a></h3>
+<p>See <a class="reference internal" href="../drivers/smmstore.html"><span class="doc">smmstore</span></a> for the documentation on
+the API, but note that there will be an update to it featuring a
+much-improved but incompatible API.</p>
+</section>
+<section id="unit-testing-infrastructure">
+<h3>Unit testing infrastructure<a class="headerlink" href="#unit-testing-infrastructure" title="Link to this heading"></a></h3>
+<p>Unit testing of coreboot is now possible in a more structured way, with new
+build subsystem and adoption of <a class="reference external" href="https://cmocka.org/">Cmocka</a> framework. Tree
+has new directory <code class="docutils literal notranslate"><span class="pre">tests/</span></code>, which comprises infrastructure and examples of unit
+tests. See
+<a class="reference internal" href="../technotes/2020-03-unit-testing-coreboot.html"><span class="doc">Unit testing coreboot</span></a> for the
+design document.</p>
+</section>
+</section>
+<section id="final-notes">
+<h2>Final Notes<a class="headerlink" href="#final-notes" title="Link to this heading"></a></h2>
+<p>Your favorite new feature or supported board didn’t make it to the
+release notes? They’re maintained collaboratively in the coreboot
+tree, so when you land something noteworthy don’t be shy, contribute
+to the upcoming release’s document in Documentation/releases!</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="coreboot-4.13-relnotes.html" class="btn btn-neutral float-left" title="coreboot 4.13" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="coreboot-4.11-relnotes.html" class="btn btn-neutral float-right" title="coreboot 4.11" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit testing coreboot &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Unit Test Code Coverage" href="2021-05-code-coverage.html" />
+    <link rel="prev" title="Rebuilding coreboot image generation" href="2015-11-rebuilding-coreboot-image-generation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Technotes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2017-02-dealing-with-untrusted-input-in-smm.html">Dealing with Untrusted Input in SMM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2015-11-rebuilding-coreboot-image-generation.html">Rebuilding coreboot image generation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Unit testing coreboot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preface">Preface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rationale">Rationale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#evaluation-of-unit-testing-frameworks">Evaluation of unit testing frameworks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#desirables">Desirables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#candidates">Candidates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evaluation">Evaluation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary-framework-proposal">Summary &amp; framework proposal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">Implementation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#framework-as-a-submodule-or-external-package">Framework as a submodule or external package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integration-with-build-system">Integration with build system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-configuration-kconfig">Build configuration (Kconfig)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directory-structure">Directory structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#writing-new-tests">Writing new tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2021-05-code-coverage.html">Unit Test Code Coverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asan.html">Address Sanitizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console.html">coreboot Consoles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Technotes</a></li>
+      <li class="breadcrumb-item active">Unit testing coreboot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technotes/2020-03-unit-testing-coreboot.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="unit-testing-coreboot">
+<h1>Unit testing coreboot<a class="headerlink" href="#unit-testing-coreboot" title="Link to this heading"></a></h1>
+<section id="preface">
+<h2>Preface<a class="headerlink" href="#preface" title="Link to this heading"></a></h2>
+<p>First part of this document, Introduction, comprises disambiguation for what
+unit testing is and what is not. This definition will be a basis for the whole
+paper.</p>
+<p>Next, Rationale, explains why to use unit testing and how coreboot specifically
+may benefit from it.</p>
+<p>This is followed by evaluation of different available free C unit test
+frameworks. Firstly, collection of requirements is provided. Secondly, there is
+a description of a few selected candidates. Finally, requirements are applied to
+candidates to see if they might be a good fit.</p>
+<p>Fourth part is a summary of evaluation, with proposal of unit test framework
+for coreboot to be used.</p>
+<p>Finally, Implementation proposal paragraph touches how build system and coreboot
+codebase in general should be organized, in order to support unit testing. This
+comprises couple of design considerations which need to be addressed.</p>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>A unit test is supposed to test a single unit of code in isolation. In C
+language (in contrary to OOP) unit usually means a function. One may also
+consider unit under test to be a single compilation unit which exposes some
+API (set of functions). A function, talking to some external component can be
+tested if this component can be mocked out.</p>
+<p>In other words (looking from C compilation angle), there should be no extra
+dependencies (executables) required beside unit under test and test harness in
+order to compile unit test binary. Test harness, beside code examining a
+routines, may comprise test framework implementation.</p>
+<p>It is hard to apply this strict definition of unit test to firmware code in
+practice, mostly due to constraints on speed of execution and size of final
+executable. coreboot codebase often cannot be adjusted to be testable. Because
+of this, coreboot unit testing subsystem should allow to include some additional
+source object files beside unit under test. That being said, the default and
+goal wherever possible, should be to isolate unit under test from other parts.</p>
+<p>Unit testing is not an integration testing and it doesn’t replace it. First of
+all, integration tests cover larger set of components and interactions between
+them. Positive integration test result gives more confidence than a positive
+unit test does. Furthermore, unit tests are running on the build machine, while
+integration tests usually are executed on the target (or simulator).</p>
+</section>
+<section id="rationale">
+<h2>Rationale<a class="headerlink" href="#rationale" title="Link to this heading"></a></h2>
+<p>Considering above, what is the benefit of unit testing, especially keeping in
+mind that coreboot is low-level firmware? Unit tests should be quick, thus may
+be executed frequently during development process. It is much easier to build
+and run a unit test on a build machine, than any integration test. This in turn
+may be used by dev to gather extra confidence early during code development
+process. Actually developer may even write unit tests earlier than the code -
+see <a class="reference external" href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> concept.</p>
+<p>That being said, unit testing embedded C code is a difficult task, due to
+significant amount of dependencies on underlying hardware. Mocking can handle
+some hardware dependencies. However, complex mocks make the unit test
+susceptible to failing and can require significant development effort.</p>
+<p>Writing unit tests for a code (both new and currently existing) may be favorable
+for the code quality. It is not only about finding bugs, but in general - easily
+testable code is a good code.</p>
+<p>coreboot benefits the most from testing common libraries (lib/, commonlib/,
+payloads/libpayload) and coreboot infrastructure (console/, device/, security/).</p>
+</section>
+<section id="evaluation-of-unit-testing-frameworks">
+<h2>Evaluation of unit testing frameworks<a class="headerlink" href="#evaluation-of-unit-testing-frameworks" title="Link to this heading"></a></h2>
+<section id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h3>
+<p>Requirements for unit testing frameworks:</p>
+<ul>
+<li><p>Easy to use</p></li>
+<li><p>Few dependencies</p>
+<p>Standard C library is all we should need</p>
+</li>
+<li><p>Isolation between tests</p></li>
+<li><p>Support for mocking</p></li>
+<li><p>Support for some machine parsable output</p></li>
+<li><p>Compiler similarity</p>
+<p>Compiler for the host <em>must</em> support the same language standards as the target
+compiler. Ideally the same toolchain should be used for building firmware
+executables and test binaries, however the host compiler will be used to build
+unit tests, whereas the coreboot toolchain will be used for building the
+firmware executables. For some targets, the host compiler and the target
+compiler could be the same, but this is not a requirement.</p>
+</li>
+<li><p>Same language for tests and code</p>
+<p>Unit tests will be written in C, because coreboot code is also written in C</p>
+</li>
+</ul>
+</section>
+<section id="desirables">
+<h3>Desirables<a class="headerlink" href="#desirables" title="Link to this heading"></a></h3>
+<ul>
+<li><p>Easy to integrate with build system/build tools</p>
+<p>Ideally JUnit-like XML output format for Jenkins</p>
+</li>
+<li><p>Popularity is a plus</p>
+<p>We want a larger community for a couple of reasons. Firstly, easier access to
+people with knowledge and tutorials. Secondly, bug fixes for the top of tree
+are more frequent and known issues are usually shorter in the pending state.
+Last but not least, larger reviewer pool means better and easier upstream
+improvements that we would like to submit.</p>
+</li>
+<li><p>Extra features may be a plus</p></li>
+<li><p>Compatible license</p>
+<p>This should not be a blocker, since test binaries are not distributed.
+However ideally compatible with GPL.</p>
+</li>
+<li><p>IDE integration</p></li>
+</ul>
+</section>
+<section id="candidates">
+<h3>Candidates<a class="headerlink" href="#candidates" title="Link to this heading"></a></h3>
+<p>There is a lot of frameworks which allow unit testing C code
+(<a class="reference external" href="https://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#C">list</a> from
+Wikipedia). While not all of them were evaluated, because that would take an
+excessive amount of time, couple of them were selected based on the good
+opinions among C devs, popularity and fitting above criteria.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.use-strict.de/sput-unit-testing/">SputUnit</a></p></li>
+<li><p><a class="reference external" href="https://github.com/google/googletest">GoogleTest</a></p></li>
+<li><p><a class="reference external" href="https://cmocka.org/">Cmocka</a></p></li>
+<li><p><a class="reference external" href="http://www.throwtheswitch.org/unity">Unity</a> (CMock, Ceedling)</p></li>
+</ul>
+<p>We looked at several other test frameworks, but decided not to do a full evaluation
+for various reasons such as functionality, size of the developer community, or
+compatibility.</p>
+</section>
+<section id="evaluation">
+<h3>Evaluation<a class="headerlink" href="#evaluation" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.use-strict.de/sput-unit-testing/">SputUnit</a></p>
+<ul>
+<li><p>Pros</p>
+<ul>
+<li><p>No dependencies, one header file to include - that’s all</p></li>
+<li><p>Pure C</p></li>
+<li><p>Very easy to use</p></li>
+<li><p>BSD license</p></li>
+</ul>
+</li>
+<li><p>Cons</p>
+<ul>
+<li><p>Main repo doesn’t have support for generating JUnit XML reports for
+Jenkins to consume - this feature is available only on the fork from
+SputUnit called “Sput_report”. It makes it niche in a niche, so there are
+some reservations whether support for this will be satisfactory</p></li>
+<li><p>No support for mocks</p></li>
+<li><p>Not too popular</p></li>
+<li><p>No automatic test registration</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://github.com/google/googletest">GoogleTest</a></p>
+<ul>
+<li><p>Pros</p>
+<ul>
+<li><p>Automatic test registration</p></li>
+<li><p>Support for different output formats (including XML for Jenkins)</p></li>
+<li><p>Good support, widely used, the biggest and the most active community out
+of all frameworks that were investigated</p></li>
+<li><p>Available as a package in the most common distributions</p></li>
+<li><p>Test fixtures easily available</p></li>
+<li><p>Well documented</p></li>
+<li><p>Easy to integrate with an IDE</p></li>
+<li><p>BSD license</p></li>
+</ul>
+</li>
+<li><p>Cons</p>
+<ul>
+<li><p>Requires C++11 compiler</p></li>
+<li><p>To make most out of it (use GMock) C++ knowledge is required</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://cmocka.org/">Cmocka</a></p>
+<ul>
+<li><p>Pros</p>
+<ul>
+<li><p>Self-contained, autonomous framework</p></li>
+<li><p>Pure C</p></li>
+<li><p>API is well documented</p></li>
+<li><p>Multiple output formats (including XML for Jenkins)</p></li>
+<li><p>Available as a package in the most common distributions</p></li>
+<li><p>Used in some popular open source projects (libssh, OpenVPN, Samba)</p></li>
+<li><p>Test fixtures available</p></li>
+<li><p>Support for exception handling</p></li>
+</ul>
+</li>
+<li><p>Cons</p>
+<ul>
+<li><p>No automatic test registration</p></li>
+<li><p>It will require some effort to make it work from within an IDE</p></li>
+<li><p>Apache 2.0 license (not compatible with GPLv2)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference external" href="http://www.throwtheswitch.org/unity">Unity</a> (CMock, Ceedling)</p>
+<ul>
+<li><p>Pros</p>
+<ul>
+<li><p>Pure C (Unity testing framework itself, not test runner)</p></li>
+<li><p>Support for different output formats (including XML for Jenkins)</p></li>
+<li><p>There are some (rather easy) hints how to use this from an IDE (e.g. Eclipse)</p></li>
+<li><p>MIT license</p></li>
+</ul>
+</li>
+<li><p>Cons</p>
+<ul>
+<li><p>Test runner (Ceedling) is not written in C - uses Ruby</p></li>
+<li><p>Mocking/Exception handling functionalities are actually separate tools</p></li>
+<li><p>No automatic test registration</p></li>
+<li><p>Not too popular</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="summary-framework-proposal">
+<h3>Summary &amp; framework proposal<a class="headerlink" href="#summary-framework-proposal" title="Link to this heading"></a></h3>
+<p>After research, we propose using the Cmocka unit test framework. Cmocka fulfills
+all stated evaluation criteria. It is rather easy to use, doesn’t have extra
+dependencies, written fully in C, allows for tests fixtures and some popular
+open source projects already are using it. Cmocka also includes support for
+mocks.</p>
+<p>Cmocka’s limitations, such as the lack of automatic test registration, are
+considered minor issues that will require only minimal additional work from a
+developer. At the same time, it may be worth to propose improvement to Cmocka
+community or simply apply some extra wrapper with demanded functionality.</p>
+</section>
+</section>
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h2>
+<section id="framework-as-a-submodule-or-external-package">
+<h3>Framework as a submodule or external package<a class="headerlink" href="#framework-as-a-submodule-or-external-package" title="Link to this heading"></a></h3>
+<p>Unit test frameworks may be either compiled from source (from a git submodule
+under 3rdparty/) or pre-compiled as a package. The second option seems to be
+easier to maintain, while at the same time may bring some unwanted consequences
+(different version across distributions, frequent changes in API). It makes sense
+to initially experiment with packages and check how it works. If this will
+cause any issues, then it is always possible to switch to submodule approach.</p>
+</section>
+<section id="integration-with-build-system">
+<h3>Integration with build system<a class="headerlink" href="#integration-with-build-system" title="Link to this heading"></a></h3>
+<p>To get the most out of unit testing framework, it should be integrated with
+Jenkins automation server. Verification of all unit tests for new changes may
+improve code reliability to some extent.</p>
+</section>
+<section id="build-configuration-kconfig">
+<h3>Build configuration (Kconfig)<a class="headerlink" href="#build-configuration-kconfig" title="Link to this heading"></a></h3>
+<p>While building unit under test object file, it is necessary to apply some
+configuration (config) just like when building usual firmware. For simplicity,
+there will be one default tests .config <code class="docutils literal notranslate"><span class="pre">qemu_x86_i440fx</span></code> for all unit tests. At
+the same time, some tests may require running with different values of particular
+config. This should be handled by adding extra header, included after config.h.
+This header will comprise #undef of old CONFIG values and #define of the
+required value. When unit testing will be integrated with Jenkins, it may be
+preferred to use every available config for periodic builds.</p>
+</section>
+<section id="directory-structure">
+<h3>Directory structure<a class="headerlink" href="#directory-structure" title="Link to this heading"></a></h3>
+<p>Tests should be kept separate from the code, while at the same time it must be
+easy to match code with test harness.</p>
+<p>We create new directory for test files ($(toplevel)/tests/) and mimic the
+structure of src/ directory.</p>
+<p>Test object files (test harness, unit under tests and any additional executables
+are stored under build/tests/&lt;test_name&gt; directory.</p>
+<p>Below example shows how directory structure is organized for the two test cases:
+tests/lib/string-test and tests/device/i2c-test:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>├──<span class="w"> </span>src
+│<span class="w">   </span>├──<span class="w"> </span>lib
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>string.c<span class="w"> </span>&lt;-<span class="w"> </span>unit<span class="w"> </span>under<span class="w"> </span><span class="nb">test</span>
+│<span class="w">   </span>│
+│<span class="w">   </span>├──<span class="w"> </span>device
+│<span class="w">       </span>├──<span class="w"> </span>i2c.c
+│
+├──<span class="w"> </span>tests
+│<span class="w">   </span>├──<span class="w"> </span>include
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>mocks<span class="w"> </span>&lt;-<span class="w"> </span>mock<span class="w"> </span>headers,<span class="w"> </span>which<span class="w"> </span>replace<span class="w"> </span>original<span class="w"> </span>headers
+│<span class="w">   </span>│
+│<span class="w">   </span>├──<span class="w"> </span>Makefile.mk<span class="w"> </span>&lt;-<span class="w"> </span>top<span class="w"> </span>Makefile<span class="w"> </span><span class="k">for</span><span class="w"> </span>unit<span class="w"> </span>tests<span class="w"> </span>subsystem
+│<span class="w">   </span>├──<span class="w"> </span>lib
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>Makefile.mk
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>string-test.c<span class="w"> </span>&lt;-<span class="w"> </span><span class="nb">test</span><span class="w"> </span>code<span class="w"> </span><span class="k">for</span><span class="w"> </span>src/lib/string.c
+│<span class="w">   </span>│<span class="w">   </span>│
+│<span class="w">   </span>├──<span class="w"> </span>device
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>Makefile.mk
+│<span class="w">       </span>├──<span class="w"> </span>i2c-test.c
+│
+├──<span class="w"> </span>build
+│<span class="w">   </span>├──<span class="w"> </span>tests<span class="w"> </span>&lt;-all<span class="w"> </span>test-related<span class="w"> </span>executables
+<span class="w">        </span>├──<span class="w"> </span>config.h<span class="w"> </span>&lt;-<span class="w"> </span>default<span class="w"> </span>config<span class="w"> </span>used<span class="w"> </span><span class="k">for</span><span class="w"> </span>tests<span class="w"> </span>builds
+<span class="w">        </span>├──<span class="w"> </span>lib
+<span class="w">        </span>│<span class="w">   </span>├──<span class="w"> </span>string-test<span class="w"> </span>&lt;-<span class="w"> </span>all<span class="w"> </span>string-test<span class="w"> </span>executables
+<span class="w">        </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>run<span class="w">     </span>&lt;-<span class="w"> </span>final<span class="w"> </span><span class="nb">test</span><span class="w"> </span>binary
+<span class="w">        </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>tests<span class="w">   </span>&lt;-<span class="w"> </span>all<span class="w"> </span><span class="nb">test</span><span class="w"> </span>harness<span class="w"> </span>executables
+<span class="w">        </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>lib
+<span class="w">        </span>│<span class="w">   </span>│<span class="w">           </span>├──<span class="w"> </span>string-test.o<span class="w">  </span>&lt;-test<span class="w"> </span>harness<span class="w"> </span>executable
+<span class="w">        </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>src<span class="w">    </span>&lt;-<span class="w"> </span>unit<span class="w"> </span>under<span class="w"> </span><span class="nb">test</span><span class="w"> </span>and<span class="w"> </span>other<span class="w"> </span>src<span class="w"> </span>executables
+<span class="w">        </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>lib
+<span class="w">        </span>│<span class="w">   </span>│<span class="w">           </span>├──<span class="w"> </span>string.o<span class="w">       </span>&lt;-<span class="w"> </span>unit<span class="w"> </span>under<span class="w"> </span><span class="nb">test</span><span class="w"> </span>executable
+<span class="w">        </span>├──<span class="w"> </span>device
+<span class="w">            </span>├──<span class="w"> </span>i2c-test
+<span class="w">                </span>├──<span class="w"> </span>run
+<span class="w">                </span>├──<span class="w"> </span>tests
+<span class="w">                </span>│<span class="w">   </span>├──<span class="w"> </span>device
+<span class="w">                </span>│<span class="w">       </span>├──<span class="w"> </span>i2c-test.o
+<span class="w">                </span>├──<span class="w"> </span>src
+<span class="w">                    </span>├──<span class="w"> </span>device
+<span class="w">                        </span>├──<span class="w"> </span>i2c.o
+</pre></div>
+</div>
+</section>
+<section id="writing-new-tests">
+<h3>Writing new tests<a class="headerlink" href="#writing-new-tests" title="Link to this heading"></a></h3>
+<p>Our tutorial series has <a class="reference internal" href="../tutorial/part3.html"><span class="doc">detailed guidelines</span></a> for writing
+unit tests.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2015-11-rebuilding-coreboot-image-generation.html" class="btn btn-neutral float-left" title="Rebuilding coreboot image generation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2021-05-code-coverage.html" class="btn btn-neutral float-right" title="Unit Test Code Coverage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

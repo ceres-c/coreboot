@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to the coreboot documentation &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=36d40e99"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started" href="getting_started/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Welcome to the coreboot documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-the-coreboot-documentation">
+<h1>Welcome to the coreboot documentation<a class="headerlink" href="#welcome-to-the-coreboot-documentation" title="Link to this heading"></a></h1>
+<p>This is the developer documentation for <a class="reference external" href="https://coreboot.org">coreboot</a>.
+It is built from Markdown files in the <a class="reference external" href="https://review.coreboot.org/plugins/gitiles/coreboot/+/refs/heads/main/Documentation/">Documentation</a> directory in the
+source code.</p>
+<section id="spelling-of-coreboot">
+<h2>Spelling of coreboot<a class="headerlink" href="#spelling-of-coreboot" title="Link to this heading"></a></h2>
+<p>The correct spelling of coreboot is completely in lower case characters and in
+one word without a space between the two parts.</p>
+</section>
+<section id="purpose-of-coreboot">
+<h2>Purpose of coreboot<a class="headerlink" href="#purpose-of-coreboot" title="Link to this heading"></a></h2>
+<p>coreboot is a project to develop open source boot firmware for various
+architectures. Its design philosophy is to do the bare minimum necessary to
+ensure that hardware is usable and then pass control to a different program
+called the <em>payload</em>.</p>
+<section id="separation-of-concerns">
+<h3>Separation of concerns<a class="headerlink" href="#separation-of-concerns" title="Link to this heading"></a></h3>
+<p>The payload can then provide user interfaces, file system drivers,
+various policies etc. to load the OS. Through this separation of concerns
+coreboot maximizes reusability of the complicated and fundamental hardware
+initialization routines across many different use cases, no matter if
+they provide standard interfaces or entirely custom boot flows.</p>
+<p>Popular <a class="reference internal" href="payloads.html"><span class="doc">payloads</span></a> in use with coreboot are SeaBIOS,
+which provides PCBIOS services, edk2, which provides UEFI services,
+GRUB2, the bootloader used by many Linux distributions, or depthcharge,
+a custom boot loader used on Chromebooks.</p>
+</section>
+<section id="no-resident-services-if-possible">
+<h3>No resident services (if possible)<a class="headerlink" href="#no-resident-services-if-possible" title="Link to this heading"></a></h3>
+<p>Ideally coreboot completely hands over control to the payload with no
+piece of coreboot remaining resident in the system, or even available
+for callback.  Given the reality of contemporary computer design,
+there’s often a small piece that survives for the whole runtime of
+the computer. It runs in a highly privileged CPU mode (e.g. SMM on x86)
+and provides some limited amount of services to the OS. But here, too,
+coreboot aims to keep everything at the minimum possible, both in scope
+(e.g. services provided) and code size.</p>
+</section>
+<section id="no-specification-of-its-own">
+<h3>No specification of its own<a class="headerlink" href="#no-specification-of-its-own" title="Link to this heading"></a></h3>
+<p>coreboot uses a very minimal interface to the payload, and otherwise
+doesn’t impose any standards on the ecosystem. This is made possible by
+separating out concerns (interfaces and resident services are delegated
+to the payload), but it’s also a value that is deeply ingrained in the
+project. We fearlessly rip out parts of the architecture and remodel it
+when a better way of doing the same was identified.</p>
+<p>That said, since there are attempts to coerce coreboot to move in various
+directions by outside “standardization”, long-established practices of
+coreboot as well as aligned projects can be documented as best practices,
+making them standards in their own right. However we reserve the right to
+retire them as the landscape shifts around us.</p>
+</section>
+<section id="one-tree-for-everything">
+<h3>One tree for everything<a class="headerlink" href="#one-tree-for-everything" title="Link to this heading"></a></h3>
+<p>Another difference to various other firmware projects is that we try
+to avoid fragmentation: the traditional development model of firmware
+is one of “set and forget” in which some code base is copied, adapted
+for the purpose at hands, shipped and only touched again if there’s an
+important fix to do.</p>
+<p>All newer development happens on another copy of some code base without
+flowing back to any older copy, and so normally there’s a huge amount
+of fragmentation.</p>
+<p>In coreboot, we try to keep everything in a single source tree, and
+lift up older devices when we change something fundamentally. That way,
+new and old devices benefit alike from new development in the common parts.</p>
+<p>There’s a downside to that: Some devices might have no maintainer anymore
+who could ensure that coreboot is still functional for them after a big
+rework, or maybe a rework even requires knowledge that doesn’t exist
+anymore within the project (for example because the developer moved on
+to do something else).</p>
+<p>In this case, we announce the deprecation of the device and defer the big
+rework until the deprecation period passed, typically 6-12 months. This
+gives interested developers a chance to step in and bring devices up to
+latest standards.</p>
+<p>While without this deprecation mechanism we could inflate the number
+of supported devices (probably 300+), only a tiny fraction of them
+would even work, which helps nobody.</p>
+</section>
+</section>
+<section id="scope-of-the-coreboot-project">
+<h2>Scope of the coreboot project<a class="headerlink" href="#scope-of-the-coreboot-project" title="Link to this heading"></a></h2>
+<p>coreboot as a project is closer to the Linux kernel than to most
+user level programs. One place where this becomes apparent is the
+distribution mechanism: The project itself only provides source code
+and does not ship ready-to-install coreboot-based firmware binaries.</p>
+<p>What the project distributes, even if - strictly speaking - it’s not
+part of the project, is a collection of vendor binaries (that we call
+“blobs”) that are redistributable. They cover the parts of hardware init
+that we haven’t managed to open up, and while some hardware requires them,
+there’s still hardware that can boot without any such binary components.</p>
+<p>The build system can integrate them into the build automatically if
+required, but that requires explicit opt-in and downloads a separate
+repository to ensure that the distinction remains clear.</p>
+<p>There are various <a class="reference internal" href="distributions.html"><span class="doc">distributions</span></a>, some shipping
+coreboot with their hardware (e.g. Purism or Chromebooks), others
+providing after-market images for various devices (e.g. Libreboot,
+MrChromebox).</p>
+<p>If you want to use coreboot on your system, that’s great!</p>
+<p>Please note that the infrastructure around coreboot.org is built for
+development purposes. We gladly help out users through our communication
+channels, but we also expect a “firmware developer mindset”: If compiling
+your own firmware and, at some point, recovering from a bad flash by
+hooking wires onto chips in your computer sounds scary to you, you’re
+right, as it is.</p>
+<p>If that’s <em>way</em> beyond your comfort zone, consider looking into the
+various distributions, as they typically provide pre-tested binaries
+which massively reduces the risk that the binary you write to flash is
+one that won’t boot the system (with the consequence that to get it to work
+again, you’ll need to attach various tools to various chips)</p>
+</section>
+<section id="the-coreboot-community">
+<h2>The coreboot community<a class="headerlink" href="#the-coreboot-community" title="Link to this heading"></a></h2>
+<p>If you’re interested in getting your hands dirty (incl. potentially wiring
+up an external flasher to your computer), you’ve come to the right place!</p>
+<p>We have various <a class="reference internal" href="community/forums.html"><span class="doc">forums</span></a> where we discuss and coordinate
+our activities, review patches, and help out each other. To
+help promote a positive atmosphere, we established a <a class="reference internal" href="community/code_of_conduct.html"><span class="doc">Code of
+Conduct</span></a>. We invested a lot of time
+to balance it out, so please keep it in mind when engaging with the
+coreboot community.</p>
+<p>Every now and then, coreboot is present in one way or another at
+<a class="reference internal" href="community/conferences.html"><span class="doc">conferences</span></a>. If you’re around, come and
+say hello!</p>
+</section>
+<section id="getting-the-source-code">
+<h2>Getting the source code<a class="headerlink" href="#getting-the-source-code" title="Link to this heading"></a></h2>
+<p>coreboot is primarily developed in the
+<a class="reference external" href="https://review.coreboot.org/plugins/gitiles/coreboot">git</a> version control
+system, using <a class="reference external" href="https://review.coreboot.org">Gerrit</a> to manage
+contributions and code review.</p>
+<p>In general we try to keep the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch in the repository functional
+for all hardware we support. So far, the only guarantee we can make is
+that the main branch will (nearly) always build for all boards in a
+standard configuration.</p>
+<p>However, we’re continually working on improvements to our infrastructure to
+get better in that respect, e.g. by setting up boot testing facilities. This
+is obviously more complex than regular integration testing, so progress
+is slow.</p>
+<section id="what-our-releases-mean">
+<h3>What our releases mean<a class="headerlink" href="#what-our-releases-mean" title="Link to this heading"></a></h3>
+<p>We also schedule two source code releases every year, around April and
+October. These releases see some very limited testing and mostly serve
+as synchronization points for deprecation notices and for other projects
+such as external distributions.</p>
+<p>This approach and terminology differs somewhat from how other projects handle
+releases where releases are well-tested artifacts and the development
+repository tends to be unstable. The “rolling release” model of some projects,
+for example OpenBSD, is probably the closest cousin of our approach.</p>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation_license.html">Documentation License</a></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started/index.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

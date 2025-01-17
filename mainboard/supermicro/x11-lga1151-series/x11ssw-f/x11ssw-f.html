@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supermicro X11SSW-F &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Flashing coreboot using SMC IPMI (BMC) firmware" href="../../flashing_on_vendorbmc.html" />
+    <link rel="prev" title="Supermicro X11SSM-F" href="../x11ssm-f/x11ssm-f.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#hp">HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#supermicro">Supermicro</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../x9sae.html">X9SAE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../x10slm-f.html">X10SLM+-F</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../x11-lga1151-series.html">X11 LGA1151 series</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../x11-lga1151-series.html#supported-boards">Supported boards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../x11-lga1151-series.html#required-proprietary-blobs">Required proprietary blobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../x11-lga1151-series.html#de-blobbing">De-blobbing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../x11-lga1151-series.html#flashing-coreboot">Flashing coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../x11-lga1151-series.html#known-issues">Known issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../x11-lga1151-series.html#todo">ToDo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../x11-lga1151-series.html#technology">Technology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../x11-lga1151-series.html#extra-links">Extra links</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../flashing_on_vendorbmc.html">Flashing using the BMC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Mainboard-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="../x11-lga1151-series.html">X11 LGA1151 series</a></li>
+      <li class="breadcrumb-item active">Supermicro X11SSW-F</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/mainboard/supermicro/x11-lga1151-series/x11ssw-f/x11ssw-f.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="supermicro-x11ssw-f">
+<h1>Supermicro X11SSW-F<a class="headerlink" href="#supermicro-x11ssw-f" title="Link to this heading"></a></h1>
+<p>This section details how to run coreboot on the <a class="reference external" href="https://www.supermicro.com/en/products/motherboard/x11ssw-f">Supermicro X11SSW-F</a>.</p>
+<section id="flashing-coreboot">
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<p>Flashing was performed through the BMC web interface, when a valid license was entered.</p>
+</section>
+<section id="tested-and-working">
+<h2>Tested and working<a class="headerlink" href="#tested-and-working" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>SeaBIOS version 1.16.2 Payload loading Ubuntu 22.04, kernel 5.4.0-162-generic</p></li>
+<li><p>ECC ram (Linux’ ie31200 driver works)</p></li>
+<li><p>USB ports</p></li>
+<li><p>Ethernet</p></li>
+<li><p>SATA ports</p></li>
+<li><p>RS232 external</p></li>
+<li><p>Left PCIe slot</p></li>
+<li><p>BMC (IPMI)</p></li>
+<li><p>VGA on Aspeed</p></li>
+</ul>
+</section>
+<section id="untested">
+<h2>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Right PCIe slot</p></li>
+<li><p>NVMe</p></li>
+<li><p>TPM on TPM expansion header</p></li>
+</ul>
+</section>
+<section id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>See general issue section</p></li>
+<li><p>LNXTHERM missing</p></li>
+<li><p>S3 resume not working</p></li>
+</ul>
+</section>
+<section id="technology">
+<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>CPU</p></td>
+<td><p>Intel Kaby Lake</p></td>
+</tr>
+<tr class="row-even"><td><p>PCH</p></td>
+<td><p>Intel C236</p></td>
+</tr>
+<tr class="row-odd"><td><p>Coprocessor</p></td>
+<td><p>Intel SPS (server version of the ME)</p></td>
+</tr>
+<tr class="row-even"><td><p>Super I/O</p></td>
+<td><p>ASPEED AST2400</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ethernet</p></td>
+<td><p>2x Intel I210-AT 1 GbE
+1x dedicated BMC</p></td>
+</tr>
+<tr class="row-even"><td><p>PCIe slots</p></td>
+<td><p>1x 3.0 x16 (Left Riser)
+1x 3.0 x4  (Right Riser in x16)
+1x 3.0 x4  (NVMe)</p></td>
+</tr>
+<tr class="row-odd"><td><p>USB slots</p></td>
+<td><p>2x USB 2.0 (ext)
+2x USB 3.0 (ext)
+1x USB 3.0 (int)
+1x dual USB 3.0 header
+2x dual USB 2.0 header</p></td>
+</tr>
+<tr class="row-even"><td><p>SATA slots</p></td>
+<td><p>6x S-ATA III</p></td>
+</tr>
+<tr class="row-odd"><td><p>Other slots</p></td>
+<td><p>1x RS232 (ext)
+1x RS232 header
+1x TPM header
+1x Power SMB header
+6x PWM Fan connector
+1x Chassis Intrusion Header</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="extra-links">
+<h2>Extra links<a class="headerlink" href="#extra-links" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.supermicro.com/en/products/motherboard/x11ssw-f">Supermicro X11SSW-F</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.supermicro.com/manuals/motherboard/C236/MNL-1784.pdf">Board manual</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../x11ssm-f/x11ssm-f.html" class="btn btn-neutral float-left" title="Supermicro X11SSM-F" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../flashing_on_vendorbmc.html" class="btn btn-neutral float-right" title="Flashing coreboot using SMC IPMI (BMC) firmware" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rebuilding coreboot image generation &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Unit testing coreboot" href="2020-03-unit-testing-coreboot.html" />
+    <link rel="prev" title="Dealing with Untrusted Input in SMM" href="2017-02-dealing-with-untrusted-input-in-smm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Technotes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2017-02-dealing-with-untrusted-input-in-smm.html">Dealing with Untrusted Input in SMM</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Rebuilding coreboot image generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#current-situation">Current situation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#problems-with-the-current-build-system-parts">Problems with the current build system parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#proposal">Proposal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chipset-manifest">Chipset manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#coreboot-manifest">coreboot manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boot-method-manifest">Boot method manifest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#payload-and-additional-manifests">Payload and additional manifests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#coreboot-build-system">coreboot build system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manifest-parsing">manifest parsing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2020-03-unit-testing-coreboot.html">Unit testing coreboot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2021-05-code-coverage.html">Unit Test Code Coverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asan.html">Address Sanitizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console.html">coreboot Consoles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Technotes</a></li>
+      <li class="breadcrumb-item active">Rebuilding coreboot image generation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/technotes/2015-11-rebuilding-coreboot-image-generation.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rebuilding-coreboot-image-generation">
+<h1>Rebuilding coreboot image generation<a class="headerlink" href="#rebuilding-coreboot-image-generation" title="Link to this heading"></a></h1>
+<section id="current-situation">
+<h2>Current situation<a class="headerlink" href="#current-situation" title="Link to this heading"></a></h2>
+<p>ChromeOS (CrOS) probably has the most complex image bundling process in the
+coreboot ecosystem. To make CrOS features more accessible to the wider
+coreboot community, we want to move these capabilities into upstream
+coreboot’s build system.</p>
+<p>Right now, the CrOS build system creates coreboot images, and various
+instances of the payload (with different configuration options), plus some
+more files (eg. EC firmware), then passes them to a CrOS-specific utility
+(<code class="docutils literal notranslate"><span class="pre">bundle_firmware.py</span></code>) to build the final image from that.</p>
+<p><code class="docutils literal notranslate"><span class="pre">bundle_firmware</span></code> adds a flashmap (fmap) to the final image and creates
+additional CBFS filesystems in fmap regions. It then extracts some files from
+the original CBFS region (that was put in place carefully to later match to
+the default fmap region) and copies some of them into the others, as well as
+putting more data (eg. the bitmap data, keys) as raw data into other fmap
+regions.</p>
+<p>With the recent addition of more files to CBFS, both on the coreboot side
+(dsdt, FSP, and so on) and with ChromeOS specifics (eg. more files describing
+boot screens) we either need to expand the scope of bundle_firmware or move
+the capability to build complex images to upstream coreboot’s build system.
+This document proposes to do the latter and outlines how this could be
+achieved.</p>
+</section>
+<section id="problems-with-the-current-build-system-parts">
+<h2>Problems with the current build system parts<a class="headerlink" href="#problems-with-the-current-build-system-parts" title="Link to this heading"></a></h2>
+<p>One common sentiment is that it should be possible to reuse some of the
+existing mechanisms that are supposed to be supplanted by this.
+The main concern during this design that precluded their use was that none of
+them provides a comprehensive solution to building complex coreboot based
+images:</p>
+<ul class="simple">
+<li><p>fmap.dts and fmd provide a flash layout, but no assignment of files of regions</p></li>
+<li><p>cbfs-files-y ends up as an internal make variable using
+<code class="docutils literal notranslate"><span class="pre">weird|formatting|to|deal|with|make’s|limitations</span></code></p></li>
+<li><p>make isn’t powerful enough to deal with ordering these entries in said
+variable to guarantee success if there’s enough room for the files. While that
+could be added, that becomes more make macro work indistinguishable from magic
+that people fail to understand, break and with good reason complain about
+to work around such issues, ChromeOS firmware uses a custom tool with even
+more special cases to finally build the image it needs. If coreboot upstream
+is to support vboot, it should also be powerful enough not to need magic tools
+that only live within downstream projects.</p></li>
+</ul>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<p>A complete ChromeOS coreboot image consists of (depending on the device)</p>
+<ul class="simple">
+<li><p>platform specific data in raw fmap regions (eg IFD, ME firmware),</p></li>
+<li><p>the bootblock (coming from the bootblock),</p></li>
+<li><p>three copies of coreboot, consisting of the stages (verstage, romstage,
+ramstage) plus data,</p></li>
+<li><p>depthcharge plus data (with each of the coreboot copies),</p></li>
+<li><p>EC firmware files (with each of the coreboot copies),</p></li>
+<li><p>signatures over several parts of the image and</p></li>
+<li><p>some final checksumming over parts of the image to satisfy boot ROM
+tests on ARM</p></li>
+</ul>
+<p>A complete upstream coreboot image (with fallback/normal switch configuration,
+using a yet to be implemented switching scheme based on fmaps) consists of</p>
+<ul class="simple">
+<li><p>platform specific data in raw fmap regions (eg IFD, ME firmware),</p></li>
+<li><p>two copies of coreboot, consisting of</p></li>
+<li><p>the bootblock and</p></li>
+<li><p>the stages (romstage, ramstage) plus data,</p></li>
+<li><p>payload plus data (with each of the coreboot copies),</p></li>
+</ul>
+<p>Since a single platform is potentially built with different payload
+configurations (eg. modding a Chromebook to not use the verified ChromeOS
+boot scheme), some concerns need to be kept separate:</p>
+<ul class="simple">
+<li><p>Platform requirements that have nothing to do with the payload or boot schemes</p></li>
+<li><p>IFD, ME, … need to copied to the right place</p></li>
+<li><p>boot ROM requirements such as checksums must be honored</p></li>
+<li><p>Payload/boot scheme requirements</p></li>
+<li><p>Having one to three regions with certain files copied into them</p></li>
+</ul>
+</section>
+<section id="proposal">
+<h2>Proposal<a class="headerlink" href="#proposal" title="Link to this heading"></a></h2>
+<p>The proposal is based on manifest files that describe certain aspects of the
+final image.
+The number of manifest files may change over time, but this seems to be a
+reasonable approach for now. As long as coreboot uses fmap and cbfs, there
+should be few need to change the language, since composition is done through
+files.</p>
+<p>The final image is generated by a utility that is handed a number of manifests
+and the size of the flash (derived from <code class="docutils literal notranslate"><span class="pre">CONFIG_ROM_SIZE</span></code>). These manifest files
+deal with different concerns, with the following an example that should match
+current use cases:</p>
+</section>
+<section id="chipset-manifest">
+<h2>Chipset manifest<a class="headerlink" href="#chipset-manifest" title="Link to this heading"></a></h2>
+<p>The chipset details if there are any non-coreboot regions, and assigns them
+names, locations, sizes and file contents and prepares a region for what is
+“platform visible” (eg. IFD’s BIOS region) that may be of flexible size
+(depending on the flash chip’s size). For the purpose of this document, that
+region is called “BIOS”.
+It can also specify if there’s a post processing requirement on the final
+image.</p>
+</section>
+<section id="coreboot-manifest">
+<h2>coreboot manifest<a class="headerlink" href="#coreboot-manifest" title="Link to this heading"></a></h2>
+<p>coreboot provides lists of the files it generates for each category it’s
+building (eg. bootblock, verstage, romstage, ramstage). They not only contain
+the stages themselves, but also additional files (eg. dsdt belongs to ramstage
+since that’s where it is used)</p>
+</section>
+<section id="boot-method-manifest">
+<h2>Boot method manifest<a class="headerlink" href="#boot-method-manifest" title="Link to this heading"></a></h2>
+<p>The boot method manifest can subdivide the BIOS region, eg. using it directly
+(for coreboot’s “simple” bootblock), splitting it in two (for coreboot’s
+fallback/normal) or in many parts (for ChromeOS, which requires two CBFS
+regions, one for GBB, several for VPD, …).
+It also specifies which of the file lists specified earlier belong in which
+region (eg. with verstage verifying romstage, verstage needs to be only in
+ChromeOS’ RO region, while romstage belongs in RO and both RW regions).
+It can also specify a post processing step that is executed before the
+chipset’s.</p>
+</section>
+<section id="payload-and-additional-manifests">
+<h2>Payload and additional manifests<a class="headerlink" href="#payload-and-additional-manifests" title="Link to this heading"></a></h2>
+<p>External components should also provide manifests to add files to categories.
+This way the payload and other components (eg. EC firmware) can be developed
+without needing to touch the central boot method manifest (that likely resides
+in the coreboot tree, given that coreboot needs to deal with choosing fmap
+regions already).</p>
+</section>
+<section id="coreboot-build-system">
+<h2>coreboot build system<a class="headerlink" href="#coreboot-build-system" title="Link to this heading"></a></h2>
+<p>The coreboot build system will be split more distinctly in two phases: The
+first is about building the files (with results like romstage.elf), while the
+second phase covers the assembly of the final image.</p>
+<p>By having a global picture of the final image’s requirements, we can also
+avoid issues where files added earlier may prevent later additions that have
+stricter constraints - without resorting to hacks like
+https://chromium-review.googlesource.com/289491 that reorder the file addition
+manually.</p>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<p>As an example, we’ll define an Intel-based board with a postprocessing tool
+(something that doesn’t exist, but isn’t hard to imagine):</p>
+<p>It specifies an IFD region, an ME, and the BIOS region. After the image is
+built, the entire image needs to be processed (although the tool likely works
+only on a small part of it)</p>
+<p>It’s built in a ChromeOS-like configuration (simplified at places to avoid
+distracting from the important parts), so it has three CBFS regions, and
+several data regions for its own purpose (similar to GBB, FWID, VPD, …). After
+the regions are filled, one data region must be post-processed to contain
+signatures to enable verifying other regions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Chipset</span> <span class="n">manifest</span>
+<span class="o">================</span>
+<span class="c1"># A region called IFD, starting at 0, ending at 4K</span>
+<span class="n">region</span> <span class="n">IFD</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">4</span><span class="n">K</span>
+<span class="c1"># Add the specified file “raw” into the region.</span>
+<span class="c1"># If the file is smaller than the region, put it at the bottom and fill up</span>
+<span class="c1"># with 0xff</span>
+<span class="n">raw</span> <span class="n">IFD</span><span class="p">:</span> <span class="n">build</span><span class="o">/</span><span class="n">ifd</span><span class="o">.</span><span class="n">bin</span> <span class="n">align</span><span class="o">=</span><span class="n">bottom</span> <span class="n">empty</span><span class="o">=</span><span class="mh">0xff</span>
+<span class="c1"># Call the postprocessor on the data that ends up in IFD (in this example it</span>
+<span class="c1"># might lock the IFD)</span>
+<span class="n">postprocess</span> <span class="n">IFD</span><span class="p">:</span> <span class="n">util</span><span class="o">/</span><span class="n">ifdprocess</span> <span class="o">-</span><span class="n">l</span>
+
+<span class="c1"># a region called ME, starting at 4K, ending at 2M</span>
+<span class="n">region</span> <span class="n">ME</span><span class="p">:</span> <span class="mi">4</span><span class="n">K</span> <span class="mi">2</span><span class="n">M</span>
+<span class="n">raw</span> <span class="n">ME</span><span class="p">:</span> <span class="mi">3</span><span class="n">rdparty</span><span class="o">/</span><span class="n">blobs</span><span class="o">/</span><span class="n">soc</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">xanadu</span><span class="o">/</span><span class="n">me</span><span class="o">.</span><span class="n">bin</span> <span class="n">align</span><span class="o">=</span><span class="n">bottom</span> <span class="n">empty</span><span class="o">=</span><span class="mh">0x00</span>
+
+<span class="c1"># a region called BIOS, starting at 2M, filling up the free space</span>
+<span class="c1"># filling up fails (build error) if two regions are requested to fill up</span>
+<span class="c1"># against each other</span>
+<span class="n">region</span> <span class="n">BIOS</span><span class="p">:</span> <span class="mi">2</span><span class="n">M</span> <span class="o">*</span>
+
+<span class="c1"># This would define a region that covers the last 4K of flash.</span>
+<span class="c1"># The BIOS region specified above will end right before it instead of</span>
+<span class="c1"># expanding to end of flash</span>
+<span class="c1"># region AUX: -4K -0</span>
+
+<span class="c1"># specify the tool that post-processes the entire image.</span>
+<span class="n">postprocess</span> <span class="n">image</span><span class="p">:</span> <span class="n">util</span><span class="o">/</span><span class="n">intelchksum</span><span class="o">/</span><span class="n">intelchksum</span><span class="o">.</span><span class="n">sh</span>
+
+<span class="n">coreboot</span> <span class="n">manifest</span>
+<span class="o">=================</span>
+<span class="c1"># declare that build/verstage.elf belongs into the group ‘verstage’</span>
+<span class="c1"># these groups are later referred to by the “cbfs” command.</span>
+<span class="n">group</span> <span class="n">verstage</span><span class="p">:</span> <span class="n">build</span><span class="o">/</span><span class="n">verstage</span><span class="o">.</span><span class="n">elf</span> <span class="n">stage</span> <span class="n">xip</span> <span class="n">name</span><span class="o">=</span><span class="n">fallback</span><span class="o">/</span><span class="n">verstage</span>
+<span class="n">group</span> <span class="n">romstage</span><span class="p">:</span> <span class="n">build</span><span class="o">/</span><span class="n">romstage</span><span class="o">.</span><span class="n">elf</span> <span class="n">stage</span> <span class="n">xip</span> <span class="n">name</span><span class="o">=</span><span class="n">fallback</span><span class="o">/</span><span class="n">romstage</span>
+<span class="n">group</span> <span class="n">ramstage</span><span class="p">:</span> <span class="n">build</span><span class="o">/</span><span class="n">ramstage</span><span class="o">.</span><span class="n">elf</span> <span class="n">stage</span> <span class="n">name</span><span class="o">=</span><span class="n">fallback</span><span class="o">/</span><span class="n">ramstage</span>
+<span class="n">compression</span><span class="o">=</span><span class="n">lzma</span>
+<span class="n">group</span> <span class="n">ramstage</span><span class="p">:</span> <span class="n">build</span><span class="o">/</span><span class="n">dsdt</span><span class="o">.</span><span class="n">aml</span> <span class="n">compression</span><span class="o">=</span><span class="n">lzma</span>
+
+<span class="n">boot</span> <span class="n">method</span> <span class="n">manifest</span>
+<span class="o">====================</span>
+<span class="c1"># Define RO as region inside BIOS, covering the upper half of the image.</span>
+<span class="c1"># It’s a build error if the result crosses outside BIOS.</span>
+<span class="c1"># math expressions are wrapped with ( ),</span>
+<span class="c1"># and mentions of regions therein always refer to their size</span>
+<span class="n">subregion</span> <span class="n">BIOS</span> <span class="n">RO</span><span class="p">:</span> <span class="p">(</span> <span class="n">image</span> <span class="o">/</span> <span class="mi">2</span> <span class="p">)</span> <span class="o">-</span><span class="mi">0</span>
+
+<span class="c1"># Define RW to cover the rest of BIOS.</span>
+<span class="c1"># The order of RW and RO doesn’t matter except to keep comments clearer.</span>
+<span class="c1"># Dynamic items like RW (“*”) will be sized to fill unused space after</span>
+<span class="c1"># everything else is placed.</span>
+<span class="n">subregion</span> <span class="n">BIOS</span> <span class="n">RW</span><span class="p">:</span> <span class="mi">0</span> <span class="o">*</span>
+
+<span class="c1"># It may be necessary to separate the RO/RW definition into another manifest</span>
+<span class="c1"># file</span>
+<span class="c1"># that defines the RO configuration of the flash</span>
+
+<span class="c1"># Some more subregions, with dynamically calculated sizes</span>
+<span class="n">subregion</span> <span class="n">RW</span> <span class="n">RW_A</span><span class="p">:</span> <span class="mi">0</span> <span class="p">(</span> <span class="n">RW</span> <span class="o">/</span> <span class="mi">2</span> <span class="p">)</span>
+<span class="n">subregion</span> <span class="n">RW</span> <span class="n">RW_B</span><span class="p">:</span> <span class="o">*</span> <span class="o">-</span><span class="mi">0</span>
+<span class="n">subregion</span> <span class="n">RW_A</span> <span class="n">FW_MAIN_A</span><span class="p">:</span> <span class="n">RW_A</span> <span class="o">*</span> <span class="o">-</span><span class="mi">0</span>
+<span class="n">subregion</span> <span class="n">RW_A</span> <span class="n">VBLOCK_A</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">64</span><span class="n">K</span>
+<span class="c1"># foo +bar specifies start + size, not (start, end)</span>
+<span class="c1"># also, start is given as “the end of VBLOCK_A”</span>
+<span class="c1"># (while using a region in the “end” field means “start of region”)</span>
+<span class="n">subregion</span> <span class="n">RW_A</span> <span class="n">FWID_A</span><span class="p">:</span> <span class="n">VBLOCK_A</span> <span class="o">+</span><span class="mi">64</span>
+
+<span class="c1"># To make the example not too verbose, RO only has the CBFS region</span>
+<span class="n">subregion</span> <span class="n">RO</span> <span class="n">BOOTSTUB</span><span class="p">:</span> <span class="mi">0</span> <span class="o">*</span>
+
+<span class="c1"># Postprocess the data that ends up in VBLOCK_A,</span>
+<span class="c1"># passing the listed regions as additional arguments.</span>
+<span class="c1"># Circular dependencies are build errors.</span>
+<span class="n">postprocess</span> <span class="n">VBLOCK_A</span><span class="p">(</span><span class="n">FW_MAIN_A</span><span class="p">):</span> <span class="n">signtool</span>
+
+<span class="c1"># binding files to regions indirectly through groups</span>
+<span class="n">cbfs</span> <span class="n">BOOTSTUB</span><span class="p">:</span> <span class="n">verstage</span><span class="p">,</span> <span class="n">romstage</span><span class="p">,</span> <span class="n">ramstage</span><span class="p">,</span> <span class="n">payload</span>
+<span class="n">cbfs</span> <span class="n">FW_MAIN_A</span><span class="p">:</span> <span class="n">romstage</span><span class="p">,</span> <span class="n">ramstage</span><span class="p">,</span> <span class="n">payload</span>
+
+<span class="c1"># defining defaults: unless overridden, in all regions that use CBFS (“*”),</span>
+<span class="c1"># we want all files to come with SHA256 hashes.</span>
+<span class="c1"># Wildcard defaults have lower priority than specific defaults.</span>
+<span class="c1"># Other conflicts lead to a build error.</span>
+<span class="n">cbfsdefaults</span> <span class="o">*</span><span class="p">:</span> <span class="nb">hash</span><span class="o">=</span><span class="n">sha3</span>
+
+<span class="n">payload</span> <span class="n">manifest</span>
+<span class="o">================</span>
+<span class="n">group</span> <span class="n">payload</span><span class="p">:</span> <span class="n">payload</span><span class="o">.</span><span class="n">elf</span> <span class="n">payload</span>
+<span class="n">group</span> <span class="n">payload</span><span class="p">:</span> <span class="n">bootscreen</span><span class="o">.</span><span class="n">jpg</span> <span class="n">name</span><span class="o">=</span><span class="n">splashscreen</span><span class="o">.</span><span class="n">jpg</span> <span class="nb">type</span><span class="o">=</span><span class="n">splashscreen</span>
+
+<span class="n">EC</span> <span class="n">firmware</span> <span class="n">manifest</span>
+<span class="o">====================</span>
+<span class="c1"># overrides the cbfsdefault above</span>
+<span class="n">group</span> <span class="n">payload</span><span class="p">:</span> <span class="n">ecrw</span><span class="o">.</span><span class="n">bin</span> <span class="n">name</span><span class="o">=</span><span class="n">ecrw</span> <span class="nb">hash</span><span class="o">=</span><span class="n">sha256</span>
+<span class="n">group</span> <span class="n">payload</span><span class="p">:</span> <span class="n">pdrw</span><span class="o">.</span><span class="n">bin</span> <span class="n">name</span><span class="o">=</span><span class="n">pdrw</span> <span class="nb">hash</span><span class="o">=</span><span class="n">sha256</span>
+</pre></div>
+</div>
+</section>
+<section id="manifest-parsing">
+<h2>manifest parsing<a class="headerlink" href="#manifest-parsing" title="Link to this heading"></a></h2>
+<p>The exact BNF is work in progress.</p>
+<p>Some parser rules are</p>
+<ul class="simple">
+<li><p>one line per statement</p></li>
+<li><p>‘#’ introduces a command until the end of line</p></li>
+</ul>
+<p>Some processing rules</p>
+<ul class="simple">
+<li><p>When there’s a conflict (eg. two statements on what to do to a region,
+overlap, anything that can’t be determined), that is a build error.</p></li>
+<li><p>the order of statements doesn’t matter, enabling simple addition of more
+manifests where the need arises.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2017-02-dealing-with-untrusted-input-in-smm.html" class="btn btn-neutral float-left" title="Dealing with Untrusted Input in SMM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2020-03-unit-testing-coreboot.html" class="btn btn-neutral float-right" title="Unit testing coreboot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

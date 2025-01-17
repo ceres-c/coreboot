@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ivy Bridge Lenovo ThinkPad Internal Flashing &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Lenovo ThinkPad T440p" href="t440p.html" />
+    <link rel="prev" title="ThinkPad Lenovo X230s" href="x230s.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hp">HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#lenovo">Lenovo</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="codenames.html">Mainboard codenames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thinkpad_hmm.html">Hardware Maintenance Manual of ThinkPads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="r60.html">R60</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t4xx_series.html">T4xx common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="x2xx_series.html">X2xx common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vboot.html">vboot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#gm45-series">GM45 series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#arrandale-series">Arrandale series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#sandy-bridge-series">Sandy Bridge series</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#ivy-bridge-series">Ivy Bridge series</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="t430.html">T430</a></li>
+<li class="toctree-l4"><a class="reference internal" href="w530.html">T530 / W530</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Ivy_Bridge_series.html">T430 / T530 / X230 / W530 common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="t431s.html">T431s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="x230s.html">X230s</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Internal flashing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#haswell-series">Haswell series</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">Ivy Bridge Lenovo ThinkPad Internal Flashing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/lenovo/ivb_internal_flashing.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ivy-bridge-lenovo-thinkpad-internal-flashing">
+<h1>Ivy Bridge Lenovo ThinkPad Internal Flashing<a class="headerlink" href="#ivy-bridge-lenovo-thinkpad-internal-flashing" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Old versions of stock BIOS for these models have several security issues.
+In order to flash coreboot internally, two of them are of interest.</p>
+<p><strong>First</strong> is the fact the <code class="docutils literal notranslate"><span class="pre">SMM_BWP</span></code> and <code class="docutils literal notranslate"><span class="pre">BLE</span></code> are not enabled in BIOS
+versions released before 2014. We have tested many versions on T430 and
+X230 and found out that <code class="docutils literal notranslate"><span class="pre">SMM_BWP=1</span></code> only since the update, the changelog
+of which contains following line:</p>
+<blockquote>
+<div><p>(New) Improved the UEFI BIOS security feature.</p>
+</div></blockquote>
+<p><strong>Second</strong> is <a class="reference external" href="https://support.lenovo.com/eg/ru/product_security/s3_boot_protect">S3 Boot Script vulnerability</a>,
+that was discovered and fixed later.</p>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>USB drive (in case you need to downgrade BIOS)</p></li>
+<li><p>Linux install that (can be) loaded in UEFI mode</p></li>
+<li><p><a class="reference external" href="https://github.com/chipsec/chipsec">CHIPSEC</a></p></li>
+</ul>
+</section>
+<section id="bios-versions">
+<h2>BIOS versions<a class="headerlink" href="#bios-versions" title="Link to this heading"></a></h2>
+<p>Below is a table of BIOS versions that are vulnerable enough for our
+goals, per model. The version number means that you need to downgrade to
+that or earlier version.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>BIOS version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>X230</p></td>
+<td><p>2.60</p></td>
+</tr>
+<tr class="row-odd"><td><p>X230T</p></td>
+<td><p>2.58</p></td>
+</tr>
+<tr class="row-even"><td><p>T430</p></td>
+<td><p>2.64</p></td>
+</tr>
+<tr class="row-odd"><td><p>T430s</p></td>
+<td><p>2.59</p></td>
+</tr>
+<tr class="row-even"><td><p>T530</p></td>
+<td><p>2.60</p></td>
+</tr>
+<tr class="row-odd"><td><p>W530</p></td>
+<td><p>2.58</p></td>
+</tr>
+</tbody>
+</table>
+<p>If your BIOS version is equal or lower, skip to the
+<strong><a class="reference external" href="#examining-protections-theory">Examining protections</a></strong> section. If not,
+go through the downgrade process, described next.</p>
+</section>
+<section id="downgrading-bios">
+<h2>Downgrading BIOS<a class="headerlink" href="#downgrading-bios" title="Link to this heading"></a></h2>
+<p>Go to the Lenovo web site and download BIOS Update Bootable CD for your
+machine of needed version (see above).</p>
+<p>Lenovo states that BIOS has “security rollback prevention”, meaning once
+you update it to some version X, you will not be able to downgrade it to
+pre-X version. That’s not true. It seems that this is completely
+client-side restriction in flashing utilities (both Windows utility and
+Bootable CD). You just need to call <code class="docutils literal notranslate"><span class="pre">winflash.exe</span></code> or <code class="docutils literal notranslate"><span class="pre">dosflash.exe</span></code>
+directly. Therefore you need to modify the bootable CD image you just
+downloaded.</p>
+<p>Extract an El Torito image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geteltorito</span> <span class="o">-</span><span class="n">o</span> <span class="o">./</span><span class="n">bios</span><span class="o">.</span><span class="n">img</span> <span class="n">g1uj41us</span><span class="o">.</span><span class="n">iso</span>
+</pre></div>
+</div>
+<p>Mount the partition in that image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mount</span> <span class="o">-</span><span class="n">t</span> <span class="n">vfat</span> <span class="o">./</span><span class="n">bios</span><span class="o">.</span><span class="n">img</span> <span class="o">/</span><span class="n">mnt</span> <span class="o">-</span><span class="n">o</span> <span class="n">loop</span><span class="p">,</span><span class="n">offset</span><span class="o">=</span><span class="mi">16384</span>
+</pre></div>
+</div>
+<p>List files, find the <code class="docutils literal notranslate"><span class="pre">AUTOEXEC.BAT</span></code> file and the <code class="docutils literal notranslate"><span class="pre">FLASH</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">/</span><span class="n">mnt</span>
+<span class="n">ls</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">FLASH</span>
+</pre></div>
+</div>
+<p>Inside the <code class="docutils literal notranslate"><span class="pre">FLASH</span></code> directory, there should be a directory called
+<code class="docutils literal notranslate"><span class="pre">G1ET93WW</span></code> or similar (exact name depends on your ThinkPad model and
+BIOS version). See what’s inside:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">FLASH</span><span class="o">/</span><span class="n">G1ET93WW</span>
+</pre></div>
+</div>
+<p>There must be a file with <code class="docutils literal notranslate"><span class="pre">.FL1</span></code> extension called <code class="docutils literal notranslate"><span class="pre">$01D2000.FL1</span></code> or
+something similar.</p>
+<p>Now open the <code class="docutils literal notranslate"><span class="pre">AUTOEXEC.BAT</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">vim</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">AUTOEXEC</span><span class="o">.</span><span class="n">BAT</span>
+</pre></div>
+</div>
+<p>You will see a list of commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>@ECHO OFF
+PROMPT $p$g
+cd c:\flash
+command.com
+</pre></div>
+</div>
+<p>Replace the last line (<code class="docutils literal notranslate"><span class="pre">command.com</span></code>) with this (change path to the
+<code class="docutils literal notranslate"><span class="pre">.FL1</span></code> file according to yours):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>dosflash.exe /sd /file G1ET93WW\$01D2000.FL1
+</pre></div>
+</div>
+<p>Save the file, then unmount the partition:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">umount</span> <span class="o">/</span><span class="n">mnt</span>
+</pre></div>
+</div>
+<p>Write this image to a USB drive (replace <code class="docutils literal notranslate"><span class="pre">/dev/sdX</span></code> with your USB drive
+device name):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dd</span> <span class="k">if</span><span class="o">=./</span><span class="n">bios</span><span class="o">.</span><span class="n">img</span> <span class="n">of</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdX</span> <span class="n">bs</span><span class="o">=</span><span class="mi">1</span><span class="n">M</span>
+</pre></div>
+</div>
+<p>Now reboot and press F1 to enter BIOS settings. Open the <strong>Startup</strong> tab
+and set the startup mode to <strong>Legacy</strong> (or <strong>Both</strong>/<strong>Legacy First</strong>):</p>
+<p><img alt="../../_images/ivb_bios_legacy_only.jpg" src="../../_images/ivb_bios_legacy_only.jpg" /></p>
+<p>Press F10 to save changes and reboot.</p>
+<p>Now, before you process, make sure that AC adapter is connected! If your
+battery will die during the process, you’ll likely need external
+programmer to recover.</p>
+<p>Boot from the USB drive (press F12 to select boot device), and BIOS
+flashing process should begin:</p>
+<p><img alt="../../_images/ivb_bios_flashing1.jpg" src="../../_images/ivb_bios_flashing1.jpg" /></p>
+<p><img alt="../../_images/ivb_bios_flashing2.jpg" src="../../_images/ivb_bios_flashing2.jpg" /></p>
+<p>It may reboot a couple of times in the process. Do not interrupt it.</p>
+<p>When it’s completed, go back to the BIOS settings and set startup mode
+to <strong>UEFI</strong> (or <strong>Both</strong>/<strong>UEFI First</strong>). This is required for
+vulnerability exploitation.</p>
+<p><img alt="../../_images/ivb_bios_uefi_only.jpg" src="../../_images/ivb_bios_uefi_only.jpg" /></p>
+<p>Then boot to your system and make sure that <code class="docutils literal notranslate"><span class="pre">/sys/firmware/efi</span></code> or
+<code class="docutils literal notranslate"><span class="pre">/sys/firmware/efivars</span></code> exist.</p>
+</section>
+<section id="examining-protections-theory">
+<h2>Examining protections (theory)<a class="headerlink" href="#examining-protections-theory" title="Link to this heading"></a></h2>
+<p>There are two main ways that Intel platform provides to protect BIOS
+chip:</p>
+<ul>
+<li><p><strong>BIOS_CNTL</strong> register of LPC Interface Bridge Registers (accessible
+via PCI configuration space, offset 0xDC). It has:</p>
+<ul class="simple">
+<li><p><strong>SMM_BWP</strong> (<em>SMM BIOS Write Protect</em>) bit. If set to 1, the BIOS is
+writable only in SMM. Once set to 1, cannot be changed anymore.</p></li>
+<li><p><strong>BLE</strong>  (<em>BIOS Lock Enable</em>) bit. If set to 1, setting BIOSWE to 1
+will raise SMI. Once set to 1, cannot be changed anymore.</p></li>
+<li><p><strong>BIOSWE</strong> (<em>BIOS Write Enable</em>) bit. Controls whether BIOS is
+writable. This bit is always R/W.</p></li>
+</ul>
+</li>
+<li><p>SPI Protected Range Registers (<strong>PR0</strong>-<strong>PR4</strong>) of SPI Configuration
+Registers (SPIBAR+0x74 - SPIBAR+0x84). Each register has bits that
+define protected range, plus WP bit, that defines whether write
+protection is enabled.</p>
+<p>There’s also <strong>FLOCKDN</strong> bit of HSFS register (SPIBAR+0x04) of SPI
+Configuration Registers. When set to 1, PR0-PR4 registers cannot be
+written. Once set to 1, cannot be changed anymore.</p>
+</li>
+</ul>
+<p>To be able to flash, we need <code class="docutils literal notranslate"><span class="pre">SMM_BWP=0</span></code>, <code class="docutils literal notranslate"><span class="pre">BIOSWE=1</span></code>, <code class="docutils literal notranslate"><span class="pre">BLE=0</span></code>, <code class="docutils literal notranslate"><span class="pre">FLOCKDN=0</span></code> or
+SPI protected ranges (PRx) to have a WP bit set to 0.</p>
+<p>Let’s see what we have. Examine <code class="docutils literal notranslate"><span class="pre">HSFS</span></code> register:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chipsec_main</span> <span class="o">-</span><span class="n">m</span> <span class="n">chipsec</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">spi_lock</span>
+</pre></div>
+</div>
+<p>You should see that <code class="docutils literal notranslate"><span class="pre">FLOCKDN=1</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="p">][</span> <span class="o">=======================================================================</span>
+<span class="p">[</span><span class="n">x</span><span class="p">][</span> <span class="n">Module</span><span class="p">:</span> <span class="n">SPI</span> <span class="n">Flash</span> <span class="n">Controller</span> <span class="n">Configuration</span> <span class="n">Locks</span>
+<span class="p">[</span><span class="n">x</span><span class="p">][</span> <span class="o">=======================================================================</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">HSFS</span> <span class="o">=</span> <span class="mh">0xE009</span> <span class="o">&lt;&lt;</span> <span class="n">Hardware</span> <span class="n">Sequencing</span> <span class="n">Flash</span> <span class="n">Status</span> <span class="n">Register</span> <span class="p">(</span><span class="n">SPIBAR</span> <span class="o">+</span> <span class="mh">0x4</span><span class="p">)</span>
+    <span class="p">[</span><span class="mi">00</span><span class="p">]</span> <span class="n">FDONE</span>            <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">Flash</span> <span class="n">Cycle</span> <span class="n">Done</span>
+    <span class="p">[</span><span class="mi">01</span><span class="p">]</span> <span class="n">FCERR</span>            <span class="o">=</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="n">Flash</span> <span class="n">Cycle</span> <span class="n">Error</span>
+    <span class="p">[</span><span class="mi">02</span><span class="p">]</span> <span class="n">AEL</span>              <span class="o">=</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="n">Access</span> <span class="n">Error</span> <span class="n">Log</span>
+    <span class="p">[</span><span class="mi">03</span><span class="p">]</span> <span class="n">BERASE</span>           <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">Block</span><span class="o">/</span><span class="n">Sector</span> <span class="n">Erase</span> <span class="n">Size</span>
+    <span class="p">[</span><span class="mi">05</span><span class="p">]</span> <span class="n">SCIP</span>             <span class="o">=</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="n">SPI</span> <span class="n">cycle</span> <span class="ow">in</span> <span class="n">progress</span>
+    <span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="n">FDOPSS</span>           <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">Flash</span> <span class="n">Descriptor</span> <span class="n">Override</span> <span class="n">Pin</span><span class="o">-</span><span class="n">Strap</span> <span class="n">Status</span>
+    <span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="n">FDV</span>              <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">Flash</span> <span class="n">Descriptor</span> <span class="n">Valid</span>
+    <span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="n">FLOCKDN</span>          <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">Flash</span> <span class="n">Configuration</span> <span class="n">Lock</span><span class="o">-</span><span class="n">Down</span>
+</pre></div>
+</div>
+<p>Then check <code class="docutils literal notranslate"><span class="pre">BIOS_CNTL</span></code> and PR0-PR4:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chipsec_main</span> <span class="o">-</span><span class="n">m</span> <span class="n">common</span><span class="o">.</span><span class="n">bios_wp</span>
+</pre></div>
+</div>
+<p>Good news: on old BIOS versions, <code class="docutils literal notranslate"><span class="pre">SMM_BWP=0</span></code> and <code class="docutils literal notranslate"><span class="pre">BLE=0</span></code>.</p>
+<p>Bad news: there are 4 write protected SPI ranges:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> [x][ =======================================================================
+ [x][ Module: BIOS Region Write Protection
+ [x][ =======================================================================
+ [*] BC = 0x 8 &lt;&lt; BIOS Control (b:d.f 00:31.0 + 0xDC)
+     [00] BIOSWE           = 0 &lt;&lt; BIOS Write Enable
+     [01] BLE              = 0 &lt;&lt; BIOS Lock Enable
+     [02] SRC              = 2 &lt;&lt; SPI Read Configuration
+     [04] TSS              = 0 &lt;&lt; Top Swap Status
+     [05] SMM_BWP          = 0 &lt;&lt; SMM BIOS Write Protection
+ [-] BIOS region write protection is disabled!
+
+ [*] BIOS Region: Base = 0x00500000, Limit = 0x00BFFFFF
+ SPI Protected Ranges
+ ------------------------------------------------------------
+ PRx (offset) | Value    | Base     | Limit    | WP? | RP?
+ ------------------------------------------------------------
+ PR0 (74)     | 00000000 | 00000000 | 00000000 | 0   | 0
+ PR1 (78)     | 8BFF0B40 | 00B40000 | 00BFFFFF | 1   | 0
+ PR2 (7C)     | 8B100B10 | 00B10000 | 00B10FFF | 1   | 0
+ PR3 (80)     | 8ADE0AD0 | 00AD0000 | 00ADEFFF | 1   | 0
+ PR4 (84)     | 8AAF0800 | 00800000 | 00AAFFFF | 1   | 0
+</pre></div>
+</div>
+<p>Other way to examine SPI configuration registers is to just dump SPIBAR:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chipsec_util</span> <span class="n">mmio</span> <span class="n">dump</span> <span class="n">SPIBAR</span>
+</pre></div>
+</div>
+<p>You will see <code class="docutils literal notranslate"><span class="pre">SPIBAR</span></code> address (0xFED1F800) and registers (for example,
+<code class="docutils literal notranslate"><span class="pre">00000004</span></code> is <code class="docutils literal notranslate"><span class="pre">HSFS</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">mmio</span><span class="p">]</span> <span class="n">MMIO</span> <span class="n">register</span> <span class="nb">range</span> <span class="p">[</span><span class="mh">0x00000000FED1F800</span><span class="p">:</span><span class="mh">0x00000000FED1F800</span><span class="o">+</span><span class="mi">00000200</span><span class="p">]:</span>
+<span class="o">+</span><span class="mi">00000000</span><span class="p">:</span> <span class="mi">0</span><span class="n">BFF0500</span>
+<span class="o">+</span><span class="mi">00000004</span><span class="p">:</span> <span class="mf">0004E009</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>As you can see, the only thing we need is to unset WP bit on PR0-PR4.
+But that cannot be done once <code class="docutils literal notranslate"><span class="pre">FLOCKDN</span></code> is set to 1.</p>
+<p>Now the fun part!</p>
+<p><code class="docutils literal notranslate"><span class="pre">FLOCKDN</span></code> may only be cleared by a hardware reset, which includes S3
+state. On S3 resume boot path, the chipset configuration has to be
+restored and it’s done by executing so-called S3 Boot Scripts. You can
+dump these scripts by executing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chipsec_util</span> <span class="n">uefi</span> <span class="n">s3bootscript</span>
+</pre></div>
+</div>
+<p>There are many entries. Along them, you can find instructions to write
+to <code class="docutils literal notranslate"><span class="pre">HSFS</span></code> (remember, we know that <code class="docutils literal notranslate"><span class="pre">SPIBAR</span></code> is 0xFED1F800):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">Entry</span> <span class="n">at</span> <span class="n">offset</span> <span class="mh">0x2B8F</span> <span class="p">(</span><span class="nb">len</span> <span class="o">=</span> <span class="mh">0x17</span><span class="p">,</span> <span class="n">header</span> <span class="nb">len</span> <span class="o">=</span> <span class="mh">0x0</span><span class="p">):</span>
+ <span class="n">Data</span><span class="p">:</span>
+ <span class="mi">02</span> <span class="mi">00</span> <span class="mi">17</span> <span class="mi">02</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">01</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">04</span> <span class="n">f8</span> <span class="n">d1</span> <span class="n">fe</span> <span class="mi">00</span> <span class="o">|</span>
+ <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">09</span> <span class="n">e0</span> <span class="mi">04</span> <span class="mi">00</span>                            <span class="o">|</span>
+ <span class="n">Decoded</span><span class="p">:</span>
+   <span class="n">Opcode</span> <span class="p">:</span> <span class="n">S3_BOOTSCRIPT_MEM_WRITE</span> <span class="p">(</span><span class="mh">0x0002</span><span class="p">)</span>
+   <span class="n">Width</span>  <span class="p">:</span> <span class="mh">0x02</span> <span class="p">(</span><span class="mi">4</span> <span class="nb">bytes</span><span class="p">)</span>
+   <span class="n">Address</span><span class="p">:</span> <span class="mh">0xFED1F804</span>
+   <span class="n">Count</span>  <span class="p">:</span> <span class="mh">0x1</span>
+   <span class="n">Values</span> <span class="p">:</span> <span class="mh">0x0004E009</span>
+</pre></div>
+</div>
+<p>These scripts are stored in memory. The vulnerability is that we can
+overwrite this memory, change these instructions and they will be
+executed on S3 resume. Once we patch that instruction to not set <code class="docutils literal notranslate"><span class="pre">FLOCKDN</span></code>
+bit, we will be able to write to PR0-PR4 registers.</p>
+</section>
+<section id="creating-a-backup">
+<h2>Creating a backup<a class="headerlink" href="#creating-a-backup" title="Link to this heading"></a></h2>
+<p>Before you proceed, please create a backup of the <code class="docutils literal notranslate"><span class="pre">bios</span></code> region. Then,
+in case something goes wrong, you’ll be able to flash it back externally.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">me</span></code> region is locked, so an attempt to create a full dump will fail.
+But you can back up the <code class="docutils literal notranslate"><span class="pre">bios</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">flashrom</span> <span class="o">-</span><span class="n">p</span> <span class="n">internal</span> <span class="o">-</span><span class="n">r</span> <span class="n">bios_backup</span><span class="o">.</span><span class="n">rom</span> <span class="o">--</span><span class="n">ifd</span> <span class="o">-</span><span class="n">i</span> <span class="n">bios</span>
+</pre></div>
+</div>
+<p>If you will ever need to flash it back, use <code class="docutils literal notranslate"><span class="pre">--ifd</span> <span class="pre">-i</span> <span class="pre">bios</span></code> as well:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">flashrom</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">YOUR_PROGRAMMER</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">w</span> <span class="n">bios_backup</span><span class="o">.</span><span class="n">rom</span> <span class="o">--</span><span class="n">ifd</span> <span class="o">-</span><span class="n">i</span> <span class="n">bios</span>
+</pre></div>
+</div>
+<p><strong>Caution:</strong> if you will omit <code class="docutils literal notranslate"><span class="pre">--ifd</span> <span class="pre">-i</span> <span class="pre">bios</span></code> for flashing, you will
+brick your machine, because your backup has <code class="docutils literal notranslate"><span class="pre">FF</span></code>s in place of <code class="docutils literal notranslate"><span class="pre">fd</span></code> and
+<code class="docutils literal notranslate"><span class="pre">me</span></code> regions. Flash only <code class="docutils literal notranslate"><span class="pre">bios</span></code> region!</p>
+</section>
+<section id="removing-protections-practice">
+<h2>Removing protections (practice)<a class="headerlink" href="#removing-protections-practice" title="Link to this heading"></a></h2>
+<p>The original boot script writes 0xE009 to <code class="docutils literal notranslate"><span class="pre">HSFS</span></code>. <code class="docutils literal notranslate"><span class="pre">FLOCKDN</span></code> is 15th bit, so
+let’s write 0x6009 instead:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chipsec_main</span> <span class="o">-</span><span class="n">m</span> <span class="n">tools</span><span class="o">.</span><span class="n">uefi</span><span class="o">.</span><span class="n">s3script_modify</span> <span class="o">-</span><span class="n">a</span> <span class="n">replace_op</span><span class="p">,</span><span class="n">mmio_wr</span><span class="p">,</span><span class="mh">0xFED1F804</span><span class="p">,</span><span class="mh">0x6009</span><span class="p">,</span><span class="mh">0x2</span>
+</pre></div>
+</div>
+<p>You will get a lot of output and in the end you should see something
+like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> [*] Modifying S3 boot script entry at address 0x00000000DAF49B8F..
+ [mem] 0x00000000DAF49B8F
+ [*] Original entry:
+  2  0 17  2  0  0  0  1  0  0  0  4 f8 d1 fe  0 |
+  0  0  0  9 e0  4  0                            |
+ [mem] buffer len = 0x17 to PA = 0x00000000DAF49B8F
+  2  0 17  2  0  0  0  1  0  0  0  4 f8 d1 fe  0 |
+  0  0  0  9 60  0  0                            |     `
+ [mem] 0x00000000DAF49B8F
+ [*] Modified entry:
+  2  0 17  2  0  0  0  1  0  0  0  4 f8 d1 fe  0 |
+  0  0  0  9 60  0  0                            |     `
+ [*] After sleep/resume, check the value of register 0xFED1F804 is 0x6009
+ [+] PASSED: The script has been modified. Go to sleep..
+</pre></div>
+</div>
+<p>Now go to S3, then resume and check <code class="docutils literal notranslate"><span class="pre">FLOCKDN</span></code>. It should be 0:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chipsec_main</span> <span class="o">-</span><span class="n">m</span> <span class="n">chipsec</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">spi_lock</span>
+
+<span class="o">...</span>
+<span class="p">[</span><span class="n">x</span><span class="p">][</span> <span class="o">=======================================================================</span>
+<span class="p">[</span><span class="n">x</span><span class="p">][</span> <span class="n">Module</span><span class="p">:</span> <span class="n">SPI</span> <span class="n">Flash</span> <span class="n">Controller</span> <span class="n">Configuration</span> <span class="n">Locks</span>
+<span class="p">[</span><span class="n">x</span><span class="p">][</span> <span class="o">=======================================================================</span>
+<span class="p">[</span><span class="o">*</span><span class="p">]</span> <span class="n">HSFS</span> <span class="o">=</span> <span class="mh">0x6008</span> <span class="o">&lt;&lt;</span> <span class="n">Hardware</span> <span class="n">Sequencing</span> <span class="n">Flash</span> <span class="n">Status</span> <span class="n">Register</span> <span class="p">(</span><span class="n">SPIBAR</span> <span class="o">+</span> <span class="mh">0x4</span><span class="p">)</span>
+    <span class="p">[</span><span class="mi">00</span><span class="p">]</span> <span class="n">FDONE</span>            <span class="o">=</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="n">Flash</span> <span class="n">Cycle</span> <span class="n">Done</span>
+    <span class="p">[</span><span class="mi">01</span><span class="p">]</span> <span class="n">FCERR</span>            <span class="o">=</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="n">Flash</span> <span class="n">Cycle</span> <span class="n">Error</span>
+    <span class="p">[</span><span class="mi">02</span><span class="p">]</span> <span class="n">AEL</span>              <span class="o">=</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="n">Access</span> <span class="n">Error</span> <span class="n">Log</span>
+    <span class="p">[</span><span class="mi">03</span><span class="p">]</span> <span class="n">BERASE</span>           <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">Block</span><span class="o">/</span><span class="n">Sector</span> <span class="n">Erase</span> <span class="n">Size</span>
+    <span class="p">[</span><span class="mi">05</span><span class="p">]</span> <span class="n">SCIP</span>             <span class="o">=</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="n">SPI</span> <span class="n">cycle</span> <span class="ow">in</span> <span class="n">progress</span>
+    <span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="n">FDOPSS</span>           <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">Flash</span> <span class="n">Descriptor</span> <span class="n">Override</span> <span class="n">Pin</span><span class="o">-</span><span class="n">Strap</span> <span class="n">Status</span>
+    <span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="n">FDV</span>              <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">Flash</span> <span class="n">Descriptor</span> <span class="n">Valid</span>
+    <span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="n">FLOCKDN</span>          <span class="o">=</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="n">Flash</span> <span class="n">Configuration</span> <span class="n">Lock</span><span class="o">-</span><span class="n">Down</span>
+<span class="p">[</span><span class="o">-</span><span class="p">]</span> <span class="n">SPI</span> <span class="n">Flash</span> <span class="n">Controller</span> <span class="n">configuration</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">locked</span>
+<span class="p">[</span><span class="o">-</span><span class="p">]</span> <span class="n">FAILED</span><span class="p">:</span> <span class="n">SPI</span> <span class="n">Flash</span> <span class="n">Controller</span> <span class="ow">not</span> <span class="n">locked</span> <span class="n">correctly</span><span class="o">.</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Remove WP from protected ranges:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chipsec_util</span> <span class="n">mmio</span> <span class="n">write</span> <span class="n">SPIBAR</span> <span class="mh">0x74</span> <span class="mh">0x4</span> <span class="mh">0xAAF0800</span>
+<span class="n">sudo</span> <span class="n">chipsec_util</span> <span class="n">mmio</span> <span class="n">write</span> <span class="n">SPIBAR</span> <span class="mh">0x78</span> <span class="mh">0x4</span> <span class="mh">0xADE0AD0</span>
+<span class="n">sudo</span> <span class="n">chipsec_util</span> <span class="n">mmio</span> <span class="n">write</span> <span class="n">SPIBAR</span> <span class="mh">0x7C</span> <span class="mh">0x4</span> <span class="mh">0xB100B10</span>
+<span class="n">sudo</span> <span class="n">chipsec_util</span> <span class="n">mmio</span> <span class="n">write</span> <span class="n">SPIBAR</span> <span class="mh">0x80</span> <span class="mh">0x4</span> <span class="mh">0xBFF0B40</span>
+</pre></div>
+</div>
+<p>Verify that it worked:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo chipsec_main -m common.bios_wp
+
+[x][ =======================================================================
+[x][ Module: BIOS Region Write Protection
+[x][ =======================================================================
+[*] BC = 0x 9 &lt;&lt; BIOS Control (b:d.f 00:31.0 + 0xDC)
+    [00] BIOSWE           = 1 &lt;&lt; BIOS Write Enable
+    [01] BLE              = 0 &lt;&lt; BIOS Lock Enable
+    [02] SRC              = 2 &lt;&lt; SPI Read Configuration
+    [04] TSS              = 0 &lt;&lt; Top Swap Status
+    [05] SMM_BWP          = 0 &lt;&lt; SMM BIOS Write Protection
+[-] BIOS region write protection is disabled!
+
+[*] BIOS Region: Base = 0x00500000, Limit = 0x00BFFFFF
+SPI Protected Ranges
+------------------------------------------------------------
+PRx (offset) | Value    | Base     | Limit    | WP? | RP?
+------------------------------------------------------------
+PR0 (74)     | 0AAF0800 | 00800000 | 00AAF000 | 0   | 0
+PR1 (78)     | 0ADE0AD0 | 00AD0000 | 00ADE000 | 0   | 0
+PR2 (7C)     | 0B100B10 | 00B10000 | 00B10000 | 0   | 0
+PR3 (80)     | 0BFF0B40 | 00B40000 | 00BFF000 | 0   | 0
+PR4 (84)     | 00000000 | 00000000 | 00000000 | 0   | 0
+</pre></div>
+</div>
+<p>Bingo!</p>
+<p>Now you can <a class="reference internal" href="../../tutorial/flashing_firmware/int_flashrom.html"><span class="doc">flash internally</span></a>. Remember to flash only the <code class="docutils literal notranslate"><span class="pre">bios</span></code> region
+(use <code class="docutils literal notranslate"><span class="pre">--ifd</span> <span class="pre">-i</span> <span class="pre">bios</span> <span class="pre">-N</span></code> flashrom arguments). <code class="docutils literal notranslate"><span class="pre">fd</span></code> and <code class="docutils literal notranslate"><span class="pre">me</span></code> are still
+locked.</p>
+<p>Note that you should have an external SPI programmer as a backup method.
+It will help you recover if you flash non-working ROM by mistake.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="x230s.html" class="btn btn-neutral float-left" title="ThinkPad Lenovo X230s" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="t440p.html" class="btn btn-neutral float-right" title="Lenovo ThinkPad T440p" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

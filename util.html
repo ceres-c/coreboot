@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utilities &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=36d40e99"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="abuild" href="util/abuild/index.html" />
+    <link rel="prev" title="Eltan Security" href="vendorcode/eltan/security.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#list-of-utils">List of utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#in-depth-documentation">In depth documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="util/abuild/index.html">abuild</a></li>
+<li class="toctree-l3"><a class="reference internal" href="util/cbfstool/index.html">cbfstool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="util/ifdtool/index.html">ifdtool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="util/intelp2m/index.html">intelp2m</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#generated-documentation">Generated documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Utilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/util.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="utilities">
+<h1>Utilities<a class="headerlink" href="#utilities" title="Link to this heading"></a></h1>
+<section id="list-of-utils">
+<h2>List of utils<a class="headerlink" href="#list-of-utils" title="Link to this heading"></a></h2>
+<p><em>Scripts and programs found in the coreboot <code class="docutils literal notranslate"><span class="pre">./util</span></code> directory</em></p>
+<ul class="simple">
+<li><p><strong>abuild</strong> - coreboot autobuild script builds coreboot images for all
+available targets. <code class="docutils literal notranslate"><span class="pre">bash</span></code></p></li>
+<li><p><strong>acpi</strong> - Walk through all ACPI tables with their addresses. <code class="docutils literal notranslate"><span class="pre">bash</span></code></p></li>
+<li><p><strong>amdfwtool</strong> - Create AMD Firmware combination <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>amdtools</strong> Various tools for AMD processors</p>
+<ul>
+<li><p><em>update_efs_spi_speed</em> - Change SPI speed in binary. <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p>Tools to compare extended K8 memory settings.</p></li>
+<li><p><em>k8-compare-pci-space.pl</em> - Shows differences between values
+in PCI space and the default value. <code class="docutils literal notranslate"><span class="pre">Perl</span></code></p></li>
+<li><p><em>k8-interpret-extended-memory-settings.pl</em> - Shows
+differences between memory controller values and the default value.
+<code class="docutils literal notranslate"><span class="pre">Perl</span></code></p></li>
+<li><p><em>k8-read-mem-settings.sh</em> - Makes data files understood by
+the k8-interpret-extended-memory-settings script. <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><em>parse-bkdg.pl</em> - Make bkdg.data file used by above scripts.
+<code class="docutils literal notranslate"><span class="pre">Perl</span></code></p></li>
+<li><p><em>example_input</em> - Sample input for the above scripts. <code class="docutils literal notranslate"><span class="pre">Text</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>apcb</strong> - AMD PSP Control Block tools</p>
+<ul>
+<li><p><em>apcb_edit.py</em> - This tool allows patching an existing APCB
+binary with specific SPDs and GPIO selection pins. <code class="docutils literal notranslate"><span class="pre">Python3</span></code></p></li>
+<li><p><em>apcb_v3_edit.py</em> - This tool allows patching an existing
+APCB v3 binary with up to 16 specific SPDs. <code class="docutils literal notranslate"><span class="pre">Python3</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>archive</strong> - Concatenate files and create an archive <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>autoport</strong> - Automated porting coreboot to Sandy Bridge/Ivy Bridge
+platforms <code class="docutils literal notranslate"><span class="pre">Go</span></code></p></li>
+<li><p><strong>bincfg</strong> - Compiler/Decompiler for data blobs with specs <code class="docutils literal notranslate"><span class="pre">Lex</span></code>
+<code class="docutils literal notranslate"><span class="pre">Yacc</span></code></p></li>
+<li><p><strong>board_status</strong> - Tools to collect logs and upload them to the board
+status repository <code class="docutils literal notranslate"><span class="pre">Bash</span></code> <code class="docutils literal notranslate"><span class="pre">Go</span></code></p></li>
+<li><p><strong>bucts</strong> - A tool to manipulate the BUC.TS bit on Intel targets. <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>cavium</strong> - Devicetree_convert Tool to convert a DTB to a static C
+file <code class="docutils literal notranslate"><span class="pre">Python</span></code></p></li>
+<li><p><strong>cbfstool</strong></p>
+<ul>
+<li><p><em>cbfstool</em> - For manipulating CBFS file <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><em>fmaptool</em> - Converts plaintext fmd files into fmap blobs <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><em>rmodtool</em> - Creates rmodules <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><em>ifwitool</em> - For manipulating IFWI <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>cbmem</strong> - CBMEM parser to read e.g. timestamps and console log <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>chromeos</strong> - These scripts can be used to access ChromeOS
+resources, for example to extract System Agent reference code and other
+blobs (e.g. mrc.bin, refcode, VGA option roms) from a ChromeOS recovery
+image. <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>crossgcc</strong> - A cross toolchain builder for -elf toolchains (ie. no
+libc support) <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><strong>docker</strong> - Dockerfiles for <em>coreboot-sdk</em>, <em>coreboot-jenkins-node</em>,
+<em>coreboot.org-status</em> and <em>docs.coreboot.org</em> <code class="docutils literal notranslate"><span class="pre">Make</span></code></p></li>
+<li><p><strong>dtd_parser</strong> - DTD structure parser <code class="docutils literal notranslate"><span class="pre">Python2</span></code></p></li>
+<li><p><strong>ectool</strong> - Dumps the RAM of a laptop’s Embedded/Environmental
+Controller (EC). <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>exynos</strong> - Computes and fills Exynos ROM checksum (for BL1 or BL2).
+<code class="docutils literal notranslate"><span class="pre">Python3</span></code></p></li>
+<li><p><strong>find_usbdebug</strong> - Help find USB debug ports <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><strong>futility</strong> - Firmware utility for signing ChromeOS images <code class="docutils literal notranslate"><span class="pre">Make</span></code></p></li>
+<li><p><strong>fuzz-tests</strong> - Create test cases that crash the jpeg code. <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>genbuild_h</strong> - Generate build system definitions <code class="docutils literal notranslate"><span class="pre">Shell</span></code></p></li>
+<li><p><strong>gitconfig</strong> - Initialize git repository submodules install git
+hooks <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><strong>ifdtool</strong> - Extract and dump Intel Firmware Descriptor information
+<code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>intelmetool</strong> - Dump interesting things about Management Engine
+even if hidden <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>intelp2m</strong> - convert the configuration DW0/1 registers value from
+an inteltool dump to coreboot macros. <code class="docutils literal notranslate"><span class="pre">go</span></code></p></li>
+<li><p><strong>inteltool</strong> - Provides information about the Intel CPU/chipset
+hardware configuration (register contents, MSRs, etc). <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>intelvbttool</strong> - Parse VBT from VGA BIOS <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>ipqheader</strong></p>
+<ul>
+<li><p><em>createxbl.py</em> - Concatenates XBL segments into one ELF image
+<code class="docutils literal notranslate"><span class="pre">Python</span></code></p></li>
+<li><p><em>ipqheader.py</em> - Returns a packed MBN header image with the
+specified base and size <code class="docutils literal notranslate"><span class="pre">Python</span></code></p></li>
+<li><p><em>mbncat.py</em> - Generate ipq8064 uber SBL <code class="docutils literal notranslate"><span class="pre">Python</span></code></p></li>
+<li><p><em>mbn_tools.py</em> - Contains all MBN Utilities for image
+generation <code class="docutils literal notranslate"><span class="pre">Python</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>kbc1126</strong> - Tools used to dump the two blobs from the factory
+firmware of many HP laptops with 8051-based SMSC KBC1098/KBC1126
+embedded controller and insert them to the firmware image. <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>kconfig</strong> - Build system <code class="docutils literal notranslate"><span class="pre">Make</span></code></p></li>
+<li><p><strong>lint</strong> - Source linter and linting rules <code class="docutils literal notranslate"><span class="pre">Shell</span></code></p></li>
+<li><p><strong>nixos</strong> - A script and NixOS configuration files to create an ISO
+image for testing purposes and for working on firmware. <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><strong>mainboard</strong> - mainboard specific scripts</p>
+<ul>
+<li><p><em>google</em> - Directory for google mainboard specific scripts</p></li>
+</ul>
+</li>
+<li><p><strong>marvell</strong> - Add U-Boot boot loader for Marvell ARMADA38X <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong><a class="reference external" href="https://github.com/corna/me_cleaner">me_cleaner</a></strong> - Tool for
+partial deblobbing of Intel ME/TXE firmware images <code class="docutils literal notranslate"><span class="pre">Python</span></code></p></li>
+<li><p><strong>mma</strong> - Memory Margin Analysis automation tests <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><strong>msrtool</strong> - Dumps chipset-specific MSR registers. <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>mtkheader</strong> - Generate MediaTek bootload header. <code class="docutils literal notranslate"><span class="pre">Python3</span></code></p></li>
+<li><p><strong>nvidia</strong> - nvidia blob parsers</p></li>
+<li><p><strong>nvramtool</strong> - Reads and writes coreboot parameters and displaying
+information from the coreboot table in CMOS/NVRAM. <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>pmh7tool</strong> - Dumps, reads and writes PMH7 registers on Lenovo
+ThinkPads. PMH7 is used for switching on and off the power of some
+devices on the board such as dGPU. <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>post</strong> - Userspace utility that can be used to test POST cards. <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>qemu</strong> - Makefile &amp; comprehensive default config for QEMU Q35
+emulation <code class="docutils literal notranslate"><span class="pre">Make</span></code></p></li>
+<li><p><strong>qualcomm</strong> - CMM script to debug Qualcomm coreboot environments.
+<code class="docutils literal notranslate"><span class="pre">CMM</span></code></p></li>
+<li><p><strong>release</strong> - Generate coreboot release <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><strong>riscv</strong></p>
+<ul>
+<li><p><em>make-spike-elf.sh</em> - Converts a flat file into an ELF, that
+can be passed to SPIKE, the RISC-V reference emulator.<code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><em>sifive-gpt.py</em> - Wraps the bootblock in a GPT partition for
+SiFive’s bootrom. <code class="docutils literal notranslate"><span class="pre">Python3</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>rockchip</strong> - Generate Rockchip idblock bootloader. <code class="docutils literal notranslate"><span class="pre">Python3</span></code></p></li>
+<li><p><strong>sconfig</strong> - coreboot device tree compiler <code class="docutils literal notranslate"><span class="pre">Lex</span></code> <code class="docutils literal notranslate"><span class="pre">Yacc</span></code></p></li>
+<li><p><strong>scripts</strong></p>
+<ul>
+<li><p><em>config</em> - Manipulate options in a .config file from the
+command line <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><em>cross-repo-cherrypick</em> - Pull in patches from another tree
+from a gerrit repository. <code class="docutils literal notranslate"><span class="pre">Shell</span></code></p></li>
+<li><p><em>decode_spd.sh</em> - Decodes Serial Presence Detect (SPD) files
+into various human readable formats. <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><em>dts-to-fmd.sh</em> -Converts a depthcharge fmap.dts into an
+fmaptool compatible .fmd format <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><em>find-unused-kconfig-symbols.sh</em> - Points out Kconfig
+variables that may be unused. There are some false positives, but it
+serves as a starting point <code class="docutils literal notranslate"><span class="pre">Shell</span></code></p></li>
+<li><p><em>gerrit-rebase</em> - Applies all commits that from-branch has
+over to-branch, based on a common ancestor and gerrit meta-data <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><em>get_maintainer.pl</em> - Print selected MAINTAINERS information
+for the files modified in a patch or for a file <code class="docutils literal notranslate"><span class="pre">Perl</span></code></p></li>
+<li><p><em>maintainers.go</em> - Build subsystem Maintainers <code class="docutils literal notranslate"><span class="pre">Go</span></code></p></li>
+<li><p><em>no-fsf-addresses.sh</em> - Removes various FSF addresses from
+license headers <code class="docutils literal notranslate"><span class="pre">Shell</span></code></p></li>
+<li><p><em>parse-maintainers.pl</em> - Script to alphabetize MAINTAINERS
+file <code class="docutils literal notranslate"><span class="pre">Perl</span></code></p></li>
+<li><p><em>rm_unused_code</em> - Remove all code not used for a platform
+from the local git repository for auditing or release <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><em>show_platforms.sh</em> - Makes a list of platforms in the tree.
+Does not show variants. <code class="docutils literal notranslate"><span class="pre">Shell</span></code></p></li>
+<li><p><em>ucode_h_to_bin.sh</em> - Microcode conversion tool <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><em>update_submodules</em> - Check all submodules for updates <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>spdtool</strong> - Dumps SPD ROMs from a given blob to separate files
+using known patterns and reserved bits. Useful for analysing firmware
+that holds SPDs on boards that have soldered down DRAM. <code class="docutils literal notranslate"><span class="pre">python</span></code></p></li>
+<li><p><strong>spkmodem_recv</strong> - Decode spkmodem signals <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>superiotool</strong> - A user-space utility to detect Super I/O of a
+mainboard and provide detailed information about the register contents
+of the Super I/O. <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>supermicro</strong> - Tools for supermicro platforms</p>
+<ul>
+<li><p><em>smcbiosinfo</em> - Generates SMC biosinfo for BMC BIOS updates
+<code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>testing</strong> - coreboot test targets <code class="docutils literal notranslate"><span class="pre">Make</span></code></p></li>
+<li><p><strong>uio_usbdebug</strong> - Debug coreboot’s usbdebug driver inside a running
+operating system (only Linux at this time). <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>util_readme</strong> - Creates README.md of description files in <code class="docutils literal notranslate"><span class="pre">./util</span></code>
+subdirectories <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><strong>vboot_list</strong> - Tools to generate a list of vboot enabled devices to
+the documentation <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+<li><p><strong>vgabios</strong> - emulated vga driver for qemu <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><strong>x86</strong> - Generates 32-bit PAE page tables based on a CSV input file.
+<code class="docutils literal notranslate"><span class="pre">Go</span></code></p></li>
+<li><p><strong>xcompile</strong> - Cross compile setup <code class="docutils literal notranslate"><span class="pre">Bash</span></code></p></li>
+</ul>
+</section>
+<section id="in-depth-documentation">
+<h2>In depth documentation<a class="headerlink" href="#in-depth-documentation" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="util/abuild/index.html">abuild</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util/cbfstool/index.html">cbfstool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util/ifdtool/index.html">ifdtool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util/intelp2m/index.html">intelp2m</a></li>
+</ul>
+</div>
+</section>
+<section id="generated-documentation">
+<h2>Generated documentation<a class="headerlink" href="#generated-documentation" title="Link to this heading"></a></h2>
+<p>*<em>Please do not edit the markdown file in the documentation directory
+<em>directly.</em></em></p>
+<p>This file was generated by running util_readme.sh. Please make sure it
+is rerun when new tools are added or when documentation is updated.</p>
+<p>To update, edit the markdown files in the util directory, then
+re-generate this file by running <code class="docutils literal notranslate"><span class="pre">util/util_readme/util_readme.sh</span></code></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="vendorcode/eltan/security.html" class="btn btn-neutral float-left" title="Eltan Security" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="util/abuild/index.html" class="btn btn-neutral float-right" title="abuild" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

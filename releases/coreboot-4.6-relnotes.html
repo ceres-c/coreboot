@@ -1,0 +1,692 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coreboot 4.6 release notes &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="coreboot 4.5 release notes" href="coreboot-4.5-relnotes.html" />
+    <link rel="prev" title="coreboot 4.7 release notes" href="coreboot-4.7-relnotes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#upcoming-release">Upcoming release</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#previous-releases">Previous releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.22-relnotes.html">4.22 - November 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.21-relnotes.html">4.21   - August 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.20.1-relnotes.html">4.20.1 - May 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.19-relnotes.html">4.19   - January 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.18-relnotes.html">4.18   - October 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.17-relnotes.html">4.17   - May 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.16-relnotes.html">4.16   - February 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.15-relnotes.html">4.15   - November 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.14-relnotes.html">4.14   - May 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.13-relnotes.html">4.13   - November 2020</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.12-relnotes.html">4.12   - May 2020</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.11-relnotes.html">4.11   - November 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.10-relnotes.html">4.10   - July 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.9-relnotes.html">4.9    - December 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.8.1-relnotes.html">4.8.1  - May 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.7-relnotes.html">4.7    - January 2018</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.6    - April 2017</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#changes-past-ongoing-and-future">Changes: Past, ongoing, and future</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#change-summary">Change Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changes-in-chips">Changes in chips</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mainboard-changes">Mainboard changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities">Utilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tested-boards">Tested boards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coreboot-statistics-from-e74f5eaa43-to-db508565d2">coreboot statistics from e74f5eaa43 to db508565d2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-removal-after-the-4-6-release">Code removal after the 4.6 release</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-removal-after-the-4-7-release">Code removal after the 4.7 release</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-removal-after-the-4-8-release">Code removal after the 4.8 release</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.5-relnotes.html">4.5    - October 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.4-relnotes.html">4.4    - May 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.3-relnotes.html">4.3    - January 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.2-relnotes.html">4.2    - October 2015</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.1-relnotes.html">4.1    - July 2015</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Release notes</a></li>
+      <li class="breadcrumb-item active">coreboot 4.6 release notes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/releases/coreboot-4.6-relnotes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coreboot-4-6-release-notes">
+<h1>coreboot 4.6 release notes<a class="headerlink" href="#coreboot-4-6-release-notes" title="Link to this heading"></a></h1>
+<p>We are happy to announce the April 2017 release of coreboot, version
+4.6.</p>
+<p>The 4.6 release covers commit e74f5eaa to commit db508565</p>
+<p>Since the last release in October 2016, the coreboot project had 1708
+commits by 121 authors. The release tarballs and gpg signatures are
+available in the usual place at https://www.coreboot.org/downloads</p>
+<p>There is a pgp signed 4.6 tag in the git repository, and a branch will
+be created as needed.</p>
+<section id="changes-past-ongoing-and-future">
+<h2>Changes: Past, ongoing, and future<a class="headerlink" href="#changes-past-ongoing-and-future" title="Link to this heading"></a></h2>
+<section id="cbmem-console-development-and-the-linux-kernel">
+<h3>CBMEM console development and the Linux Kernel<a class="headerlink" href="#cbmem-console-development-and-the-linux-kernel" title="Link to this heading"></a></h3>
+<p>Our cbmem debug console was updated with some nice features. The cbmem
+console now persists between reboots and is able to be used on some
+platforms via late init. Also there is a new Linux kernel driver which
+removes the need for the old cbmem tool to read from the cbmem area. You
+can find the patch here https://patchwork.kernel.org/patch/9641997/ and
+it can be enabled via GOOGLE_MEMCONSOLE_COREBOOT kconfig option in your
+kernel - Note that this name may change going forward.</p>
+</section>
+<section id="critical-bugs-in-tpm-1-2-support">
+<h3>Critical bugs in TPM 1.2 support<a class="headerlink" href="#critical-bugs-in-tpm-1-2-support" title="Link to this heading"></a></h3>
+<p>coreboot currently has issues with the TPM 1.2 LPC driver
+implementation. This leads to a misbehavior in SeaBIOS where the TPM
+gets temporarily deactivated. We plan to publish the bugfix release
+4.6.1 when we have these issues sorted out.</p>
+</section>
+<section id="native-graphics-and-ram-init-improvements">
+<h3>Native graphics and ram init improvements<a class="headerlink" href="#native-graphics-and-ram-init-improvements" title="Link to this heading"></a></h3>
+<p>The native graphics was reworked a while ago and should finally support
+Windows. Numerous bug fixes and EDID support is also now available.
+Finally, the native ram initialization for sandybridge/ivybridge
+platforms got patched and supports more RAM modules.</p>
+</section>
+<section id="new-and-fresh-payloads">
+<h3>New and fresh payloads<a class="headerlink" href="#new-and-fresh-payloads" title="Link to this heading"></a></h3>
+<p>SeaBIOS, FiLO, and iPXE were all recently updated to the latest
+versions. Https downloads are the default for all payloads now. We
+provide the libpayload project which is used for writing own payloads
+from scratch. The library is MOSTLY licensed under BSD and recently
+received new functionality in order to prepare for the upcoming
+replacement for the old nvramcui payload. This new payload is called
+cbui and is based on the nuklear graphics library including keyboard and
+mouse support. The cbui payload is currently expected to be merged into
+the main coreboot tree before the next release.  The upstream repository
+is here: https://github.com/siro20/coreboot/tree/cbui/payloads/cbui</p>
+</section>
+<section id="uefi-support-a-long-road-to-go">
+<h3>UEFI support: A long road to go<a class="headerlink" href="#uefi-support-a-long-road-to-go" title="Link to this heading"></a></h3>
+<p>coreboot can be used with the edk2 UEFI implementation which
+is open source and available at Github. Sadly it is not currently
+integrated into the coreboot build. This has several reasons:</p>
+<ul class="simple">
+<li><p>edk2 only supports GCC 4.8 profile. coreboot is now running on GCC 6.3.0.</p></li>
+<li><p>Incompatibilities with code inside the edk2 which has not been updated.</p></li>
+</ul>
+<p>We started to make progress with the integration into our sources and
+the hope is that by the end of the summer, we finally support the edk2
+payload out-of-the- box. See the current patch state at
+http://review.coreboot.org/#/c/15057/</p>
+</section>
+<section id="fighting-blobs-and-proprietary-hw-components">
+<h3>Fighting blobs and proprietary HW components<a class="headerlink" href="#fighting-blobs-and-proprietary-hw-components" title="Link to this heading"></a></h3>
+<p>coreboot’s ultimate goal would be to replace any closed source firmware
+stack with free software components. Unfortunately this is not always
+possible due to signed binaries such as the Intel ME firmware, the AMD
+PSP and microcode. Recently, a way was discovered to let the Intel ME
+run in a functional error state and reduce it from 1.5/5MB to 80KB. It’s
+not perfect but it works from Nehalem up to Skylake based Intel systems.
+The tool is now integrated into the coreboot build system. The upstream
+repository is https://github.com/corna/me_cleaner</p>
+<p>Another ongoing improvement is the new utility blobtool. It is currently
+used for generating the flash descriptor and GbE configuration data on
+older mainboard which are known to be free software. It can easily be
+extended for different binaries with well-defined specifications.</p>
+</section>
+<section id="did-you-say-ada">
+<h3>Did you say Ada?<a class="headerlink" href="#did-you-say-ada" title="Link to this heading"></a></h3>
+<p>coreboot now supports Ada, and a lot work was done integrating Ada into
+our toolchain. At the moment only the support for formal verification is
+missing and will be soon added. At that point, we can prove the absence
+of runtime errors in our Ada code. In short, everybody can start
+developing Ada code for our project.</p>
+<p>The existing Ada code which can be used from now on is another native
+graphics initialization which will replace in the long term the current
+implementation. The native graphics code supports all Intel platforms up
+to skylake. We offer support for HDMI, VGA, DVI and DP external
+interfaces as well and is ready to be integrated into our mainboard
+implementations.</p>
+</section>
+<section id="toolchain-updates">
+<h3>Toolchain updates<a class="headerlink" href="#toolchain-updates" title="Link to this heading"></a></h3>
+<p>A new coreboot toolchain is out. The major toolchain change was going
+from GCC version 5.3.0 to 6.3.0. There were also minor version updates
+to GMP, MPFR, Binutils, GDB, IASL, and Clang.</p>
+</section>
+<section id="deprecation-policy-for-boards">
+<h3>Deprecation policy for boards<a class="headerlink" href="#deprecation-policy-for-boards" title="Link to this heading"></a></h3>
+<p>Starting with this release there will be a policy for deprecating
+unmaintained boards. See the end of this announcement for details.</p>
+</section>
+</section>
+<section id="change-summary">
+<h2>Change Summary<a class="headerlink" href="#change-summary" title="Link to this heading"></a></h2>
+<p>Build system (20 commits)</p>
+<ul class="simple">
+<li><p>Clean up Kconfig</p></li>
+<li><p>Show more useful error messages</p></li>
+</ul>
+<p>Codebase cleanup (94 commits)</p>
+<ul class="simple">
+<li><p>Many fixes for files to pass checkpatch. Lots more to do here.</p></li>
+<li><p>Remove commented out code</p></li>
+<li><p>Updates to transition away from device_t</p></li>
+<li><p>Work to get rid of included C files</p></li>
+</ul>
+<p>Documentation (6 commits)</p>
+<ul class="simple">
+<li><p>Start adding technotes/Design docs</p></li>
+<li><p>Add Kconfig documentation</p></li>
+</ul>
+<p>ACPI &amp; acpigen library</p>
+<ul class="simple">
+<li><p>Add GPIO macros</p></li>
+<li><p>Clean up and add more functions to ACPIGEN library</p></li>
+</ul>
+<p>EC (26 commits)</p>
+<ul class="simple">
+<li><p>Add roda/it8518 embedded controller</p></li>
+</ul>
+<p>TPM (41 commits)</p>
+<ul class="simple">
+<li><p>Cleanup</p></li>
+<li><p>Update ACPI ASL, Runtime generate ACPI table for TPM driver</p></li>
+<li><p>Make SPI TPM driver CAR-safe</p></li>
+<li><p>Update TPM init sequence</p></li>
+</ul>
+<p>Devices (24 commits)</p>
+<ul class="simple">
+<li><p>Add a new SPI device type</p></li>
+<li><p>Allow devicetree accesses in postcar stage</p></li>
+<li><p>PCIEXP_ASPM: Unify code with other PCI-e tuning</p></li>
+</ul>
+<p>Lib (28 commits)</p>
+<ul class="simple">
+<li><p>Add option to use Ada code in ramstage</p></li>
+<li><p>bootstate: add arch specific hook at coreboot exit</p></li>
+<li><p>cbfs: Add API to locate a file from specific region</p></li>
+<li><p>Add library to handle SPD data in CBFS or DIMM</p></li>
+<li><p>Add region file support</p></li>
+<li><p>Turn CBMEM console into a ring buffer that can persist across reboots</p></li>
+</ul>
+<p>Commonlib (11 commits)</p>
+<ul class="simple">
+<li><p>Add xmalloc, xzmalloc and dma routines</p></li>
+<li><p>Add input and output buffer helpers</p></li>
+</ul>
+<p>Drivers (29 commits)</p>
+<ul class="simple">
+<li><p>i2c: Pass in i2c_generic_config into i2c_generic_fill_ssdt</p></li>
+<li><p>i2c/alps: Add support for ALPS Touchpad driver</p></li>
+<li><p>i2c/generic: Add support for GPIO IRQ</p></li>
+<li><p>i2c/generic: Enable support for adding PowerResource for device</p></li>
+<li><p>i2c/hid: Add generic I2C HID driver</p></li>
+<li><p>i2c/max98927: add i2c driver for Maxim 98927 codec</p></li>
+<li><p>i2c/wacom_ts: Add support for WCOM touchscreen device driver</p></li>
+<li><p>pc80/rtc: Check CMOS checksum BEFORE reading CMOS value</p></li>
+<li><p>regulator: Add driver for handling GPIO-based fixed regulator</p></li>
+<li><p>storage: Add SD/MMC/eMMC driver based upon depthcharge</p></li>
+</ul>
+<p>SPI interface</p>
+<ul class="simple">
+<li><p>Significant cleanup and refactoring</p></li>
+</ul>
+<p>Include (17 commits)</p>
+<ul class="simple">
+<li><p>cpu/intel: Add MSR to support enabling turbo frequency</p></li>
+<li><p>elog: Add all EC event codes</p></li>
+</ul>
+<p>SuperIO (12 commits)</p>
+<ul class="simple">
+<li><p>Updates for ITE SIOs</p></li>
+<li><p>Add 2 new chips</p></li>
+<li><p>Consolidate code to use common routines</p></li>
+</ul>
+<p>vboot (23 commits)</p>
+<ul class="simple">
+<li><p>Add support for recovery hash space in TPM</p></li>
+</ul>
+<p>RISC-V (25 commits)</p>
+<ul class="simple">
+<li><p>Add lowRISC System On Chip support</p></li>
+<li><p>Cbmem patches, move to common architectural code</p></li>
+</ul>
+<p>ARM (16 commits)</p>
+<ul class="simple">
+<li><p>Init new serial struct variables for samsung exynos5420 &amp; allwinner
+a10</p></li>
+<li><p>Fix verstage to use proper assembly versions of mem*()</p></li>
+</ul>
+<p>RockChip RK3399 &amp; platforms (46 commits)</p>
+<ul class="simple">
+<li><p>Memory, I2C, USB, SD &amp; Display fixes</p></li>
+</ul>
+<p>X86 Intel (193 commits)</p>
+<ul class="simple">
+<li><p>Broadwell/Sata: Add support for setting IOBP registers for Ports 2 and
+3.</p></li>
+<li><p>cpu/intel/common: Add/Use common function to set virtualization</p></li>
+<li><p>drivers/intel/fsp1_1: Fix boot failure for non-verstage case</p></li>
+<li><p>drivers/intel/fsp2_0: Reset on invalid stage cache.</p></li>
+<li><p>drivers/intel/gma: Add textmode using libgfxinit &amp; use scaling to
+simplify  config</p></li>
+<li><p>drivers/intel/mipi_camera: Add MIPI CSI camera SSDT generator</p></li>
+<li><p>broadwell_de: Add SMM code</p></li>
+<li><p>intelblocks/msr: Move intel x86 MSR definition into common location</p></li>
+<li><p>intel/broadwell: Use the correct SATA port config for setting IOBP
+register</p></li>
+<li><p>intel/wifi: Create ACPI objects for wifi SAR configuration</p></li>
+<li><p>lynxpoint bd82x6x: Enable PCI-to-PCI bridge</p></li>
+<li><p>mrc: Add support for separate training cache in recovery mode</p></li>
+<li><p>nb/i945/early_init.c: Add FSB800 and 1067 to Egress Port Virtual
+Channel</p></li>
+<li><p>nb/i945/raminit: Add fixes for 800MHz &amp; 1067MHz FSB CPUs</p></li>
+<li><p>nb/intel/gm45: Fix panel-power-sequence clock divisor</p></li>
+<li><p>nb/intel/i945: Fix PEG port on 945gc &amp; sdram_enhanced_addressing for
+channel1</p></li>
+<li><p>nb/intel/pineview: Move to early cbmem</p></li>
+<li><p>nb/pineview/raminit: Skip Jedec init on resume, fix hot reset path</p></li>
+<li><p>nb/intel/sandybridge/gma: Always initialize DP buffer translation</p></li>
+<li><p>sb/ich7: Use common/gpio.h to set up GPIOs</p></li>
+<li><p>sb/intel/bd82x6x: Add TCO_Lock in finalize step</p></li>
+<li><p>sb/intel/common/gpio: Support ICH9M and prior</p></li>
+<li><p>sb/intel/i82801gx: Add i2c_block_read to smbus.h</p></li>
+</ul>
+<p>sandybridge/raminit</p>
+<ul class="simple">
+<li><p>Fix CAS Write Latency, disable_channel, normalize_training &amp; odt stretch</p></li>
+<li><p>Separate Sandybridge and Ivybridge</p></li>
+<li><p>Reset internal state on fallback attempts</p></li>
+<li><p>Find CMD rate per channel</p></li>
+</ul>
+<p>soc/intel/common</p>
+<ul class="simple">
+<li><p>Add common routines for HECI, ITSS, PCR, RTC, systemagent, UART, XHCI,
+&amp; LPSS</p></li>
+<li><p>Save Memory DIMM Information in SMBIOS table</p></li>
+</ul>
+<p>Apollolake (183 commits)</p>
+<ul class="simple">
+<li><p>Switch to common routines for LPSS, RTC, ITSS, UART, XHCI, &amp; PCR</p></li>
+<li><p>Enable turbo</p></li>
+<li><p>Add save/restore variable MRC cache</p></li>
+<li><p>Allow ApolloLake SoC to use FSP CAR Init</p></li>
+<li><p>Allow USB2 eye pattern configuration in devicetree</p></li>
+</ul>
+<p>Quark &amp; platforms (14 commits)</p>
+<ul class="simple">
+<li><p>Fix I2c &amp; Serial port config</p></li>
+<li><p>Add vboot support</p></li>
+</ul>
+<p>ga-g41m-es2l, x4x northbridge &amp; LGA775 (23 commits)</p>
+<ul class="simple">
+<li><p>Memory fixes</p></li>
+<li><p>Add S3 suspend/resume</p></li>
+</ul>
+<p>Skylake / Kabylake (208 commits)</p>
+<ul class="simple">
+<li><p>Add devicetree settings for acoustic noise mitigation</p></li>
+<li><p>Perform CPU MP Init before FSP-S Init</p></li>
+<li><p>Add support for GSPI controller &amp; add GSPI controller get_config
+support</p></li>
+<li><p>Enable Systemagent IMGU</p></li>
+<li><p>Add USB Port Over Current support &amp; Expand USB OC pins support PCH-H</p></li>
+<li><p>Extract DIMM Information from FSP MEM INFO HOB</p></li>
+<li><p>Add support for eSPI SMI events</p></li>
+<li><p>Update ACPI &amp; various methods</p></li>
+</ul>
+<p>X86 amd (116 commits)</p>
+<ul class="simple">
+<li><p>ACPI S3: Remove HIGH_MEMORY_SAVE where possible</p></li>
+<li><p>AMD fam10 binaryPI: Remove invalid PCI ops on CPU domain</p></li>
+<li><p>binaryPI platforms: Drop ACPI S3 support</p></li>
+<li><p>sb/amd/sb700: Disable LPC ROM mapping when SPI Flash is used</p></li>
+<li><p>southbridge/amd: Add LPC bridge acpi path for Family14 and SB800</p></li>
+<li><p>arch/x86: remove CAR global migration when postcar stage is used</p></li>
+<li><p>x86/acpi: Add VFCT table</p></li>
+</ul>
+<p>AMD: vendorcode, AGESA, binaryPI (72 commits)</p>
+<ul class="simple">
+<li><p>Cleanup &amp; consolidate duplicate code</p></li>
+<li><p>Fork for new cache-as-ram init code &amp; Fix binaryPI cache-as-ram</p></li>
+<li><p>Refactor S3 support functions and Delay ACPI S3 backup until ramstage
+loader</p></li>
+</ul>
+<p>amd/mct:</p>
+<ul class="simple">
+<li><p>Fix CsMux45 configuration, maximum read latency, &amp; DQ mask calculation</p></li>
+</ul>
+<p>Mainboards (198 commits)</p>
+<ul class="simple">
+<li><p>asus/f2a85-m_le: Activate IOMMU support</p></li>
+<li><p>lenovo/h8: Add USB Always On</p></li>
+<li><p>google/oak: Enable dual DSI for rowan and the BOE 8-lane MIPI/DSI panel</p></li>
+<li><p>google/parrot: Fix keyboard interrupts, DSDT</p></li>
+<li><p>google/veyron: Work around RAM code strapping error</p></li>
+<li><p>lenovo/t400: Rewrite dock from t60</p></li>
+<li><p>intel/d510mo: enable ACPI resume from S3</p></li>
+<li><p>intel/d945gclf: Fix resume from S3 suspend</p></li>
+<li><p>lenovo/t400: Implement hybrid graphic in romstage</p></li>
+<li><p>Enable libgfxinit on lenovo/t420 &amp; x230, kontron/ktqm77, google/slippy</p></li>
+<li><p>lenovo/x60,t60: Move EC CMOS parameters in checksummed space</p></li>
+<li><p>mc_tcu3: Do not abort initialization of PTN3460 when HW-ID is missing</p></li>
+<li><p>mc_tcu3: Swap LVDS even and odd lanes for a certain hardware</p></li>
+<li><p>purism/librem13: Enable support for M.2 NVMe &amp; Fix M.2 issues</p></li>
+</ul>
+<p>Payloads (53 commits)</p>
+<ul class="simple">
+<li><p>Update FILO, SeaBIOS, &amp; iPXE versions</p></li>
+<li><p>Many libpayload fixes and updates</p></li>
+</ul>
+<p>Toolchain (19 commits)</p>
+<ul class="simple">
+<li><p>Update GCC, Binutils, GMP, MPFR, GDB, IASL and LLVM</p></li>
+</ul>
+<p>Utilities: (145 commits)</p>
+<ul class="simple">
+<li><p>abuild: Build saved config files and print failed builds at the end</p></li>
+<li><p>autoport: Create superiotool logs and fix romstage generator</p></li>
+<li><p>board-status: Update bucketize script and add README file</p></li>
+<li><p>cbfstool: Add cbfs-compression-tool and enable adding precompressed
+files</p></li>
+<li><p>cbmem: Add custom aligned memcpy() implementation</p></li>
+<li><p>ectool: Fix timeout on sending EC command and support OpenBSD</p></li>
+<li><p>ifdtool: Fix ICH Gbe unlock</p></li>
+<li><p>intelmetool: Add support for Wildcat Point LP, fix segfault on edge
+cases</p></li>
+<li><p>inteltool: Add support for CH6-10, ICH10, Wildcat Point-LP and fix ICH
+SPIBAR</p></li>
+<li><p>sconfig: Add a new SPI device type</p></li>
+<li><p>superiotool: Add new chips - IT8783E/F, W83627DHG, W83627EHG, F71808A</p></li>
+</ul>
+</section>
+<section id="changes-in-chips">
+<h2>Changes in chips<a class="headerlink" href="#changes-in-chips" title="Link to this heading"></a></h2>
+<p>Added 1 processor &amp; northbridge:</p>
+<ul class="simple">
+<li><p>amd/pi/00670F00</p></li>
+</ul>
+<p>Added 1 soc:</p>
+<ul class="simple">
+<li><p>lowrisc/lowrisc</p></li>
+</ul>
+<p>Removed 1 northbridge:</p>
+<ul class="simple">
+<li><p>intel/e7501</p></li>
+</ul>
+<p>Added 2 sios:</p>
+<ul class="simple">
+<li><p>fintek/f71808a</p></li>
+<li><p>ite/it8783ef</p></li>
+</ul>
+</section>
+<section id="mainboard-changes">
+<h2>Mainboard changes<a class="headerlink" href="#mainboard-changes" title="Link to this heading"></a></h2>
+<p>Added 52 mainboards and variants:</p>
+<ul class="simple">
+<li><p>AMD Gardenia - AMD Stoney Ridge</p></li>
+<li><p>Asus F2A85_M_PRO - AMD Family 15h Trinity</p></li>
+<li><p>Asus P5GC_MX - Intel Socket LGA775</p></li>
+<li><p>Gigabyte GA_945GCM_S2L &amp; GA_945GCM_S2C variant - Intel Socket LGA775</p></li>
+<li><p>Google Auron variants: Yuna, Gandof, Lulu - Intel Broadwell</p></li>
+<li><p>Google Beltino variants: McCloud, Monroe, Tricky, Zako - Intel Haswell</p></li>
+<li><p>Google Eve - Intel Kabylake</p></li>
+<li><p>Google Fizz - Intel Kabylake</p></li>
+<li><p>Google Gru variants: Bob, Scarlet - RockChip RK3399</p></li>
+<li><p>Google Oak variants: Hana, Rowan - MediaTek MT8173</p></li>
+<li><p>Google Poppy &amp; Soraka variant - Intel Kabylake</p></li>
+<li><p>Google Rambi variants: Banjo, Candy, Clapper, Glimmer, Gnawty, Heli,
+Kip, Orco, Quawks, Squawks, Sumo, Swanky, &amp; Winky - Intel Baytrail</p></li>
+<li><p>Google Reef variants: Sand, Snappy, Nasher - Intel Apollolake</p></li>
+<li><p>Google Slippy variants: Leon, Wolf - Intel Haswell</p></li>
+<li><p>Intel KBLRVP3 &amp; KBLRVP7 - Intel Kabylake</p></li>
+<li><p>Intel LEAFHILL - Intel Apollolake</p></li>
+<li><p>Intel MINNOW3 - Intel Apollolake</p></li>
+<li><p>Lenovo L520: Intel Sandybridge</p></li>
+<li><p>Lenovo S230U: Intel Ivybridge</p></li>
+<li><p>Lenovo X1 Carbon GEN1 - Intel Sandybridge</p></li>
+<li><p>lowRISC NEXYS4DDR - RiscV</p></li>
+<li><p>MSI MS7721 - AMD Bulldozer</p></li>
+<li><p>PC Engines APU2 - AMD Jaguar</p></li>
+<li><p>RODA RV11 &amp; RW11 variant - Intel Ivybridge</p></li>
+<li><p>Sapphire Pure Platinum H61 - Intel Socket LGA1155</p></li>
+<li><p>Siemens MC_APL1 - Intel Apollolake</p></li>
+</ul>
+<p>Removed 10 mainboard variants:</p>
+<ul class="simple">
+<li><p>Google Auron (Still available as a base-board for variants)</p></li>
+<li><p>Google Veyron Chromeboxes: Brain, Danger, Emile, Romy</p></li>
+<li><p>Google Veyron Test Projects: Gus, Nicky, Pinky, Shark, Thea</p></li>
+</ul>
+</section>
+<section id="utilities">
+<h2>Utilities<a class="headerlink" href="#utilities" title="Link to this heading"></a></h2>
+<p>Added 2 new utilities:</p>
+<ul class="simple">
+<li><p>blobtool</p></li>
+<li><p>me_cleaner</p></li>
+</ul>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<p>Updated 5 submodules</p>
+<ul class="simple">
+<li><p>3rdparty/blobs (10 commits)</p></li>
+<li><p>3rdparty/arm-trusted-firmware (172 commits)</p></li>
+<li><p>3rdparty/vboot (158 commits)</p></li>
+<li><p>3rdparty/chromeec/ (810 commits)</p></li>
+<li><p>util/nvidia/cbootimage (2 commits)</p></li>
+</ul>
+</section>
+<section id="tested-boards">
+<h2>Tested boards<a class="headerlink" href="#tested-boards" title="Link to this heading"></a></h2>
+<p>The following boards were tested recently:</p>
+<ul class="simple">
+<li><p>emulation qemu-q35                    4.6-1</p></li>
+<li><p>asus kgpe-d16                         4.6-1</p></li>
+<li><p>asus kfsn4-dre                        4.6-1</p></li>
+<li><p>asus p5gc-mx                          4.6-1</p></li>
+<li><p>lenovo x60                            4.5-1681 / 4.6-7</p></li>
+<li><p>lenovo x230                           4.5-1674 / 4.6-27</p></li>
+<li><p>asrock e350m1                         4.5-1662 / 4.6-7</p></li>
+<li><p>lenovo t420                           4.5-1640</p></li>
+<li><p>lenovo x200                           4.5-1598 / 4.6-33</p></li>
+<li><p>sapphire pureplatinumh61              4.5-1575</p></li>
+<li><p>gigabyte ga-945gcm-s2l                4.5-1568</p></li>
+<li><p>lenovo t400                           4.5-1564</p></li>
+<li><p>lenovo t60                            4.5-1559</p></li>
+<li><p>gigabyte m57sli                       4.5-1526</p></li>
+<li><p>purism librem13                       4.5-1503</p></li>
+<li><p>gigabyte ga-g41m-es2l                 4.5-1444</p></li>
+<li><p>google slippy                         4.5-1441</p></li>
+<li><p>intel d510mo                          4.5-1341</p></li>
+</ul>
+</section>
+<section id="coreboot-statistics-from-e74f5eaa43-to-db508565d2">
+<h2>coreboot statistics from e74f5eaa43 to db508565d2<a class="headerlink" href="#coreboot-statistics-from-e74f5eaa43-to-db508565d2" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Total Commits: 1708</p></li>
+<li><p>Average Commits per day: 8.75</p></li>
+<li><p>Total authors: 121</p></li>
+<li><p>New authors: 34</p></li>
+<li><p>Total Reviewers: 72</p></li>
+<li><p>Total Submitters: 19</p></li>
+<li><p>Total lines added: 177576</p></li>
+<li><p>Total lines removed: - 107460</p></li>
+<li><p>Total difference: 70116</p></li>
+</ul>
+</section>
+<section id="code-removal-after-the-4-6-release">
+<h2>Code removal after the 4.6 release<a class="headerlink" href="#code-removal-after-the-4-6-release" title="Link to this heading"></a></h2>
+<p>The only platform currently scheduled for removal is the
+bifferos/bifferboard &amp; soc/rdc/r8610. This platform is one of two that
+still uses romcc to compile romstage and doesn’t have cache-as-ram in
+romstage - the others were all removed long ago. Additionally, it seems
+to be impossible to buy, so as far as it can be determined, no testing
+has been done recently.</p>
+</section>
+<section id="code-removal-after-the-4-7-release">
+<h2>Code removal after the 4.7 release<a class="headerlink" href="#code-removal-after-the-4-7-release" title="Link to this heading"></a></h2>
+<p>One of the things that the coreboot project has struggled with is how to
+maintain the older platforms while still moving the rest of the
+platforms forward. Currently there are numerous platforms in the
+codebase which have not been well maintained.</p>
+<p>Starting with the 4.7 release in October, the coreboot leadership is
+going to set standards that platforms are expected to meet to remain in
+the active codebase. These will generally be announced 3 - 6 months in
+advance to give time to get changes in. The expectation is not
+necessarily even that all work to meet the goal will be completed, but
+it is expected that a reasonable effort has started to meet the goal at
+the time of the release. Regardless of the work that’s been done,
+platforms which have not met the goal by the following release will be
+removed.</p>
+<p>The next expectation that will need to be met for all platforms is cbmem
+in romstage. This currently affects numerous platforms, including most,
+if not all of AMD’s platforms. Work to update many of these platforms
+has started, but there are others that have not made any progress
+towards this goal. A list of the platforms that are affected by this
+will be sent to the mailing list shortly.</p>
+</section>
+<section id="code-removal-after-the-4-8-release">
+<h2>Code removal after the 4.8 release<a class="headerlink" href="#code-removal-after-the-4-8-release" title="Link to this heading"></a></h2>
+<p>To further clean things up, starting with the 4.8 release, any platform
+that does not have a successful boot logged in the board_status repo in
+the previous year (that is, within the previous two releases) will be
+removed from the maintained coreboot codebase. Chips that do not have
+any associated boards will also be removed. These platforms will be
+announced before the release so that there is time for people to test if
+desired.</p>
+<p>This is not meant to be a high bar, but as a measure to clean up the
+codebase and eliminate boards and chips that are actually no longer
+being used. The cleanup will happen just after the release, so the
+removed platforms will still be available in the release branch if
+desired. If there is still interest, developers can bring back old chips
+and boards by porting them to the new tree (and bringing them to current
+standards).</p>
+<p>This gives everyone until April 2018 to get any boards that they care
+about tested before the first removal.</p>
+<p>All the code removal information will also be sent to the mailing list
+along with additional details.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="coreboot-4.7-relnotes.html" class="btn btn-neutral float-left" title="coreboot 4.7 release notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="coreboot-4.5-relnotes.html" class="btn btn-neutral float-right" title="coreboot 4.5 release notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

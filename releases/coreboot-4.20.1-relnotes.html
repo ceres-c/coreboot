@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coreboot 4.20 release &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="coreboot 4.19 release" href="coreboot-4.19-relnotes.html" />
+    <link rel="prev" title="Upcoming release - coreboot 4.21" href="coreboot-4.21-relnotes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#upcoming-release">Upcoming release</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#previous-releases">Previous releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.22-relnotes.html">4.22 - November 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.21-relnotes.html">4.21   - August 2023</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.20.1 - May 2023</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#significant-or-interesting-changes">Significant or interesting changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-coreboot-changes">Additional coreboot changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#new-mainboards">New Mainboards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#removed-mainboards">Removed Mainboards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updated-socs">Updated SoCs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plans-to-move-platform-support-to-a-branch">Plans to move platform support to a branch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#statistics-from-the-4-19-to-the-4-20-release">Statistics from the 4.19 to the 4.20 release</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#significant-known-and-open-issues">Significant Known and Open Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.19-relnotes.html">4.19   - January 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.18-relnotes.html">4.18   - October 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.17-relnotes.html">4.17   - May 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.16-relnotes.html">4.16   - February 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.15-relnotes.html">4.15   - November 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.14-relnotes.html">4.14   - May 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.13-relnotes.html">4.13   - November 2020</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.12-relnotes.html">4.12   - May 2020</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.11-relnotes.html">4.11   - November 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.10-relnotes.html">4.10   - July 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.9-relnotes.html">4.9    - December 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.8.1-relnotes.html">4.8.1  - May 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.7-relnotes.html">4.7    - January 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.6-relnotes.html">4.6    - April 2017</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.5-relnotes.html">4.5    - October 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.4-relnotes.html">4.4    - May 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.3-relnotes.html">4.3    - January 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.2-relnotes.html">4.2    - October 2015</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.1-relnotes.html">4.1    - July 2015</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Release notes</a></li>
+      <li class="breadcrumb-item active">coreboot 4.20 release</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/releases/coreboot-4.20.1-relnotes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coreboot-4-20-release">
+<h1>coreboot 4.20 release<a class="headerlink" href="#coreboot-4-20-release" title="Link to this heading"></a></h1>
+<p>The 4.20 release was done on May 15, 2023. Unfortunately, a licensing
+issues was found immediately after the release was completed, and it
+was decided to hold the release until that was fixed.</p>
+<p>Please do not use the 4.20 tag, and use the 4.20.1 git tag instead. The
+4.20_branch will contain all code for 4.20, 4.20.1, and any further
+changes required for this release.</p>
+<p>The coreboot community has done a tremendous amount of work on the
+codebase over the last three and a half months. We’ve had over 1600
+commits in that time period, doing ongoing cleanup and improvement.</p>
+<p>It can be hard to remember at times how much the codebase really has
+improved, but looking back at coreboot code from previous years, it’s
+really impressive the changes that have happened. We’d like to thank
+everyone who has been involved in these changes. It’s great to work
+with everyone involved, from the people who make the small cleanup
+patches and review all of the incoming changes to the people working
+on new chipsets and SoCs. We’d additionally like to thank all of those
+individuals who make the effort to become involved and report issues
+or push even a single patch to fix a bug that they’ve noticed.</p>
+<p>Many thanks to everyone involved!</p>
+<p>We plan to get the 4.21 release done in mid August, 2023.</p>
+<section id="significant-or-interesting-changes">
+<h2>Significant or interesting changes<a class="headerlink" href="#significant-or-interesting-changes" title="Link to this heading"></a></h2>
+<section id="cpu-mp-init-c-only-enable-cpus-once-they-execute-code">
+<h3>cpu/mp_init.c: Only enable CPUs once they execute code<a class="headerlink" href="#cpu-mp-init-c-only-enable-cpus-once-they-execute-code" title="Link to this heading"></a></h3>
+<p>On some systems the BSP cannot know how many CPUs are present in the
+system. A typical use case is a multi socket system. Setting the enable
+flag only on CPUs that actually exist makes it more flexible.</p>
+</section>
+<section id="cpu-x86-smm-add-pci-resource-store-functionality">
+<h3>cpu/x86/smm: Add PCI resource store functionality<a class="headerlink" href="#cpu-x86-smm-add-pci-resource-store-functionality" title="Link to this heading"></a></h3>
+<p>In certain cases data within protected memory areas like SMRAM could
+be leaked or modified if an attacker remaps PCI BARs to point within
+that area. Add support to the existing SMM runtime to allow storing
+PCI resources in SMRAM and then later retrieving them.</p>
+<p>This helps prevent moving BARs around to get SMM to access memory in
+areas that shouldn’t be accessed.</p>
+</section>
+<section id="acpi-add-srat-x2apic-table-support">
+<h3>acpi: Add SRAT x2APIC table support<a class="headerlink" href="#acpi-add-srat-x2apic-table-support" title="Link to this heading"></a></h3>
+<p>For platforms using X2APIC mode add SRAT x2APIC table
+generation. This allows the setup of proper SRAT tables.</p>
+</section>
+<section id="drivers-usb-acpi-add-usb-dsm-method-to-enable-disable-usb-lpm-per-port">
+<h3>drivers/usb/acpi: Add USB _DSM method to enable/disable USB LPM per port<a class="headerlink" href="#drivers-usb-acpi-add-usb-dsm-method-to-enable-disable-usb-lpm-per-port" title="Link to this heading"></a></h3>
+<p>This patch supports projects to use _DSM to control USB3 U1/U2
+transition per port.</p>
+<p>More details can be found in
+https://web.archive.org/web/20230116084819/https://learn.microsoft.com/en-us/windows-hardware/drivers/bringup/usb-device-specific-method—dsm-</p>
+<p>The ACPI and USB driver of linux kernel need corresponding functions
+to support this feature. Please see
+https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/?h=port_check_acpi_dsm</p>
+</section>
+<section id="drivers-efi-add-efi-variable-store-option-support">
+<h3>drivers/efi: Add EFI variable store option support<a class="headerlink" href="#drivers-efi-add-efi-variable-store-option-support" title="Link to this heading"></a></h3>
+<p>Add a driver to read and write EFI variables stored in a region device.
+This is particularly useful for EDK2 as payload and allows it to reuse
+existing EFI tools to set/get options used by the firmware.</p>
+<p>The write implementation is fault tolerant and doesn’t corrupt the
+variable store. A faulting write might result in using the old value
+even though a ‘newer’ had been completely written.</p>
+<p>Implemented basic unit tests for header corruption, writing existing
+data and append new data into the store.</p>
+<p>Initial firmware region state:
+Initially the variable store region isn’t formatted. Usually this is
+done in the EDK2 payload when no valid firmware volume could be found.
+It might be useful to do this offline or in coreboot to have a working
+option store on the first boot or when it was corrupted.</p>
+<p>Performance improvements:
+Right now the code always checks if the firmware volume header is valid.
+This could be optimised by caching the test result in heap. For write
+operations it would be good to cache the end of the variable store in
+the heap as well, instead of walking the whole store. For read
+operations caching the entire store could be considered.</p>
+<p>Reclaiming memory:
+The EFI variable store is append write only. To update an existing
+variable, first a new is written to the end of the store and then the
+previous is marked invalid. This only works on PNOR flash that allow to
+clear set bits, but keep cleared bits state.
+This mechanisms allows a fault tolerant write, but it also requires to
+“clean” the variable store from time to time. This cleaning would remove
+variables that have been marked “deleted”.
+Such cleaning mechanism in turn must be fault tolerant and thus must use
+a second partition in the SPI flash as backup/working region.
+For now, cleaning is done in coreboot.</p>
+<p>Fault checking:
+The driver should check if a previous write was successful and if not
+mark variables as deleted on the next operation.</p>
+</section>
+<section id="drivers-ocp-ewl-add-ewl-driver-for-ewl-type-3-error-handling">
+<h3>drivers/ocp/ewl: Add EWL driver for EWL type 3 error handling<a class="headerlink" href="#drivers-ocp-ewl-add-ewl-driver-for-ewl-type-3-error-handling" title="Link to this heading"></a></h3>
+<p>Add EWL (Enhanced Warning Log) driver which handles Intel EWL HOB
+and prints EWL type 3 primarily associated with MRC training failures.</p>
+</section>
+<section id="toolchain-updates">
+<h3>Toolchain updates<a class="headerlink" href="#toolchain-updates" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Upgrade MPC from version 1.2.1 to 1.3.1</p></li>
+<li><p>Upgrade MPFR from version 4.1.1 to 4.2.0</p></li>
+<li><p>Upgrade CMake from version 3.25.0 to 3.26.3</p></li>
+<li><p>Upgrade LLVM from version 15.0.6 to 15.0.7</p></li>
+<li><p>Upgrade GCC from version 11.2.0 to 11.3.0</p></li>
+<li><p>Upgrade binutils from version 2.37 to 2.40</p></li>
+</ul>
+</section>
+</section>
+<section id="additional-coreboot-changes">
+<h2>Additional coreboot changes<a class="headerlink" href="#additional-coreboot-changes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Remove Yabits payload. Yabits is deprecated and archived.</p></li>
+<li><p>Add DDR2 support to Intel GM45 code.</p></li>
+<li><p>Fix superiotool compilation issues when using musl-libc.</p></li>
+<li><p>Drop the Python 2 package from the coreboot-sdk.</p></li>
+<li><p>Drop the Zephyr SDK from coreboot-sdk since the packaged version
+was quite old and wasn’t really used.</p></li>
+<li><p>Add inteltool support for the Intel “Emmitsburg” PCH.</p></li>
+<li><p>Work to improve cache hit percentage when rebuilding using ccache.</p></li>
+<li><p>Adding Sound-Open-Firmware drivers to chromebooks to enable audio on
+non-chrome operating systems.</p></li>
+<li><p>Improve and expand ACPI generation code.</p></li>
+<li><p>Fix some issues for the RISC-V code.</p></li>
+<li><p>Continue upstreaming the POWER9 architecture.</p></li>
+<li><p>Add documentation for SBOM (Software Bill of Materials).</p></li>
+<li><p>Add SimNow console logging support for AMD.</p></li>
+<li><p>Do initial work on Xeon SPR</p></li>
+<li><p>CMOS defaults greater than 128 bytes long now extend to bank 1.</p></li>
+</ul>
+</section>
+<section id="new-mainboards">
+<h2>New Mainboards<a class="headerlink" href="#new-mainboards" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Asrock: B75M-ITX</p></li>
+<li><p>Dell: Latitude E6400</p></li>
+<li><p>Google: Aurash</p></li>
+<li><p>Google: Boxy</p></li>
+<li><p>Google: Constitution</p></li>
+<li><p>Google: Gothrax</p></li>
+<li><p>Google: Hades</p></li>
+<li><p>Google: Myst</p></li>
+<li><p>Google: Screebo</p></li>
+<li><p>Google: Starmie</p></li>
+<li><p>Google: Taranza</p></li>
+<li><p>Google: Uldren</p></li>
+<li><p>Google: Yavilla</p></li>
+<li><p>HP: EliteBook 2170p</p></li>
+<li><p>Intel: Archer City CRB</p></li>
+<li><p>Intel: DQ67SW</p></li>
+<li><p>Protectli: VP2420</p></li>
+<li><p>Protectli: VP4630/VP4650</p></li>
+<li><p>Protectli: VP4670</p></li>
+<li><p>Siemens: MC EHL4</p></li>
+<li><p>Siemens: MC EHL5</p></li>
+<li><p>System76: lemp11</p></li>
+<li><p>System76: oryp10</p></li>
+<li><p>System76: oryp9</p></li>
+</ul>
+</section>
+<section id="removed-mainboards">
+<h2>Removed Mainboards<a class="headerlink" href="#removed-mainboards" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Intel Icelake U DDR4/LPDDR4 RVP</p></li>
+<li><p>Intel Icelake Y LPDDR4 RVP</p></li>
+<li><p>Scaleway TAGADA</p></li>
+</ul>
+</section>
+<section id="updated-socs">
+<h2>Updated SoCs<a class="headerlink" href="#updated-socs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Removed soc/intel/icelake</p></li>
+</ul>
+</section>
+<section id="plans-to-move-platform-support-to-a-branch">
+<h2>Plans to move platform support to a branch<a class="headerlink" href="#plans-to-move-platform-support-to-a-branch" title="Link to this heading"></a></h2>
+<section id="intel-quark-soc-galileo-mainboard">
+<h3>Intel Quark SoC &amp; Galileo mainboard<a class="headerlink" href="#intel-quark-soc-galileo-mainboard" title="Link to this heading"></a></h3>
+<p>The SoC Intel Quark is unmaintained and different efforts to revive it
+have so far failed.  The only user of this SoC ever was the Galileo
+board.</p>
+<p>Thus, to reduce the maintenance overhead for the community, support for
+the following components will be removed from the master branch and will
+be maintained on the release 4.20 branch.</p>
+<ul class="simple">
+<li><p>Intel Quark SoC</p></li>
+<li><p>Intel Galileo mainboard</p></li>
+</ul>
+</section>
+</section>
+<section id="statistics-from-the-4-19-to-the-4-20-release">
+<h2>Statistics from the 4.19 to the 4.20 release<a class="headerlink" href="#statistics-from-the-4-19-to-the-4-20-release" title="Link to this heading"></a></h2>
+<p>Total Commits: 1630
+Average Commits per day: 13.72
+Total lines added: 102592
+Average lines added per commit: 62.94
+Number of patches adding more than 100 lines: 128
+Average lines added per small commit: 37.99
+Total lines removed: 34824
+Average lines removed per commit: 21.36
+Total difference between added and removed: 67768
+Total authors: ~170
+New authors: ~35</p>
+</section>
+<section id="significant-known-and-open-issues">
+<h2>Significant Known and Open Issues<a class="headerlink" href="#significant-known-and-open-issues" title="Link to this heading"></a></h2>
+<p>Issues from the coreboot bugtracker: https://ticket.coreboot.org/</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Subject</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>478</p></td>
+<td><p>X200 booting Linux takes a long time with TSC</p></td>
+</tr>
+<tr class="row-odd"><td><p>474</p></td>
+<td><p>X200s crashes after graphic init with 8GB RAM</p></td>
+</tr>
+<tr class="row-even"><td><p>457</p></td>
+<td><p>Haswell (t440p): CAR mem region conflicts with CBFS_SIZE &gt; 8mb</p></td>
+</tr>
+<tr class="row-odd"><td><p>453</p></td>
+<td><p>Intel HDMI / DP Audio device not showing up after libgfxinit</p></td>
+</tr>
+<tr class="row-even"><td><p>449</p></td>
+<td><p>ThinkPad T440p fail to start, continuous beeping &amp; LED blinking</p></td>
+</tr>
+<tr class="row-odd"><td><p>448</p></td>
+<td><p>Thinkpad T440P ACPI Battery Value Issues</p></td>
+</tr>
+<tr class="row-even"><td><p>446</p></td>
+<td><p>Optiplex 9010 No Post</p></td>
+</tr>
+<tr class="row-odd"><td><p>439</p></td>
+<td><p>Lenovo X201 Turbo Boost not working (stuck on 2,4GHz)</p></td>
+</tr>
+<tr class="row-even"><td><p>427</p></td>
+<td><p>x200: Two battery charging issues</p></td>
+</tr>
+<tr class="row-odd"><td><p>414</p></td>
+<td><p>X9SAE-V: No USB keyboard init on SeaBIOS using Radeon RX 6800XT</p></td>
+</tr>
+<tr class="row-even"><td><p>412</p></td>
+<td><p>x230 reboots on suspend</p></td>
+</tr>
+<tr class="row-odd"><td><p>393</p></td>
+<td><p>T500 restarts rather than waking up from suspend</p></td>
+</tr>
+<tr class="row-even"><td><p>350</p></td>
+<td><p>I225 PCIe device not detected on Harcuvar</p></td>
+</tr>
+<tr class="row-odd"><td><p>327</p></td>
+<td><p>OperationRegion (OPRG, SystemMemory, ASLS, 0x2000) causes BSOD</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="coreboot-4.21-relnotes.html" class="btn btn-neutral float-left" title="Upcoming release - coreboot 4.21" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="coreboot-4.19-relnotes.html" class="btn btn-neutral float-right" title="coreboot 4.19 release" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

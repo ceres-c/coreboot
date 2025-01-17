@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial, part 2: Submitting a patch to coreboot.org &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Writing unit tests for coreboot" href="part3.html" />
+    <link rel="prev" title="Tutorial, part 1: Starting from scratch" href="part1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="part1.html">Part 1: Starting from scratch</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Part 2: Submitting a patch to coreboot.org</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-set-up-an-account-at-coreboot-org">Step 1: Set up an account at coreboot.org</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2a-set-up-ssh-keys">Step 2a: Set up SSH keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2b-set-up-an-http-password">Step 2b: Set up an HTTP Password</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-clone-coreboot-and-configure-it-for-submitting-patches">Step 3: Clone coreboot and configure it for submitting patches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-4-submit-a-commit">Step 4: Submit a commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-4a-use-the-command-line-to-stage-and-submit-a-commit">Step 4a: Use the command line to stage and submit a commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-4b-use-git-cola-to-stage-and-submit-a-commit">Step 4b: Use git cola to stage and submit a commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-5-let-others-review-your-commit">Step 5: Let others review your commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-6-optional-bash-git-prompt">Step 6 (optional): bash-git-prompt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#appendix-miscellaneous-advice">Appendix: Miscellaneous Advice</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#updating-a-commit-after-running-git-push">Updating a commit after running git push:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="part3.html">Part 3: Writing unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_local_additions.html">Managing local additions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flashing_firmware/index.html">Flashing firmware</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Tutorial</a></li>
+      <li class="breadcrumb-item active">Tutorial, part 2: Submitting a patch to coreboot.org</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorial/part2.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorial-part-2-submitting-a-patch-to-coreboot-org">
+<h1>Tutorial, part 2: Submitting a patch to coreboot.org<a class="headerlink" href="#tutorial-part-2-submitting-a-patch-to-coreboot-org" title="Link to this heading"></a></h1>
+<section id="step-1-set-up-an-account-at-coreboot-org">
+<h2>Step 1: Set up an account at coreboot.org<a class="headerlink" href="#step-1-set-up-an-account-at-coreboot-org" title="Link to this heading"></a></h2>
+<p>If you already have an account, skip to Step 2.</p>
+<p>Otherwise, go to <a class="reference external" href="https://review.coreboot.org">https://review.coreboot.org</a> in your preferred web
+browser.  Select <strong>Sign in</strong> in the upper right corner.</p>
+<p>Select the appropriate sign-in. For example, if you have a Google
+account, select <strong>Google OAuth2</strong> (gerrit-oauth-provider plugin).
+<strong>Note:</strong> Your username for the account will be the username of the
+account you used to sign-in with. (ex. your Google username).</p>
+</section>
+<section id="step-2a-set-up-ssh-keys">
+<h2>Step 2a: Set up SSH keys<a class="headerlink" href="#step-2a-set-up-ssh-keys" title="Link to this heading"></a></h2>
+<p>If you prefer to use an HTTP password instead, skip to Step 2b.</p>
+<p>If you do not have an SSH key set up on your account already (as is the
+case with a newly created account), follow the instructions below;
+otherwise, doing so could overwrite an existing key.</p>
+<p>In a terminal, run <code class="docutils literal notranslate"><span class="pre">ssh-keygen</span> <span class="pre">-t</span> <span class="pre">ed25519</span></code> and confirm the default path
+<code class="docutils literal notranslate"><span class="pre">.ssh/id_ed25519</span></code>.</p>
+<p>Make a passphrase – remember this phrase. It will be needed whenever
+you use this public key. <strong>Note:</strong> You might want to use a short
+password, or forego the password altogether as you will be using it very
+often.</p>
+<p>Copy the content of <code class="docutils literal notranslate"><span class="pre">.ssh/id_ed25519.pub</span></code> (notice the “.pub” suffix
+as you need to send the public key) into the textbox “New SSH Key” at
+https://review.coreboot.org/settings/#SSHKeys and save it.</p>
+</section>
+<section id="step-2b-set-up-an-http-password">
+<h2>Step 2b: Set up an HTTP Password<a class="headerlink" href="#step-2b-set-up-an-http-password" title="Link to this heading"></a></h2>
+<p>Alternatively, instead of using SSH keys, you can use an HTTP password.
+To do so, after you select your name and click on <strong>Settings</strong> on the
+left-hand side, rather than selecting <strong>SSH Public Keys</strong>, select <strong>HTTP
+Password</strong>.</p>
+<p>Click <strong>Generate Password</strong>. This should fill the “Password” box with a
+password. Copy the password, and add the following to your
+<code class="docutils literal notranslate"><span class="pre">$HOME/.netrc</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">machine</span> <span class="n">review</span><span class="o">.</span><span class="n">coreboot</span><span class="o">.</span><span class="n">org</span> <span class="n">login</span> <span class="n">YourUserNameHere</span> <span class="n">password</span> <span class="n">YourPasswordHere</span>
+</pre></div>
+</div>
+<p>where YourUserNameHere is your username, and YourPasswordHere is the
+password you just generated.</p>
+<p>If your system is behind a snooping HTTPS proxy, you might also have to
+make its SSL certificate known to curl, a system specific operation.
+If that’s not possible for some reason, you can also disable SSL
+certificate verification in git:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="p">[</span><span class="o">--</span><span class="k">global</span><span class="p">]</span> <span class="n">http</span><span class="o">.</span><span class="n">sslVerify</span> <span class="p">[</span><span class="n">true</span><span class="o">|</span><span class="n">false</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--global</span></code> argument sets it for all git transfers of your local
+user, <code class="docutils literal notranslate"><span class="pre">false</span></code> means not to validate the certificate.</p>
+<p>If that still doesn’t allow you to pull or push changes to the server,
+the proxy is likely tampering with the data stream, in which case
+there’s nothing we can do.</p>
+</section>
+<section id="step-3-clone-coreboot-and-configure-it-for-submitting-patches">
+<h2>Step 3: Clone coreboot and configure it for submitting patches<a class="headerlink" href="#step-3-clone-coreboot-and-configure-it-for-submitting-patches" title="Link to this heading"></a></h2>
+<p>On Gerrit, click on the <strong>Browse</strong> tab in the upper left corner and
+select <strong>Repositories</strong>. From the listing, select the “coreboot” repo.
+You may have to click the next page arrow at the bottom a few times to
+find it.</p>
+<p>If you are using SSH keys, select <strong>ssh</strong> from the tabs under “Project
+coreboot” and run the “clone with commit-msg hook” command that’s
+provided.  This should prompt you for your id_rsa passphrase, if you
+previously set one.</p>
+<p><strong>Note:</strong> if the <strong>ssh</strong> option is not showing, check that you have a
+username set. Click the profile picture at the top right and select
+<strong>User Settings</strong>, then set your username in the <strong>Profile</strong> section.</p>
+<p>If you are using HTTP, instead, select <strong>http</strong> from the tabs under
+“Project coreboot” and run the command that appears.</p>
+<p>Now is a good time to configure your global git identity, if you haven’t
+already.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;Your Name&quot;</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="s2">&quot;Your Email&quot;</span>
+</pre></div>
+</div>
+<p>Finally, enter the local git repository and set up repository specific
+hooks and other configurations.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">coreboot</span>
+<span class="n">make</span> <span class="n">gitconfig</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-submit-a-commit">
+<h2>Step 4: Submit a commit<a class="headerlink" href="#step-4-submit-a-commit" title="Link to this heading"></a></h2>
+<p>An easy first commit to make is fixing existing checkpatch errors and
+warnings in the source files. To see errors that are already present,
+build the files in the repository by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code> in the coreboot
+directory. Alternatively, if you want to run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code> on a specific
+directory, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">util</span><span class="o">/</span><span class="n">lint</span><span class="o">/</span><span class="n">lint</span><span class="o">-</span><span class="mi">007</span><span class="o">-</span><span class="n">checkpatch</span> <span class="o">&lt;</span><span class="n">filepath</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">filepath</span></code> is the filepath of the directory (ex.
+<code class="docutils literal notranslate"><span class="pre">src/cpu/amd/car</span></code>).</p>
+<p>Any changes made to files under the src directory are made locally,
+and can be submitted for review.</p>
+<p>Once you finish making your desired changes, use the command line to
+stage and submit your changes. An alternative and potentially easier way
+to stage and submit commits is to use git cola, a graphical user
+interface for git. For instructions on how to do so, skip to Step 4b.</p>
+</section>
+<section id="step-4a-use-the-command-line-to-stage-and-submit-a-commit">
+<h2>Step 4a: Use the command line to stage and submit a commit<a class="headerlink" href="#step-4a-use-the-command-line-to-stage-and-submit-a-commit" title="Link to this heading"></a></h2>
+<p>To use the command line to stage a commit, run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">filename</span></code> is the name of your file.</p>
+<p>To commit the change, run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">s</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> The -s adds a signed-off-by line by the committer. Your commit
+should be signed off with your name and email (i.e. <strong>Your Name</strong>
+<strong>&lt;Your Email&gt;</strong>, based on what you set with git config earlier).</p>
+<p>Running git commit first checks for any errors and warnings using lint.
+If there are any, you must go back and fix them before submitting your
+commit.  You can do so by making the necessary changes, and then staging
+your commit again.</p>
+<p>When there are no errors or warnings, your default text editor will
+open.  This is where you will write your commit message.</p>
+<p>The first line of your commit message is your commit summary. This is a
+brief one-line description of what you changed in the files using the
+template below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">filepath</span><span class="o">&gt;</span><span class="p">:</span> <span class="n">Short</span> <span class="n">description</span>
+</pre></div>
+</div>
+<p>For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cpu</span><span class="o">/</span><span class="n">amd</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="mi">00630</span><span class="n">F01</span><span class="p">:</span> <span class="n">Fix</span> <span class="n">checkpatch</span> <span class="n">warnings</span> <span class="ow">and</span> <span class="n">errors</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> It is good practice to use present tense in your descriptions
+and do not punctuate your summary.</p>
+<p>Then hit Enter. The next paragraph should be a more in-depth explanation
+of the changes you’ve made to the files. Again, it is good practice to
+use present tense. Ex.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Fix</span> <span class="n">space</span> <span class="n">prohibited</span> <span class="n">between</span> <span class="n">function</span> <span class="n">name</span> <span class="ow">and</span> <span class="nb">open</span> <span class="n">parenthesis</span><span class="p">,</span>
+<span class="n">line</span> <span class="n">over</span> <span class="mi">80</span> <span class="n">characters</span><span class="p">,</span> <span class="n">unnecessary</span> <span class="n">braces</span> <span class="k">for</span> <span class="n">single</span> <span class="n">statement</span>
+<span class="n">blocks</span><span class="p">,</span> <span class="n">space</span> <span class="n">required</span> <span class="n">before</span> <span class="nb">open</span> <span class="n">brace</span> <span class="n">errors</span> <span class="ow">and</span> <span class="n">warnings</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>When you have finished writing your commit message, save and exit the
+text editor. You have finished committing your change. If, after
+submitting your commit, you wish to make changes to it, running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--amend</span></code> allows you to take back your commit and amend it.</p>
+<p>When you are done with your commit, run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> to push your commit
+to coreboot.org. <strong>Note:</strong> To submit as a private patch, use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">HEAD:refs/for/main%private</span></code>. Submitting as a private patch
+means that your commit will be on review.coreboot.org, but is only
+visible to yourself and those you add as reviewers. This mode isn’t
+perfect: Somebody who knows the commit ID can still fetch the change and
+everything it refers (e.g.  parent commits).</p>
+<p>This has been a quick primer on how to submit a change to Gerrit for
+review using git. You may wish to review the <a class="reference external" href="https://gerrit-review.googlesource.com/Documentation/intro-user.html#code-review">Gerrit code review
+workflow
+documentation</a>,
+especially if you plan to work on multiple changes at the same time.</p>
+</section>
+<section id="step-4b-use-git-cola-to-stage-and-submit-a-commit">
+<h2>Step 4b: Use git cola to stage and submit a commit<a class="headerlink" href="#step-4b-use-git-cola-to-stage-and-submit-a-commit" title="Link to this heading"></a></h2>
+<p>If git cola is not installed on your machine, see
+<a class="reference external" href="https://git-cola.github.io/downloads.html">https://git-cola.github.io/downloads.html</a> for download instructions.</p>
+<p>After making some edits to src files, rather than run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>, run
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">cola</span></code> from the command line. You should see all of the files
+edited under “Modified”.</p>
+<p>In the textbox labeled “Commit summary” provide a brief one-line
+description of what you changed in the files according to the template
+below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">filepath</span><span class="o">&gt;</span><span class="p">:</span> <span class="n">Short</span> <span class="n">description</span>
+</pre></div>
+</div>
+<p>For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cpu</span><span class="o">/</span><span class="n">amd</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="mi">00630</span><span class="n">F01</span><span class="p">:</span> <span class="n">Fix</span> <span class="n">checkpatch</span> <span class="n">warnings</span> <span class="ow">and</span> <span class="n">errors</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> It is good practice to use present tense in your descriptions
+and do not punctuate your short description.</p>
+<p>In the larger text box labeled ‘Extended description…’ provide a more
+in-depth explanation of the changes you’ve made to the files. Again, it
+is good practice to use present tense. Ex.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Fix</span> <span class="n">space</span> <span class="n">prohibited</span> <span class="n">between</span> <span class="n">function</span> <span class="n">name</span> <span class="ow">and</span> <span class="nb">open</span> <span class="n">parenthesis</span><span class="p">,</span>
+<span class="n">line</span> <span class="n">over</span> <span class="mi">80</span> <span class="n">characters</span><span class="p">,</span> <span class="n">unnecessary</span> <span class="n">braces</span> <span class="k">for</span> <span class="n">single</span> <span class="n">statement</span>
+<span class="n">blocks</span><span class="p">,</span> <span class="n">space</span> <span class="n">required</span> <span class="n">before</span> <span class="nb">open</span> <span class="n">brace</span> <span class="n">errors</span> <span class="ow">and</span> <span class="n">warnings</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Then press Enter two times to move the cursor to below your description.
+To the left of the text boxes, there is an icon with an downward arrow.
+Press the arrow and select “Sign Off.” Make sure that you are signing
+off with your name and email (i.e. <strong>Your Name</strong> <strong>&lt;Your Email&gt;</strong>,
+based on what you set with git config earlier).</p>
+<p>Now, review each of your changes and mark either individual changes or
+an entire file as Ready to Commit by marking it as ‘Staged’. To do
+this, select one file from the ‘Modified’ list. If you only want to
+submit particular changes from each file, then highlight the red and
+green lines for your changes, right click and select ‘Stage Selected
+Lines’. Alternatively, if an entire file is ready to be committed, just
+double click on the file under ‘Modified’ and it will be marked as
+Staged.</p>
+<p>Once the descriptions are done and all the edits you would like to
+commit have been staged, press ‘Commit’ on the right of the text
+boxes.</p>
+<p>If the commit fails due to persisting errors, a text box will appear
+showing the errors. You can correct these errors within ‘git cola’ by
+right-clicking on the file in which the error occurred and selecting
+‘Launch Diff Tool’. Make necessary corrections, close the Diff Tool and
+‘Stage’ the corrected file again. It might be necessary to refresh
+‘git cola’ in order for the file to be shown under ‘Modified’ again.
+Note: Be sure to add any other changes that haven’t already been
+explained in the extended description.</p>
+<p>When ready, select ‘Commit’ again. Once all errors have been satisfied
+and the commit succeeds, move to the command line and run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p>
+</section>
+<section id="step-5-let-others-review-your-commit">
+<h2>Step 5: Let others review your commit<a class="headerlink" href="#step-5-let-others-review-your-commit" title="Link to this heading"></a></h2>
+<p>Your commits can now be seen on review.coreboot.org if you select “Your”
+and click on “Changes” and can be reviewed by others. Your code will
+first be reviewed by build bot (Jenkins), which will either give you a
+warning or verify a successful build; if so, your commit will receive a
++1. Other users may also give your commit +1. For a commit to be merged,
+it needs to receive a +2. <strong>Note:</strong> A +1 and a +1 does not make a +2.
+Only certain users can give a +2.</p>
+</section>
+<section id="step-6-optional-bash-git-prompt">
+<h2>Step 6 (optional): bash-git-prompt<a class="headerlink" href="#step-6-optional-bash-git-prompt" title="Link to this heading"></a></h2>
+<p>To help make it easier to understand the state of the git repository
+without running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>, there is a way to make the
+command line show the status of the repository at every point. This
+is through bash-git-prompt.</p>
+<p>Instructions for installing this are found at:
+<a class="reference external" href="https://github.com/magicmonty/bash-git-prompt">https://github.com/magicmonty/bash-git-prompt</a>.
+<strong>Note:</strong> Feel free to search for different versions of git prompt,
+as this one is specific to bash.</p>
+<p>Alternatively, follow the instructions below:
+Run the following two commands in the command line:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/magicmonty/bash-git-prompt.git<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>.bash-git-prompt<span class="w"> </span>--depth<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> cd will change your directory to your home directory, so the
+git clone command will be run there.</p>
+<p>Finally, open the <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> file and append the following two lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GIT_PROMPT_ONLY_IN_REPO</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">source</span> <span class="o">~/.</span><span class="n">bash</span><span class="o">-</span><span class="n">git</span><span class="o">-</span><span class="n">prompt</span><span class="o">/</span><span class="n">gitprompt</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>Now, whenever you are in a git repository, it will continuously display
+its state.</p>
+<p>There also are additional configurations that you can change depending
+on your preferences. If you wish to do so, look at the “All configs for
+.bashrc” section on <a class="reference external" href="https://github.com/magicmonty/bash-git-prompt">https://github.com/magicmonty/bash-git-prompt</a>.
+Listed in that section are various lines that you can copy, uncomment
+and add to your .bashrc file to change the configurations. Example
+configurations include avoid fetching remote status, and supporting
+versions of Git older than 1.7.10.</p>
+</section>
+<section id="appendix-miscellaneous-advice">
+<h2>Appendix: Miscellaneous Advice<a class="headerlink" href="#appendix-miscellaneous-advice" title="Link to this heading"></a></h2>
+<section id="updating-a-commit-after-running-git-push">
+<h3>Updating a commit after running git push:<a class="headerlink" href="#updating-a-commit-after-running-git-push" title="Link to this heading"></a></h3>
+<p>Suppose you would like to update a commit that has already been pushed
+to the remote repository. If the commit you wish to update is the most
+recent commit you have made, after making your desired changes, stage
+the files (either using git add or in git cola), and amend the commit.
+To do so, if you are using the command line, run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--amend</span></code>.
+If you are using git cola, click on the gear icon located on the upper
+left side under <strong>Commit</strong> and select <strong>Amend Last Commit</strong> in the drop
+down menu. Then, stage the files you have changed, commit the changes,
+and run git push to push the changes to the remote repository. Your
+change should be reflected in Gerrit as a new patch set.</p>
+<p>If, however, the commit you wish to update is not the most recent commit
+you have made, you will first need to checkout that commit. To do so,
+find the URL of the commit on <a class="reference external" href="https://review.coreboot.org">https://review.coreboot.org</a> and go to
+that page; if the commit is one that you previously pushed, it can be
+found by selecting <strong>My</strong> and then <strong>Changes</strong> in the upper left corner.
+To checkout this commit, in the upper right corner, click on
+<strong>Download</strong>, and copy the command listed next to checkout by clicking
+<strong>Copy to clipboard</strong>. Then, run the copied command in your coreboot
+repository. Now, the last commit should be the most recent commit to
+that patch; to update it, make your desired changes, stage the files,
+then amend and push the commit using the instructions in the above
+paragraph.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="part1.html" class="btn btn-neutral float-left" title="Tutorial, part 1: Starting from scratch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="part3.html" class="btn btn-neutral float-right" title="Writing unit tests for coreboot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,2761 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unofficial Documentation of Intel MCHBAR register space. &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Frequency selection" href="nri_freq.html" />
+    <link rel="prev" title="Sandy Bridge Raminit" href="nri.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Northbridge</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#vendor">Vendor</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Intel</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#platforms">Platforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Northbridge-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Intel Northbridge-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Intel Sandy Bridge-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="nri.html">Sandy Bridge Raminit</a></li>
+      <li class="breadcrumb-item active">Unofficial Documentation of Intel MCHBAR register space.</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/northbridge/intel/sandybridge/nri_registers.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="unofficial-documentation-of-intel-mchbar-register-space">
+<h1>Unofficial Documentation of Intel MCHBAR register space.<a class="headerlink" href="#unofficial-documentation-of-intel-mchbar-register-space" title="Link to this heading"></a></h1>
+<p>The MCHBAR can be enabled by using register 0x48 of PCI(0:0:0) device.</p>
+<p>This documentation is incomplete and might be incorrect.
+Please handle with care!</p>
+<p><strong>MCHBAR + 0x4</strong></p>
+<p><em>Width:</em> 64 Bit</p>
+<p><em>Desc:</em>  Lane training result Register,  Channel 0,  lane 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:63</p></td>
+<td><p>Training result, each bit corresponds to one of the 64 settings
+of IO delay</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x10</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 0 Register,  Channel 0,  lane 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x14</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 1 Register,  Channel 0,  lane 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x18</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 2 Register,  Channel 0,  lane 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x1c</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 3 Register,  Channel 0,  lane 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x20</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 0 Register,  Channel 0,  lane 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x24</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 1 Register,  Channel 0,  lane 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x28</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 2 Register,  Channel 0,  lane 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x2c</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 3 Register,  Channel 0,  lane 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x204</strong></p>
+<p><em>Width:</em> 64 Bit</p>
+<p><em>Desc:</em>  Lane training result Register,  Channel 0,  lane 1</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:63</p></td>
+<td><p>Training result, each bit corresponds to one of the 64 settings
+of IO delay</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x210</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 0 Register,  Channel 0,  lane 1</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x214</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 1 Register,  Channel 0,  lane 1</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x218</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 2 Register,  Channel 0,  lane 1</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x21c</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 3 Register,  Channel 0,  lane 1</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x220</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 0 Register,  Channel 0,  lane 1</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x224</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 1 Register,  Channel 0,  lane 1</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x228</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 2 Register,  Channel 0,  lane 1</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x22c</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 3 Register,  Channel 0,  lane 1</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x404</strong></p>
+<p><em>Width:</em> 64 Bit</p>
+<p><em>Desc:</em>  Lane training result Register,  Channel 0,  lane 2</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:63</p></td>
+<td><p>Training result, each bit corresponds to one of the 64 settings
+of IO delay</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x410</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 0 Register,  Channel 0,  lane 2</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x414</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 1 Register,  Channel 0,  lane 2</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x418</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 2 Register,  Channel 0,  lane 2</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x41c</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 3 Register,  Channel 0,  lane 2</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x420</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 0 Register,  Channel 0,  lane 2</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x424</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 1 Register,  Channel 0,  lane 2</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x428</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 2 Register,  Channel 0,  lane 2</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x42c</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 3 Register,  Channel 0,  lane 2</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x604</strong></p>
+<p><em>Width:</em> 64 Bit</p>
+<p><em>Desc:</em>  Lane training result Register,  Channel 0,  lane 3</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:63</p></td>
+<td><p>Training result, each bit corresponds to one of the 64 settings
+of IO delay</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x610</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 0 Register,  Channel 0,  lane 3</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x614</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 1 Register,  Channel 0,  lane 3</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x618</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 2 Register,  Channel 0,  lane 3</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x61c</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 3 Register,  Channel 0,  lane 3</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x620</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 0 Register,  Channel 0,  lane 3</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x624</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 1 Register,  Channel 0,  lane 3</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x628</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 2 Register,  Channel 0,  lane 3</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x62c</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 3 Register,  Channel 0,  lane 3</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x804</strong></p>
+<p><em>Width:</em> 64 Bit</p>
+<p><em>Desc:</em>  Lane training result Register,  Channel 0,  lane 4</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:63</p></td>
+<td><p>Training result, each bit corresponds to one of the 64 settings
+of IO delay</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x810</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 0 Register,  Channel 0,  lane 4</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x814</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 1 Register,  Channel 0,  lane 4</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x818</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 2 Register,  Channel 0,  lane 4</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x81c</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 3 Register,  Channel 0,  lane 4</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x820</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 0 Register,  Channel 0,  lane 4</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x824</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 1 Register,  Channel 0,  lane 4</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x828</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 2 Register,  Channel 0,  lane 4</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x82c</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 3 Register,  Channel 0,  lane 4</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xa04</strong></p>
+<p><em>Width:</em> 64 Bit</p>
+<p><em>Desc:</em>  Lane training result Register,  Channel 0,  lane 5</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:63</p></td>
+<td><p>Training result, each bit corresponds to one of the 64 settings
+of IO delay</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xa10</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 0 Register,  Channel 0,  lane 5</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xa14</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 1 Register,  Channel 0,  lane 5</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xa18</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 2 Register,  Channel 0,  lane 5</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xa1c</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 3 Register,  Channel 0,  lane 5</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xa20</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 0 Register,  Channel 0,  lane 5</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xa24</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 1 Register,  Channel 0,  lane 5</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xa28</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 2 Register,  Channel 0,  lane 5</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xa2c</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 3 Register,  Channel 0,  lane 5</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xc04</strong></p>
+<p><em>Width:</em> 64 Bit</p>
+<p><em>Desc:</em>  Lane training result Register,  Channel 0,  lane 6</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:63</p></td>
+<td><p>Training result, each bit corresponds to one of the 64 settings
+of IO delay</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xc10</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 0 Register,  Channel 0,  lane 6</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xc14</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 1 Register,  Channel 0,  lane 6</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>Rank 0 CLK phase shift, low</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>Rank 1 CLK phase shift, low</p></td>
+</tr>
+<tr class="row-even"><td><p>12:17</p></td>
+<td><p>Rank 2 CLK phase shift, low</p></td>
+</tr>
+<tr class="row-odd"><td><p>18:23</p></td>
+<td><p>Rank 3 CLK phase shift, low</p></td>
+</tr>
+<tr class="row-even"><td><p>24:27</p></td>
+<td><p>Rankmap to enable clock crossover on</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xc18</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 2 Register,  Channel 0,  lane 6</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Rank 0 CLK phase shift, high</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Rank 1 CLK phase shift, high</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Rank 2 CLK phase shift, high</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Rank 3 CLK phase shift, high</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xc1c</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 3 Register,  Channel 0,  lane 6</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xc20</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 0 Register,  Channel 0,  lane 6</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xc24</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 1 Register,  Channel 0,  lane 6</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xc28</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 2 Register,  Channel 0,  lane 6</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xc2c</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 3 Register,  Channel 0,  lane 6</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xe04</strong></p>
+<p><em>Width:</em> 64 Bit</p>
+<p><em>Desc:</em>  Lane training result Register,  Channel 0,  lane 7</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:63</p></td>
+<td><p>Training result, each bit corresponds to one of the 64 settings
+of IO delay</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xe10</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 0 Register,  Channel 0,  lane 7</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xe14</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 1 Register,  Channel 0,  lane 7</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xe18</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em> Read delay settings, Rank 2 Register,  Channel 0,  lane 7</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xe1c</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Read delay settings, Rank 3 Register,  Channel 0,  lane 7</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>6:11</p></td>
+<td><p>DQS phase shift on rising edge in 1/64 DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>16:18</p></td>
+<td><p>IO delay in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:25</p></td>
+<td><p>DQS phase shift on falling edge in 1/64 DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xe20</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 0 Register,  Channel 0,  lane 7</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xe24</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 1 Register,  Channel 0,  lane 7</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xe28</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 2 Register,  Channel 0,  lane 7</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0xe2c</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  Write delay settings, Rank 3 Register,  Channel 0,  lane 7</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>DQ IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:13</p></td>
+<td><p>DQS IO phase shift in 1/64th DCKs</p></td>
+</tr>
+<tr class="row-even"><td><p>15:17</p></td>
+<td><p>DQS IO phase shift in DCKs</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>DQ IO phase shift in DCKs</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x1810</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  COMP1 Register,  Channel 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>9:11</p></td>
+<td><p>ODT</p></td>
+</tr>
+<tr class="row-odd"><td><p>21:23</p></td>
+<td><p>CLK drive up</p></td>
+</tr>
+<tr class="row-even"><td><p>27:29</p></td>
+<td><p>CTRL drive up</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x320c</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Command crossover enable Register,  Channel 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:5</p></td>
+<td><p>CLK phase, low</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>CLK phase, high</p></td>
+</tr>
+<tr class="row-even"><td><p>14</p></td>
+<td><p>Enable hardware</p></td>
+</tr>
+<tr class="row-odd"><td><p>17</p></td>
+<td><p>Enable on slot 1</p></td>
+</tr>
+<tr class="row-even"><td><p>27</p></td>
+<td><p>Enable on slot 2</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x3714</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  COMP2 Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:31</p></td>
+<td><p>COMP2 value</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4000</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  TC_DBP - Timing of DDR - Bin Parameter Register,  Channel 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:3</p></td>
+<td><p>tRCD</p></td>
+</tr>
+<tr class="row-odd"><td><p>4:7</p></td>
+<td><p>tRP</p></td>
+</tr>
+<tr class="row-even"><td><p>8:11</p></td>
+<td><p>CAS</p></td>
+</tr>
+<tr class="row-odd"><td><p>12:15</p></td>
+<td><p>CWL</p></td>
+</tr>
+<tr class="row-even"><td><p>16:19</p></td>
+<td><p>tRAS</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4004</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  TC_RAP - Timing of DDR - Regular Access Parameters Register,  Channel 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:3</p></td>
+<td><p>tRRD</p></td>
+</tr>
+<tr class="row-odd"><td><p>4:7</p></td>
+<td><p>tRTP</p></td>
+</tr>
+<tr class="row-even"><td><p>8:11</p></td>
+<td><p>CKE</p></td>
+</tr>
+<tr class="row-odd"><td><p>12:15</p></td>
+<td><p>WTR</p></td>
+</tr>
+<tr class="row-even"><td><p>16:19</p></td>
+<td><p>tFAW</p></td>
+</tr>
+<tr class="row-odd"><td><p>24:27</p></td>
+<td><p>tWR</p></td>
+</tr>
+<tr class="row-even"><td><p>29</p></td>
+<td><blockquote>
+<div><p>Command 3-state options</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>0: Drive when channel is active, tri-state when inactive,</p></li>
+<li><p>1: Always drive command bus</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>30:31</p></td>
+<td><blockquote>
+<div><p>CMD stretch,</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>00b: 1N,</p></li>
+<li><p>10b: 2N,</p></li>
+<li><p>11b: 3N</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x400c</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  OTHP ODT control Register,  Channel 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:3</p></td>
+<td><p>tXPDLL ?</p></td>
+</tr>
+<tr class="row-odd"><td><p>5:7</p></td>
+<td><p>tXP ?</p></td>
+</tr>
+<tr class="row-even"><td><p>16:17</p></td>
+<td><p>ODT stretch</p></td>
+</tr>
+<tr class="row-odd"><td><p>18:19</p></td>
+<td><p>ODT stretch</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x401c</strong></p>
+<p><em>Width:</em> 16 Bit</p>
+<p><em>Desc:</em>  OTHP Workaround (Sandy Bridge only) Register,  Channel 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>12:13</p></td>
+<td><p>ODT stretch</p></td>
+</tr>
+<tr class="row-odd"><td><p>14:15</p></td>
+<td><p>ODT stretch</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4024</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Rounttrip time Register,  Channel 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:7</p></td>
+<td><p>RTT Rank 0 DIMM 0</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:15</p></td>
+<td><p>RTT Rank 1 DIMM 0</p></td>
+</tr>
+<tr class="row-even"><td><p>16:23</p></td>
+<td><p>RTT Rank 0 DIMM 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>24:31</p></td>
+<td><p>RTT Rank 1 DIMM 1</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4028</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  SC_IO_LATENCY Register,  Channel 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:3</p></td>
+<td><p>IO latency Rank 0 DIMM 0</p></td>
+</tr>
+<tr class="row-odd"><td><p>4:7</p></td>
+<td><p>IO latency Rank 1 DIMM 0</p></td>
+</tr>
+<tr class="row-even"><td><p>8:11</p></td>
+<td><p>IO latency Rank 0 DIMM 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>12:15</p></td>
+<td><p>IO latency Rank 1 DIMM 1</p></td>
+</tr>
+<tr class="row-even"><td><p>16:21</p></td>
+<td><p>Rount trip  - I/O compensation</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4200</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  RAM training queue, address Register,  Channel 0,  queue idx 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:15</p></td>
+<td><p>Address</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:22</p></td>
+<td><p>Bank address</p></td>
+</tr>
+<tr class="row-even"><td><p>24:25</p></td>
+<td><p>Slotrank</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4204</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  RAM training queue, address Register,  Channel 0,  queue idx 1</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:15</p></td>
+<td><p>Address</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:22</p></td>
+<td><p>Bank address</p></td>
+</tr>
+<tr class="row-even"><td><p>24:25</p></td>
+<td><p>Slotrank</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4208</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  RAM training queue, address Register,  Channel 0,  queue idx 2</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:15</p></td>
+<td><p>Address</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:22</p></td>
+<td><p>Bank address</p></td>
+</tr>
+<tr class="row-even"><td><p>24:25</p></td>
+<td><p>Slotrank</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x420c</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  RAM training queue, address Register,  Channel 0,  queue idx 3</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:15</p></td>
+<td><p>Address</p></td>
+</tr>
+<tr class="row-odd"><td><p>20:22</p></td>
+<td><p>Bank address</p></td>
+</tr>
+<tr class="row-even"><td><p>24:25</p></td>
+<td><p>Slotrank</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4220</strong></p>
+<p><em>Width:</em> 8 Bit</p>
+<p><em>Desc:</em>  RAM training queue, command IO Register,  Channel 0,  queue idx 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>!RAS</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>!CAS</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>!WE</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4224</strong></p>
+<p><em>Width:</em> 8 Bit</p>
+<p><em>Desc:</em>  RAM training queue, command IO Register,  Channel 0,  queue idx 1</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>!RAS</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>!CAS</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>!WE</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4228</strong></p>
+<p><em>Width:</em> 8 Bit</p>
+<p><em>Desc:</em>  RAM training queue, command IO Register,  Channel 0,  queue idx 2</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>!RAS</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>!CAS</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>!WE</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x422c</strong></p>
+<p><em>Width:</em> 8 Bit</p>
+<p><em>Desc:</em>  RAM training queue, command IO Register,  Channel 0,  queue idx 3</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>!RAS</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>!CAS</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>!WE</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4230</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  RAM training queue, cooldown Register,  Channel 0,  queue idx 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>16:31</p></td>
+<td><p>Clock cycles to wait after command</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4234</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  RAM training queue, cooldown Register,  Channel 0,  queue idx 1</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>16:31</p></td>
+<td><p>Clock cycles to wait after command</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4238</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  RAM training queue, cooldown Register,  Channel 0,  queue idx 2</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>16:31</p></td>
+<td><p>Clock cycles to wait after command</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x423c</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  RAM training queue, cooldown Register,  Channel 0,  queue idx 3</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>16:31</p></td>
+<td><p>Clock cycles to wait after command</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4284</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  RAM training queue, cooldown Register,  Channel 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Start executing DRAM command queue</p></td>
+</tr>
+<tr class="row-odd"><td><p>16:19</p></td>
+<td><p>(Number of queued commands - 1) * 4</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4298</strong></p>
+<p><em>Width:</em> 40 Bit</p>
+<p><em>Desc:</em>  TC - Refresh parameters Register,  Channel 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:15</p></td>
+<td><p>tREFI, average period between refresh in DCLK cycles</p></td>
+</tr>
+<tr class="row-odd"><td><p>16:24</p></td>
+<td><p>tRFC, Time of refresh, from beginning of refresh until next ACT
+or refresh is allowed in DCLK cycles</p></td>
+</tr>
+<tr class="row-even"><td><p>25:32</p></td>
+<td><p>tREFIx9, Maximum time allowed between refreshes to a rank.
+Should be programmed to 8.9 * tREFI / 1024</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x42a4</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  SRFTP Register,  Channel 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:11</p></td>
+<td><p>tXSDLL</p></td>
+</tr>
+<tr class="row-odd"><td><p>12:15</p></td>
+<td><p>tXS_offset</p></td>
+</tr>
+<tr class="row-even"><td><p>16:25</p></td>
+<td><p>tZQOPER</p></td>
+</tr>
+<tr class="row-odd"><td><p>28:31</p></td>
+<td><p>tMOD</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4c20</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Scheduler parameters Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:31</p></td>
+<td><p>scheduler parameters</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4cb0</strong></p>
+<p><em>Width:</em> 16 Bit</p>
+<p><em>Desc:</em>  PM - Power-down configuration, Broadcast Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:7</p></td>
+<td><p>PDWN_idle_counter, This defines the rank indle period in DCLK
+cycles that causes power-down entrance. The minimum value
+should be greater than or equal to the worst roundtrip time
+plus burst length.</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:10</p></td>
+<td><blockquote>
+<div><p>PDWN_mode, selects the mode of power-down:</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>0x0: No power down,</p></li>
+<li><p>0x1: APD,</p></li>
+<li><p>0x2: PPD,</p></li>
+<li><p>0x3: APD+PPD,</p></li>
+<li><p>0x4: Reserved,</p></li>
+<li><p>0x5: Reserved,</p></li>
+<li><p>0x6: PPD-DLLoff,</p></li>
+<li><p>0x7: APD+PPD+DLLof</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4e80</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Power mode preset Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:31</p></td>
+<td><p>Power mode preset</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4e94</strong></p>
+<p><em>Width:</em> 16 Bit</p>
+<p><em>Desc:</em>  TC - Refresh parameters Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:7</p></td>
+<td><p>OREF_RI, Rank idle period that defines an opportunity for
+refresh</p></td>
+</tr>
+<tr class="row-odd"><td><p>8:11</p></td>
+<td><p>Refresh_HP_WM, tREFI count level that turns the refresh
+priority to high</p></td>
+</tr>
+<tr class="row-even"><td><p>12:15</p></td>
+<td><p>Refresh_panic_WM, tREFI count level in which the refresh
+priority is panic</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x4e98</strong></p>
+<p><em>Width:</em> 40 Bit</p>
+<p><em>Desc:</em>  TC - Refresh parameters Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:15</p></td>
+<td><p>tREFI, average period between refresh in DCLK cycles</p></td>
+</tr>
+<tr class="row-odd"><td><p>16:24</p></td>
+<td><p>tRFC, Time of refresh, from beginning of refresh until next ACT
+or refresh is allowed in DCLK cycles</p></td>
+</tr>
+<tr class="row-even"><td><p>25:32</p></td>
+<td><p>tREFIx9, Maximum time allowed between refreshes to a rank.
+Should be programmed to 8.9 * tREFI / 1024</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x5000</strong></p>
+<p><em>Width:</em> 8 Bit</p>
+<p><em>Desc:</em>  Global channel size control Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:1</p></td>
+<td><blockquote>
+<div><p>CH_A, defines the largest channel.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>00b: Channel 0,</p></li>
+<li><p>01b: Channel 1,</p></li>
+<li><p>10b: Channel 2</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>2:3</p></td>
+<td><blockquote>
+<div><p>CH_B, defines the mid-size channel.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>00b: Channel 0,</p></li>
+<li><p>01b: Channel 1,</p></li>
+<li><p>10b: Channel 2</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>2:3</p></td>
+<td><blockquote>
+<div><p>CH_C, defines the smallest channel.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>00b: Channel 0,</p></li>
+<li><p>01b: Channel 1,</p></li>
+<li><p>10b: Channel 2, CH_C is 10 if only 2 channels are supported</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x5004</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Address Decode Register,  Channel 0</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:7</p></td>
+<td><p>DIMMA size in 256 MB multiples</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><blockquote>
+<div><p>DIMM A select (DAS) Slot to DIMM mapping,</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>0: DIMMA, DIMMB,</p></li>
+<li><p>1: DIMMB, DIMMA</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>DIMM A number of ranks</p></td>
+</tr>
+<tr class="row-odd"><td><p>19</p></td>
+<td><p>DIMM A DRAM width x8 / x16</p></td>
+</tr>
+<tr class="row-even"><td><p>8:15</p></td>
+<td><p>DIMM B size in 256 MB multiples</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p>DIMM B number of ranks</p></td>
+</tr>
+<tr class="row-even"><td><p>20</p></td>
+<td><p>DIMM B DRAM width in 8x / x16</p></td>
+</tr>
+<tr class="row-odd"><td><p>21</p></td>
+<td><p>Rank interleave enable</p></td>
+</tr>
+<tr class="row-even"><td><p>22</p></td>
+<td><p>Enhanced interleave enable</p></td>
+</tr>
+<tr class="row-odd"><td><p>26</p></td>
+<td><p>High order Rank interleave enable</p></td>
+</tr>
+<tr class="row-even"><td><p>27:29</p></td>
+<td><p>High Order Rank interleave Address. Selects on of address bits
+20-27 to use for high rank interleave</p></td>
+</tr>
+<tr class="row-odd"><td><p>24:25</p></td>
+<td><blockquote>
+<div><p>ECC,</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>00b: No ECC active,</p></li>
+<li><p>01b: ECC is active on IO,</p></li>
+<li><p>11b: ECC is active on both IO and ECC logic</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x5030</strong></p>
+<p><em>Width:</em> 8 Bit</p>
+<p><em>Desc:</em>  Global DDR3 control Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>DDR reset</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>DCLK enable</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>IO reset</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x5034</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  Version Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:31</p></td>
+<td><p>MRC version</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x5060</strong></p>
+<p><em>Width:</em> 16 Bit</p>
+<p><em>Desc:</em>  PM - Self refresh config Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:15</p></td>
+<td><p>Idle_timer, The value is used when the SREF_enable field is set
+and defines the # of cycles that there should not be any
+transaction in order to enter self-refresh.</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>SR_Enable, enable self-refresh mechanism. Clear SREF_en and
+SREF_exit first.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x5084</strong></p>
+<p><em>Width:</em> 24 Bit</p>
+<p><em>Desc:</em>  RCOMP status Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>Busy</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x5090</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  ECC - Address compare for ECC error injection Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:31</p></td>
+<td><p>Inject error when ECC_Inj_Addr_Compare[31:0] = ADDR[37:6]</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x5094</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  ECC - Address mask for ECC error injection Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:31</p></td>
+<td><blockquote>
+<div><p>Inject error when ECC_inj_Addr_Compare[31:0] =</p>
+</div></blockquote>
+<p>ADDR[37:6] &amp;&amp; ECC_Inj_Addr_Mask[31:0]</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x5e00</strong></p>
+<p><em>Width:</em> 32 Bit</p>
+<p><em>Desc:</em>  MC_BIOS_REQ Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:7</p></td>
+<td><p>Selected multiplier: 100Mhz [7,12], 133Mhz [3,19]</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><ul class="simple">
+<li><p>1: 100Mhz reference clock (Ivy Bridge only)</p></li>
+<li><p>0: 133Mhz reference clock</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>31</p></td>
+<td><p>PLL busy</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x5e04</strong></p>
+<p><em>Width:</em> 8 Bit</p>
+<p><em>Desc:</em>  MC_BIOS_DATA Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0:7</p></td>
+<td><blockquote>
+<div><p>Active multiplier:</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>100Mhz [7,12],</p></li>
+<li><p>133Mhz [3,19]</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MCHBAR + 0x5f08</strong></p>
+<p><em>Width:</em> 16 Bit</p>
+<p><em>Desc:</em>  RCOMP control Register</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>Force RCOMP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nri.html" class="btn btn-neutral float-left" title="Sandy Bridge Raminit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nri_freq.html" class="btn btn-neutral float-right" title="Frequency selection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

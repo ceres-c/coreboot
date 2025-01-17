@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coreboot documentation guidelines &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Configuring a mainboard’s GPIOs in coreboot" href="gpio.html" />
+    <link rel="prev" title="Kconfig in coreboot" href="kconfig.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">coreboot architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_system.html">Build System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kconfig.html">Kconfig</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Writing Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preparations">Preparations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#option-1-use-the-docker-image">option 1: Use the docker image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#option-2-install-sphinx">option 2: Install Sphinx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optional">Optional</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-and-simple-rules">Basic and simple rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#referencing-markdown-documents">Referencing markdown documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#markdown-and-tables">Markdown and Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#toctree">TocTree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#csv">CSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">Setting up GPIOs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devicetree.html">Adding devices to a device tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Getting Started</a></li>
+      <li class="breadcrumb-item active">coreboot documentation guidelines</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started/writing_documentation.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coreboot-documentation-guidelines">
+<h1>coreboot documentation guidelines<a class="headerlink" href="#coreboot-documentation-guidelines" title="Link to this heading"></a></h1>
+<blockquote>
+<div><p>Documentation is like sex: when it is good, it is very, very good;
+and when it is bad, it is better than nothing.</p>
+</div></blockquote>
+<p>That said please always try to write documentation! One problem in the
+firmware development is the missing documentation. In this document
+you will get a brief introduction how to write, submit and publish
+documentation to coreboot.</p>
+<section id="preparations">
+<h2>Preparations<a class="headerlink" href="#preparations" title="Link to this heading"></a></h2>
+<p>coreboot uses <a class="reference external" href="http://www.sphinx-doc.org/en/master/">Sphinx</a> documentation tool. We prefer the markdown format
+over reStructuredText so only embedded ReST is supported. Checkout the
+<a class="reference external" href="https://www.markdownguide.org/">Markdown Guide</a> for more information.</p>
+<section id="option-1-use-the-docker-image">
+<h3>option 1: Use the docker image<a class="headerlink" href="#option-1-use-the-docker-image" title="Link to this heading"></a></h3>
+<p>The easiest way to build the documentation is using a docker image.
+To build the image run the following in the base directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">-</span><span class="n">C</span> <span class="n">util</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span> <span class="n">doc</span><span class="o">.</span><span class="n">coreboot</span><span class="o">.</span><span class="n">org</span>
+</pre></div>
+</div>
+<p>Before building the documentation make sure the output directory is given
+the correct permissions before running docker.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">Documentation</span><span class="o">/</span><span class="n">_build</span>
+</pre></div>
+</div>
+<p>To build the documentation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">-</span><span class="n">C</span> <span class="n">util</span><span class="o">/</span><span class="n">docker</span> <span class="n">docker</span><span class="o">-</span><span class="n">build</span><span class="o">-</span><span class="n">docs</span>
+</pre></div>
+</div>
+<p>To have the documentation build and served over a web server live run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">-</span><span class="n">C</span> <span class="n">util</span><span class="o">/</span><span class="n">docker</span> <span class="n">docker</span><span class="o">-</span><span class="n">livehtml</span><span class="o">-</span><span class="n">docs</span>
+</pre></div>
+</div>
+<p>On the host machine, open a browser to the address <a class="reference external" href="http://0.0.0.0:8000">http://0.0.0.0:8000</a>.</p>
+</section>
+<section id="option-2-install-sphinx">
+<h3>option 2: Install Sphinx<a class="headerlink" href="#option-2-install-sphinx" title="Link to this heading"></a></h3>
+<p>Please follow this official <a class="reference external" href="http://www.sphinx-doc.org/en/stable/install.html">guide</a> to install sphinx.
+You will also need python-recommonmark for sphinx to be able to handle
+markdown documentation.</p>
+<p>Since some Linux distributions don’t package every needed sphinx extension,
+the installation via pip in a venv is recommended. You’ll need these python3
+modules:</p>
+<ul class="simple">
+<li><p>sphinx</p></li>
+<li><p>recommonmark</p></li>
+<li><p>sphinx_rtd_theme</p></li>
+<li><p>sphinxcontrib-ditaa</p></li>
+</ul>
+<p>The following combination of versions has been tested: sphinx 2.3.1,
+recommonmark 0.6.0, sphinx_rtd_theme 0.4.3 and sphinxcontrib-ditaa 0.7.</p>
+<p>Now change into the <code class="docutils literal notranslate"><span class="pre">Documentation</span></code> folder in the coreboot directory and run
+this command in there</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">sphinx</span>
+</pre></div>
+</div>
+<p>If no error occurs, you can find the generated HTML documentation in
+<code class="docutils literal notranslate"><span class="pre">Documentation/_build</span></code> now.</p>
+</section>
+<section id="optional">
+<h3>Optional<a class="headerlink" href="#optional" title="Link to this heading"></a></h3>
+<p>Install <a class="reference external" href="https://github.com/GaretJax/sphinx-autobuild">sphinx-autobuild</a> for rebuilding markdown/rst sources on the fly!</p>
+</section>
+</section>
+<section id="basic-and-simple-rules">
+<h2>Basic and simple rules<a class="headerlink" href="#basic-and-simple-rules" title="Link to this heading"></a></h2>
+<p>The following rules should be followed in order to get it at least reviewed
+on <a class="reference external" href="https://review.coreboot.org">review.coreboot.org</a>.</p>
+<p>Documentation:</p>
+<ol class="simple">
+<li><p>Must be written in <strong>markdown</strong> with <strong>embedded reStructuredText</strong>
+format.</p></li>
+<li><p>Must be written in <strong>English</strong>.</p></li>
+<li><p>Must be placed into <strong>Documentation/</strong> directory subfolder.</p></li>
+<li><p>Should follow the same directory structure as <strong>src/</strong> when practical.</p></li>
+<li><p>Must be referenced from within other markdown files</p></li>
+<li><p>The commit must follow the <a class="reference internal" href="../contributing/gerrit_guidelines.html"><span class="doc">Gerrit Guidelines</span></a>.</p></li>
+<li><p>Must have all <strong>lowercase filenames</strong>.</p></li>
+<li><p>Running text should have a visible width of about <strong>72 chars</strong>.</p></li>
+<li><p>Should not <strong>duplicate</strong> documentation, but reference it instead.</p></li>
+<li><p>Must not include the same picture in multiple markdown files.</p></li>
+<li><p>Images should be kept small. They should be under 700px in width, as
+the current theme doesn’t allow bigger images.</p></li>
+<li><p>Shouldn’t cover implementation details; for details, the code is the
+reference.</p></li>
+</ol>
+</section>
+<section id="referencing-markdown-documents">
+<h2>Referencing markdown documents<a class="headerlink" href="#referencing-markdown-documents" title="Link to this heading"></a></h2>
+<p>Starting with Sphinx 1.6 recommonmark’s <em>auto_doc_ref</em> feature is broken.
+To reference documents use the TOC tree or inline RST code.</p>
+</section>
+<section id="markdown-and-tables">
+<h2>Markdown and Tables<a class="headerlink" href="#markdown-and-tables" title="Link to this heading"></a></h2>
+<p>Under Sphinx markdown tables are not supported. Therefore you can use following
+code block to write tables in reStructuredText and embed them into the markdown:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```eval_rst
++------------+------------+-----------+
+| Header 1   | Header 2   | Header 3  |
++============+============+===========+
+| body row 1 | column 2   | column 3  |
++------------+------------+-----------+
+| body row 2 | Cells may span columns.|
++------------+------------+-----------+
+| body row 3 | Cells may  | - Cells   |
++------------+ span rows. | - contain |
+| body row 4 |            | - blocks. |
++------------+------------+-----------+
+``` #just a code block is enough
+</pre></div>
+</div>
+</section>
+<section id="toctree">
+<h2>TocTree<a class="headerlink" href="#toctree" title="Link to this heading"></a></h2>
+<p>To make sure that all documents are included into the final documentation, you
+must reference each document from at least one <em>toctree</em>. The <em>toctree</em> must
+only reference files in the same folder or in subfolders !
+To create a toctree, simply use a bullet list or numbered list with a single
+reference. References in regular text aren’t considered as <em>toctree</em> .
+This feature is enabled by recommonmark’s <em>enable_auto_toc_tree</em> .</p>
+<p><strong>Example toctree:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="p">[</span><span class="n">Chapter</span> <span class="mi">1</span><span class="p">](</span><span class="n">chapter1</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
+<span class="o">*</span> <span class="p">[</span><span class="n">Chapter</span> <span class="mi">2</span><span class="p">](</span><span class="n">chapter2</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
+<span class="o">*</span> <span class="p">[</span><span class="n">Subchapter</span><span class="p">](</span><span class="n">sub</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="p">[</span><span class="n">Chapter</span> <span class="mi">1</span><span class="p">](</span><span class="n">chapter1</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
+<span class="mf">2.</span> <span class="p">[</span><span class="n">Chapter</span> <span class="mi">2</span><span class="p">](</span><span class="n">chapter2</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you do only reference the document, but do not include it in any toctree,
+you’ll see the following warning:
+<strong>WARNING: document isn’t included in any toctree</strong></p>
+</section>
+<section id="csv">
+<h2>CSV<a class="headerlink" href="#csv" title="Link to this heading"></a></h2>
+<p>You can import CSV files and let sphinx automatically convert them to human
+readable tables, using the following reStructuredText snipped:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```eval_rst
+.. csv-table::
+   :header: &quot;Key&quot;, &quot;Value&quot;
+   :file: keyvalues.csv
+```
+</pre></div>
+</div>
+<p>Of course this can only be done from a markdown file that is included in the
+TOC tree.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="kconfig.html" class="btn btn-neutral float-left" title="Kconfig in coreboot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gpio.html" class="btn btn-neutral float-right" title="Configuring a mainboard’s GPIOs in coreboot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

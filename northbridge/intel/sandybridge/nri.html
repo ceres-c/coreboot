@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sandy Bridge Raminit &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Unofficial Documentation of Intel MCHBAR register space." href="nri_registers.html" />
+    <link rel="prev" title="Intel Sandy Bridge-specific documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Northbridge</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#vendor">Vendor</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Intel</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#platforms">Platforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Northbridge-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Intel Northbridge-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Intel Sandy Bridge-specific documentation</a></li>
+      <li class="breadcrumb-item active">Sandy Bridge Raminit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/northbridge/intel/sandybridge/nri.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sandy-bridge-raminit">
+<h1>Sandy Bridge Raminit<a class="headerlink" href="#sandy-bridge-raminit" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>This documentation is intended to document the closed source memory controller
+hardware for Intel 2nd Gen (Sandy Bridge) and 3rd Gen (Ivy Bridge) core-i CPUs.</p>
+<p>The memory initialization code has to take care of lots of duties:</p>
+<ol class="simple">
+<li><p>Selection of operating frequency</p></li>
+</ol>
+<ul class="simple">
+<li><p>Selection of common timings</p></li>
+<li><p>Applying frequency specific compensation values</p></li>
+<li><p>Read training of all populated channels</p></li>
+<li><p>Write training of all populated channels</p></li>
+<li><p>Adjusting delay networks of address and command signals</p></li>
+<li><p>DQS training of all populated channels</p></li>
+<li><p>Programming memory map</p></li>
+<li><p>Report DRAM configuration</p></li>
+<li><p>Error handling</p></li>
+</ul>
+</section>
+<section id="definitions">
+<h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Valid region</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SCK</p></td>
+<td><p>DRAM system clock cycle time</p></td>
+<td><p>s</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>tCK</p></td>
+<td><p>DRAM system clock cycle time</p></td>
+<td><p>1/256th ns</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>DCK</p></td>
+<td><p>Data clock cycle time: The time between two SCK clock edges</p></td>
+<td><p>s</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>timA</p></td>
+<td><p>IO phase: The phase delay of the IO signals</p></td>
+<td><p>1/64th DCK</p></td>
+<td><p>[0-512)</p></td>
+</tr>
+<tr class="row-even"><td><p>SPD</p></td>
+<td><p>Manufacturer set memory timings located on an EEPROM on every DIMM</p></td>
+<td><p>bytes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>REFCK</p></td>
+<td><p>Reference clock, either 100 or 133</p></td>
+<td><p>Mhz</p></td>
+<td><p>100, 133</p></td>
+</tr>
+<tr class="row-even"><td><p>MULT</p></td>
+<td><p>DRAM PLL multiplier</p></td>
+<td></td>
+<td><p>[3-12]</p></td>
+</tr>
+<tr class="row-odd"><td><p>XMP</p></td>
+<td><p>Extreme Memory Profiles</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="unofficial-register-documentation">
+<h2>(Unofficial) register documentation<a class="headerlink" href="#unofficial-register-documentation" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nri_registers.html">Sandy Bridge - Register documentation</a></li>
+</ul>
+</div>
+</section>
+<section id="frequency-selection">
+<h2>Frequency selection<a class="headerlink" href="#frequency-selection" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nri_freq.html">Sandy Bridge - Frequency selection</a></li>
+</ul>
+</div>
+</section>
+<section id="read-training">
+<h2>Read training<a class="headerlink" href="#read-training" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nri_read.html">Sandy Bridge - Read training</a></li>
+</ul>
+</div>
+<section id="smbios-type-17">
+<h3>SMBIOS type 17<a class="headerlink" href="#smbios-type-17" title="Link to this heading"></a></h3>
+<p>The SMBIOS specification allows to report the memory configuration in use.
+On GNU/Linux you can run <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">dmidecode</span> <span class="pre">-t</span> <span class="pre">17</span></code> to view it.
+Example output of dmidecode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Handle</span> <span class="mh">0x0045</span><span class="p">,</span> <span class="n">DMI</span> <span class="nb">type</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">34</span> <span class="nb">bytes</span>
+    <span class="n">Memory</span> <span class="n">Device</span>
+	<span class="n">Array</span> <span class="n">Handle</span><span class="p">:</span> <span class="mh">0x0042</span>
+	<span class="n">Error</span> <span class="n">Information</span> <span class="n">Handle</span><span class="p">:</span> <span class="n">Not</span> <span class="n">Provided</span>
+	<span class="n">Total</span> <span class="n">Width</span><span class="p">:</span> <span class="mi">64</span> <span class="n">bits</span>
+	<span class="n">Data</span> <span class="n">Width</span><span class="p">:</span> <span class="mi">64</span> <span class="n">bits</span>
+	<span class="n">Size</span><span class="p">:</span> <span class="mi">8192</span> <span class="n">MB</span>
+	<span class="n">Form</span> <span class="n">Factor</span><span class="p">:</span> <span class="n">DIMM</span>
+	<span class="n">Set</span><span class="p">:</span> <span class="kc">None</span>
+	<span class="n">Locator</span><span class="p">:</span> <span class="n">ChannelB</span><span class="o">-</span><span class="n">DIMM0</span>
+	<span class="n">Bank</span> <span class="n">Locator</span><span class="p">:</span> <span class="n">BANK</span> <span class="mi">2</span>
+	<span class="n">Type</span><span class="p">:</span> <span class="n">DDR3</span>
+	<span class="n">Type</span> <span class="n">Detail</span><span class="p">:</span> <span class="n">Synchronous</span>
+	<span class="n">Speed</span><span class="p">:</span> <span class="mi">933</span> <span class="n">MHz</span>
+	<span class="n">Manufacturer</span><span class="p">:</span> <span class="mi">0420</span>
+	<span class="n">Serial</span> <span class="n">Number</span><span class="p">:</span> <span class="mi">00000000</span>
+	<span class="n">Asset</span> <span class="n">Tag</span><span class="p">:</span> <span class="mi">9876543210</span>
+	<span class="n">Part</span> <span class="n">Number</span><span class="p">:</span> <span class="n">F3</span><span class="o">-</span><span class="mi">1866</span><span class="n">C9</span><span class="o">-</span><span class="mi">8</span><span class="n">GSR</span>
+	<span class="n">Rank</span><span class="p">:</span> <span class="mi">2</span>
+	<span class="n">Configured</span> <span class="n">Clock</span> <span class="n">Speed</span><span class="p">:</span> <span class="mi">933</span> <span class="n">MHz</span>
+</pre></div>
+</div>
+<p>The memory frequency printed by dmidecode is the active memory frequency. It’s
+<strong>not</strong> the double datarate and it’s <strong>not</strong> the one encoded maximum frequency
+in each DIMM’s SPD.</p>
+<blockquote>
+<div><p><strong>Note:</strong> This feature is available since coreboot 4.4</p>
+</div></blockquote>
+</section>
+<section id="mrc-cache">
+<h3>MRC cache<a class="headerlink" href="#mrc-cache" title="Link to this heading"></a></h3>
+<p>The name <em>MRC cache</em> might be misleading as in case of <em>Native RAM init</em>
+there’s no MRC, but for historical reasons it’s still named <em>MRC cache</em>.
+The MRC cache is part of flash memory that is writeable by coreboot.
+At the end of the boot process coreboot will write the RAM training results to
+flash for future use, as RAM training is time intensive. Storing the results
+allows to boot faster on normal boot and allows to support S3 resume,
+as the RAM training results can’t be stored in RAM (you need to configure
+the memory controller first to access RAM).</p>
+<p>The MRC cache needs to be invalidated in case the memory configuration has
+been changed. To detect a changed memory configuration the CRC16 of each DIMM
+is stored to MRC cache.</p>
+<blockquote>
+<div><p><strong>Note:</strong> This feature is available since coreboot 4.4</p>
+</div></blockquote>
+</section>
+<section id="error-handling">
+<h3>Error handling<a class="headerlink" href="#error-handling" title="Link to this heading"></a></h3>
+<p>As of writing the only supported error handling is to disable the failing
+channel and restart the memory training sequence. It’s very likely to succeed,
+as memory channels operate independent of each other.
+In case no DIMM could be initialized coreboot will halt. The screen will stay
+black until you power of your device. On some platforms there’s additional
+feedback to indicate such an event.</p>
+<p>If you find <code class="docutils literal notranslate"><span class="pre">dmidecode</span> <span class="pre">-t</span> <span class="pre">17</span></code> to report only half of the memory installed,
+it’s likely that a fatal memory init failure had happened.
+It is assumed, that a working board with less physical memory, is much better,
+than a board that doesn’t boot at all.</p>
+<blockquote>
+<div><p><strong>Note:</strong> This feature is available since coreboot 4.5</p>
+</div></blockquote>
+<p>Try to swap memory modules and or try to use a different vendor. If nothing
+helps you could have a look at chapter [Debugging] or report a ticket
+at [ticket.coreboot.org]. Please provide a full RAM init log,
+that has been captured using EHCI debug.</p>
+<p>To enable extensive RAM training logging enable the Kconfig option
+<code class="docutils literal notranslate"><span class="pre">DEBUG_RAM_SETUP</span></code></p>
+<section id="lenovo-thinkpads">
+<h4>Lenovo Thinkpads<a class="headerlink" href="#lenovo-thinkpads" title="Link to this heading"></a></h4>
+<p>Lenovo Thinkpads do have an additional feature to indicate that RAM init has
+failed and coreboot has died (it calls die() on fatal error, thus the name).
+The Kconfig options
+<code class="docutils literal notranslate"><span class="pre">H8_BEEP_ON_DEATH</span></code>
+<code class="docutils literal notranslate"><span class="pre">H8_FLASH_LEDS_ON_DEATH</span></code>
+enable blinking LEDs and enable a beep to indicate death.</p>
+<blockquote>
+<div><p><strong>Note:</strong> This feature is available since coreboot 4.7</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Link to this heading"></a></h2>
+<p>It’s recommended to use an external debugger, such as serial or EHCI debug
+dongle. In case of failing memory init the board might not boot at all,
+preventing you from using CBMEM.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Intel Sandy Bridge-specific documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nri_registers.html" class="btn btn-neutral float-right" title="Unofficial Documentation of Intel MCHBAR register space." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

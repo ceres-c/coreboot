@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCP Tioga Pass &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Elgon" href="../opencellular/elgon.html" />
+    <link rel="prev" title="OCP Delta Lake" href="deltalake.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hp">HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#ocp">OCP</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="deltalake.html">Delta Lake</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Tioga Pass</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#required-blobs">Required blobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#payload">Payload</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flashing-coreboot">Flashing coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues-feature-gaps">Known issues / feature gaps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#working">Working</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#technology">Technology</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">OCP Tioga Pass</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/ocp/tiogapass.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ocp-tioga-pass">
+<h1>OCP Tioga Pass<a class="headerlink" href="#ocp-tioga-pass" title="Link to this heading"></a></h1>
+<p>This page describes coreboot support status for the <a class="reference external" href="https://www.opencompute.org/">OCP</a> (Open Compute Project)
+Tioga Pass server platform.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>OCP Tioga Pass server platform was contributed by Facebook, and was accepted
+in 2019. The design collateral including datasheet can be found at <a class="reference external" href="https://www.opencompute.org/contributions?query=Tioga%20Pass%20v1.0">OCP Tioga Pass</a>.</p>
+<p>Since complete EE design collateral is open sourced, anyone can build server
+as-is or a variant based on the original design. It can also be purchased from <a class="reference external" href="https://www.opencompute.org/products/109/wiwynn-tioga-pass-advanced-2u-ocp-server-up-to-768gb-12-dimm-slots-4-ssds-for-io-performance">OCP Market Place</a>.
+An off-the-shelf version is available, as well as rack ready version. With the
+off-the-shelf version, the server can be plugged into wall power outlet.</p>
+<p>With the off-the-shelf version of Tioga Pass, a complete software solution is
+available. <a class="reference external" href="https://github.com/linuxboot/book/blob/master/case_studies/TiogaPass/README.md">Off-the-shelf Host Firmware</a> takes the approach of UEFI/Linuxboot.</p>
+<p>coreboot as of release 4.13 is a proof-of-concept project between Facebook,
+Intel, Wiwynn and Quanta. The context is described at <a class="reference external" href="https://www.opencompute.org/blog/linux-firmware-boots-up-server-powered-by-intelr-xeonr-scalable-processor">OCP Tioga Pass POC Blog</a>.</p>
+</section>
+<section id="required-blobs">
+<h2>Required blobs<a class="headerlink" href="#required-blobs" title="Link to this heading"></a></h2>
+<p>This board currently requires:</p>
+<ul class="simple">
+<li><p>FSP blob: The blob (Intel Skylake Scalable Processor Firmware Support Package)
+is not yet available to the public. The binary is at POC status, hopefully
+someday an IBV is able to obtain the privilege to maintain it.</p></li>
+<li><p>Microcode: <code class="docutils literal notranslate"><span class="pre">3rdparty/intel-microcode/intel-ucode/06-55-04</span></code></p></li>
+<li><p>ME binary: The binary can be extracted from <a class="reference external" href="https://github.com/linuxboot/book/blob/master/case_studies/TiogaPass/README.md">Off-the-shelf Host Firmware</a>.</p></li>
+</ul>
+</section>
+<section id="payload">
+<h2>Payload<a class="headerlink" href="#payload" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Linuxboot: This is necessary only if you use Linuxboot as coreboot payload.
+U-root as initramfs, is used in the POC activity. It can be extracted from
+<a class="reference external" href="https://github.com/linuxboot/book/blob/master/case_studies/TiogaPass/README.md">Off-the-shelf Host Firmware</a>, or it can be built following <a class="reference external" href="https://github.com/linuxboot/book/tree/master/u-root">All about u-root</a>.</p></li>
+</ul>
+</section>
+<section id="flashing-coreboot">
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<p>To do in-band FW image update, use <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a>:
+flashrom -p internal:ich_spi_mode=hwseq -c “Opaque flash chip” –ifd <br />-i bios –noverify-all -w <path to coreboot image></p>
+<p>From OpenBMC, to update FW image:
+fw-util mb –force –update <path to coreboot image></p>
+<p>To power off/on the host:
+power-util mb off
+power-util mb on</p>
+<p>To connect to console through SOL (Serial Over Lan):
+sol-util mb</p>
+</section>
+<section id="known-issues-feature-gaps">
+<h2>Known issues / feature gaps<a class="headerlink" href="#known-issues-feature-gaps" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>C6 state is not supported. Workaround is to disable C6 support through
+target OS and Linuxboot kernel parameter, such as “cpuidle.off=1”.</p></li>
+<li><p>SMI handlers are not implemented.</p></li>
+<li><p>xSDT tables are not fully populated, such as processor/socket devices,
+PCIe bridge devices.</p></li>
+<li><p>There is boot stability issue. Occasionally the boot hangs at ramstage
+with following message “BIOS PCU Misc Config Read timed out.”</p></li>
+<li><p>If <a class="reference external" href="https://review.coreboot.org/c/coreboot/+/40500">CB 40500 patchset</a> is not merged, when PCIe riser card is used,
+boot fails.</p></li>
+<li><p>PCIe devices connected to socket 1 may not work, because FSP
+does not support PCIe topology input for socket 1.k</p></li>
+<li><p>SMBIOS type 7 and type 17 are not populated.</p></li>
+</ul>
+</section>
+<section id="working">
+<h2>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h2>
+<p>The solution was developed using Linuxboot payload. The Linuxboot
+kernel versions tried are 4.16.18 and 5.2.9. The initramfs image is
+u-root.</p>
+<ul class="simple">
+<li><p>Most SMBIOS types</p></li>
+<li><p>BMC integration:</p>
+<ul>
+<li><p>BMC readiness check</p></li>
+<li><p>IPMI commands</p></li>
+<li><p>watchdog timer</p></li>
+<li><p>POST complete pin acknowledgement</p></li>
+</ul>
+</li>
+<li><p>SEL record generation</p></li>
+<li><p>Early serial output</p></li>
+<li><p>port 80h direct to GPIO</p></li>
+<li><p>ACPI tables: APIC/DMAR/DSDT/FACP/FACS/HPET/MCFG/SPMI/SRAT/SLIT/SSDT</p></li>
+</ul>
+</section>
+<section id="technology">
+<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Processor (2 sockets)</p></td>
+<td><p>Intel Skylake Scalable Processor LGA3647</p></td>
+</tr>
+<tr class="row-even"><td><p>BMC</p></td>
+<td><p>Aspeed AST 2500</p></td>
+</tr>
+<tr class="row-odd"><td><p>PCH</p></td>
+<td><p>Intel Lewisburg C621</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="deltalake.html" class="btn btn-neutral float-left" title="OCP Delta Lake" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../opencellular/elgon.html" class="btn btn-neutral float-right" title="Elgon" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

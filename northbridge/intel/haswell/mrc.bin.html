@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mrc.bin &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Known issues with Haswell" href="known-issues.html" />
+    <link rel="prev" title="Intel Haswell documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Northbridge</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#vendor">Vendor</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Intel</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#platforms">Platforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Northbridge-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Intel Northbridge-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Intel Haswell documentation</a></li>
+      <li class="breadcrumb-item active">mrc.bin</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/northbridge/intel/haswell/mrc.bin.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mrc-bin">
+<h1>mrc.bin<a class="headerlink" href="#mrc-bin" title="Link to this heading"></a></h1>
+<p>All Haswell boards supported by coreboot currently require a proprietary
+blob in order to initialise the DRAM and a few other components. The
+blob, named <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code>, largely consists of Intel’s memory reference code
+(MRC), but it has been tailored specifically for ChromeOS. It is just
+under 200 KiB in size. Another name for <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> is the system agent
+binary.</p>
+<p>Having a replacement for <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> using native coreboot code is very
+much desired, but it is not an easy task.</p>
+<section id="obtaining-mrc-bin">
+<h2>Obtaining mrc.bin<a class="headerlink" href="#obtaining-mrc-bin" title="Link to this heading"></a></h2>
+<p>Unfortunately, it is not currently possible to distribute <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> as
+part of coreboot. Though, it can be obtained from a Haswell Chromebook
+firmware image like so, starting in the root of the coreboot directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>util/cbfstool
+<span class="nb">cd</span><span class="w"> </span>util/chromeos
+./crosfirmware.sh<span class="w"> </span>peppy
+../cbfstool/cbfstool<span class="w"> </span>coreboot-*.bin<span class="w"> </span>extract<span class="w"> </span>-f<span class="w"> </span>mrc.bin<span class="w"> </span>-n<span class="w"> </span>mrc.bin<span class="w"> </span>-r<span class="w"> </span>RO_SECTION
+</pre></div>
+</div>
+<p>Now, place <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> in the root of the coreboot directory.
+Alternatively, place <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> anywhere you want, and set <code class="docutils literal notranslate"><span class="pre">MRC_FILE</span></code> to
+its location when building coreboot.</p>
+</section>
+<section id="spd-addresses">
+<h2>SPD Addresses<a class="headerlink" href="#spd-addresses" title="Link to this heading"></a></h2>
+<p>When porting a board from vendor firmware, the SPD addresses can be obtained
+through <code class="docutils literal notranslate"><span class="pre">i2c-tools</span></code>, which can be found in many GNU/Linux distributions. A more
+<a class="reference external" href="https://hannuhartikainen.fi/blog/hacking-ddr3-spd/">detailed description</a> of
+the procedure and beyond can be found in
+<a class="reference external" href="https://hannuhartikainen.fi">Hannu Hartikainen’s blog</a>.</p>
+<p>First load the kernel modules:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>modprobe<span class="w"> </span>i2c-dev
+modprobe<span class="w"> </span>eeprom
+</pre></div>
+</div>
+<p>Find the SMBus and the addresses of the DIMM’s EEPROMs (example output):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>decode-dimms<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Decoding
+Decoding<span class="w"> </span>EEPROM:<span class="w"> </span>/sys/bus/i2c/drivers/eeprom/7-0050
+Decoding<span class="w"> </span>EEPROM:<span class="w"> </span>/sys/bus/i2c/drivers/eeprom/7-0052
+</pre></div>
+</div>
+<p>Alternatively, look at the sys filesystem:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>/sys/bus/i2c/drivers/eeprom/
+total<span class="w"> </span><span class="m">0</span>
+lrwxrwxrwx<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">    </span><span class="m">0</span><span class="w"> </span>Apr<span class="w">  </span><span class="m">4</span><span class="w"> </span><span class="m">01</span>:46<span class="w"> </span><span class="m">6</span>-0050<span class="w"> </span>-&gt;<span class="w"> </span>../../../../devices/pci0000:00/0000:00:02.0/drm/card0/card0-eDP-1/i2c-6/6-0050/
+lrwxrwxrwx<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">    </span><span class="m">0</span><span class="w"> </span>Apr<span class="w">  </span><span class="m">4</span><span class="w"> </span><span class="m">01</span>:46<span class="w"> </span><span class="m">7</span>-0050<span class="w"> </span>-&gt;<span class="w"> </span>../../../../devices/pci0000:00/0000:00:1f.3/i2c-7/7-0050/
+lrwxrwxrwx<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">    </span><span class="m">0</span><span class="w"> </span>Apr<span class="w">  </span><span class="m">4</span><span class="w"> </span><span class="m">01</span>:46<span class="w"> </span><span class="m">7</span>-0052<span class="w"> </span>-&gt;<span class="w"> </span>../../../../devices/pci0000:00/0000:00:1f.3/i2c-7/7-0052/
+--w-------<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Apr<span class="w">  </span><span class="m">4</span><span class="w"> </span><span class="m">01</span>:47<span class="w"> </span><span class="nb">bind</span>
+lrwxrwxrwx<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">    </span><span class="m">0</span><span class="w"> </span>Apr<span class="w">  </span><span class="m">4</span><span class="w"> </span><span class="m">01</span>:47<span class="w"> </span>module<span class="w"> </span>-&gt;<span class="w"> </span>../../../../module/eeprom/
+--w-------<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Apr<span class="w">  </span><span class="m">4</span><span class="w"> </span><span class="m">01</span>:46<span class="w"> </span>uevent
+--w-------<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4096</span><span class="w"> </span>Apr<span class="w">  </span><span class="m">4</span><span class="w"> </span><span class="m">01</span>:47<span class="w"> </span>unbind
+</pre></div>
+</div>
+<p>The correct I2C bus is 7 in this case, and the EEPROMs are at <code class="docutils literal notranslate"><span class="pre">0x50</span></code> and <code class="docutils literal notranslate"><span class="pre">0x52</span></code>.
+Note that the above values are actually hex values.</p>
+<p>You can check the correctness of the SMBus and the addresses of the EEPROMs via
+<code class="docutils literal notranslate"><span class="pre">i2cdetect</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>i2cdetect<span class="w"> </span>-l
+i2c-3<span class="w">   </span>unknown<span class="w">         </span>i915<span class="w"> </span>gmbus<span class="w"> </span>dpc<span class="w">                          </span>N/A
+i2c-1<span class="w">   </span>unknown<span class="w">         </span>i915<span class="w"> </span>gmbus<span class="w"> </span>vga<span class="w">                          </span>N/A
+i2c-6<span class="w">   </span>unknown<span class="w">         </span>DPDDC-A<span class="w">                                 </span>N/A
+i2c-4<span class="w">   </span>unknown<span class="w">         </span>i915<span class="w"> </span>gmbus<span class="w"> </span>dpb<span class="w">                          </span>N/A
+i2c-2<span class="w">   </span>unknown<span class="w">         </span>i915<span class="w"> </span>gmbus<span class="w"> </span>panel<span class="w">                        </span>N/A
+i2c-0<span class="w">   </span>unknown<span class="w">         </span>i915<span class="w"> </span>gmbus<span class="w"> </span>ssc<span class="w">                          </span>N/A
+i2c-7<span class="w">   </span>unknown<span class="w">         </span>SMBus<span class="w"> </span>I801<span class="w"> </span>adapter<span class="w"> </span>at<span class="w"> </span>f040<span class="w">              </span>N/A
+i2c-5<span class="w">   </span>unknown<span class="w">         </span>i915<span class="w"> </span>gmbus<span class="w"> </span>dpd<span class="w">                          </span>N/A
+</pre></div>
+</div>
+<p>Probing the SMBus:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>i2cdetect<span class="w"> </span>-r<span class="w"> </span><span class="m">7</span>
+WARNING!<span class="w"> </span>This<span class="w"> </span>program<span class="w"> </span>can<span class="w"> </span>confuse<span class="w"> </span>your<span class="w"> </span>I2C<span class="w"> </span>bus,<span class="w"> </span>cause<span class="w"> </span>data<span class="w"> </span>loss<span class="w"> </span>and<span class="w"> </span>worse!
+I<span class="w"> </span>will<span class="w"> </span>probe<span class="w"> </span>file<span class="w"> </span>/dev/i2c-7<span class="w"> </span>using<span class="w"> </span>receive<span class="w"> </span>byte<span class="w"> </span>commands.
+I<span class="w"> </span>will<span class="w"> </span>probe<span class="w"> </span>address<span class="w"> </span>range<span class="w"> </span>0x03-0x77.
+Continue?<span class="w"> </span><span class="o">[</span>Y/n<span class="o">]</span>
+<span class="w">     </span><span class="m">0</span><span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">2</span><span class="w">  </span><span class="m">3</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">6</span><span class="w">  </span><span class="m">7</span><span class="w">  </span><span class="m">8</span><span class="w">  </span><span class="m">9</span><span class="w">  </span>a<span class="w">  </span>b<span class="w">  </span>c<span class="w">  </span>d<span class="w">  </span>e<span class="w">  </span>f
+<span class="m">00</span>:<span class="w">          </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--
+<span class="m">10</span>:<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--
+<span class="m">20</span>:<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--
+<span class="m">30</span>:<span class="w"> </span><span class="m">30</span><span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--
+<span class="m">40</span>:<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span><span class="m">44</span><span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--
+<span class="m">50</span>:<span class="w"> </span>UU<span class="w"> </span>--<span class="w"> </span>UU<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--
+<span class="m">60</span>:<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--
+<span class="m">70</span>:<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--<span class="w"> </span>--
+</pre></div>
+</div>
+<p>The SPD addresses need to be left-shifted by 1 for <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code>, i.e., multiplied
+by 2. For example, if the addresses read through <code class="docutils literal notranslate"><span class="pre">i2c-tools</span></code> when booted from
+vendor firmware are <code class="docutils literal notranslate"><span class="pre">0x50</span></code> and <code class="docutils literal notranslate"><span class="pre">0x52</span></code>, the correct values would be <code class="docutils literal notranslate"><span class="pre">0xa0</span></code> and
+<code class="docutils literal notranslate"><span class="pre">0xa4</span></code>. This is because the I2C addresses are 7 bits long.</p>
+</section>
+<section id="ecc-dram">
+<h2>ECC DRAM<a class="headerlink" href="#ecc-dram" title="Link to this heading"></a></h2>
+<p>When <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> has finished executing, ECC is active on the channels
+populated with ECC DIMMs. However, <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> was tailored specifically
+for Haswell Chromebooks and Chomeboxes, none of which support ECC DRAM.
+While ECC likely functions correctly, it is advised to further validate
+the correct operation of ECC if data integrity is absolutely critical.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Intel Haswell documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="known-issues.html" class="btn btn-neutral float-right" title="Known issues with Haswell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

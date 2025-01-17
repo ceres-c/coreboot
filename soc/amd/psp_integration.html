@@ -1,0 +1,741 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. AMD Platform Security Processor (PSP) Firmware Integration Guide &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="AMD Family 17h in coreboot" href="family17h.html" />
+    <link rel="prev" title="AMD Family 15h [SOC|Processors]" href="family15h.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">System on Chip</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#vendor">Vendor</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">AMD</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#technology">Technology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#amd-blobs-repository-license">amd_blobs Repository License</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cavium/index.html">Cavium</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intel/index.html">Intel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../qualcomm/index.html">Qualcomm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">SOC-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">AMD SOC-specific documentation</a></li>
+          <li class="breadcrumb-item"><a href="family15h.html">AMD Family 15h [SOC|Processors]</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>AMD Platform Security Processor (PSP) Firmware Integration Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/soc/amd/psp_integration.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="amd-platform-security-processor-psp-firmware-integration-guide">
+<h1><span class="section-number">1. </span>AMD Platform Security Processor (PSP) Firmware Integration Guide<a class="headerlink" href="#amd-platform-security-processor-psp-firmware-integration-guide" title="Link to this heading"></a></h1>
+<p>The following content defines the structures of PSP tables and describes the
+firmware images integrated into a functioning system.  Further details of
+each Platform Security Processor (PSP) firmware blob or PSP feature are
+beyond the scope of this document, and may be found in AMD NDA publications.</p>
+<p>The current name for the security technology is “AMD Secure Processor”.
+To be consistent with the latest documentation, and because of familiarity
+with the older name, this document continues with “Platform Security Processor”
+and “PSP”.</p>
+<section id="platform-security-processor-psp-overview">
+<h2>Platform Security Processor (PSP) Overview<a class="headerlink" href="#platform-security-processor-psp-overview" title="Link to this heading"></a></h2>
+<p>The Platform Security Processor (PSP) is an on-die, isolated security processor
+that runs independently from the main x86 cores of the platform.
+Security-sensitive components run on the PSP without being affected by the
+commodity or untrusted software running on the x86 cores. The PSP executes
+its own firmware and shares the SPI flash storage that is used by the
+system BIOS.</p>
+</section>
+<section id="embedded-firmware-structure">
+<h2>Embedded Firmware Structure<a class="headerlink" href="#embedded-firmware-structure" title="Link to this heading"></a></h2>
+<p>The PSP identifies its important tables by first locating the Embedded Firmware
+Structure.  It reads specific addresses in the SPI flash, from top to bottom,
+attempting to identify the signature.  The locations (for clarity, the x86
+physical addresses) checked are:</p>
+<ul class="simple">
+<li><p>0xfffa0000</p></li>
+<li><p>0xfff20000</p></li>
+<li><p>0xffe20000</p></li>
+<li><p>0xffc20000</p></li>
+<li><p>0xff820000</p></li>
+<li><p>0xff020000</p></li>
+</ul>
+<p>Most coreboot implementations provide flexibility to position the structure in
+any of the eligible locations.  Below are typical definitions within the
+structure (for all families combined).  Individual features supported vary by
+family and model.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Offset (Hex)</p></th>
+<th class="head"><p>Size (In Bytes)</p></th>
+<th class="head"><p>Description/Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Signature</p></td>
+<td><p>0x00</p></td>
+<td><p>4</p></td>
+<td><p>0x55aa55aa</p></td>
+</tr>
+<tr class="row-odd"><td><p>IMC FW</p></td>
+<td><p>0x04</p></td>
+<td><p>4</p></td>
+<td><p>Integrated Micro
+Controller: unsupported
+but functional in some
+systems</p></td>
+</tr>
+<tr class="row-even"><td><p>GbE FW</p></td>
+<td><p>0x08</p></td>
+<td><p>4</p></td>
+<td><p>Gigabit Ethernet</p></td>
+</tr>
+<tr class="row-odd"><td><p>xHCI FW</p></td>
+<td><p>0x0c</p></td>
+<td><p>4</p></td>
+<td><p>xHCI firmware</p></td>
+</tr>
+<tr class="row-even"><td><p>PSP Dir Tbl</p></td>
+<td><p>0x10</p></td>
+<td><p>4</p></td>
+<td><p>Pointer to PSP Directory
+Table (early devices)</p></td>
+</tr>
+<tr class="row-odd"><td><p>PSP Dir Tbl</p></td>
+<td><p>0x14</p></td>
+<td><p>4</p></td>
+<td><p>Pointer to PSP Directory
+Table (later devices and
+is combo capable)</p></td>
+</tr>
+<tr class="row-even"><td><p>BIOS Dir Tbl</p></td>
+<td><p>0x18</p></td>
+<td><p>4</p></td>
+<td><p>Pointer to BIOS Directory
+Table for models n*</p></td>
+</tr>
+<tr class="row-odd"><td><p>BIOS Dir Tbl</p></td>
+<td><p>0x1c</p></td>
+<td><p>4</p></td>
+<td><p>Pointer to BIOS Directory
+Table for models nn</p></td>
+</tr>
+<tr class="row-even"><td><p>BIOS Dir Tbl</p></td>
+<td><p>0x20</p></td>
+<td><p>4</p></td>
+<td><p>Pointer to BIOS Directory
+Table for models nnn</p></td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td></td>
+<td></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>The Embedded Firmware Structure may support pointers to multiple generations
+of devices, e.g. Family 17h Models 00h-0Fh, Family 17h Models 10h-1Fh, etc.
+Details are specific to the implementation.</p></li>
+</ul>
+</section>
+<section id="psp-directory-table">
+<h2>PSP Directory Table<a class="headerlink" href="#psp-directory-table" title="Link to this heading"></a></h2>
+<p>The PSP Directory Table allows the PSP to find and load various images.  A
+second level table may be generated to allow updates without the risk of
+corrupting the primary table.  Certain models support a combo type table,
+allowing secondary tables to be referenced by device ID.  No coreboot
+implementations currently use combo tables.</p>
+<section id="psp-directory-table-header">
+<h3>PSP Directory Table Header<a class="headerlink" href="#psp-directory-table-header" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Offset (Hex)</p></th>
+<th class="head"><p>Size (In Bytes)</p></th>
+<th class="head"><p>Description/Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>PSP Cookie</p></td>
+<td><p>0x00</p></td>
+<td><p>4</p></td>
+<td><p>PSP cookie “$PSP” to
+recognize the header.
+Cookie “$PL2” for level 2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Checksum</p></td>
+<td><p>0x04</p></td>
+<td><p>4</p></td>
+<td><p>32-bit CRC value of header
+below this field and
+including all entries</p></td>
+</tr>
+<tr class="row-even"><td><p>Total Entries</p></td>
+<td><p>0x08</p></td>
+<td><p>4</p></td>
+<td><p>Number of PSP Directory
+entries in the table</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reserved</p></td>
+<td><p>0x0C</p></td>
+<td><p>4</p></td>
+<td><p>Reserved - Set to zero</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="psp-directory-table-entries">
+<h3>PSP Directory Table Entries<a class="headerlink" href="#psp-directory-table-entries" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Offset (Hex)</p></th>
+<th class="head"><p>Size (In Bits)</p></th>
+<th class="head"><p>Description/Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Type</p></td>
+<td><p>0x00</p></td>
+<td><p>8</p></td>
+<td><p>Entry type (see below)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sub Program</p></td>
+<td><p>0x01</p></td>
+<td><p>8</p></td>
+<td><p>Specifies sub program</p></td>
+</tr>
+<tr class="row-even"><td><p>Reserved</p></td>
+<td><p>0x02</p></td>
+<td><p>16</p></td>
+<td><p>Reserved - set to 0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Size</p></td>
+<td><p>0x04</p></td>
+<td><p>32</p></td>
+<td><p>Size of PSP entry in bytes</p></td>
+</tr>
+<tr class="row-even"><td><p>Location /
+Value</p></td>
+<td><p>0x08</p></td>
+<td><p>62</p></td>
+<td><p>Location: Physical Address
+of SPIROM location where
+corresponding PSP entry
+located.</p>
+<p>Value: 62-bit value for the
+PSP Entry</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Address Mode</p></td>
+<td><p>0x0F[7:6]</p></td>
+<td><p>2</p></td>
+<td><p>00: x86 Physical address
+01: offset from start of
+BIOS (flash offset)
+02: offset from start of
+directory header
+03: offset from start of
+partition</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="psp-directory-table-types">
+<h3>PSP Directory Table Types<a class="headerlink" href="#psp-directory-table-types" title="Link to this heading"></a></h3>
+<p><strong>0x00</strong>: AMD public key</p>
+<ul class="simple">
+<li><p>Public key used by on-chip bootcode to verify the signature of PSP boot
+loader firmware.</p></li>
+</ul>
+<p><strong>0x01</strong>: PSP boot loader firmware</p>
+<ul class="simple">
+<li><p>Second stage boot loader firmware to be loaded by on-chip bootcode.</p></li>
+</ul>
+<p><strong>0x02</strong>: PSP SecureOS firmware</p>
+<ul class="simple">
+<li><p>Off-chip PSP boot loader will be overwritten in SRAM by the Secure/Trusted
+OS during initial boot up.</p></li>
+<li><p>PSP SecureOS performs:</p>
+<ul>
+<li><p>Initialization of OS internal structures and instantiates the fTPM as a
+trusted application</p></li>
+<li><p>Sets up CPU/BIOS-PSP interface registers</p></li>
+<li><p>Enters steady state idling and waiting for commands</p></li>
+<li><p>In steady state, on notification, prepares for S3 state</p></li>
+<li><p>Verify and loading GFX Firmware</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>0x03</strong>: PSP recovery boot loader firmware</p>
+<ul class="simple">
+<li><p>Recovery PSP boot loader image, loaded by on-chip bootcode in case of
+failure in loading PSP boot loader.</p></li>
+</ul>
+<p><strong>0x08</strong>: SMU off-chip firmware</p>
+<p><strong>0x12</strong>: SMU off-chip firmware section 2</p>
+<ul class="simple">
+<li><p>Power Management firmware, responsible for system power/clock management.</p></li>
+</ul>
+<p><strong>0x09</strong>: Secure Debug unlock public key</p>
+<ul class="simple">
+<li><p>Public key token used during Secure Debug unlock process to verify message
+payload from AMD server.</p></li>
+</ul>
+<p><strong>0x0b</strong>: Soft fuse chain</p>
+<ul class="simple">
+<li><p>Refer to documentation for definitions.  (See External References below.)</p></li>
+</ul>
+<p><strong>0x0c</strong>: PSP trustlet binaries</p>
+<ul class="simple">
+<li><p>Optional file to enable fTPM.</p></li>
+</ul>
+<p><strong>0x13</strong>: PSP Secure Debug unlock debug image</p>
+<ul class="simple">
+<li><p>Secure Debug unlock firmware image, used to unlock the device.</p></li>
+</ul>
+<p><strong>0x21</strong>: Wrapped iKEK</p>
+<ul class="simple">
+<li><p>Intermediate Key Encryption Key, used to decrypt encrypted firmware images.
+This is mandatory in order to support encrypted firmware.</p></li>
+</ul>
+<p><strong>0x22</strong>: PSP Token Unlock data</p>
+<ul class="simple">
+<li><p>Used to support time-bound Secure Debug unlock during boot.  This entry may
+be omitted if the Token Unlock debug feature is not required.</p></li>
+</ul>
+<p><strong>0x24</strong>: Security policy binary</p>
+<ul class="simple">
+<li><p>A security policy is applied to restrict the untrusted access to security
+sensitive regions.</p></li>
+</ul>
+<p><strong>0x25</strong>: MP2 firmware</p>
+<ul class="simple">
+<li><p>The MP2 of the SMU, also known as the Sensor Fusion Integration is used to
+aggregate the data from various sensors such as accelerometer, gyrometer,
+ambient light sensor, orientation sensor, etc.  This is off-chip firmware
+for Sensor Fusion Processor (SFP) subsystem of the SMU.</p></li>
+</ul>
+<p><strong>0x28</strong>: System driver</p>
+<ul class="simple">
+<li><p>Driver executing on top of SecureOS.</p></li>
+</ul>
+<p><strong>0x30 - 0x37</strong>: PSP AGESA binaries</p>
+<ul class="simple">
+<li><p>AGESA Boot Loaders (ABLs) are a set of binary images executed by the PSP.
+They are responsible for initializing APU silicon components (including but
+not limited to APU memory interface) on S5, S4 and S3, prior to releasing
+the main cores from reset.</p></li>
+</ul>
+<p><strong>0x3a</strong>: Whitelist</p>
+<ul class="simple">
+<li><p>Optional image containing a signed whitelist of one or more serial numbers.</p></li>
+</ul>
+<p><strong>0x40</strong>: Pointer to secondary table</p>
+<ul class="simple">
+<li><p>Pointer to PSP Directory Table level 2.</p></li>
+</ul>
+<p><strong>0x52</strong>: PSP boot loader usermode OEM application</p>
+<ul class="simple">
+<li><p>Supported only in certain SKUs.</p></li>
+</ul>
+</section>
+<section id="firmware-version-of-binaries">
+<h3>Firmware Version of Binaries<a class="headerlink" href="#firmware-version-of-binaries" title="Link to this heading"></a></h3>
+<p>Every firmware binary contains 256 bytes of a PSP Header, which includes
+the firmware version. The version is made up of the four bytes located at
+offset 0x60 in the binary image.</p>
+<p>For example, in the PSP BootLoader:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>0000000: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+0000010: 2450 5331 c0e1 0000 0100 0000 0000 0000  $PS1............
+0000020: 5c0a ddb8 b279 4846 e154 aa4c ed7d 414d  \....yHF.T.L.}AM
+0000030: 0100 0000 0000 0000 60bb a67e 1a43 4c6b  ........`..~.CLk
+0000040: 9807 bc8d fdb4 1f40 0000 0000 0000 0000  .......@........
+0000050: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+0000060: 7401 0800 ffff ffff 0001 0000 c0e3 0000  t...............
+0000070: 0000 0000 0000 0000 0000 0000 0100 0000  ................
+0000080: 4766 9186 9d5f e909 492d 491d d9ee 8e6c  Gf..._..I-I....l
+0000090: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000a0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000b0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000c0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000d0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000e0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000f0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+</pre></div>
+</div>
+<p>The PSP BootLoader version is 00.08.01.74.</p>
+<p>Note that only Firmware binary images have versions.  Key tokens are not
+versioned, as there will not be multiple keys.  Keys are unique to processor
+family.</p>
+</section>
+<section id="bios-directory-table-entry-types">
+<h3>BIOS Directory Table Entry Types<a class="headerlink" href="#bios-directory-table-entry-types" title="Link to this heading"></a></h3>
+<p>All x86 accessible components (both executable and data blobs) are found via
+the BIOS Directory Table.  A second level table may be generated to allow for
+updates without the risk of corrupting the primary table.</p>
+<p>The BIOS Directory table structure is slightly different from the PSP Directory:</p>
+<ul class="simple">
+<li><p>Multiple instances of firmware components are allowed for one specific type</p></li>
+<li><p>The type field is further structured to reflect attributes of BIOS
+components such as “Region Type”, “Reset Image”, “Copy Image”, “Read Only”,
+allowing design flexibility</p></li>
+<li><p>The “Destination Address” field is added for specific entries that are
+expected to be copied from boot media to specific memory location</p></li>
+</ul>
+</section>
+<section id="bios-directory-table-header">
+<h3>BIOS Directory Table Header<a class="headerlink" href="#bios-directory-table-header" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Offset (Hex)</p></th>
+<th class="head"><p>Size (In Bytes)</p></th>
+<th class="head"><p>Description/Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BIOS Cookie</p></td>
+<td><p>0x00</p></td>
+<td><p>4</p></td>
+<td><p>BIOS cookie “$BHD” to
+recognize the header.
+Cookie “$BL2” for level 2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Checksum</p></td>
+<td><p>0x04</p></td>
+<td><p>4</p></td>
+<td><p>32 bit CRC value of header
+below this field and
+including all entries</p></td>
+</tr>
+<tr class="row-even"><td><p>Total Entries</p></td>
+<td><p>0x08</p></td>
+<td><p>4</p></td>
+<td><p>Number of BIOS Directory
+entries in the table</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reserved</p></td>
+<td><p>0x0C</p></td>
+<td><p>4</p></td>
+<td><p>Reserved - Set to zero</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bios-directory-table-entries">
+<h3>BIOS Directory Table Entries<a class="headerlink" href="#bios-directory-table-entries" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Offset (Hex)</p></th>
+<th class="head"><p>Size (In Bits)</p></th>
+<th class="head"><p>Description/Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Type</p></td>
+<td><p>0x00</p></td>
+<td><p>8</p></td>
+<td><p>Entry type (see below)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Region Type</p></td>
+<td><p>0x01</p></td>
+<td><p>8</p></td>
+<td><p>Setup the memory region’s
+security attribute for the
+BIOS entry</p></td>
+</tr>
+<tr class="row-even"><td><p>Reset Image</p></td>
+<td><p>0x02[0]</p></td>
+<td><p>1</p></td>
+<td><p>Boolean value to define the
+BIOS entry is a reset
+binary image</p></td>
+</tr>
+<tr class="row-odd"><td><p>Copy Image</p></td>
+<td><p>0x02[1]</p></td>
+<td><p>1</p></td>
+<td><p>Define the binary image of
+the BIOS entry is for
+copying over to the memory
+region</p></td>
+</tr>
+<tr class="row-even"><td><p>Read Only</p></td>
+<td><p>0x02[2]</p></td>
+<td><p>1</p></td>
+<td><p>Setup the memory region for
+the BIOS entry to read only</p></td>
+</tr>
+<tr class="row-odd"><td><p>Compressed</p></td>
+<td><p>0x02[3]</p></td>
+<td><p>1</p></td>
+<td><p>Compressed using zlib</p></td>
+</tr>
+<tr class="row-even"><td><p>Instance</p></td>
+<td><p>0x02[7:4]</p></td>
+<td><p>4</p></td>
+<td><p>Specify the Instance of an
+entry</p></td>
+</tr>
+<tr class="row-odd"><td><p>SubProgram</p></td>
+<td><p>0x03[2:0]</p></td>
+<td><p>3</p></td>
+<td><p>Specify the SubProgram</p></td>
+</tr>
+<tr class="row-even"><td><p>RomId</p></td>
+<td><p>0x03[4:3]</p></td>
+<td><p>2</p></td>
+<td><p>Which SPI device the
+content is placed in</p></td>
+</tr>
+<tr class="row-odd"><td><p>Writeable</p></td>
+<td><p>0x03[5]</p></td>
+<td><p>1</p></td>
+<td><p>Region is writable or read
+only</p></td>
+</tr>
+<tr class="row-even"><td><p>Reserved</p></td>
+<td><p>0x03[7:6]</p></td>
+<td><p>2</p></td>
+<td><p>Reserved - Set to zero</p></td>
+</tr>
+<tr class="row-odd"><td><p>Size</p></td>
+<td><p>0x04</p></td>
+<td><p>32</p></td>
+<td><p>Memory Region Size</p></td>
+</tr>
+<tr class="row-even"><td><p>Source
+Address</p></td>
+<td><p>0x08</p></td>
+<td><p>62</p></td>
+<td><p>Physical Address of SPIROM
+location where the data for
+the corresponding entry is
+located</p></td>
+</tr>
+<tr class="row-odd"><td><p>Entry Address
+Mode</p></td>
+<td><p>0x0F[7:6]</p></td>
+<td><p>2</p></td>
+<td><p>Same as Entry Address Mode
+in PSP directory table
+entry fields</p></td>
+</tr>
+<tr class="row-even"><td><p>Destination
+Address</p></td>
+<td><p>0x10</p></td>
+<td><p>64</p></td>
+<td><p>Destination Address of
+memory location where the
+data for the corresponding
+BIOS Entry is copied</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id1">
+<h3>BIOS Directory Table Entry Types<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p><strong>0x60</strong>: APCB data</p>
+<ul class="simple">
+<li><p>Source field points to the AGESA PSP Customization Block (APCB) data.</p></li>
+</ul>
+<p><strong>0x68</strong>: Backup copy of APCB data</p>
+<ul class="simple">
+<li><p>Source field points to the backup copy of the AGESA PSP Customization Block
+(APCB) data.</p></li>
+</ul>
+<p><strong>0x61</strong>: APOB data</p>
+<ul class="simple">
+<li><p>Location field points to the AGESA PSP Output Block (APOB) data.</p></li>
+</ul>
+<p><strong>0x62</strong>: BIOS reset image</p>
+<ul class="simple">
+<li><p>Source field points to BIOS binary image in flash.  Destination points to
+DRAM.</p></li>
+</ul>
+<p><strong>0x63</strong>: APOB data NV</p>
+<ul class="simple">
+<li><p>Source field points to the AGESA PSP Output Block (APOB) data NV copy.
+This data is written by coreboot and replayed by PSP ABLs during S3 resume
+and in certain S5 boots.</p></li>
+</ul>
+<p><strong>0x64</strong>: PMU firmware (instruction)</p>
+<ul class="simple">
+<li><p>Source field points to the instruction portion of Phy Microcontroller Unit
+firmware.</p></li>
+</ul>
+<p><strong>0x65</strong>: PMU firmware (data)</p>
+<ul class="simple">
+<li><p>Source field points to the data portion of Phy Microcontroller Unit
+firmware.</p></li>
+</ul>
+<p><strong>0x66</strong>: x86 microcode patch</p>
+<ul class="simple">
+<li><p>Source field points to the microcode patch.</p></li>
+</ul>
+<p><strong>0x6a</strong>: MP2 FW config file</p>
+<ul class="simple">
+<li><p>Source field points to the MP2 FW configuration file.</p></li>
+</ul>
+<p><strong>0x70</strong>: Pointer to secondary table</p>
+<ul class="simple">
+<li><p>Pointer to BIOS Directory Table level 2.</p></li>
+</ul>
+</section>
+</section>
+<section id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Link to this heading"></a></h2>
+<section id="amdcompress">
+<h3>amdcompress<a class="headerlink" href="#amdcompress" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">cbfstool/amdcompress</span></code> is a helper for creating the BIOS Reset Image (BIOS
+Directory Table type 0x62).  This is the code the PSP uncompresses into DRAM
+at the location where the x86 begins execution when released from reset.
+Typical usage is for amdcompress to convert an ELF file’s program section
+into a zlib compressed image.</p>
+</section>
+<section id="amdfwtool">
+<h3>amdfwtool<a class="headerlink" href="#amdfwtool" title="Link to this heading"></a></h3>
+<p>All images requiring PSP functionality rely on the amdfwtool utility.
+amdfwtool takes image names as command-line arguments, as well as the size of
+the flash device, and intended location of the Embedded Firmware Structure.
+Its output is a monolithic image with correctly positioned headers, pointers,
+structures, and the firmware images added.  The file, typically named
+<code class="docutils literal notranslate"><span class="pre">amdfw.rom</span></code>, may then be added directly into the coreboot image.</p>
+</section>
+</section>
+<section id="external-reference">
+<h2>External Reference<a class="headerlink" href="#external-reference" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>NDA document #55758: <em>AMD Platform Security Processor BIOS Architecture
+Design Guide for AMD Family 17h Processors</em></p></li>
+<li><p>NDA document #54267 <em>AMD Platform Security Processor BIOS Architecture
+Design Guide</em>: For all devices earlier than Family 17h</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="family15h.html" class="btn btn-neutral float-left" title="AMD Family 15h [SOC|Processors]" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="family17h.html" class="btn btn-neutral float-right" title="AMD Family 17h in coreboot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

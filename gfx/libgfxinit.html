@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>libgfxinit - Native Graphics Initialization &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Display Panel Specifics" href="display-panel.html" />
+    <link rel="prev" title="Testing ACPI changes under Windows" href="../acpi/windows.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Native Graphics Initialization with libgfxinit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction-and-current-state-in-coreboot">Introduction and Current State in coreboot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gma-framebuffer-configuration">GMA: Framebuffer Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gma-hook-up-in-chipset-initialization">GMA: Hook-up in Chipset Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gma-per-board-configuration">GMA: Per Board Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">libgfxinit - Native Graphics Initialization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/gfx/libgfxinit.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libgfxinit-native-graphics-initialization">
+<h1>libgfxinit - Native Graphics Initialization<a class="headerlink" href="#libgfxinit-native-graphics-initialization" title="Link to this heading"></a></h1>
+<section id="introduction-and-current-state-in-coreboot">
+<h2>Introduction and Current State in coreboot<a class="headerlink" href="#introduction-and-current-state-in-coreboot" title="Link to this heading"></a></h2>
+<p><em>libgfxinit</em> is a library of full-featured graphics initialization
+(aka. modesetting) drivers. It’s implemented in SPARK (a subset of
+Ada with formal verification features). While not restricted to in
+any way, it currently only supports Intel’s integrated graphics
+controllers (GMA).</p>
+<p>Currently, it supports the Intel Core i3/i5/i7 processor line, HDMI
+and DP on the Apollo Lake processors and everything but SDVO on G45
+and GM45 chipsets. At the time of writing, G45, GM45, everything
+from Arrandale to Coffee Lake, and Apollo Lake are verified to work
+within <em>coreboot</em>.</p>
+</section>
+<section id="gma-framebuffer-configuration">
+<h2>GMA: Framebuffer Configuration<a class="headerlink" href="#gma-framebuffer-configuration" title="Link to this heading"></a></h2>
+<p><em>coreboot</em> supports two different framebuffer setups. The default
+enables the legacy VGA plane in textmode. Due to legacy hardware
+constraints, only the first found display is enabled in this mode.
+(cf. <code class="docutils literal notranslate"><span class="pre">src/drivers/intel/gma/text_fb/gma.adb</span></code>).</p>
+<p>The second option sets up a high-resolution framebuffer with the
+native resolution of the display if only one is detected, or the
+smallest of all resolutions (per dimension) if multiple displays
+are detected. This option is selected by
+<code class="docutils literal notranslate"><span class="pre">CONFIG_FRAMEBUFFER_KEEP_VESA_MODE</span></code>.
+(cf. <code class="docutils literal notranslate"><span class="pre">src/drivers/intel/gma/hires_fb/gma.adb</span></code>).</p>
+<p>In any case, a smaller framebuffer is up-scaled to each display’s
+native resolution while keeping aspect ratio.</p>
+</section>
+<section id="gma-hook-up-in-chipset-initialization">
+<h2>GMA: Hook-up in Chipset Initialization<a class="headerlink" href="#gma-hook-up-in-chipset-initialization" title="Link to this heading"></a></h2>
+<p>Both configurations described above implement a procedure
+<code class="docutils literal notranslate"><span class="pre">GMA.gfxinit()</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">procedure</span> <span class="n">gfxinit</span> <span class="p">(</span><span class="n">lightup_ok</span> <span class="p">:</span> <span class="n">out</span> <span class="nb">int</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This procedure is exported as the C function <code class="docutils literal notranslate"><span class="pre">gma_gfxinit()</span></code> as
+follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">gma_gfxinit</span><span class="p">(</span><span class="nb">int</span> <span class="o">*</span><span class="n">lightup_ok</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lightup_ok</span></code>: returns whether the initialization succeeded <code class="docutils literal notranslate"><span class="pre">1</span></code> or
+failed <code class="docutils literal notranslate"><span class="pre">0</span></code>. Currently, only the case that no display
+could be found counts as failure. A failure at a
+later stage (e.g. failure to train a DP) is not
+propagated.</p></li>
+</ul>
+</section>
+<section id="gma-per-board-configuration">
+<h2>GMA: Per Board Configuration<a class="headerlink" href="#gma-per-board-configuration" title="Link to this heading"></a></h2>
+<p>In order to set up the display panel, see the
+<a class="reference internal" href="display-panel.html"><span class="doc">display panel-specific documentation</span></a>.</p>
+<p>There are a few Kconfig symbols to consider. To indicate that a
+board can initialize graphics through <em>libgfxinit</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">select</span> <span class="n">MAINBOARD_HAS_LIBGFXINIT</span>
+</pre></div>
+</div>
+<p>Internal ports share some hardware blocks (e.g. backlight, panel
+power sequencer). Therefore, each system with an integrated panel
+should set <code class="docutils literal notranslate"><span class="pre">GFX_GMA_PANEL_1_PORT</span></code> to the respective port, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="n">GFX_GMA_PANEL_1_PORT</span>
+        <span class="n">default</span> <span class="s2">&quot;DP3&quot;</span>
+</pre></div>
+</div>
+<p>For the most common cases, LVDS and eDP, exists a shorthand, one
+can select either:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">select</span> <span class="n">GFX_GMA_PANEL_1_ON_EDP</span>	<span class="c1"># the default, or</span>
+<span class="n">select</span> <span class="n">GFX_GMA_PANEL_1_ON_LVDS</span>
+</pre></div>
+</div>
+<p>Some newer chips feature a second block of panel control logic.
+For this, <code class="docutils literal notranslate"><span class="pre">GFX_GMA_PANEL_2_PORT</span></code> can be set.</p>
+<p>Boards with a DVI-I connector share the DDC (I2C) pins for both
+analog and digital displays. In this case, <em>libgfxinit</em> needs to
+know through which interface the EDID can be queried:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">select</span> <span class="n">GFX_GMA_ANALOG_I2C_HDMI_B</span>	<span class="c1"># or</span>
+<span class="n">select</span> <span class="n">GFX_GMA_ANALOG_I2C_HDMI_C</span>	<span class="c1"># or</span>
+<span class="n">select</span> <span class="n">GFX_GMA_ANALOG_I2C_HDMI_D</span>
+</pre></div>
+</div>
+<p><em>libgfxinit</em> needs to know which ports are implemented on a board
+and should be probed for displays. There are two mechanisms to
+constrain the list of ports to probe, 1. port presence straps on
+the mainboard, and 2. a list of ports provided by <em>coreboot</em> (see
+below).</p>
+<p>Presence straps are configured via the state of certains pins of
+the chipset at reset time. They are documented in the chipset’s
+datasheets. By default, <em>libgfxinit</em> honors these straps for
+safety. However, some boards don’t implement the straps correctly.
+If ports are not strapped as implemented by error, one can select
+an option to ignore the straps:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">select</span> <span class="n">GFX_GMA_IGNORE_PRESENCE_STRAPS</span>
+</pre></div>
+</div>
+<p>In the opposite case, that ports are strapped as implemented,
+but are actually unconnected, one has to make sure that the
+list of ports in <em>coreboot</em> omits them.</p>
+<p>The mapping between the physical ports and these entries depends on
+the hardware implementation and can be recovered by testing or
+studying the output of <code class="docutils literal notranslate"><span class="pre">intelvbttool</span></code> or <code class="docutils literal notranslate"><span class="pre">intel_vbt_decode</span></code>.
+Each board has to implement the package <code class="docutils literal notranslate"><span class="pre">GMA.Mainboard</span></code> with a list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ports</span> <span class="p">:</span> <span class="n">HW</span><span class="o">.</span><span class="n">GFX</span><span class="o">.</span><span class="n">GMA</span><span class="o">.</span><span class="n">Display_Probing</span><span class="o">.</span><span class="n">Port_List</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>or a function returning such a list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">ports</span> <span class="k">return</span> <span class="n">HW</span><span class="o">.</span><span class="n">GFX</span><span class="o">.</span><span class="n">GMA</span><span class="o">.</span><span class="n">Display_Probing</span><span class="o">.</span><span class="n">Port_List</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You can select from the following Ports:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">Port_Type</span> <span class="ow">is</span>
+  <span class="p">(</span><span class="n">Disabled</span><span class="p">,</span>	<span class="o">--</span> <span class="n">optionally</span> <span class="n">terminates</span> <span class="n">the</span> <span class="nb">list</span>
+   <span class="n">LVDS</span><span class="p">,</span>
+   <span class="n">eDP</span><span class="p">,</span>
+   <span class="n">DP1</span><span class="p">,</span>
+   <span class="n">DP2</span><span class="p">,</span>
+   <span class="n">DP3</span><span class="p">,</span>
+   <span class="n">HDMI1</span><span class="p">,</span>		<span class="o">--</span> <span class="n">also</span> <span class="n">DVI</span><span class="o">-</span><span class="n">D</span><span class="p">,</span> <span class="ow">or</span> <span class="n">HDMI</span> <span class="n">over</span> <span class="n">DP</span><span class="o">++</span>
+   <span class="n">HDMI2</span><span class="p">,</span>
+   <span class="n">HDMI3</span><span class="p">,</span>
+   <span class="n">Analog</span><span class="p">);</span>		<span class="o">--</span> <span class="n">legacy</span> <span class="n">VGA</span> <span class="n">port</span><span class="p">,</span> <span class="ow">or</span> <span class="n">analog</span> <span class="n">part</span> <span class="n">of</span> <span class="n">DVI</span><span class="o">-</span><span class="n">I</span>
+</pre></div>
+</div>
+<p>Each <code class="docutils literal notranslate"><span class="pre">DPx</span></code> and <code class="docutils literal notranslate"><span class="pre">HDMIx</span></code> pair share pins. If they are exposed as DP
+ports, they are usually DP++ (aka. dual-mode DP) ports that can
+also output HDMI signals through passive adapters. In this case,
+both DPx and HDMIx should be listed.</p>
+<p>A good example is the mainboard Kontron/KTQM77, it features two
+DP++ ports (DP2/HDMI2, DP3/HDMI3), one DVI-I port (HDMI1/Analog),
+eDP and LVDS. It defines <code class="docutils literal notranslate"><span class="pre">ports</span></code> as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ports</span> <span class="p">:</span> <span class="n">constant</span> <span class="n">Port_List</span> <span class="o">:=</span>
+  <span class="p">(</span><span class="n">DP2</span><span class="p">,</span>
+   <span class="n">DP3</span><span class="p">,</span>
+   <span class="n">HDMI1</span><span class="p">,</span>
+   <span class="n">HDMI2</span><span class="p">,</span>
+   <span class="n">HDMI3</span><span class="p">,</span>
+   <span class="n">Analog</span><span class="p">,</span>
+   <span class="n">LVDS</span><span class="p">,</span>
+   <span class="n">eDP</span><span class="p">,</span>
+   <span class="n">others</span> <span class="o">=&gt;</span> <span class="n">Disabled</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">GMA.gfxinit()</span></code> procedure probes for display EDIDs in the
+given order until all available pipes are taken. That’s 1 pipe
+in VGA textmode, 2 pipes in high-resolution mode until Sandy
+Bridge, 3 pipes from Ivy Bridge on.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../acpi/windows.html" class="btn btn-neutral float-left" title="Testing ACPI changes under Windows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="display-panel.html" class="btn btn-neutral float-right" title="Display Panel Specifics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

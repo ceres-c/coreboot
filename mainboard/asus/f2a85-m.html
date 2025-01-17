@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASUS F2A85-M &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ASUS P2B-LS" href="p2b-ls.html" />
+    <link rel="prev" title="ASUS A88XM-E" href="a88xm-e.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#asus">ASUS</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="a88xm-e.html">A88XM-E</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">F2A85-M</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#variants">Variants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#technology">Technology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flashing-coreboot">Flashing coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integrated-graphics">Integrated graphics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues-untested-because-of-non-working-acpi-sleep">Known issues (untested because of non-working ACPI sleep)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#untested">Untested</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#todos">TODOs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#working">Working</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#extra-resources">Extra resources</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="p2b-ls.html">P2B-LS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="p3b-f.html">P3B-F</a></li>
+<li class="toctree-l3"><a class="reference internal" href="p5q.html">P5Q</a></li>
+<li class="toctree-l3"><a class="reference internal" href="p8c_ws.html">P8C WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="p8h61-m_lx.html">P8H61-M LX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="p8h61-m_pro.html">P8H61-M Pro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="p8h77-v.html">P8H77-V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="p8z77-m.html">P8Z77-M</a></li>
+<li class="toctree-l3"><a class="reference internal" href="p8z77-m_pro.html">P8Z77-M Pro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="p8z77-v.html">P8Z77-V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wifigo_v1.html">wifigo</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hp">HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel">Intel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#kontron">Kontron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">ASUS F2A85-M</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/asus/f2a85-m.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="asus-f2a85-m">
+<h1>ASUS F2A85-M<a class="headerlink" href="#asus-f2a85-m" title="Link to this heading"></a></h1>
+<p>This page describes how to run coreboot on the <a class="reference external" href="https://web.archive.org/web/20160320065008/http://www.asus.com/Motherboards/F2A85M/">ASUS F2A85-M</a>.</p>
+<section id="variants">
+<h2>Variants<a class="headerlink" href="#variants" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>ASUS F2A85-M - Working</p></li>
+<li><p>ASUS F2A85-M LE - Working</p></li>
+<li><p>ASUS F2A85-M PRO - Working</p></li>
+<li><p>ASUS F2A85-M2 - Working</p></li>
+<li><p>ASUS F2A85-M/CSM - Unsure if WIP.</p></li>
+</ul>
+</section>
+<section id="technology">
+<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<p>Both “Trinity” and “Richland” desktop processing units are working,
+the CPU architecture in these CPUs/APUs is <a class="reference external" href="https://en.wikipedia.org/wiki/Piledriver_%28microarchitecture%29#APU_lines">Piledriver</a>,
+and their GPU is <a class="reference external" href="https://en.wikipedia.org/wiki/TeraScale_%28microarchitecture%29#TeraScale_3">TeraScale 3</a> (VLIW4-based).</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>F2A85-M</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>DDR voltage IC</p></td>
+<td><p>Nuvoton NCT3933U (AUX SMBUS 0x15)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Network</p></td>
+<td><p>Realtek RTL8111F</p></td>
+</tr>
+<tr class="row-even"><td><p>Northbridge</p></td>
+<td><p>Integrated into CPU with IMC and GPU (APUs only)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Southbridge</p></td>
+<td><p>Hudson-D4</p></td>
+</tr>
+<tr class="row-even"><td><p>Sound IC</p></td>
+<td><p>Realtek ALC887</p></td>
+</tr>
+<tr class="row-odd"><td><p>Super I/O</p></td>
+<td><p>ITE 8603E</p></td>
+</tr>
+<tr class="row-even"><td><p>VRM controller</p></td>
+<td><p>DIGI VRM ASP1106 (Rebranded RT8894A - SMBUS 0x20)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>F2A85-M LE</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>DDR voltage IC</p></td>
+<td><p>Nuvoton NCT3933U (AUX SMBUS 0x15 - unconfirmed)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Network</p></td>
+<td><p>Realtek RTL8111F</p></td>
+</tr>
+<tr class="row-even"><td><p>Northbridge</p></td>
+<td><p>Integrated into CPU with IMC and GPU(APUs only)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Southbridge</p></td>
+<td><p>Hudson-D4</p></td>
+</tr>
+<tr class="row-even"><td><p>Sound IC</p></td>
+<td><p>Realtek ALC887</p></td>
+</tr>
+<tr class="row-odd"><td><p>Super I/O</p></td>
+<td><p>ITE 8623E</p></td>
+</tr>
+<tr class="row-even"><td><p>VRM controller</p></td>
+<td><p>DIGI VRM ASP1106 (Rebranded RT8894A - SMBUS 0x20)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>F2A85-M PRO</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>DDR voltage IC</p></td>
+<td><p>Nuvoton NCT3933U (?)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Network</p></td>
+<td><p>Realtek RTL8111F - Not working</p></td>
+</tr>
+<tr class="row-even"><td><p>Northbridge</p></td>
+<td><p>Integrated into CPU with IMC and GPU(APUs only)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Southbridge</p></td>
+<td><p>Hudson-D4</p></td>
+</tr>
+<tr class="row-even"><td><p>Sound IC</p></td>
+<td><p>Realtek ALC887</p></td>
+</tr>
+<tr class="row-odd"><td><p>Super I/O</p></td>
+<td><p>Nuvoton NCT6779D</p></td>
+</tr>
+<tr class="row-even"><td><p>VRM controller</p></td>
+<td><p>DIGI VRM ASP1107</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="flashing-coreboot">
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Socketed flash</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Model</p></td>
+<td><p>W25Q64F</p></td>
+</tr>
+<tr class="row-even"><td><p>Size</p></td>
+<td><p>8 MiB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Package</p></td>
+<td><p>DIP-8</p></td>
+</tr>
+<tr class="row-even"><td><p>Write protection</p></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dual BIOS feature</p></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-even"><td><p>Internal flashing</p></td>
+<td><p>yes</p></td>
+</tr>
+</tbody>
+</table>
+<section id="internal-programming">
+<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Link to this heading"></a></h3>
+<p>The main SPI flash can be accessed using <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a>.
+UEFI builds that allow flash chip access:</p>
+<blockquote>
+<div><p>v5016 is untested, but expected to work as well
+v5018
+v5103
+v5104
+v5107
+v5202
+v6002
+v6004
+v6102
+v6402
+v6404 (requires downgrading to v6402 to flash coreboot)
+v6501 (requires downgrading to v6402 to flash coreboot)
+v6502 (requires downgrading to v6402 to flash coreboot)</p>
+</div></blockquote>
+<p>Build v6502, v6501 and v6404 do not allow access to the flash chip.
+Fortunately it is possible to downgrade build v6502, v6501, v6404 to v6402, with EZFlash.
+Downgrading is done by downloading build v6402 from ASUS’ F2A85-M download page
+and copying it to (the root directory of) a FAT32 formatted USB flash drive.
+Enter the EFI setup, switch to advanced mode if necessary,
+open the ‘Tool’ tab and select “ASUS EZ Flash 2 Utility”.</p>
+</section>
+</section>
+<section id="integrated-graphics">
+<h2>Integrated graphics<a class="headerlink" href="#integrated-graphics" title="Link to this heading"></a></h2>
+<section id="option-1-retrieve-the-vga-optionrom-from-the-vendor-efi-binary-by-running">
+<h3>Option 1: Retrieve the VGA optionrom from the vendor EFI binary by running:<a class="headerlink" href="#option-1-retrieve-the-vga-optionrom-from-the-vendor-efi-binary-by-running" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># dd if=/dev/mem of=vgabios.bin bs=1k count=64 skip=768</span>
+</pre></div>
+</div>
+</section>
+<section id="option-2-extract-from-the-vendor-binary">
+<h3>Option 2: Extract from the vendor binary<a class="headerlink" href="#option-2-extract-from-the-vendor-binary" title="Link to this heading"></a></h3>
+<p>Download the BIOS from the Support section at <a class="reference external" href="https://web.archive.org/web/20160320065008/http://www.asus.com/Motherboards/F2A85M/">ASUS F2A85-M</a>.
+Using MMTool Aptio (versions 4.5.0 and 5.0.0):</p>
+<ul class="simple">
+<li><p>Load image, click on ‘Extract tab’</p></li>
+<li><p>Select the ‘export path’ and ‘link present’ options</p></li>
+<li><p>Choose option ROM ‘1002,9900’ and click on ‘Extract’</p></li>
+</ul>
+<p>This version is usable for all the GPUs.</p>
+<blockquote>
+<div><p>1002,9901 Trinity (Radeon HD 7660D)
+1002,9904 Trinity (Radeon HD 7560D)
+1002,990c Richland (Radeon HD 8670D)
+1002,990e Richland (Radeon HD 8570D)
+1002,9991 Trinity (Radeon HD 7540D)
+1002,9993 Trinity (Radeon HD 7480D)
+1002,9996 Richland (Radeon HD 8470D)
+1002,9998 Richland (Radeon HD 8370D)
+1002,999d Richland (Radeon HD 8550D)</p>
+</div></blockquote>
+</section>
+</section>
+<section id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>buggy USB 3.0 controller (works fine as 2.0 port)</p></li>
+<li><p>reboot, poweroff, S3 suspend/resume (broken since 4.8.1)</p></li>
+</ul>
+</section>
+<section id="known-issues-untested-because-of-non-working-acpi-sleep">
+<h2>Known issues (untested because of non-working ACPI sleep)<a class="headerlink" href="#known-issues-untested-because-of-non-working-acpi-sleep" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>blink in suspend mode (GP43, program LDN7 F8=23 and blink with F9=2 for 1s blinks)</p></li>
+<li><p>fix immediate resume after suspend (perhaps PCIe STS needs to be cleared)</p></li>
+<li><p>fix resume with USB3.0 used (perhaps there is a bug in resume.c)</p></li>
+</ul>
+</section>
+<section id="untested">
+<h2>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>audio over HDMI</p></li>
+<li><p>IOMMU</p></li>
+<li><p>PS/2 mouse</p></li>
+</ul>
+</section>
+<section id="todos">
+<h2>TODOs<a class="headerlink" href="#todos" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>manage to use one ATOMBIOS for all the integrated GPUs</p></li>
+</ul>
+</section>
+<section id="working">
+<h2>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>ACPI</p></li>
+<li><p>CPU frequency scaling</p></li>
+<li><p>flashrom under coreboot</p></li>
+<li><p>Gigabit Ethernet</p></li>
+<li><p>Hardware monitor</p></li>
+<li><p>Integrated graphics</p></li>
+<li><p>KVM</p></li>
+<li><p>Onboard audio</p></li>
+<li><p>PCIe</p></li>
+<li><p>PS/2 keyboard</p></li>
+<li><p>SATA</p></li>
+<li><p>Serial port</p></li>
+<li><p>SuperIO based fan control</p></li>
+<li><p>USB (XHCI is buggy)</p></li>
+</ul>
+</section>
+<section id="extra-resources">
+<h2>Extra resources<a class="headerlink" href="#extra-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://web.archive.org/web/20211028063105/https://dlcdnets.asus.com/pub/ASUS/mb/SocketFM2/F2A85-M/E8005_F2A85-M.pdf">Board manual</a></p></li>
+<li><p>Flash chip datasheet <a class="reference external" href="https://web.archive.org/web/20220127184640/https://www.winbond.com/resource-files/w25q64fv%20revs%2007182017.pdf">W25Q64FV</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="a88xm-e.html" class="btn btn-neutral float-left" title="ASUS A88XM-E" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="p2b-ls.html" class="btn btn-neutral float-right" title="ASUS P2B-LS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

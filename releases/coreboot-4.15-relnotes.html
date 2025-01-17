@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coreboot 4.15 &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="coreboot 4.14" href="coreboot-4.14-relnotes.html" />
+    <link rel="prev" title="coreboot 4.16" href="coreboot-4.16-relnotes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#upcoming-release">Upcoming release</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#previous-releases">Previous releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.22-relnotes.html">4.22 - November 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.21-relnotes.html">4.21   - August 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.20.1-relnotes.html">4.20.1 - May 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.19-relnotes.html">4.19   - January 2023</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.18-relnotes.html">4.18   - October 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.17-relnotes.html">4.17   - May 2022</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.16-relnotes.html">4.16   - February 2022</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.15   - November 2021</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#important-announcement">Important Announcement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#new-mainboards">New mainboards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#removed-mainboards">Removed mainboards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deprecations-and-incompatible-changes">Deprecations and incompatible changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#significant-changes">Significant changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.14-relnotes.html">4.14   - May 2021</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.13-relnotes.html">4.13   - November 2020</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.12-relnotes.html">4.12   - May 2020</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.11-relnotes.html">4.11   - November 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.10-relnotes.html">4.10   - July 2019</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.9-relnotes.html">4.9    - December 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.8.1-relnotes.html">4.8.1  - May 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.7-relnotes.html">4.7    - January 2018</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.6-relnotes.html">4.6    - April 2017</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.5-relnotes.html">4.5    - October 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.4-relnotes.html">4.4    - May 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.3-relnotes.html">4.3    - January 2016</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.2-relnotes.html">4.2    - October 2015</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coreboot-4.1-relnotes.html">4.1    - July 2015</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Release notes</a></li>
+      <li class="breadcrumb-item active">coreboot 4.15</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/releases/coreboot-4.15-relnotes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coreboot-4-15">
+<h1>coreboot 4.15<a class="headerlink" href="#coreboot-4-15" title="Link to this heading"></a></h1>
+<p>coreboot 4.15 was released on November 5th, 2021.</p>
+<p>Since 4.14 there have been more than 2597 new commits by more than 219 developers.
+Of these, over 73 contributed to coreboot for the first time.</p>
+<p>Welcome to the project!</p>
+<p>Thank you to all the developers who continue to make coreboot the
+great open source firmware project that it is.</p>
+<section id="important-announcement">
+<h2>Important Announcement<a class="headerlink" href="#important-announcement" title="Link to this heading"></a></h2>
+<p>We are going to be changing the cadence from every 6 months, to every 3 months.
+That means the 4.16 release will be coming in February, 2022.</p>
+</section>
+<section id="new-mainboards">
+<h2>New mainboards<a class="headerlink" href="#new-mainboards" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Asus p8h61-m_pro_cm6630</p></li>
+<li><p>Asus p8h77-v</p></li>
+<li><p>Asus p8z77-v</p></li>
+<li><p>Google nipperkin</p></li>
+<li><p>Lenovo w541</p></li>
+<li><p>Siemens mc_ehl</p></li>
+<li><p>Supermicro x9sae</p></li>
+<li><p>System76 addw1</p></li>
+<li><p>System76 addw2</p></li>
+<li><p>System76 bonw14</p></li>
+<li><p>System76 darp6</p></li>
+<li><p>System76 darp7</p></li>
+<li><p>System76 galp2</p></li>
+<li><p>System76 galp3</p></li>
+<li><p>System76 galp3-b</p></li>
+<li><p>System76 galp4</p></li>
+<li><p>System76 galp5</p></li>
+<li><p>System76 gaze14</p></li>
+<li><p>System76 lemp10</p></li>
+<li><p>System76 oryp7</p></li>
+<li><p>System76 oryp8</p></li>
+</ul>
+</section>
+<section id="removed-mainboards">
+<h2>Removed mainboards<a class="headerlink" href="#removed-mainboards" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Google Mancomb</p></li>
+</ul>
+</section>
+<section id="deprecations-and-incompatible-changes">
+<h2>Deprecations and incompatible changes<a class="headerlink" href="#deprecations-and-incompatible-changes" title="Link to this heading"></a></h2>
+<section id="corebootpayload-option">
+<h3>COREBOOTPAYLOAD option<a class="headerlink" href="#corebootpayload-option" title="Link to this heading"></a></h3>
+<p>Drop the deprecated COREBOOTPAYLOAD option, and replace it with MrChromebox’s
+updated UefiPayloadPkg option. Simplify the Kconfig options to make it easier
+to build from upstream edk2 master. Drop the EDK2_USE_8254_TIMER Kconfig
+option since it applies only to CorebootPayloadPkg. Clean up the Makefile now
+that we’re only building from a single edk2 package/target.</p>
+</section>
+<section id="remove-old-lp4x-and-ddr4-versions-of-spd-tools">
+<h3>Remove old lp4x and ddr4 versions of spd_tools<a class="headerlink" href="#remove-old-lp4x-and-ddr4-versions-of-spd-tools" title="Link to this heading"></a></h3>
+<p>The migration to the new unified version of spd_tools is complete, so
+the old lp4x and ddr4 versions can be removed.</p>
+</section>
+<section id="remove-amd-pi-00630f01">
+<h3>Remove AMD PI 00630F01<a class="headerlink" href="#remove-amd-pi-00630f01" title="Link to this heading"></a></h3>
+<p>No board currently uses AMD PI 00630F01 so remove it.</p>
+</section>
+</section>
+<section id="significant-changes">
+<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Link to this heading"></a></h2>
+<section id="merged-family-of-asus-mainboards-using-h61-chipset">
+<h3>Merged family of Asus mainboards using H61 chipset<a class="headerlink" href="#merged-family-of-asus-mainboards-using-h61-chipset" title="Link to this heading"></a></h3>
+<p>By using newer coreboot features like board variants and override devicetrees,
+lots of code can now be shared. This should ease maintenance and also make it
+easier for newcomers to add support for even more mainboards.</p>
+</section>
+<section id="changed-default-setting-for-intel-chipset-lockdown">
+<h3>Changed default setting for Intel chipset lockdown<a class="headerlink" href="#changed-default-setting-for-intel-chipset-lockdown" title="Link to this heading"></a></h3>
+<p>Previously, the default behaviour for Intel chipset lockdown was to let the FSP
+do it. Since all related mainboards used the coreboot mechanisms for chipset
+lockdown, the default behaviour was changed to that.</p>
+</section>
+<section id="payloads-unit-testing">
+<h3>Payloads unit testing<a class="headerlink" href="#payloads-unit-testing" title="Link to this heading"></a></h3>
+<p>Libpayload now supports the mock architecture, which can be used for unit testing
+payloads. (For examples see
+<a class="reference external" href="https://chromium.googlesource.com/chromiumos/platform/depthcharge/">depthcharge</a>
+payload)</p>
+</section>
+<section id="unit-testing-infrastructure">
+<h3>Unit testing infrastructure<a class="headerlink" href="#unit-testing-infrastructure" title="Link to this heading"></a></h3>
+<p>Unit testing of libpayload is now possible in the same fashion as in the main
+coreboot tree.</p>
+</section>
+<section id="introduce-new-method-for-accessing-cpu-info">
+<h3>Introduce new method for accessing cpu_info<a class="headerlink" href="#introduce-new-method-for-accessing-cpu-info" title="Link to this heading"></a></h3>
+<p>There is currently a fundamental flaw in the current cpu_info()
+implementation. It assumes that current stack is CONFIG_STACK_SIZE
+aligned. This assumption breaks down when performing SMM relocation.</p>
+<p>The first step in performing SMM relocation is changing the SMBASE. This
+is accomplished by installing the smmstub at 0x00038000, which is the
+default SMM entry point. The stub is configured to set up a new stack
+with the size of 1 KiB (CONFIG_SMM_STUB_STACK_SIZE), and an entry point
+of smm_do_relocation located in RAMSTAGE RAM.</p>
+<p>This means that when smm_do_relocation is executed, it is running in SMM
+with a different sized stack. When cpu_info() gets called it will be
+using CONFIG_STACK_SIZE to calculate the location of the cpu_info
+struct. This results in reading random memory. Since cpu_info() has to
+run in multiple environments, we can’t use a compile time constant to
+locate the cpu_info struct.</p>
+<p>This CL introduces a new way of locating cpu_info. It uses a per-cpu
+segment descriptor that points to a per-cpu segment that is allocated on
+the stack. By using a segment descriptor to point to the per-cpu data,
+we no longer need to calculate the location of the cpu_info struct. This
+has the following advantages:</p>
+<ul class="simple">
+<li><p>Stacks no longer need to be CONFIG_STACK_SIZE aligned.</p></li>
+<li><p>Accessing an unconfigured segment will result in an exception. This
+ensures no one can call cpu_info() from an unsupported environment.</p></li>
+<li><p>Segment selectors are cleared when entering SMM and restored when
+leaving SMM.</p></li>
+<li><p>There is a 1:1 mapping between cpu and cpu_info. When using
+COOP_MULTITASKING, a new cpu_info is currently allocated at the top of
+each thread’s stack. This no longer needs to happen.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="coreboot-4.16-relnotes.html" class="btn btn-neutral float-left" title="coreboot 4.16" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="coreboot-4.14-relnotes.html" class="btn btn-neutral float-right" title="coreboot 4.14" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The coreboot build system &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Use of git submodules in coreboot" href="submodules.html" />
+    <link rel="prev" title="coreboot architecture" href="architecture.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">coreboot architecture</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Build System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-operation">General operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subdirs">subdirs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cbfs-files">cbfs-files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-makefile-fragments">Adding Makefile fragments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kconfig.html">Kconfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_documentation.html">Writing Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">Setting up GPIOs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devicetree.html">Adding devices to a device tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mainboard/index.html">Mainboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Getting Started</a></li>
+      <li class="breadcrumb-item active">The coreboot build system</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started/build_system.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-coreboot-build-system">
+<h1>The coreboot build system<a class="headerlink" href="#the-coreboot-build-system" title="Link to this heading"></a></h1>
+<p>(this document is still incomplete and will be filled in over time)</p>
+<section id="general-operation">
+<h2>General operation<a class="headerlink" href="#general-operation" title="Link to this heading"></a></h2>
+<p>The coreboot build system is based on GNU make but extends it significantly
+to the point of providing its own custom language.
+The overhead of learning this new syntax is (hopefully) offset by its lower
+complexity.</p>
+<p>The build system is defined in the toplevel <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> and <code class="docutils literal notranslate"><span class="pre">toolchain.mk</span></code>
+and is supposed to be generic (and is in fact used with a number of other
+projects).  Project specific configuration should reside in files called
+<code class="docutils literal notranslate"><span class="pre">Makefile.mk</span></code>.</p>
+<p>In general, the build system provides a number of “classes” that describe
+various parts of the build. These cover the various build targets in coreboot
+such as the stages, subdirectories with more source code, and the general
+addition of files.</p>
+<p>Each class has a name (eg. <code class="docutils literal notranslate"><span class="pre">romstage</span></code>, <code class="docutils literal notranslate"><span class="pre">subdirs</span></code>, <code class="docutils literal notranslate"><span class="pre">cbfs-files</span></code>) and is used
+by filling in a variable of that name followed by <code class="docutils literal notranslate"><span class="pre">-y</span></code> (eg. <code class="docutils literal notranslate"><span class="pre">romstage-y</span></code>,
+<code class="docutils literal notranslate"><span class="pre">subdirs-y</span></code>, <code class="docutils literal notranslate"><span class="pre">cbfs-files-y</span></code>).
+The <code class="docutils literal notranslate"><span class="pre">-y</span></code> suffix allows a simple interaction with our Kconfig build
+configuration system: Kconfig options are available as variables starting
+with a <code class="docutils literal notranslate"><span class="pre">CONFIG_</span></code> prefix and boolean options contain <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">n</span></code> or are empty.</p>
+<p>This allows <code class="docutils literal notranslate"><span class="pre">class-$(CONFIG_FOO)</span> <span class="pre">+=</span> <span class="pre">bar</span></code> to conditionally add <code class="docutils literal notranslate"><span class="pre">bar</span></code> to
+<code class="docutils literal notranslate"><span class="pre">class</span></code> depending on the choice for <code class="docutils literal notranslate"><span class="pre">FOO</span></code>.</p>
+</section>
+<section id="classes">
+<h2>classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
+<p>Classes can be defined as required. <code class="docutils literal notranslate"><span class="pre">subdirs</span></code> is handled internally since
+it’s parsed per subdirectory to add further directories to the rule set.</p>
+<p>TODO: explain how to create new classes and how to evaluate them.</p>
+<section id="subdirs">
+<h3>subdirs<a class="headerlink" href="#subdirs" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">subdirs</span></code> contains subdirectories (relative to the current directory) that
+should also be handled by the build system. The build system expects these
+directories to contain a file called <code class="docutils literal notranslate"><span class="pre">Makefile.mk</span></code>.</p>
+<p>Subdirectories are not read at the point where the <code class="docutils literal notranslate"><span class="pre">subdirs</span></code> statement
+resides but later, after the current directory is handled (and potentially
+others, too).</p>
+</section>
+<section id="cbfs-files">
+<h3>cbfs-files<a class="headerlink" href="#cbfs-files" title="Link to this heading"></a></h3>
+<p>This class is used to add files to the final CBFS image. Since several more
+options need to be maintained than can comfortably fit in that single
+variable, additional variables are used.</p>
+<p><code class="docutils literal notranslate"><span class="pre">cbfs-files-y</span></code> contains the file name used in the CBFS image (called <code class="docutils literal notranslate"><span class="pre">foo</span></code>
+here). Additional options are added in <code class="docutils literal notranslate"><span class="pre">foo-$(option)</span></code> variables. The
+supported options are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file</span></code>: The on-disk file to add as <code class="docutils literal notranslate"><span class="pre">foo</span></code> (required)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: The file type. Can be <code class="docutils literal notranslate"><span class="pre">raw</span></code>, <code class="docutils literal notranslate"><span class="pre">stage</span></code>, <code class="docutils literal notranslate"><span class="pre">payload</span></code>, and <code class="docutils literal notranslate"><span class="pre">flat-binary</span></code>
+(required)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code>: Can be <code class="docutils literal notranslate"><span class="pre">none</span></code> or <code class="docutils literal notranslate"><span class="pre">lzma</span></code> (default: none)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">position</span></code>: An absolute position constraint for the placement of the file
+(default: none)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">align</span></code>: Minimum alignment for the file (default: none)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">options</span></code>: Additional cbfstool options (default: none)</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">position</span></code> and <code class="docutils literal notranslate"><span class="pre">align</span></code> are mutually exclusive.</p>
+</section>
+<section id="adding-makefile-fragments">
+<h3>Adding Makefile fragments<a class="headerlink" href="#adding-makefile-fragments" title="Link to this heading"></a></h3>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">add_intermediate</span></code> helper to add new post-processing steps for
+the final <code class="docutils literal notranslate"><span class="pre">coreboot.rom</span></code> image. For example you can add new files to CBFS by
+adding something like this to <code class="docutils literal notranslate"><span class="pre">site-local/Makefile.mk</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$(call add_intermediate, add_mrc_data)
+	$(CBFSTOOL) $&lt; write -r RW_MRC_CACHE -f site-local/my-mrc-recording.bin
+</pre></div>
+</div>
+<p>Note that the second line must start with a tab, not spaces.</p>
+<p>See also <a class="reference internal" href="../tutorial/managing_local_additions.html"><span class="doc">Managing local additions</span></a>.</p>
+<section id="fmap-region-support">
+<h4>FMAP region support<a class="headerlink" href="#fmap-region-support" title="Link to this heading"></a></h4>
+<p>With the addition of FMAP flash partitioning support to coreboot, there was a
+need to extend the specification of files to provide more precise control
+which regions should contain which files, and even change some flags based on
+the region.</p>
+<p>Since FMAP policies depend on features using FMAP, that’s kept separate from
+the cbfs-files class.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">position</span></code> and <code class="docutils literal notranslate"><span class="pre">align</span></code> options for file <code class="docutils literal notranslate"><span class="pre">foo</span></code> can be overwritten for a
+region <code class="docutils literal notranslate"><span class="pre">REGION</span></code> using <code class="docutils literal notranslate"><span class="pre">foo-REGION-position</span></code> and <code class="docutils literal notranslate"><span class="pre">foo-REGION-align</span></code>.</p>
+<p>The regions that each file should end in can be defined by overriding a
+function called <code class="docutils literal notranslate"><span class="pre">regions-for-file</span></code> that’s called as
+<code class="docutils literal notranslate"><span class="pre">$(call</span> <span class="pre">regions-for-file,$(filename))</span></code> and should return a comma-separated
+list of regions, such as <code class="docutils literal notranslate"><span class="pre">REGION1,REGION2,REGION3</span></code>.</p>
+<p>The default implementation just returns <code class="docutils literal notranslate"><span class="pre">COREBOOT</span></code> (the default region) for
+all files.</p>
+<p>vboot provides its own implementation of <code class="docutils literal notranslate"><span class="pre">regions-for-file</span></code> that can be used
+as reference in <code class="docutils literal notranslate"><span class="pre">src/vboot/Makefile.mk</span></code>.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="architecture.html" class="btn btn-neutral float-left" title="coreboot architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="submodules.html" class="btn btn-neutral float-right" title="Use of git submodules in coreboot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontron mAL10 Computer-on-Modules platform &mdash; coreboot 24.02.01-57-g80fd22699e
+ documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Lenovo mainboard codenames" href="../lenovo/codenames.html" />
+    <link rel="prev" title="Intel Kaby lake RVP11" href="../intel/kblrvp11.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            coreboot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../payloads.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technotes/index.html">Technotes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acpi/index.html">ACPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/libgfxinit.html">Native Graphics Initialization with libgfxinit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gfx/display-panel.html">Display panel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">CPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drivers/index.html">Platform independent drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../northbridge/index.html">Northbridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../soc/index.html">System on Chip</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Mainboard</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#nb">51NB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#acer">Acer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amd">AMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asrock">ASRock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#asus">ASUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#cavium">Cavium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#clevo">Clevo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#dell">Dell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#emulation">Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#facebook">Facebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#foxconn">Foxconn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gigabyte">Gigabyte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hp">HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#intel">Intel</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#kontron">Kontron</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">mAL-10</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#technology">Technology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-coreboot">Building coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#payloads">Payloads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flashing-coreboot">Flashing coreboot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-monitor">Hardware Monitor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#untested">Untested</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tested-and-working">Tested and working</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#todo">TODO</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#lenovo">Lenovo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#libretrend">Libretrend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#msi">MSI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ocp">OCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#open-cellular">Open Cellular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pc-engines">PC Engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#portwell">Portwell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#prodrive">Prodrive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#purism">Purism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#protectli">Protectli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#roda">Roda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#sifive">SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#star-labs-systems">Star Labs Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#supermicro">Supermicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#system76">System76</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#texas-instruments">Texas Instruments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#up">UP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/payloads/index.html">Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html">Option API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lib/option.html#mainboard-specific-option-backend">Mainboard-specific option backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../superio/index.html">SuperIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vendorcode/index.html">Vendorcode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../util.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sbom/sbom.html">Software Bill of Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../infrastructure/index.html">Project infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/boards_supported_on_branches.html">Boards supported in each release directory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_docs.html">External Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation_license.html">Documentation License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">coreboot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Mainboard-specific documentation</a></li>
+      <li class="breadcrumb-item active">Kontron mAL10 Computer-on-Modules platform</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/mainboard/kontron/mal10.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kontron-mal10-computer-on-modules-platform">
+<h1>Kontron mAL10 Computer-on-Modules platform<a class="headerlink" href="#kontron-mal10-computer-on-modules-platform" title="Link to this heading"></a></h1>
+<p>The Kontron <a class="reference external" href="https://www.kontron.com/products/iot/iot-industry-4.0/iot-ready-boards-and-modules/com-express/com-express-mini/come-mal10-e2-.html">mAL10</a> COMe is a credit card sized Computer-on-Modules
+platform based on the Intel Atom E3900 Series, Pentium and Celeron
+processors.</p>
+<section id="technology">
+<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>COMe Type</p></td>
+<td><p>mini pin-out type 10</p></td>
+</tr>
+<tr class="row-even"><td><p>SoC</p></td>
+<td><p>Intel Atom x5-E3940 (4 core)</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPU</p></td>
+<td><p>Intel HD Graphics 500</p></td>
+</tr>
+<tr class="row-even"><td><p>Coprocessor</p></td>
+<td><p>Intel TXE 3.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>RAM</p></td>
+<td><p>8GB DDR3L</p></td>
+</tr>
+<tr class="row-even"><td><p>eMMC Flash</p></td>
+<td><p>32GB eMMC pSLC</p></td>
+</tr>
+<tr class="row-odd"><td><p>USB3</p></td>
+<td><p>x2</p></td>
+</tr>
+<tr class="row-even"><td><p>USB2</p></td>
+<td><p>x6</p></td>
+</tr>
+<tr class="row-odd"><td><p>SATA</p></td>
+<td><p>x2</p></td>
+</tr>
+<tr class="row-even"><td><p>LAN</p></td>
+<td><p>Intel I210IT, I211AT</p></td>
+</tr>
+<tr class="row-odd"><td><p>Super IO/EC</p></td>
+<td><p>Kontron CPLD/EC</p></td>
+</tr>
+<tr class="row-even"><td><p>HWM</p></td>
+<td><p>NCT7802</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="building-coreboot">
+<h2>Building coreboot<a class="headerlink" href="#building-coreboot" title="Link to this heading"></a></h2>
+<p>The following commands will build a working image:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>distclean
+make<span class="w"> </span>defconfig<span class="w"> </span><span class="nv">KBUILD_DEFCONFIG</span><span class="o">=</span>configs/config.kontron_mal10
+make
+</pre></div>
+</div>
+</section>
+<section id="payloads">
+<h2>Payloads<a class="headerlink" href="#payloads" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>SeaBIOS</p></li>
+<li><p>edk2</p></li>
+<li><p>Linux as payload</p></li>
+</ul>
+</section>
+<section id="flashing-coreboot">
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<p>The SPI flash can be accessed internally using <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a>.
+The following command is used to flash BIOS region.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal<span class="w"> </span>--ifd<span class="w"> </span>-i<span class="w"> </span>bios<span class="w"> </span>-w<span class="w"> </span>coreboot.rom<span class="w"> </span>--noverify-all
+</pre></div>
+</div>
+</section>
+<section id="hardware-monitor">
+<h2>Hardware Monitor<a class="headerlink" href="#hardware-monitor" title="Link to this heading"></a></h2>
+<p>The Nuvoton <a class="reference external" href="https://www.nuvoton.com/products/cloud-computing/hardware-monitors/desktop-server-series/nct7802y/?__locale=en">NCT7802Y</a> is a hardware monitoring IC, capable of monitor critical
+system parameters including power supply voltages, fan speeds, and temperatures.
+The remote inputs can be connected to CPU/GPU thermal diode or any thermal diode
+sensors and thermistor.</p>
+<ul class="simple">
+<li><p>6 temperature sensors;</p></li>
+<li><p>5 voltage sensors;</p></li>
+<li><p>3 fan speed sensors;</p></li>
+<li><p>4 sets of temperature setting points.</p></li>
+</ul>
+<p>PECI is not supported by Apollo Lake Pentium/Celeron/Atom processors and the CPU
+temperature value is taken from a thermal resistor (NTC) that is placed very
+close to the CPU.</p>
+</section>
+<section id="untested">
+<h2>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>IGD/LVDS</p></li>
+<li><p>SDIO</p></li>
+</ul>
+</section>
+<section id="tested-and-working">
+<h2>Tested and working<a class="headerlink" href="#tested-and-working" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Kontron CPLD/EC (Serial ports, I2C port, GPIOs)</p></li>
+<li><p>NCT7802 [HWM](#Hardware Monitor)</p></li>
+<li><p>USB2/3</p></li>
+<li><p>Gigabit Ethernet ports</p></li>
+<li><p>eMMC</p></li>
+<li><p>SATA</p></li>
+<li><p>PCIe ports</p></li>
+<li><p>IGD/DP</p></li>
+</ul>
+</section>
+<section id="todo">
+<h2>TODO<a class="headerlink" href="#todo" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Onboard audio (codec IDT 92HD73C1X5, currently disabled)</p></li>
+<li><p>S3 suspend/resume</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../intel/kblrvp11.html" class="btn btn-neutral float-left" title="Intel Kaby lake RVP11" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../lenovo/codenames.html" class="btn btn-neutral float-right" title="Lenovo mainboard codenames" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CC-by 4.0 the coreboot project.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
