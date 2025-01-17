@@ -4,10 +4,8 @@ ARCH = x86_32
 OBJS = $(obj)/ucodeupdate.o
 TARGET = $(obj)/ucodeupdate.elf
 
-all: real-all
+all: $(TARGET)
 
 include ../libpayload/Makefile.payload
 
-real-all: $(TARGET)
-
-.PHONY: all real-all
+.PHONY: all
