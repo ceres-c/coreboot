@@ -35,7 +35,7 @@
 // #define TARGET_LOAD
 // #define TARGET_CMP
 // #define TARGET_REG
-#define TARGET_UCODE_UPDATE				/* See note in section below for usage instructions */
+// #define TARGET_UCODE_UPDATE				/* See note in section below for usage instructions */
 #if defined(TARGET_MUL) || defined(TARGET_LOAD) || defined(TARGET_CMP) || \
 	defined(TARGET_REG) || defined(TARGET_UCODE_UPDATE)
 	#define TARGET_NO_REDUNLOCK
@@ -48,12 +48,14 @@
 // #define TARGET_RDRAND_ADD_MANY
 // #define TARGET_RDRAND_MOVE_REGS
 // #define TARGET_RDRAND_OR_REGS
+#define TARGET_RDRAND_JMP
 #if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
 	 defined(TARGET_REG) + defined(TARGET_RDRAND_1337) + \
 	 defined(TARGET_RDRAND_CMP_NE) + defined(TARGET_RDRAND_CMP_NE_JMP) + \
 	 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
 	 defined(TARGET_RDRAND_ADD_MANY) + defined(TARGET_RDRAND_MOVE_REGS)) + \
-	 defined(TARGET_RDRAND_OR_REGS) + defined(TARGET_UCODE_UPDATE) != 1
+	 defined(TARGET_RDRAND_OR_REGS) + defined(TARGET_UCODE_UPDATE) + \
+	 defined(TARGET_RDRAND_JMP) != 1
 #error You should pick exactly one glitch target
 #endif
 
@@ -271,6 +273,18 @@ void do_rdrand_patch(void) {
 			OR_DSZ32_DRI(RCX, TMP10, 0),
 			END_SEQWORD
 		},
+		#elif defined(TARGET_RDRAND_JMP)
+		{ /* rcx := rax == rbx ? 1 : 2 */
+			SUB_DSZ64_DRR(TMP0, RAX, RBX),
+			UJMPCC_DIRECT_NOTTAKEN_CONDNZ_RI(TMP0, patch_addr + 0x04),
+			ZEROEXT_DSZ64_DI(RCX, 1),
+			(SEQ_UEND0(2) | SEQ_NEXT | SEQ_SYNCFULL(1) )
+		}, {
+			ZEROEXT_DSZ64_DI(RCX, 2),
+			NOP,
+			NOP,
+			END_SEQWORD
+		}
 		#endif
 	};
 
@@ -386,6 +400,7 @@ void red_unlock_payload(void)
 	unsigned long ucode_patch_addr = (unsigned long)ucode_patch + sizeof(struct microcode);
 	#endif /* TARGET_UCODE_UPDATE */
 
+	uint32_t count = 0; // TODO remove
 	while (true) {
 		/*
 		 * Will send to the glitcher 2 main commands/responses:
@@ -662,6 +677,22 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, output);
 		// Careful with sending too many bytes in a row or the fifo will fill up
+		#elif defined(TARGET_RDRAND_JMP)
+		#define CODE_BODY_RDRAND_JMP \
+			"rdrand %%ecx;\t\n"
+
+		uint32_t operand1 = count % 2, operand2 = 1, result = 0;
+		__asm__ __volatile__ (
+			"xor %%ecx, %%ecx;\t\n"
+			CODE_BODY_RDRAND_JMP
+			: "=c" (result)
+			: "a" (operand1),
+			  "b" (operand2)
+			:
+		);
+		count++;
+		printk(BIOS_INFO, "Result: %d\n", result);
+
 		#elif defined(TARGET_UCODE_UPDATE)
 		/* NOTE: One iteration of this actually takes ~5.55 ms (MILLI!) */
 		/* To be more precise, it's ~5.27 ms when performing an update on top of the same update with a valid RSA
