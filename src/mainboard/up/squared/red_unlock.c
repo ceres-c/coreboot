@@ -48,14 +48,15 @@
 // #define TARGET_RDRAND_ADD_MANY
 // #define TARGET_RDRAND_MOVE_REGS
 // #define TARGET_RDRAND_OR_REGS
-#define TARGET_RDRAND_JMP
+// #define TARGET_RDRAND_JMP
+#define TARGET_RDRAND_LOOP_ADD
 #if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
 	 defined(TARGET_REG) + defined(TARGET_RDRAND_1337) + \
 	 defined(TARGET_RDRAND_CMP_NE) + defined(TARGET_RDRAND_CMP_NE_JMP) + \
 	 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
 	 defined(TARGET_RDRAND_ADD_MANY) + defined(TARGET_RDRAND_MOVE_REGS)) + \
 	 defined(TARGET_RDRAND_OR_REGS) + defined(TARGET_UCODE_UPDATE) + \
-	 defined(TARGET_RDRAND_JMP) != 1
+	 defined(TARGET_RDRAND_JMP) + defined(TARGET_RDRAND_LOOP_ADD) != 1
 #error You should pick exactly one glitch target
 #endif
 
@@ -284,6 +285,28 @@ void do_rdrand_patch(void) {
 			NOP,
 			NOP,
 			END_SEQWORD
+		}
+		#elif defined(TARGET_RDRAND_LOOP_ADD)
+		/* Loopy mcloopface */
+		{
+			ZEROEXT_DSZ64_DI(TMP0, 0x000D),
+			CONCAT_DSZ16_DRI(TMP0, TMP0, 0xFFFF),	// TMP0 := 0x000DFFFF
+			NOP,
+			NOP_SEQWORD,
+		}, {
+			SUB_DSZ64_DIR(TMP0, 1, TMP0),	// TMP0 := TMP0 - 1
+			ADD_DSZ64_DRI(R64SRC, R64SRC, 1),
+			ADD_DSZ64_DRI(R64SRC, R64SRC, 1),
+			NOP_SEQWORD,
+		}, {
+			ADD_DSZ64_DRI(R64SRC, R64SRC, 1),
+			UJMPCC_DIRECT_NOTTAKEN_CONDNZ_RI(TMP0, patch_addr + 0x04),
+			NOP,
+			( SEQ_UEND0(2) | SEQ_NEXT | SEQ_SYNCFULL(1) ),
+			// If I change to SYNCFULL(2) in order to move the jump one uinstr below,
+			// even without moving the jump itself one step down, the cpu just dies lol.
+			// Not gonna bother with that.
+			// Maybe UEND and SYNC can't be on the same uinstr? Kinda makes sense.
 		}
 		#endif
 	};
@@ -678,21 +701,33 @@ void red_unlock_payload(void)
 		putu32(uart_base, output);
 		// Careful with sending too many bytes in a row or the fifo will fill up
 		#elif defined(TARGET_RDRAND_JMP)
-		#define CODE_BODY_RDRAND_JMP \
-			"rdrand %%ecx;\t\n"
-
-		uint32_t operand1 = count % 2, operand2 = 1, result = 0;
+		uint32_t operand1 = count % 2, operand2 = 1, output = 0;
 		__asm__ __volatile__ (
 			"xor %%ecx, %%ecx;\t\n"
-			CODE_BODY_RDRAND_JMP
-			: "=c" (result)
+			"rdrand %%ecx;\t\n"
+			: "=c" (output)
 			: "a" (operand1),
 			  "b" (operand2)
 			:
 		);
 		count++;
-		printk(BIOS_INFO, "Result: %d\n", result);
 
+		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
+		putu32(uart_base, output);
+		// Careful with sending too many bytes in a row or the fifo will fill up
+		#elif defined(TARGET_RDRAND_LOOP_ADD)
+		uint32_t output = 0;
+			__asm__ __volatile__ (
+				"xor %%ecx, %%ecx;\t\n"
+				"rdrand %%ecx;\t\n"
+				: "=c" (output)
+				:
+				:
+			);
+
+		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
+		putu32(uart_base, output); // 0x000DFFFF*3=0x0029FFFD
+		// Careful with sending too many bytes in a row or the fifo will fill up
 		#elif defined(TARGET_UCODE_UPDATE)
 		/* NOTE: One iteration of this actually takes ~5.55 ms (MILLI!) */
 		/* To be more precise, it's ~5.27 ms when performing an update on top of the same update with a valid RSA
