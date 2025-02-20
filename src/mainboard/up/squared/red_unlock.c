@@ -49,14 +49,16 @@
 // #define TARGET_RDRAND_MOVE_REGS
 // #define TARGET_RDRAND_OR_REGS
 // #define TARGET_RDRAND_JMP
-#define TARGET_RDRAND_LOOP_ADD
+// #define TARGET_RDRAND_LOOP_ADD
+#define TARGET_RDRAND_URAM
 #if (defined(TARGET_MUL) + defined(TARGET_LOAD) + defined(TARGET_CMP) +	\
 	 defined(TARGET_REG) + defined(TARGET_RDRAND_1337) + \
 	 defined(TARGET_RDRAND_CMP_NE) + defined(TARGET_RDRAND_CMP_NE_JMP) + \
 	 defined(TARGET_RDRAND_SUB_ADD) + defined(TARGET_RDRAND_ADD) +		\
 	 defined(TARGET_RDRAND_ADD_MANY) + defined(TARGET_RDRAND_MOVE_REGS)) + \
 	 defined(TARGET_RDRAND_OR_REGS) + defined(TARGET_UCODE_UPDATE) + \
-	 defined(TARGET_RDRAND_JMP) + defined(TARGET_RDRAND_LOOP_ADD) != 1
+	 defined(TARGET_RDRAND_JMP) + defined(TARGET_RDRAND_LOOP_ADD) + \
+	 defined(TARGET_RDRAND_URAM) != 1
 #error You should pick exactly one glitch target
 #endif
 
@@ -309,6 +311,23 @@ void do_rdrand_patch(void) {
 			// even without moving the jump itself one step down, the cpu just dies lol.
 			// Not gonna bother with that.
 			// Maybe UEND and SYNC can't be on the same uinstr? Kinda makes sense.
+		}
+		#elif defined(TARGET_RDRAND_URAM)
+		{ /* Read/write URAM test */
+			ZEROEXT_DSZ64_DI(TMP0, 0x0007),
+			CONCAT_DSZ16_DRI(TMP0, TMP0, 0xFFFF),	// TMP0 := 0x0007FFFF
+			ZEROEXT_DSZ64_DI(TMP1, 0x01),
+			NOP_SEQWORD,
+		}, {
+			WRITEURAM_RI(TMP1, 0x48),				// Pray nobody uses this address
+			READURAM_DI(TMP2, 0x48),
+			ADD_DSZ64_DRR(TMP3, TMP3, TMP2),
+			NOP_SEQWORD,
+		}, {
+			SUB_DSZ64_DIR(TMP0, 1, TMP0),			// TMP0 := TMP0 - 1
+			UJMPCC_DIRECT_NOTTAKEN_CONDNZ_RI(TMP0, patch_addr + 0x04),
+			MOVE_DSZ32_DR(R64SRC, TMP3),
+			( SEQ_NOP| SEQ_NEXT | SEQ_SYNCFULL(1) )
 		}
 		#endif
 	};
@@ -717,7 +736,7 @@ void red_unlock_payload(void)
 		uart8250_mem_tx_byte(uart_base, T_CMD_DONE);
 		putu32(uart_base, output);
 		// Careful with sending too many bytes in a row or the fifo will fill up
-		#elif defined(TARGET_RDRAND_LOOP_ADD)
+		#elif defined(TARGET_RDRAND_LOOP_ADD) || defined(TARGET_RDRAND_URAM)
 		uint32_t output = 0;
 			__asm__ __volatile__ (
 				"xor %%ecx, %%ecx;\t\n"
