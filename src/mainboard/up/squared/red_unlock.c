@@ -289,19 +289,21 @@ void do_rdrand_patch(void) {
 		#elif defined(TARGET_RDRAND_LOOP_ADD)
 		/* Loopy mcloopface */
 		{
+			// MOVEFROMCREG_DSZ64_DI(R12, 0x38c),	// Pause frontend (either this or the NOP below)
 			ZEROEXT_DSZ64_DI(TMP0, 0x000D),
 			CONCAT_DSZ16_DRI(TMP0, TMP0, 0xFFFF),	// TMP0 := 0x000DFFFF
 			NOP,
 			NOP_SEQWORD,
 		}, {
-			SUB_DSZ64_DIR(TMP0, 1, TMP0),	// TMP0 := TMP0 - 1
-			ADD_DSZ64_DRI(R64SRC, R64SRC, 1),
-			ADD_DSZ64_DRI(R64SRC, R64SRC, 1),
+			SUB_DSZ64_DIR(TMP0, 1, TMP0),			// TMP0 := TMP0 - 1
+			ADD_DSZ64_DRI(R64SRC, R64SRC, 1),		// TODO hardcode RCX, any difference?
+			ADD_DSZ64_DRI(R64SRC, R64SRC, 1),		// TODO operate on uarch registers, do only one write to R64SRC
 			NOP_SEQWORD,
 		}, {
 			ADD_DSZ64_DRI(R64SRC, R64SRC, 1),
 			UJMPCC_DIRECT_NOTTAKEN_CONDNZ_RI(TMP0, patch_addr + 0x04),
 			NOP,
+			// MOVETOCREG_DSZ64_RI(R12, 0x38c),		// Restore frontend (either this or the NOP above)
 			( SEQ_UEND0(2) | SEQ_NEXT | SEQ_SYNCFULL(1) ),
 			// If I change to SYNCFULL(2) in order to move the jump one uinstr below,
 			// even without moving the jump itself one step down, the cpu just dies lol.
