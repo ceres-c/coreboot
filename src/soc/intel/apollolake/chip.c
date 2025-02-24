@@ -334,6 +334,7 @@ static void soc_init(void *data)
 	#if CONFIG(RED_UNLOCK)
 	/* Must be after `set_power_limits`, or it will hang (?) */
 	red_unlock_payload();
+	__builtin_unreachable();
 	#endif
 
 	/*
