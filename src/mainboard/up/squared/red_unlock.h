@@ -1,7 +1,6 @@
 #ifndef RED_UNLOCK_H
 #define RED_UNLOCK_H
 
-#include <timestamp.h>
 #include <soc/ramstage.h>
 #include <console/console.h>
 #include <console/uart.h>

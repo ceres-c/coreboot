@@ -6,11 +6,12 @@
 
 #include "red_unlock.h"
 
-/* Pick the target here */
+/* Pick the target here (only one) */
 // #include "targets/mul.h"
 // #include "targets/load.h"
 // #include "targets/cmp.h"
 // #include "targets/reg.h"
+// #include "targets/ucode_update_timer.h"
 // #include "targets/ucode_update.h"	/* See note in this file for usage instructions */
 // #include "targets/rdrand_1337.h"
 // #include "targets/rdrand_cmp_ne.h"
@@ -60,45 +61,24 @@ static unsigned long curr_clock_khz(void) {
 
 	return cpu_max_khz_from_cpuid() * aperf / mperf;
 }
-#endif
+#endif /* PRINT_CLOCK_SPEED */
 
 void red_unlock_payload(void)
 {
-	/* If invalid instruction/any weird exception is thrown, check that your system is actually red unlocked (right blob?) */
+	void* uart_base = uart_platform_baseptr(CONFIG(UART_FOR_CONSOLE));
 
+	#ifdef PRINT_CLOCK_SPEED
 	/* Print clock speed, if needed for reporting/debugging
 	 * NOTE: This is not compatible with the glitcher as it does not expect this data to be printed.
 	 */
-	#ifdef PRINT_CLOCK_SPEED
 	printk(BIOS_INFO, "Current clock: %ld kHz\n", curr_clock_khz());
-	#endif
+	#endif /* PRINT_CLOCK_SPEED */
 
 	#ifdef PRINT_UCODE_REV
 	/* Print ucode revision as it is running (comes from FIT package) */
 	uint32_t print_ucode_rev = read_microcode_rev(); // 0x20
 	printk(BIOS_INFO, "Microcode FIT revision: 0x%x\n", print_ucode_rev);
-
-	/* No need for spinlocks here, I assume. We are still running a single core */
-	const void *print_patch = intel_microcode_find();
-	const struct microcode *ucode_print_patch = print_patch;
-	if (!ucode_print_patch)
-		die("microcode: failed because no ucode was found\n");
-	if (print_ucode_rev == ucode_print_patch->rev)
-		die("microcode: Update skipped, already up-to-date\n");
-	unsigned long ucode_print_patch_addr = (unsigned long)ucode_print_patch + sizeof(struct microcode);
-	uint64_t ucode_print_tsc = timestamp_get();
-	__asm__ __volatile__ (
-		"wrmsr"
-		: /* No outputs */
-		: "c" (IA32_BIOS_UPDT_TRIG), "a" (ucode_print_patch_addr), "d" (0)
-	);
-	uint64_t ucode_print_tsc2 = timestamp_get();
-	print_ucode_rev = read_microcode_rev();
-	printk(BIOS_INFO, "Microcode CBFS revision: 0x%x\n", print_ucode_rev);
-	printk(BIOS_INFO, "Microcode update took %lld cycles\n", ucode_print_tsc2 - ucode_print_tsc);
 	#endif /* PRINT_UCODE_REV */
-
-	void* uart_base = uart_platform_baseptr(CONFIG(UART_FOR_CONSOLE));
 
 	/*
 	 * Will send to the glitcher 2 main commands/responses:
@@ -111,6 +91,9 @@ void red_unlock_payload(void)
 	 *		 each iteration last at least ~420 us. This is to give enough time to the
 	 *		 PMIC to drop the voltage to Vp first and Vf later, and then to recover
 	 *		 to Vcc before we are sending data over UART.
+	 *
+	 * NOTE: If an invalid instruction exception is thrown with red unlock targets,
+	 * check that your system is actually red unlocked (right FMAP region/descriptor.bin?)
 	 */
 	target_loop(uart_base);
 	__builtin_unreachable();

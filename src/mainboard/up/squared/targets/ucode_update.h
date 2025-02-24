@@ -11,6 +11,8 @@
  * `Chipset` -> `Include CPU microcode in CBFS` -> `Include external microcode binary`.
  */
 
+#include <timestamp.h>
+
 #include "targets.h"
 
 #define CODE_BODY_UCODE_UPDATE_DELAY \
