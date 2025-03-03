@@ -15,7 +15,7 @@
 // #include "targets/ucode_update.h"	/* See note in this file for usage instructions */
 // #include "targets/rdrand_1337.h"
 // #include "targets/rdrand_cmp_ne.h"
-// #include "targets/rdrand_cmp_ne_jmp.h"
+#include "targets/rdrand_cmp_ne_jmp.h"
 // #include "targets/rdrand_sub_add.h"
 // #include "targets/rdrand_add.h"
 // #include "targets/rdrand_add_many.h"
@@ -24,7 +24,7 @@
 // #include "targets/rdrand_jmp.h"
 // #include "targets/rdrand_loop_add.h"
 // #include "targets/rdrand_uram.h"
-#include "targets/rdrand_uram_cmp_set.h"
+// #include "targets/rdrand_uram_cmp_set.h"
 
 #ifdef PRINT_CLOCK_SPEED
 static unsigned long cpu_max_khz_from_cpuid(void)

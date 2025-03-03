@@ -5,14 +5,10 @@
 #include <console/console.h>
 #include <console/uart.h>
 #include <console/uart8250mem.h>
-#include <cpu/x86/msr.h>
 #include <arch/cpuid.h>
 #include <cpu/intel/microcode.h>
 
-#include "lib-micro-x86/ucode_macro.h"
-#include "lib-micro-x86/inst.h"
-#include "lib-micro-x86/misc.h"
-#include "lib-micro-x86/opcode.h"
+#include "lib-micro-x86/lib-micro-minimal.h"
 
 #define T_CMD_READY					'R'		/* Signal loop iteration start/trigger reference	*/
 #define T_CMD_DONE					'D'		/* Done with the current loop iteration				*/

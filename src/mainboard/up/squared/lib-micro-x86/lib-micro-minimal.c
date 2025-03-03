@@ -1,6 +1,9 @@
+#pragma GCC push_options
+#pragma GCC optimize ("O0") // This is fundamental, otherwise hook_match_and_patch
+                            // will have no effect. I don't even want to know why.
+
 #include "lib-micro-minimal.h"
 
-uint32_t match_and_patch_hook_addr = 0x7de0;
 ucode_t match_and_patch_hook_ucode_patch[] = {
     {   // 0x7de0
         MOVE_DSZ64_DR(TMP0, RDI),
@@ -37,14 +40,6 @@ ucode_t match_and_patch_hook_ucode_patch[] = {
     },
 };
 
-/* Make GCC happy with prototypes */
-uint32_t ucode_addr_to_patch_addr(uint32_t addr);
-uint32_t ucode_addr_to_patch_seqword_addr(uint32_t addr);
-void ldat_array_write(uint32_t pdat_reg, uint32_t array_sel, uint32_t bank_sel, uint32_t dword_idx, uint32_t fast_addr, uint64_t val);
-void ms_array_write(uint32_t array_sel, uint32_t bank_sel, uint32_t dword_idx, uint32_t fast_addr, uint64_t val);
-static void ms_array_4_write(uint32_t addr, uint64_t val);
-static void ms_array_2_write(uint32_t addr, uint64_t val);
-
 uint32_t ucode_addr_to_patch_addr(uint32_t addr) {
     return addr - 0x7c00;
 }
@@ -73,13 +68,13 @@ void ms_array_write(uint32_t array_sel, uint32_t bank_sel, uint32_t dword_idx, u
  * @param addr: The address to write to.
  * @param val: microcode instruction to write as a uint64_t.
  */
-static void ms_array_4_write(uint32_t addr, uint64_t val) {return ms_array_write(4, 0, 0, addr, val); }
+void ms_array_4_write(uint32_t addr, uint64_t val) {return ms_array_write(4, 0, 0, addr, val); }
 /**
  * write a single microcode instruction to ms_array 2.
  * @param addr: The address to write to.
  * @param val: microcode instruction to write as a uint64_t.
  */
-static void ms_array_2_write(uint32_t addr, uint64_t val) {return ms_array_write(2, 0, 0, addr, val); }
+void ms_array_2_write(uint32_t addr, uint64_t val) {return ms_array_write(2, 0, 0, addr, val); }
 
 
 void patch_ucode(uint32_t addr, ucode_t ucode_patch[], int n) {
@@ -106,11 +101,38 @@ void hook_match_and_patch(uint32_t entry_idx, uint32_t ucode_addr, uint32_t patc
 	uint32_t dst = patch_addr / 2;
 	uint32_t patch_value = (dst << 16) | ucode_addr | 1;
 
-	patch_ucode(match_and_patch_hook_addr, match_and_patch_hook_ucode_patch, ARRAY_SZ(match_and_patch_hook_ucode_patch));
-	ucode_invoke_2(match_and_patch_hook_addr, patch_value, entry_idx<<1);
+	patch_ucode(MATCH_AND_PATCH_HOOK_ADDR, match_and_patch_hook_ucode_patch, ARRAY_SZ(match_and_patch_hook_ucode_patch));
+	ucode_invoke_2(MATCH_AND_PATCH_HOOK_ADDR, patch_value, entry_idx<<1);
+}
+
+void wrmrs_enable_debug(void) {
+	/* Enable ucode debug */
+	unsigned int low = 0, high = 0;
+	__asm__ volatile ("wrmsr" : : "a" (MAGIC_UNLOCK), "d" (0), "c" (APL_UCODE_CRBUS_UNLOCK));
+	__asm__ volatile ("rdmsr" : "=a" (low), "=d" (high) : "c" (APL_UCODE_CRBUS_UNLOCK));
+	if (high != 0 || low != MAGIC_UNLOCK) {
+		die("\tFailed to write APL_UCODE_CRBUS_UNLOCK MSR\n");
+	}
 }
 
 void do_fix_IN_patch(void) {
+    /* See 'Backdoor in the Core' talk to understand why this is needed */
 	// Patch U58ba to U017a
 	hook_match_and_patch(0x1f, 0x58ba, 0x017a);
 }
+
+void apply_patch(uint32_t ucode_msrom_addr, uint32_t ucode_msram_addr, ucode_t *ucode_patch, int triad_count) {
+	/* Install the patch.
+	 *
+	 * Args:
+	 *  - ucode_msrom_addr: The source address (in ucode ROM) for match&patch
+	 *    registers (see XLAT macros to patch full instructions)
+	 *  - ucode_msram_addr: Where to put the patch (in ucode RAM)
+	 *  - ucode_patch: The patch to apply
+	 */
+	patch_ucode(ucode_msram_addr, ucode_patch, triad_count);
+	hook_match_and_patch(0, ucode_msrom_addr, ucode_msram_addr);
+	printk(BIOS_INFO, "RDRAND patched\n");
+}
+
+#pragma GCC pop_options
