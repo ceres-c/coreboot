@@ -42,10 +42,10 @@ inline static __attribute__((always_inline)) void target_loop(void* uart_base) {
 		// AT&T syntax
 		__asm__ __volatile__ (
 			"xor %%ecx, %%ecx\t\n"
-			REP100(CODE_BODY_RDRAND_CMP_NE) // 400 iterations
-			REP100(CODE_BODY_RDRAND_CMP_NE)
-			REP100(CODE_BODY_RDRAND_CMP_NE)
-			REP100(CODE_BODY_RDRAND_CMP_NE)
+			REP100(REP100(CODE_BODY_RDRAND_CMP_NE)) // 40000 iterations
+			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
+			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
+			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
 			: "=c" (result)
 			: "a" (operand1),
 			  "b" (operand2)

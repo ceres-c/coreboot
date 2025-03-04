@@ -21,7 +21,6 @@
 // #include "targets/rdrand_add_many.h"
 // #include "targets/rdrand_move_regs.h"
 // #include "targets/rdrand_or_regs.h"
-// #include "targets/rdrand_jmp.h"
 // #include "targets/rdrand_loop_add.h"
 // #include "targets/rdrand_uram.h"
 // #include "targets/rdrand_uram_cmp_set.h"
