@@ -1,26 +1,19 @@
 #include "targets.h"
 
-#define CODE_BODY_RDRAND_CMP_NE \
+#define CODE_BODY_RDRAND_CMP_E \
 "rdrand %%ecx;\t\n"
 
 #define PATCH_ADDR 0x7da0
 ucode_t ucode_patch[] = {
 	{ /* R64SRC := RAX == RBX ? 0 : 1 */
 		/* Note that without SYNCs, the result of upcoming architectural operations can be overwritten in weird ways */
+		// See rdrand_cmp_ne_jmp.h for explanation
 		SUB_DSZ64_DRR(TMP0, RAX, RBX),	/* tmp0 = rax - rbx. tmp0 now has per-register flags set */
-		UJMPCC_DIRECT_NOTTAKEN_CONDNZ_RI(TMP0, (PATCH_ADDR + 0x04)),
-		ADD_DSZ64_DRI(R64SRC, R64SRC, 0),
-		( SEQ_UEND0(2) | SEQ_NEXT | SEQ_SYNCFULL(1) )	// 1. End on uop 2 (if executed)
-														// 2. Otherwise continue to the next triad
-														// 3. Force OOOE to wait for the UJUMP to be evaluated,
-														// then pick the right branch (both are speculatively
-														// executed, but only one is retired, aka committed)
-		// SYNCMARK and SYNCWAIT are also an option, but they require one extra ucode triad:
-		//	- one to write 0x01 to R64SRC
-		//	- one to write 0x02 to R64SRC
-		// They both use a seqword like ( SEQ_UEND0(0) | SEQ_NEXT | SEQ_SYNCWAIT(0) )
-	}, {
+		UJMPCC_DIRECT_NOTTAKEN_CONDZ_RI(TMP0, (PATCH_ADDR + 0x04)),
 		ADD_DSZ64_DRI(R64SRC, R64SRC, 1),
+		( SEQ_UEND0(2) | SEQ_NEXT | SEQ_SYNCFULL(1) )
+	}, {
+		ADD_DSZ64_DRI(R64SRC, R64SRC, 0),
 		NOP,
 		NOP,
 		( SEQ_UEND0(0) | SEQ_NEXT | SEQ_NOSYNC )
@@ -42,10 +35,10 @@ inline static __attribute__((always_inline)) void target_loop(void* uart_base) {
 		// AT&T syntax
 		__asm__ volatile (
 			"xor %%ecx, %%ecx\t\n" // Before this command, ecx = 0x00000446
-			REP100(REP100(CODE_BODY_RDRAND_CMP_NE)) // 40000 iterations
-			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
-			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
-			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
+			REP100(REP100(CODE_BODY_RDRAND_CMP_E)) // 40000 iterations
+			REP100(REP100(CODE_BODY_RDRAND_CMP_E))
+			REP100(REP100(CODE_BODY_RDRAND_CMP_E))
+			REP100(REP100(CODE_BODY_RDRAND_CMP_E))
 			: "=c" (result)
 			: "a" (operand1),
 			  "b" (operand2)
