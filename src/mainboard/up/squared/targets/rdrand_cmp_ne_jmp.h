@@ -41,7 +41,7 @@ inline static __attribute__((always_inline)) void target_loop(void* uart_base) {
 
 		// AT&T syntax
 		__asm__ __volatile__ (
-			"xor %%ecx, %%ecx\t\n"
+			"xor %%ecx, %%ecx\t\n" // Before this command, ecx = 0x00000446
 			REP100(REP100(CODE_BODY_RDRAND_CMP_NE)) // 40000 iterations
 			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
 			REP100(REP100(CODE_BODY_RDRAND_CMP_NE))
