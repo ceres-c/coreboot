@@ -45,7 +45,7 @@ inline static __attribute__((always_inline)) void target_loop(void* uart_base) {
 		uint32_t input = 0xFFFFFFFF, output = 0;
 
 		// AT&T syntax
-		__asm__ __volatile__ (
+		__asm__ volatile (
 			REP100(REP100(CODE_BODY_RDRAND_OR_REGS))		// 90k iterations
 			REP100(REP100(CODE_BODY_RDRAND_OR_REGS))
 			REP100(REP100(CODE_BODY_RDRAND_OR_REGS))

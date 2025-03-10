@@ -32,7 +32,7 @@ inline static __attribute__((always_inline)) void target_loop(void* uart_base) {
 		uart8250_mem_tx_flush(uart_base);
 
 		uint32_t output = 0;
-			__asm__ __volatile__ (
+			__asm__ volatile (
 				"xor %%ecx, %%ecx;\t\n"
 				"rdrand %%ecx;\t\n"
 				: "=c" (output)

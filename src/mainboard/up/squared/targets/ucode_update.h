@@ -38,7 +38,7 @@ inline static __attribute__((always_inline)) void target_loop(void* uart_base) {
 		 * Spoiler: it is quite a lot slower (10ms vs 6.2ms).
 		 */
 		// for (int i = 0; i < 0x000FFFFF; i++) {
-		// 	__asm__ __volatile__ (
+		// 	__asm__ volatile (
 		// 		REP100(CODE_BODY_UCODE_UPDATE_DELAY)
 		// 	::
 		// 	);
@@ -46,7 +46,7 @@ inline static __attribute__((always_inline)) void target_loop(void* uart_base) {
 		// uart8250_mem_tx_byte(uart_base, 'L');
 
 		uint64_t ucode_tsc_start = timestamp_get();
-		__asm__ __volatile__ (
+		__asm__ volatile (
 			"wrmsr;\t\n"
 			REP10(REP100(REP100(CODE_BODY_UCODE_UPDATE_DELAY))) // This is the extra 300us delay, added to allow
 			REP10(REP100(REP100(CODE_BODY_UCODE_UPDATE_DELAY))) // the glitcher to restore voltage before UART tx

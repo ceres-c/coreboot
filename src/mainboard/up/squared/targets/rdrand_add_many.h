@@ -45,7 +45,7 @@ inline static __attribute__((always_inline)) void target_loop(void* uart_base) {
 		uint32_t summation = 0;
 
 		// AT&T syntax
-		__asm__ __volatile__ (
+		__asm__ volatile (
 			"xor %%ecx, %%ecx\t\n"
 			REP100(REP100(CODE_BODY_RDRAND_ADD_MANY)) // 90k iterations (*10 adds per rdrand invoke) - ecx = 900000
 			REP100(REP100(CODE_BODY_RDRAND_ADD_MANY))

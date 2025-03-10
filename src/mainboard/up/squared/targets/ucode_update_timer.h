@@ -21,7 +21,7 @@ inline static __attribute__((always_inline)) void target_loop(void* uart_base) {
 		die("microcode: Update skipped, already up-to-date\n");
 	unsigned long ucode_print_patch_addr = (unsigned long)cbfs_ucode_patch + sizeof(struct microcode);
 	uint64_t ucode_print_tsc = timestamp_get();
-	__asm__ __volatile__ (
+	__asm__ volatile (
 		"wrmsr"
 		: /* No outputs */
 		: "c" (IA32_BIOS_UPDT_TRIG), "a" (ucode_print_patch_addr), "d" (0)
