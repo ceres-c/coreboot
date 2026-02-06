@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutorial, part 2: Submitting a patch to coreboot.org &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Tutorial, part 2: Submitting a patch to coreboot.org &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -125,9 +127,9 @@
            <div itemprop="articleBody">
              
   <section id="tutorial-part-2-submitting-a-patch-to-coreboot-org">
-<h1>Tutorial, part 2: Submitting a patch to coreboot.org<a class="headerlink" href="#tutorial-part-2-submitting-a-patch-to-coreboot-org" title="Link to this heading"></a></h1>
+<h1>Tutorial, part 2: Submitting a patch to coreboot.org<a class="headerlink" href="#tutorial-part-2-submitting-a-patch-to-coreboot-org" title="Permalink to this heading"></a></h1>
 <section id="step-1-set-up-an-account-at-coreboot-org">
-<h2>Step 1: Set up an account at coreboot.org<a class="headerlink" href="#step-1-set-up-an-account-at-coreboot-org" title="Link to this heading"></a></h2>
+<h2>Step 1: Set up an account at coreboot.org<a class="headerlink" href="#step-1-set-up-an-account-at-coreboot-org" title="Permalink to this heading"></a></h2>
 <p>If you already have an account, skip to Step 2.</p>
 <p>Otherwise, go to <a class="reference external" href="https://review.coreboot.org">https://review.coreboot.org</a> in your preferred web
 browser.  Select <strong>Sign in</strong> in the upper right corner.</p>
@@ -137,7 +139,7 @@ account, select <strong>Google OAuth2</strong> (gerrit-oauth-provider plugin).
 account you used to sign-in with. (ex. your Google username).</p>
 </section>
 <section id="step-2a-set-up-ssh-keys">
-<h2>Step 2a: Set up SSH keys<a class="headerlink" href="#step-2a-set-up-ssh-keys" title="Link to this heading"></a></h2>
+<h2>Step 2a: Set up SSH keys<a class="headerlink" href="#step-2a-set-up-ssh-keys" title="Permalink to this heading"></a></h2>
 <p>If you prefer to use an HTTP password instead, skip to Step 2b.</p>
 <p>If you do not have an SSH key set up on your account already (as is the
 case with a newly created account), follow the instructions below;
@@ -153,7 +155,7 @@ as you need to send the public key) into the textbox “New SSH Key” at
 https://review.coreboot.org/settings/#SSHKeys and save it.</p>
 </section>
 <section id="step-2b-set-up-an-http-password">
-<h2>Step 2b: Set up an HTTP Password<a class="headerlink" href="#step-2b-set-up-an-http-password" title="Link to this heading"></a></h2>
+<h2>Step 2b: Set up an HTTP Password<a class="headerlink" href="#step-2b-set-up-an-http-password" title="Permalink to this heading"></a></h2>
 <p>Alternatively, instead of using SSH keys, you can use an HTTP password.
 To do so, after you select your name and click on <strong>Settings</strong> on the
 left-hand side, rather than selecting <strong>SSH Public Keys</strong>, select <strong>HTTP
@@ -180,7 +182,7 @@ the proxy is likely tampering with the data stream, in which case
 there’s nothing we can do.</p>
 </section>
 <section id="step-3-clone-coreboot-and-configure-it-for-submitting-patches">
-<h2>Step 3: Clone coreboot and configure it for submitting patches<a class="headerlink" href="#step-3-clone-coreboot-and-configure-it-for-submitting-patches" title="Link to this heading"></a></h2>
+<h2>Step 3: Clone coreboot and configure it for submitting patches<a class="headerlink" href="#step-3-clone-coreboot-and-configure-it-for-submitting-patches" title="Permalink to this heading"></a></h2>
 <p>On Gerrit, click on the <strong>Browse</strong> tab in the upper left corner and
 select <strong>Repositories</strong>. From the listing, select the “coreboot” repo.
 You may have to click the next page arrow at the bottom a few times to
@@ -208,7 +210,7 @@ hooks and other configurations.</p>
 </div>
 </section>
 <section id="step-4-submit-a-commit">
-<h2>Step 4: Submit a commit<a class="headerlink" href="#step-4-submit-a-commit" title="Link to this heading"></a></h2>
+<h2>Step 4: Submit a commit<a class="headerlink" href="#step-4-submit-a-commit" title="Permalink to this heading"></a></h2>
 <p>An easy first commit to make is fixing existing checkpatch errors and
 warnings in the source files. To see errors that are already present,
 build the files in the repository by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code> in the coreboot
@@ -227,7 +229,7 @@ to stage and submit commits is to use git cola, a graphical user
 interface for git. For instructions on how to do so, skip to Step 4b.</p>
 </section>
 <section id="step-4a-use-the-command-line-to-stage-and-submit-a-commit">
-<h2>Step 4a: Use the command line to stage and submit a commit<a class="headerlink" href="#step-4a-use-the-command-line-to-stage-and-submit-a-commit" title="Link to this heading"></a></h2>
+<h2>Step 4a: Use the command line to stage and submit a commit<a class="headerlink" href="#step-4a-use-the-command-line-to-stage-and-submit-a-commit" title="Permalink to this heading"></a></h2>
 <p>To use the command line to stage a commit, run</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span>
 </pre></div>
@@ -282,7 +284,7 @@ documentation</a>,
 especially if you plan to work on multiple changes at the same time.</p>
 </section>
 <section id="step-4b-use-git-cola-to-stage-and-submit-a-commit">
-<h2>Step 4b: Use git cola to stage and submit a commit<a class="headerlink" href="#step-4b-use-git-cola-to-stage-and-submit-a-commit" title="Link to this heading"></a></h2>
+<h2>Step 4b: Use git cola to stage and submit a commit<a class="headerlink" href="#step-4b-use-git-cola-to-stage-and-submit-a-commit" title="Permalink to this heading"></a></h2>
 <p>If git cola is not installed on your machine, see
 <a class="reference external" href="https://git-cola.github.io/downloads.html">https://git-cola.github.io/downloads.html</a> for download instructions.</p>
 <p>After making some edits to src files, rather than run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>, run
@@ -336,7 +338,7 @@ explained in the extended description.</p>
 and the commit succeeds, move to the command line and run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p>
 </section>
 <section id="step-5-let-others-review-your-commit">
-<h2>Step 5: Let others review your commit<a class="headerlink" href="#step-5-let-others-review-your-commit" title="Link to this heading"></a></h2>
+<h2>Step 5: Let others review your commit<a class="headerlink" href="#step-5-let-others-review-your-commit" title="Permalink to this heading"></a></h2>
 <p>Your commits can now be seen on review.coreboot.org if you select “Your”
 and click on “Changes” and can be reviewed by others. Your code will
 first be reviewed by build bot (Jenkins), which will either give you a
@@ -346,7 +348,7 @@ it needs to receive a +2. <strong>Note:</strong> A +1 and a +1 does not make a +
 Only certain users can give a +2.</p>
 </section>
 <section id="step-6-optional-bash-git-prompt">
-<h2>Step 6 (optional): bash-git-prompt<a class="headerlink" href="#step-6-optional-bash-git-prompt" title="Link to this heading"></a></h2>
+<h2>Step 6 (optional): bash-git-prompt<a class="headerlink" href="#step-6-optional-bash-git-prompt" title="Permalink to this heading"></a></h2>
 <p>To help make it easier to understand the state of the git repository
 without running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>, there is a way to make the
 command line show the status of the repository at every point. This
@@ -380,9 +382,9 @@ configurations include avoid fetching remote status, and supporting
 versions of Git older than 1.7.10.</p>
 </section>
 <section id="appendix-miscellaneous-advice">
-<h2>Appendix: Miscellaneous Advice<a class="headerlink" href="#appendix-miscellaneous-advice" title="Link to this heading"></a></h2>
+<h2>Appendix: Miscellaneous Advice<a class="headerlink" href="#appendix-miscellaneous-advice" title="Permalink to this heading"></a></h2>
 <section id="updating-a-commit-after-running-git-push">
-<h3>Updating a commit after running git push:<a class="headerlink" href="#updating-a-commit-after-running-git-push" title="Link to this heading"></a></h3>
+<h3>Updating a commit after running git push:<a class="headerlink" href="#updating-a-commit-after-running-git-push" title="Permalink to this heading"></a></h3>
 <p>Suppose you would like to update a commit that has already been pushed
 to the remote repository. If the commit you wish to update is the most
 recent commit you have made, after making your desired changes, stage

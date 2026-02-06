@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Intel Pad to Macro (intelp2m) converter &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Intel Pad to Macro (intelp2m) converter &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -125,7 +127,7 @@
            <div itemprop="articleBody">
              
   <section id="intel-pad-to-macro-intelp2m-converter">
-<h1>Intel Pad to Macro (intelp2m) converter<a class="headerlink" href="#intel-pad-to-macro-intelp2m-converter" title="Link to this heading"></a></h1>
+<h1>Intel Pad to Macro (intelp2m) converter<a class="headerlink" href="#intel-pad-to-macro-intelp2m-converter" title="Permalink to this heading"></a></h1>
 <p>This utility allows one to convert the configuration DW0/1 register
 values from an inteltool dump to coreboot macros.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>util/intelp2m
@@ -135,7 +137,7 @@ make
 </pre></div>
 </div>
 <section id="platforms">
-<h2>Platforms<a class="headerlink" href="#platforms" title="Link to this heading"></a></h2>
+<h2>Platforms<a class="headerlink" href="#platforms" title="Permalink to this heading"></a></h2>
 <p>It is possible to use templates for parsing inteltool.log files.
 To specify such a pattern, use the option <code class="docutils literal notranslate"><span class="pre">-t</span> <span class="pre">&lt;template</span> <span class="pre">number&gt;</span></code>.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    -t
@@ -168,11 +170,11 @@ with the configuration of the pads.</p>
 </div>
 </section>
 <section id="packages">
-<h2>Packages<a class="headerlink" href="#packages" title="Link to this heading"></a></h2>
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this heading"></a></h2>
 <p><img alt="../../_images/gopackages.png" src="../../_images/gopackages.png" /></p>
 </section>
 <section id="bit-fields-in-macros">
-<h2>Bit fields in macros<a class="headerlink" href="#bit-fields-in-macros" title="Link to this heading"></a></h2>
+<h2>Bit fields in macros<a class="headerlink" href="#bit-fields-in-macros" title="Permalink to this heading"></a></h2>
 <p>Use the <code class="docutils literal notranslate"><span class="pre">-fld=cb</span></code> option to only generate a sequence of bit fields in
 a new macro:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./intelp2m<span class="w"> </span>-fld<span class="w"> </span>cb<span class="w"> </span>-p<span class="w"> </span>apl<span class="w"> </span>-file<span class="w"> </span>../apollo-inteltool.log
@@ -184,7 +186,7 @@ a new macro:</p>
 </div>
 </section>
 <section id="raw-dw0-dw1-register-value">
-<h2>Raw DW0, DW1 register value<a class="headerlink" href="#raw-dw0-dw1-register-value" title="Link to this heading"></a></h2>
+<h2>Raw DW0, DW1 register value<a class="headerlink" href="#raw-dw0-dw1-register-value" title="Permalink to this heading"></a></h2>
 <p>To generate the gpio.c with raw PAD_CFG_DW0 and PAD_CFG_DW1 register
 values you need to use the -fld=raw option:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./intelp2m<span class="w"> </span>-fld<span class="w"> </span>raw<span class="w"> </span>-file<span class="w"> </span>/path/to/inteltool.log
@@ -205,7 +207,7 @@ values you need to use the -fld=raw option:</p>
 </div>
 </section>
 <section id="macro-check">
-<h2>Macro Check<a class="headerlink" href="#macro-check" title="Link to this heading"></a></h2>
+<h2>Macro Check<a class="headerlink" href="#macro-check" title="Permalink to this heading"></a></h2>
 <p>After generating the macro, the utility checks all used
 fields of the configuration registers. If some field has been
 ignored, the utility generates field macros. To not check
@@ -221,7 +223,7 @@ DW0 will be ignored.</p>
 </div>
 </section>
 <section id="information-level">
-<h2>Information level<a class="headerlink" href="#information-level" title="Link to this heading"></a></h2>
+<h2>Information level<a class="headerlink" href="#information-level" title="Permalink to this heading"></a></h2>
 <p>The utility can generate additional information about the bit
 fields of the DW0 and DW1 configuration registers. Using the
 options -i, -ii, -iii, -iiii you can set the info level from
@@ -259,7 +261,7 @@ options -i, -ii, -iii, -iiii you can set the info level from
 </div>
 </section>
 <section id="ignoring-fields">
-<h2>Ignoring Fields<a class="headerlink" href="#ignoring-fields" title="Link to this heading"></a></h2>
+<h2>Ignoring Fields<a class="headerlink" href="#ignoring-fields" title="Permalink to this heading"></a></h2>
 <p>Utilities can generate the <em>PAD_CFG_STRUCT macro and exclude fields
 from it that are not in the corresponding PAD_CFG</em>*() macro:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./intelp2m<span class="w"> </span>-iiii<span class="w"> </span>-fld<span class="w"> </span>cb<span class="w"> </span>-ign<span class="w"> </span>-file<span class="w"> </span>/path/to/inteltool.log
@@ -276,7 +278,7 @@ from it that are not in the corresponding PAD_CFG</em>*() macro:</p>
 </div>
 </section>
 <section id="fsp-style-macro">
-<h2>FSP-style macro<a class="headerlink" href="#fsp-style-macro" title="Link to this heading"></a></h2>
+<h2>FSP-style macro<a class="headerlink" href="#fsp-style-macro" title="Permalink to this heading"></a></h2>
 <p>The utility allows one to generate macros that include fsp/edk2-platform
 style bitfields:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./intelp2m<span class="w"> </span>-i<span class="w"> </span>-fld<span class="w"> </span>fsp<span class="w"> </span>-p<span class="w"> </span>lbg<span class="w"> </span>-file<span class="w"> </span>../crb-inteltool.log
@@ -300,7 +302,7 @@ style bitfields:</p>
 </div>
 </section>
 <section id="supported-chipsets">
-<h2>Supported Chipsets<a class="headerlink" href="#supported-chipsets" title="Link to this heading"></a></h2>
+<h2>Supported Chipsets<a class="headerlink" href="#supported-chipsets" title="Permalink to this heading"></a></h2>
 <p>Sunrise PCH, Lewisburg PCH, Apollo Lake SoC, CannonLake-LP SoCs</p>
 </section>
 </section>

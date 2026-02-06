@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Distributions &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Distributions &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=36d40e99"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -36,6 +35,9 @@
           <a href="index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -123,15 +125,15 @@
            <div itemprop="articleBody">
              
   <section id="distributions">
-<h1>Distributions<a class="headerlink" href="#distributions" title="Link to this heading"></a></h1>
+<h1>Distributions<a class="headerlink" href="#distributions" title="Permalink to this heading"></a></h1>
 <p>coreboot doesn’t provide binaries but provides a toolbox that others can use
 to build boot firmware for all kinds of purposes. These third-parties can be
 broadly separated in two groups: Those shipping coreboot on their hardware,
 and those providing after-market firmware to extend the usefulness of devices.</p>
 <section id="hardware-shipping-with-coreboot">
-<h2>Hardware shipping with coreboot<a class="headerlink" href="#hardware-shipping-with-coreboot" title="Link to this heading"></a></h2>
+<h2>Hardware shipping with coreboot<a class="headerlink" href="#hardware-shipping-with-coreboot" title="Permalink to this heading"></a></h2>
 <section id="chromeos-devices">
-<h3>ChromeOS Devices<a class="headerlink" href="#chromeos-devices" title="Link to this heading"></a></h3>
+<h3>ChromeOS Devices<a class="headerlink" href="#chromeos-devices" title="Permalink to this heading"></a></h3>
 <p>All ChromeOS devices (<a class="reference external" href="https://chromebookdb.com/">Chromebooks</a>, Chromeboxes,
 Chromebit, etc) released from 2012 onward use coreboot for their main system
 firmware. Additionally, starting with the 2013 Chromebook Pixel, the firmware
@@ -140,7 +142,7 @@ functions like battery management, keyboard support, and sensor interfacing –
 is open source as well.</p>
 </section>
 <section id="nitrokey">
-<h3>Nitrokey<a class="headerlink" href="#nitrokey" title="Link to this heading"></a></h3>
+<h3>Nitrokey<a class="headerlink" href="#nitrokey" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://nitrokey.com">Nitrokey</a> is a german IT security hardware vendor which
 offers a range of laptops, PCs, HSMs, and networking devices with coreboot and
 <a class="reference external" href="https://dasharo.com/">Dasharo</a>. The devices come with neutralized Intel
@@ -150,7 +152,7 @@ additional security the systems can be physically sealed and pictures of those
 sealings are sent via encrypted email.</p>
 </section>
 <section id="novacustom-laptops">
-<h3>NovaCustom laptops<a class="headerlink" href="#novacustom-laptops" title="Link to this heading"></a></h3>
+<h3>NovaCustom laptops<a class="headerlink" href="#novacustom-laptops" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://configurelaptop.eu/">NovaCustom</a> sells configurable laptops with
 <a class="reference external" href="https://dasharo.com/">Dasharo</a> coreboot based firmware on board, maintained by
 <a class="reference external" href="https://3mdeb.com/">3mdeb</a>. NovaCustom offers full GNU/Linux and Microsoft
@@ -159,14 +161,14 @@ and the firmware is equipped with important security features such as measured
 boot, verified boot, TPM integration and UEFI Secure Boot.</p>
 </section>
 <section id="pc-engines-apus">
-<h3>PC Engines APUs<a class="headerlink" href="#pc-engines-apus" title="Link to this heading"></a></h3>
+<h3>PC Engines APUs<a class="headerlink" href="#pc-engines-apus" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://pcengines.ch">PC Engines</a> designs and sells embedded PC hardware that
 ships with coreboot and support upstream maintenance for the devices through a
 third party, <a class="reference external" href="https://3mdeb.com">3mdeb</a>. They provide current and tested
 firmware binaries on <a class="reference external" href="https://pcengines.github.io">GitHub</a>.</p>
 </section>
 <section id="protectli">
-<h3>Protectli<a class="headerlink" href="#protectli" title="Link to this heading"></a></h3>
+<h3>Protectli<a class="headerlink" href="#protectli" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://protectli.com">Protectli</a> is dedicated to providing reliable,
 cost-effective, and secure computer equipment with coreboot-based firmware
 tailored for their hardware. It comes with the <a class="reference external" href="#dasharo">Dasharo</a>
@@ -176,21 +178,21 @@ FreeBSD, and Windows. Support includes Debian, Ubuntu, OPNsense, pfSense,
 ProxMox VE, VMware ESXi, Windows 10 and 11, and many more.</p>
 </section>
 <section id="purism">
-<h3>Purism<a class="headerlink" href="#purism" title="Link to this heading"></a></h3>
+<h3>Purism<a class="headerlink" href="#purism" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://www.puri.sm">Purism</a> sells laptops with a focus on user privacy and
 security; part of that effort is to minimize the amount of proprietary and/or
 binary code. Their laptops ship with a blob-free OS and coreboot firmware
 with a neutralized Intel Management Engine (ME) and SeaBIOS as the payload.</p>
 </section>
 <section id="star-labs">
-<h3>Star Labs<a class="headerlink" href="#star-labs" title="Link to this heading"></a></h3>
+<h3>Star Labs<a class="headerlink" href="#star-labs" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://starlabs.systems/">Star Labs</a> offers a range of laptops designed and
 built specifically for Linux that are available with coreboot firmware. They
 use edk2 as the payload and include an NVRAM option to disable the Intel
 Management Engine.</p>
 </section>
 <section id="system76">
-<h3>System76<a class="headerlink" href="#system76" title="Link to this heading"></a></h3>
+<h3>System76<a class="headerlink" href="#system76" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://system76.com/">System76</a> manufactures Linux laptops, desktops, and
 servers. Some models are sold with <a class="reference external" href="https://github.com/system76/firmware-open">System76 Open
 Firmware</a>, an open source
@@ -198,9 +200,9 @@ distribution of coreboot, edk2, and System76 firmware applications.</p>
 </section>
 </section>
 <section id="after-market-firmware">
-<h2>After-market firmware<a class="headerlink" href="#after-market-firmware" title="Link to this heading"></a></h2>
+<h2>After-market firmware<a class="headerlink" href="#after-market-firmware" title="Permalink to this heading"></a></h2>
 <section id="dasharo">
-<h3>Dasharo<a class="headerlink" href="#dasharo" title="Link to this heading"></a></h3>
+<h3>Dasharo<a class="headerlink" href="#dasharo" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://dasharo.com/">Dasharo</a> is an open-source based firmware distribution
 focusing on clean and simple code, long-term maintenance, transparent
 validation, privacy-respecting implementation, liberty for the owners, and
@@ -209,7 +211,7 @@ trustworthiness for all.</p>
 <a class="reference external" href="https://docs.dasharo.com/ways-you-can-help-us/">this document</a>.</p>
 </section>
 <section id="heads">
-<h3>Heads<a class="headerlink" href="#heads" title="Link to this heading"></a></h3>
+<h3>Heads<a class="headerlink" href="#heads" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="http://osresearch.net">Heads</a> is an open source custom firmware and OS
 configuration for laptops and servers that aims to provide slightly better
 physical security and protection for data on the system. Unlike
@@ -221,14 +223,14 @@ of specific hardware platforms and flash security features with custom coreboot
 firmware and a Linux boot loader in ROM.</p>
 </section>
 <section id="libreboot">
-<h3>Libreboot<a class="headerlink" href="#libreboot" title="Link to this heading"></a></h3>
+<h3>Libreboot<a class="headerlink" href="#libreboot" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://libreboot.org">Libreboot</a> is a downstream coreboot distribution that
 provides ready-made firmware images for supported devices: those which can be
 built entirely from source code. Their copy of the coreboot repository is
 therefore stripped of all devices that require binary components to boot.</p>
 </section>
 <section id="mrchromebox">
-<h3>MrChromebox<a class="headerlink" href="#mrchromebox" title="Link to this heading"></a></h3>
+<h3>MrChromebox<a class="headerlink" href="#mrchromebox" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://mrchromebox.tech/">MrChromebox</a> provides upstream coreboot firmware
 images for the vast majority of x86-based Chromebooks and Chromeboxes, using
 edk2 as the payload to provide a modern UEFI bootloader. Why replace
@@ -240,7 +242,7 @@ microcode, as well as firmware updates for the device’s embedded controller
 (EC). This firmware “takes the training wheels off” your ChromeOS device :)</p>
 </section>
 <section id="skulls">
-<h3>Skulls<a class="headerlink" href="#skulls" title="Link to this heading"></a></h3>
+<h3>Skulls<a class="headerlink" href="#skulls" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://github.com/merge/skulls">Skulls</a> provides firmware images for
 laptops like the Lenovo Thinkpad X230. It uses upstream coreboot, an easy
 to use payload like SeaBIOS and Intel’s latest microcode update.</p>

@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Address Sanitizer &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Address Sanitizer &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -127,7 +129,7 @@
            <div itemprop="articleBody">
              
   <section id="address-sanitizer">
-<h1>Address Sanitizer<a class="headerlink" href="#address-sanitizer" title="Link to this heading"></a></h1>
+<h1>Address Sanitizer<a class="headerlink" href="#address-sanitizer" title="Permalink to this heading"></a></h1>
 <p>Memory safety is hard to achieve. We, as humans, are bound to make mistakes in
 our code. While it may be straightforward to detect memory corruption bugs in
 few lines of code, it becomes quite challenging to find those bugs in a massive
@@ -140,10 +142,10 @@ Address Sanitizer. Therefore, it is advised to take advantage of this debugging
 tool while working on large patches. This would further help to ensure code
 quality and make runtime code more robust.</p>
 <section id="types-of-errors-detected">
-<h2>Types of errors detected<a class="headerlink" href="#types-of-errors-detected" title="Link to this heading"></a></h2>
+<h2>Types of errors detected<a class="headerlink" href="#types-of-errors-detected" title="Permalink to this heading"></a></h2>
 <p>ASan in coreboot catches the following types of memory bugs:</p>
 <section id="stack-buffer-overflow">
-<h3>Stack buffer overflow<a class="headerlink" href="#stack-buffer-overflow" title="Link to this heading"></a></h3>
+<h3>Stack buffer overflow<a class="headerlink" href="#stack-buffer-overflow" title="Permalink to this heading"></a></h3>
 <p>Example stack-out-of-bounds:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span>
 <span class="p">{</span>
@@ -158,7 +160,7 @@ quality and make runtime code more robust.</p>
 index 4.</p>
 </section>
 <section id="global-buffer-overflow">
-<h3>Global buffer overflow<a class="headerlink" href="#global-buffer-overflow" title="Link to this heading"></a></h3>
+<h3>Global buffer overflow<a class="headerlink" href="#global-buffer-overflow" title="Permalink to this heading"></a></h3>
 <p>Example global-out-of-bounds:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="n">a</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;I use coreboot&quot;</span><span class="p">;</span>
 
@@ -178,7 +180,7 @@ an “error”.</p>
 written to even beyond that.</p>
 </section>
 <section id="use-after-scope">
-<h3>Use after scope<a class="headerlink" href="#use-after-scope" title="Link to this heading"></a></h3>
+<h3>Use after scope<a class="headerlink" href="#use-after-scope" title="Permalink to this heading"></a></h3>
 <p>Example use-after-scope:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">volatile</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
@@ -196,7 +198,7 @@ variable ‘x’. This happens because ‘x’ can’t be accessed outside its s
 </section>
 </section>
 <section id="using-asan">
-<h2>Using ASan<a class="headerlink" href="#using-asan" title="Link to this heading"></a></h2>
+<h2>Using ASan<a class="headerlink" href="#using-asan" title="Permalink to this heading"></a></h2>
 <p>In order to enable ASan on a supported platform,
 select <code class="docutils literal notranslate"><span class="pre">Address</span> <span class="pre">sanitizer</span> <span class="pre">support</span></code> from <code class="docutils literal notranslate"><span class="pre">General</span> <span class="pre">setup</span></code> menu while configuring
 coreboot.</p>
@@ -323,7 +325,7 @@ corresponds to <code class="docutils literal notranslate"><span class="pre">arra
 <p>Voilà! We just caught the memory bug using ASan.</p>
 </section>
 <section id="supported-platforms">
-<h2>Supported platforms<a class="headerlink" href="#supported-platforms" title="Link to this heading"></a></h2>
+<h2>Supported platforms<a class="headerlink" href="#supported-platforms" title="Permalink to this heading"></a></h2>
 <p>Presently, the following architectures support ASan in ramstage:</p>
 <table class="docutils align-default">
 <thead>
@@ -378,9 +380,9 @@ an indication that it is way more work or even likely impossible to enable
 ASan in romstage.</p>
 </section>
 <section id="future-work">
-<h2>Future work<a class="headerlink" href="#future-work" title="Link to this heading"></a></h2>
+<h2>Future work<a class="headerlink" href="#future-work" title="Permalink to this heading"></a></h2>
 <section id="heap-buffer-overflow">
-<h3>Heap buffer overflow<a class="headerlink" href="#heap-buffer-overflow" title="Link to this heading"></a></h3>
+<h3>Heap buffer overflow<a class="headerlink" href="#heap-buffer-overflow" title="Permalink to this heading"></a></h3>
 <p>Presently, ASan doesn’t detect out-of-bounds accesses for the objects defined
 in heap.</p>
 <p>To add support for these type of memory bugs, you have to make sure that
@@ -389,7 +391,7 @@ whenever some block of memory is allocated in the heap, the surrounding areas
 when the memory block is de-allocated.</p>
 </section>
 <section id="asan-on-other-architectures">
-<h3>ASan on other architectures<a class="headerlink" href="#asan-on-other-architectures" title="Link to this heading"></a></h3>
+<h3>ASan on other architectures<a class="headerlink" href="#asan-on-other-architectures" title="Permalink to this heading"></a></h3>
 <p>The following points should help when adding support for ASan to other
 architectures like ARM or RISC-V:</p>
 <ul class="simple">
@@ -420,7 +422,7 @@ the platform’s dedicated Kconfig file.</p></li>
 </ul>
 </section>
 <section id="post-processing-script">
-<h3>Post-processing script<a class="headerlink" href="#post-processing-script" title="Link to this heading"></a></h3>
+<h3>Post-processing script<a class="headerlink" href="#post-processing-script" title="Permalink to this heading"></a></h3>
 <p>Unlike Linux, coreboot doesn’t have <code class="docutils literal notranslate"><span class="pre">%pS</span></code> printk format to dereference pointer
 to its symbolic name. Therefore, we normalise the pointer address manually to
 determine the name of the affected function and further use it to find the

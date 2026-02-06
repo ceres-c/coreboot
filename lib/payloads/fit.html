@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flattened uImage Tree documentation &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Flattened uImage Tree documentation &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -117,11 +119,11 @@
            <div itemprop="articleBody">
              
   <section id="flattened-uimage-tree-documentation">
-<h1>Flattened uImage Tree documentation<a class="headerlink" href="#flattened-uimage-tree-documentation" title="Link to this heading"></a></h1>
+<h1>Flattened uImage Tree documentation<a class="headerlink" href="#flattened-uimage-tree-documentation" title="Permalink to this heading"></a></h1>
 <p><a class="reference external" href="https://github.com/u-boot/u-boot/blob/master/doc/usage/fit/howto.rst">uImage.FIT</a> is the new format used for uImage payloads developed by
 <a class="reference external" href="https://www.denx.de/wiki/U-Boot">U-boot</a>.</p>
 <section id="supported-architectures">
-<h2>Supported architectures<a class="headerlink" href="#supported-architectures" title="Link to this heading"></a></h2>
+<h2>Supported architectures<a class="headerlink" href="#supported-architectures" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>aarch32</p></li>
 <li><p>aarch64</p></li>
@@ -129,7 +131,7 @@
 </ul>
 </section>
 <section id="supported-fit-sections">
-<h2>Supported FIT sections<a class="headerlink" href="#supported-fit-sections" title="Link to this heading"></a></h2>
+<h2>Supported FIT sections<a class="headerlink" href="#supported-fit-sections" title="Permalink to this heading"></a></h2>
 <p>The FIT can contain multiple sections, each holding a unique
 kernel, initrd or config. Out of the sections one kernel and
 one initrd is chosen, depending on the matching config.</p>
@@ -142,36 +144,36 @@ one initrd is chosen, depending on the matching config.</p>
 </ul>
 </section>
 <section id="architecture-specifics">
-<h2>Architecture specifics<a class="headerlink" href="#architecture-specifics" title="Link to this heading"></a></h2>
+<h2>Architecture specifics<a class="headerlink" href="#architecture-specifics" title="Permalink to this heading"></a></h2>
 <p>The FIT parser needs architecture support.</p>
 <section id="aarch32">
-<h3>aarch32<a class="headerlink" href="#aarch32" title="Link to this heading"></a></h3>
+<h3>aarch32<a class="headerlink" href="#aarch32" title="Permalink to this heading"></a></h3>
 <p>The source code can be found in <code class="docutils literal notranslate"><span class="pre">src/arch/arm/fit_payload.c</span></code>.</p>
 <p>On aarch32 the kernel (a section named ‘kernel’) must be in <strong>Image</strong>
 format and it needs a devicetree (a section named ‘fdt’) to boot.
 The kernel will be placed close to “<em>DRAMSTART</em>”.</p>
 </section>
 <section id="aarch64">
-<h3>aarch64<a class="headerlink" href="#aarch64" title="Link to this heading"></a></h3>
+<h3>aarch64<a class="headerlink" href="#aarch64" title="Permalink to this heading"></a></h3>
 <p>The source code can be found in <code class="docutils literal notranslate"><span class="pre">src/arch/arm64/fit_payload.c</span></code>.</p>
 <p>On aarch64 the kernel (a section named ‘kernel’) must be in <strong>Image</strong>
 format and it needs a devicetree (a section named ‘fdt’) to boot.
 The kernel will be placed close to “<em>DRAMSTART</em>”.</p>
 </section>
 <section id="risc-v">
-<h3>RISC-V<a class="headerlink" href="#risc-v" title="Link to this heading"></a></h3>
+<h3>RISC-V<a class="headerlink" href="#risc-v" title="Permalink to this heading"></a></h3>
 <p>The source code can be found in <code class="docutils literal notranslate"><span class="pre">src/arch/riscv/fit_payload.c</span></code>.</p>
 <p>On RISC-V the kernel (a section named ‘kernel’) must be in <strong>Image</strong>
 format and it needs a devicetree (a section named ‘fdt’) to boot.
 The kernel will be placed close to “<em>DRAMSTART</em>”.</p>
 </section>
 <section id="other">
-<h3>Other<a class="headerlink" href="#other" title="Link to this heading"></a></h3>
+<h3>Other<a class="headerlink" href="#other" title="Permalink to this heading"></a></h3>
 <p>Other architectures aren’t supported.</p>
 </section>
 </section>
 <section id="supported-compression">
-<h2>Supported compression<a class="headerlink" href="#supported-compression" title="Link to this heading"></a></h2>
+<h2>Supported compression<a class="headerlink" href="#supported-compression" title="Permalink to this heading"></a></h2>
 <p>The FIT image has to be included uncompressed into the CBFS. The sections
 inside the FIT image can use different compression schemes.</p>
 <p>Supported compression algorithms:</p>
@@ -182,7 +184,7 @@ inside the FIT image can use different compression schemes.</p>
 </ul>
 </section>
 <section id="compat-string">
-<h2>Compat string<a class="headerlink" href="#compat-string" title="Link to this heading"></a></h2>
+<h2>Compat string<a class="headerlink" href="#compat-string" title="Permalink to this heading"></a></h2>
 <p>The config entries contain a compatible string, that is used to find a
 matching config.</p>
 <p>The following mainboard specific functions provide the BOARDID and SKUID:</p>
@@ -210,7 +212,7 @@ matching config.</p>
 <p>If no matching compat string is found, the default config is chosen.</p>
 </section>
 <section id="building-fit-image">
-<h2>Building FIT image<a class="headerlink" href="#building-fit-image" title="Link to this heading"></a></h2>
+<h2>Building FIT image<a class="headerlink" href="#building-fit-image" title="Permalink to this heading"></a></h2>
 <p>The FIT image has to be built by calling <code class="docutils literal notranslate"><span class="pre">mkimage</span></code>. You can use
 the following example configuration:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span>

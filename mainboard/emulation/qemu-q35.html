@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>qemu q35 mainboard &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>qemu q35 mainboard &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -153,9 +155,9 @@
            <div itemprop="articleBody">
              
   <section id="qemu-q35-mainboard">
-<h1>qemu q35 mainboard<a class="headerlink" href="#qemu-q35-mainboard" title="Link to this heading"></a></h1>
+<h1>qemu q35 mainboard<a class="headerlink" href="#qemu-q35-mainboard" title="Permalink to this heading"></a></h1>
 <section id="running-coreboot-in-qemu">
-<h2>Running coreboot in qemu<a class="headerlink" href="#running-coreboot-in-qemu" title="Link to this heading"></a></h2>
+<h2>Running coreboot in qemu<a class="headerlink" href="#running-coreboot-in-qemu" title="Permalink to this heading"></a></h2>
 <p>Emulators like qemu don’t need a firmware to do hardware init.
 The hardware starts in the configured state already.</p>
 <p>The coreboot port allows to test non mainboard specific code.
@@ -163,7 +165,7 @@ As you can easily attach a debugger, it’s a good target for
 experimental code.</p>
 </section>
 <section id="coreboot-x86-64-support">
-<h2>coreboot x86_64 support<a class="headerlink" href="#coreboot-x86-64-support" title="Link to this heading"></a></h2>
+<h2>coreboot x86_64 support<a class="headerlink" href="#coreboot-x86-64-support" title="Permalink to this heading"></a></h2>
 <p>coreboot historically runs in 32-bit protected mode, even though the
 processor supports x86_64 instructions (long mode).</p>
 <p>The qemu-q35 mainboard has been ported to x86_64 and will serve as
@@ -171,7 +173,7 @@ reference platform to enable additional platforms.</p>
 <p>To enable the support set the Kconfig option <code class="docutils literal notranslate"><span class="pre">CONFIG_USE_EXP_X86_64_SUPPORT=y</span></code>.</p>
 </section>
 <section id="installing-qemu">
-<h2>Installing qemu<a class="headerlink" href="#installing-qemu" title="Link to this heading"></a></h2>
+<h2>Installing qemu<a class="headerlink" href="#installing-qemu" title="Permalink to this heading"></a></h2>
 <p>On debian you can install qemu by running:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>qemu
 </pre></div>
@@ -182,16 +184,16 @@ reference platform to enable additional platforms.</p>
 </div>
 </section>
 <section id="running-coreboot">
-<h2>Running coreboot<a class="headerlink" href="#running-coreboot" title="Link to this heading"></a></h2>
+<h2>Running coreboot<a class="headerlink" href="#running-coreboot" title="Permalink to this heading"></a></h2>
 <section id="to-run-the-i386-version-of-coreboot-default">
-<h3>To run the i386 version of coreboot (default)<a class="headerlink" href="#to-run-the-i386-version-of-coreboot-default" title="Link to this heading"></a></h3>
+<h3>To run the i386 version of coreboot (default)<a class="headerlink" href="#to-run-the-i386-version-of-coreboot-default" title="Permalink to this heading"></a></h3>
 <p>Running on qemu-system-i386 will require a 32 bit operating system.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qemu-system-i386<span class="w"> </span>-bios<span class="w"> </span>build/coreboot.rom<span class="w"> </span>-serial<span class="w"> </span>stdio<span class="w"> </span>-M<span class="w"> </span>q35
 </pre></div>
 </div>
 </section>
 <section id="to-run-the-experimental-x86-64-version-of-coreboot">
-<h3>To run the experimental x86_64 version of coreboot<a class="headerlink" href="#to-run-the-experimental-x86-64-version-of-coreboot" title="Link to this heading"></a></h3>
+<h3>To run the experimental x86_64 version of coreboot<a class="headerlink" href="#to-run-the-experimental-x86-64-version-of-coreboot" title="Permalink to this heading"></a></h3>
 <p>Running on <code class="docutils literal notranslate"><span class="pre">qemu-system-x86_64</span></code> allows to run a 32 bit or 64 bit operating system
 and firmware.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qemu-system-x86_64<span class="w"> </span>-bios<span class="w"> </span>build/coreboot.rom<span class="w"> </span>-serial<span class="w"> </span>stdio<span class="w"> </span>-M<span class="w"> </span>q35
@@ -200,7 +202,7 @@ and firmware.</p>
 </section>
 </section>
 <section id="finding-bugs">
-<h2>Finding bugs<a class="headerlink" href="#finding-bugs" title="Link to this heading"></a></h2>
+<h2>Finding bugs<a class="headerlink" href="#finding-bugs" title="Permalink to this heading"></a></h2>
 <p>To test coreboot’s x86 code it’s recommended to run on a x86 host and enable KVM.
 It will not only run faster, but is closer to real hardware. If you see the
 following message:</p>

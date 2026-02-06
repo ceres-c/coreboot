@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.16 &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.16 &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -140,7 +142,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-16">
-<h1>coreboot 4.16<a class="headerlink" href="#coreboot-4-16" title="Link to this heading"></a></h1>
+<h1>coreboot 4.16<a class="headerlink" href="#coreboot-4-16" title="Permalink to this heading"></a></h1>
 <p>The 4.16 release was done on February 25th, 2022.</p>
 <p>Since 4.15 there have been more than 1770 new commits by more than 170
 developers.  Of these, more than 35 contributed to coreboot for the
@@ -149,7 +151,7 @@ first time.</p>
 <p>Thank you to all the developers who continue to make coreboot the
 great open source firmware project that it is.</p>
 <section id="new-mainboards">
-<h2>New mainboards:<a class="headerlink" href="#new-mainboards" title="Link to this heading"></a></h2>
+<h2>New mainboards:<a class="headerlink" href="#new-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Acer Aspire VN7-572G</p></li>
 <li><p>AMD Chausie</p></li>
@@ -187,7 +189,7 @@ great open source firmware project that it is.</p>
 </ul>
 </section>
 <section id="removed-mainboards">
-<h2>Removed mainboards:<a class="headerlink" href="#removed-mainboards" title="Link to this heading"></a></h2>
+<h2>Removed mainboards:<a class="headerlink" href="#removed-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Google -&gt;  Corsola</p></li>
 <li><p>Google -&gt;  Nasher</p></li>
@@ -195,14 +197,14 @@ great open source firmware project that it is.</p>
 </ul>
 </section>
 <section id="added-processors">
-<h2>Added processors:<a class="headerlink" href="#added-processors" title="Link to this heading"></a></h2>
+<h2>Added processors:<a class="headerlink" href="#added-processors" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>src/cpu/power9</p></li>
 <li><p>src/soc/amd/sabrina</p></li>
 </ul>
 </section>
 <section id="submodule-updates">
-<h2>Submodule Updates<a class="headerlink" href="#submodule-updates" title="Link to this heading"></a></h2>
+<h2>Submodule Updates<a class="headerlink" href="#submodule-updates" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>/3rdparty/amd_blobs (6 commits)</p></li>
 <li><p>/3rdparty/arm-trusted-firmware (965 commits)</p></li>
@@ -214,7 +216,7 @@ great open source firmware project that it is.</p>
 </ul>
 </section>
 <section id="plans-to-move-platform-support-to-a-branch">
-<h2>Plans to move platform support to a branch:<a class="headerlink" href="#plans-to-move-platform-support-to-a-branch" title="Link to this heading"></a></h2>
+<h2>Plans to move platform support to a branch:<a class="headerlink" href="#plans-to-move-platform-support-to-a-branch" title="Permalink to this heading"></a></h2>
 <p>After the 4.18 release in November 2022, we plan to move support for any
 boards still requiring RESOURCE_ALLOCATOR_V3 to the 4.18 branch.  V4 was
 introduced more than a year ago and with minor changes most platforms
@@ -240,7 +242,7 @@ it can be brought back to ToT if they’re fixed to support the v4
 allocator.</p>
 </section>
 <section id="plans-for-code-deprecation">
-<h2>Plans for Code Deprecation<a class="headerlink" href="#plans-for-code-deprecation" title="Link to this heading"></a></h2>
+<h2>Plans for Code Deprecation<a class="headerlink" href="#plans-for-code-deprecation" title="Permalink to this heading"></a></h2>
 <p>As of release 4.18 (November 2022) we plan to deprecate LEGACY_SMP_INIT.
 This also includes the codepath for SMM_ASEG. This code is used to start
 APs and do some feature programming on each AP, but also set up SMM.
@@ -262,12 +264,12 @@ https://review.coreboot.org/c/coreboot/+/58700</p></li>
 migrating to PARALLEL_MP / a simple !CONFIG_SMP codebase.</p>
 </section>
 <section id="significant-changes">
-<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Link to this heading"></a></h2>
+<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Permalink to this heading"></a></h2>
 <p>This is, of course, not a complete list of all changes in the 4.16
 coreboot release, but a sampling of some of the more interesting and
 significant changes.</p>
 <section id="option-to-disable-intel-management-engine">
-<h3>Option to disable Intel Management Engine<a class="headerlink" href="#option-to-disable-intel-management-engine" title="Link to this heading"></a></h3>
+<h3>Option to disable Intel Management Engine<a class="headerlink" href="#option-to-disable-intel-management-engine" title="Permalink to this heading"></a></h3>
 <p>Disable the Intel (Converged Security) Management Engine ((CS)ME) via
 HECI based on Intel Core processors from Skylake to Alder Lake. State is
 set based on a CMOS value of <code class="docutils literal notranslate"><span class="pre">me_state</span></code>. A value of <code class="docutils literal notranslate"><span class="pre">0</span></code> will result in a
@@ -276,13 +278,13 @@ state of <code class="docutils literal notranslate"><span class="pre">3</span></
 <a class="reference external" href="https://review.coreboot.org/plugins/gitiles/coreboot/+/refs/heads/master/src/soc/intel/common/block/cse/cse.c">cse.c</a>.</p>
 </section>
 <section id="add-amd-apcb-v3-edit-tool">
-<h3>Add [AMD] apcb_v3_edit tool<a class="headerlink" href="#add-amd-apcb-v3-edit-tool" title="Link to this heading"></a></h3>
+<h3>Add [AMD] apcb_v3_edit tool<a class="headerlink" href="#add-amd-apcb-v3-edit-tool" title="Permalink to this heading"></a></h3>
 <p>apcb_v3_edit.py tool edits APCB V3 binaries. Specifically it will inject
 up to 16 SPDs into an existing APCB. The APCB must have a magic number
 at the top of each SPD slot.</p>
 </section>
 <section id="allow-enable-disable-me-via-cmos">
-<h3>Allow enable/disable ME via CMOS<a class="headerlink" href="#allow-enable-disable-me-via-cmos" title="Link to this heading"></a></h3>
+<h3>Allow enable/disable ME via CMOS<a class="headerlink" href="#allow-enable-disable-me-via-cmos" title="Permalink to this heading"></a></h3>
 <p>Add .enable method that will set the CSME state. The state is based on
 the new CMOS option me_state, with values of 0 and 1. The method is very
 stable when switching between different firmware platforms.</p>
@@ -299,7 +301,7 @@ ME: Current Operation Mode  : 0
 ME: Error Code              : 0</p>
 </section>
 <section id="move-lapic-configuration-to-mp-init">
-<h3>Move LAPIC configuration to MP init<a class="headerlink" href="#move-lapic-configuration-to-mp-init" title="Link to this heading"></a></h3>
+<h3>Move LAPIC configuration to MP init<a class="headerlink" href="#move-lapic-configuration-to-mp-init" title="Permalink to this heading"></a></h3>
 <p>Implementation for setup_lapic() did two things – call enable_lapic()
 and virtual_wire_mode_init().</p>
 <p>In PARALLEL_MP case enable_lapic() was redundant as it was already
@@ -307,7 +309,7 @@ executed prior to initialize_cpu() call.  For the !PARALLEL_MP case
 enable_lapic() is added to AP CPUs.</p>
 </section>
 <section id="add-ansi-escape-sequences-for-highlighting">
-<h3>Add ANSI escape sequences for highlighting<a class="headerlink" href="#add-ansi-escape-sequences-for-highlighting" title="Link to this heading"></a></h3>
+<h3>Add ANSI escape sequences for highlighting<a class="headerlink" href="#add-ansi-escape-sequences-for-highlighting" title="Permalink to this heading"></a></h3>
 <p>Add ANSI escape sequences to highlight a log line based on its loglevel
 to the output of “interactive” consoles that are meant to be displayed
 on a terminal (e.g. UART). This should help make errors and warnings
@@ -325,13 +327,13 @@ all cases). If desired, support for separate color highlighting could be
 added via Kconfig later.</p>
 </section>
 <section id="add-cbmem-dump-console">
-<h3>Add cbmem_dump_console<a class="headerlink" href="#add-cbmem-dump-console" title="Link to this heading"></a></h3>
+<h3>Add cbmem_dump_console<a class="headerlink" href="#add-cbmem-dump-console" title="Permalink to this heading"></a></h3>
 <p>This function is similar to cbmem_dump_console_to_uart except it uses
 the normally configured consoles. A console_paused flag was added to
 prevent the cbmem console from writing to itself.</p>
 </section>
 <section id="add-coreboot-configurator">
-<h3>Add coreboot-configurator<a class="headerlink" href="#add-coreboot-configurator" title="Link to this heading"></a></h3>
+<h3>Add coreboot-configurator<a class="headerlink" href="#add-coreboot-configurator" title="Permalink to this heading"></a></h3>
 <p>A simple GUI to change CMOS settings in coreboot’s CBFS, via the
 nvramtool utility.  Testing on Debian, Ubuntu and Manjaro with coreboot
 4.14+, but should work with any distribution or coreboot release that
@@ -339,23 +341,23 @@ has an option table. For more info, please check the
 <a class="reference external" href="https://web.archive.org/web/20220225194308/https://review.coreboot.org/plugins/gitiles/coreboot/+/refs/heads/master/util/coreboot-configurator/README.md">README</a>.</p>
 </section>
 <section id="update-live-iso-configs-to-nixos-21-11">
-<h3>Update live ISO configs to NixOS 21.11<a class="headerlink" href="#update-live-iso-configs-to-nixos-21-11" title="Link to this heading"></a></h3>
+<h3>Update live ISO configs to NixOS 21.11<a class="headerlink" href="#update-live-iso-configs-to-nixos-21-11" title="Permalink to this heading"></a></h3>
 <p>Update configs so that they work with NixOS 21.11. Drop <code class="docutils literal notranslate"><span class="pre">iasl</span></code> package
 since it was replaced with <code class="docutils literal notranslate"><span class="pre">acpica-tools</span></code>.</p>
 </section>
 <section id="move-to-u-boot-v2021-10">
-<h3>Move to U-Boot v2021.10<a class="headerlink" href="#move-to-u-boot-v2021-10" title="Link to this heading"></a></h3>
+<h3>Move to U-Boot v2021.10<a class="headerlink" href="#move-to-u-boot-v2021-10" title="Permalink to this heading"></a></h3>
 <p>Move to building the latest U-Boot.</p>
 </section>
 <section id="support-systems-with-128-cores">
-<h3>Support systems with &gt;128 cores<a class="headerlink" href="#support-systems-with-128-cores" title="Link to this heading"></a></h3>
+<h3>Support systems with &gt;128 cores<a class="headerlink" href="#support-systems-with-128-cores" title="Permalink to this heading"></a></h3>
 <p>Each time the spinlock is acquired a byte is decreased and then the
 sign of the byte is checked. If there are more than 128 cores the sign
 check will overflow. An easy fix is to increase the word size of the
 spinlock acquiring and releasing.</p>
 </section>
 <section id="add-samsung-sx9360-proximity-sensor-driver">
-<h3>Add [samsung] sx9360 [proximity sensor] driver<a class="headerlink" href="#add-samsung-sx9360-proximity-sensor-driver" title="Link to this heading"></a></h3>
+<h3>Add [samsung] sx9360 [proximity sensor] driver<a class="headerlink" href="#add-samsung-sx9360-proximity-sensor-driver" title="Permalink to this heading"></a></h3>
 <p>Add driver for setting up Semtech sx9360 SAR sensor.
 The driver is based on sx9310.c. The core of the driver is the same, but
 the bindings are slightly different.</p>
@@ -363,19 +365,19 @@ the bindings are slightly different.</p>
 Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml</p>
 </section>
 <section id="add-driver-for-genesys-logic-sd-controller-gl9750">
-<h3>Add driver for Genesys Logic [SD Controller] GL9750<a class="headerlink" href="#add-driver-for-genesys-logic-sd-controller-gl9750" title="Link to this heading"></a></h3>
+<h3>Add driver for Genesys Logic [SD Controller] GL9750<a class="headerlink" href="#add-driver-for-genesys-logic-sd-controller-gl9750" title="Permalink to this heading"></a></h3>
 <p>The device is a PCIe Gen1 to SD 3.0 card reader controller to be
 used in the Chromebook. The datasheet name is GL9750S and the revision
 is 01.</p>
 <p>The patch disables ASPM L0s.</p>
 </section>
 <section id="add-support-for-realtek-rt8125">
-<h3>Add support for Realtek RT8125<a class="headerlink" href="#add-support-for-realtek-rt8125" title="Link to this heading"></a></h3>
+<h3>Add support for Realtek RT8125<a class="headerlink" href="#add-support-for-realtek-rt8125" title="Permalink to this heading"></a></h3>
 <p>The Realtek RT8168 and RT8125 have a similar programming interface,
 therefore add the PCI device ID for the RT8125 into driver for support.</p>
 </section>
 <section id="add-fibocom-5g-wwan-acpi-support">
-<h3>Add Fibocom 5G WWAN ACPI support<a class="headerlink" href="#add-fibocom-5g-wwan-acpi-support" title="Link to this heading"></a></h3>
+<h3>Add Fibocom 5G WWAN ACPI support<a class="headerlink" href="#add-fibocom-5g-wwan-acpi-support" title="Permalink to this heading"></a></h3>
 <p>Support PXSX._RST and PXSX.MRST._RST for warm and cold reset.
 PXSX._RST is invoked on driver removal.</p>
 <p>build dependency:
@@ -385,7 +387,7 @@ tree. The rtd3 chip needs to be added on the same root port in the
 devicetree separately.</p>
 </section>
 <section id="fix-bug-in-vr-config">
-<h3>Fix bug in vr_config<a class="headerlink" href="#fix-bug-in-vr-config" title="Link to this heading"></a></h3>
+<h3>Fix bug in vr_config<a class="headerlink" href="#fix-bug-in-vr-config" title="Permalink to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">cpu_get_power_max()</span></code> function returns the TDP in milliwatts, but
 the vr_config code interprets the value in watts. Divide the value by
 1000 to fix this.</p>
@@ -393,7 +395,7 @@ the vr_config code interprets the value in watts. Divide the value by
 a value greater than 65535 (UINT16_MAX).</p>
 </section>
 <section id="make-mixed-topology-work">
-<h3>Make mixed topology work<a class="headerlink" href="#make-mixed-topology-work" title="Link to this heading"></a></h3>
+<h3>Make mixed topology work<a class="headerlink" href="#make-mixed-topology-work" title="Permalink to this heading"></a></h3>
 <p>When using a mixed memory topology with DDR4, it’s not possible to boot
 when no DIMMs are installed, even though memory-down is available. This
 happens because the DIMM SPD length defaults to 256 when no DIMM SPD is
@@ -401,7 +403,7 @@ available. Relax the length check when no DIMMs are present to overcome
 this problem.</p>
 </section>
 <section id="add-fsp-2-3-support">
-<h3>Add FSP 2.3 support<a class="headerlink" href="#add-fsp-2-3-support" title="Link to this heading"></a></h3>
+<h3>Add FSP 2.3 support<a class="headerlink" href="#add-fsp-2-3-support" title="Permalink to this heading"></a></h3>
 <p>FSP 2.3 specification introduces following changes:</p>
 <ol class="simple">
 <li><p>FSP_INFO_HEADER changes
@@ -420,7 +422,7 @@ field in header</p></li>
 </ul>
 </section>
 <section id="join-hash-calculation-for-verification-and-measurement">
-<h3>Join hash calculation for verification and measurement<a class="headerlink" href="#join-hash-calculation-for-verification-and-measurement" title="Link to this heading"></a></h3>
+<h3>Join hash calculation for verification and measurement<a class="headerlink" href="#join-hash-calculation-for-verification-and-measurement" title="Permalink to this heading"></a></h3>
 <p>This patch moves the CBFS file measurement when CONFIG_TPM_MEASURED_BOOT
 is enabled from the lookup step into the code where a file is actually
 loaded or mapped from flash. This has the advantage that CBFS routines
@@ -433,7 +435,7 @@ are even able to only hash the file a single time and use the result for
 both purposes.</p>
 </section>
 <section id="skip-fsp-notify-apis">
-<h3>Skip FSP Notify APIs<a class="headerlink" href="#skip-fsp-notify-apis" title="Link to this heading"></a></h3>
+<h3>Skip FSP Notify APIs<a class="headerlink" href="#skip-fsp-notify-apis" title="Permalink to this heading"></a></h3>
 <p>Alder Lake SoC deselects Kconfigs as below:</p>
 <ul class="simple">
 <li><p>USE_FSP_NOTIFY_PHASE_READY_TO_BOOT</p></li>
@@ -448,7 +450,7 @@ related operations separated for easy guarding again config.</p>
 pci enumeration) is still WIP.</p>
 </section>
 <section id="add-support-for-pcie-resizable-bars">
-<h3>Add support for PCIe Resizable BARs<a class="headerlink" href="#add-support-for-pcie-resizable-bars" title="Link to this heading"></a></h3>
+<h3>Add support for PCIe Resizable BARs<a class="headerlink" href="#add-support-for-pcie-resizable-bars" title="Permalink to this heading"></a></h3>
 <p>Section 7.8.6 of the PCIe spec (rev 4) indicates that some devices can
 indicates support for “Resizable BARs” via a PCIe extended capability.</p>
 <p>When support this capability is indicated by the device, the size of

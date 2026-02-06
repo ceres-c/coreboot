@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.18 release &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.18 release &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -143,7 +145,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-18-release">
-<h1>coreboot 4.18 release<a class="headerlink" href="#coreboot-4-18-release" title="Link to this heading"></a></h1>
+<h1>coreboot 4.18 release<a class="headerlink" href="#coreboot-4-18-release" title="Permalink to this heading"></a></h1>
 <p>The 4.18 release was quite late, but was completed on October 16, 2022.</p>
 <p>In the 4 months since the 4.17 release, the coreboot project has merged
 more than 1800 commits from over 200 different authors. Over 50 of those
@@ -151,9 +153,9 @@ authors submitted their first patches.</p>
 <p>Welcome and thank you to all of our new contributors, and of course the
 work of all of the seasoned contributors is greatly appreciated.</p>
 <section id="significant-or-interesting-changes">
-<h2>Significant or interesting changes<a class="headerlink" href="#significant-or-interesting-changes" title="Link to this heading"></a></h2>
+<h2>Significant or interesting changes<a class="headerlink" href="#significant-or-interesting-changes" title="Permalink to this heading"></a></h2>
 <section id="sconfig-allow-to-specify-device-operations">
-<h3>sconfig: Allow to specify device operations<a class="headerlink" href="#sconfig-allow-to-specify-device-operations" title="Link to this heading"></a></h3>
+<h3>sconfig: Allow to specify device operations<a class="headerlink" href="#sconfig-allow-to-specify-device-operations" title="Permalink to this heading"></a></h3>
 <p>Currently we only have runtime mechanisms to assign device operations to
 a node in our devicetree (with one exception: the root device). The most
 common method is to map PCI IDs to the device operations with a <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">pci_driver</span></code>. Another accustomed way is to let a chip driver assign them.</p>
@@ -175,7 +177,7 @@ end</p>
 assume that a global <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">device_operations</span> <span class="pre">system_agent_ops</span></code> exists.</p>
 </section>
 <section id="set-touchpads-to-use-detect-vs-probed-flag">
-<h3>Set touchpads to use detect (vs probed) flag<a class="headerlink" href="#set-touchpads-to-use-detect-vs-probed-flag" title="Link to this heading"></a></h3>
+<h3>Set touchpads to use detect (vs probed) flag<a class="headerlink" href="#set-touchpads-to-use-detect-vs-probed-flag" title="Permalink to this heading"></a></h3>
 <p>Historically, ChromeOS devices have worked around the problem of OEMs
 using several different parts for touchpads/touchscreens by using a
 ChromeOS kernel-specific ‘probed’ flag (rejected by the upstream kernel)
@@ -189,7 +191,7 @@ in the tree from using the ‘probed’ flag to the ‘detect’ flag.</p>
 at some future time, after which they will switch over as well.</p>
 </section>
 <section id="add-sbom-software-bill-of-materials-generation">
-<h3>Add SBOM (Software Bill of Materials) Generation<a class="headerlink" href="#add-sbom-software-bill-of-materials-generation" title="Link to this heading"></a></h3>
+<h3>Add SBOM (Software Bill of Materials) Generation<a class="headerlink" href="#add-sbom-software-bill-of-materials-generation" title="Permalink to this heading"></a></h3>
 <p>Firmware is typically delivered as one large binary image that gets
 flashed. Since this final image consists of binaries and data from a
 vast number of different people and companies, it’s hard to determine
@@ -218,7 +220,7 @@ instead of using the default CoSWID tags</p></li>
 </section>
 </section>
 <section id="additional-coreboot-changes">
-<h2>Additional coreboot changes<a class="headerlink" href="#additional-coreboot-changes" title="Link to this heading"></a></h2>
+<h2>Additional coreboot changes<a class="headerlink" href="#additional-coreboot-changes" title="Permalink to this heading"></a></h2>
 <p>The following are changes across a number of patches, or changes worth
 noting, but not needing a full description.</p>
 <ul class="simple">
@@ -235,9 +237,9 @@ noting, but not needing a full description.</p>
 </ul>
 </section>
 <section id="payloads">
-<h2>Payloads<a class="headerlink" href="#payloads" title="Link to this heading"></a></h2>
+<h2>Payloads<a class="headerlink" href="#payloads" title="Permalink to this heading"></a></h2>
 <section id="edk-ii-tianocore">
-<h3>EDK II (TianoCore)<a class="headerlink" href="#edk-ii-tianocore" title="Link to this heading"></a></h3>
+<h3>EDK II (TianoCore)<a class="headerlink" href="#edk-ii-tianocore" title="Permalink to this heading"></a></h3>
 <p>coreboot uses TianoCore interchangeably with EDK II, and whilst the
 meaning is generally clear, it’s not the payload it uses.
 Consequentially, TianoCore has been renamed to EDK II (2).</p>
@@ -257,7 +259,7 @@ to work on all hardware. It has been tested on:</p>
 </section>
 </section>
 <section id="new-mainboards">
-<h2>New Mainboards<a class="headerlink" href="#new-mainboards" title="Link to this heading"></a></h2>
+<h2>New Mainboards<a class="headerlink" href="#new-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>AMD Birman</p></li>
 <li><p>AMD Pademelon renamed from Padmelon</p></li>
@@ -285,13 +287,13 @@ to work on all hardware. It has been tested on:</p>
 </ul>
 </section>
 <section id="removed-mainboards">
-<h2>Removed Mainboards<a class="headerlink" href="#removed-mainboards" title="Link to this heading"></a></h2>
+<h2>Removed Mainboards<a class="headerlink" href="#removed-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Google Brya4ES</p></li>
 </ul>
 </section>
 <section id="updated-socs">
-<h2>Updated SoCs<a class="headerlink" href="#updated-socs" title="Link to this heading"></a></h2>
+<h2>Updated SoCs<a class="headerlink" href="#updated-socs" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Added Intel Meteor Lake</p></li>
 <li><p>Added Mediatek Mt8188</p></li>
@@ -300,9 +302,9 @@ to work on all hardware. It has been tested on:</p>
 </ul>
 </section>
 <section id="plans-for-code-deprecation">
-<h2>Plans for Code Deprecation<a class="headerlink" href="#plans-for-code-deprecation" title="Link to this heading"></a></h2>
+<h2>Plans for Code Deprecation<a class="headerlink" href="#plans-for-code-deprecation" title="Permalink to this heading"></a></h2>
 <section id="legacy-smp-init">
-<h3>LEGACY_SMP_INIT<a class="headerlink" href="#legacy-smp-init" title="Link to this heading"></a></h3>
+<h3>LEGACY_SMP_INIT<a class="headerlink" href="#legacy-smp-init" title="Permalink to this heading"></a></h3>
 <p>Legacy SMP init will be removed from the coreboot master branch
 immediately following this release. Anyone looking for the latest
 version of the code should find it on the 4.18 branch or tag.</p>
@@ -316,7 +318,7 @@ being rather confusing.</p>
 </section>
 </section>
 <section id="plans-to-move-platform-support-to-a-branch">
-<h2>Plans to move platform support to a branch:<a class="headerlink" href="#plans-to-move-platform-support-to-a-branch" title="Link to this heading"></a></h2>
+<h2>Plans to move platform support to a branch:<a class="headerlink" href="#plans-to-move-platform-support-to-a-branch" title="Permalink to this heading"></a></h2>
 <p>After the 4.18 release in November 2022, we plan to move support for any
 boards still requiring RESOURCE_ALLOCATOR_V3 to the 4.18 branch.  V4 was
 introduced more than a year ago and with minor changes most platforms
@@ -341,7 +343,7 @@ branch.</p>
 it can be brought back to ToT if they’re fixed to support the v4
 allocator.</p>
 <section id="intel-icelake-soc-icelake-rvp-mainboard">
-<h3>Intel Icelake SoC &amp; Icelake RVP mainboard<a class="headerlink" href="#intel-icelake-soc-icelake-rvp-mainboard" title="Link to this heading"></a></h3>
+<h3>Intel Icelake SoC &amp; Icelake RVP mainboard<a class="headerlink" href="#intel-icelake-soc-icelake-rvp-mainboard" title="Permalink to this heading"></a></h3>
 <p>Intel Icelake is unmaintained. Also, the only user of this platform ever
 was the Intel CRB (Customer Reference Board). From the looks of it the
 code was never ready for production as only engineering sample CPUIDs
@@ -352,7 +354,7 @@ will be done on the 4.19 branch. This consists of the Intel Icelake SoC
 and Intel Icelake RVP mainboard.</p>
 </section>
 <section id="intel-quark-soc-galileo-mainboard">
-<h3>Intel Quark SoC &amp; Galileo mainboard<a class="headerlink" href="#intel-quark-soc-galileo-mainboard" title="Link to this heading"></a></h3>
+<h3>Intel Quark SoC &amp; Galileo mainboard<a class="headerlink" href="#intel-quark-soc-galileo-mainboard" title="Permalink to this heading"></a></h3>
 <p>The SoC Intel Quark is unmaintained and different efforts to revive it
 failed.  Also, the only user of this platform ever was the Galileo
 board.</p>
@@ -366,7 +368,7 @@ be maintained on the release 4.20 branch.</p>
 </section>
 </section>
 <section id="statistics-from-commit-d2d9021543-to-f4c97ea131">
-<h2>Statistics from commit d2d9021543 to f4c97ea131<a class="headerlink" href="#statistics-from-commit-d2d9021543-to-f4c97ea131" title="Link to this heading"></a></h2>
+<h2>Statistics from commit d2d9021543 to f4c97ea131<a class="headerlink" href="#statistics-from-commit-d2d9021543-to-f4c97ea131" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Total Commits: 1822</p></li>
 <li><p>Average Commits per day: 13.38</p></li>
@@ -382,7 +384,7 @@ be maintained on the release 4.20 branch.</p>
 </ul>
 </section>
 <section id="known-issues">
-<h2>Known Issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading"></a></h2>
 <p>A couple of issues were discovered immediately following the release
 that will be fixed in a follow-on point release in the upcoming weeks.</p>
 <p>A pair of changes (<a class="reference external" href="https://review.coreboot.org/67754">CB:67754</a> and

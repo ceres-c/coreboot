@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.5 release notes &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.5 release notes &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -139,7 +141,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-5-release-notes">
-<h1>coreboot 4.5 release notes<a class="headerlink" href="#coreboot-4-5-release-notes" title="Link to this heading"></a></h1>
+<h1>coreboot 4.5 release notes<a class="headerlink" href="#coreboot-4-5-release-notes" title="Permalink to this heading"></a></h1>
 <p>We are happy to announce the release of coreboot 4.5</p>
 <p>The 4.5 release covers commit 80a3df260767 to commit 0bc12abc2b26.</p>
 <p>This release is the first since the project switched from doing
@@ -152,9 +154,9 @@ at https://www.coreboot.org/downloads</p>
 <p>There is a 4.5 tag in the git repository, and a branch will be created
 as needed.</p>
 <section id="areas-with-significant-updates">
-<h2>Areas with significant updates<a class="headerlink" href="#areas-with-significant-updates" title="Link to this heading"></a></h2>
+<h2>Areas with significant updates<a class="headerlink" href="#areas-with-significant-updates" title="Permalink to this heading"></a></h2>
 <section id="toolchain-29-commits">
-<h3>Toolchain (29 commits)<a class="headerlink" href="#toolchain-29-commits" title="Link to this heading"></a></h3>
+<h3>Toolchain (29 commits)<a class="headerlink" href="#toolchain-29-commits" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Updated mpfr version from 3.1.3 to 3.1.4</p></li>
 <li><p>Updated gcc version from 5.2.0 to 5.3.0</p></li>
@@ -169,7 +171,7 @@ problem</p></li>
 </ul>
 </section>
 <section id="build-system-32-commits">
-<h3>Build system (32 commits)<a class="headerlink" href="#build-system-32-commits" title="Link to this heading"></a></h3>
+<h3>Build system (32 commits)<a class="headerlink" href="#build-system-32-commits" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Updates for cbfstool / fmap changes</p></li>
 <li><p>Order per-region files to optimize placement success</p></li>
@@ -177,7 +179,7 @@ problem</p></li>
 </ul>
 </section>
 <section id="utilities-103-commits">
-<h3>Utilities (103 commits)<a class="headerlink" href="#utilities-103-commits" title="Link to this heading"></a></h3>
+<h3>Utilities (103 commits)<a class="headerlink" href="#utilities-103-commits" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Lint - Update checkpatch.pl, add tools  to find non-ascii &amp;
 unprintable chars and to verify a single newline at the end of files</p></li>
@@ -193,14 +195,14 @@ device type, support strings, pass in devicetree filename</p></li>
 </ul>
 </section>
 <section id="tpm-55-commits">
-<h3>TPM (55 commits)<a class="headerlink" href="#tpm-55-commits" title="Link to this heading"></a></h3>
+<h3>TPM (55 commits)<a class="headerlink" href="#tpm-55-commits" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Add support for Trusted Platform Module 2.0</p></li>
 <li><p>SPI &amp; refactored I2C TPM driver</p></li>
 </ul>
 </section>
 <section id="drivers-54-commits">
-<h3>Drivers (54 commits)<a class="headerlink" href="#drivers-54-commits" title="Link to this heading"></a></h3>
+<h3>Drivers (54 commits)<a class="headerlink" href="#drivers-54-commits" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Add ACPI support in several drivers</p></li>
 <li><p>coreboot_tables -  Extend serial port description</p></li>
@@ -211,7 +213,7 @@ boot device</p></li>
 </ul>
 </section>
 <section id="lib-33-commits">
-<h3>Lib (33 commits)<a class="headerlink" href="#lib-33-commits" title="Link to this heading"></a></h3>
+<h3>Lib (33 commits)<a class="headerlink" href="#lib-33-commits" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Add real-time-clock functions</p></li>
 <li><p>Add RW boot device construct</p></li>
@@ -221,7 +223,7 @@ support</p></li>
 </ul>
 </section>
 <section id="vendorcode">
-<h3>Vendorcode<a class="headerlink" href="#vendorcode" title="Link to this heading"></a></h3>
+<h3>Vendorcode<a class="headerlink" href="#vendorcode" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>AMD (14 commits) - Cleanup, add libagesa.a builds, remove unused code.</p></li>
 <li><p>Google (22 commits) - vboot2 updates and cleanup</p></li>
@@ -229,7 +231,7 @@ support</p></li>
 </ul>
 </section>
 <section id="payloads-37-commits">
-<h3>Payloads (37 commits)<a class="headerlink" href="#payloads-37-commits" title="Link to this heading"></a></h3>
+<h3>Payloads (37 commits)<a class="headerlink" href="#payloads-37-commits" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Subpayload support got extend and is enabled by default.</p></li>
 <li><p>nvramcui: refactor, update build</p></li>
@@ -240,9 +242,9 @@ support</p></li>
 </section>
 </section>
 <section id="mainboard-changes">
-<h2>Mainboard changes<a class="headerlink" href="#mainboard-changes" title="Link to this heading"></a></h2>
+<h2>Mainboard changes<a class="headerlink" href="#mainboard-changes" title="Permalink to this heading"></a></h2>
 <section id="added-13-mainboards-plus-a-few-mainboard-variants-not-included-here">
-<h3>Added 13 mainboards, plus a few mainboard variants not included here<a class="headerlink" href="#added-13-mainboards-plus-a-few-mainboard-variants-not-included-here" title="Link to this heading"></a></h3>
+<h3>Added 13 mainboards, plus a few mainboard variants not included here<a class="headerlink" href="#added-13-mainboards-plus-a-few-mainboard-variants-not-included-here" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>ADI RCC-DFF networking board (adi/rcc-dff) - intel/rangeley SoC</p></li>
 <li><p>AMD Evaluation Board DB-FT3B-LC (amd/db-ft3b-lc) - amd/00730F01
@@ -262,7 +264,7 @@ support</p></li>
 </ul>
 </section>
 <section id="removed-5-mainboards">
-<h3>Removed 5 mainboards:<a class="headerlink" href="#removed-5-mainboards" title="Link to this heading"></a></h3>
+<h3>Removed 5 mainboards:<a class="headerlink" href="#removed-5-mainboards" title="Permalink to this heading"></a></h3>
 <p>These were all development boards not available to the public.</p>
 <ul class="simple">
 <li><p>google/bolt - intel/haswell - removed in commit 139314b</p></li>
@@ -273,7 +275,7 @@ support</p></li>
 </ul>
 </section>
 <section id="existing-boards-with-significant-updates">
-<h3>Existing boards with significant updates<a class="headerlink" href="#existing-boards-with-significant-updates" title="Link to this heading"></a></h3>
+<h3>Existing boards with significant updates<a class="headerlink" href="#existing-boards-with-significant-updates" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>asus/kgpe-d16 - amd/socket_G34 - Add TPM support, enable secondary
 serial port</p></li>
@@ -295,9 +297,9 @@ up MAC addresses, Update IRQs</p></li>
 </section>
 </section>
 <section id="changes-in-chips">
-<h2>Changes in chips<a class="headerlink" href="#changes-in-chips" title="Link to this heading"></a></h2>
+<h2>Changes in chips<a class="headerlink" href="#changes-in-chips" title="Permalink to this heading"></a></h2>
 <section id="moved-3-northbridge-southbridge-pairs-to-soc">
-<h3>Moved 3 northbridge/southbridge pairs to soc:<a class="headerlink" href="#moved-3-northbridge-southbridge-pairs-to-soc" title="Link to this heading"></a></h3>
+<h3>Moved 3 northbridge/southbridge pairs to soc:<a class="headerlink" href="#moved-3-northbridge-southbridge-pairs-to-soc" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>dmp/vortex86ex</p></li>
 <li><p>intel/sch</p></li>
@@ -305,48 +307,48 @@ up MAC addresses, Update IRQs</p></li>
 </ul>
 </section>
 <section id="added-2-socs">
-<h3>Added 2 socs:<a class="headerlink" href="#added-2-socs" title="Link to this heading"></a></h3>
+<h3>Added 2 socs:<a class="headerlink" href="#added-2-socs" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>marvell/mvmap2315 (12 commits)</p></li>
 <li><p>qualcomm/ipq40xx (22 commits)</p></li>
 </ul>
 </section>
 <section id="removed-1-soc">
-<h3>Removed 1 soc:<a class="headerlink" href="#removed-1-soc" title="Link to this heading"></a></h3>
+<h3>Removed 1 soc:<a class="headerlink" href="#removed-1-soc" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>nvidia/tegra132 - removed in commit 9ba0699</p></li>
 </ul>
 </section>
 <section id="added-2-sios">
-<h3>Added 2 sios:<a class="headerlink" href="#added-2-sios" title="Link to this heading"></a></h3>
+<h3>Added 2 sios:<a class="headerlink" href="#added-2-sios" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>nuvoton/nct6776</p></li>
 <li><p>nuvoton/nct6791d</p></li>
 </ul>
 </section>
 <section id="arm-34-commits">
-<h3>ARM (34 commits)<a class="headerlink" href="#arm-34-commits" title="Link to this heading"></a></h3>
+<h3>ARM (34 commits)<a class="headerlink" href="#arm-34-commits" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Add armv7-r configuration</p></li>
 </ul>
 <section id="rockchip-rk3399-73-commits">
-<h4>rockchip/rk3399 (73 commits)<a class="headerlink" href="#rockchip-rk3399-73-commits" title="Link to this heading"></a></h4>
+<h4>rockchip/rk3399 (73 commits)<a class="headerlink" href="#rockchip-rk3399-73-commits" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Bringup, memory updates</p></li>
 </ul>
 </section>
 </section>
 <section id="risc-v-40-commits">
-<h3>RISC-V (40 commits)<a class="headerlink" href="#risc-v-40-commits" title="Link to this heading"></a></h3>
+<h3>RISC-V (40 commits)<a class="headerlink" href="#risc-v-40-commits" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Improve and refactor trap handling</p></li>
 </ul>
 </section>
 <section id="x86-225-commits">
-<h3>X86 (225 commits)<a class="headerlink" href="#x86-225-commits" title="Link to this heading"></a></h3>
+<h3>X86 (225 commits)<a class="headerlink" href="#x86-225-commits" title="Permalink to this heading"></a></h3>
 </section>
 <section id="acpi-40-commits">
-<h3>ACPI (40 commits)<a class="headerlink" href="#acpi-40-commits" title="Link to this heading"></a></h3>
+<h3>ACPI (40 commits)<a class="headerlink" href="#acpi-40-commits" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Add support for writing various entries and descriptor
 types, Add common definitions, Use ‘GOOG’ id for coreboot table</p></li>
@@ -372,7 +374,7 @@ updating for Kabylake FSP</p></li>
 </section>
 </section>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 <p>Updated 4 submodules</p>
 <ul class="simple">
 <li><p>3rdparty/blobs (6 commits)</p></li>
@@ -382,7 +384,7 @@ updating for Kabylake FSP</p></li>
 </ul>
 </section>
 <section id="tested-boards">
-<h2>Tested boards<a class="headerlink" href="#tested-boards" title="Link to this heading"></a></h2>
+<h2>Tested boards<a class="headerlink" href="#tested-boards" title="Permalink to this heading"></a></h2>
 <p>The following boards were tested for this release:</p>
 <ul class="simple">
 <li><p>asrock/e350m1                 4.4-1890</p></li>
@@ -397,7 +399,7 @@ updating for Kabylake FSP</p></li>
 </ul>
 </section>
 <section id="coreboot-statistics">
-<h2>coreboot statistics<a class="headerlink" href="#coreboot-statistics" title="Link to this heading"></a></h2>
+<h2>coreboot statistics<a class="headerlink" href="#coreboot-statistics" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Total Commits:            1889</p></li>
 <li><p>Average Commits per day: 10.92</p></li>

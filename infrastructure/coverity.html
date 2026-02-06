@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coverity Scan for open source firmware &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Coverity Scan for open source firmware &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -116,9 +118,9 @@
            <div itemprop="articleBody">
              
   <section id="coverity-scan-for-open-source-firmware">
-<h1>Coverity Scan for open source firmware<a class="headerlink" href="#coverity-scan-for-open-source-firmware" title="Link to this heading"></a></h1>
+<h1>Coverity Scan for open source firmware<a class="headerlink" href="#coverity-scan-for-open-source-firmware" title="Permalink to this heading"></a></h1>
 <section id="whats-coverity-and-coverity-scan">
-<h2>What’s Coverity and Coverity Scan?<a class="headerlink" href="#whats-coverity-and-coverity-scan" title="Link to this heading"></a></h2>
+<h2>What’s Coverity and Coverity Scan?<a class="headerlink" href="#whats-coverity-and-coverity-scan" title="Permalink to this heading"></a></h2>
 <p>Coverity is a static analysis tool. It hooks into the build process
 and in addition to the compiler creating object files, Coverity collects
 information about the code. That data is then processed in a separate pass
@@ -131,7 +133,7 @@ the system, but even at one build per week, that’s usually good enough
 because the identified issues still need to be triaged and fixed or they
 will simply be re-identified next week.</p>
 <section id="triage">
-<h3>Triage?<a class="headerlink" href="#triage" title="Link to this heading"></a></h3>
+<h3>Triage?<a class="headerlink" href="#triage" title="Permalink to this heading"></a></h3>
 <p>The Web UI looks a bit like an issue tracker, even if it’s not a very
 good one. It’s possible to mark identified issues as valid or invalid,
 and annotate them with metadata which CLs fix them. The latter isn’t
@@ -140,7 +142,7 @@ find anymore as fixed, but at times it helped identify issues that made
 a comeback.</p>
 </section>
 <section id="alternatives">
-<h3>Alternatives<a class="headerlink" href="#alternatives" title="Link to this heading"></a></h3>
+<h3>Alternatives<a class="headerlink" href="#alternatives" title="Permalink to this heading"></a></h3>
 <p>There’s also clang’s scan-build, which is fully open-source, and
 finds different issues. As such, it’s less of an alternative and more
 of a complement.</p>
@@ -151,7 +153,7 @@ but there’s no interactivity (e.g. marking issues solved), no way
 to merge multiple builds (e.g. multiple board builds of a single tree)
 or a simple way to extract burndown charts and the like from that.</p>
 <section id="looking-for-a-project">
-<h4>Looking for a project?<a class="headerlink" href="#looking-for-a-project" title="Link to this heading"></a></h4>
+<h4>Looking for a project?<a class="headerlink" href="#looking-for-a-project" title="Permalink to this heading"></a></h4>
 <p>On the upside, it can emit the data in a machine readable format, so if
 anybody needs a project, a scan-build web-frontend like Coverity Scan would
 be feasible without having to go through scan-build’s guts, just by parsing
@@ -160,13 +162,13 @@ text files - plus all the stateful and web parts to build on top.</p>
 </section>
 </section>
 <section id="logging-into-coverity-scan">
-<h2>Logging into Coverity Scan<a class="headerlink" href="#logging-into-coverity-scan" title="Link to this heading"></a></h2>
+<h2>Logging into Coverity Scan<a class="headerlink" href="#logging-into-coverity-scan" title="Permalink to this heading"></a></h2>
 <p>Coverity Scan needs an account. It supports its own accounts and GitHub
 OAuth.</p>
 <p>Access to the dashboards needs approval: Request and you shall receive.</p>
 </section>
 <section id="coreboot-friends-and-coverity-scan">
-<h2>coreboot &amp; friends and Coverity Scan<a class="headerlink" href="#coreboot-friends-and-coverity-scan" title="Link to this heading"></a></h2>
+<h2>coreboot &amp; friends and Coverity Scan<a class="headerlink" href="#coreboot-friends-and-coverity-scan" title="Permalink to this heading"></a></h2>
 <p>coreboot, flashrom, Chromium EC and other projects of that family have
 been made Coverity aware, that is, their build systems support building
 with a custom compiler configuration passed in “just right” to enable

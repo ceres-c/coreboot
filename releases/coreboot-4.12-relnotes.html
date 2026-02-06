@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.12 &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.12 &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -140,7 +142,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-12">
-<h1>coreboot 4.12<a class="headerlink" href="#coreboot-4-12" title="Link to this heading"></a></h1>
+<h1>coreboot 4.12<a class="headerlink" href="#coreboot-4-12" title="Permalink to this heading"></a></h1>
 <p>coreboot 4.12 was released on May 12th, 2020.</p>
 <p>Since 4.11 there were 2692 new commits by over 190 developers and of
 these, 59 contributed for the first time, which is quite an amazing
@@ -148,14 +150,14 @@ increase.</p>
 <p>Thank you to all developers who again helped made coreboot better
 than ever, and a big welcome to our new contributors!</p>
 <section id="maintainers">
-<h2>Maintainers<a class="headerlink" href="#maintainers" title="Link to this heading"></a></h2>
+<h2>Maintainers<a class="headerlink" href="#maintainers" title="Permalink to this heading"></a></h2>
 <p>This release saw some activity on the MAINTAINERS file, showing more
 persons, teams and companies declare publicly that they intend to
 take care of mainboards and subsystems.</p>
 <p>To all new maintainers, thanks a lot!</p>
 </section>
 <section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h2>
 <p>Our documentation efforts in the code tree are picking up steam, with
 some 70 commits in that general area. Everything from typo fixes to
 documenting mainboard support or coreboot APIs.</p>
@@ -163,7 +165,7 @@ documenting mainboard support or coreboot APIs.</p>
 and better.</p>
 </section>
 <section id="hardware-support">
-<h2>Hardware support<a class="headerlink" href="#hardware-support" title="Link to this heading"></a></h2>
+<h2>Hardware support<a class="headerlink" href="#hardware-support" title="Permalink to this heading"></a></h2>
 <p>The removals due to the announced deprecations as well as the
 deduplication of boards into variants skew the stats a bit, so at
 a top level view this is a rare coreboot release in that it removes
@@ -178,7 +180,7 @@ out of the box.</p>
 Open Compute Project!</p>
 </section>
 <section id="cleanup">
-<h2>Cleanup<a class="headerlink" href="#cleanup" title="Link to this heading"></a></h2>
+<h2>Cleanup<a class="headerlink" href="#cleanup" title="Permalink to this heading"></a></h2>
 <p>We simplified the header that comes at the top of every file:
 Instead of a lengthy reference to the license any given file
 is under, or even the license text itself, we opted for simple
@@ -195,11 +197,11 @@ individual models so far were converted into variants, making it
 easier to maintain families of devices.</p>
 </section>
 <section id="deprecations">
-<h2>Deprecations<a class="headerlink" href="#deprecations" title="Link to this heading"></a></h2>
+<h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this heading"></a></h2>
 <p>For the 4.12 release a few features on x86 became mandatory. These are
 relocatable ramstage, postcar stage and C_ENVIRONMENT_BOOTBLOCK.</p>
 <section id="relocatable-ramstage">
-<h3>Relocatable ramstage<a class="headerlink" href="#relocatable-ramstage" title="Link to this heading"></a></h3>
+<h3>Relocatable ramstage<a class="headerlink" href="#relocatable-ramstage" title="Permalink to this heading"></a></h3>
 <p>Relocatable stages are a feature implemented only on x86, where stages
 can be relocated at runtime. This is used to place ramstage in a better
 location that does not collide with memory the OS or the payload tends
@@ -209,7 +211,7 @@ It avoids using lower memory altogether so the OS can make use of it
 and no backing up needs to happen on S3 resume.</p>
 </section>
 <section id="postcar-stage">
-<h3>Postcar stage<a class="headerlink" href="#postcar-stage" title="Link to this heading"></a></h3>
+<h3>Postcar stage<a class="headerlink" href="#postcar-stage" title="Permalink to this heading"></a></h3>
 <p>With Postcar stage tearing down Cache-as-Ram is done in a separate
 stage. This means that romstage has a clean program boundary and
 that all variables in romstage can be accessed via their linked
@@ -218,7 +220,7 @@ global and static variables via the CAR_GLOBAL macro and no need
 to access them with car_set/get_var/ptr functions.</p>
 </section>
 <section id="c-environment-bootblock">
-<h3>C_ENVIRONMENT_BOOTBLOCK<a class="headerlink" href="#c-environment-bootblock" title="Link to this heading"></a></h3>
+<h3>C_ENVIRONMENT_BOOTBLOCK<a class="headerlink" href="#c-environment-bootblock" title="Permalink to this heading"></a></h3>
 <p>Historically the bootblock on x86 platforms has been compiled with
 romcc. This means that the generated code only uses CPU registers
 and therefore no stack. This 20K+ LOC compiler is limited and hard
@@ -231,7 +233,7 @@ VBOOT can run before romstage, making romstage updatable via RW FMAP
 regions.</p>
 </section>
 <section id="platforms-dropped-from-master">
-<h3>Platforms dropped from master<a class="headerlink" href="#platforms-dropped-from-master" title="Link to this heading"></a></h3>
+<h3>Platforms dropped from master<a class="headerlink" href="#platforms-dropped-from-master" title="Permalink to this heading"></a></h3>
 <p>The following platforms did not implement those feature are dropped
 from master to allow the master branch to move on:</p>
 <ul class="simple">
@@ -250,22 +252,22 @@ learned from this: blobs should not interfere with the execution
 environment, as this makes proper integration much harder.</p>
 </section>
 <section id="branch">
-<h3>4.11_branch<a class="headerlink" href="#branch" title="Link to this heading"></a></h3>
+<h3>4.11_branch<a class="headerlink" href="#branch" title="Permalink to this heading"></a></h3>
 <p>Given that some platforms supported by FSP1.0 are being produced and
 popular, the 4.11 release was made into a branch in which further
 development can happen.</p>
 </section>
 </section>
 <section id="significant-changes">
-<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Link to this heading"></a></h2>
+<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Permalink to this heading"></a></h2>
 <section id="smmstore-is-now-production-ready">
-<h3>SMMSTORE is now production ready<a class="headerlink" href="#smmstore-is-now-production-ready" title="Link to this heading"></a></h3>
+<h3>SMMSTORE is now production ready<a class="headerlink" href="#smmstore-is-now-production-ready" title="Permalink to this heading"></a></h3>
 <p>See <a class="reference internal" href="../drivers/smmstore.html"><span class="doc">smmstore</span></a> for the documentation on
 the API, but note that there will be an update to it featuring a
 much-improved but incompatible API.</p>
 </section>
 <section id="unit-testing-infrastructure">
-<h3>Unit testing infrastructure<a class="headerlink" href="#unit-testing-infrastructure" title="Link to this heading"></a></h3>
+<h3>Unit testing infrastructure<a class="headerlink" href="#unit-testing-infrastructure" title="Permalink to this heading"></a></h3>
 <p>Unit testing of coreboot is now possible in a more structured way, with new
 build subsystem and adoption of <a class="reference external" href="https://cmocka.org/">Cmocka</a> framework. Tree
 has new directory <code class="docutils literal notranslate"><span class="pre">tests/</span></code>, which comprises infrastructure and examples of unit
@@ -275,7 +277,7 @@ design document.</p>
 </section>
 </section>
 <section id="final-notes">
-<h2>Final Notes<a class="headerlink" href="#final-notes" title="Link to this heading"></a></h2>
+<h2>Final Notes<a class="headerlink" href="#final-notes" title="Permalink to this heading"></a></h2>
 <p>Your favorite new feature or supported board didn’t make it to the
 release notes? They’re maintained collaboratively in the coreboot
 tree, so when you land something noteworthy don’t be shy, contribute

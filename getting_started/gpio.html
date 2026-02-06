@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Configuring a mainboard’s GPIOs in coreboot &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Configuring a mainboard’s GPIOs in coreboot &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -136,15 +138,15 @@
            <div itemprop="articleBody">
              
   <section id="configuring-a-mainboard-s-gpios-in-coreboot">
-<h1>Configuring a mainboard’s GPIOs in coreboot<a class="headerlink" href="#configuring-a-mainboard-s-gpios-in-coreboot" title="Link to this heading"></a></h1>
+<h1>Configuring a mainboard’s GPIOs in coreboot<a class="headerlink" href="#configuring-a-mainboard-s-gpios-in-coreboot" title="Permalink to this heading"></a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>Every mainboard needs to appropriately configure its General Purpose Inputs /
 Outputs (GPIOs). There are many facets of this issue, including which boot
 stage a GPIO might need to be configured.</p>
 </section>
 <section id="boot-stages">
-<h2>Boot stages<a class="headerlink" href="#boot-stages" title="Link to this heading"></a></h2>
+<h2>Boot stages<a class="headerlink" href="#boot-stages" title="Permalink to this heading"></a></h2>
 <p>Typically, coreboot does most of its non-memory related initialization work in
 ramstage, when DRAM is available for use. Hence, the bulk of a mainboard’s GPIOs
 are configured in this stage. However, some boards might need a few GPIOs
@@ -153,7 +155,7 @@ of DRAM is installed. These pins might need to be read before initializing the
 memory, so these GPIOs are then typically configured in bootblock or romstage.</p>
 </section>
 <section id="configuration">
-<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h2>
 <p>Most mainboards will have a <code class="docutils literal notranslate"><span class="pre">gpio.c</span></code> file in their mainboard directory. This
 file typically contains tables which describe the configuration of the GPIO
 registers. Since these registers could be different on a per-SoC or per
@@ -166,24 +168,24 @@ between multiple boards are placed in the baseboard’s <code class="docutils li
 ones that are board-specific go into each variant’s <code class="docutils literal notranslate"><span class="pre">gpio.c</span></code> file.</p>
 </section>
 <section id="intel-socs">
-<h2>Intel SoCs<a class="headerlink" href="#intel-socs" title="Link to this heading"></a></h2>
+<h2>Intel SoCs<a class="headerlink" href="#intel-socs" title="Permalink to this heading"></a></h2>
 <p>Many newer Intel SoCs share a common IP block for GPIOs, and that commonality
 has been taken advantage of in coreboot, which has a large set of macros that
 can be used to describe the configuration of each GPIO pad. This file lives in
 <code class="docutils literal notranslate"><span class="pre">src/soc/intel/common/block/include/intelblocks/gpio_defs.h</span></code>.</p>
 <section id="older-intel-socs">
-<h3>Older Intel SoCs<a class="headerlink" href="#older-intel-socs" title="Link to this heading"></a></h3>
+<h3>Older Intel SoCs<a class="headerlink" href="#older-intel-socs" title="Permalink to this heading"></a></h3>
 <p>Baytrail and Braswell, for example, simply expect the mainboard to supply a
 callback, <code class="docutils literal notranslate"><span class="pre">mainboard_get_gpios</span></code> which returns an array of <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">soc_gpio</span></code>
 objects, defining the configuration of each pin.</p>
 </section>
 <section id="amd-socs">
-<h3>AMD SoCs<a class="headerlink" href="#amd-socs" title="Link to this heading"></a></h3>
+<h3>AMD SoCs<a class="headerlink" href="#amd-socs" title="Permalink to this heading"></a></h3>
 <p>Some AMD SoCs use a list of <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">soc_amd_gpio</span></code> objects to define the
 register values configuring each pin, similar to Intel.</p>
 </section>
 <section id="register-details">
-<h3>Register details<a class="headerlink" href="#register-details" title="Link to this heading"></a></h3>
+<h3>Register details<a class="headerlink" href="#register-details" title="Permalink to this heading"></a></h3>
 <p>GPIO configuration registers typically control properties such as:</p>
 <ol class="simple">
 <li><p>Input / Output</p></li>
@@ -204,7 +206,7 @@ register values configuring each pin, similar to Intel.</p>
 </section>
 </section>
 <section id="configuring-gpios-for-pre-ramstage">
-<h2>Configuring GPIOs for pre-ramstage<a class="headerlink" href="#configuring-gpios-for-pre-ramstage" title="Link to this heading"></a></h2>
+<h2>Configuring GPIOs for pre-ramstage<a class="headerlink" href="#configuring-gpios-for-pre-ramstage" title="Permalink to this heading"></a></h2>
 <p>coreboot provides for several SoC-specific and mainboard-specific callbacks at
 specific points in time, such as bootblock-early, bootblock, romstage entry,
 pre-silicon init, pre-RAM init, or post-RAM init. The GPIOs that are
@@ -239,7 +241,7 @@ configurations together into a set of macros, e.g.,</p>
 <p>etc.</p>
 </section>
 <section id="configuring-gpios-for-ramstage-and-beyond">
-<h2>Configuring GPIOs for ramstage and beyond…<a class="headerlink" href="#configuring-gpios-for-ramstage-and-beyond" title="Link to this heading"></a></h2>
+<h2>Configuring GPIOs for ramstage and beyond…<a class="headerlink" href="#configuring-gpios-for-ramstage-and-beyond" title="Permalink to this heading"></a></h2>
 <p>In ramstage, most mainboards will configure the rest of their GPIOs for the
 function they will be performing while the device is active. The goal is the
 same as above in bootblock; another <code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">const</span></code> array is created, and the
@@ -253,7 +255,7 @@ variant’s override table.</p>
 defined in its <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">chip_operations</span></code>.</p>
 </section>
 <section id="unconnected-and-unused-pads">
-<h2>Unconnected and unused pads<a class="headerlink" href="#unconnected-and-unused-pads" title="Link to this heading"></a></h2>
+<h2>Unconnected and unused pads<a class="headerlink" href="#unconnected-and-unused-pads" title="Permalink to this heading"></a></h2>
 <p>In digital electronics, it is generally recommended to tie unconnected GPIOs to
 a defined signal like VCC or GND by setting their direction to output, adding an
 external pull resistor or configuring an internal pull resistor. This is done to
@@ -288,14 +290,14 @@ should be configured with <code class="docutils literal notranslate"><span class
 internally.</p>
 </section>
 <section id="potential-issues-gotchas">
-<h2>Potential issues (gotchas!)<a class="headerlink" href="#potential-issues-gotchas" title="Link to this heading"></a></h2>
+<h2>Potential issues (gotchas!)<a class="headerlink" href="#potential-issues-gotchas" title="Permalink to this heading"></a></h2>
 <p>There are a couple of configurations that you need to especially careful about,
 as they can have a large impact on your mainboard.</p>
 <p>The first is configuring a pin as an output, when it was designed to be an
 input. There is a real risk in this case of short-circuiting a component which
 could cause catastrophic failures, up to and including your mainboard!</p>
 <section id="id1">
-<h3>Intel SoCs<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<h3>Intel SoCs<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <p>As per Intel Platform Controller Hub (PCH) EDS since Skylake, a GPIO PAD register
 supports four different types of GPIO reset as:</p>
 <table class="docutils align-default">
@@ -435,7 +437,7 @@ always in sync and can be reset at the same time.</p>
 </section>
 </section>
 <section id="soft-straps">
-<h2>Soft Straps<a class="headerlink" href="#soft-straps" title="Link to this heading"></a></h2>
+<h2>Soft Straps<a class="headerlink" href="#soft-straps" title="Permalink to this heading"></a></h2>
 <p>Soft straps, that can be configured by the vendor in the Intel Flash Image Tool
 (FIT), can influence some pads’ default mode. It is possible to select either a
 native function or GPIO mode for some pads on non-server SoCs, while on server
@@ -444,9 +446,9 @@ configure all pads and don’t just rely on the defaults mentioned in the
 datasheet(s) which might not reflect what the vendor configured.</p>
 </section>
 <section id="pad-related-known-issues-and-workarounds">
-<h2>Pad-related known issues and workarounds<a class="headerlink" href="#pad-related-known-issues-and-workarounds" title="Link to this heading"></a></h2>
+<h2>Pad-related known issues and workarounds<a class="headerlink" href="#pad-related-known-issues-and-workarounds" title="Permalink to this heading"></a></h2>
 <section id="lpc-clkrunb-blocks-s0ix-states-when-board-uses-espi">
-<h3>LPC_CLKRUNB blocks S0ix states when board uses eSPI<a class="headerlink" href="#lpc-clkrunb-blocks-s0ix-states-when-board-uses-espi" title="Link to this heading"></a></h3>
+<h3>LPC_CLKRUNB blocks S0ix states when board uses eSPI<a class="headerlink" href="#lpc-clkrunb-blocks-s0ix-states-when-board-uses-espi" title="Permalink to this heading"></a></h3>
 <p>When using eSPI, the pad implementing <code class="docutils literal notranslate"><span class="pre">LPC_CLKRUNB</span></code> must be set to GPIO mode.
 Other pin settings i.e. Rx path enable/disable, Tx path enable/disable, pull up
 enable/disable etc are ignored. Leaving this pin in native mode will keep the

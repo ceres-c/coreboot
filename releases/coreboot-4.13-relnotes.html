@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.13 &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.13 &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -138,14 +140,14 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-13">
-<h1>coreboot 4.13<a class="headerlink" href="#coreboot-4-13" title="Link to this heading"></a></h1>
+<h1>coreboot 4.13<a class="headerlink" href="#coreboot-4-13" title="Permalink to this heading"></a></h1>
 <p>coreboot 4.13 was released on November 20th, 2020.</p>
 <p>Since 4.12 there were 4200 new commits by over 234 developers.
 Of these, about 72 contributed to coreboot for the first time.</p>
 <p>Thank you to all developers who again helped made coreboot better
 than ever, and a big welcome to our new contributors!</p>
 <section id="new-mainboards">
-<h2>New mainboards<a class="headerlink" href="#new-mainboards" title="Link to this heading"></a></h2>
+<h2>New mainboards<a class="headerlink" href="#new-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Acer G43T-AM3</p></li>
 <li><p>AMD Cereme</p></li>
@@ -213,7 +215,7 @@ than ever, and a big welcome to our new contributors!</p>
 </ul>
 </section>
 <section id="removed-mainboards">
-<h2>Removed mainboards<a class="headerlink" href="#removed-mainboards" title="Link to this heading"></a></h2>
+<h2>Removed mainboards<a class="headerlink" href="#removed-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Google Cheza</p></li>
 <li><p>Google DragonEgg</p></li>
@@ -223,21 +225,21 @@ than ever, and a big welcome to our new contributors!</p>
 </ul>
 </section>
 <section id="significant-changes">
-<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Link to this heading"></a></h2>
+<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Permalink to this heading"></a></h2>
 <section id="native-refcode-implementation-for-bay-trail">
-<h3>Native refcode implementation for Bay Trail<a class="headerlink" href="#native-refcode-implementation-for-bay-trail" title="Link to this heading"></a></h3>
+<h3>Native refcode implementation for Bay Trail<a class="headerlink" href="#native-refcode-implementation-for-bay-trail" title="Permalink to this heading"></a></h3>
 <p>Bay Trail no longer needs a refcode binary to function properly. The refcode
 was reimplemented as coreboot code, which should be functionally equivalent.
 Thus, coreboot only needs to run the MRC.bin to successfully boot Bay Trail.</p>
 </section>
 <section id="unusual-config-files-to-build-test-more-code">
-<h3>Unusual config files to build test more code<a class="headerlink" href="#unusual-config-files-to-build-test-more-code" title="Link to this heading"></a></h3>
+<h3>Unusual config files to build test more code<a class="headerlink" href="#unusual-config-files-to-build-test-more-code" title="Permalink to this heading"></a></h3>
 <p>There’s some new highly-unusual config files, whose only purpose is to coerce
 Jenkins into build-testing several disabled-by-default coreboot config options.
 This prevents them from silently decaying over time because of build failures.</p>
 </section>
 <section id="initial-support-for-intel-trusted-execution-technology">
-<h3>Initial support for Intel Trusted eXecution Technology<a class="headerlink" href="#initial-support-for-intel-trusted-execution-technology" title="Link to this heading"></a></h3>
+<h3>Initial support for Intel Trusted eXecution Technology<a class="headerlink" href="#initial-support-for-intel-trusted-execution-technology" title="Permalink to this heading"></a></h3>
 <p>coreboot now supports enabling Intel TXT. Though it’s not feature-complete yet,
 the code allows successfully launching tboot, a Measured Launch Environment. It
 was tested on Haswell using an Asrock B85M Pro4 mainboard with TPM 2.0 on LPC.
@@ -246,7 +248,7 @@ The Haswell MRC.bin needs to be patched so as to enable DPR. Given that the MRC
 binary cannot be redistributed, the best long-term solution is to replace it.</p>
 </section>
 <section id="hidden-pci-devices">
-<h3>Hidden PCI devices<a class="headerlink" href="#hidden-pci-devices" title="Link to this heading"></a></h3>
+<h3>Hidden PCI devices<a class="headerlink" href="#hidden-pci-devices" title="Permalink to this heading"></a></h3>
 <p>This new functionality takes advantage of the existing ‘hidden’ keyword in the
 devicetree. Since no existing boards were using the keyword, its usage was
 repurposed to make dealing with some unique PCI devices easier. The particular
@@ -261,7 +263,7 @@ that its resources can be placed in a more natural location. This also adds the
 ability for the device to participate in SSDT generation.</p>
 </section>
 <section id="tools-for-generating-spds-for-lp4x-memory-on-tgl-and-jsl">
-<h3>Tools for generating SPDs for LP4x memory on TGL and JSL<a class="headerlink" href="#tools-for-generating-spds-for-lp4x-memory-on-tgl-and-jsl" title="Link to this heading"></a></h3>
+<h3>Tools for generating SPDs for LP4x memory on TGL and JSL<a class="headerlink" href="#tools-for-generating-spds-for-lp4x-memory-on-tgl-and-jsl" title="Permalink to this heading"></a></h3>
 <p>A set of new tools <code class="docutils literal notranslate"><span class="pre">gen_spd.go</span></code> and <code class="docutils literal notranslate"><span class="pre">gen_part_id.go</span></code> are added to automate the
 process of generating SPDs for LP4x memory and assigning hardware strap IDs for
 memory parts used on TGL and JSL based boards. The SPD data obtained from memory
@@ -272,7 +274,7 @@ the platforms. More details about the tools are added in
 <a class="reference external" href="https://review.coreboot.org/plugins/gitiles/coreboot/+/refs/heads/master/util/spd_tools/intel/lp4x/README.md">README.md</a>.</p>
 </section>
 <section id="new-version-of-smm-loader">
-<h3>New version of SMM loader<a class="headerlink" href="#new-version-of-smm-loader" title="Link to this heading"></a></h3>
+<h3>New version of SMM loader<a class="headerlink" href="#new-version-of-smm-loader" title="Permalink to this heading"></a></h3>
 <p>A new version of the SMM loader which accommodates platforms with over 32
 CPU threads.  The existing version of SMM loader uses a 64K code/data
 segment and only a limited number of CPU threads can fit into one segment
@@ -282,7 +284,7 @@ CPU threads as possible limited only by SMRAM space and not by 64K. By default
 this loader version is disabled. Please see cpu/x86/Kconfig for more info.</p>
 </section>
 <section id="address-sanitizer">
-<h3>Address Sanitizer<a class="headerlink" href="#address-sanitizer" title="Link to this heading"></a></h3>
+<h3>Address Sanitizer<a class="headerlink" href="#address-sanitizer" title="Permalink to this heading"></a></h3>
 <p>coreboot now has an in-built Address Sanitizer, a runtime memory debugger
 designed to find out-of-bounds access and use-after-scope bugs. It is made
 available on all x86 platforms in ramstage and on QEMU i440fx, Intel Apollo
@@ -291,7 +293,7 @@ x86 platforms as well. Refer <a class="reference internal" href="../technotes/as
 more info.</p>
 </section>
 <section id="initial-support-for-x86-64">
-<h3>Initial support for x86_64<a class="headerlink" href="#initial-support-for-x86-64" title="Link to this heading"></a></h3>
+<h3>Initial support for x86_64<a class="headerlink" href="#initial-support-for-x86-64" title="Permalink to this heading"></a></h3>
 <p>The x86_64 code support has been revived and enabled for QEMU. While it started
 as PoC and the only supported platform is an emulator, there’s interest in
 enabling additional platforms. It would allow to access more than 4GiB of memory
@@ -300,7 +302,7 @@ It still needs changes in assembly, fixed integer to pointer conversions in C,
 wrappers for blobs, support for running Option ROMs, among other things.</p>
 </section>
 <section id="preparations-to-minimize-enabling-pci-bus-mastering">
-<h3>Preparations to minimize enabling PCI bus mastering<a class="headerlink" href="#preparations-to-minimize-enabling-pci-bus-mastering" title="Link to this heading"></a></h3>
+<h3>Preparations to minimize enabling PCI bus mastering<a class="headerlink" href="#preparations-to-minimize-enabling-pci-bus-mastering" title="Permalink to this heading"></a></h3>
 <p>For security reasons, bus mastering should be enabled as late as possible. In
 coreboot, it’s usually not necessary and payloads should only enable it for
 devices they use. Since not all payloads enable bus mastering properly yet,
@@ -320,7 +322,7 @@ bridges.</p>
 should get their own per-reason Kconfig option. Ideally before the next release.</p>
 </section>
 <section id="early-runtime-configurability-of-the-console-log-level">
-<h3>Early runtime configurability of the console log level<a class="headerlink" href="#early-runtime-configurability-of-the-console-log-level" title="Link to this heading"></a></h3>
+<h3>Early runtime configurability of the console log level<a class="headerlink" href="#early-runtime-configurability-of-the-console-log-level" title="Permalink to this heading"></a></h3>
 <p>Traditionally, we didn’t allow the log level of the <code class="docutils literal notranslate"><span class="pre">romstage</span></code> console
 to be changed at runtime (e.g. via <code class="docutils literal notranslate"><span class="pre">get_option()</span></code>). It turned out that
 the technical constraints for this (no global variables in <code class="docutils literal notranslate"><span class="pre">romstage</span></code>)
@@ -332,7 +334,7 @@ console static ensures that we can see console output even if there’s
 a bug in the more involved code to query options.</p>
 </section>
 <section id="resource-allocator-v4">
-<h3>Resource allocator v4<a class="headerlink" href="#resource-allocator-v4" title="Link to this heading"></a></h3>
+<h3>Resource allocator v4<a class="headerlink" href="#resource-allocator-v4" title="Permalink to this heading"></a></h3>
 <p>A new revision of resource allocator v4 is now added to coreboot that supports
 multiple ranges for allocating resources. Unlike the previous allocator (v3), it does
 not use the topmost available window for allocation. Instead, it uses the first
@@ -343,15 +345,15 @@ some AMD platforms that do not conform to the requirements of the allocator.</p>
 </section>
 </section>
 <section id="deprecations">
-<h2>Deprecations<a class="headerlink" href="#deprecations" title="Link to this heading"></a></h2>
+<h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this heading"></a></h2>
 <section id="pci-bus-master-configuration-options">
-<h3>PCI bus master configuration options<a class="headerlink" href="#pci-bus-master-configuration-options" title="Link to this heading"></a></h3>
+<h3>PCI bus master configuration options<a class="headerlink" href="#pci-bus-master-configuration-options" title="Permalink to this heading"></a></h3>
 <p>In order to minimize the usage of PCI bus mastering, the options we introduced in
 this release will be dropped in a future release again. For more details, please
 see <a class="reference external" href="#preparations-to-minimize-enabling-pci-bus-mastering-in-coreboot">Preparations to minimize enabling PCI bus mastering</a>.</p>
 </section>
 <section id="resource-allocator-v3">
-<h3>Resource allocator v3<a class="headerlink" href="#resource-allocator-v3" title="Link to this heading"></a></h3>
+<h3>Resource allocator v3<a class="headerlink" href="#resource-allocator-v3" title="Permalink to this heading"></a></h3>
 <p>Resource allocator v3 is retained in coreboot tree because the following platforms
 do not conform to the requirements of the resource allocation i.e. not all the fixed
 resources of the platform are provided during the <code class="docutils literal notranslate"><span class="pre">read_resources()</span></code> operation:</p>
@@ -371,9 +373,9 @@ allocation.</p>
 </section>
 </section>
 <section id="notes">
-<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h2>
 <section id="intel-microcode-updates">
-<h3>Intel microcode updates<a class="headerlink" href="#intel-microcode-updates" title="Link to this heading"></a></h3>
+<h3>Intel microcode updates<a class="headerlink" href="#intel-microcode-updates" title="Permalink to this heading"></a></h3>
 <p>Intel microcode updates tagged <em>microcode-20200616</em> are still included in our
 builds. Note, [Intel released new microcode updates]
 (https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/blob/main/releasenote.md)

@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Driver Devicetree Entries &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Driver Devicetree Entries &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -34,6 +33,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -100,7 +102,7 @@
            <div itemprop="articleBody">
              
   <section id="driver-devicetree-entries">
-<h1>Driver Devicetree Entries<a class="headerlink" href="#driver-devicetree-entries" title="Link to this heading"></a></h1>
+<h1>Driver Devicetree Entries<a class="headerlink" href="#driver-devicetree-entries" title="Permalink to this heading"></a></h1>
 <p>Let’s take a look at an example entry from
 <code class="docutils literal notranslate"><span class="pre">src/mainboard/google/hatch/variants/hatch/overridetree.cb</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">device</span> <span class="n">pci</span> <span class="mf">15.0</span> <span class="n">on</span>
@@ -154,7 +156,7 @@ understand; see below for what the disassembled bytecode looks like:</p>
 <p>You can see it generates _HID, _UID, _DDN, _STA, _CRS, _S0W, and _PRW
 names/methods in the Device’s scope.</p>
 <section id="utilizing-a-device-driver">
-<h2>Utilizing a device driver<a class="headerlink" href="#utilizing-a-device-driver" title="Link to this heading"></a></h2>
+<h2>Utilizing a device driver<a class="headerlink" href="#utilizing-a-device-driver" title="Permalink to this heading"></a></h2>
 <p>The device driver must be enabled for your build.  There will be a CONFIG option
 in the Kconfig file in the directory that the driver is in (e.g.,
 <code class="docutils literal notranslate"><span class="pre">src/drivers/i2c/generic</span></code> contains a Kconfig file; the option here is named
@@ -163,7 +165,7 @@ mainboard’s Kconfig file (e.g., <code class="docutils literal notranslate"><sp
 to be compiled into your build.</p>
 </section>
 <section id="diving-into-the-above-example">
-<h2>Diving into the above example:<a class="headerlink" href="#diving-into-the-above-example" title="Link to this heading"></a></h2>
+<h2>Diving into the above example:<a class="headerlink" href="#diving-into-the-above-example" title="Permalink to this heading"></a></h2>
 <p>Let’s take a look at how the devicetree language corresponds to the generated
 ASL.</p>
 <p>First, note this:</p>
@@ -175,7 +177,7 @@ located at <code class="docutils literal notranslate"><span class="pre">src/driv
 drivers_i2c_generic_config</strong> and it contains many properties you can specify to
 be included in the ACPI table.</p>
 <section id="hid">
-<h3>hid<a class="headerlink" href="#hid" title="Link to this heading"></a></h3>
+<h3>hid<a class="headerlink" href="#hid" title="Permalink to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">register</span> <span class="s2">&quot;hid&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="n">ELAN0000</span><span class="s2">&quot;&quot;</span>
 </pre></div>
 </div>
@@ -188,7 +190,7 @@ translates to:</p>
 during enumeration in the OS.</strong></p>
 </section>
 <section id="desc">
-<h3>desc<a class="headerlink" href="#desc" title="Link to this heading"></a></h3>
+<h3>desc<a class="headerlink" href="#desc" title="Permalink to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">register</span> <span class="s2">&quot;desc&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="n">ELAN</span> <span class="n">Touchpad</span><span class="s2">&quot;&quot;</span>
 </pre></div>
 </div>
@@ -198,7 +200,7 @@ during enumeration in the OS.</strong></p>
 </div>
 </section>
 <section id="irq">
-<h3>irq<a class="headerlink" href="#irq" title="Link to this heading"></a></h3>
+<h3>irq<a class="headerlink" href="#irq" title="Permalink to this heading"></a></h3>
 <p>It also adds the interrupt,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Interrupt</span> <span class="p">(</span><span class="n">ResourceConsumer</span><span class="p">,</span> <span class="n">Level</span><span class="p">,</span> <span class="n">ActiveLow</span><span class="p">,</span> <span class="n">Exclusive</span><span class="p">,</span> <span class="p">,,</span> <span class="p">)</span>
     <span class="p">{</span>
@@ -228,7 +230,7 @@ GPIO controller needs to be used directly. You can do this by setting the
 </div>
 </section>
 <section id="detect">
-<h3>detect<a class="headerlink" href="#detect" title="Link to this heading"></a></h3>
+<h3>detect<a class="headerlink" href="#detect" title="Permalink to this heading"></a></h3>
 <p>The next register is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">register</span> <span class="s2">&quot;detect&quot;</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
 </pre></div>
@@ -250,7 +252,7 @@ This feature has also been used in downstream forks without issue for some time
 now on several other boards.</p>
 </section>
 <section id="wake">
-<h3>wake<a class="headerlink" href="#wake" title="Link to this heading"></a></h3>
+<h3>wake<a class="headerlink" href="#wake" title="Permalink to this heading"></a></h3>
 <p>The last register is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">register</span> <span class="s2">&quot;wake&quot;</span> <span class="o">=</span> <span class="s2">&quot;GPE0_DW0_21&quot;</span>
 </pre></div>
@@ -261,7 +263,7 @@ this example.  The “21” indicates GPP_X21, where GPP_X is mapped onto DW0
 elsewhere in the devicetree.</p>
 </section>
 <section id="device">
-<h3>device<a class="headerlink" href="#device" title="Link to this heading"></a></h3>
+<h3>device<a class="headerlink" href="#device" title="Permalink to this heading"></a></h3>
 <p>The last bit of the definition of that device includes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">device</span> <span class="n">i2c</span> <span class="mi">15</span> <span class="n">on</span> <span class="n">end</span>
 </pre></div>
@@ -275,12 +277,12 @@ found on.  In this example, this is I2C bus 0.  This also determines the ACPI
 </section>
 </section>
 <section id="wake-sources">
-<h2>Wake sources<a class="headerlink" href="#wake-sources" title="Link to this heading"></a></h2>
+<h2>Wake sources<a class="headerlink" href="#wake-sources" title="Permalink to this heading"></a></h2>
 <p>The ACPI spec defines two methods to describe how a device can wake the system.
 Only one of these methods should be used, otherwise duplicate wake events will
 be generated.</p>
 <section id="using-gpes-as-a-wake-source">
-<h3>Using GPEs as a wake source<a class="headerlink" href="#using-gpes-as-a-wake-source" title="Link to this heading"></a></h3>
+<h3>Using GPEs as a wake source<a class="headerlink" href="#using-gpes-as-a-wake-source" title="Permalink to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">wake</span></code> property specified above is used to tell the ACPI subsystem that the
 device can use a GPE to wake the system. The OS can control whether to enable
 or disable the wake source by unmasking/masking off the GPE.</p>
@@ -304,7 +306,7 @@ platforms don’t support routing GPIOs to the IO-APIC, so this workaround isn�
 feasible. The other option is to use a wake capable GPIO as described below.</p>
 </section>
 <section id="using-gpio-interrupts-as-a-wake-source">
-<h3>Using GPIO interrupts as a wake source<a class="headerlink" href="#using-gpio-interrupts-as-a-wake-source" title="Link to this heading"></a></h3>
+<h3>Using GPIO interrupts as a wake source<a class="headerlink" href="#using-gpio-interrupts-as-a-wake-source" title="Permalink to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ACPI_IRQ_WAKE_{EDGE,LEVEL}_{LOW,HIGH}</span></code> macros can be used when setting the
 <code class="docutils literal notranslate"><span class="pre">irq</span></code> or <code class="docutils literal notranslate"><span class="pre">gpio_irq</span></code> properties. This ends up setting <code class="docutils literal notranslate"><span class="pre">ExclusiveAndWake</span></code> or
 <code class="docutils literal notranslate"><span class="pre">SharedAndWake</span></code> on the <code class="docutils literal notranslate"><span class="pre">Interrupt</span></code> or <code class="docutils literal notranslate"><span class="pre">GpioInt</span></code> ACPI resource.</p>
@@ -334,26 +336,26 @@ device into D3Cold. i.e., power off the device.</p></li>
 </section>
 </section>
 <section id="other-auto-generated-names">
-<h2>Other auto-generated names<a class="headerlink" href="#other-auto-generated-names" title="Link to this heading"></a></h2>
+<h2>Other auto-generated names<a class="headerlink" href="#other-auto-generated-names" title="Permalink to this heading"></a></h2>
 <p>(see <a class="reference external" href="https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf">ACPI specification
 6.3</a>
 for more details on ACPI methods)</p>
 <section id="s0w-s0-device-wake-state">
-<h3>_S0W (S0 Device Wake State)<a class="headerlink" href="#s0w-s0-device-wake-state" title="Link to this heading"></a></h3>
+<h3>_S0W (S0 Device Wake State)<a class="headerlink" href="#s0w-s0-device-wake-state" title="Permalink to this heading"></a></h3>
 <p>_S0W indicates the deepest S0 sleep state this device can wake itself from,
 which in this case is <code class="docutils literal notranslate"><span class="pre">ACPI_DEVICE_SLEEP_D3_HOT</span></code>, representing <em>D3hot</em>.
 D3Hot means the <code class="docutils literal notranslate"><span class="pre">PR3</span></code> power resources are still on and the device is still
 responsive on the bus. For i2c devices this is generally the same state as <code class="docutils literal notranslate"><span class="pre">D0</span></code>.</p>
 </section>
 <section id="prw-power-resources-for-wake">
-<h3>_PRW (Power Resources for Wake)<a class="headerlink" href="#prw-power-resources-for-wake" title="Link to this heading"></a></h3>
+<h3>_PRW (Power Resources for Wake)<a class="headerlink" href="#prw-power-resources-for-wake" title="Permalink to this heading"></a></h3>
 <p>_PRW indicates the power resources and events required for wake.  There are no
 dependent power resources, but the GPE (GPE0_DW0_21) is mentioned here (0x15),
 as well as the deepest sleep state supporting waking the system (3), which is
 S3.</p>
 </section>
 <section id="sta-status">
-<h3>_STA (Status)<a class="headerlink" href="#sta-status" title="Link to this heading"></a></h3>
+<h3>_STA (Status)<a class="headerlink" href="#sta-status" title="Permalink to this heading"></a></h3>
 <p>The _STA method is generated automatically, and its values, 0xF, indicates the
 following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Bit [0] – Set if the device is present.
@@ -364,7 +366,7 @@ Bit [3] – Set if the device is functioning properly (cleared if device failed 
 </div>
 </section>
 <section id="crs-current-resource-settings">
-<h3>_CRS (Current resource settings)<a class="headerlink" href="#crs-current-resource-settings" title="Link to this heading"></a></h3>
+<h3>_CRS (Current resource settings)<a class="headerlink" href="#crs-current-resource-settings" title="Permalink to this heading"></a></h3>
 <p>The _CRS method is generated automatically, as the driver knows it is an I2C
 controller, and so specifies how to configure the controller for proper
 operation with the touchpad.</p>
@@ -378,7 +380,7 @@ operation with the touchpad.</p>
 </section>
 </section>
 <section id="notes">
-<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>All device driver entries in devicetrees end up in the SSDT table, and are
 generated in coreboot’s ramstage</strong>

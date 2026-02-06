@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flashmap and Flashmap Descriptor in coreboot &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Flashmap and Flashmap Descriptor in coreboot &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -120,9 +122,9 @@
            <div itemprop="articleBody">
              
   <section id="flashmap-and-flashmap-descriptor-in-coreboot">
-<h1>Flashmap and Flashmap Descriptor in coreboot<a class="headerlink" href="#flashmap-and-flashmap-descriptor-in-coreboot" title="Link to this heading"></a></h1>
+<h1>Flashmap and Flashmap Descriptor in coreboot<a class="headerlink" href="#flashmap-and-flashmap-descriptor-in-coreboot" title="Permalink to this heading"></a></h1>
 <section id="flashmap">
-<h2>Flashmap<a class="headerlink" href="#flashmap" title="Link to this heading"></a></h2>
+<h2>Flashmap<a class="headerlink" href="#flashmap" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://code.google.com/p/flashmap">Flashmap</a> (FMAP) is a binary format to
 describe partitions in a flash chip. It was added to coreboot to support the
 requirements of ChromiumOS firmware but then was also used in other scenarios
@@ -139,7 +141,7 @@ normally go into CBFS.</p>
 section descriptions in <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">fmap_area</span></code>. All fields in those structures are
 in little endian format.</p>
 <section id="header">
-<h3>Header<a class="headerlink" href="#header" title="Link to this heading"></a></h3>
+<h3>Header<a class="headerlink" href="#header" title="Permalink to this heading"></a></h3>
 <p>The header <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">fmap</span></code> has following fields:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">signature</span></code>: 8 characters as <code class="docutils literal notranslate"><span class="pre">&quot;__FMAP__&quot;</span></code>.</p></li>
@@ -153,7 +155,7 @@ sections are in this firmware image) following the header.</p></li>
 </ul>
 </section>
 <section id="area-definition">
-<h3>Area Definition<a class="headerlink" href="#area-definition" title="Link to this heading"></a></h3>
+<h3>Area Definition<a class="headerlink" href="#area-definition" title="Permalink to this heading"></a></h3>
 <p>The section is defined by <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">fmap_area</span></code> with following fields:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: 32 bit integer for where the area starts (relative to <code class="docutils literal notranslate"><span class="pre">base</span></code> in
@@ -165,7 +167,7 @@ all sections inside same Flashmap.</p></li>
 </ul>
 </section>
 <section id="area-flags">
-<h3>Area Flags<a class="headerlink" href="#area-flags" title="Link to this heading"></a></h3>
+<h3>Area Flags<a class="headerlink" href="#area-flags" title="Permalink to this heading"></a></h3>
 <p>Currently the defined values for <code class="docutils literal notranslate"><span class="pre">flags</span></code> in <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">fmap_area</span></code> are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">FMAP_AREA_PRESERVE</span></code>: suggesting the section should be preserved when
@@ -177,7 +179,7 @@ or calibration and cache data.</p></li>
 </ul>
 </section>
 <section id="fmap-section">
-<h3>FMAP section<a class="headerlink" href="#fmap-section" title="Link to this heading"></a></h3>
+<h3>FMAP section<a class="headerlink" href="#fmap-section" title="Permalink to this heading"></a></h3>
 <p>The whole Flashmap (<code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">fmap</span></code> and list of <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">fmap_area</span></code>) should be
 stored in a standalone section named as <code class="docutils literal notranslate"><span class="pre">FMAP</span></code> (which should be also described
 by the Flashmap itself in <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">fmap_area</span></code>). There’s no restriction for where
@@ -186,13 +188,13 @@ binary search on whole firmware binary image to find Flashmap so a properly
 aligned address would be better.</p>
 </section>
 <section id="coreboot-section">
-<h3>COREBOOT section<a class="headerlink" href="#coreboot-section" title="Link to this heading"></a></h3>
+<h3>COREBOOT section<a class="headerlink" href="#coreboot-section" title="Permalink to this heading"></a></h3>
 <p>coreboot firmware images (<code class="docutils literal notranslate"><span class="pre">coreboot.rom</span></code>) should have at least one Flashmap
 section that is reserved for CBFS. Usually it is named as <code class="docutils literal notranslate"><span class="pre">COREBOOT</span></code>.</p>
 </section>
 </section>
 <section id="flashmap-descriptor">
-<h2>Flashmap Descriptor<a class="headerlink" href="#flashmap-descriptor" title="Link to this heading"></a></h2>
+<h2>Flashmap Descriptor<a class="headerlink" href="#flashmap-descriptor" title="Permalink to this heading"></a></h2>
 <p>Since coreboot is starting to use a “partition” of Flashmap to describe the
 flash chip layout (both at runtime and when flashing a new image onto a
 chip), the project needs a reasonably expressive plain text format for

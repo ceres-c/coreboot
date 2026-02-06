@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PNP devices &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>PNP devices &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -118,7 +120,7 @@
            <div itemprop="articleBody">
              
   <section id="pnp-devices">
-<h1>PNP devices<a class="headerlink" href="#pnp-devices" title="Link to this heading"></a></h1>
+<h1>PNP devices<a class="headerlink" href="#pnp-devices" title="Permalink to this heading"></a></h1>
 <p>Typical PNP devices are Super I/Os, LPC-connected TPMs and board
 management controllers.</p>
 <p>PNP devices are usually connected to the LPC or eSPI bus of a system
@@ -129,7 +131,7 @@ the auto-detection part of ISA PNP is mostly irrelevant nowadays. For
 the register offsets for different functionality, appendix A of that
 specification is still the main reference though.</p>
 <section id="configuration-access-and-config-mode">
-<h2>Configuration access and config mode<a class="headerlink" href="#configuration-access-and-config-mode" title="Link to this heading"></a></h2>
+<h2>Configuration access and config mode<a class="headerlink" href="#configuration-access-and-config-mode" title="Permalink to this heading"></a></h2>
 <p>Super I/O chips connected via LPC to the southbridge usually have their
 I/O-mapped configuration interface with a size of two bytes at the base
 address <code class="docutils literal notranslate"><span class="pre">0x2e</span></code> or <code class="docutils literal notranslate"><span class="pre">0x4e</span></code>. Other PNP devices have their configuration
@@ -144,7 +146,7 @@ configuration, the configuration mode should be left again, by sending
 the configuration mode lock sequence.</p>
 </section>
 <section id="logical-device-numbers-ldn">
-<h2>Logical device numbers (LDN)<a class="headerlink" href="#logical-device-numbers-ldn" title="Link to this heading"></a></h2>
+<h2>Logical device numbers (LDN)<a class="headerlink" href="#logical-device-numbers-ldn" title="Permalink to this heading"></a></h2>
 <p>Each PNP device can contain multiple logical devices. The bytes from
 <code class="docutils literal notranslate"><span class="pre">0x00</span></code> to <code class="docutils literal notranslate"><span class="pre">0x2f</span></code> in the indirect configuration register space are common
 for all LDNs, but some SIO chips require a certain LDN to be selected in
@@ -154,7 +156,7 @@ writing the LDN number to the LDN select register <code class="docutils literal 
 <p>coreboot encodes the physical LDN number in the lower byte of the LDN
 number.</p>
 <section id="virtual-logical-device-numbers">
-<h3>Virtual logical device numbers<a class="headerlink" href="#virtual-logical-device-numbers" title="Link to this heading"></a></h3>
+<h3>Virtual logical device numbers<a class="headerlink" href="#virtual-logical-device-numbers" title="Permalink to this heading"></a></h3>
 <p>Register <code class="docutils literal notranslate"><span class="pre">0x30</span></code> is the LDN enable register and since it is an 8 bit
 register, it can contain up to 8 enable bits for different parts of
 the functionality of that logical device. To set a certain enable bit
@@ -166,12 +168,12 @@ part in the lower 3 bits of the higher byte of the LDN number.</p>
 </section>
 </section>
 <section id="i-o-resources">
-<h2>I/O resources<a class="headerlink" href="#i-o-resources" title="Link to this heading"></a></h2>
+<h2>I/O resources<a class="headerlink" href="#i-o-resources" title="Permalink to this heading"></a></h2>
 <p>Starting at register address <code class="docutils literal notranslate"><span class="pre">0x60</span></code>, each LDN has 2 byte wide I/O base
 address registers. The size of an I/O resource is always a power of
 two.</p>
 <section id="i-o-resource-masks">
-<h3>I/O resource masks<a class="headerlink" href="#i-o-resource-masks" title="Link to this heading"></a></h3>
+<h3>I/O resource masks<a class="headerlink" href="#i-o-resource-masks" title="Permalink to this heading"></a></h3>
 <p>The I/O resource masks encode both the size and the maximum base
 address of the corresponding IO resource. The number of zeros counted
 from the least significant bit encode the resource size. If N is the
@@ -192,7 +194,7 @@ possible I/O address, this gives the mask.</p>
 </section>
 </section>
 <section id="irq-resources">
-<h2>IRQ resources<a class="headerlink" href="#irq-resources" title="Link to this heading"></a></h2>
+<h2>IRQ resources<a class="headerlink" href="#irq-resources" title="Permalink to this heading"></a></h2>
 <p>Each physical LDN has up to two configurable interrupt request register
 pairs <code class="docutils literal notranslate"><span class="pre">0x70</span></code>, <code class="docutils literal notranslate"><span class="pre">0x71</span></code> and <code class="docutils literal notranslate"><span class="pre">0x72</span></code>, <code class="docutils literal notranslate"><span class="pre">0x73</span></code>. Each pair can be configured to
 use a certain IRQ number. Writing 1 to 15 into the first register
@@ -213,7 +215,7 @@ the devices have to send both the IRQ frame start and the encoded IRQ
 number. The quiet mode is often broken.</p>
 </section>
 <section id="drq-resources">
-<h2>DRQ resources<a class="headerlink" href="#drq-resources" title="Link to this heading"></a></h2>
+<h2>DRQ resources<a class="headerlink" href="#drq-resources" title="Permalink to this heading"></a></h2>
 <p>Each physical LDN has two legacy ISA-style DMA request channel
 registers at <code class="docutils literal notranslate"><span class="pre">0x74</span></code> and <code class="docutils literal notranslate"><span class="pre">0x75</span></code>. Those are only used for legacy devices
 like parallel printer ports or floppy disk controllers.</p>

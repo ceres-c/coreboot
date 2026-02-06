@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Memory clearing &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Memory clearing &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -119,7 +121,7 @@
            <div itemprop="articleBody">
              
   <section id="memory-clearing">
-<h1>Memory clearing<a class="headerlink" href="#memory-clearing" title="Link to this heading"></a></h1>
+<h1>Memory clearing<a class="headerlink" href="#memory-clearing" title="Permalink to this heading"></a></h1>
 <p>The main memory on computer platforms in high security environments contains
 sensible data. On unexpected reboot the data might persist and could be
 read by a malicious application in the bootflow or userspace.</p>
@@ -132,7 +134,7 @@ are in memory.</p>
 The device must indicate support for memory clearing as part of the boot
 process.</p>
 <section id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
 <ol class="simple">
 <li><p>The platform must clear all platform memory (DRAM) if requested</p></li>
 <li><p>Code that is placed in DRAM might be skipped (as workaround)</p></li>
@@ -141,7 +143,7 @@ process.</p>
 </ol>
 </section>
 <section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading"></a></h2>
 <p>A platform that supports memory clearing selects Kconfig
 <code class="docutils literal notranslate"><span class="pre">PLATFORM_HAS_DRAM_CLEAR</span></code> and calls</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">security_clear_dram_request</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
@@ -154,12 +156,12 @@ first, which happens in <code class="docutils literal notranslate"><span class="
 <p>Without MTRRs (and caches enabled) clearing memory takes multiple seconds.</p>
 </section>
 <section id="exceptions">
-<h2>Exceptions<a class="headerlink" href="#exceptions" title="Link to this heading"></a></h2>
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this heading"></a></h2>
 <p>As some platforms place code and stack in DRAM (FSP1.0), the regions can be
 skipped.</p>
 </section>
 <section id="architecture-specific-implementations">
-<h2>Architecture specific implementations<a class="headerlink" href="#architecture-specific-implementations" title="Link to this heading"></a></h2>
+<h2>Architecture specific implementations<a class="headerlink" href="#architecture-specific-implementations" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../arch/x86/pae.html">x86 PAE</a></li>

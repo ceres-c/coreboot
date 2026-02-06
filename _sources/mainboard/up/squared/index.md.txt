@@ -115,9 +115,14 @@ flashregion_5_reserved.bin
 
 ### Red Unlock
 If you want to red unlock the CPU at boot and execute code at ramstage (see `mainboard/up/squared/red_unlock.c`),
-you can enable the RED_UNLOCK option. Note the IFWI file you configured above must be coming from a
-[red unlocked firmware](https://libmicro.dev/about.html).
+you can enable the RED_UNLOCK option.
+
+Note the IFWI file you configured above must be coming from a
+red unlocked firmware. Pre-extracted files can be found in the [`blobs_libmicro`](https://github.com/ceres-c/coreboot/tree/thesis-24.02.01/blobs_libmicro) folder in this repo. You can also extract them yourself with ifdtool.
+
 ```bash
+[coreboot]$ ./util/scripts/config --set-str IFWI_FILE_NAME "<RED_UNLOCKED_flashregion_1_bios.bin>"
+[coreboot]$ ./util/scripts/config --set-str IFD_BIN_PATH "<RED_UNLOCKED_flashregion_0_flashdescriptor.bin>"
 [coreboot]$ ./util/scripts/config --enable RED_UNLOCK
 [coreboot]$ ./util/scripts/config --disable "DEFAULT_CONSOLE_LOGLEVEL_$(./util/scripts/config --state DEFAULT_CONSOLE_LOGLEVEL)"
 [coreboot]$ ./util/scripts/config --enable DEFAULT_CONSOLE_LOGLEVEL_0

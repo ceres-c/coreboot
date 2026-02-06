@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Purism Librem Mini (v1, v2) &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Purism Librem Mini (v1, v2) &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -149,7 +151,7 @@
            <div itemprop="articleBody">
              
   <section id="purism-librem-mini-v1-v2">
-<h1>Purism Librem Mini (v1, v2)<a class="headerlink" href="#purism-librem-mini-v1-v2" title="Link to this heading"></a></h1>
+<h1>Purism Librem Mini (v1, v2)<a class="headerlink" href="#purism-librem-mini-v1-v2" title="Permalink to this heading"></a></h1>
 <p>This page describes how to run coreboot on the <a class="reference external" href="https://puri.sm/products/librem-mini/">Purism Librem Mini</a>.</p>
 <table class="docutils align-default">
 <tbody>
@@ -173,7 +175,7 @@ Intel Management Engine (CSME 14.x) (v2)</p></td>
 <p><img alt="../../_images/librem_mini.jpg" src="../../_images/librem_mini.jpg" />
 <img alt="../../_images/librem_mini_flash.jpg" src="../../_images/librem_mini_flash.jpg" /></p>
 <section id="required-proprietary-blobs">
-<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Link to this heading"></a></h2>
+<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Permalink to this heading"></a></h2>
 <p>To build a minimal working coreboot image some blobs are required (assuming
 only the BIOS region is being modified).</p>
 <table class="docutils align-default">
@@ -211,7 +213,7 @@ be extracted via cbfstool from the existing board firmware or pulled from
 the <a class="reference external" href="https://source.puri.sm/coreboot/purism-blobs">purism-blobs</a> repository.</p>
 </section>
 <section id="intel-management-engine">
-<h2>Intel Management Engine<a class="headerlink" href="#intel-management-engine" title="Link to this heading"></a></h2>
+<h2>Intel Management Engine<a class="headerlink" href="#intel-management-engine" title="Permalink to this heading"></a></h2>
 <p>The Librem Mini uses version 12.x (v1) or 14.x (v2) of the Intel Management
 Engine (ME) / Converged Security Engine (CSE). The ME/CSE is disabled using
 the High Assurance Platform (HAP) bit, which puts the ME into a disabled state
@@ -224,16 +226,16 @@ This can be verified via the coreboot cbmem utility:</p>
 the PCI device is not visible/active (as it is in Purism’s release builds).</p>
 </section>
 <section id="flashing-coreboot">
-<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Permalink to this heading"></a></h2>
 <section id="internal-programming">
-<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Link to this heading"></a></h3>
+<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Permalink to this heading"></a></h3>
 <p>The main SPI flash can be accessed using <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a>. The first version
 supporting the chipset is flashrom v1.2 (v1.2-107-gb1f858f or later needed
 for the Mini v2). Firmware an be easily flashed with internal programmer
 (either BIOS region or full image).</p>
 </section>
 <section id="external-programming">
-<h3>External programming<a class="headerlink" href="#external-programming" title="Link to this heading"></a></h3>
+<h3>External programming<a class="headerlink" href="#external-programming" title="Permalink to this heading"></a></h3>
 <p>The system has an internal flash chip which is a 8 MiB soldered SOIC-8 chip,
 and has a diode attached to the VCC line for in-system programming.
 This chip is located on the bottom side of the board under the CPU heatsink,
@@ -253,7 +255,7 @@ desoldering it from the mainboard.</p>
 </section>
 </section>
 <section id="known-issues">
-<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>SeaBIOS can be finicky with detecting USB devices</p></li>
 <li><p>Mode switching with VGA option ROM display init can be slow and sometimes hangs</p></li>
@@ -264,7 +266,7 @@ The same issue is present on the AMI vendor firmware.</p></li>
 </ul>
 </section>
 <section id="working">
-<h2>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h2>
+<h2>Working<a class="headerlink" href="#working" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>External displays via HDMI/DisplayPort with VGA option ROM or FSP/GOP init
 (no libgfxinit support yet)</p></li>
@@ -281,7 +283,7 @@ The same issue is present on the AMI vendor firmware.</p></li>
 </ul>
 </section>
 <section id="not-working-untested">
-<h2>Not working / untested<a class="headerlink" href="#not-working-untested" title="Link to this heading"></a></h2>
+<h2>Not working / untested<a class="headerlink" href="#not-working-untested" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>ITE IT8528E Super IO functions</p></li>
 </ul>

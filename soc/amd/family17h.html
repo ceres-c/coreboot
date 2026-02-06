@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AMD Family 17h in coreboot &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>AMD Family 17h in coreboot &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -117,9 +119,9 @@
            <div itemprop="articleBody">
              
   <section id="amd-family-17h-in-coreboot">
-<h1>AMD Family 17h in coreboot<a class="headerlink" href="#amd-family-17h-in-coreboot" title="Link to this heading"></a></h1>
+<h1>AMD Family 17h in coreboot<a class="headerlink" href="#amd-family-17h-in-coreboot" title="Permalink to this heading"></a></h1>
 <section id="abstract">
-<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading"></a></h2>
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this heading"></a></h2>
 <p>Beginning with Family 17h products (a.k.a. “Zen” cores), AMD
 changed their paradigm for initializing the system and this requires
 major modifications to the execution flow of coreboot.  This file
@@ -127,7 +129,7 @@ discusses the new boot flow, and challenges, and the tradeoffs of the
 initial port into coreboot.</p>
 </section>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>Family 17h products are x86-based designs.  This documentation assumes
 familiarity with x86, its reset state and its early initialization
 requirements.</p>
@@ -150,7 +152,7 @@ from AGESA.</p>
 “Picasso”<sup>4</sup>, and will be added to soc/amd/picasso.</p>
 </section>
 <section id="additional-definitions">
-<h2>Additional Definitions<a class="headerlink" href="#additional-definitions" title="Link to this heading"></a></h2>
+<h2>Additional Definitions<a class="headerlink" href="#additional-definitions" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>PSP, Platform Security Processor:  Onboard ARM processor that runs
 alongside the main x86 processor; may be viewed as analogous to the
@@ -181,7 +183,7 @@ parsed by coreboot</p></li>
 </ul>
 </section>
 <section id="problem-statements">
-<h2>Problem Statements<a class="headerlink" href="#problem-statements" title="Link to this heading"></a></h2>
+<h2>Problem Statements<a class="headerlink" href="#problem-statements" title="Permalink to this heading"></a></h2>
 <p>AMD has ported early AGESA features to the PSP, which now discovers,
 enables and trains DRAM.  Unlike any other x86 device in coreboot, a
 Picasso system has DRAM online prior to the first instruction fetch.</p>
@@ -213,7 +215,7 @@ NDA information, no debug builds will be released to the general public.</p></li
 </ul>
 </section>
 <section id="basic-pre-x86-boot-flow">
-<h2>Basic Pre-x86 Boot Flow<a class="headerlink" href="#basic-pre-x86-boot-flow" title="Link to this heading"></a></h2>
+<h2>Basic Pre-x86 Boot Flow<a class="headerlink" href="#basic-pre-x86-boot-flow" title="Permalink to this heading"></a></h2>
 <p>The following steps occur prior to x86 processor operation.</p>
 <ul class="simple">
 <li><p>System power on</p></li>
@@ -249,7 +251,7 @@ and executes instructions from the reset vector</p></li>
 </ul>
 </section>
 <section id="picasso-reset-vector-and-first-instructions">
-<h2>Picasso Reset Vector and First Instructions<a class="headerlink" href="#picasso-reset-vector-and-first-instructions" title="Link to this heading"></a></h2>
+<h2>Picasso Reset Vector and First Instructions<a class="headerlink" href="#picasso-reset-vector-and-first-instructions" title="Permalink to this heading"></a></h2>
 <p>As mentioned above, prior to releasing the x86 main core from reset,
 the PSP decompresses a BIOS image into DRAM.  The PSP uses a specific
 BIOS Directory Table entry type to determine the source address (in
@@ -290,13 +292,13 @@ code that is position-dependent must be linked to run at the final
 destination.</p>
 </section>
 <section id="implementation-for-coreboot">
-<h2>Implementation for coreboot<a class="headerlink" href="#implementation-for-coreboot" title="Link to this heading"></a></h2>
+<h2>Implementation for coreboot<a class="headerlink" href="#implementation-for-coreboot" title="Permalink to this heading"></a></h2>
 <p>Supporting Picasso doesn’t fit perfectly with many of the coreboot
 assumptions about x86 processors.  Changes are introduced primarily
 into arch/x86 to accommodate a processor starting in DRAM and at a
 nontraditional reset vector.</p>
 <section id="car-and-early-stages">
-<h3>CAR and early stages<a class="headerlink" href="#car-and-early-stages" title="Link to this heading"></a></h3>
+<h3>CAR and early stages<a class="headerlink" href="#car-and-early-stages" title="Permalink to this heading"></a></h3>
 <p>The traditional coreboot bootblock and romstage rely on cache-as-RAM
 and a linker script that positions temporary storage accordingly.  A
 substitute for the DCACHE variables, called EARLYRAM, is introduced.
@@ -313,21 +315,21 @@ of .bss or .data sections.  All stages’ .bss is zeroed, and all
 .data sections are fully R/W at load time.</p>
 </section>
 <section id="bootblock">
-<h3>bootblock<a class="headerlink" href="#bootblock" title="Link to this heading"></a></h3>
+<h3>bootblock<a class="headerlink" href="#bootblock" title="Permalink to this heading"></a></h3>
 <p>Picasso uses a bootblock that mirrors a traditional bootblock as much
 as possible.  Because the image is loaded by the PSP, the bootblock is
 not restricted to the top of the BIOS flash device.  The compressed
 image is added into the PSP’s <code class="docutils literal notranslate"><span class="pre">amdfw.rom</span></code> build.</p>
 </section>
 <section id="vboot-app-and-verstage">
-<h3>vboot app and verstage<a class="headerlink" href="#vboot-app-and-verstage" title="Link to this heading"></a></h3>
+<h3>vboot app and verstage<a class="headerlink" href="#vboot-app-and-verstage" title="Permalink to this heading"></a></h3>
 <p>Development is currently underway for the vboot app, and potentially
 an x86-based verstage companion.  This document shall be updated once
 the design is finalized and functioning.  Support for the PSP honoring
 the presence of the vboot app is available only in certain SKUs.</p>
 </section>
 <section id="romstage-and-postcar">
-<h3>romstage and postcar<a class="headerlink" href="#romstage-and-postcar" title="Link to this heading"></a></h3>
+<h3>romstage and postcar<a class="headerlink" href="#romstage-and-postcar" title="Permalink to this heading"></a></h3>
 <p>A traditional romstage is maintained for Picasso.  The primary reason for
 this choice is to remain compatible with coreboot conventions and
 to support the FSP 2.0 driver.  Picasso’s romstage uses an
@@ -337,7 +339,7 @@ fsp_memory_init() brings cbmem online before returning to the caller.</p>
 </section>
 </section>
 <section id="agesa-v9-on-picasso">
-<h2>AGESA v9 on Picasso<a class="headerlink" href="#agesa-v9-on-picasso" title="Link to this heading"></a></h2>
+<h2>AGESA v9 on Picasso<a class="headerlink" href="#agesa-v9-on-picasso" title="Permalink to this heading"></a></h2>
 <p>Due to the current restriction on publishing AGESA source, a pre-built
 binary solution remains a requirement.  Modifying v9 to conform to the
 existing v5 binaryPI interface was considered impractical.</p>
@@ -352,18 +354,18 @@ Specification.  Deviations, e.g., no FSP-T support, shall be published
 in an Integration Guide.</p>
 </section>
 <section id="apcb-setup">
-<h2>APCB setup<a class="headerlink" href="#apcb-setup" title="Link to this heading"></a></h2>
+<h2>APCB setup<a class="headerlink" href="#apcb-setup" title="Permalink to this heading"></a></h2>
 <p>APCBs are used to provide the PSP with SPD information and optionally a set of
 GPIOs to use for selecting which SPD to load. A list of APCB files should be
 specified in <code class="docutils literal notranslate"><span class="pre">APCB_SOURCES</span></code>.</p>
 <section id="generating-apcbs">
-<h3>Generating APCBs<a class="headerlink" href="#generating-apcbs" title="Link to this heading"></a></h3>
+<h3>Generating APCBs<a class="headerlink" href="#generating-apcbs" title="Permalink to this heading"></a></h3>
 <p>If you have a template APCB file, the <code class="docutils literal notranslate"><span class="pre">apcb_edit</span></code> tool can be used to inject the
 SPD and GPIOs used to select the correct slot.</p>
 </section>
 </section>
 <section id="footnotes">
-<h2>Footnotes<a class="headerlink" href="#footnotes" title="Link to this heading"></a></h2>
+<h2>Footnotes<a class="headerlink" href="#footnotes" title="Permalink to this heading"></a></h2>
 <ol class="simple">
 <li><p><em>AMD Platform Security Processor BIOS Architecture Design Guide
 for AMD Family 17h Processors</em> (PID #55758) and <em>AMD Platform

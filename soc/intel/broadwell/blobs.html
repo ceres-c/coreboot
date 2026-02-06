@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blobs used in Intel Broadwell boards &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Blobs used in Intel Broadwell boards &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -117,7 +119,7 @@
            <div itemprop="articleBody">
              
   <section id="blobs-used-in-intel-broadwell-boards">
-<h1>Blobs used in Intel Broadwell boards<a class="headerlink" href="#blobs-used-in-intel-broadwell-boards" title="Link to this heading"></a></h1>
+<h1>Blobs used in Intel Broadwell boards<a class="headerlink" href="#blobs-used-in-intel-broadwell-boards" title="Permalink to this heading"></a></h1>
 <p>All Broadwell boards supported by coreboot require two proprietary blobs.
 In a coreboot image of a Broadwell board, the blobs are named <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> and
 <code class="docutils literal notranslate"><span class="pre">refcode</span></code> in CBFS.</p>
@@ -126,7 +128,7 @@ address in CBFS and is loaded at a fixed address in memory.</p>
 <p><code class="docutils literal notranslate"><span class="pre">refcode</span></code> is run in ramstage to initialize the system agent and the PCH. It is
 a relocatable ELF object.</p>
 <section id="obtaining-the-blobs">
-<h2>Obtaining the blobs<a class="headerlink" href="#obtaining-the-blobs" title="Link to this heading"></a></h2>
+<h2>Obtaining the blobs<a class="headerlink" href="#obtaining-the-blobs" title="Permalink to this heading"></a></h2>
 <p>Both <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> and <code class="docutils literal notranslate"><span class="pre">refcode</span></code> can be obtained from a coreboot image of a Broadwell
 board, for example a Purism Librem 13 v1 coreboot image from <a class="reference external" href="https://mrchromebox.tech/">MrChromebox</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cbfstool</span> <span class="n">coreboot_</span><span class="o">*.</span><span class="n">rom</span> <span class="n">extract</span> <span class="o">-</span><span class="n">f</span> <span class="n">broadwell</span><span class="o">-</span><span class="n">mrc</span><span class="o">.</span><span class="n">bin</span> <span class="o">-</span><span class="n">n</span> <span class="n">mrc</span><span class="o">.</span><span class="n">bin</span>
@@ -135,11 +137,11 @@ board, for example a Purism Librem 13 v1 coreboot image from <a class="reference
 </div>
 </section>
 <section id="spd-addresses">
-<h2>SPD Addresses<a class="headerlink" href="#spd-addresses" title="Link to this heading"></a></h2>
+<h2>SPD Addresses<a class="headerlink" href="#spd-addresses" title="Permalink to this heading"></a></h2>
 <p>The SPD addresses in Broadwell <code class="docutils literal notranslate"><span class="pre">pei_data</span></code> struct are similar to <a class="reference internal" href="../../../northbridge/intel/haswell/mrc.bin.html"><span class="doc">Haswell</span></a>.</p>
 </section>
 <section id="intel-gbe-support">
-<h2>Intel GbE support<a class="headerlink" href="#intel-gbe-support" title="Link to this heading"></a></h2>
+<h2>Intel GbE support<a class="headerlink" href="#intel-gbe-support" title="Permalink to this heading"></a></h2>
 <p>Unlike Haswell boards, the <code class="docutils literal notranslate"><span class="pre">pei_data</span></code> struct of Broadwell doesn’t have <code class="docutils literal notranslate"><span class="pre">gbe_enable</span></code>
 field. For boards with an Intel GbE device, a modification of <code class="docutils literal notranslate"><span class="pre">refcode</span></code> is needed,
 otherwise <code class="docutils literal notranslate"><span class="pre">refcode</span></code> will disable the Intel GbE device and the OS cannot find it
@@ -165,7 +167,7 @@ to 0x01 to make the refcode support Intel GbE:</p>
 </div>
 </section>
 <section id="use-broadwell-soc-code-for-haswell-ult-boards">
-<h2>Use Broadwell SoC code for Haswell ULT boards<a class="headerlink" href="#use-broadwell-soc-code-for-haswell-ult-boards" title="Link to this heading"></a></h2>
+<h2>Use Broadwell SoC code for Haswell ULT boards<a class="headerlink" href="#use-broadwell-soc-code-for-haswell-ult-boards" title="Permalink to this heading"></a></h2>
 <p>Haswell ULT boards can use Broadwell SoC code. To use Broadwell code for Haswell ULT
 boards, <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> file and <code class="docutils literal notranslate"><span class="pre">pei_data</span></code> code need to be ported to Broadwell, and
 build the code with Broadwell <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> and <code class="docutils literal notranslate"><span class="pre">refcode</span></code> instead of using Haswell <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code>.</p>

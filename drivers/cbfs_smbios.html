@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CBFS SMBIOS hooks &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>CBFS SMBIOS hooks &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -122,11 +124,11 @@
            <div itemprop="articleBody">
              
   <section id="cbfs-smbios-hooks">
-<h1>CBFS SMBIOS hooks<a class="headerlink" href="#cbfs-smbios-hooks" title="Link to this heading"></a></h1>
+<h1>CBFS SMBIOS hooks<a class="headerlink" href="#cbfs-smbios-hooks" title="Permalink to this heading"></a></h1>
 <p>The document describes the coreboot options how to make CBFS files populate
 platform-unique SMBIOS data.</p>
 <section id="smbios-serial-number">
-<h2>SMBIOS Serial Number<a class="headerlink" href="#smbios-serial-number" title="Link to this heading"></a></h2>
+<h2>SMBIOS Serial Number<a class="headerlink" href="#smbios-serial-number" title="Permalink to this heading"></a></h2>
 <p>The <a class="reference external" href="https://www.dmtf.org/standards/smbios">DMTF SMBIOS specification</a> defines a field in the type 1 System
 Information and type 2 Baseboard Information called Serial Number. It
 is a null-terminated string field assumed to be unique per platform. Certain
@@ -135,7 +137,7 @@ data, e.g. Lenovo Thinkpads (see DRIVER_LENOVO_SERIALS). This driver aims to
 provide an option to populate the Serial Numbers from CBFS for boards that
 can’t generate the it from any source.</p>
 <section id="usage">
-<h3>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h3>
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h3>
 <p>In the coreboot configuration menu (<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code>) go to <code class="docutils literal notranslate"><span class="pre">Generic</span> <span class="pre">Drivers</span></code>
 and select an option <code class="docutils literal notranslate"><span class="pre">Serial</span> <span class="pre">number</span> <span class="pre">in</span> <span class="pre">CBFS</span></code>. The Kconfig system will enable
 <code class="docutils literal notranslate"><span class="pre">DRIVERS_GENERIC_CBFS_SERIAL</span></code> and the relevant code parts will be compiled into
@@ -194,7 +196,7 @@ Number, your board code should override the default
 </section>
 </section>
 <section id="smbios-system-uuid">
-<h2>SMBIOS System UUID<a class="headerlink" href="#smbios-system-uuid" title="Link to this heading"></a></h2>
+<h2>SMBIOS System UUID<a class="headerlink" href="#smbios-system-uuid" title="Permalink to this heading"></a></h2>
 <p>The <a class="reference external" href="https://www.dmtf.org/standards/smbios">DMTF SMBIOS specification</a> defines a field in the type 1 System
 Information Structure called System UUID. It is a 16 bytes value compliant with
 <a class="reference external" href="https://www.ietf.org/rfc/rfc4122.txt">RFC4122</a> and assumed to be unique per platform. Certain mainboard ports have
@@ -202,7 +204,7 @@ SMBIOS hooks to generate the UUID from external data, e.g. Lenovo Thinkpads
 (see DRIVER_LENOVO_SERIALS). This driver aims to provide an option to populate
 the UUID from CBFS for boards that can’t generate the UUID from any source.</p>
 <section id="id1">
-<h3>Usage<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<h3>Usage<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <p>In the coreboot configuration menu (<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code>) go to <code class="docutils literal notranslate"><span class="pre">Generic</span> <span class="pre">Drivers</span></code>
 and select an option <code class="docutils literal notranslate"><span class="pre">System</span> <span class="pre">UUID</span> <span class="pre">in</span> <span class="pre">CBFS</span></code>. The Kconfig system will enable
 <code class="docutils literal notranslate"><span class="pre">DRIVERS_GENERIC_CBFS_UUID</span></code> and the relevant code parts will be compiled into

@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vboot - Verified Boot Support &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>vboot - Verified Boot Support &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -123,7 +125,7 @@
            <div itemprop="articleBody">
              
   <section id="vboot-verified-boot-support">
-<h1>vboot - Verified Boot Support<a class="headerlink" href="#vboot-verified-boot-support" title="Link to this heading"></a></h1>
+<h1>vboot - Verified Boot Support<a class="headerlink" href="#vboot-verified-boot-support" title="Permalink to this heading"></a></h1>
 <p>Google’s verified boot support consists of:</p>
 <ul class="simple">
 <li><p>A root of trust</p></li>
@@ -142,7 +144,7 @@
 </div>
 <hr class="docutils" />
 <section id="root-of-trust">
-<h2>Root of Trust<a class="headerlink" href="#root-of-trust" title="Link to this heading"></a></h2>
+<h2>Root of Trust<a class="headerlink" href="#root-of-trust" title="Permalink to this heading"></a></h2>
 <p>When using vboot, the root-of-trust is basically the read-only portion of the
 SPI flash. The following items factor into the trust equation:</p>
 <ul class="simple">
@@ -167,7 +169,7 @@ manufactured state during the system’s lifetime.</p>
 </section>
 <hr class="docutils" />
 <section id="firmware-layout">
-<h2>Firmware Layout<a class="headerlink" href="#firmware-layout" title="Link to this heading"></a></h2>
+<h2>Firmware Layout<a class="headerlink" href="#firmware-layout" title="Permalink to this heading"></a></h2>
 <p>Several sections are added to the firmware layout to support vboot:</p>
 <ul class="simple">
 <li><p>Read-only section</p></li>
@@ -177,7 +179,7 @@ manufactured state during the system’s lifetime.</p>
 </ul>
 <p>The following sections describe the various portions of the flash layout.</p>
 <section id="read-only-section">
-<h3>Read-Only Section<a class="headerlink" href="#read-only-section" title="Link to this heading"></a></h3>
+<h3>Read-Only Section<a class="headerlink" href="#read-only-section" title="Permalink to this heading"></a></h3>
 <p>The read-only section contains a coreboot file system (CBFS) that contains all
 of the boot firmware necessary to perform recovery for the system. This firmware
 is typically protected using the write-protect pin on the SPI flash part and
@@ -193,13 +195,13 @@ the entire read-only section which consists of:</p>
 </ul>
 </section>
 <section id="google-binary-blob-gbb-area">
-<h3>Google Binary Blob (GBB) Area<a class="headerlink" href="#google-binary-blob-gbb-area" title="Link to this heading"></a></h3>
+<h3>Google Binary Blob (GBB) Area<a class="headerlink" href="#google-binary-blob-gbb-area" title="Permalink to this heading"></a></h3>
 <p>The GBB area is part of the read-only section. This area contains a 4096 or 8192
 bit public root RSA key that is used to verify the <em>VBLOCK</em> area to obtain the
 firmware signing key.</p>
 </section>
 <section id="recovery-firmware">
-<h3>Recovery Firmware<a class="headerlink" href="#recovery-firmware" title="Link to this heading"></a></h3>
+<h3>Recovery Firmware<a class="headerlink" href="#recovery-firmware" title="Permalink to this heading"></a></h3>
 <p>The recovery firmware is contained within a coreboot file system and consists of:</p>
 <ul class="simple">
 <li><p>reset vector</p></li>
@@ -228,7 +230,7 @@ image path. Part of the recovery is also to write the A and B areas of the SPI
 flash device to boot the system.</p>
 </section>
 <section id="read-write-section">
-<h3>Read/Write Section<a class="headerlink" href="#read-write-section" title="Link to this heading"></a></h3>
+<h3>Read/Write Section<a class="headerlink" href="#read-write-section" title="Permalink to this heading"></a></h3>
 <p>The read/write sections contain an area which contains the firmware signing
 key and signature and an area containing a coreboot file system with a subset
 of the firmware. The firmware files in <em>FW_MAIN_A</em> and <em>FW_MAIN_B</em> are:</p>
@@ -253,7 +255,7 @@ These files also produce the tables which get passed to the operating system.</p
 </section>
 <hr class="docutils" />
 <section id="firmware-updates">
-<h2>Firmware Updates<a class="headerlink" href="#firmware-updates" title="Link to this heading"></a></h2>
+<h2>Firmware Updates<a class="headerlink" href="#firmware-updates" title="Permalink to this heading"></a></h2>
 <p>The read/write sections exist in one of three states:</p>
 <ul class="simple">
 <li><p>Invalid</p></li>
@@ -283,7 +285,7 @@ corrupted.</p>
 </section>
 <hr class="docutils" />
 <section id="build-flags">
-<h2>Build Flags<a class="headerlink" href="#build-flags" title="Link to this heading"></a></h2>
+<h2>Build Flags<a class="headerlink" href="#build-flags" title="Permalink to this heading"></a></h2>
 <p>The following <em>Kconfig</em> values need to be selected to enable vboot:</p>
 <ul class="simple">
 <li><p>COLLECT_TIMESTAMPS</p></li>
@@ -325,7 +327,7 @@ this list.</p>
 </section>
 <hr class="docutils" />
 <section id="signing-the-coreboot-image">
-<h2>Signing the coreboot Image<a class="headerlink" href="#signing-the-coreboot-image" title="Link to this heading"></a></h2>
+<h2>Signing the coreboot Image<a class="headerlink" href="#signing-the-coreboot-image" title="Permalink to this heading"></a></h2>
 <p>The following command script is an example of how to sign the coreboot image
 file. This script is used on the Intel Galileo board and creates the <em>GBB</em> area
 and inserts it into the coreboot image. It also updates the <em>VBLOCK</em> areas with
@@ -410,7 +412,7 @@ build/coreboot.signed.rom<span class="w">                           </span><span
 </section>
 <hr class="docutils" />
 <section id="boot-flow">
-<h2>Boot Flow<a class="headerlink" href="#boot-flow" title="Link to this heading"></a></h2>
+<h2>Boot Flow<a class="headerlink" href="#boot-flow" title="Permalink to this heading"></a></h2>
 <p>The reset vector exist in the read-only area and points to the bootblock
 entry point. The only copy of the bootblock exists in the read-only area
 of the SPI flash. Verstage may be part of the bootblock or a separate stage.
@@ -429,14 +431,14 @@ not valid vboot falls back to the read-only area to boot into system recovery.</
 </section>
 <hr class="docutils" />
 <section id="chromebook-special-features">
-<h2>Chromebook Special Features<a class="headerlink" href="#chromebook-special-features" title="Link to this heading"></a></h2>
+<h2>Chromebook Special Features<a class="headerlink" href="#chromebook-special-features" title="Permalink to this heading"></a></h2>
 <p>Google’s Chromebooks have some special features:</p>
 <ul class="simple">
 <li><p>Developer mode</p></li>
 <li><p>Write-protect screw</p></li>
 </ul>
 <section id="developer-mode">
-<h3>Developer Mode<a class="headerlink" href="#developer-mode" title="Link to this heading"></a></h3>
+<h3>Developer Mode<a class="headerlink" href="#developer-mode" title="Permalink to this heading"></a></h3>
 <p>Developer mode allows the user to use coreboot to boot another operating system.
 This may be a another (beta) version of ChromeOS, or another flavor of
 GNU/Linux. Use of developer mode does not void the system warranty. Upon entry
@@ -445,7 +447,7 @@ This prevents someone from entering developer mode to subvert the system
 security to access files on the local system or cloud.</p>
 </section>
 <section id="write-protect-screw">
-<h3>Write Protect Screw<a class="headerlink" href="#write-protect-screw" title="Link to this heading"></a></h3>
+<h3>Write Protect Screw<a class="headerlink" href="#write-protect-screw" title="Permalink to this heading"></a></h3>
 <p>Chromebooks have a write-protect screw which provides the ground to the
 write-protect pin of the SPI flash.
 Google specifically did this to allow the manufacturing line and advanced

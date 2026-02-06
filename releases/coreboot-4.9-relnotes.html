@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.9 release notes &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.9 release notes &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -146,7 +148,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-9-release-notes">
-<h1>coreboot 4.9 release notes<a class="headerlink" href="#coreboot-4-9-release-notes" title="Link to this heading"></a></h1>
+<h1>coreboot 4.9 release notes<a class="headerlink" href="#coreboot-4-9-release-notes" title="Permalink to this heading"></a></h1>
 <p>The 4.9 release covers commit 532b8d5f25 to commit 7f520c8fe6
 There is a pgp signed 4.9 tag in the git repository, and a branch will
 be created as needed.</p>
@@ -161,7 +163,7 @@ coreboot project, community and code with their effort, no matter if
 through development, review, testing, documentation or by helping people
 asking questions on our venues like IRC or our mailing list.</p>
 <section id="clean-up">
-<h2>Clean up<a class="headerlink" href="#clean-up" title="Link to this heading"></a></h2>
+<h2>Clean up<a class="headerlink" href="#clean-up" title="Permalink to this heading"></a></h2>
 <p>If there’s any topic to give to this release, “clean up” might be the
 most appropriate: There was lots of effort to bring the codebase into
 compliance with our coding style, to remove old idioms that we’d like
@@ -179,7 +181,7 @@ infrastructure we have for automated build tests and we’ve seen quite
 some activity in that space as well.</p>
 </section>
 <section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h2>
 <p>Since the last release we also moved the documentation into the
 repository. No need for a special wiki account to edit the documentation,
 and by colocating sources and documentation, it’s easier to keep the
@@ -190,7 +192,7 @@ site</a> that is rendered from coreboot.git’s
 Documentation/ directory.</p>
 </section>
 <section id="blobs-handling">
-<h2>Blobs handling<a class="headerlink" href="#blobs-handling" title="Link to this heading"></a></h2>
+<h2>Blobs handling<a class="headerlink" href="#blobs-handling" title="Permalink to this heading"></a></h2>
 <p>Another big change is in our blobs handling: Given that Intel now
 provides a reasonably licensed repository with FSP binaries, we were
 able to mirror it to coreboot.org and integrate it in the build system.
@@ -200,7 +202,7 @@ that depend on Intel’s proprietary init code.</p>
 with the <code class="docutils literal notranslate"><span class="pre">USE_BLOBS</span></code> options.</p>
 </section>
 <section id="deprecations">
-<h2>Deprecations<a class="headerlink" href="#deprecations" title="Link to this heading"></a></h2>
+<h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this heading"></a></h2>
 <p>One of the first changes to coreboot after the 4.8 release was to remove
 boards that didn’t support certain new features and were apparently
 unmaintained, as discussed in the release notes of coreboot 4.6.</p>
@@ -216,7 +218,7 @@ so the next deprecation cycle may be announced with 4.10 to occur after
 4.11 is released, in late 2019.</p>
 </section>
 <section id="general-changes">
-<h2>General changes<a class="headerlink" href="#general-changes" title="Link to this heading"></a></h2>
+<h2>General changes<a class="headerlink" href="#general-changes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Various code cleanups</p>
 <ul>
@@ -245,7 +247,7 @@ to POWER8</p></li>
 </ul>
 </section>
 <section id="added-56-mainboards">
-<h2>Added 56 mainboards<a class="headerlink" href="#added-56-mainboards" title="Link to this heading"></a></h2>
+<h2>Added 56 mainboards<a class="headerlink" href="#added-56-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>ASROCK G41C-GS</p></li>
 <li><p>ASROCK G41M-GS</p></li>
@@ -304,7 +306,7 @@ to POWER8</p></li>
 </ul>
 </section>
 <section id="dropped-71-mainboards">
-<h2>Dropped 71 mainboards<a class="headerlink" href="#dropped-71-mainboards" title="Link to this heading"></a></h2>
+<h2>Dropped 71 mainboards<a class="headerlink" href="#dropped-71-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>AAEON PFM-540I REVB</p></li>
 <li><p>AMD DB800</p></li>
@@ -378,7 +380,7 @@ to POWER8</p></li>
 </ul>
 </section>
 <section id="cpu-changes">
-<h2>CPU changes<a class="headerlink" href="#cpu-changes" title="Link to this heading"></a></h2>
+<h2>CPU changes<a class="headerlink" href="#cpu-changes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>cpu/intel/model_2065x,206ax,haswell: Switch to <code class="docutils literal notranslate"><span class="pre">POSTCAR_STAGE</span></code></p></li>
 <li><p>cpu/intel/slot_1: Switch to different CAR setup</p></li>
@@ -386,14 +388,14 @@ to POWER8</p></li>
 </ul>
 </section>
 <section id="soc-changes">
-<h2>SoC changes<a class="headerlink" href="#soc-changes" title="Link to this heading"></a></h2>
+<h2>SoC changes<a class="headerlink" href="#soc-changes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Added Cavium CN81xx, Intel Ice Lake and Mediatek MT8183</p></li>
 <li><p>Dropped Broadcom Cygnus, Lowrisc and Marvell mvmap2315</p></li>
 </ul>
 </section>
 <section id="northbridge-changes">
-<h2>Northbridge changes<a class="headerlink" href="#northbridge-changes" title="Link to this heading"></a></h2>
+<h2>Northbridge changes<a class="headerlink" href="#northbridge-changes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Dropped AMD K8, VIA CN700, VIA CX700, VIA VX800 because they lack <code class="docutils literal notranslate"><span class="pre">EARLY_CBMEM</span></code> support</p></li>
 <li><p>intel/e7505: Moved to <code class="docutils literal notranslate"><span class="pre">EARLY_CBMEM</span></code></p></li>
@@ -405,7 +407,7 @@ to POWER8</p></li>
 </ul>
 </section>
 <section id="southbridge-changes">
-<h2>Southbridge changes<a class="headerlink" href="#southbridge-changes" title="Link to this heading"></a></h2>
+<h2>Southbridge changes<a class="headerlink" href="#southbridge-changes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>sb/intel/i82801{g,i,j}x, lynxpoint: Use the common ACPI pirq generator</p></li>
 <li><p>sb/intel/i82801{g,i,j}x: Use common code to set up SMM and for the smihandler</p></li>
@@ -413,14 +415,14 @@ to POWER8</p></li>
 </ul>
 </section>
 <section id="payload-changes">
-<h2>Payload changes<a class="headerlink" href="#payload-changes" title="Link to this heading"></a></h2>
+<h2>Payload changes<a class="headerlink" href="#payload-changes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Support initrd in uImage/FIT to be placed above 4GiB</p></li>
 <li><p>Added documentation for uImage/FIT payloads</p></li>
 </ul>
 </section>
 <section id="toolchain">
-<h2>Toolchain<a class="headerlink" href="#toolchain" title="Link to this heading"></a></h2>
+<h2>Toolchain<a class="headerlink" href="#toolchain" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Update to gcc 8.1.0, binutils 2.30, IASL 20180810, clang 6</p></li>
 </ul>

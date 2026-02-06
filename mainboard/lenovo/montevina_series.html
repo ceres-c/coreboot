@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lenovo X200 / T400 / T500 / X301 common &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Lenovo X200 / T400 / T500 / X301 common &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -154,7 +156,7 @@
            <div itemprop="articleBody">
              
   <section id="lenovo-x200-t400-t500-x301-common">
-<h1>Lenovo X200 / T400 / T500 / X301 common<a class="headerlink" href="#lenovo-x200-t400-t500-x301-common" title="Link to this heading"></a></h1>
+<h1>Lenovo X200 / T400 / T500 / X301 common<a class="headerlink" href="#lenovo-x200-t400-t500-x301-common" title="Permalink to this heading"></a></h1>
 <p>These models are sold with either 8 MiB or 4 MiB flash chip. You can identify
 the chip in your machine through flashrom:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal
@@ -163,7 +165,7 @@ the chip in your machine through flashrom:</p>
 <p>Note that this does not allow you to determine whether the chip is in a SOIC-8
 or a SOIC-16 package.</p>
 <section id="installing-with-me-firmware">
-<h2>Installing with ME firmware<a class="headerlink" href="#installing-with-me-firmware" title="Link to this heading"></a></h2>
+<h2>Installing with ME firmware<a class="headerlink" href="#installing-with-me-firmware" title="Permalink to this heading"></a></h2>
 <p>To install coreboot and keep ME working, you don’t need to do anything special
 with the flash descriptor. Only flash the <code class="docutils literal notranslate"><span class="pre">bios</span></code> region externally and don’t
 touch any other regions:</p>
@@ -172,7 +174,7 @@ touch any other regions:</p>
 </div>
 </section>
 <section id="installing-without-me-firmware">
-<h2>Installing without ME firmware<a class="headerlink" href="#installing-without-me-firmware" title="Link to this heading"></a></h2>
+<h2>Installing without ME firmware<a class="headerlink" href="#installing-without-me-firmware" title="Permalink to this heading"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>ThinkPad R500</strong> has slightly different flash layout (it doesn’t have
@@ -195,7 +197,7 @@ payloads.</p>
 your backup with <strong>ifdtool</strong></a>, or
 <a class="reference external" href="#using-checked-in-flash-descriptor-via-bincfg">use one from the coreboot repository</a>.</p>
 <section id="modifying-flash-descriptor-using-ifdtool">
-<h3>Modifying flash descriptor using ifdtool<a class="headerlink" href="#modifying-flash-descriptor-using-ifdtool" title="Link to this heading"></a></h3>
+<h3>Modifying flash descriptor using ifdtool<a class="headerlink" href="#modifying-flash-descriptor-using-ifdtool" title="Permalink to this heading"></a></h3>
 <p>Pick the layout according to your chip size from the table below and save it to
 the <code class="docutils literal notranslate"><span class="pre">new_layout.txt</span></code> file:</p>
 <table class="docutils align-default">
@@ -253,7 +255,7 @@ ifdtool will mark those as unused.</p>
 <p>Continue to the <a class="reference external" href="#configuring-coreboot">Configuring coreboot</a> section.</p>
 </section>
 <section id="using-checked-in-flash-descriptor-via-bincfg">
-<h3>Using checked-in flash descriptor via bincfg<a class="headerlink" href="#using-checked-in-flash-descriptor-via-bincfg" title="Link to this heading"></a></h3>
+<h3>Using checked-in flash descriptor via bincfg<a class="headerlink" href="#using-checked-in-flash-descriptor-via-bincfg" title="Permalink to this heading"></a></h3>
 <p>There is a copy of an X200’s flash descriptor checked into the coreboot
 repository. It is supposed to work for the T400/T500 as well. The descriptor
 can be converted back to its binary form using a tool called <strong>bincfg</strong>. Go
@@ -292,7 +294,7 @@ to <code class="docutils literal notranslate"><span class="pre">util/bincfg</spa
 <p>It will be saved to the <code class="docutils literal notranslate"><span class="pre">flashregion_0_fd.bin</span></code> file.</p>
 </section>
 <section id="configuring-coreboot">
-<h3>Configuring coreboot<a class="headerlink" href="#configuring-coreboot" title="Link to this heading"></a></h3>
+<h3>Configuring coreboot<a class="headerlink" href="#configuring-coreboot" title="Permalink to this heading"></a></h3>
 <p>Now configure coreboot. You need to select correct chip size and specify paths
 to flash descriptor and gbe dump.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Mainboard</span> <span class="o">---&gt;</span>
@@ -312,7 +314,7 @@ to flash descriptor and gbe dump.</p>
 </section>
 </section>
 <section id="flash-layout">
-<h2>Flash layout<a class="headerlink" href="#flash-layout" title="Link to this heading"></a></h2>
+<h2>Flash layout<a class="headerlink" href="#flash-layout" title="Permalink to this heading"></a></h2>
 <p>The flash layouts of the OEM firmware are as follows:</p>
 <table class="docutils align-default">
 <thead>

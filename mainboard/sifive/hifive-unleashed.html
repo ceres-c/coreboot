@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SiFive HiFive Unleashed &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>SiFive HiFive Unleashed &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -146,13 +148,13 @@
            <div itemprop="articleBody">
              
   <section id="sifive-hifive-unleashed">
-<h1>SiFive HiFive Unleashed<a class="headerlink" href="#sifive-hifive-unleashed" title="Link to this heading"></a></h1>
+<h1>SiFive HiFive Unleashed<a class="headerlink" href="#sifive-hifive-unleashed" title="Permalink to this heading"></a></h1>
 <p>This page describes how to run coreboot on the <a class="reference external" href="https://www.crowdsupply.com/sifive/hifive-unleashed">HiFive Unleashed</a> development
 board from <a class="reference external" href="https://www.sifive.com/">SiFive</a>, the first RISC-V board on the market with enough resources
 to run a multiuser operating system.</p>
 <p>For general setup instructions, please refer to the <a class="reference external" href="https://sifive.cdn.prismic.io/sifive%2Ffa3a584a-a02f-4fda-b758-a2def05f49f9_hifive-unleashed-getting-started-guide-v1p1.pdf">Getting Started Guide</a>.</p>
 <section id="todo">
-<h2>TODO<a class="headerlink" href="#todo" title="Link to this heading"></a></h2>
+<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this heading"></a></h2>
 <p>The following things are still missing from this coreboot port:</p>
 <ul class="simple">
 <li><p>Support running romstage from flash (fix stack) to support boot mode 1</p></li>
@@ -165,11 +167,11 @@ to run a multiuser operating system.</p>
 </ul>
 </section>
 <section id="configuration">
-<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h2>
 <p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code> and select <em>SiFive</em>/<em>HiFive Unleashed</em> in the <em>Mainboard</em>
 menu.</p>
 <section id="boot-modes">
-<h3>Boot modes<a class="headerlink" href="#boot-modes" title="Link to this heading"></a></h3>
+<h3>Boot modes<a class="headerlink" href="#boot-modes" title="Permalink to this heading"></a></h3>
 <p>A total of 16 boot modes can be configured using the switches labeled <code class="docutils literal notranslate"><span class="pre">MSEL0</span></code>
 through <code class="docutils literal notranslate"><span class="pre">MSEL3</span></code>. The most important ones are as follows:</p>
 <ul class="simple">
@@ -181,16 +183,16 @@ SPI flash</p></li>
 </section>
 </section>
 <section id="flashing-coreboot">
-<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Permalink to this heading"></a></h2>
 <p>The HiFive Unleashed has an 32 MiB SPI flash (<strong>ISSI IS25WP256D</strong>), that can be
 programmed from within Linux running on the board, via USB/JTAG, or directly
 with an SPI programmer.</p>
 <section id="internal-programming">
-<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Link to this heading"></a></h3>
+<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Permalink to this heading"></a></h3>
 <p>The SPI flash can be accessed as <code class="docutils literal notranslate"><span class="pre">/dev/mtd0</span></code> from Linux.</p>
 </section>
 <section id="usb-jtag">
-<h3>USB/JTAG<a class="headerlink" href="#usb-jtag" title="Link to this heading"></a></h3>
+<h3>USB/JTAG<a class="headerlink" href="#usb-jtag" title="Permalink to this heading"></a></h3>
 <p>To program the flash via USB/JTAG, connect the USB port to a computer. If the
 board is powered on, two new serial ports, for example <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB0</span></code> and
 <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB1</span></code> will appear. The first is JTAG, and the second is connected to
@@ -214,13 +216,13 @@ considerably by building/flashing a smaller image; OpenOCD does not check if
 the image and the flash have the same size.</p>
 </section>
 <section id="external-programming">
-<h3>External programming<a class="headerlink" href="#external-programming" title="Link to this heading"></a></h3>
+<h3>External programming<a class="headerlink" href="#external-programming" title="Permalink to this heading"></a></h3>
 <p>External programming with an SPI adapter and <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a> may work, but has not
 been tested. Please study the <a class="reference external" href="https://sifive.cdn.prismic.io/sifive%2Ff7173056-bf37-4407-87cb-d5ab76abf61a_hifive-unleashed-a00-schematics.pdf">schematics</a> before going this route.</p>
 </section>
 </section>
 <section id="error-codes">
-<h2>Error codes<a class="headerlink" href="#error-codes" title="Link to this heading"></a></h2>
+<h2>Error codes<a class="headerlink" href="#error-codes" title="Permalink to this heading"></a></h2>
 <p>The zeroth-stage bootloader (ZSBL) in ROM1 can print error codes on the serial
 console in certain situations.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Error</span> <span class="n">codes</span> <span class="n">are</span> <span class="n">formatted</span> <span class="k">as</span> <span class="n">follows</span><span class="p">:</span>

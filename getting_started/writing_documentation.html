@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot documentation guidelines &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot documentation guidelines &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -126,7 +128,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-documentation-guidelines">
-<h1>coreboot documentation guidelines<a class="headerlink" href="#coreboot-documentation-guidelines" title="Link to this heading"></a></h1>
+<h1>coreboot documentation guidelines<a class="headerlink" href="#coreboot-documentation-guidelines" title="Permalink to this heading"></a></h1>
 <blockquote>
 <div><p>Documentation is like sex: when it is good, it is very, very good;
 and when it is bad, it is better than nothing.</p>
@@ -136,12 +138,12 @@ firmware development is the missing documentation. In this document
 you will get a brief introduction how to write, submit and publish
 documentation to coreboot.</p>
 <section id="preparations">
-<h2>Preparations<a class="headerlink" href="#preparations" title="Link to this heading"></a></h2>
+<h2>Preparations<a class="headerlink" href="#preparations" title="Permalink to this heading"></a></h2>
 <p>coreboot uses <a class="reference external" href="http://www.sphinx-doc.org/en/master/">Sphinx</a> documentation tool. We prefer the markdown format
 over reStructuredText so only embedded ReST is supported. Checkout the
 <a class="reference external" href="https://www.markdownguide.org/">Markdown Guide</a> for more information.</p>
 <section id="option-1-use-the-docker-image">
-<h3>option 1: Use the docker image<a class="headerlink" href="#option-1-use-the-docker-image" title="Link to this heading"></a></h3>
+<h3>option 1: Use the docker image<a class="headerlink" href="#option-1-use-the-docker-image" title="Permalink to this heading"></a></h3>
 <p>The easiest way to build the documentation is using a docker image.
 To build the image run the following in the base directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">-</span><span class="n">C</span> <span class="n">util</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span> <span class="n">doc</span><span class="o">.</span><span class="n">coreboot</span><span class="o">.</span><span class="n">org</span>
@@ -163,7 +165,7 @@ the correct permissions before running docker.</p>
 <p>On the host machine, open a browser to the address <a class="reference external" href="http://0.0.0.0:8000">http://0.0.0.0:8000</a>.</p>
 </section>
 <section id="option-2-install-sphinx">
-<h3>option 2: Install Sphinx<a class="headerlink" href="#option-2-install-sphinx" title="Link to this heading"></a></h3>
+<h3>option 2: Install Sphinx<a class="headerlink" href="#option-2-install-sphinx" title="Permalink to this heading"></a></h3>
 <p>Please follow this official <a class="reference external" href="http://www.sphinx-doc.org/en/stable/install.html">guide</a> to install sphinx.
 You will also need python-recommonmark for sphinx to be able to handle
 markdown documentation.</p>
@@ -187,12 +189,12 @@ this command in there</p>
 <code class="docutils literal notranslate"><span class="pre">Documentation/_build</span></code> now.</p>
 </section>
 <section id="optional">
-<h3>Optional<a class="headerlink" href="#optional" title="Link to this heading"></a></h3>
+<h3>Optional<a class="headerlink" href="#optional" title="Permalink to this heading"></a></h3>
 <p>Install <a class="reference external" href="https://github.com/GaretJax/sphinx-autobuild">sphinx-autobuild</a> for rebuilding markdown/rst sources on the fly!</p>
 </section>
 </section>
 <section id="basic-and-simple-rules">
-<h2>Basic and simple rules<a class="headerlink" href="#basic-and-simple-rules" title="Link to this heading"></a></h2>
+<h2>Basic and simple rules<a class="headerlink" href="#basic-and-simple-rules" title="Permalink to this heading"></a></h2>
 <p>The following rules should be followed in order to get it at least reviewed
 on <a class="reference external" href="https://review.coreboot.org">review.coreboot.org</a>.</p>
 <p>Documentation:</p>
@@ -215,12 +217,12 @@ reference.</p></li>
 </ol>
 </section>
 <section id="referencing-markdown-documents">
-<h2>Referencing markdown documents<a class="headerlink" href="#referencing-markdown-documents" title="Link to this heading"></a></h2>
+<h2>Referencing markdown documents<a class="headerlink" href="#referencing-markdown-documents" title="Permalink to this heading"></a></h2>
 <p>Starting with Sphinx 1.6 recommonmark’s <em>auto_doc_ref</em> feature is broken.
 To reference documents use the TOC tree or inline RST code.</p>
 </section>
 <section id="markdown-and-tables">
-<h2>Markdown and Tables<a class="headerlink" href="#markdown-and-tables" title="Link to this heading"></a></h2>
+<h2>Markdown and Tables<a class="headerlink" href="#markdown-and-tables" title="Permalink to this heading"></a></h2>
 <p>Under Sphinx markdown tables are not supported. Therefore you can use following
 code block to write tables in reStructuredText and embed them into the markdown:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```eval_rst
@@ -240,7 +242,7 @@ code block to write tables in reStructuredText and embed them into the markdown:
 </div>
 </section>
 <section id="toctree">
-<h2>TocTree<a class="headerlink" href="#toctree" title="Link to this heading"></a></h2>
+<h2>TocTree<a class="headerlink" href="#toctree" title="Permalink to this heading"></a></h2>
 <p>To make sure that all documents are included into the final documentation, you
 must reference each document from at least one <em>toctree</em>. The <em>toctree</em> must
 only reference files in the same folder or in subfolders !
@@ -262,7 +264,7 @@ you’ll see the following warning:
 <strong>WARNING: document isn’t included in any toctree</strong></p>
 </section>
 <section id="csv">
-<h2>CSV<a class="headerlink" href="#csv" title="Link to this heading"></a></h2>
+<h2>CSV<a class="headerlink" href="#csv" title="Permalink to this heading"></a></h2>
 <p>You can import CSV files and let sphinx automatically convert them to human
 readable tables, using the following reStructuredText snipped:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```eval_rst

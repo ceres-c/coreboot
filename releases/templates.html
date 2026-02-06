@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Communication templates related to release management &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Communication templates related to release management &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -34,6 +33,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -100,9 +102,9 @@
            <div itemprop="articleBody">
              
   <section id="communication-templates-related-to-release-management">
-<h1>Communication templates related to release management<a class="headerlink" href="#communication-templates-related-to-release-management" title="Link to this heading"></a></h1>
+<h1>Communication templates related to release management<a class="headerlink" href="#communication-templates-related-to-release-management" title="Permalink to this heading"></a></h1>
 <section id="deprecation-notices">
-<h2>Deprecation notices<a class="headerlink" href="#deprecation-notices" title="Link to this heading"></a></h2>
+<h2>Deprecation notices<a class="headerlink" href="#deprecation-notices" title="Permalink to this heading"></a></h2>
 <p>Deprecation notices are part of release notes to act as a warning: at some
 point in the future some part of coreboot gets removed. That point must be
 at least 6 months after the release of the notice and it must be right after
@@ -132,7 +134,7 @@ the deprecation plan, there is a call to action to save a couple of devices
 from becoming officially unsupported.</p>
 <p>As such, consider the following template when announcing a deprecation:</p>
 <section id="the-thing-to-remove">
-<h3>The Thing to remove<a class="headerlink" href="#the-thing-to-remove" title="Link to this heading"></a></h3>
+<h3>The Thing to remove<a class="headerlink" href="#the-thing-to-remove" title="Permalink to this heading"></a></h3>
 <p>A short description of the Thing slated for removal.</p>
 <p>A short rationale why it’s being removed (e.g. new and better Thing exists
 in parallel; new Thing already demonstrated to work in this many releases;
@@ -140,7 +142,7 @@ removing Thing enables this or that improvement)</p>
 <p>Timeline: Announced here, Thing will be removed right after the release X
 months out (where X &gt;= 6)</p>
 <section id="call-to-action">
-<h4>Call to action<a class="headerlink" href="#call-to-action" title="Link to this heading"></a></h4>
+<h4>Call to action<a class="headerlink" href="#call-to-action" title="Permalink to this heading"></a></h4>
 <p>Removing Thing requires work on a number of (boards, chipsets, …) that didn’t
 make the switch yet. The work approximately looks like this: (e.g. pointers to
 commits where a board has been successfully migrated from Thing to new Thing).</p>

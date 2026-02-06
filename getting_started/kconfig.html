@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kconfig in coreboot &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Kconfig in coreboot &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -189,9 +191,9 @@
            <div itemprop="articleBody">
              
   <section id="kconfig-in-coreboot">
-<h1>Kconfig in coreboot<a class="headerlink" href="#kconfig-in-coreboot" title="Link to this heading"></a></h1>
+<h1>Kconfig in coreboot<a class="headerlink" href="#kconfig-in-coreboot" title="Permalink to this heading"></a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p>Kconfig is a tool used in coreboot, Linux, and many other projects as the main
 configuration mechanism.  In coreboot, it allows a developer both to select
 which platform to build and to modify various features within the platform. The
@@ -214,12 +216,12 @@ select features, and allows the build to determine which files should be
 compiled and linked to the rom.</p>
 </section>
 <section id="kconfig-targets-in-make">
-<h2>Kconfig targets in Make<a class="headerlink" href="#kconfig-targets-in-make" title="Link to this heading"></a></h2>
+<h2>Kconfig targets in Make<a class="headerlink" href="#kconfig-targets-in-make" title="Permalink to this heading"></a></h2>
 <p>The Kconfig program in coreboot is built from source in util/kconfig. There are
 various targets in the makefile to build Kconfig in different ways. These give
 the user control over how to build the platform</p>
 <section id="front-end-configuration-targets">
-<h3>Front end configuration targets<a class="headerlink" href="#front-end-configuration-targets" title="Link to this heading"></a></h3>
+<h3>Front end configuration targets<a class="headerlink" href="#front-end-configuration-targets" title="Permalink to this heading"></a></h3>
 <p>These are the make targets that would be used to update the configuration of
 the platform.</p>
 <ul class="simple">
@@ -233,7 +235,7 @@ used as there is no way to save a partial config.</p></li>
 </ul>
 </section>
 <section id="targets-that-update-config-files">
-<h3>Targets that update config files<a class="headerlink" href="#targets-that-update-config-files" title="Link to this heading"></a></h3>
+<h3>Targets that update config files<a class="headerlink" href="#targets-that-update-config-files" title="Permalink to this heading"></a></h3>
 <p>These options are used to update the coreboot config files, typically .config.
 The target file can be changed with variables in the environment or on the make
 command line.</p>
@@ -251,17 +253,17 @@ how config files should be saved.</p></li>
 </ul>
 </section>
 <section id="targets-not-typically-used-in-coreboot">
-<h3>Targets not typically used in coreboot<a class="headerlink" href="#targets-not-typically-used-in-coreboot" title="Link to this heading"></a></h3>
+<h3>Targets not typically used in coreboot<a class="headerlink" href="#targets-not-typically-used-in-coreboot" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>localmodconfig, localnoconfig, randconfig, allyesconfig, allnoconfig - These
 are all used to generate various Kconfig files for testing.</p></li>
 </ul>
 </section>
 <section id="environment-variables-that-affect-kconfig">
-<h3>Environment Variables that affect Kconfig<a class="headerlink" href="#environment-variables-that-affect-kconfig" title="Link to this heading"></a></h3>
+<h3>Environment Variables that affect Kconfig<a class="headerlink" href="#environment-variables-that-affect-kconfig" title="Permalink to this heading"></a></h3>
 <p>These variables are typically set in the makefiles or on the make command line.</p>
 <section id="variables-added-to-the-coreboot-kconfig-source">
-<h4>Variables added to the coreboot Kconfig source<a class="headerlink" href="#variables-added-to-the-coreboot-kconfig-source" title="Link to this heading"></a></h4>
+<h4>Variables added to the coreboot Kconfig source<a class="headerlink" href="#variables-added-to-the-coreboot-kconfig-source" title="Permalink to this heading"></a></h4>
 <p>These variables were added to Kconfig specifically for coreboot and are not
 included in the Linux version.</p>
 <ul class="simple">
@@ -270,7 +272,7 @@ included in the Linux version.</p>
 </ul>
 </section>
 <section id="variables-used-to-control-the-input-and-output-config-files">
-<h4>Variables used to control the input and output config files<a class="headerlink" href="#variables-used-to-control-the-input-and-output-config-files" title="Link to this heading"></a></h4>
+<h4>Variables used to control the input and output config files<a class="headerlink" href="#variables-used-to-control-the-input-and-output-config-files" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>KBUILD_DEFCONFIG=inputname of the defconfig file.  This defaults to
 ‘configs/defconfig’ and is used by the ‘defconfig’ target.</p></li>
@@ -281,7 +283,7 @@ by most config type targets.</p></li>
 </ul>
 </section>
 <section id="variables-used-by-the-makefiles-for-controlling-kconfig">
-<h4>Variables used by the makefiles for controlling Kconfig<a class="headerlink" href="#variables-used-by-the-makefiles-for-controlling-kconfig" title="Link to this heading"></a></h4>
+<h4>Variables used by the makefiles for controlling Kconfig<a class="headerlink" href="#variables-used-by-the-makefiles-for-controlling-kconfig" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Kconfig=root Kconfig file.  This is set to ‘src/Kconfig’ in the coreboot
 makefile.</p></li>
@@ -297,7 +299,7 @@ in coreboot, and should not be changed.</p></li>
 </ul>
 </section>
 <section id="used-only-for-make-menuconfig">
-<h4>Used only for ‘make menuconfig’<a class="headerlink" href="#used-only-for-make-menuconfig" title="Link to this heading"></a></h4>
+<h4>Used only for ‘make menuconfig’<a class="headerlink" href="#used-only-for-make-menuconfig" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>MENUCONFIG_MODE=single_menu.  Set to “single_menu” to enable.  All other
 values disable the option.  This makes submenus appear below the menu option
@@ -314,7 +316,7 @@ these options:</p>
 </ul>
 </section>
 <section id="used-only-for-make-nconfig">
-<h4>Used only for ‘make nconfig’<a class="headerlink" href="#used-only-for-make-nconfig" title="Link to this heading"></a></h4>
+<h4>Used only for ‘make nconfig’<a class="headerlink" href="#used-only-for-make-nconfig" title="Permalink to this heading"></a></h4>
 <ul>
 <li><p>NCONFIG_MODE=single_menu</p>
 <p>Submenus appear below the menu option instead of opening a new screen.</p>
@@ -322,7 +324,7 @@ these options:</p>
 </ul>
 </section>
 <section id="unused-in-coreboot">
-<h4>Unused in coreboot<a class="headerlink" href="#unused-in-coreboot" title="Link to this heading"></a></h4>
+<h4>Unused in coreboot<a class="headerlink" href="#unused-in-coreboot" title="Permalink to this heading"></a></h4>
 <p>Although these variables are not used by coreboot, their values should be left
 at the default values.  Other values may have unexpected effects on the
 codebase.</p>
@@ -346,13 +348,13 @@ set by coreboot, the resulting file is not used.</p>
 </section>
 </section>
 <section id="kconfig-language">
-<h2>Kconfig Language<a class="headerlink" href="#kconfig-language" title="Link to this heading"></a></h2>
+<h2>Kconfig Language<a class="headerlink" href="#kconfig-language" title="Permalink to this heading"></a></h2>
 <p>The Kconfig language has about 30 keywords, some overloaded, and some with the
 same meaning.  Whitespace may have specific meaning, for example in the ‘help’
 keyword.  There are 8 logical operators for use in expressions, which allow
 values to be set based on other values.</p>
 <section id="terminology">
-<h3>Terminology<a class="headerlink" href="#terminology" title="Link to this heading"></a></h3>
+<h3>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Symbols - There are two types of symbols, “constant” and “non-constant”.</p>
 <ul>
@@ -394,18 +396,18 @@ visible in the front end.</p></li>
 </section>
 </section>
 <section id="keywords">
-<h2>Keywords<a class="headerlink" href="#keywords" title="Link to this heading"></a></h2>
+<h2>Keywords<a class="headerlink" href="#keywords" title="Permalink to this heading"></a></h2>
 <section id="bool">
-<h3>bool<a class="headerlink" href="#bool" title="Link to this heading"></a></h3>
+<h3>bool<a class="headerlink" href="#bool" title="Permalink to this heading"></a></h3>
 <p>The ‘bool’ keyword assigns a boolean type to a symbol. The allowable values for
 a boolean type are ‘n’ or ‘y’. The keyword can be followed by an optional prompt
 string which makes the symbol editable in one of the configuration front ends.</p>
 <section id="usage">
-<h4>Usage:<a class="headerlink" href="#usage" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h4>
 <p>bool [prompt] [if &lt;expr&gt;]</p>
 </section>
 <section id="example">
-<h4>Example:<a class="headerlink" href="#example" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#example" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="n">ANY_TOOLCHAIN</span>
     <span class="nb">bool</span> <span class="s2">&quot;Allow building with any toolchain&quot;</span>
     <span class="n">default</span> <span class="n">n</span>
@@ -414,7 +416,7 @@ string which makes the symbol editable in one of the configuration front ends.</
 </div>
 </section>
 <section id="notes">
-<h4>Notes:<a class="headerlink" href="#notes" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Putting the prompt after the ‘bool’ keyword is the same as using a ‘prompt’
 keyword later. See the ‘prompt’ keyword for more notes.</p></li>
@@ -427,7 +429,7 @@ configuration front end was run:
 </ul>
 </section>
 <section id="restrictions">
-<h4>Restrictions:<a class="headerlink" href="#restrictions" title="Link to this heading"></a></h4>
+<h4>Restrictions:<a class="headerlink" href="#restrictions" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>This keyword must be within a symbol definition block, started by the
 ‘config’ keyword.</p></li>
@@ -436,13 +438,13 @@ configuration front end was run:
 </section>
 <hr class="docutils" />
 <section id="choice">
-<h3>choice<a class="headerlink" href="#choice" title="Link to this heading"></a></h3>
+<h3>choice<a class="headerlink" href="#choice" title="Permalink to this heading"></a></h3>
 <p>This creates a selection list of one or more boolean symbols. For bools, only
 one of the symbols can be selected, and one will be be forced to be selected,
 either by a ‘default’ statement, or by selecting the first config option if
 there is no default value listed.</p>
 <section id="id1">
-<h4>Usage:<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
 <p>choice [symbol]</p>
 <ul class="simple">
 <li><p>[prompt]</p></li>
@@ -450,7 +452,7 @@ there is no default value listed.</p>
 </ul>
 </section>
 <section id="id2">
-<h4>Example:<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>choice TESTCHOICE
     prompt &quot;Test choice&quot;
     default TESTCHOICE2 if TESTCHOICE_DEFAULT_2
@@ -483,7 +485,7 @@ config TESTSTRING
 </div>
 </section>
 <section id="id3">
-<h4>Notes:<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>If no symbol is associated with a choice, then you can not have multiple
 definitions of that choice. If a symbol is associated to the choice, then
@@ -496,7 +498,7 @@ does not have an input prompt.</p></li>
 </ul>
 </section>
 <section id="id4">
-<h4>Restrictions:<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<h4>Restrictions:<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Symbols used for ‘choice’ entries must have input prompts defined using the
 ‘prompt’ keyword.</p></li>
@@ -507,18 +509,18 @@ statement, they can be defaulted using a second Kconfig symbol however.</p></li>
 </section>
 <hr class="docutils" />
 <section id="comment">
-<h3>comment<a class="headerlink" href="#comment" title="Link to this heading"></a></h3>
+<h3>comment<a class="headerlink" href="#comment" title="Permalink to this heading"></a></h3>
 <p>This keyword defines a line of text that is displayed to the user in the
 configuration frontend and is additionally written to the output files.</p>
 <section id="id5">
-<h4>Usage:<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
 <p>comment &lt;prompt&gt;</p>
 <ul class="simple">
 <li><p>[depends on]</p></li>
 </ul>
 </section>
 <section id="id6">
-<h4>Example:<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">CONSOLE_SERIAL</span>
     <span class="n">comment</span> <span class="s2">&quot;I/O mapped, 8250-compatible&quot;</span>
     <span class="n">depends</span> <span class="n">on</span> <span class="n">DRIVERS_UART_8250IO</span>
@@ -527,7 +529,7 @@ configuration frontend and is additionally written to the output files.</p>
 </div>
 </section>
 <section id="id7">
-<h4>Notes:<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Comments are only valid outside of config blocks, but can be within menu and
 if blocks.</p></li>
@@ -536,11 +538,11 @@ if blocks.</p></li>
 </section>
 <hr class="docutils" />
 <section id="config">
-<h3>config<a class="headerlink" href="#config" title="Link to this heading"></a></h3>
+<h3>config<a class="headerlink" href="#config" title="Permalink to this heading"></a></h3>
 <p>This is the keyword that starts a block defining a Kconfig symbol. The symbol
 modifiers follow the ‘config’ statement.</p>
 <section id="id8">
-<h4>Usage:<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h4>
 <p>config &lt;symbol&gt;</p>
 <ul class="simple">
 <li><p>[bool | def_bool | int | hex | string]</p></li>
@@ -552,7 +554,7 @@ modifiers follow the ‘config’ statement.</p>
 </ul>
 </section>
 <section id="id9">
-<h4>Example:<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="n">SEABIOS_PS2_TIMEOUT</span>
     <span class="n">prompt</span> <span class="s2">&quot;PS/2 keyboard timeout&quot;</span> <span class="k">if</span> <span class="n">PAYLOAD_SEABIOS</span>
     <span class="n">default</span> <span class="mi">0</span>
@@ -567,7 +569,7 @@ modifiers follow the ‘config’ statement.</p>
 </div>
 </section>
 <section id="id10">
-<h4>Notes:<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h4>
 <ul>
 <li><p>Non-coreboot projects also use the ‘tristate’ and ‘def_tristate’ types.</p></li>
 <li><p>Ends at the next Kconfig keyword that is not valid inside the config block:</p>
@@ -578,17 +580,17 @@ modifiers follow the ‘config’ statement.</p>
 </section>
 <hr class="docutils" />
 <section id="default">
-<h3>default<a class="headerlink" href="#default" title="Link to this heading"></a></h3>
+<h3>default<a class="headerlink" href="#default" title="Permalink to this heading"></a></h3>
 <p>The ‘default’ keyword assigns a value to a symbol in the case where no preset
 value exists, i.e. the symbol is not present and assigned in .config.  If there
 is no preset value, and no ‘default’ keyword, the user will be asked to enter a
 valid value when building coreboot.</p>
 <section id="id11">
-<h4>Usage:<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h4>
 <p>default &lt;expr&gt; [if &lt;expr&gt;]</p>
 </section>
 <section id="id12">
-<h4>Example:<a class="headerlink" href="#id12" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="n">GENERATE_MP_TABLE</span>
     <span class="n">prompt</span> <span class="s2">&quot;Generate an MP table&quot;</span> <span class="k">if</span> <span class="n">HAVE_MP_TABLE</span> <span class="o">||</span> <span class="n">DRIVERS_GENERIC_IOAPIC</span>
     <span class="nb">bool</span>
@@ -600,7 +602,7 @@ valid value when building coreboot.</p>
 </div>
 </section>
 <section id="id13">
-<h4>Notes:<a class="headerlink" href="#id13" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Kconfig defaults for symbols without a prompt <em>NEVER</em> affect existing legal
 symbol definitions in a .config file. The default only affects the symbol if
@@ -621,17 +623,17 @@ it visible in Kconfig tools like menuconfig.</p></li>
 </section>
 <hr class="docutils" />
 <section id="def-bool">
-<h3>def_bool<a class="headerlink" href="#def-bool" title="Link to this heading"></a></h3>
+<h3>def_bool<a class="headerlink" href="#def-bool" title="Permalink to this heading"></a></h3>
 <p>‘def_bool’ is similar to the ‘bool’ keyword in that it sets a symbol’s type to
 boolean. It lets you set the type and default value at the same time, instead
 of setting the type and the prompt at the same time. It’s typically used for
 symbols that don’t have prompts.</p>
 <section id="id14">
-<h4>Usage:<a class="headerlink" href="#id14" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h4>
 <p>def_bool &lt;expr&gt; [if &lt;expr&gt;]</p>
 </section>
 <section id="id15">
-<h4>Example:<a class="headerlink" href="#id15" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="n">EC_GOOGLE_CHROMEEC_LPC</span>
     <span class="n">depends</span> <span class="n">on</span> <span class="n">EC_GOOGLE_CHROMEEC</span> <span class="o">&amp;&amp;</span> <span class="n">ARCH_X86</span>
     <span class="n">def_bool</span> <span class="n">y</span>
@@ -642,7 +644,7 @@ symbols that don’t have prompts.</p>
 </div>
 </section>
 <section id="id16">
-<h4>Notes:<a class="headerlink" href="#id16" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Only the first type definition for each symbol is valid. Further matching
 definitions are fine, although unnecessary. Conflicting type definitions will
@@ -652,7 +654,7 @@ configuration front end was run:
 </ul>
 </section>
 <section id="id17">
-<h4>Restrictions:<a class="headerlink" href="#id17" title="Link to this heading"></a></h4>
+<h4>Restrictions:<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>This keyword must be within a symbol definition block, started by the
 ‘config’ keyword.</p></li>
@@ -661,17 +663,17 @@ configuration front end was run:
 </section>
 <hr class="docutils" />
 <section id="depends-on">
-<h3>depends on<a class="headerlink" href="#depends-on" title="Link to this heading"></a></h3>
+<h3>depends on<a class="headerlink" href="#depends-on" title="Permalink to this heading"></a></h3>
 <p>This defines a dependency for a menu entry, including symbols and comments.  It
 behaves the same as surrounding the menu entry with an if/endif block.  If the
 ‘depends on’ expression evaluates to false, the ‘prompt’ value will not be
 printed, and defaults will not be set based on this block.</p>
 <section id="id18">
-<h4>Usage:<a class="headerlink" href="#id18" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h4>
 <p>depends on &lt;expr&gt;</p>
 </section>
 <section id="id19">
-<h4>Example:<a class="headerlink" href="#id19" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>config COMMON_CBFS_SPI_WRAPPER
     bool
     default n
@@ -683,7 +685,7 @@ printed, and defaults will not be set based on this block.</p>
 </div>
 </section>
 <section id="id20">
-<h4>Notes:<a class="headerlink" href="#id20" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Symbols that have multiple ‘depends on’ sections as above are equivalent to a
 single ‘depends on’ statement with sections joined by &amp;&amp;.  So the above is
@@ -693,36 +695,36 @@ the same as “depends on SPI_FLASH &amp;&amp; ! ARCH_X86”.</p></li>
 </section>
 <hr class="docutils" />
 <section id="endchoice">
-<h3>endchoice<a class="headerlink" href="#endchoice" title="Link to this heading"></a></h3>
+<h3>endchoice<a class="headerlink" href="#endchoice" title="Permalink to this heading"></a></h3>
 <p>This ends a choice block. See the ‘choice’ keyword for more information and an
 example.</p>
 </section>
 <hr class="docutils" />
 <section id="endif">
-<h3>endif<a class="headerlink" href="#endif" title="Link to this heading"></a></h3>
+<h3>endif<a class="headerlink" href="#endif" title="Permalink to this heading"></a></h3>
 <p>This ends a block started by the ‘if’ keyword. See the ‘if’ keyword for more
 information and an example.</p>
 </section>
 <hr class="docutils" />
 <section id="endmenu">
-<h3>endmenu<a class="headerlink" href="#endmenu" title="Link to this heading"></a></h3>
+<h3>endmenu<a class="headerlink" href="#endmenu" title="Permalink to this heading"></a></h3>
 <p>This ends a menu block. See the ‘menu’ keyword for more information and an
 example.</p>
 </section>
 <hr class="docutils" />
 <section id="help">
-<h3>help<a class="headerlink" href="#help" title="Link to this heading"></a></h3>
+<h3>help<a class="headerlink" href="#help" title="Permalink to this heading"></a></h3>
 <p>The ‘help’ keyword defines the subsequent block of text as help for a config or
 choice block. The help block is started by the ‘help’ keyword on a line by
 itself, and the indentation level of the next line controls the end of the help
 block. The help ends on the next non-blank line that has an indentation level
 less than the indentation level of the first line following the ‘help’ keyword.</p>
 <section id="id21">
-<h4>Usage:<a class="headerlink" href="#id21" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h4>
 <p>help &lt;help text&gt;</p>
 </section>
 <section id="id22">
-<h4>Example:<a class="headerlink" href="#id22" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="n">COMPILER_GCC</span>
     <span class="nb">bool</span> <span class="s2">&quot;GCC&quot;</span>
     <span class="n">help</span>
@@ -732,7 +734,7 @@ less than the indentation level of the first line following the ‘help’ keywo
 </div>
 </section>
 <section id="id23">
-<h4>Notes:<a class="headerlink" href="#id23" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Identical to the ‘—help—’ keyword which isn’t used in coreboot.</p></li>
 <li><p>Other keywords are allowed inside the help block, and are not recognized as
@@ -741,7 +743,7 @@ line.</p></li>
 </ul>
 </section>
 <section id="id24">
-<h4>Restrictions:<a class="headerlink" href="#id24" title="Link to this heading"></a></h4>
+<h4>Restrictions:<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Only used for ‘config’ and ‘choice’ keywords.</p></li>
 </ul>
@@ -749,15 +751,15 @@ line.</p></li>
 </section>
 <hr class="docutils" />
 <section id="hex">
-<h3>hex<a class="headerlink" href="#hex" title="Link to this heading"></a></h3>
+<h3>hex<a class="headerlink" href="#hex" title="Permalink to this heading"></a></h3>
 <p>This is another symbol type specifier, specifying an unsigned integer value
 formatted as hexadecimal.</p>
 <section id="id25">
-<h4>Usage:<a class="headerlink" href="#id25" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h4>
 <p>hex &lt;expr&gt; [if &lt;expr&gt;]</p>
 </section>
 <section id="id26">
-<h4>Example:<a class="headerlink" href="#id26" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="n">INTEL_PCH_UART_CONSOLE_NUMBER</span>
     <span class="nb">hex</span> <span class="s2">&quot;Serial IO UART number to use for console&quot;</span>
     <span class="n">default</span> <span class="mh">0x0</span>
@@ -766,7 +768,7 @@ formatted as hexadecimal.</p>
 </div>
 </section>
 <section id="id27">
-<h4>Notes:<a class="headerlink" href="#id27" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Kconfig doesn’t complain if you don’t start the default value for a hex
 symbol with ‘0x’, but not doing so will lead to issues.  It will update 10
@@ -781,7 +783,7 @@ configuration front end was run:
 </ul>
 </section>
 <section id="id28">
-<h4>Restrictions:<a class="headerlink" href="#id28" title="Link to this heading"></a></h4>
+<h4>Restrictions:<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>This keyword must be within a symbol definition block, started by the
 ‘config’ keyword.</p></li>
@@ -791,7 +793,7 @@ configuration front end was run:
 </section>
 <hr class="docutils" />
 <section id="if">
-<h3>if<a class="headerlink" href="#if" title="Link to this heading"></a></h3>
+<h3>if<a class="headerlink" href="#if" title="Permalink to this heading"></a></h3>
 <p>The ‘if’ keyword is overloaded, used in two different ways. The first definition
 enables and disables various other keywords, and follows the other keyword
 definition. This usage is shown in each of the other keywords’ usage listings.</p>
@@ -801,7 +803,7 @@ keyword, ignore the existence of the if/endif block completely. Symbols defined
 within an if/endif block are still created, although their default values are
 ignored - all values are set to ‘n’.</p>
 <section id="id29">
-<h4>Usage:<a class="headerlink" href="#id29" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h4>
 <p>if &lt;expr&gt;</p>
 <ul class="simple">
 <li><p>[config]</p></li>
@@ -812,7 +814,7 @@ ignored - all values are set to ‘n’.</p>
 <p>endif</p>
 </section>
 <section id="id30">
-<h4>Example:<a class="headerlink" href="#id30" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">ARCH_X86</span>
 
 <span class="n">config</span> <span class="n">SMP</span>
@@ -827,7 +829,7 @@ ignored - all values are set to ‘n’.</p>
 </div>
 </section>
 <section id="id31">
-<h4>Restrictions:<a class="headerlink" href="#id31" title="Link to this heading"></a></h4>
+<h4>Restrictions:<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Corresponding ‘if’ and ‘endif’ statements must exist in the same file.</p></li>
 </ul>
@@ -835,15 +837,15 @@ ignored - all values are set to ‘n’.</p>
 </section>
 <hr class="docutils" />
 <section id="int">
-<h3>int<a class="headerlink" href="#int" title="Link to this heading"></a></h3>
+<h3>int<a class="headerlink" href="#int" title="Permalink to this heading"></a></h3>
 <p>A type setting keyword, defines a symbol as an integer, accepting only signed
 numeric values.  The values can be further restricted with the ‘range’ keyword.</p>
 <section id="id32">
-<h4>Usage:<a class="headerlink" href="#id32" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h4>
 <p>int &lt;expr&gt; [if &lt;expr&gt;]</p>
 </section>
 <section id="id33">
-<h4>Example:<a class="headerlink" href="#id33" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="n">PRE_GRAPHICS_DELAY_MS</span>
     <span class="nb">int</span> <span class="s2">&quot;Graphics initialization delay in ms&quot;</span>
     <span class="n">default</span> <span class="mi">0</span>
@@ -856,7 +858,7 @@ numeric values.  The values can be further restricted with the ‘range’ keywo
 </div>
 </section>
 <section id="id34">
-<h4>Notes:<a class="headerlink" href="#id34" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Only the first type definition for each symbol is valid. Further matching
 definitions are fine, although unnecessary. Conflicting type definitions will
@@ -866,7 +868,7 @@ configuration front end was run:
 </ul>
 </section>
 <section id="id35">
-<h4>Restrictions:<a class="headerlink" href="#id35" title="Link to this heading"></a></h4>
+<h4>Restrictions:<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>This keyword must be within a symbol definition block, started by the ‘config’
 keyword.</p></li>
@@ -876,21 +878,21 @@ keyword.</p></li>
 </section>
 <hr class="docutils" />
 <section id="mainmenu">
-<h3>mainmenu<a class="headerlink" href="#mainmenu" title="Link to this heading"></a></h3>
+<h3>mainmenu<a class="headerlink" href="#mainmenu" title="Permalink to this heading"></a></h3>
 <p>The ‘mainmenu’ keyword sets the title or title bar of the configuration front
 end, depending on how the configuration program decides to use it. It can only
 be specified once and at the very beginning of the top level Kconfig file,
 before any other statements.</p>
 <section id="id36">
-<h4>Usage:<a class="headerlink" href="#id36" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h4>
 <p>mainmenu &lt;prompt&gt;</p>
 </section>
 <section id="id37">
-<h4>Example:<a class="headerlink" href="#id37" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h4>
 <p>mainmenu “coreboot configuration”</p>
 </section>
 <section id="id38">
-<h4>Restrictions:<a class="headerlink" href="#id38" title="Link to this heading"></a></h4>
+<h4>Restrictions:<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Must be the first statement in the top level Kconfig.</p></li>
 <li><p>Must only be used once in the entire Kconfig tree.</p></li>
@@ -899,11 +901,11 @@ before any other statements.</p>
 </section>
 <hr class="docutils" />
 <section id="menu">
-<h3>menu<a class="headerlink" href="#menu" title="Link to this heading"></a></h3>
+<h3>menu<a class="headerlink" href="#menu" title="Permalink to this heading"></a></h3>
 <p>The ‘menu’ and ‘endmenu’ keywords tell the configuration front end that the
 enclosed statements are part of a group of related pieces.</p>
 <section id="id39">
-<h4>Usage:<a class="headerlink" href="#id39" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h4>
 <p>menu &lt;prompt&gt;</p>
 <ul class="simple">
 <li><p>[choice]</p></li>
@@ -914,7 +916,7 @@ enclosed statements are part of a group of related pieces.</p>
 <p>endmenu</p>
 </section>
 <section id="id40">
-<h4>Example:<a class="headerlink" href="#id40" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">menu</span> <span class="s2">&quot;On-Chip Device Power Down Control&quot;</span>
 <span class="n">config</span> <span class="n">TEMP_POWERDOWN</span>
     <span class="nb">bool</span> <span class="s2">&quot;Temperature sensor power-down&quot;</span>
@@ -942,7 +944,7 @@ enclosed statements are part of a group of related pieces.</p>
 </div>
 </section>
 <section id="id41">
-<h4>Restrictions:<a class="headerlink" href="#id41" title="Link to this heading"></a></h4>
+<h4>Restrictions:<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Must be closed by a corresponding ‘endmenu’ keyword in the same file.</p></li>
 </ul>
@@ -950,15 +952,15 @@ enclosed statements are part of a group of related pieces.</p>
 </section>
 <hr class="docutils" />
 <section id="prompt">
-<h3>prompt<a class="headerlink" href="#prompt" title="Link to this heading"></a></h3>
+<h3>prompt<a class="headerlink" href="#prompt" title="Permalink to this heading"></a></h3>
 <p>The ‘prompt’ keyword sets the text displayed for a config symbol or choice in
 configuration front end.</p>
 <section id="id42">
-<h4>Usage:<a class="headerlink" href="#id42" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h4>
 <p>prompt &lt;prompt&gt; [if &lt;expr&gt;]</p>
 </section>
 <section id="id43">
-<h4>Example:<a class="headerlink" href="#id43" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="n">REALMODE_DEBUG</span>
     <span class="n">prompt</span> <span class="s2">&quot;Enable debug messages for option ROM execution&quot;</span>
     <span class="nb">bool</span>
@@ -974,7 +976,7 @@ configuration front end.</p>
 </div>
 </section>
 <section id="id44">
-<h4>Notes:<a class="headerlink" href="#id44" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id44" title="Permalink to this heading"></a></h4>
 <ul>
 <li><p>The same rules apply for menu entries defined by the ‘prompt’ keyword and
 other prompt types such as those defined by the ‘int’ or ‘string’ keywords.</p></li>
@@ -1012,15 +1014,15 @@ For example, this is not allowed:</p>
 </section>
 <hr class="docutils" />
 <section id="range">
-<h3>range<a class="headerlink" href="#range" title="Link to this heading"></a></h3>
+<h3>range<a class="headerlink" href="#range" title="Permalink to this heading"></a></h3>
 <p>This sets the allowable minimum and maximum entries for hex or int type config
 symbols.</p>
 <section id="id45">
-<h4>Usage:<a class="headerlink" href="#id45" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id45" title="Permalink to this heading"></a></h4>
 <p>range &lt;symbol&gt; &lt;symbol&gt; [if &lt;expr&gt;]</p>
 </section>
 <section id="id46">
-<h4>Example:<a class="headerlink" href="#id46" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id46" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="n">TEST1</span>
     <span class="nb">hex</span> <span class="s2">&quot;test 1&quot;</span>
     <span class="nb">range</span> <span class="mh">0x0</span> <span class="mh">0x10</span>
@@ -1028,7 +1030,7 @@ symbols.</p>
 </div>
 </section>
 <section id="id47">
-<h4>Notes:<a class="headerlink" href="#id47" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id47" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Only the first definition of a range is used for any symbol. Further
 definitions will be ignored without warning.</p></li>
@@ -1037,17 +1039,17 @@ definitions will be ignored without warning.</p></li>
 </section>
 <hr class="docutils" />
 <section id="select">
-<h3>select<a class="headerlink" href="#select" title="Link to this heading"></a></h3>
+<h3>select<a class="headerlink" href="#select" title="Permalink to this heading"></a></h3>
 <p>The ‘select’ keyword is used within a bool type config block.  In coreboot (and
 other projects that don’t use modules), the ‘select’ keyword can force an
 unassociated bool type symbol to ‘y’.  When the symbol for the config block is
 ‘y’, the ‘select’ action is taken.  Otherwise the bool is unaffected.</p>
 <section id="id48">
-<h4>Usage:<a class="headerlink" href="#id48" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id48" title="Permalink to this heading"></a></h4>
 <p>select &lt;symbol&gt; [if &lt;expr&gt;]</p>
 </section>
 <section id="id49">
-<h4>Example:<a class="headerlink" href="#id49" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id49" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="n">TPM</span>
     <span class="nb">bool</span>
     <span class="n">default</span> <span class="n">n</span>
@@ -1061,7 +1063,7 @@ unassociated bool type symbol to ‘y’.  When the symbol for the config block 
 </div>
 </section>
 <section id="id50">
-<h4>Notes:<a class="headerlink" href="#id50" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id50" title="Permalink to this heading"></a></h4>
 <ul>
 <li><p>Using the ‘select’ keyword can create logical contradictions in Kconfig, which
 will create warnings and fail to save the .config.  Following is an example of
@@ -1080,7 +1082,7 @@ an obviously invalid configuration, where selecting BOOLTEST violates the
 </ul>
 </section>
 <section id="id51">
-<h4>Restrictions:<a class="headerlink" href="#id51" title="Link to this heading"></a></h4>
+<h4>Restrictions:<a class="headerlink" href="#id51" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>The ‘select’ keyword only works on bool type symbols.</p></li>
 <li><p>Symbols created inside of choice blocks cannot be selected, and should be
@@ -1090,18 +1092,18 @@ enabled by using default values instead.</p></li>
 </section>
 <hr class="docutils" />
 <section id="source">
-<h3>source<a class="headerlink" href="#source" title="Link to this heading"></a></h3>
+<h3>source<a class="headerlink" href="#source" title="Permalink to this heading"></a></h3>
 <p>The ‘source’ keyword functions much the same as an ‘include’ statement in c.
 This pulls one or more files into Kconfig at the location of the ‘source’
 command. This statement is always parsed - there is no way to conditionally
 source a file. coreboot has modified the source statement slightly to handle
 directory globbing. The ‘*’ character will match with any directory.</p>
 <section id="id52">
-<h4>Usage:<a class="headerlink" href="#id52" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id52" title="Permalink to this heading"></a></h4>
 <p>source &lt;prompt&gt;</p>
 </section>
 <section id="id53">
-<h4>Example:<a class="headerlink" href="#id53" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id53" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">choice</span>
     <span class="n">prompt</span> <span class="s2">&quot;Mainboard vendor&quot;</span>
     <span class="n">default</span> <span class="n">VENDOR_EMULATION</span>
@@ -1115,7 +1117,7 @@ directory globbing. The ‘*’ character will match with any directory.</p>
 </div>
 </section>
 <section id="id54">
-<h4>Notes:<a class="headerlink" href="#id54" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id54" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>As with all prompt values, the ‘source’ prompt may be enclosed in single or
 double quotes, or left without any quotes.  Using quotes is highly recommended
@@ -1141,7 +1143,7 @@ statements that generate a list of all the platform names:</p>
 </div>
 </section>
 <section id="id55">
-<h4>Restrictions:<a class="headerlink" href="#id55" title="Link to this heading"></a></h4>
+<h4>Restrictions:<a class="headerlink" href="#id55" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>‘source’ keywords always load in the specified file or files. There is no way
 to optionally pull in a file. Putting an if/endif block around a source
@@ -1153,15 +1155,15 @@ remove their content if necessary.</p></li>
 </section>
 <hr class="docutils" />
 <section id="string">
-<h3>string<a class="headerlink" href="#string" title="Link to this heading"></a></h3>
+<h3>string<a class="headerlink" href="#string" title="Permalink to this heading"></a></h3>
 <p>The last of the symbol type assignment keywords. ‘string’ allows a text value to
 be entered.</p>
 <section id="id56">
-<h4>Usage:<a class="headerlink" href="#id56" title="Link to this heading"></a></h4>
+<h4>Usage:<a class="headerlink" href="#id56" title="Permalink to this heading"></a></h4>
 <p>string &lt;expr&gt; [if &lt;expr&gt;]</p>
 </section>
 <section id="id57">
-<h4>Example:<a class="headerlink" href="#id57" title="Link to this heading"></a></h4>
+<h4>Example:<a class="headerlink" href="#id57" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="n">BOOTBLOCK_SOUTHBRIDGE_INIT</span>
     <span class="n">string</span>
     <span class="n">default</span> <span class="s2">&quot;southbridge/amd/pi/hudson/bootblock.c&quot;</span>
@@ -1173,7 +1175,7 @@ be entered.</p>
 </div>
 </section>
 <section id="id58">
-<h4>Notes:<a class="headerlink" href="#id58" title="Link to this heading"></a></h4>
+<h4>Notes:<a class="headerlink" href="#id58" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Putting the prompt after the ‘string’ keyword is the same as using a ‘prompt’
 keyword later. See the prompt keyword for more notes.</p></li>
@@ -1192,7 +1194,7 @@ value “”.</p></li>
 </ul>
 </section>
 <section id="id59">
-<h4>Restrictions:<a class="headerlink" href="#id59" title="Link to this heading"></a></h4>
+<h4>Restrictions:<a class="headerlink" href="#id59" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>This keyword must be within a symbol definition block, started by the ‘config’
 keyword.</p></li>
@@ -1202,7 +1204,7 @@ keyword.</p></li>
 </section>
 <hr class="docutils" />
 <section id="keywords-not-used-in-coreboot-at-the-time-of-writing">
-<h2>Keywords not used in coreboot at the time of writing:<a class="headerlink" href="#keywords-not-used-in-coreboot-at-the-time-of-writing" title="Link to this heading"></a></h2>
+<h2>Keywords not used in coreboot at the time of writing:<a class="headerlink" href="#keywords-not-used-in-coreboot-at-the-time-of-writing" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>allnoconfig_y:</p></li>
 <li><p>defconfig_list</p></li>
@@ -1218,16 +1220,16 @@ keyword.</p></li>
 </ul>
 </section>
 <section id="build-files-generated-by-kconfig">
-<h2>Build files generated by Kconfig<a class="headerlink" href="#build-files-generated-by-kconfig" title="Link to this heading"></a></h2>
+<h2>Build files generated by Kconfig<a class="headerlink" href="#build-files-generated-by-kconfig" title="Permalink to this heading"></a></h2>
 <section id="build-config-h">
-<h3>build/config.h<a class="headerlink" href="#build-config-h" title="Link to this heading"></a></h3>
+<h3>build/config.h<a class="headerlink" href="#build-config-h" title="Permalink to this heading"></a></h3>
 <p>The config.h file is a very basic header file made up of a list of #define
 statements:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define SYMBOL NAME XXX</span>
 </pre></div>
 </div>
 <section id="symbol-types">
-<h4>Symbol types:<a class="headerlink" href="#symbol-types" title="Link to this heading"></a></h4>
+<h4>Symbol types:<a class="headerlink" href="#symbol-types" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>bool, int, and hex types -  Every symbol of one of these types created in the
 Kconfig tree is defined.  It doesn’t matter whether they’re in an if/endif
@@ -1258,7 +1260,7 @@ C files. This is done in Makefile.mk on the compiler command line using the
 </section>
 </section>
 <section id="id60">
-<h3>.config<a class="headerlink" href="#id60" title="Link to this heading"></a></h3>
+<h3>.config<a class="headerlink" href="#id60" title="Permalink to this heading"></a></h3>
 <p>The .config file in the root directory is used as the input file, but also by
 the makefiles to set variable values. The main difference is that it does not
 contain all of the symbols. It excludes symbols defined in an if/endif block
@@ -1279,7 +1281,7 @@ Kconfig, separating the blocks.</p>
 that they are available during the build process.</p>
 </section>
 <section id="build-auto-conf">
-<h3>build/auto.conf<a class="headerlink" href="#build-auto-conf" title="Link to this heading"></a></h3>
+<h3>build/auto.conf<a class="headerlink" href="#build-auto-conf" title="Permalink to this heading"></a></h3>
 <p>Although the controlling variable for the auto.conf filename,
 KCONFIG_AUTOCONFIG, is set in the coreboot makefiles, the auto.conf file itself
 is not used by coreboot.  This file has the same syntax and structure as the
@@ -1290,7 +1292,7 @@ it’s not hurting anything, it’s still being generated.</p>
 </section>
 </section>
 <section id="defconfig-or-miniconfig-files">
-<h2>Defconfig or Miniconfig files<a class="headerlink" href="#defconfig-or-miniconfig-files" title="Link to this heading"></a></h2>
+<h2>Defconfig or Miniconfig files<a class="headerlink" href="#defconfig-or-miniconfig-files" title="Permalink to this heading"></a></h2>
 <p>Miniconfig files are the standard .config files with all of the symbols which
 are set to their default values stripped out.  These files are very useful for
 debugging your config, as well as being the best way to store your .config file.
@@ -1315,13 +1317,13 @@ storing miniconfig files.</p>
 <p>In both of these cases, DOTCONFIG defaults to .config.</p>
 </section>
 <section id="editing-and-updating-saved-config-files">
-<h2>Editing and updating saved .config files<a class="headerlink" href="#editing-and-updating-saved-config-files" title="Link to this heading"></a></h2>
+<h2>Editing and updating saved .config files<a class="headerlink" href="#editing-and-updating-saved-config-files" title="Permalink to this heading"></a></h2>
 <section id="dont-save-full-config-files">
-<h3>Don’t save full config files<a class="headerlink" href="#dont-save-full-config-files" title="Link to this heading"></a></h3>
+<h3>Don’t save full config files<a class="headerlink" href="#dont-save-full-config-files" title="Permalink to this heading"></a></h3>
 <p>Save miniconfig files, as mentioned in the previous section.</p>
 </section>
 <section id="disable-values-with-config-symbol-is-not-set">
-<h3>Disable values with ‘# CONFIG_SYMBOL is not set’<a class="headerlink" href="#disable-values-with-config-symbol-is-not-set" title="Link to this heading"></a></h3>
+<h3>Disable values with ‘# CONFIG_SYMBOL is not set’<a class="headerlink" href="#disable-values-with-config-symbol-is-not-set" title="Permalink to this heading"></a></h3>
 <p>A common mistake when trying to disable a value is to edit the .config file and
 change it from ‘CONFIG_SYMBOL=y’ to ‘CONFIG_SYMBOL=n’, but this doesn’t
 correctly disable the symbol.  If the default value for the symbol is ‘n’ to
@@ -1335,7 +1337,7 @@ leading to much frustration.</p>
 </div>
 </section>
 <section id="only-the-last-instance-of-a-symbol-is-used">
-<h3>Only the LAST instance of a symbol is used<a class="headerlink" href="#only-the-last-instance-of-a-symbol-is-used" title="Link to this heading"></a></h3>
+<h3>Only the LAST instance of a symbol is used<a class="headerlink" href="#only-the-last-instance-of-a-symbol-is-used" title="Permalink to this heading"></a></h3>
 <p>When reading a saved .config file, Kconfig uses the LAST instance of a symbol
 that it comes across, and ignores any previous instances. This can be used to
 override symbols in a saved .config file by appending the new value to a config
@@ -1358,9 +1360,9 @@ setting it to enabled.</p>
 </section>
 </section>
 <section id="general-kconfig-tips-and-notes">
-<h2>General Kconfig Tips and Notes<a class="headerlink" href="#general-kconfig-tips-and-notes" title="Link to this heading"></a></h2>
+<h2>General Kconfig Tips and Notes<a class="headerlink" href="#general-kconfig-tips-and-notes" title="Permalink to this heading"></a></h2>
 <section id="default-values-for-config-options">
-<h3>Default values for config options<a class="headerlink" href="#default-values-for-config-options" title="Link to this heading"></a></h3>
+<h3>Default values for config options<a class="headerlink" href="#default-values-for-config-options" title="Permalink to this heading"></a></h3>
 <p>The FIRST valid default that the Kconfig parser comes across will be used for
 each symbol. This means that the organization of the tree is very important.
 The structure should go from most specific at the top of the Kconfig tree to the
@@ -1375,13 +1377,13 @@ statements, but they add additional variables which are generally just used
 internal to Kconfig.</p>
 </section>
 <section id="select-statement-usage">
-<h3>Select statement usage<a class="headerlink" href="#select-statement-usage" title="Link to this heading"></a></h3>
+<h3>Select statement usage<a class="headerlink" href="#select-statement-usage" title="Permalink to this heading"></a></h3>
 <p>The ‘select’ keyword forces the value of a symbol with a bool type to ‘y’. It
 overrides any dependencies of the symbol, so using it carelessly can lead to
 unpredictable results.</p>
 </section>
 <section id="all-bool-int-and-hex-kconfig-symbols-are-always-defined-in-the-c-code">
-<h3>All bool, int, and hex Kconfig symbols are ALWAYS defined in the C code<a class="headerlink" href="#all-bool-int-and-hex-kconfig-symbols-are-always-defined-in-the-c-code" title="Link to this heading"></a></h3>
+<h3>All bool, int, and hex Kconfig symbols are ALWAYS defined in the C code<a class="headerlink" href="#all-bool-int-and-hex-kconfig-symbols-are-always-defined-in-the-c-code" title="Permalink to this heading"></a></h3>
 <p>All bool, int, and hex Kconfig symbols are ALWAYS defined in the C code if they
 are in a sourced Kconfig - do NOT use #ifdef CONFIG_SYMBOL</p>
 <p>String symbols are the exception.  All others (int, hex, etc.) are always
@@ -1395,7 +1397,7 @@ as false, the symbol STILL gets defined in the config.h file (though not in the
 and defined-to-0 symbols alike).</p>
 </section>
 <section id="symbols-with-prompts-use-defaults-only-when-initially-created-or-enabled">
-<h3>Symbols with prompts use defaults <em>ONLY</em> when initially created or enabled.<a class="headerlink" href="#symbols-with-prompts-use-defaults-only-when-initially-created-or-enabled" title="Link to this heading"></a></h3>
+<h3>Symbols with prompts use defaults <em>ONLY</em> when initially created or enabled.<a class="headerlink" href="#symbols-with-prompts-use-defaults-only-when-initially-created-or-enabled" title="Permalink to this heading"></a></h3>
 <p>Symbols with a prompt which may be user-modified are NOT updated to default
 values when changing between platforms or modifying other symbols. There are
 only two times the default values are used:</p>
@@ -1409,7 +1411,7 @@ for another platform can lead to very different results than creating a platform
 from scratch.</p>
 </section>
 <section id="symbols-with-no-prompt-will-be-the-default-value-unless-select-is-used">
-<h3>Symbols with no prompt will be the default value (unless ‘select’ is used).<a class="headerlink" href="#symbols-with-no-prompt-will-be-the-default-value-unless-select-is-used" title="Link to this heading"></a></h3>
+<h3>Symbols with no prompt will be the default value (unless ‘select’ is used).<a class="headerlink" href="#symbols-with-no-prompt-will-be-the-default-value-unless-select-is-used" title="Permalink to this heading"></a></h3>
 <p>Symbols that do not have a prompt will always use the first valid default value
 specified in Kconfig. They cannot be updated, even if they are modified in a
 saved .config file. As always, a ‘select’ statement overrides any specified
@@ -1417,7 +1419,7 @@ saved .config file. As always, a ‘select’ statement overrides any specified
 </section>
 </section>
 <section id="differences-between-coreboot-s-kconfig-and-other-kconfig-implementations">
-<h2>Differences between coreboot’s Kconfig and other Kconfig implementations.<a class="headerlink" href="#differences-between-coreboot-s-kconfig-and-other-kconfig-implementations" title="Link to this heading"></a></h2>
+<h2>Differences between coreboot’s Kconfig and other Kconfig implementations.<a class="headerlink" href="#differences-between-coreboot-s-kconfig-and-other-kconfig-implementations" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>coreboot has added the glob operator ‘*’ for the ‘source’ keyword.</p></li>
 <li><p>coreboot’s Kconfig always defines variables except for strings. In other
@@ -1425,28 +1427,28 @@ Kconfig implementations, bools set to false/0/no are not defined.</p></li>
 </ul>
 </section>
 <section id="kconfig-editor-highlighting">
-<h2>Kconfig Editor Highlighting<a class="headerlink" href="#kconfig-editor-highlighting" title="Link to this heading"></a></h2>
+<h2>Kconfig Editor Highlighting<a class="headerlink" href="#kconfig-editor-highlighting" title="Permalink to this heading"></a></h2>
 <section id="vim">
-<h3>vim:<a class="headerlink" href="#vim" title="Link to this heading"></a></h3>
+<h3>vim:<a class="headerlink" href="#vim" title="Permalink to this heading"></a></h3>
 <p>vim has syntax highlighting for Kconfig built in (or at least as a part of
 vim-common), but most editors do not.</p>
 </section>
 <section id="ultraedit">
-<h3>ultraedit:<a class="headerlink" href="#ultraedit" title="Link to this heading"></a></h3>
+<h3>ultraedit:<a class="headerlink" href="#ultraedit" title="Permalink to this heading"></a></h3>
 <p>https://github.com/martinlroth/wordfiles/blob/master/kconfig.uew</p>
 </section>
 <section id="atom">
-<h3>atom:<a class="headerlink" href="#atom" title="Link to this heading"></a></h3>
+<h3>atom:<a class="headerlink" href="#atom" title="Permalink to this heading"></a></h3>
 <p>https://github.com/martinlroth/language-kconfig</p>
 </section>
 </section>
 <section id="syntax-checking">
-<h2>Syntax Checking:<a class="headerlink" href="#syntax-checking" title="Link to this heading"></a></h2>
+<h2>Syntax Checking:<a class="headerlink" href="#syntax-checking" title="Permalink to this heading"></a></h2>
 <p>The Kconfig utility does some basic syntax checking on the Kconfig tree.
 Running “make oldconfig” will show any errors that the Kconfig utility
 sees.</p>
 <section id="util-kconfig-lint">
-<h3>util/kconfig_lint<a class="headerlink" href="#util-kconfig-lint" title="Link to this heading"></a></h3>
+<h3>util/kconfig_lint<a class="headerlink" href="#util-kconfig-lint" title="Permalink to this heading"></a></h3>
 <p>Because the Kconfig utility is relatively forgiving, and ignores issues that a
 developer might be interested in, kconfig_lint, another Kconfig checker has been
 written.</p>
@@ -1471,7 +1473,7 @@ in.</p>
 </section>
 </section>
 <section id="license">
-<h2>License:<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<h2>License:<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
 <p>This work is licensed under the Creative Commons Attribution 4.0 International
 License. To view a copy of this license, visit
 https://creativecommons.org/licenses/by/4.0/ or send a letter to Creative

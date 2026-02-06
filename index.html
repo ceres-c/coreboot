@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to the coreboot documentation &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Welcome to the coreboot documentation &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=36d40e99"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -35,6 +34,9 @@
           <a href="#" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -101,23 +103,23 @@
            <div itemprop="articleBody">
              
   <section id="welcome-to-the-coreboot-documentation">
-<h1>Welcome to the coreboot documentation<a class="headerlink" href="#welcome-to-the-coreboot-documentation" title="Link to this heading"></a></h1>
+<h1>Welcome to the coreboot documentation<a class="headerlink" href="#welcome-to-the-coreboot-documentation" title="Permalink to this heading"></a></h1>
 <p>This is the developer documentation for <a class="reference external" href="https://coreboot.org">coreboot</a>.
 It is built from Markdown files in the <a class="reference external" href="https://review.coreboot.org/plugins/gitiles/coreboot/+/refs/heads/main/Documentation/">Documentation</a> directory in the
 source code.</p>
 <section id="spelling-of-coreboot">
-<h2>Spelling of coreboot<a class="headerlink" href="#spelling-of-coreboot" title="Link to this heading"></a></h2>
+<h2>Spelling of coreboot<a class="headerlink" href="#spelling-of-coreboot" title="Permalink to this heading"></a></h2>
 <p>The correct spelling of coreboot is completely in lower case characters and in
 one word without a space between the two parts.</p>
 </section>
 <section id="purpose-of-coreboot">
-<h2>Purpose of coreboot<a class="headerlink" href="#purpose-of-coreboot" title="Link to this heading"></a></h2>
+<h2>Purpose of coreboot<a class="headerlink" href="#purpose-of-coreboot" title="Permalink to this heading"></a></h2>
 <p>coreboot is a project to develop open source boot firmware for various
 architectures. Its design philosophy is to do the bare minimum necessary to
 ensure that hardware is usable and then pass control to a different program
 called the <em>payload</em>.</p>
 <section id="separation-of-concerns">
-<h3>Separation of concerns<a class="headerlink" href="#separation-of-concerns" title="Link to this heading"></a></h3>
+<h3>Separation of concerns<a class="headerlink" href="#separation-of-concerns" title="Permalink to this heading"></a></h3>
 <p>The payload can then provide user interfaces, file system drivers,
 various policies etc. to load the OS. Through this separation of concerns
 coreboot maximizes reusability of the complicated and fundamental hardware
@@ -129,7 +131,7 @@ GRUB2, the bootloader used by many Linux distributions, or depthcharge,
 a custom boot loader used on Chromebooks.</p>
 </section>
 <section id="no-resident-services-if-possible">
-<h3>No resident services (if possible)<a class="headerlink" href="#no-resident-services-if-possible" title="Link to this heading"></a></h3>
+<h3>No resident services (if possible)<a class="headerlink" href="#no-resident-services-if-possible" title="Permalink to this heading"></a></h3>
 <p>Ideally coreboot completely hands over control to the payload with no
 piece of coreboot remaining resident in the system, or even available
 for callback.  Given the reality of contemporary computer design,
@@ -140,7 +142,7 @@ coreboot aims to keep everything at the minimum possible, both in scope
 (e.g. services provided) and code size.</p>
 </section>
 <section id="no-specification-of-its-own">
-<h3>No specification of its own<a class="headerlink" href="#no-specification-of-its-own" title="Link to this heading"></a></h3>
+<h3>No specification of its own<a class="headerlink" href="#no-specification-of-its-own" title="Permalink to this heading"></a></h3>
 <p>coreboot uses a very minimal interface to the payload, and otherwise
 doesn’t impose any standards on the ecosystem. This is made possible by
 separating out concerns (interfaces and resident services are delegated
@@ -154,7 +156,7 @@ making them standards in their own right. However we reserve the right to
 retire them as the landscape shifts around us.</p>
 </section>
 <section id="one-tree-for-everything">
-<h3>One tree for everything<a class="headerlink" href="#one-tree-for-everything" title="Link to this heading"></a></h3>
+<h3>One tree for everything<a class="headerlink" href="#one-tree-for-everything" title="Permalink to this heading"></a></h3>
 <p>Another difference to various other firmware projects is that we try
 to avoid fragmentation: the traditional development model of firmware
 is one of “set and forget” in which some code base is copied, adapted
@@ -181,7 +183,7 @@ would even work, which helps nobody.</p>
 </section>
 </section>
 <section id="scope-of-the-coreboot-project">
-<h2>Scope of the coreboot project<a class="headerlink" href="#scope-of-the-coreboot-project" title="Link to this heading"></a></h2>
+<h2>Scope of the coreboot project<a class="headerlink" href="#scope-of-the-coreboot-project" title="Permalink to this heading"></a></h2>
 <p>coreboot as a project is closer to the Linux kernel than to most
 user level programs. One place where this becomes apparent is the
 distribution mechanism: The project itself only provides source code
@@ -212,7 +214,7 @@ one that won’t boot the system (with the consequence that to get it to work
 again, you’ll need to attach various tools to various chips)</p>
 </section>
 <section id="the-coreboot-community">
-<h2>The coreboot community<a class="headerlink" href="#the-coreboot-community" title="Link to this heading"></a></h2>
+<h2>The coreboot community<a class="headerlink" href="#the-coreboot-community" title="Permalink to this heading"></a></h2>
 <p>If you’re interested in getting your hands dirty (incl. potentially wiring
 up an external flasher to your computer), you’ve come to the right place!</p>
 <p>We have various <a class="reference internal" href="community/forums.html"><span class="doc">forums</span></a> where we discuss and coordinate
@@ -226,7 +228,7 @@ coreboot community.</p>
 say hello!</p>
 </section>
 <section id="getting-the-source-code">
-<h2>Getting the source code<a class="headerlink" href="#getting-the-source-code" title="Link to this heading"></a></h2>
+<h2>Getting the source code<a class="headerlink" href="#getting-the-source-code" title="Permalink to this heading"></a></h2>
 <p>coreboot is primarily developed in the
 <a class="reference external" href="https://review.coreboot.org/plugins/gitiles/coreboot">git</a> version control
 system, using <a class="reference external" href="https://review.coreboot.org">Gerrit</a> to manage
@@ -240,7 +242,7 @@ get better in that respect, e.g. by setting up boot testing facilities. This
 is obviously more complex than regular integration testing, so progress
 is slow.</p>
 <section id="what-our-releases-mean">
-<h3>What our releases mean<a class="headerlink" href="#what-our-releases-mean" title="Link to this heading"></a></h3>
+<h3>What our releases mean<a class="headerlink" href="#what-our-releases-mean" title="Permalink to this heading"></a></h3>
 <p>We also schedule two source code releases every year, around April and
 October. These releases see some very limited testing and mostly serve
 as synchronization points for deprecation notices and for other projects

@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.19 release &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.19 release &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -144,7 +146,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-19-release">
-<h1>coreboot 4.19 release<a class="headerlink" href="#coreboot-4-19-release" title="Link to this heading"></a></h1>
+<h1>coreboot 4.19 release<a class="headerlink" href="#coreboot-4-19-release" title="Permalink to this heading"></a></h1>
 <p>The 4.19 release was completed on the 16th of January 2023.</p>
 <p>Since the last release, the coreboot project has merged over 1600
 commits from over 150 authors. Of those authors, around 25 were
@@ -161,9 +163,9 @@ bad timestamps. This has been fixed. Hashes for all tarballs are at
 the bottom of this document.</p>
 <p>The 4.20 release is planned for the 20th of April, 2023.</p>
 <section id="significant-or-interesting-changes">
-<h2>Significant or interesting changes<a class="headerlink" href="#significant-or-interesting-changes" title="Link to this heading"></a></h2>
+<h2>Significant or interesting changes<a class="headerlink" href="#significant-or-interesting-changes" title="Permalink to this heading"></a></h2>
 <section id="show-all-kconfig-options-in-saved-config-file-compress-same">
-<h3>Show all Kconfig options in saved config file; compress same<a class="headerlink" href="#show-all-kconfig-options-in-saved-config-file-compress-same" title="Link to this heading"></a></h3>
+<h3>Show all Kconfig options in saved config file; compress same<a class="headerlink" href="#show-all-kconfig-options-in-saved-config-file-compress-same" title="Permalink to this heading"></a></h3>
 <p>The coreboot build system automatically adds a ‘config’ file to CBFS
 that lists the exact Kconfig configuration that the image was built
 with. This is useful to reproduce a build after the fact or to check
@@ -182,7 +184,7 @@ itself and only intended for later re-extraction via cbfstool, which
 always has LZMA support included.</p>
 </section>
 <section id="toolchain-updates">
-<h3>Toolchain updates<a class="headerlink" href="#toolchain-updates" title="Link to this heading"></a></h3>
+<h3>Toolchain updates<a class="headerlink" href="#toolchain-updates" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Upgrade LLVM from 15.0.0 to 15.0.6</p></li>
 <li><p>Upgrade CMake from 3.24.2 to 3.25.0</p></li>
@@ -191,14 +193,14 @@ always has LZMA support included.</p>
 </ul>
 </section>
 <section id="finished-the-conversion-to-asl-2-0-syntax">
-<h3>Finished the conversion to ASL 2.0 syntax<a class="headerlink" href="#finished-the-conversion-to-asl-2-0-syntax" title="Link to this heading"></a></h3>
+<h3>Finished the conversion to ASL 2.0 syntax<a class="headerlink" href="#finished-the-conversion-to-asl-2-0-syntax" title="Permalink to this heading"></a></h3>
 <p>Until recently, coreboot still contained lots of code using the legacy
 ASL syntax. However, all ASL code was ported over to make use of the ASL
 2.0 syntax and from this point on new ASL code should make use of it.</p>
 </section>
 </section>
 <section id="additional-coreboot-changes">
-<h2>Additional coreboot changes<a class="headerlink" href="#additional-coreboot-changes" title="Link to this heading"></a></h2>
+<h2>Additional coreboot changes<a class="headerlink" href="#additional-coreboot-changes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Significant work was done to enable and build-test clang builds.</p></li>
 <li><p>Added touchscreen power sequencing and runtime detection.</p></li>
@@ -225,7 +227,7 @@ development was added at Documentation/external_docs.md.</p></li>
 </ul>
 </section>
 <section id="new-mainboards">
-<h2>New Mainboards<a class="headerlink" href="#new-mainboards" title="Link to this heading"></a></h2>
+<h2>New Mainboards<a class="headerlink" href="#new-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>AMD: Mayan for Phoenix SoC</p></li>
 <li><p>GIGABYTE: GA-H61M-DS2</p></li>
@@ -246,7 +248,7 @@ development was added at Documentation/external_docs.md.</p></li>
 </ul>
 </section>
 <section id="removed-mainboards">
-<h2>Removed Mainboards<a class="headerlink" href="#removed-mainboards" title="Link to this heading"></a></h2>
+<h2>Removed Mainboards<a class="headerlink" href="#removed-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>AMD: Inagua</p></li>
 <li><p>AMD: Olive Hill</p></li>
@@ -281,7 +283,7 @@ development was added at Documentation/external_docs.md.</p></li>
 </ul>
 </section>
 <section id="updated-socs">
-<h2>Updated SoCs<a class="headerlink" href="#updated-socs" title="Link to this heading"></a></h2>
+<h2>Updated SoCs<a class="headerlink" href="#updated-socs" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Added soc/amd/glinda</p></li>
 <li><p>Renamed soc/amd/morgana to soc/amd/phoenix</p></li>
@@ -291,7 +293,7 @@ development was added at Documentation/external_docs.md.</p></li>
 </ul>
 </section>
 <section id="updated-chipsets">
-<h2>Updated Chipsets<a class="headerlink" href="#updated-chipsets" title="Link to this heading"></a></h2>
+<h2>Updated Chipsets<a class="headerlink" href="#updated-chipsets" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Removed northbridge/amd/agesa/family14</p></li>
 <li><p>Removed northbridge/amd/agesa/family15tn</p></li>
@@ -301,16 +303,16 @@ development was added at Documentation/external_docs.md.</p></li>
 </ul>
 </section>
 <section id="payloads">
-<h2>Payloads<a class="headerlink" href="#payloads" title="Link to this heading"></a></h2>
+<h2>Payloads<a class="headerlink" href="#payloads" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Updated GRUB from 2.04 to 2.06</p></li>
 <li><p>Updated SeaBIOS 1.16.0 to 1.16.1</p></li>
 </ul>
 </section>
 <section id="plans-to-move-platform-support-to-a-branch">
-<h2>Plans to move platform support to a branch<a class="headerlink" href="#plans-to-move-platform-support-to-a-branch" title="Link to this heading"></a></h2>
+<h2>Plans to move platform support to a branch<a class="headerlink" href="#plans-to-move-platform-support-to-a-branch" title="Permalink to this heading"></a></h2>
 <section id="intel-icelake-soc-icelake-rvp-mainboard">
-<h3>Intel Icelake SoC &amp; Icelake RVP mainboard<a class="headerlink" href="#intel-icelake-soc-icelake-rvp-mainboard" title="Link to this heading"></a></h3>
+<h3>Intel Icelake SoC &amp; Icelake RVP mainboard<a class="headerlink" href="#intel-icelake-soc-icelake-rvp-mainboard" title="Permalink to this heading"></a></h3>
 <p>Intel Icelake is unmaintained and the only user of this platform ever
 was the Intel CRB (Customer Reference Board). From the looks of the
 code, it was never ready for production as only engineering sample
@@ -320,7 +322,7 @@ will be done on the 4.19 branch. This consists of the Intel Icelake SoC
 and Intel Icelake RVP mainboard.</p>
 </section>
 <section id="intel-quark-soc-galileo-mainboard">
-<h3>Intel Quark SoC &amp; Galileo mainboard<a class="headerlink" href="#intel-quark-soc-galileo-mainboard" title="Link to this heading"></a></h3>
+<h3>Intel Quark SoC &amp; Galileo mainboard<a class="headerlink" href="#intel-quark-soc-galileo-mainboard" title="Permalink to this heading"></a></h3>
 <p>The SoC Intel Quark is unmaintained and different efforts to revive it
 failed. Also, the only user of this platform ever was the Galileo
 board.</p>
@@ -334,7 +336,7 @@ be maintained on the release 4.20 branch.</p>
 </section>
 </section>
 <section id="statistics-from-the-4-18-to-the-4-19-release">
-<h2>Statistics from the 4.18 to the 4.19 release<a class="headerlink" href="#statistics-from-the-4-18-to-the-4-19-release" title="Link to this heading"></a></h2>
+<h2>Statistics from the 4.18 to the 4.19 release<a class="headerlink" href="#statistics-from-the-4-18-to-the-4-19-release" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Total Commits: 1608</p></li>
 <li><p>Average Commits per day: 17.39</p></li>
@@ -347,7 +349,7 @@ be maintained on the release 4.20 branch.</p>
 </ul>
 </section>
 <section id="significant-known-and-open-issues">
-<h2>Significant Known and Open Issues<a class="headerlink" href="#significant-known-and-open-issues" title="Link to this heading"></a></h2>
+<h2>Significant Known and Open Issues<a class="headerlink" href="#significant-known-and-open-issues" title="Permalink to this heading"></a></h2>
 <p>Issues from the coreboot bugtracker: https://ticket.coreboot.org/</p>
 <table class="docutils align-default">
 <thead>
@@ -393,7 +395,7 @@ be maintained on the release 4.20 branch.</p>
 </table>
 </section>
 <section id="hashes-for-tarballs-signatures">
-<h2>Hashes for tarballs &amp; signatures<a class="headerlink" href="#hashes-for-tarballs-signatures" title="Link to this heading"></a></h2>
+<h2>Hashes for tarballs &amp; signatures<a class="headerlink" href="#hashes-for-tarballs-signatures" title="Permalink to this heading"></a></h2>
 <p>Old tarballs:</p>
 <ul class="simple">
 <li><p>a1f9ec1252a3cc19f0b4ba1a2b9d66ea9327499cbeecebd85377db7d5c68555d  coreboot-4.19.tar.xz</p></li>

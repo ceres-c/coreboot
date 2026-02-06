@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Timestamps &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Timestamps &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -135,9 +137,9 @@
            <div itemprop="articleBody">
              
   <section id="timestamps">
-<h1>Timestamps<a class="headerlink" href="#timestamps" title="Link to this heading"></a></h1>
+<h1>Timestamps<a class="headerlink" href="#timestamps" title="Permalink to this heading"></a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>The aim of the timestamp library is to make it easier for different boards
 to  save timestamps in cbmem / stash (until cbmem is brought up) by
 providing a simple API to initialize, add and sync timestamps. In order
@@ -163,7 +165,7 @@ region or local stash into the cbmem area.</p></li>
 timestamp region is required or not.</p></li>
 </ol>
 <section id="transition-from-cache-to-cbmem">
-<h3>Transition from cache to cbmem<a class="headerlink" href="#transition-from-cache-to-cbmem" title="Link to this heading"></a></h3>
+<h3>Transition from cache to cbmem<a class="headerlink" href="#transition-from-cache-to-cbmem" title="Permalink to this heading"></a></h3>
 <p>To move timestamps from the cache to cbmem (and initialize the cbmem area in
 the first place), we use the CBMEM_INIT_HOOK infrastructure of coreboot.</p>
 <p>When cbmem is initialized, the hook is called, which creates the area,
@@ -172,7 +174,7 @@ copies all timestamps to cbmem and disables the cache.</p>
 </section>
 </section>
 <section id="data-structures-used">
-<h2>Data structures used<a class="headerlink" href="#data-structures-used" title="Link to this heading"></a></h2>
+<h2>Data structures used<a class="headerlink" href="#data-structures-used" title="Permalink to this heading"></a></h2>
 <p>The main structure that maintains information about the timestamp cache is:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">__packed</span><span class="w"> </span><span class="n">timestamp_cache</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">cache_state</span><span class="p">;</span>
@@ -182,7 +184,7 @@ copies all timestamps to cbmem and disables the cache.</p>
 </pre></div>
 </div>
 <section id="cache-state">
-<h3>cache_state<a class="headerlink" href="#cache-state" title="Link to this heading"></a></h3>
+<h3>cache_state<a class="headerlink" href="#cache-state" title="Permalink to this heading"></a></h3>
 <p>The state of the cache is maintained by <code class="docutils literal notranslate"><span class="pre">cache_state</span></code> attribute which can
 be any one of the following:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span><span class="w"> </span><span class="p">{</span>
@@ -207,7 +209,7 @@ anymore. Thus, the cache state is set to <code class="docutils literal notransla
 <code class="docutils literal notranslate"><span class="pre">timestamp_add</span></code> to store all timestamps directly into the cbmem area.</p>
 </section>
 <section id="table">
-<h3>table<a class="headerlink" href="#table" title="Link to this heading"></a></h3>
+<h3>table<a class="headerlink" href="#table" title="Permalink to this heading"></a></h3>
 <p>This field is represented by a structure which provides overall
 information about the entries in the timestamp area:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">timestamp_table</span><span class="w"> </span><span class="p">{</span>
@@ -223,7 +225,7 @@ of entries that can be stored, total number of entries that currently
 exist and an entry structure to hold variable number of entries.</p>
 </section>
 <section id="entries">
-<h3>entries<a class="headerlink" href="#entries" title="Link to this heading"></a></h3>
+<h3>entries<a class="headerlink" href="#entries" title="Permalink to this heading"></a></h3>
 <p>This field holds the details of each timestamp entry, up to a maximum
 of <code class="docutils literal notranslate"><span class="pre">MAX_TIMESTAMP_CACHE</span></code> which is defined as 16 entries. Each entry is
 defined by:</p>
@@ -242,54 +244,54 @@ actual entries represented by <code class="docutils literal notranslate"><span c
 </section>
 </section>
 <section id="function-apis">
-<h2>Function APIs<a class="headerlink" href="#function-apis" title="Link to this heading"></a></h2>
+<h2>Function APIs<a class="headerlink" href="#function-apis" title="Permalink to this heading"></a></h2>
 <section id="timestamp-init">
-<h3>timestamp_init<a class="headerlink" href="#timestamp-init" title="Link to this heading"></a></h3>
+<h3>timestamp_init<a class="headerlink" href="#timestamp-init" title="Permalink to this heading"></a></h3>
 <p>This function initializes the timestamp cache and should be run as early
 as possible. On platforms with SRAM, this might mean in bootblock, on
 x86 with its CAR backed memory in romstage, this means romstage before
 memory init.</p>
 </section>
 <section id="timestamp-add">
-<h3>timestamp_add<a class="headerlink" href="#timestamp-add" title="Link to this heading"></a></h3>
+<h3>timestamp_add<a class="headerlink" href="#timestamp-add" title="Permalink to this heading"></a></h3>
 <p>This function accepts from user a timestamp id and time to record in the
 timestamp table. It stores the entry in the appropriate table in cbmem
 or <code class="docutils literal notranslate"><span class="pre">_timestamp</span></code> region or local stash.</p>
 </section>
 <section id="timestamp-add-now">
-<h3>timestamp_add_now<a class="headerlink" href="#timestamp-add-now" title="Link to this heading"></a></h3>
+<h3>timestamp_add_now<a class="headerlink" href="#timestamp-add-now" title="Permalink to this heading"></a></h3>
 <p>This function calls <code class="docutils literal notranslate"><span class="pre">timestamp_add</span></code> with user-provided id and current time.</p>
 </section>
 </section>
 <section id="use-test-cases">
-<h2>Use / Test Cases<a class="headerlink" href="#use-test-cases" title="Link to this heading"></a></h2>
+<h2>Use / Test Cases<a class="headerlink" href="#use-test-cases" title="Permalink to this heading"></a></h2>
 <p>The following cases have been considered while designing the timestamp
 library. It is important to ensure that any changes made to this library satisfy
 each of the following use cases:</p>
 <section id="case-1-timestamp-region-exists-fresh-boot-resume">
-<h3>Case 1: Timestamp Region Exists (Fresh Boot / Resume)<a class="headerlink" href="#case-1-timestamp-region-exists-fresh-boot-resume" title="Link to this heading"></a></h3>
+<h3>Case 1: Timestamp Region Exists (Fresh Boot / Resume)<a class="headerlink" href="#case-1-timestamp-region-exists-fresh-boot-resume" title="Permalink to this heading"></a></h3>
 <p>In this case, the library needs to call <code class="docutils literal notranslate"><span class="pre">timestamp_init</span></code> as early as possible to
 enable the timestamp cache. Once cbmem is available, the values will be
 transferred automatically.</p>
 <p>All regions are automatically reset on initialization.</p>
 </section>
 <section id="case-2-no-timestamp-region-fresh-boot-cbmem-initialize-called-after-timestamp-init">
-<h3>Case 2: No timestamp region, fresh boot, cbmem_initialize called after timestamp_init<a class="headerlink" href="#case-2-no-timestamp-region-fresh-boot-cbmem-initialize-called-after-timestamp-init" title="Link to this heading"></a></h3>
+<h3>Case 2: No timestamp region, fresh boot, cbmem_initialize called after timestamp_init<a class="headerlink" href="#case-2-no-timestamp-region-fresh-boot-cbmem-initialize-called-after-timestamp-init" title="Permalink to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">timestamp_init</span></code> will set up a local cache. cbmem must be initialized before that
 cache vanishes - as happens when jumping to the next stage.</p>
 </section>
 <section id="case-3-no-timestamp-region-fresh-boot-cbmem-initialize-called-before-timestamp-init">
-<h3>Case 3: No timestamp region, fresh boot, cbmem_initialize called before timestamp_init<a class="headerlink" href="#case-3-no-timestamp-region-fresh-boot-cbmem-initialize-called-before-timestamp-init" title="Link to this heading"></a></h3>
+<h3>Case 3: No timestamp region, fresh boot, cbmem_initialize called before timestamp_init<a class="headerlink" href="#case-3-no-timestamp-region-fresh-boot-cbmem-initialize-called-before-timestamp-init" title="Permalink to this heading"></a></h3>
 <p>This case is not supported right now, just don’t call <code class="docutils literal notranslate"><span class="pre">timestamp_init</span></code> after
 <code class="docutils literal notranslate"><span class="pre">cbmem_initialize</span></code>. (Patches to make this more robust are welcome.)</p>
 </section>
 <section id="case-4-no-timestamp-region-resume-cbmem-initialize-called-after-timestamp-init">
-<h3>Case 4: No timestamp region, resume, cbmem_initialize called after timestamp_init<a class="headerlink" href="#case-4-no-timestamp-region-resume-cbmem-initialize-called-after-timestamp-init" title="Link to this heading"></a></h3>
+<h3>Case 4: No timestamp region, resume, cbmem_initialize called after timestamp_init<a class="headerlink" href="#case-4-no-timestamp-region-resume-cbmem-initialize-called-after-timestamp-init" title="Permalink to this heading"></a></h3>
 <p>We always reset the cbmem region before using it, so pre-suspend timestamps
 will be gone.</p>
 </section>
 <section id="case-5-no-timestamp-region-resume-cbmem-initialize-called-before-timestamp-init">
-<h3>Case 5: No timestamp region, resume, cbmem_initialize called before timestamp_init<a class="headerlink" href="#case-5-no-timestamp-region-resume-cbmem-initialize-called-before-timestamp-init" title="Link to this heading"></a></h3>
+<h3>Case 5: No timestamp region, resume, cbmem_initialize called before timestamp_init<a class="headerlink" href="#case-5-no-timestamp-region-resume-cbmem-initialize-called-before-timestamp-init" title="Permalink to this heading"></a></h3>
 <p>We always reset the cbmem region before using it, so pre-suspend timestamps
 will be gone.</p>
 </section>

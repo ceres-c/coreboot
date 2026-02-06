@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adding new devices to a device tree &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Adding new devices to a device tree &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -122,9 +124,9 @@
            <div itemprop="articleBody">
              
   <section id="adding-new-devices-to-a-device-tree">
-<h1>Adding new devices to a device tree<a class="headerlink" href="#adding-new-devices-to-a-device-tree" title="Link to this heading"></a></h1>
+<h1>Adding new devices to a device tree<a class="headerlink" href="#adding-new-devices-to-a-device-tree" title="Permalink to this heading"></a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>ACPI exposes a platform-independent interface for operating systems to perform
 power management and other platform-level functions.  Some operating systems
 also use ACPI to enumerate devices that are not immediately discoverable, such
@@ -133,7 +135,7 @@ the way that coreboot uses the concept of a “device tree” to generate ACPI
 tables for usage by the operating system.</p>
 </section>
 <section id="devicetree-and-overridetree-if-applicable">
-<h2>Devicetree and overridetree (if applicable)<a class="headerlink" href="#devicetree-and-overridetree-if-applicable" title="Link to this heading"></a></h2>
+<h2>Devicetree and overridetree (if applicable)<a class="headerlink" href="#devicetree-and-overridetree-if-applicable" title="Permalink to this heading"></a></h2>
 <p>For mainboards that are organized around a “reference board” or “baseboard”
 model (see <code class="docutils literal notranslate"><span class="pre">src/mainboard/google/octopus</span></code> or <code class="docutils literal notranslate"><span class="pre">hatch</span></code> for examples), there is
 typically a devicetree.cb file that all boards share, and any differences for a
@@ -143,7 +145,7 @@ devicetree.  Note, not all mainboards will have the devicetree/overridetree
 distinction, and may only have a devicetree.cb file.  Or you can always just
 write the ASL (ACPI Source Language) code yourself.</p>
 <section id="naming-and-referencing-devices">
-<h3>Naming and referencing devices<a class="headerlink" href="#naming-and-referencing-devices" title="Link to this heading"></a></h3>
+<h3>Naming and referencing devices<a class="headerlink" href="#naming-and-referencing-devices" title="Permalink to this heading"></a></h3>
 <p>When declaring a device, it can optionally be given an alias that can be
 referred to elsewhere. This is particularly useful to declare a device in one
 device tree while allowing its configuration to be more easily changed in an
@@ -192,12 +194,12 @@ with no properties as a direct child of the SoC.</p>
 </section>
 </section>
 <section id="device-drivers">
-<h2>Device drivers<a class="headerlink" href="#device-drivers" title="Link to this heading"></a></h2>
+<h2>Device drivers<a class="headerlink" href="#device-drivers" title="Permalink to this heading"></a></h2>
 <p>Platform independent device drivers are hooked up via entries in a devicetree.
 See <a class="reference internal" href="../drivers/dt_entries.html"><span class="doc">Driver Devicetree Entries</span></a> for more info.</p>
 </section>
 <section id="notes">
-<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>All fields that are left unspecified in the devicetree are initialized to
 zero.</strong></p></li>

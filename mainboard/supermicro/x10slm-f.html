@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Supermicro X10SLM+-F &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Supermicro X10SLM+-F &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -155,14 +157,14 @@
            <div itemprop="articleBody">
              
   <section id="supermicro-x10slm-f">
-<h1>Supermicro X10SLM+-F<a class="headerlink" href="#supermicro-x10slm-f" title="Link to this heading"></a></h1>
+<h1>Supermicro X10SLM+-F<a class="headerlink" href="#supermicro-x10slm-f" title="Permalink to this heading"></a></h1>
 <p>This section details how to run coreboot on the <a class="reference external" href="https://www.supermicro.com/products/motherboard/xeon/c220/x10slm_-f.cfm">Supermicro X10SLM+-F</a>.</p>
 <section id="required-proprietary-blobs">
-<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Link to this heading"></a></h2>
+<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Permalink to this heading"></a></h2>
 <p>Please see <a class="reference internal" href="../../northbridge/intel/haswell/mrc.bin.html"><span class="doc">mrc.bin</span></a>.</p>
 </section>
 <section id="building-coreboot">
-<h2>Building coreboot<a class="headerlink" href="#building-coreboot" title="Link to this heading"></a></h2>
+<h2>Building coreboot<a class="headerlink" href="#building-coreboot" title="Permalink to this heading"></a></h2>
 <p>If you haven’t already, build the coreboot toolchain as described in
 <a class="reference internal" href="../../tutorial/part1.html"><span class="doc">Tutorial, part 1: Starting from scratch</span></a>.</p>
 <p>A fully working image should be possible so long as you have the
@@ -185,11 +187,11 @@ payload.</p>
 <p>Now, run <code class="docutils literal notranslate"><span class="pre">make</span></code> to build the coreboot image.</p>
 </section>
 <section id="flashing-coreboot">
-<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Permalink to this heading"></a></h2>
 <p>In addition to the information here, please see the
 <a class="reference internal" href="../../tutorial/flashing_firmware/index.html"><span class="doc">Flashing firmware tutorial</span></a>.</p>
 <section id="internal-programming">
-<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Link to this heading"></a></h3>
+<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Permalink to this heading"></a></h3>
 <p>Under the vendor firmware, the BIOS region of the flash chip is
 write-protected. Additionally, the vendor flashing tool does not work
 with a coreboot image. So, <a class="reference external" href="#external-programming">external programming</a>
@@ -204,7 +206,7 @@ can be used thereafter.</p>
 region is not readable even by the host.</p>
 </section>
 <section id="external-programming">
-<h3>External programming<a class="headerlink" href="#external-programming" title="Link to this heading"></a></h3>
+<h3>External programming<a class="headerlink" href="#external-programming" title="Permalink to this heading"></a></h3>
 <p>The main firmware flash chip is an SOIC-8 package located near the CMOS
 battery and SATA ports. It should come with a sticker attached that
 states the firmware revision (e.g. “X10SLH 4.424”). The chip model is
@@ -222,12 +224,12 @@ way without issue.</p>
 </section>
 </section>
 <section id="bmc-ipmi">
-<h2>BMC (IPMI)<a class="headerlink" href="#bmc-ipmi" title="Link to this heading"></a></h2>
+<h2>BMC (IPMI)<a class="headerlink" href="#bmc-ipmi" title="Permalink to this heading"></a></h2>
 <p>This board has an ASPEED <a class="reference external" href="https://www.aspeedtech.com/products.php?fPath=20&amp;rId=376">AST2400</a>, which has BMC functionality. The
 BMC firmware resides in a 32 MiB SOIC-16 chip just above the <a class="reference external" href="https://www.aspeedtech.com/products.php?fPath=20&amp;rId=376">AST2400</a>.
 This chip is an MX25L25635F (<a class="reference external" href="https://media.digikey.com/pdf/Data%20Sheets/Macronix/MX25L25635F.pdf">datasheet</a>).</p>
 <section id="removing-the-bmc-functionality">
-<h3>Removing the BMC functionality<a class="headerlink" href="#removing-the-bmc-functionality" title="Link to this heading"></a></h3>
+<h3>Removing the BMC functionality<a class="headerlink" href="#removing-the-bmc-functionality" title="Permalink to this heading"></a></h3>
 <p>The BMC functionality on this board can be removed. If you do not need
 its features, removing the BMC functionality might increase security.
 This topic has not been widely explored, and you should only <strong>undertake
@@ -252,13 +254,13 @@ eventually start. There is no such delay when running coreboot.</p>
 </section>
 </section>
 <section id="ecc-dram">
-<h2>ECC DRAM<a class="headerlink" href="#ecc-dram" title="Link to this heading"></a></h2>
+<h2>ECC DRAM<a class="headerlink" href="#ecc-dram" title="Permalink to this heading"></a></h2>
 <p>ECC DRAM seems to work, but please see
 <a class="reference internal" href="../../northbridge/intel/haswell/mrc.bin.html"><span class="doc">mrc.bin</span></a>
 for caveats.</p>
 </section>
 <section id="known-issues">
-<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Broadwell CPUs are not supported. They might work with minimal changes
 to the code, but this has not been tested.</p></li>
@@ -273,7 +275,7 @@ temperature readings from an OS, and hence the OS can do fan control.</p></li>
 <p>Please also see <a class="reference internal" href="../../northbridge/intel/haswell/known-issues.html"><span class="doc">Known issues with Haswell</span></a>.</p>
 </section>
 <section id="untested">
-<h2>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h2>
+<h2>Untested<a class="headerlink" href="#untested" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>TPM</p></li>
 <li><p>PCIe (likely to work, but maybe not at Gen 3 speeds)</p></li>
@@ -289,7 +291,7 @@ temperature readings from an OS, and hence the OS can do fan control.</p></li>
 </ul>
 </section>
 <section id="working">
-<h2>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h2>
+<h2>Working<a class="headerlink" href="#working" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>USB</p></li>
 <li><p>S3 suspend/resume</p></li>
@@ -308,7 +310,7 @@ temperature readings from an OS, and hence the OS can do fan control.</p></li>
 </ul>
 </section>
 <section id="technology">
-<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<h2>Technology<a class="headerlink" href="#technology" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>CPU</p></td>
@@ -330,7 +332,7 @@ temperature readings from an OS, and hence the OS can do fan control.</p></li>
 </table>
 </section>
 <section id="extra-links">
-<h2>Extra links<a class="headerlink" href="#extra-links" title="Link to this heading"></a></h2>
+<h2>Extra links<a class="headerlink" href="#extra-links" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://www.supermicro.com/manuals/motherboard/C224/MNL-1500.pdf">Board manual</a></li>

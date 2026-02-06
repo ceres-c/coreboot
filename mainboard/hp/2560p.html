@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HP EliteBook 2560p &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>HP EliteBook 2560p &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -152,15 +154,15 @@
            <div itemprop="articleBody">
              
   <section id="hp-elitebook-2560p">
-<h1>HP EliteBook 2560p<a class="headerlink" href="#hp-elitebook-2560p" title="Link to this heading"></a></h1>
+<h1>HP EliteBook 2560p<a class="headerlink" href="#hp-elitebook-2560p" title="Permalink to this heading"></a></h1>
 <p>This page is about the notebook <a class="reference external" href="https://support.hp.com/us-en/product/hp-elitebook-2560p-notebook-pc/5071201">HP EliteBook 2560p</a>.</p>
 <section id="release-status">
-<h2>Release status<a class="headerlink" href="#release-status" title="Link to this heading"></a></h2>
+<h2>Release status<a class="headerlink" href="#release-status" title="Permalink to this heading"></a></h2>
 <p>HP EliteBook 2560p was released in 2011 and is now end of life.
 It can be bought from a secondhand market like Taobao or eBay.</p>
 </section>
 <section id="required-proprietary-blobs">
-<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Link to this heading"></a></h2>
+<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Permalink to this heading"></a></h2>
 <p>The following blobs are required to operate the hardware:</p>
 <ol class="simple">
 <li><p>EC firmware</p></li>
@@ -173,7 +175,7 @@ document <a class="reference internal" href="hp_kbc1126_laptops.html"><span clas
 <p>Intel ME firmware is in the flash chip. It is not needed when building coreboot.</p>
 </section>
 <section id="programming">
-<h2>Programming<a class="headerlink" href="#programming" title="Link to this heading"></a></h2>
+<h2>Programming<a class="headerlink" href="#programming" title="Permalink to this heading"></a></h2>
 <p>The flash chip is located between the memory slots and the PCH,
 covered by the base enclosure, which needs to be removed according to
 the <a class="reference external" href="http://h10032.www1.hp.com/ctg/Manual/c03011618">Maintenance and Service Guide</a> to access the flash chip. An SPI
@@ -184,22 +186,22 @@ an SOIC-8 clip can be used to read and flash the chip in-circuit.</p>
 <p>For more details have a look at the general <a class="reference internal" href="../../tutorial/flashing_firmware/ext_power.html"><span class="doc">flashing tutorial</span></a>.</p>
 </section>
 <section id="debugging">
-<h2>Debugging<a class="headerlink" href="#debugging" title="Link to this heading"></a></h2>
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading"></a></h2>
 <p>The board can be debugged with EHCI debug. The EHCI debug port is the back
 bottom USB port.</p>
 <p>Schematic of this laptop can be found on <a class="reference external" href="https://www.laboneinside.com/hp-elitebook-2560p-schematic-diagram/">Lab One</a>.</p>
 </section>
 <section id="test-status">
-<h2>Test status<a class="headerlink" href="#test-status" title="Link to this heading"></a></h2>
+<h2>Test status<a class="headerlink" href="#test-status" title="Permalink to this heading"></a></h2>
 <section id="known-issues">
-<h3>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h3>
+<h3>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>GRUB payload freezes if at_keyboard module is in the GRUB image
 (<a class="reference external" href="https://ticket.coreboot.org/issues/141">bug #141</a>)</p></li>
 </ul>
 </section>
 <section id="untested">
-<h3>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h3>
+<h3>Untested<a class="headerlink" href="#untested" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Optical Drive</p></li>
 <li><p>VGA</p></li>
@@ -208,7 +210,7 @@ bottom USB port.</p>
 </ul>
 </section>
 <section id="working">
-<h3>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h3>
+<h3>Working<a class="headerlink" href="#working" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Integrated graphics init with libgfxinit</p></li>
 <li><p>SATA</p></li>
@@ -233,7 +235,7 @@ bottom USB port.</p>
 </section>
 </section>
 <section id="technology">
-<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<h2>Technology<a class="headerlink" href="#technology" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>CPU</p></td>

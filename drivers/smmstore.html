@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SMM based flash storage driver &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>SMM based flash storage driver &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -123,11 +125,11 @@
            <div itemprop="articleBody">
              
   <section id="smm-based-flash-storage-driver">
-<h1>SMM based flash storage driver<a class="headerlink" href="#smm-based-flash-storage-driver" title="Link to this heading"></a></h1>
+<h1>SMM based flash storage driver<a class="headerlink" href="#smm-based-flash-storage-driver" title="Permalink to this heading"></a></h1>
 <p>This documents the API exposed by the x86 system management based
 storage driver.</p>
 <section id="smmstore">
-<h2>SMMSTORE<a class="headerlink" href="#smmstore" title="Link to this heading"></a></h2>
+<h2>SMMSTORE<a class="headerlink" href="#smmstore" title="Permalink to this heading"></a></h2>
 <p>SMMSTORE is a <a class="reference internal" href="../security/smm.html"><span class="doc">SMM</span></a> mediated driver to read from, write to and erase a
 predefined region in flash. It can be enabled by setting
 <code class="docutils literal notranslate"><span class="pre">CONFIG_SMMSTORE=y</span></code> in menuconfig.</p>
@@ -138,9 +140,9 @@ itself.</p>
 <p>The API provides append-only semantics for key/value pairs.</p>
 </section>
 <section id="api">
-<h2>API<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<h2>API<a class="headerlink" href="#api" title="Permalink to this heading"></a></h2>
 <section id="storage-region">
-<h3>Storage region<a class="headerlink" href="#storage-region" title="Link to this heading"></a></h3>
+<h3>Storage region<a class="headerlink" href="#storage-region" title="Permalink to this heading"></a></h3>
 <p>By default SMMSTORE will operate on a separate FMAP region called
 <code class="docutils literal notranslate"><span class="pre">SMMSTORE</span></code>. The default generated FMAP will include such a region.
 On systems with a locked FMAP, e.g. in an existing vboot setup
@@ -157,7 +159,7 @@ is equal to <code class="docutils literal notranslate"><span class="pre">CONFIG_
 key-value pairs at least a multiple of this is recommended.</p>
 </section>
 <section id="generating-the-smi">
-<h3>generating the SMI<a class="headerlink" href="#generating-the-smi" title="Link to this heading"></a></h3>
+<h3>generating the SMI<a class="headerlink" href="#generating-the-smi" title="Permalink to this heading"></a></h3>
 <p>SMMSTORE is called via an SMI, which is generated via a write to the
 IO port defined in the smi_cmd entry of the FADT ACPI table. <code class="docutils literal notranslate"><span class="pre">%al</span></code>
 contains <code class="docutils literal notranslate"><span class="pre">APM_CNT_SMMSTORE=0xed</span></code> and is written to the smi_cmd IO
@@ -165,7 +167,7 @@ port. <code class="docutils literal notranslate"><span class="pre">%ah</span></c
 parameter buffer to the SMMSTORE command.</p>
 </section>
 <section id="return-values">
-<h3>Return values<a class="headerlink" href="#return-values" title="Link to this heading"></a></h3>
+<h3>Return values<a class="headerlink" href="#return-values" title="Permalink to this heading"></a></h3>
 <p>If a command succeeds, SMMSTORE will return with
 <code class="docutils literal notranslate"><span class="pre">SMMSTORE_RET_SUCCESS=0</span></code> on <code class="docutils literal notranslate"><span class="pre">%eax</span></code>. On failure SMMSTORE will return
 <code class="docutils literal notranslate"><span class="pre">SMMSTORE_RET_FAILURE=1</span></code>. For unsupported SMMSTORE commands
@@ -177,18 +179,18 @@ no assumption on the returned data if <code class="docutils literal notranslate"
 SMMSTORE feature is not installed.</p>
 </section>
 <section id="calling-arguments">
-<h3>Calling arguments<a class="headerlink" href="#calling-arguments" title="Link to this heading"></a></h3>
+<h3>Calling arguments<a class="headerlink" href="#calling-arguments" title="Permalink to this heading"></a></h3>
 <p>SMMSTORE supports 3 subcommands that are passed via <code class="docutils literal notranslate"><span class="pre">%ah</span></code>, the additional
 calling arguments are passed via <code class="docutils literal notranslate"><span class="pre">%ebx</span></code>.</p>
 <p><strong>NOTE</strong>: The size of the struct entries are in the native word size of
 smihandler. This means 32 bits in almost all cases.</p>
 <section id="smmstore-cmd-clear-1">
-<h4>- SMMSTORE_CMD_CLEAR = 1<a class="headerlink" href="#smmstore-cmd-clear-1" title="Link to this heading"></a></h4>
+<h4>- SMMSTORE_CMD_CLEAR = 1<a class="headerlink" href="#smmstore-cmd-clear-1" title="Permalink to this heading"></a></h4>
 <p>This clears the <code class="docutils literal notranslate"><span class="pre">SMMSTORE</span></code> storage region. The argument in <code class="docutils literal notranslate"><span class="pre">%ebx</span></code> is
 unused.</p>
 </section>
 <section id="smmstore-cmd-read-2">
-<h4>- SMMSTORE_CMD_READ = 2<a class="headerlink" href="#smmstore-cmd-read-2" title="Link to this heading"></a></h4>
+<h4>- SMMSTORE_CMD_READ = 2<a class="headerlink" href="#smmstore-cmd-read-2" title="Permalink to this heading"></a></h4>
 <p>The additional parameter buffer <code class="docutils literal notranslate"><span class="pre">%ebx</span></code> contains a pointer to
 the following struct:</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">smmstore_params_read</span><span class="w"> </span><span class="p">{</span>
@@ -209,7 +211,7 @@ the following struct:</p>
 </ul>
 </section>
 <section id="smmstore-cmd-append-3">
-<h4>- SMMSTORE_CMD_APPEND = 3<a class="headerlink" href="#smmstore-cmd-append-3" title="Link to this heading"></a></h4>
+<h4>- SMMSTORE_CMD_APPEND = 3<a class="headerlink" href="#smmstore-cmd-append-3" title="Permalink to this heading"></a></h4>
 <p>SMMSTORE takes a key-value approach to appending data. key-value pairs
 are never updated, they are always appended. It is up to the caller to
 walk through the key-value pairs after reading SMMSTORE to find the
@@ -233,7 +235,7 @@ the following struct:</p>
 </ul>
 </section>
 <section id="security">
-<h4>Security<a class="headerlink" href="#security" title="Link to this heading"></a></h4>
+<h4>Security<a class="headerlink" href="#security" title="Permalink to this heading"></a></h4>
 <p>Pointers provided by the payload or OS are checked to not overlap with the SMM.
 That protects the SMM handler from being manipulated.</p>
 <p><em>However there’s no validation done on the source or destination pointing to
@@ -243,7 +245,7 @@ data or modify the currently running kernel.</em></p>
 </section>
 </section>
 <section id="external-links">
-<h2>External links<a class="headerlink" href="#external-links" title="Link to this heading"></a></h2>
+<h2>External links<a class="headerlink" href="#external-links" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://software.intel.com/sites/default/files/managed/cf/ea/a_tour_beyond_bios_implementing_uefi_authenticated_variables_in_smm_with_edkii.pdf">A Tour Beyond BIOS Implementing UEFI Authenticated Variables in SMM with EDKI</a>
 Note, this differs significantly from coreboot’s implementation.</p></li>

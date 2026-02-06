@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Protectli Vault FW6 series &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Protectli Vault FW6 series &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -151,11 +153,11 @@
            <div itemprop="articleBody">
              
   <section id="protectli-vault-fw6-series">
-<h1>Protectli Vault FW6 series<a class="headerlink" href="#protectli-vault-fw6-series" title="Link to this heading"></a></h1>
+<h1>Protectli Vault FW6 series<a class="headerlink" href="#protectli-vault-fw6-series" title="Permalink to this heading"></a></h1>
 <p>This page describes how to run coreboot on the <a class="reference external" href="https://protectli.com/vault-6-port/">Protectli FW6</a>.</p>
 <p><img alt="../../_images/fw6.jpg" src="../../_images/fw6.jpg" /></p>
 <section id="required-proprietary-blobs">
-<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Link to this heading"></a></h2>
+<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Permalink to this heading"></a></h2>
 <p>To build a minimal working coreboot image some blobs are required (assuming
 only the BIOS region is being modified).</p>
 <table class="docutils align-default">
@@ -189,15 +191,15 @@ system from the <code class="docutils literal notranslate"><span class="pre">3rd
 stage, it should be included (if not using libgfxinit).</p>
 </section>
 <section id="flashing-coreboot">
-<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Permalink to this heading"></a></h2>
 <section id="internal-programming">
-<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Link to this heading"></a></h3>
+<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Permalink to this heading"></a></h3>
 <p>The main SPI flash can be accessed using <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a>. The first version
 supporting the chipset is flashrom v1.1. Firmware an be easily flashed
 with internal programmer (either BIOS region or full image).</p>
 </section>
 <section id="external-programming">
-<h3>External programming<a class="headerlink" href="#external-programming" title="Link to this heading"></a></h3>
+<h3>External programming<a class="headerlink" href="#external-programming" title="Permalink to this heading"></a></h3>
 <p>The system has an internal flash chip which is a 8 MiB soldered SOIC-8 chip.
 This chip is located on the bottom side of the case (the radiator side). One
 has to remove all screws (in order): 4 top cover screws, 4 side cover screws
@@ -208,7 +210,7 @@ it’s a Macronix MX25L6406E (3.3V) -<a class="reference external" href="https:/
 </section>
 </section>
 <section id="known-issues">
-<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>After flashing with external programmer it is always required to reset RTC
 with jumper or disconnect coin cell temporarily. Only then the platform will
@@ -222,7 +224,7 @@ temporarily disconnect DIMM when platform is powered off.</p></li>
 </ul>
 </section>
 <section id="untested">
-<h2>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h2>
+<h2>Untested<a class="headerlink" href="#untested" title="Permalink to this heading"></a></h2>
 <p>Not all mainboard’s peripherals and functions were tested because of lack of
 the cables or not being populated on the board case.</p>
 <ul class="simple">
@@ -231,7 +233,7 @@ the cables or not being populated on the board case.</p>
 </ul>
 </section>
 <section id="working">
-<h2>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h2>
+<h2>Working<a class="headerlink" href="#working" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>USB 3.0 front ports (SeaBIOS and Linux)</p></li>
 <li><p>6 Ethernet ports</p></li>
@@ -249,7 +251,7 @@ the cables or not being populated on the board case.</p>
 </ul>
 </section>
 <section id="technology">
-<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<h2>Technology<a class="headerlink" href="#technology" title="Permalink to this heading"></a></h2>
 <p>There are 3 variants of FW6 boards: FW6A, FW6B and FW6C. They differ only in
 used SoC.</p>
 <ul class="simple">

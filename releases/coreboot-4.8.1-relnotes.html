@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.8 &amp; 4.8.1 release notes &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.8 &amp; 4.8.1 release notes &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -149,7 +151,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-8-4-8-1-release-notes">
-<h1>coreboot 4.8 &amp; 4.8.1 release notes<a class="headerlink" href="#coreboot-4-8-4-8-1-release-notes" title="Link to this heading"></a></h1>
+<h1>coreboot 4.8 &amp; 4.8.1 release notes<a class="headerlink" href="#coreboot-4-8-4-8-1-release-notes" title="Permalink to this heading"></a></h1>
 <p>The 4.8.1 release contains 2 commits: 5f0b80b880 and 6794ce02d4.  This
 minor release fixes an issue with adding payloads. The 4.8 release
 covers commit 6dd2f69878 to commit ebdeb4d07d</p>
@@ -168,7 +170,7 @@ development and nobody stepped up doing the porting effort or was
 willing to test coreboot on them. If there is the desire to get a board
 back, it isn’t lost as it’s still in the git history.</p>
 <section id="intel-i945-platform">
-<h2>Intel i945 platform<a class="headerlink" href="#intel-i945-platform" title="Link to this heading"></a></h2>
+<h2>Intel i945 platform<a class="headerlink" href="#intel-i945-platform" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>On Intel 945 devices, native graphics initialization is now skipped
 saving around 100 ms during resume from S3. The OS drivers need to be
@@ -177,7 +179,7 @@ the frame buffer driver.</p></li>
 </ul>
 </section>
 <section id="amd-stoney-ridge">
-<h2>AMD Stoney Ridge<a class="headerlink" href="#amd-stoney-ridge" title="Link to this heading"></a></h2>
+<h2>AMD Stoney Ridge<a class="headerlink" href="#amd-stoney-ridge" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Significant cleanup from older AGESA based platforms</p></li>
 <li><p>Fixes to get S3 working</p></li>
@@ -187,14 +189,14 @@ possible</p></li>
 </ul>
 </section>
 <section id="lenovo-mainboards">
-<h2>Lenovo mainboards<a class="headerlink" href="#lenovo-mainboards" title="Link to this heading"></a></h2>
+<h2>Lenovo mainboards<a class="headerlink" href="#lenovo-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Started integration of VBT (Video BIOS Table) binary files to
 support native graphics initialisation</p></li>
 </ul>
 </section>
 <section id="internal-changes">
-<h2>Internal changes<a class="headerlink" href="#internal-changes" title="Link to this heading"></a></h2>
+<h2>Internal changes<a class="headerlink" href="#internal-changes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Rename of payload type ‘payload’ to ‘simple_elf’</p></li>
 <li><p>Progress in removing typedef device_t</p></li>
@@ -205,7 +207,7 @@ support native graphics initialisation</p></li>
 </ul>
 </section>
 <section id="console-changes">
-<h2>Console changes<a class="headerlink" href="#console-changes" title="Link to this heading"></a></h2>
+<h2>Console changes<a class="headerlink" href="#console-changes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Reduce default loglevel to DEBUG</p></li>
 <li><p>Introduce a way for mainboard to override the loglevel</p></li>
@@ -213,7 +215,7 @@ support native graphics initialisation</p></li>
 </ul>
 </section>
 <section id="fixed-bugs">
-<h2>Fixed Bugs<a class="headerlink" href="#fixed-bugs" title="Link to this heading"></a></h2>
+<h2>Fixed Bugs<a class="headerlink" href="#fixed-bugs" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>qemu-i440fx: Fix ACPI checksum corruption</p></li>
 <li><p>intelmetool: Fix crash, support ME11+ platforms, fix bootguard
@@ -225,14 +227,14 @@ detection</p></li>
 </ul>
 </section>
 <section id="payloads">
-<h2>Payloads<a class="headerlink" href="#payloads" title="Link to this heading"></a></h2>
+<h2>Payloads<a class="headerlink" href="#payloads" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Bumped SeaBIOS to 1.11.1</p></li>
 <li><p>Improved edk2 integration</p></li>
 </ul>
 </section>
 <section id="security">
-<h2>Security<a class="headerlink" href="#security" title="Link to this heading"></a></h2>
+<h2>Security<a class="headerlink" href="#security" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Start of refactoring the TPM software stack</p></li>
 <li><p>Introduced coreboot security section in kconfig</p></li>
@@ -240,20 +242,20 @@ detection</p></li>
 </ul>
 </section>
 <section id="intelmetool">
-<h2>Intelmetool<a class="headerlink" href="#intelmetool" title="Link to this heading"></a></h2>
+<h2>Intelmetool<a class="headerlink" href="#intelmetool" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Add Intel Boot Guard status support</p></li>
 </ul>
 </section>
 <section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Switch from Hugo to Sphinx for the Documentation</p></li>
 <li><p>Working on markdown documentation for https://doc.coreboot.org</p></li>
 </ul>
 </section>
 <section id="added-17-mainboards">
-<h2>Added 17 mainboards<a class="headerlink" href="#added-17-mainboards" title="Link to this heading"></a></h2>
+<h2>Added 17 mainboards<a class="headerlink" href="#added-17-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Asus MAXIMUS_IV_GENE_Z                               Intel Sandybridge</p></li>
 <li><p>Google ATLAS                                         Intel Kabylake</p></li>
@@ -275,7 +277,7 @@ detection</p></li>
 </ul>
 </section>
 <section id="removed-39-mainboards">
-<h2>Removed 39 mainboards<a class="headerlink" href="#removed-39-mainboards" title="Link to this heading"></a></h2>
+<h2>Removed 39 mainboards<a class="headerlink" href="#removed-39-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Abit BE6_II_V2_0</p></li>
 <li><p>AMD DINAR</p></li>
@@ -319,21 +321,21 @@ detection</p></li>
 </ul>
 </section>
 <section id="added-2-socs">
-<h2>Added 2 socs<a class="headerlink" href="#added-2-socs" title="Link to this heading"></a></h2>
+<h2>Added 2 socs<a class="headerlink" href="#added-2-socs" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Qualcomm sdm845</p></li>
 <li><p>SiFive fu540</p></li>
 </ul>
 </section>
 <section id="removed-2-socs">
-<h2>Removed 2 socs<a class="headerlink" href="#removed-2-socs" title="Link to this heading"></a></h2>
+<h2>Removed 2 socs<a class="headerlink" href="#removed-2-socs" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>DMP vortex86ex</p></li>
 <li><p>Intel sch</p></li>
 </ul>
 </section>
 <section id="removed-5-processors">
-<h2>Removed 5 processors<a class="headerlink" href="#removed-5-processors" title="Link to this heading"></a></h2>
+<h2>Removed 5 processors<a class="headerlink" href="#removed-5-processors" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>AMD agesa-family15</p></li>
 <li><p>AMD geode-gx2</p></li>
@@ -343,7 +345,7 @@ detection</p></li>
 </ul>
 </section>
 <section id="statistics">
-<h2>Statistics<a class="headerlink" href="#statistics" title="Link to this heading"></a></h2>
+<h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Total commits: 1198</p></li>
 <li><p>Average Commits per day: 9.85</p></li>

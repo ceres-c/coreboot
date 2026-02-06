@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lenovo Ivy Bridge series &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Lenovo Ivy Bridge series &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -158,10 +160,10 @@
            <div itemprop="articleBody">
              
   <section id="lenovo-ivy-bridge-series">
-<h1>Lenovo Ivy Bridge series<a class="headerlink" href="#lenovo-ivy-bridge-series" title="Link to this heading"></a></h1>
+<h1>Lenovo Ivy Bridge series<a class="headerlink" href="#lenovo-ivy-bridge-series" title="Permalink to this heading"></a></h1>
 <p>This information is valid for all supported models, except T430s, <a class="reference internal" href="t431s.html"><span class="doc">T431s</span></a> and <a class="reference internal" href="x230s.html"><span class="doc">X230s</span></a>.</p>
 <section id="flashing-coreboot">
-<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Type</p></th>
@@ -194,7 +196,7 @@
 </table>
 </section>
 <section id="installation-instructions">
-<h2>Installation instructions<a class="headerlink" href="#installation-instructions" title="Link to this heading"></a></h2>
+<h2>Installation instructions<a class="headerlink" href="#installation-instructions" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Update the EC firmware, as there’s no support for EC updates in coreboot.</p></li>
 <li><p>Do <strong>NOT</strong> accidentally swap pins or power on the board while a SPI flasher
@@ -212,7 +214,7 @@ exceed 4MiB in size, which means CONFIG_CBFS_SIZE must be smaller than 4MiB.</p>
 <p>Please also have a look at <a class="reference internal" href="../../tutorial/flashing_firmware/index.html"><span class="doc">Flashing firmware tutorial</span></a>.</p>
 </section>
 <section id="splitting-the-coreboot-rom">
-<h2>Splitting the coreboot.rom<a class="headerlink" href="#splitting-the-coreboot-rom" title="Link to this heading"></a></h2>
+<h2>Splitting the coreboot.rom<a class="headerlink" href="#splitting-the-coreboot-rom" title="Permalink to this heading"></a></h2>
 <p>To split the coreboot.rom into two images (one for the 8MiB and one for the
 4 MiB flash IC), run the following commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dd<span class="w"> </span><span class="nv">of</span><span class="o">=</span>top.rom<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="k">if</span><span class="o">=</span>build/coreboot.rom<span class="w"> </span><span class="nv">skip</span><span class="o">=</span><span class="m">8</span>
@@ -224,7 +226,7 @@ flash image, that resides on the 4 MiB flash and <em>bottom.rom</em> is the lowe
 of the flash image, that resides on the 8 MiB flash.</p>
 </section>
 <section id="dumping-a-full-rom">
-<h2>Dumping a full ROM<a class="headerlink" href="#dumping-a-full-rom" title="Link to this heading"></a></h2>
+<h2>Dumping a full ROM<a class="headerlink" href="#dumping-a-full-rom" title="Permalink to this heading"></a></h2>
 <p>If you flash externally you need to read both flash chips to get two images
 (one for the 8MiB and one for the 4 MiB flash IC), and then run the following
 command to concatenate the files:</p>
@@ -233,7 +235,7 @@ command to concatenate the files:</p>
 </div>
 </section>
 <section id="flash-layout">
-<h2>Flash layout<a class="headerlink" href="#flash-layout" title="Link to this heading"></a></h2>
+<h2>Flash layout<a class="headerlink" href="#flash-layout" title="Permalink to this heading"></a></h2>
 <p>There’s one 8MiB and one 4 MiB flash which contains IFD, GBE, ME and
 BIOS region. These two flash ICs appear as a single 12MiB when flashing
 internally.
@@ -242,7 +244,7 @@ region. The update is then written into the EC once.</p>
 <p><img alt="../../_images/flashlayout_Ivy_Bridge.svg" src="../../_images/flashlayout_Ivy_Bridge.svg" /></p>
 </section>
 <section id="reducing-intel-management-engine-firmware-size">
-<h2>Reducing Intel Management Engine firmware size<a class="headerlink" href="#reducing-intel-management-engine-firmware-size" title="Link to this heading"></a></h2>
+<h2>Reducing Intel Management Engine firmware size<a class="headerlink" href="#reducing-intel-management-engine-firmware-size" title="Permalink to this heading"></a></h2>
 <p>It is possible to reduce the Intel ME firmware size to free additional
 space for the <code class="docutils literal notranslate"><span class="pre">bios</span></code> region. This is usually referred to as <em>cleaning the ME</em> or
 <em>stripping the ME</em>.

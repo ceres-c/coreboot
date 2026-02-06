@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.10 release notes &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.10 release notes &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -143,7 +145,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-10-release-notes">
-<h1>coreboot 4.10 release notes<a class="headerlink" href="#coreboot-4-10-release-notes" title="Link to this heading"></a></h1>
+<h1>coreboot 4.10 release notes<a class="headerlink" href="#coreboot-4-10-release-notes" title="Permalink to this heading"></a></h1>
 <p>The 4.10 release covers commit a2faaa9a2 to commit ae317695e3
 There is a pgp signed 4.10 tag in the git repository, and a branch will
 be created as needed.</p>
@@ -157,7 +159,7 @@ project, community and code with their effort, no matter if through
 development, review, testing, documentation or by helping people asking
 questions on our venues like IRC or our mailing list.</p>
 <section id="what-s-new">
-<h2>What’s New<a class="headerlink" href="#what-s-new" title="Link to this heading"></a></h2>
+<h2>What’s New<a class="headerlink" href="#what-s-new" title="Permalink to this heading"></a></h2>
 <p>Most of the changes were to mainboards, and on the chipset side, lots
 of activity concentrated on x86. However compared to previous releases
 activity (and therefore interest, probably) increased in vboot and in
@@ -165,14 +167,14 @@ non-x86 architectures. However it’s harder this time to give this release
 a single topic like the last: This release accumulates some of everything.</p>
 </section>
 <section id="clean-up">
-<h2>Clean Up<a class="headerlink" href="#clean-up" title="Link to this heading"></a></h2>
+<h2>Clean Up<a class="headerlink" href="#clean-up" title="Permalink to this heading"></a></h2>
 <p>As usual, there was a lot of cleaning up going on, and there notably,
 a good chunk of this year’s Google Summer of Code project to clean out
 the issues reported by Coverity Scan is already in.</p>
 <p>The only larger scale change that was registered in the pre-release
 notes was also about cleaning up the tree:</p>
 <section id="device-t-is-no-more">
-<h3><code class="docutils literal notranslate"><span class="pre">device_t</span></code> is no more<a class="headerlink" href="#device-t-is-no-more" title="Link to this heading"></a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">device_t</span></code> is no more<a class="headerlink" href="#device-t-is-no-more" title="Permalink to this heading"></a></h3>
 <p>coreboot used to have a data type, <code class="docutils literal notranslate"><span class="pre">device_t</span></code> that changed shape depending on
 whether it is compiled for romstage (with limited memory) or ramstage (with
 unlimited memory as far as coreboot is concerned). It’s an old relic from the
@@ -182,13 +184,13 @@ our romcc compiler.</p>
 </section>
 </section>
 <section id="release-notes-maintenance">
-<h2>Release Notes maintenance<a class="headerlink" href="#release-notes-maintenance" title="Link to this heading"></a></h2>
+<h2>Release Notes maintenance<a class="headerlink" href="#release-notes-maintenance" title="Permalink to this heading"></a></h2>
 <p>Speaking of pre-release notes: After 4.10 we’ll start a document for
 4.11 in the git repository. Feel free to add notable achievements there
 so we remember to give them a shout out in the next release’s notes.</p>
 </section>
 <section id="known-issues">
-<h2>Known Issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading"></a></h2>
 <p>Sadly, Google Cyan is broken in this release. It doesn’t work with the
 “C environment” bootblock (as compared to the old romcc type bootblock)
 which is now the default. Sadly it doesn’t help to simply revert that
@@ -199,7 +201,7 @@ https://review.coreboot.org/c/coreboot/+/34304 where a solution for this
 issue is sought.</p>
 </section>
 <section id="deprecations">
-<h2>Deprecations<a class="headerlink" href="#deprecations" title="Link to this heading"></a></h2>
+<h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this heading"></a></h2>
 <p>As announced in the 4.9 release notes, there are no deprecations after 4.10.
 While 4.10 is also released late and we target a 4.11 release in October we
 nonetheless want to announce deprecations this time: These are under
@@ -217,7 +219,7 @@ options so we can remove the options and the code they disable:</p>
 look into fixing that.</p>
 </section>
 <section id="added-28-mainboards">
-<h2>Added 28 mainboards:<a class="headerlink" href="#added-28-mainboards" title="Link to this heading"></a></h2>
+<h2>Added 28 mainboards:<a class="headerlink" href="#added-28-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>ASROCK H110M-DVS</p></li>
 <li><p>ASUS H61M-CS</p></li>
@@ -251,7 +253,7 @@ look into fixing that.</p>
 </ul>
 </section>
 <section id="removed-7-mainboards">
-<h2>Removed 7 mainboards:<a class="headerlink" href="#removed-7-mainboards" title="Link to this heading"></a></h2>
+<h2>Removed 7 mainboards:<a class="headerlink" href="#removed-7-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>GOOGLE BIP</p></li>
 <li><p>GOOGLE DELAN</p></li>
@@ -263,7 +265,7 @@ look into fixing that.</p>
 </ul>
 </section>
 <section id="removed-3-processors">
-<h2>Removed 3 processors:<a class="headerlink" href="#removed-3-processors" title="Link to this heading"></a></h2>
+<h2>Removed 3 processors:<a class="headerlink" href="#removed-3-processors" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>src/cpu/amd/geode_lx</p></li>
 <li><p>src/cpu/intel/model_69x</p></li>
@@ -271,14 +273,14 @@ look into fixing that.</p>
 </ul>
 </section>
 <section id="added-2-socs">
-<h2>Added 2 socs:<a class="headerlink" href="#added-2-socs" title="Link to this heading"></a></h2>
+<h2>Added 2 socs:<a class="headerlink" href="#added-2-socs" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>src/soc/amd/picasso</p></li>
 <li><p>src/soc/qualcomm/qcs405</p></li>
 </ul>
 </section>
 <section id="toolchain">
-<h2>Toolchain<a class="headerlink" href="#toolchain" title="Link to this heading"></a></h2>
+<h2>Toolchain<a class="headerlink" href="#toolchain" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Update to gcc 8.3.0, binutils 2.32, IASL 20190509, clang 8</p></li>
 </ul>

@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.22 &amp; 4.22.01 releases &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.22 &amp; 4.22.01 releases &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -144,7 +146,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-22-4-22-01-releases">
-<h1>coreboot 4.22 &amp; 4.22.01 releases<a class="headerlink" href="#coreboot-4-22-4-22-01-releases" title="Link to this heading"></a></h1>
+<h1>coreboot 4.22 &amp; 4.22.01 releases<a class="headerlink" href="#coreboot-4-22-4-22-01-releases" title="Permalink to this heading"></a></h1>
 <p>The next release is planned for the 19th of February, 2024</p>
 <p>These notes cover the latest updates and improvements to coreboot over
 the past three months. A big thank you to the returning contributors as
@@ -153,7 +155,7 @@ greatly appreciate everyone’s dedication and expertise. As with past
 releases, this one reflects a commitment to open source innovation,
 security enhancements, and expanding hardware support.</p>
 <section id="release">
-<h2>4.22.01 release<a class="headerlink" href="#release" title="Link to this heading"></a></h2>
+<h2>4.22.01 release<a class="headerlink" href="#release" title="Permalink to this heading"></a></h2>
 <p>The week between tagging a release and announcing it publicly is used
 to test the tagged version and make sure everything is working as we
 expect. This is done instead of freezing the tree and doing release
@@ -163,7 +165,7 @@ the sandybridge/ivybridge platforms and rolled that into the 4.22.01
 release package.</p>
 </section>
 <section id="coreboot-version-naming-update">
-<h2>coreboot version naming update<a class="headerlink" href="#coreboot-version-naming-update" title="Link to this heading"></a></h2>
+<h2>coreboot version naming update<a class="headerlink" href="#coreboot-version-naming-update" title="Permalink to this heading"></a></h2>
 <p>This release is the last release to use the incrementing 4.xx release
 name scheme. For future releases, coreboot is switching to a
 Year.Month.Sub-version naming scheme. As such, the next release,
@@ -173,7 +175,7 @@ the 24.02 release, we’ll append the values .01, .02 and so on to the
 initial release value.</p>
 </section>
 <section id="coreboot-default-branch-update">
-<h2>coreboot default branch update<a class="headerlink" href="#coreboot-default-branch-update" title="Link to this heading"></a></h2>
+<h2>coreboot default branch update<a class="headerlink" href="#coreboot-default-branch-update" title="Permalink to this heading"></a></h2>
 <p>Immediately after the 4.21 release, the coreboot project changed the
 default git branch from ‘master’ to ‘main’. For the first couple of
 months after the change, The master branch was synced with the main
@@ -183,9 +185,9 @@ continue until the next release, at which time the master branch will
 be removed.</p>
 </section>
 <section id="significant-or-interesting-changes">
-<h2>Significant or interesting changes<a class="headerlink" href="#significant-or-interesting-changes" title="Link to this heading"></a></h2>
+<h2>Significant or interesting changes<a class="headerlink" href="#significant-or-interesting-changes" title="Permalink to this heading"></a></h2>
 <section id="x86-support-data-section-for-pre-memory-stages">
-<h3>x86: support .data section for pre-memory stages<a class="headerlink" href="#x86-support-data-section-for-pre-memory-stages" title="Link to this heading"></a></h3>
+<h3>x86: support .data section for pre-memory stages<a class="headerlink" href="#x86-support-data-section-for-pre-memory-stages" title="Permalink to this heading"></a></h3>
 <p>x86 pre-memory stages did not support the <code class="docutils literal notranslate"><span class="pre">.data</span></code> section and as a
 result developers were required to include runtime initialization code
 instead of relying on C global variable definitions.</p>
@@ -219,7 +221,7 @@ translation vector is the same.</p>
 </ul>
 </section>
 <section id="x86-support-cbfs-cache-for-pre-memory-stages-and-ramstage">
-<h3>x86: Support CBFS cache for pre-memory stages and ramstage<a class="headerlink" href="#x86-support-cbfs-cache-for-pre-memory-stages-and-ramstage" title="Link to this heading"></a></h3>
+<h3>x86: Support CBFS cache for pre-memory stages and ramstage<a class="headerlink" href="#x86-support-cbfs-cache-for-pre-memory-stages-and-ramstage" title="Permalink to this heading"></a></h3>
 <p>The CBFS cache scratchpad offers a generic way to decompress CBFS files
 through the cbfs_map() function without having to reserve a per-file
 specific memory region.</p>
@@ -255,7 +257,7 @@ buffer as the CBFS cache scratchpad.</p>
 </ol>
 </section>
 <section id="allow-romstage-to-be-combined-into-the-bootblock">
-<h3>Allow romstage to be combined into the bootblock<a class="headerlink" href="#allow-romstage-to-be-combined-into-the-bootblock" title="Link to this heading"></a></h3>
+<h3>Allow romstage to be combined into the bootblock<a class="headerlink" href="#allow-romstage-to-be-combined-into-the-bootblock" title="Permalink to this heading"></a></h3>
 <p>Having a separate romstage is only desirable:</p>
 <ul class="simple">
 <li><p>with advanced setups like vboot or normal/fallback</p></li>
@@ -269,7 +271,7 @@ resulting code is 10-20k smaller.</p>
 <p>This is controlled via a Kconfig option.</p>
 </section>
 <section id="soc-intel-cmn-gfx-add-api-to-report-presence-of-external-display">
-<h3>soc/intel/cmn/gfx: Add API to report presence of external display<a class="headerlink" href="#soc-intel-cmn-gfx-add-api-to-report-presence-of-external-display" title="Link to this heading"></a></h3>
+<h3>soc/intel/cmn/gfx: Add API to report presence of external display<a class="headerlink" href="#soc-intel-cmn-gfx-add-api-to-report-presence-of-external-display" title="Permalink to this heading"></a></h3>
 <p>This implements an API to report the presence of an external display on
 Intel silicon. The API uses information from the transcoder and
 framebuffer to determine if an external display is connected.</p>
@@ -280,7 +282,7 @@ an external display is present.</p>
 power on the display, even if eDP is not initialized.</p>
 </section>
 <section id="device-pci-rom-set-vbios-checksum-when-filling-vfct-table">
-<h3>device/pci_rom: Set VBIOS checksum when filling VFCT table<a class="headerlink" href="#device-pci-rom-set-vbios-checksum-when-filling-vfct-table" title="Link to this heading"></a></h3>
+<h3>device/pci_rom: Set VBIOS checksum when filling VFCT table<a class="headerlink" href="#device-pci-rom-set-vbios-checksum-when-filling-vfct-table" title="Permalink to this heading"></a></h3>
 <p>AMD’s Windows display drivers validate the checksum of the VBIOS data
 in the VFCT table (which gets modified by the FSP GOP driver), so
 ensure it is set correctly after copying the VBIOS into the table if
@@ -289,7 +291,7 @@ GPU drivers will fail to load with a code 43 error in Device Manager.</p>
 </section>
 </section>
 <section id="additional-coreboot-changes">
-<h2>Additional coreboot changes<a class="headerlink" href="#additional-coreboot-changes" title="Link to this heading"></a></h2>
+<h2>Additional coreboot changes<a class="headerlink" href="#additional-coreboot-changes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Move all ‘select’ statements from Kconfig.name files to Kconfig</p></li>
 <li><p>acpigen now generates variable-length PkgLength fields instead of a
@@ -308,9 +310,9 @@ enabled</p></li>
 </ul>
 </section>
 <section id="changes-to-external-resources">
-<h2>Changes to external resources<a class="headerlink" href="#changes-to-external-resources" title="Link to this heading"></a></h2>
+<h2>Changes to external resources<a class="headerlink" href="#changes-to-external-resources" title="Permalink to this heading"></a></h2>
 <section id="toolchain-updates">
-<h3>Toolchain updates<a class="headerlink" href="#toolchain-updates" title="Link to this heading"></a></h3>
+<h3>Toolchain updates<a class="headerlink" href="#toolchain-updates" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Upgrade GMP from 6.2.1 to 6.3.0</p></li>
 <li><p>Upgrade binutils from 2.40 to 2.41</p></li>
@@ -318,7 +320,7 @@ enabled</p></li>
 </ul>
 </section>
 <section id="git-submodule-pointers">
-<h3>Git submodule pointers<a class="headerlink" href="#git-submodule-pointers" title="Link to this heading"></a></h3>
+<h3>Git submodule pointers<a class="headerlink" href="#git-submodule-pointers" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>amd_blobs: Update from commit id 6a1e1457af to e4519efca7 (16
 commits)</p></li>
@@ -332,7 +334,7 @@ commit)</p></li>
 </ul>
 </section>
 <section id="external-payloads">
-<h3>External payloads<a class="headerlink" href="#external-payloads" title="Link to this heading"></a></h3>
+<h3>External payloads<a class="headerlink" href="#external-payloads" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>U-Boot: Use github mirror and the latest version</p></li>
 <li><p>edk2: Update default branch for MrChromebox repo to 2023-09</p></li>
@@ -340,9 +342,9 @@ commit)</p></li>
 </section>
 </section>
 <section id="platform-updates">
-<h2>Platform Updates<a class="headerlink" href="#platform-updates" title="Link to this heading"></a></h2>
+<h2>Platform Updates<a class="headerlink" href="#platform-updates" title="Permalink to this heading"></a></h2>
 <section id="added-17-mainboards">
-<h3>Added 17 mainboards<a class="headerlink" href="#added-17-mainboards" title="Link to this heading"></a></h3>
+<h3>Added 17 mainboards<a class="headerlink" href="#added-17-mainboards" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>AMD Onyx</p></li>
 <li><p>Google: Anraggar</p></li>
@@ -364,14 +366,14 @@ commit)</p></li>
 </ul>
 </section>
 <section id="added-1-soc">
-<h3>Added 1 SoC<a class="headerlink" href="#added-1-soc" title="Link to this heading"></a></h3>
+<h3>Added 1 SoC<a class="headerlink" href="#added-1-soc" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>src/soc/amd/genoa</p></li>
 </ul>
 </section>
 </section>
 <section id="statistics-from-the-4-21-to-the-4-22-release">
-<h2>Statistics from the 4.21 to the 4.22 release<a class="headerlink" href="#statistics-from-the-4-21-to-the-4-22-release" title="Link to this heading"></a></h2>
+<h2>Statistics from the 4.21 to the 4.22 release<a class="headerlink" href="#statistics-from-the-4-21-to-the-4-22-release" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Total Commits: 977</p></li>
 <li><p>Average Commits per day: 10.98</p></li>
@@ -387,10 +389,10 @@ commit)</p></li>
 </ul>
 </section>
 <section id="significant-known-and-open-issues">
-<h2>Significant Known and Open Issues<a class="headerlink" href="#significant-known-and-open-issues" title="Link to this heading"></a></h2>
+<h2>Significant Known and Open Issues<a class="headerlink" href="#significant-known-and-open-issues" title="Permalink to this heading"></a></h2>
 <p>Issues from the coreboot bugtracker: https://ticket.coreboot.org/</p>
 <section id="payload-specific-issues">
-<h3>Payload-specific issues<a class="headerlink" href="#payload-specific-issues" title="Link to this heading"></a></h3>
+<h3>Payload-specific issues<a class="headerlink" href="#payload-specific-issues" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>#</p></th>
@@ -414,7 +416,7 @@ commit)</p></li>
 </table>
 </section>
 <section id="platform-specific-issues">
-<h3>Platform-specific issues<a class="headerlink" href="#platform-specific-issues" title="Link to this heading"></a></h3>
+<h3>Platform-specific issues<a class="headerlink" href="#platform-specific-issues" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>#</p></th>
@@ -481,7 +483,7 @@ commit)</p></li>
 </section>
 </section>
 <section id="plans-for-the-next-release">
-<h2>Plans for the next release<a class="headerlink" href="#plans-for-the-next-release" title="Link to this heading"></a></h2>
+<h2>Plans for the next release<a class="headerlink" href="#plans-for-the-next-release" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Finish adding chipset device trees for all SOCs</p></li>
 <li><p>Improve code for options/setup</p></li>
@@ -490,7 +492,7 @@ commit)</p></li>
 </ul>
 </section>
 <section id="coreboot-links-and-contact-information">
-<h2>coreboot Links and Contact Information<a class="headerlink" href="#coreboot-links-and-contact-information" title="Link to this heading"></a></h2>
+<h2>coreboot Links and Contact Information<a class="headerlink" href="#coreboot-links-and-contact-information" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Main Website: https://www.coreboot.org</p></li>
 <li><p>Downloads: https://coreboot.org/downloads.html</p></li>

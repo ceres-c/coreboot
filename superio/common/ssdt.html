@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SuperIO SSTD generator &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>SuperIO SSTD generator &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -122,11 +124,11 @@
            <div itemprop="articleBody">
              
   <section id="superio-sstd-generator">
-<h1>SuperIO SSTD generator<a class="headerlink" href="#superio-sstd-generator" title="Link to this heading"></a></h1>
+<h1>SuperIO SSTD generator<a class="headerlink" href="#superio-sstd-generator" title="Permalink to this heading"></a></h1>
 <p>This page describes the common SSDT ACPI generator for SuperIO chips that can
 be found in coreboot.</p>
 <section id="functional-description">
-<h2>Functional description<a class="headerlink" href="#functional-description" title="Link to this heading"></a></h2>
+<h2>Functional description<a class="headerlink" href="#functional-description" title="Permalink to this heading"></a></h2>
 <p>In order to automatically generate ACPI functions you need to add
 a new <code class="docutils literal notranslate"><span class="pre">chip</span> <span class="pre">superio/common</span></code> and <code class="docutils literal notranslate"><span class="pre">device</span> <span class="pre">pnp</span> <span class="pre">xx.0</span> <span class="pre">on</span></code> to your devicetree.</p>
 <p>The xx denotes the hexadecimal address of the SuperIO.</p>
@@ -135,7 +137,7 @@ a new <code class="docutils literal notranslate"><span class="pre">chip</span> <
 I/O range and ISA IRQ number.</p>
 </section>
 <section id="example-devicetree-cb">
-<h2>Example devicetree.cb<a class="headerlink" href="#example-devicetree-cb" title="Link to this heading"></a></h2>
+<h2>Example devicetree.cb<a class="headerlink" href="#example-devicetree-cb" title="Permalink to this heading"></a></h2>
 <p>This example is based on AST2400.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add a &quot;container&quot; for proper ACPI code generation</span>
 <span class="n">chip</span> <span class="n">superio</span><span class="o">/</span><span class="n">common</span>
@@ -164,37 +166,37 @@ I/O range and ISA IRQ number.</p>
 </div>
 </section>
 <section id="automatically-generated-methods">
-<h2>Automatically generated methods<a class="headerlink" href="#automatically-generated-methods" title="Link to this heading"></a></h2>
+<h2>Automatically generated methods<a class="headerlink" href="#automatically-generated-methods" title="Permalink to this heading"></a></h2>
 <p>The following methods are generated for each SuperIO:</p>
 </section>
 <section id="amtx">
-<h2>AMTX()<a class="headerlink" href="#amtx" title="Link to this heading"></a></h2>
+<h2>AMTX()<a class="headerlink" href="#amtx" title="Permalink to this heading"></a></h2>
 <p>Acquire the global mutex and enter config mode.
 It’s called this at the beginning of an atomic operation to make sure
 no other ACPI code messes with the config space while working on it.</p>
 </section>
 <section id="rmtx">
-<h2>RMTX()<a class="headerlink" href="#rmtx" title="Link to this heading"></a></h2>
+<h2>RMTX()<a class="headerlink" href="#rmtx" title="Permalink to this heading"></a></h2>
 <p>Exit config mode and release the global mutex.
 It’s called at the end of an atomic operation.</p>
 </section>
 <section id="sldn-arg0">
-<h2>SLDN(Arg0)<a class="headerlink" href="#sldn-arg0" title="Link to this heading"></a></h2>
+<h2>SLDN(Arg0)<a class="headerlink" href="#sldn-arg0" title="Permalink to this heading"></a></h2>
 <p>Selects the (virtual) LDN given as Arg0.
 This method isn’t guarded with the global mutex.</p>
 </section>
 <section id="dldn-arg0">
-<h2>DLDN(Arg0)<a class="headerlink" href="#dldn-arg0" title="Link to this heading"></a></h2>
+<h2>DLDN(Arg0)<a class="headerlink" href="#dldn-arg0" title="Permalink to this heading"></a></h2>
 <p>Disables the (virtual) LDN given as Arg0.
 This method acquires the global mutex.</p>
 </section>
 <section id="qldn-arg0">
-<h2>QLDN(Arg0)<a class="headerlink" href="#qldn-arg0" title="Link to this heading"></a></h2>
+<h2>QLDN(Arg0)<a class="headerlink" href="#qldn-arg0" title="Permalink to this heading"></a></h2>
 <p>Queries the state of the (virtual) LDN given as Arg0.
 This method quires the global mutex.</p>
 </section>
 <section id="todo">
-<h2>TODO<a class="headerlink" href="#todo" title="Link to this heading"></a></h2>
+<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this heading"></a></h2>
 <ol class="simple">
 <li><p>Add ACPI HIDs to every SuperIO driver</p></li>
 <li><p>Generate support methods that allow</p>

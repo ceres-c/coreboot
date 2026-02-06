@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>libgfxinit - Native Graphics Initialization &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>libgfxinit - Native Graphics Initialization &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -108,9 +110,9 @@
            <div itemprop="articleBody">
              
   <section id="libgfxinit-native-graphics-initialization">
-<h1>libgfxinit - Native Graphics Initialization<a class="headerlink" href="#libgfxinit-native-graphics-initialization" title="Link to this heading"></a></h1>
+<h1>libgfxinit - Native Graphics Initialization<a class="headerlink" href="#libgfxinit-native-graphics-initialization" title="Permalink to this heading"></a></h1>
 <section id="introduction-and-current-state-in-coreboot">
-<h2>Introduction and Current State in coreboot<a class="headerlink" href="#introduction-and-current-state-in-coreboot" title="Link to this heading"></a></h2>
+<h2>Introduction and Current State in coreboot<a class="headerlink" href="#introduction-and-current-state-in-coreboot" title="Permalink to this heading"></a></h2>
 <p><em>libgfxinit</em> is a library of full-featured graphics initialization
 (aka. modesetting) drivers. It’s implemented in SPARK (a subset of
 Ada with formal verification features). While not restricted to in
@@ -123,7 +125,7 @@ from Arrandale to Coffee Lake, and Apollo Lake are verified to work
 within <em>coreboot</em>.</p>
 </section>
 <section id="gma-framebuffer-configuration">
-<h2>GMA: Framebuffer Configuration<a class="headerlink" href="#gma-framebuffer-configuration" title="Link to this heading"></a></h2>
+<h2>GMA: Framebuffer Configuration<a class="headerlink" href="#gma-framebuffer-configuration" title="Permalink to this heading"></a></h2>
 <p><em>coreboot</em> supports two different framebuffer setups. The default
 enables the legacy VGA plane in textmode. Due to legacy hardware
 constraints, only the first found display is enabled in this mode.
@@ -138,7 +140,7 @@ are detected. This option is selected by
 native resolution while keeping aspect ratio.</p>
 </section>
 <section id="gma-hook-up-in-chipset-initialization">
-<h2>GMA: Hook-up in Chipset Initialization<a class="headerlink" href="#gma-hook-up-in-chipset-initialization" title="Link to this heading"></a></h2>
+<h2>GMA: Hook-up in Chipset Initialization<a class="headerlink" href="#gma-hook-up-in-chipset-initialization" title="Permalink to this heading"></a></h2>
 <p>Both configurations described above implement a procedure
 <code class="docutils literal notranslate"><span class="pre">GMA.gfxinit()</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">procedure</span> <span class="n">gfxinit</span> <span class="p">(</span><span class="n">lightup_ok</span> <span class="p">:</span> <span class="n">out</span> <span class="nb">int</span><span class="p">);</span>
@@ -158,7 +160,7 @@ propagated.</p></li>
 </ul>
 </section>
 <section id="gma-per-board-configuration">
-<h2>GMA: Per Board Configuration<a class="headerlink" href="#gma-per-board-configuration" title="Link to this heading"></a></h2>
+<h2>GMA: Per Board Configuration<a class="headerlink" href="#gma-per-board-configuration" title="Permalink to this heading"></a></h2>
 <p>In order to set up the display panel, see the
 <a class="reference internal" href="display-panel.html"><span class="doc">display panel-specific documentation</span></a>.</p>
 <p>There are a few Kconfig symbols to consider. To indicate that a

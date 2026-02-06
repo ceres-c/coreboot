@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Microcode updates &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Microcode updates &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -116,7 +118,7 @@
            <div itemprop="articleBody">
              
   <section id="microcode-updates">
-<h1>Microcode updates<a class="headerlink" href="#microcode-updates" title="Link to this heading"></a></h1>
+<h1>Microcode updates<a class="headerlink" href="#microcode-updates" title="Permalink to this heading"></a></h1>
 <p>When booting a modern x86 platform, one task of the firmware is to update
 <a class="reference external" href="https://en.wikipedia.org/wiki/Microcode">microcode</a> to correct hardware bugs and mitigate security issues found
 after silicon has been shipped. The <a class="reference external" href="https://en.wikipedia.org/wiki/Pentium_FDIV_bug">Pentium FDIV bug</a> could have been
@@ -129,7 +131,7 @@ suggests that microcode is a crucial ingredient for correct operation.</p>
 <p>On multi-processor or Hyper-Threading-enabled systems, each thread has
 its own microcode. Therefore, microcode must be updated on every thread.</p>
 <section id="when-to-update-microcode">
-<h2>When to update microcode<a class="headerlink" href="#when-to-update-microcode" title="Link to this heading"></a></h2>
+<h2>When to update microcode<a class="headerlink" href="#when-to-update-microcode" title="Permalink to this heading"></a></h2>
 <p>When a CPU core comes out of reset, it uses microcode from an internal
 ROM. This “default” microcode often contains bugs, so it needs to be
 updated as soon as possible. For example, Core 2 CPUs can boot without
@@ -143,7 +145,7 @@ which are large updates with errata workarounds for both core and uncore.
 In order to correctly apply enhanced microcode updates, the <a class="reference internal" href="mp_init/mp_init.html"><span class="doc">MP-Init</span></a>
 algorithm must be decomposed into multiple initialization phases.</p>
 <section id="firmware-interface-table">
-<h3>Firmware Interface Table<a class="headerlink" href="#firmware-interface-table" title="Link to this heading"></a></h3>
+<h3>Firmware Interface Table<a class="headerlink" href="#firmware-interface-table" title="Permalink to this heading"></a></h3>
 <p>Beginning with 4th generation Intel Core processors, it is possible for
 microcode to be updated before the CPU is taken out of reset. This is
 accomplished by means of <a class="reference internal" href="fit.html"><span class="doc">FIT</span></a>, a data structure which contains pointers
@@ -160,14 +162,14 @@ all threads within the package.</p>
 </section>
 </section>
 <section id="smm-bring-up">
-<h2>SMM bring-up<a class="headerlink" href="#smm-bring-up" title="Link to this heading"></a></h2>
+<h2>SMM bring-up<a class="headerlink" href="#smm-bring-up" title="Permalink to this heading"></a></h2>
 <p>Prior to SMM relocation, microcode must have been updated at least once.</p>
 </section>
 <section id="multi-processor-bring-up">
-<h2>Multi-Processor bring-up<a class="headerlink" href="#multi-processor-bring-up" title="Link to this heading"></a></h2>
+<h2>Multi-Processor bring-up<a class="headerlink" href="#multi-processor-bring-up" title="Permalink to this heading"></a></h2>
 <p>The BWG briefly describes microcode updates as part of the <em>MP-Init</em>.</p>
 <section id="mp-init">
-<h3>MP-Init<a class="headerlink" href="#mp-init" title="Link to this heading"></a></h3>
+<h3>MP-Init<a class="headerlink" href="#mp-init" title="Permalink to this heading"></a></h3>
 <p>As part of the <a class="reference internal" href="mp_init/mp_init.html"><span class="doc">MP-Init</span></a> sequence, two microcode updates are required.</p>
 <ul class="simple">
 <li><p>The first update must happen as soon as one AP comes out of reset.</p></li>
@@ -178,7 +180,7 @@ before clearing the MCE banks.</p></li>
 </section>
 </section>
 <section id="recommendations">
-<h2>Recommendations<a class="headerlink" href="#recommendations" title="Link to this heading"></a></h2>
+<h2>Recommendations<a class="headerlink" href="#recommendations" title="Permalink to this heading"></a></h2>
 <p>The Linux kernel developer’s recommendations are:</p>
 <ul class="simple">
 <li><p>Serialize microcode updates if possible.</p></li>
@@ -187,10 +189,10 @@ before clearing the MCE banks.</p></li>
 </ul>
 </section>
 <section id="platform-bwgs">
-<h2>Platform BWGs<a class="headerlink" href="#platform-bwgs" title="Link to this heading"></a></h2>
+<h2>Platform BWGs<a class="headerlink" href="#platform-bwgs" title="Permalink to this heading"></a></h2>
 <p>The requirements specified in BWGs differ between platforms:</p>
 <section id="sandy-bridge">
-<h3>Sandy Bridge<a class="headerlink" href="#sandy-bridge" title="Link to this heading"></a></h3>
+<h3>Sandy Bridge<a class="headerlink" href="#sandy-bridge" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Before setting up Cache-As-RAM, load microcode update into the SBSP.</p></li>
 <li><p>Losing (non-SBSP) NBSPs must load their microcode update before being placed
@@ -205,7 +207,7 @@ cache, MTRRs, SMRRs and PRMRRs.</p></li>
 <p>Refer to Intel Document 504790 for details.</p>
 </section>
 <section id="haswell-broadwell-client">
-<h3>Haswell/Broadwell Client<a class="headerlink" href="#haswell-broadwell-client" title="Link to this heading"></a></h3>
+<h3>Haswell/Broadwell Client<a class="headerlink" href="#haswell-broadwell-client" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>A microcode update must exist in FIT.</p></li>
 <li><p>During the race to the BSP semaphore, each NBSP must load its microcode update.</p></li>
@@ -220,7 +222,7 @@ cache, MTRRs, SMRRs and EMRR and after SMM initialization.</p></li>
 <p>Refer to Intel Document 493770 and 535094 for details.</p>
 </section>
 <section id="broadwell-server">
-<h3>Broadwell Server<a class="headerlink" href="#broadwell-server" title="Link to this heading"></a></h3>
+<h3>Broadwell Server<a class="headerlink" href="#broadwell-server" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>A microcode update must exist in FIT.</p></li>
 <li><p>Before setting up Cache-As-RAM, load microcode update into each BSP.</p></li>
@@ -232,7 +234,7 @@ cache, MTRRs, SMRRs and EMRR and after SMM initialization.</p></li>
 <p>Refer to Intel Document 546625 for details.</p>
 </section>
 <section id="skylake-kaby-lake-coffee-lake-whiskey-lake-comet-lake">
-<h3>Skylake/Kaby Lake/Coffee Lake/Whiskey Lake/Comet Lake<a class="headerlink" href="#skylake-kaby-lake-coffee-lake-whiskey-lake-comet-lake" title="Link to this heading"></a></h3>
+<h3>Skylake/Kaby Lake/Coffee Lake/Whiskey Lake/Comet Lake<a class="headerlink" href="#skylake-kaby-lake-coffee-lake-whiskey-lake-comet-lake" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>A microcode update must exist in FIT.</p></li>
 <li><p>Before setting up Cache-As-RAM, load microcode update into the BSP.</p></li>

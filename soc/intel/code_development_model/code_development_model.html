@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Intel common code development strategy &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Intel common code development strategy &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -116,9 +118,9 @@
            <div itemprop="articleBody">
              
   <section id="intel-common-code-development-strategy">
-<h1>Intel common code development strategy<a class="headerlink" href="#intel-common-code-development-strategy" title="Link to this heading"></a></h1>
+<h1>Intel common code development strategy<a class="headerlink" href="#intel-common-code-development-strategy" title="Permalink to this heading"></a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>This document captures the development strategy for Intel SOC code development
 of coreboot. As Intel keeps advancing hardware development and as new generation
 SoCs are developed, we need to add support for these SOCs into coreboot.</p>
@@ -130,7 +132,7 @@ Intel SoCs and of what can’t be put into common code due to the possibility of
 future changes.</p>
 </section>
 <section id="design-principal">
-<h2>Design principal<a class="headerlink" href="#design-principal" title="Link to this heading"></a></h2>
+<h2>Design principal<a class="headerlink" href="#design-principal" title="Permalink to this heading"></a></h2>
 <p>Any Intel coreboot project can be split into 3 parts:</p>
 <ol class="simple">
 <li><p>SoC = contains all the IP/component initialization code</p></li>
@@ -152,7 +154,7 @@ future SoCs. This will make development much simpler by using those common APIs
 based on the different configurations.</p>
 </section>
 <section id="common-code-development-and-status">
-<h2>Common Code Development and Status<a class="headerlink" href="#common-code-development-and-status" title="Link to this heading"></a></h2>
+<h2>Common Code Development and Status<a class="headerlink" href="#common-code-development-and-status" title="Permalink to this heading"></a></h2>
 <p>Intel’s proposed “converged IP model”, also called as “common code phase 1.0”,
 has reduced the number of lines of code in a single SoC folder by over 50%.</p>
 <p>We continue to analyze the code to see what can still be moved to common and try
@@ -209,7 +211,7 @@ will unify flow for all Intel SoCs.</p></td>
 </table>
 </section>
 <section id="common-code-structure">
-<h2>Common code structure<a class="headerlink" href="#common-code-structure" title="Link to this heading"></a></h2>
+<h2>Common code structure<a class="headerlink" href="#common-code-structure" title="Permalink to this heading"></a></h2>
 <p>Code design after common code in coreboot will look as follows:</p>
 <p><strong>coreboot common code structure</strong>
 <img alt="coreboot_common_code_structure" src="../../../_images/coreboot_common_code_design.png" /></p>
@@ -218,7 +220,7 @@ copy across a SOC as a base but these files are subject to change as
 development continues.</p>
 </section>
 <section id="benefits">
-<h2>Benefits<a class="headerlink" href="#benefits" title="Link to this heading"></a></h2>
+<h2>Benefits<a class="headerlink" href="#benefits" title="Permalink to this heading"></a></h2>
 <ol class="simple">
 <li><p>coreboot will have less redundant code which is spread across multiple SOCs
 as of now.</p></li>

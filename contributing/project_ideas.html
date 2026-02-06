@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Ideas &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Project Ideas &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -154,7 +156,7 @@
            <div itemprop="articleBody">
              
   <section id="project-ideas">
-<h1>Project Ideas<a class="headerlink" href="#project-ideas" title="Link to this heading"></a></h1>
+<h1>Project Ideas<a class="headerlink" href="#project-ideas" title="Permalink to this heading"></a></h1>
 <p>This section collects ideas to improve coreboot and related projects and
 should serve as a pool of ideas for people who want to enter the field
 of firmware development but need some guidance what to work on.</p>
@@ -172,7 +174,7 @@ doubt if you can bring yourself up to speed in a required time frame
 with the projects. We can then try together to figure out if you’re a
 good match for a project, even when requirements might not all be met.</p>
 <section id="small-projects">
-<h2>Small projects<a class="headerlink" href="#small-projects" title="Link to this heading"></a></h2>
+<h2>Small projects<a class="headerlink" href="#small-projects" title="Permalink to this heading"></a></h2>
 <p>This is a collection of tasks which don’t require deep knowledge on
 coreboot itself. If you are a beginner and want to get familiar with the
 the project and the code base, or if you just want to get your hands
@@ -185,7 +187,7 @@ dirty with some small tasks, then these are for you.</p>
 </ul>
 </section>
 <section id="provide-toolchain-binaries">
-<h2>Provide toolchain binaries<a class="headerlink" href="#provide-toolchain-binaries" title="Link to this heading"></a></h2>
+<h2>Provide toolchain binaries<a class="headerlink" href="#provide-toolchain-binaries" title="Permalink to this heading"></a></h2>
 <p>Our crossgcc subproject provides a uniform compiler environment for
 working on coreboot and related projects. Sadly, building it takes hours,
 which is a bad experience when trying to build coreboot the first time.</p>
@@ -200,7 +202,7 @@ that we could extend to provide current packages going forward. This
 might include automating some virtualization system (eg. QEMU or CrosVM) for
 non-Linux builds or Docker for different Linux distributions.</p>
 <section id="requirements">
-<h3>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h3>
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>coreboot knowledge: Should know how to build coreboot images and where
 the compiler comes into play in our build system.</p></li>
@@ -210,17 +212,17 @@ target OS work. Knowledge of the GCC build system is a big plus</p></li>
 </ul>
 </section>
 <section id="mentors">
-<h3>Mentors<a class="headerlink" href="#mentors" title="Link to this heading"></a></h3>
+<h3>Mentors<a class="headerlink" href="#mentors" title="Permalink to this heading"></a></h3>
 </section>
 </section>
 <section id="support-power9-power8-in-coreboot">
-<h2>Support Power9/Power8 in coreboot<a class="headerlink" href="#support-power9-power8-in-coreboot" title="Link to this heading"></a></h2>
+<h2>Support Power9/Power8 in coreboot<a class="headerlink" href="#support-power9-power8-in-coreboot" title="Permalink to this heading"></a></h2>
 <p>There are some basic PPC64 stubs in coreboot, and there’s open hardware
 in TALOS2 and its family. While they already have fully open source
 firmware, coreboot support adds a unified story for minimal firmware
 across architectures.</p>
 <section id="id1">
-<h3>Requirements<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<h3>Requirements<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>coreboot knowledge: Should be familiar with making chipset level
 changes to the code.</p></li>
@@ -233,14 +235,14 @@ tools (e.g. for external flashing) is required.</p></li>
 </ul>
 </section>
 <section id="id2">
-<h3>Mentors<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<h3>Mentors<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Timothy Pearson <a class="reference external" href="mailto:tpearson&#37;&#52;&#48;raptorengineering&#46;com">tpearson<span>&#64;</span>raptorengineering<span>&#46;</span>com</a></p></li>
 </ul>
 </section>
 </section>
 <section id="port-payloads-to-arm-aarch64-or-risc-v">
-<h2>Port payloads to ARM, AArch64 or RISC-V<a class="headerlink" href="#port-payloads-to-arm-aarch64-or-risc-v" title="Link to this heading"></a></h2>
+<h2>Port payloads to ARM, AArch64 or RISC-V<a class="headerlink" href="#port-payloads-to-arm-aarch64-or-risc-v" title="Permalink to this heading"></a></h2>
 <p>While we have a rather big set of payloads for x86 based platforms, all other
 architectures are rather limited. Improve the situation by porting a payload
 to one of the platforms, for example GRUB2, U-Boot (the UI part), edk2,
@@ -248,7 +250,7 @@ FILO, or Linux-as-Payload.</p>
 <p>Since this is a bit of a catch-all idea, an application to GSoC should pick a
 combination of payload and architecture to support.</p>
 <section id="id3">
-<h3>Requirements<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<h3>Requirements<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>coreboot knowledge: Should know the general boot flow in coreboot</p></li>
 <li><p>other knowledge: It helps to be familiar with the architecture you want to
@@ -258,14 +260,14 @@ but the ability to test on real hardware is a plus.</p></li>
 </ul>
 </section>
 <section id="id4">
-<h3>Mentors<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<h3>Mentors<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Simon Glass <a class="reference external" href="mailto:sjg&#37;&#52;&#48;chromium&#46;org">sjg<span>&#64;</span>chromium<span>&#46;</span>org</a> for U-Boot payload projects</p></li>
 </ul>
 </section>
 </section>
 <section id="fully-support-building-coreboot-with-the-clang-compiler">
-<h2>Fully support building coreboot with the Clang compiler<a class="headerlink" href="#fully-support-building-coreboot-with-the-clang-compiler" title="Link to this heading"></a></h2>
+<h2>Fully support building coreboot with the Clang compiler<a class="headerlink" href="#fully-support-building-coreboot-with-the-clang-compiler" title="Permalink to this heading"></a></h2>
 <p>Most coreboot code is written in C, and it would be useful to support
 a second compiler suite in addition to gcc. Clang is another popular
 compiler suite and the build system generally supports building coreboot
@@ -277,7 +279,7 @@ but also to support real hardware. If you don’t have hardware around,
 you likely will find willing testers for devices they own and work from
 their bug reports.</p>
 <section id="id5">
-<h3>Requirements<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<h3>Requirements<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>coreboot knowledge: Have a general concept of the build system</p></li>
 <li><p>Clang knowledge: It may be necessary to apply minor modifications to Clang
@@ -293,11 +295,11 @@ going on from the resulting logs.</p></li>
 </ul>
 </section>
 <section id="id6">
-<h3>Mentors<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<h3>Mentors<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
 </section>
 </section>
 <section id="extend-ghidra-to-support-analysis-of-firmware-images">
-<h2>Extend Ghidra to support analysis of firmware images<a class="headerlink" href="#extend-ghidra-to-support-analysis-of-firmware-images" title="Link to this heading"></a></h2>
+<h2>Extend Ghidra to support analysis of firmware images<a class="headerlink" href="#extend-ghidra-to-support-analysis-of-firmware-images" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://ghidra-sre.org">Ghidra</a> is a recently released cross-platform
 disassembler and decompiler that is extensible through plugins. Make it
 useful for firmware related work: Automatically parse formats (eg. by
@@ -309,7 +311,7 @@ developed, but it may be possible to expand support for all kinds of firmware
 analyses.</p>
 </section>
 <section id="learn-hardware-behavior-from-i-o-and-memory-access-logs">
-<h2>Learn hardware behavior from I/O and memory access logs<a class="headerlink" href="#learn-hardware-behavior-from-i-o-and-memory-access-logs" title="Link to this heading"></a></h2>
+<h2>Learn hardware behavior from I/O and memory access logs<a class="headerlink" href="#learn-hardware-behavior-from-i-o-and-memory-access-logs" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://www.serialice.com">SerialICE</a> is a tool to trace the behavior of
 executable code like firmware images. One result of that is a long log file
 containing the accesses to hardware resources.</p>
@@ -320,7 +322,7 @@ log (incrementially raising the log from plain I/O accesses to a high-level
 description of driver behavior) would be of great use.</p>
 <p>This is a research-heavy project.</p>
 <section id="id7">
-<h3>Requirements<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<h3>Requirements<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Driver knowledge: Somebody working on this should be familiar with
 how hardware works (eg. MMIO based register access, index/data port
@@ -329,21 +331,21 @@ accesses) and how to read data sheets.</p></li>
 </ul>
 </section>
 <section id="id8">
-<h3>Mentors<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<h3>Mentors<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Ron Minnich <a class="reference external" href="mailto:rminnich&#37;&#52;&#48;google&#46;com">rminnich<span>&#64;</span>google<span>&#46;</span>com</a></p></li>
 </ul>
 </section>
 </section>
 <section id="libpayload-based-memtest-payload">
-<h2>Libpayload based memtest payload<a class="headerlink" href="#libpayload-based-memtest-payload" title="Link to this heading"></a></h2>
+<h2>Libpayload based memtest payload<a class="headerlink" href="#libpayload-based-memtest-payload" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://www.memtest.org/">Memtest86+</a> has some limitations: first and
 foremost it only works on x86, while it can print to serial console the
 GUI only works in legacy VGA mode.</p>
 <p>This project would involve porting the memtest suite to libpayload and
 build a payload around it.</p>
 <section id="id9">
-<h3>Requirements<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<h3>Requirements<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>coreboot knowledge: Should know how to build coreboot images and
 include payloads.</p></li>
@@ -353,14 +355,14 @@ being able to test on coreboot supported hardware is a plus.</p></li>
 </ul>
 </section>
 <section id="id10">
-<h3>Mentors<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<h3>Mentors<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>TODO</p></li>
 </ul>
 </section>
 </section>
 <section id="fix-post-code-handling">
-<h2>Fix POST code handling<a class="headerlink" href="#fix-post-code-handling" title="Link to this heading"></a></h2>
+<h2>Fix POST code handling<a class="headerlink" href="#fix-post-code-handling" title="Permalink to this heading"></a></h2>
 <p>coreboot supports writing POST codes to I/O port 80.
 There are various Kconfigs that deal with POST codes, which don’t have
 effect on most platforms.
@@ -378,7 +380,7 @@ The POST codes are duplicated between stages and aren’t documented properly.</
 <li><p>Make use of all possible 255 values</p></li>
 </ul>
 <section id="id11">
-<h3>Requirements<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<h3>Requirements<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>knowledge in the coreboot build system and the concept of stages</p></li>
 <li><p>other knowledge: Little experience with C and x86 Assembly</p></li>
@@ -386,7 +388,7 @@ The POST codes are duplicated between stages and aren’t documented properly.</
 </ul>
 </section>
 <section id="id12">
-<h3>Mentors<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<h3>Mentors<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Patrick Rudolph <a class="reference external" href="mailto:patrick&#46;rudolph&#37;&#52;&#48;9elements&#46;com">patrick<span>&#46;</span>rudolph<span>&#64;</span>9elements<span>&#46;</span>com</a></p></li>
 <li><p>Christian Walter <a class="reference external" href="mailto:christian&#46;walter&#37;&#52;&#48;9elements&#46;com">christian<span>&#46;</span>walter<span>&#64;</span>9elements<span>&#46;</span>com</a></p></li>
@@ -394,7 +396,7 @@ The POST codes are duplicated between stages and aren’t documented properly.</
 </section>
 </section>
 <section id="board-status-replacement">
-<h2>Board status replacement<a class="headerlink" href="#board-status-replacement" title="Link to this heading"></a></h2>
+<h2>Board status replacement<a class="headerlink" href="#board-status-replacement" title="Permalink to this heading"></a></h2>
 <p>The <a class="reference external" href="https://coreboot.org/status/board-status.html">Board status page</a> allows
 to see last working commit of a board. The page is generated by a cron job
 that runs on a huge git repository.</p>
@@ -423,14 +425,14 @@ working commit (if any) should be shown in addition to the broken one.</p>
 </li>
 </ol>
 <section id="id13">
-<h3>Requirements<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<h3>Requirements<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>coreboot knowledge: Non-technical, needed to perform requirements analysis</p></li>
 <li><p>software knowledge: Golang, SQL for the backend, JS for the frontend</p></li>
 </ul>
 </section>
 <section id="id14">
-<h3>Mentors<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<h3>Mentors<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Patrick Rudolph <a class="reference external" href="mailto:patrick&#46;rudolph&#37;&#52;&#48;9elements&#46;com">patrick<span>&#46;</span>rudolph<span>&#64;</span>9elements<span>&#46;</span>com</a></p></li>
 <li><p>Christian Walter <a class="reference external" href="mailto:christian&#46;walter&#37;&#52;&#48;9elements&#46;com">christian<span>&#46;</span>walter<span>&#64;</span>9elements<span>&#46;</span>com</a></p></li>

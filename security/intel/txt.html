@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Intel Trusted Execution Technology &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Intel Trusted Execution Technology &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -119,7 +121,7 @@
            <div itemprop="articleBody">
              
   <section id="intel-trusted-execution-technology">
-<h1>Intel Trusted Execution Technology<a class="headerlink" href="#intel-trusted-execution-technology" title="Link to this heading"></a></h1>
+<h1>Intel Trusted Execution Technology<a class="headerlink" href="#intel-trusted-execution-technology" title="Permalink to this heading"></a></h1>
 <p>Intel TXT allows</p>
 <ol class="simple">
 <li><p>Attestation of the authenticity of a platform and its operating system.</p></li>
@@ -138,30 +140,30 @@ by Intel.</p></li>
 Intel Core 2 Duo/ICH9).</p></li>
 </ol>
 <section id="authenticated-code-modules">
-<h2>Authenticated Code Modules<a class="headerlink" href="#authenticated-code-modules" title="Link to this heading"></a></h2>
+<h2>Authenticated Code Modules<a class="headerlink" href="#authenticated-code-modules" title="Permalink to this heading"></a></h2>
 <p>The ACMs are Intel digitally signed modules that contain code to be run
 before the traditional x86 CPU reset vector.</p>
 <p>More details can be found here: <a class="reference internal" href="acm.html"><span class="doc">Intel ACM</span></a>.</p>
 </section>
 <section id="modified-bootflow-with-intel-txt">
-<h2>Modified bootflow with Intel TXT<a class="headerlink" href="#modified-bootflow-with-intel-txt" title="Link to this heading"></a></h2>
+<h2>Modified bootflow with Intel TXT<a class="headerlink" href="#modified-bootflow-with-intel-txt" title="Permalink to this heading"></a></h2>
 <p>With Intel TXT the first instruction executed on the BSP isn’t the
 <em>reset vector</em>, but the <a class="reference internal" href="acm.html"><span class="doc">Intel ACM</span></a>.
 It initializes the TPM and measures parts of the firmware, the IBB.</p>
 <section id="marking-the-initial-boot-block">
-<h3>Marking the Initial Boot Block<a class="headerlink" href="#marking-the-initial-boot-block" title="Link to this heading"></a></h3>
+<h3>Marking the Initial Boot Block<a class="headerlink" href="#marking-the-initial-boot-block" title="Permalink to this heading"></a></h3>
 <p>Individual files in the CBFS can be marked as IBB.</p>
 <p>More details can be found in the <a class="reference internal" href="txt_ibb.html"><span class="doc">Intel TXT IBB</span></a> chapter.</p>
 </section>
 <section id="measurements">
-<h3>Measurements<a class="headerlink" href="#measurements" title="Link to this heading"></a></h3>
+<h3>Measurements<a class="headerlink" href="#measurements" title="Permalink to this heading"></a></h3>
 <p>The IBBs (Initial Boot Blocks) are measured into TPM’s PCR0 by the BIOS <a class="reference internal" href="acm.html"><span class="doc">ACM</span></a>
 before the CPU reset vector is executed. To identify the regions that need
 to be measured, the <a class="reference internal" href="../../soc/intel/fit.html"><span class="doc">FIT</span></a> contains one ore multiple <em>Type 7</em> entries, that
 point to the IBBs.</p>
 </section>
 <section id="authentication">
-<h3>Authentication<a class="headerlink" href="#authentication" title="Link to this heading"></a></h3>
+<h3>Authentication<a class="headerlink" href="#authentication" title="Permalink to this heading"></a></h3>
 <p>After the IBBs have been measured, the ACM decides if the boot firmware is
 trusted. There exists two validation modes:</p>
 <ol class="simple">
@@ -185,7 +187,7 @@ trusted. There exists two validation modes:</p>
 is being executed on the BSP.</p>
 </section>
 <section id="protecting-secrets-in-memory">
-<h3>Protecting Secrets in Memory<a class="headerlink" href="#protecting-secrets-in-memory" title="Link to this heading"></a></h3>
+<h3>Protecting Secrets in Memory<a class="headerlink" href="#protecting-secrets-in-memory" title="Permalink to this heading"></a></h3>
 <p>Intel TXT sets the <code class="docutils literal notranslate"><span class="pre">Secrets</span> <span class="pre">in</span> <span class="pre">Memory</span></code> bit, whenever the launch of the SINIT
 ACM was successful.
 The bit is reset when leaving the <em>MLE</em> by a regular shutdown or by removing
@@ -199,34 +201,34 @@ The platform will be reset after all DRAM has been wiped and will boot
 with the <code class="docutils literal notranslate"><span class="pre">Secrets</span> <span class="pre">in</span> <span class="pre">Memory</span></code> bit cleared.</p>
 </section>
 <section id="configuring-protected-regions-for-sinit-acm">
-<h3>Configuring protected regions for SINIT ACM<a class="headerlink" href="#configuring-protected-regions-for-sinit-acm" title="Link to this heading"></a></h3>
+<h3>Configuring protected regions for SINIT ACM<a class="headerlink" href="#configuring-protected-regions-for-sinit-acm" title="Permalink to this heading"></a></h3>
 <p>The memory regions used by the SINIT ACM need to be prepared and protected
 against DMA attacks.
 The SINIT ACM as well as the SINIT handoff data are placed in memory.</p>
 </section>
 <section id="locking-txt-register">
-<h3>Locking TXT register<a class="headerlink" href="#locking-txt-register" title="Link to this heading"></a></h3>
+<h3>Locking TXT register<a class="headerlink" href="#locking-txt-register" title="Permalink to this heading"></a></h3>
 <p>As last step the TXT registers are locked.</p>
 <p>Whenever the SINIT ACM is invoked, it verifies that the hardware is in the
 correct state. If it’s not the SINIT ACM will reset the platform.</p>
 </section>
 </section>
 <section id="for-developers">
-<h2>For developers<a class="headerlink" href="#for-developers" title="Link to this heading"></a></h2>
+<h2>For developers<a class="headerlink" href="#for-developers" title="Permalink to this heading"></a></h2>
 <section id="configuring-intel-txt-in-kconfig">
-<h3>Configuring Intel TXT in Kconfig<a class="headerlink" href="#configuring-intel-txt-in-kconfig" title="Link to this heading"></a></h3>
+<h3>Configuring Intel TXT in Kconfig<a class="headerlink" href="#configuring-intel-txt-in-kconfig" title="Permalink to this heading"></a></h3>
 <p>Enable <code class="docutils literal notranslate"><span class="pre">INTEL_TXT</span></code> and set the following:</p>
 <p><code class="docutils literal notranslate"><span class="pre">INTEL_TXT_BIOSACM_FILE</span></code> to the path of the BIOS ACM provided by Intel</p>
 <p><code class="docutils literal notranslate"><span class="pre">INTEL_TXT_SINITACM_FILE</span></code> to the path of the SINIT ACM provided by Intel</p>
 </section>
 <section id="print-txt-status-as-early-as-possible">
-<h3>Print TXT status as early as possible<a class="headerlink" href="#print-txt-status-as-early-as-possible" title="Link to this heading"></a></h3>
+<h3>Print TXT status as early as possible<a class="headerlink" href="#print-txt-status-as-early-as-possible" title="Permalink to this heading"></a></h3>
 <p>Add platform code to print the TXT status as early as possible, as the register
 is cleared on cold reset.</p>
 </section>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
 <p>More information can be found here:</p>
 <div class="toctree-wrapper compound">
 <ul>

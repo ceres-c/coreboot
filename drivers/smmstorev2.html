@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SMM based flash storage driver Version 2 &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>SMM based flash storage driver Version 2 &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -128,11 +130,11 @@
            <div itemprop="articleBody">
              
   <section id="smm-based-flash-storage-driver-version-2">
-<h1>SMM based flash storage driver Version 2<a class="headerlink" href="#smm-based-flash-storage-driver-version-2" title="Link to this heading"></a></h1>
+<h1>SMM based flash storage driver Version 2<a class="headerlink" href="#smm-based-flash-storage-driver-version-2" title="Permalink to this heading"></a></h1>
 <p>This documents the API exposed by the x86 system management based
 storage driver.</p>
 <section id="smmstorev2">
-<h2>SMMSTOREv2<a class="headerlink" href="#smmstorev2" title="Link to this heading"></a></h2>
+<h2>SMMSTOREv2<a class="headerlink" href="#smmstorev2" title="Permalink to this heading"></a></h2>
 <p>SMMSTOREv2 is a <a class="reference internal" href="../security/smm.html"><span class="doc">SMM</span></a> mediated driver to read from, write to and erase
 a predefined region in flash. It can be enabled by setting
 <code class="docutils literal notranslate"><span class="pre">CONFIG_SMMSTORE=y</span></code> and <code class="docutils literal notranslate"><span class="pre">CONFIG_SMMSTORE_V2=y</span></code> in menuconfig.</p>
@@ -140,7 +142,7 @@ a predefined region in flash. It can be enabled by setting
 storage to hold for instance configuration data, without needing to
 implement a (platform specific) storage driver in the payload itself.</p>
 <section id="storage-size-and-alignment">
-<h3>Storage size and alignment<a class="headerlink" href="#storage-size-and-alignment" title="Link to this heading"></a></h3>
+<h3>Storage size and alignment<a class="headerlink" href="#storage-size-and-alignment" title="Permalink to this heading"></a></h3>
 <p>SMMSTORE version 2 requires a minimum alignment of 64 KiB, which should
 be supported by all flash chips. Not having to perform read-modify-write
 operations is desired, as it reduces complexity and potential for bugs.</p>
@@ -164,10 +166,10 @@ With 64 KiB as block size, the minimum size of the FTW-enabled store is:</p>
 </section>
 </section>
 <section id="api">
-<h2>API<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<h2>API<a class="headerlink" href="#api" title="Permalink to this heading"></a></h2>
 <p>The API provides read and write access to an unformatted block storage.</p>
 <section id="storage-region">
-<h3>Storage region<a class="headerlink" href="#storage-region" title="Link to this heading"></a></h3>
+<h3>Storage region<a class="headerlink" href="#storage-region" title="Permalink to this heading"></a></h3>
 <p>By default SMMSTOREv2 will operate on a separate FMAP region called
 <code class="docutils literal notranslate"><span class="pre">SMMSTORE</span></code>. The default generated FMAP will include such a region. On
 systems with a locked FMAP, e.g. in an existing vboot setup with a
@@ -183,7 +185,7 @@ To support a fault tolerant write mechanism, at least a multiple of
 this size is recommended.</p>
 </section>
 <section id="communication-buffer">
-<h3>Communication buffer<a class="headerlink" href="#communication-buffer" title="Link to this heading"></a></h3>
+<h3>Communication buffer<a class="headerlink" href="#communication-buffer" title="Permalink to this heading"></a></h3>
 <p>To prevent malicious ring0 code to access arbitrary memory locations,
 SMMSTOREv2 uses a communication buffer in CBMEM/HOB for all transfers.
 This buffer has to be at least 64 KiB in size and must be installed
@@ -209,14 +211,14 @@ has to read the coreboot table with tag <code class="docutils literal notranslat
 SMMSTOREv2 support.</p>
 </section>
 <section id="blocks">
-<h3>Blocks<a class="headerlink" href="#blocks" title="Link to this heading"></a></h3>
+<h3>Blocks<a class="headerlink" href="#blocks" title="Permalink to this heading"></a></h3>
 <p>The SMMSTOREv2 splits the SMMSTORE FMAP partition into smaller chunks
 called <em>blocks</em>. Every block is at least the size of 64KiB to support
 arbitrary NOR flash erase ops. A payload or OS must make no further
 assumptions about the block or communication buffer size.</p>
 </section>
 <section id="generating-the-smi">
-<h3>Generating the SMI<a class="headerlink" href="#generating-the-smi" title="Link to this heading"></a></h3>
+<h3>Generating the SMI<a class="headerlink" href="#generating-the-smi" title="Permalink to this heading"></a></h3>
 <p>SMMSTOREv2 is called via an SMI, which is generated via a write to the
 IO port defined in the smi_cmd entry of the FADT ACPI table. <code class="docutils literal notranslate"><span class="pre">%al</span></code>
 contains <code class="docutils literal notranslate"><span class="pre">APM_CNT_SMMSTORE=0xed</span></code> and is written to the smi_cmd IO
@@ -224,7 +226,7 @@ port. <code class="docutils literal notranslate"><span class="pre">%ah</span></c
 parameter buffer to the SMMSTOREv2 command.</p>
 </section>
 <section id="return-values">
-<h3>Return values<a class="headerlink" href="#return-values" title="Link to this heading"></a></h3>
+<h3>Return values<a class="headerlink" href="#return-values" title="Permalink to this heading"></a></h3>
 <p>If a command succeeds, SMMSTOREv2 will return with
 <code class="docutils literal notranslate"><span class="pre">SMMSTORE_RET_SUCCESS=0</span></code> in <code class="docutils literal notranslate"><span class="pre">%eax</span></code>. On failure SMMSTORE will return
 <code class="docutils literal notranslate"><span class="pre">SMMSTORE_RET_FAILURE=1</span></code>. For unsupported SMMSTORE commands
@@ -236,13 +238,13 @@ no assumption on the returned data if <code class="docutils literal notranslate"
 that the SMMSTOREv2 feature is not installed.</p>
 </section>
 <section id="calling-arguments">
-<h3>Calling arguments<a class="headerlink" href="#calling-arguments" title="Link to this heading"></a></h3>
+<h3>Calling arguments<a class="headerlink" href="#calling-arguments" title="Permalink to this heading"></a></h3>
 <p>SMMSTOREv2 supports 3 subcommands that are passed via <code class="docutils literal notranslate"><span class="pre">%ah</span></code>, the
 additional calling arguments are passed via <code class="docutils literal notranslate"><span class="pre">%ebx</span></code>.</p>
 <p><strong>NOTE</strong>: The size of the struct entries are in the native word size of
 smihandler. This means 32 bits in almost all cases.</p>
 <section id="smmstore-cmd-init-4">
-<h4>- SMMSTORE_CMD_INIT = 4<a class="headerlink" href="#smmstore-cmd-init-4" title="Link to this heading"></a></h4>
+<h4>- SMMSTORE_CMD_INIT = 4<a class="headerlink" href="#smmstore-cmd-init-4" title="Permalink to this heading"></a></h4>
 <p>This installs the communication buffer to use and thus enables the
 SMMSTORE handler. This command can only be executed once and is done
 by the firmware. Calling this function at runtime has no effect.</p>
@@ -261,7 +263,7 @@ following struct:</p>
 </ul>
 </section>
 <section id="smmstore-cmd-raw-read-5">
-<h4>- SMMSTORE_CMD_RAW_READ = 5<a class="headerlink" href="#smmstore-cmd-raw-read-5" title="Link to this heading"></a></h4>
+<h4>- SMMSTORE_CMD_RAW_READ = 5<a class="headerlink" href="#smmstore-cmd-raw-read-5" title="Permalink to this heading"></a></h4>
 <p>SMMSTOREv2 allows reading arbitrary data. It is up to the caller to
 initialize the store with meaningful data before using it.</p>
 <p>The additional parameter buffer <code class="docutils literal notranslate"><span class="pre">%ebx</span></code> contains a pointer to the
@@ -281,7 +283,7 @@ following struct:</p>
 </ul>
 </section>
 <section id="smmstore-cmd-raw-write-6">
-<h4>- SMMSTORE_CMD_RAW_WRITE = 6<a class="headerlink" href="#smmstore-cmd-raw-write-6" title="Link to this heading"></a></h4>
+<h4>- SMMSTORE_CMD_RAW_WRITE = 6<a class="headerlink" href="#smmstore-cmd-raw-write-6" title="Permalink to this heading"></a></h4>
 <p>SMMSTOREv2 allows writing arbitrary data. It is up to the caller to
 erase a block before writing it.</p>
 <p>The additional parameter buffer <code class="docutils literal notranslate"><span class="pre">%ebx</span></code> contains a pointer to
@@ -301,7 +303,7 @@ the following struct:</p>
 </ul>
 </section>
 <section id="smmstore-cmd-raw-clear-7">
-<h4>- SMMSTORE_CMD_RAW_CLEAR = 7<a class="headerlink" href="#smmstore-cmd-raw-clear-7" title="Link to this heading"></a></h4>
+<h4>- SMMSTORE_CMD_RAW_CLEAR = 7<a class="headerlink" href="#smmstore-cmd-raw-clear-7" title="Permalink to this heading"></a></h4>
 <p>SMMSTOREv2 allows clearing blocks. A cleared block will read as <code class="docutils literal notranslate"><span class="pre">0xff</span></code>.
 By providing multiple blocks the caller can implement a fault tolerant
 write mechanism. It is up to the caller to clear blocks before writing
@@ -317,7 +319,7 @@ to them.</p>
 </ul>
 </section>
 <section id="security">
-<h4>Security<a class="headerlink" href="#security" title="Link to this heading"></a></h4>
+<h4>Security<a class="headerlink" href="#security" title="Permalink to this heading"></a></h4>
 <p>Pointers provided by the payload or OS are checked to not overlap with
 SMM. This protects the SMM handler from being compromised.</p>
 <p>As all information is exchanged using the communication buffer and
@@ -328,7 +330,7 @@ running kernel.</p>
 </section>
 </section>
 <section id="external-links">
-<h2>External links<a class="headerlink" href="#external-links" title="Link to this heading"></a></h2>
+<h2>External links<a class="headerlink" href="#external-links" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://software.intel.com/sites/default/files/managed/cf/ea/a_tour_beyond_bios_implementing_uefi_authenticated_variables_in_smm_with_edkii.pdf">A Tour Beyond BIOS Implementing UEFI Authenticated Variables in SMM with EDKI</a>
 Note that this differs significantly from coreboot’s implementation.</p></li>

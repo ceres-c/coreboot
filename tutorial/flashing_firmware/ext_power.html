@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flashing firmware externally supplying direct power &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Flashing firmware externally supplying direct power &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -130,7 +132,7 @@
            <div itemprop="articleBody">
              
   <section id="flashing-firmware-externally-supplying-direct-power">
-<h1>Flashing firmware externally supplying direct power<a class="headerlink" href="#flashing-firmware-externally-supplying-direct-power" title="Link to this heading"></a></h1>
+<h1>Flashing firmware externally supplying direct power<a class="headerlink" href="#flashing-firmware-externally-supplying-direct-power" title="Permalink to this heading"></a></h1>
 <p><strong>WARNING:</strong> Never use a high current rated power supply, like PC ATX power
 supply. It’ll literally melt your PCB traces on short circuit.</p>
 <p>On some mainboards the flash IC Vcc pin is connected to a diode, which prevents
@@ -140,13 +142,13 @@ powering the rest of the board.</p>
 <p>On those boards it’s safe to use a programmer and supply power externally.</p>
 <p><strong>WARNING:</strong> Verify that you apply the correct voltage!</p>
 <section id="usb-programmer">
-<h2>USB programmer<a class="headerlink" href="#usb-programmer" title="Link to this heading"></a></h2>
+<h2>USB programmer<a class="headerlink" href="#usb-programmer" title="Permalink to this heading"></a></h2>
 <p>USB programmers are usually current limited by the host USB hub. On USB 2.0
 ports the limit is 500mA, which is sufficient to power the flash. Those are
 the best choice as they are stateless and have a fast power on reset cycle.</p>
 </section>
 <section id="single-board-computers-like-beaglebone-black-rpi">
-<h2>Single board computers (like BeagleBone Black / RPi)<a class="headerlink" href="#single-board-computers-like-beaglebone-black-rpi" title="Link to this heading"></a></h2>
+<h2>Single board computers (like BeagleBone Black / RPi)<a class="headerlink" href="#single-board-computers-like-beaglebone-black-rpi" title="Permalink to this heading"></a></h2>
 <p>Be careful when connecting a flash chip, especially when using a Pomona
 test-clip. A short circuit or overcurrent (250mA) causes a brown-out reset,
 resulting in a reboot of the running operating system (and possible loss of

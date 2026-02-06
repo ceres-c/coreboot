@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acer G43T-AM3 &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Acer G43T-AM3 &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -148,11 +150,11 @@
            <div itemprop="articleBody">
              
   <section id="acer-g43t-am3">
-<h1>Acer G43T-AM3<a class="headerlink" href="#acer-g43t-am3" title="Link to this heading"></a></h1>
+<h1>Acer G43T-AM3<a class="headerlink" href="#acer-g43t-am3" title="Permalink to this heading"></a></h1>
 <p>The Acer G43T-AM3 is a microATX-sized desktop board. It was used for the
 Acer models Aspire M3800, Aspire M5800 and possibly more.</p>
 <section id="technology">
-<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<h2>Technology<a class="headerlink" href="#technology" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Northbridge</p></td>
@@ -183,9 +185,9 @@ to a point at the corresponding Super I/O pin and patching the
 mainboard-specific code accordingly.</p>
 </section>
 <section id="status">
-<h2>Status<a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<h2>Status<a class="headerlink" href="#status" title="Permalink to this heading"></a></h2>
 <section id="working">
-<h3>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h3>
+<h3>Working<a class="headerlink" href="#working" title="Permalink to this heading"></a></h3>
 <p>Tests were done with SeaBIOS 1.14.0 and slackware64-live from 2019-07-12
 (linux-4.19.50).</p>
 <ul class="simple">
@@ -213,7 +215,7 @@ via PECI)</p></li>
 </ul>
 </section>
 <section id="not-working">
-<h3>Not working<a class="headerlink" href="#not-working" title="Link to this heading"></a></h3>
+<h3>Not working<a class="headerlink" href="#not-working" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>DDR3 memory with 512Mx8 chips (G43 limitation)</p></li>
 <li><p>4x4GB of DDR3 memory (works, but showed a single bit error within one
@@ -222,7 +224,7 @@ pass of Memtest86+ 5.01)</p></li>
 </ul>
 </section>
 <section id="untested">
-<h3>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h3>
+<h3>Untested<a class="headerlink" href="#untested" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Other audio jacks or the front panel header</p></li>
 <li><p>S/PDIF output</p></li>
@@ -232,7 +234,7 @@ pass of Memtest86+ 5.01)</p></li>
 </section>
 </section>
 <section id="flashing-coreboot">
-<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Type</p></th>
@@ -275,7 +277,7 @@ pass of Memtest86+ 5.01)</p></li>
 might be necessary to specify the chip type; <code class="docutils literal notranslate"><span class="pre">MX25L1605D/MX25L1608D/MX25L1673E</span></code>
 is the correct one, not <code class="docutils literal notranslate"><span class="pre">MX25L1605</span></code>.</p>
 <section id="internal-flashing">
-<h3>Internal flashing<a class="headerlink" href="#internal-flashing" title="Link to this heading"></a></h3>
+<h3>Internal flashing<a class="headerlink" href="#internal-flashing" title="Permalink to this heading"></a></h3>
 <p>Internal access to the flash chip is unrestricted. When installing coreboot,
 only the BIOS region should be updated by passing the <code class="docutils literal notranslate"><span class="pre">--ifd</span></code> and <code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">bios</span></code>
 parameters to flashrom. A full backup is advisable.</p>
@@ -295,7 +297,7 @@ $ sudo flashrom \
 <a class="reference internal" href="../../tutorial/flashing_firmware/index.html"><span class="doc">Flashing firmware tutorial</span></a>.</p>
 </section>
 <section id="external-flashing">
-<h3>External flashing<a class="headerlink" href="#external-flashing" title="Link to this heading"></a></h3>
+<h3>External flashing<a class="headerlink" href="#external-flashing" title="Permalink to this heading"></a></h3>
 <p>The SPI flash chip on this board can be flashed externally through the
 SPI_ROM1 header while the board is off and disconnected from power. There
 seems to be a diode that prevents the external programmer from powering the
@@ -318,7 +320,7 @@ and the CPU is on the right. Note that HOLD# and WP# must be pulled high
 </section>
 </section>
 <section id="intel-management-engine">
-<h2>Intel Management Engine<a class="headerlink" href="#intel-management-engine" title="Link to this heading"></a></h2>
+<h2>Intel Management Engine<a class="headerlink" href="#intel-management-engine" title="Permalink to this heading"></a></h2>
 <p>The Intel Management Engine (ME) can be disabled by setting the ME_DISABLE
 jumper on the board. It pulls GPIO33 on the ICH10 low, causing the “Flash
 Descriptor Security Override Strap” to be set. This disables the ME and also
@@ -331,14 +333,14 @@ of the ME region, thus increasing the size of the BIOS region, <code class="docu
 be used with the <code class="docutils literal notranslate"><span class="pre">-t</span></code>, <code class="docutils literal notranslate"><span class="pre">-r</span></code> and <code class="docutils literal notranslate"><span class="pre">-S</span></code> options.</p>
 </section>
 <section id="fan-control">
-<h2>Fan control<a class="headerlink" href="#fan-control" title="Link to this heading"></a></h2>
+<h2>Fan control<a class="headerlink" href="#fan-control" title="Permalink to this heading"></a></h2>
 <p>There are two fan connectors that can be controlled individually. CPU_FAN
 can only control a fan by a PWM signal and SYS_FAN only by voltage. See
 the mainboard’s <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> file for how coreboot configures the Super
 I/O to control the fans.</p>
 </section>
 <section id="variants">
-<h2>Variants<a class="headerlink" href="#variants" title="Link to this heading"></a></h2>
+<h2>Variants<a class="headerlink" href="#variants" title="Permalink to this heading"></a></h2>
 <p>Various similar mainboards exist, like the Acer Q45T-AM. During a discussion
 in #coreboot on IRC, ECS was suspected to be the original designer of this
 series of mainboards. They have similar models such as the ECS G43T-WM.</p>

@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gigabyte GA-G41M-ES2L rev 1.1 &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Gigabyte GA-G41M-ES2L rev 1.1 &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -152,11 +154,11 @@
            <div itemprop="articleBody">
              
   <section id="gigabyte-ga-g41m-es2l-rev-1-1">
-<h1>Gigabyte GA-G41M-ES2L rev 1.1<a class="headerlink" href="#gigabyte-ga-g41m-es2l-rev-1-1" title="Link to this heading"></a></h1>
+<h1>Gigabyte GA-G41M-ES2L rev 1.1<a class="headerlink" href="#gigabyte-ga-g41m-es2l-rev-1-1" title="Permalink to this heading"></a></h1>
 <p>This page describes how to use coreboot on the <a class="reference external" href="https://www.gigabyte.com/Motherboard/GA-G41M-ES2L-rev-11">Gigabyte GA-G41M-ES2L rev 1.1</a> mainboard.</p>
 <p>This motherboard <a class="reference external" href="https://libreboot.org/docs/install/ga-g41m-es2l.html">also works with Libreboot</a>.</p>
 <section id="technology">
-<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<h2>Technology<a class="headerlink" href="#technology" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Type</p></th>
@@ -192,10 +194,10 @@
 </table>
 </section>
 <section id="preparation">
-<h2>Preparation<a class="headerlink" href="#preparation" title="Link to this heading"></a></h2>
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this heading"></a></h2>
 <p>For more datails how to get sources and build the toolchain, see <a class="reference internal" href="../../tutorial/part1.html"><span class="doc">Tutorial, part 1: Starting from scratch</span></a>.</p>
 <section id="devuan-4-chimaera">
-<h3>Devuan 4 Chimaera<a class="headerlink" href="#devuan-4-chimaera" title="Link to this heading"></a></h3>
+<h3>Devuan 4 Chimaera<a class="headerlink" href="#devuan-4-chimaera" title="Permalink to this heading"></a></h3>
 <p>This probably works also for any fresh Debian/Ubuntu-based distros.</p>
 <p>Install tools and libraries needed for coreboot:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>-V<span class="w"> </span>install<span class="w"> </span>bison<span class="w"> </span>build-essential<span class="w"> </span>curl<span class="w"> </span>flex<span class="w"> </span>git<span class="w"> </span>gnat<span class="w"> </span>libncurses5-dev<span class="w"> </span>m4<span class="w"> </span>zlib1g-dev<span class="w"> </span>wget<span class="w"> </span>python2<span class="w"> </span>python-is-python2<span class="w"> </span>flashrom
@@ -203,14 +205,14 @@
 </div>
 </section>
 <section id="get-sources">
-<h3>Get sources<a class="headerlink" href="#get-sources" title="Link to this heading"></a></h3>
+<h3>Get sources<a class="headerlink" href="#get-sources" title="Permalink to this heading"></a></h3>
 <p>You need about 700 MB disk space for sources only and ~2GB disk space for sources + build results</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://review.coreboot.org/coreboot.git
 </pre></div>
 </div>
 </section>
 <section id="build-toolchain">
-<h3>Build toolchain<a class="headerlink" href="#build-toolchain" title="Link to this heading"></a></h3>
+<h3>Build toolchain<a class="headerlink" href="#build-toolchain" title="Permalink to this heading"></a></h3>
 <p>Your system compilers can be different with versions, tested by coreboot developers.
 So, it is recommended to build cross-compilers with special versions, which were tested with coreboot.</p>
 <p>It is possible to skip this time-consuming part and use <code class="docutils literal notranslate"><span class="pre">ANY_TOOLCHAIN=y</span></code>, but this not recommended.</p>
@@ -221,7 +223,7 @@ So, it is recommended to build cross-compilers with special versions, which were
 </div>
 </section>
 <section id="save-mac-address-of-internal-lan">
-<h3>Save MAC-address of internal LAN<a class="headerlink" href="#save-mac-address-of-internal-lan" title="Link to this heading"></a></h3>
+<h3>Save MAC-address of internal LAN<a class="headerlink" href="#save-mac-address-of-internal-lan" title="Permalink to this heading"></a></h3>
 <p>Run <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">-c</span> <span class="pre">link</span> <span class="pre">show</span></code>, you will find MAC-address like 6c:f0:49:xx:xx:xx</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="p">:</span> <span class="n">lo</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">LOOPBACK</span><span class="p">,</span><span class="n">UP</span><span class="p">,</span><span class="n">LOWER_UP</span><span class="o">&gt;</span> <span class="n">mtu</span> <span class="mi">65536</span> <span class="n">qdisc</span> <span class="n">noqueue</span> <span class="n">state</span> <span class="n">UNKNOWN</span> <span class="n">mode</span> <span class="n">DEFAULT</span> <span class="n">group</span> <span class="n">default</span> <span class="n">qlen</span> <span class="mi">1000</span>
     <span class="n">link</span><span class="o">/</span><span class="n">loopback</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">brd</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
@@ -232,7 +234,7 @@ So, it is recommended to build cross-compilers with special versions, which were
 </section>
 </section>
 <section id="configure">
-<h2>Configure<a class="headerlink" href="#configure" title="Link to this heading"></a></h2>
+<h2>Configure<a class="headerlink" href="#configure" title="Permalink to this heading"></a></h2>
 <p>Create file <code class="docutils literal notranslate"><span class="pre">payloads/external/SeaBIOS/.config_seabios</span></code>:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">CONFIG_COREBOOT</span><span class="o">=</span>y
 <span class="nv">CONFIG_ATA_DMA</span><span class="o">=</span>y
@@ -246,7 +248,7 @@ So, it is recommended to build cross-compilers with special versions, which were
 </div>
 </section>
 <section id="build">
-<h2>Build<a class="headerlink" href="#build" title="Link to this heading"></a></h2>
+<h2>Build<a class="headerlink" href="#build" title="Permalink to this heading"></a></h2>
 <p>Just execute:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make
 </pre></div>
@@ -284,11 +286,11 @@ So, it is recommended to build cross-compilers with special versions, which were
 </div>
 </section>
 <section id="flashing-coreboot">
-<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Permalink to this heading"></a></h2>
 <p>In addition to the information here, please see the
 <a class="reference internal" href="../../tutorial/flashing_firmware/index.html"><span class="doc">Flashing firmware tutorial</span></a>.</p>
 <section id="do-backup">
-<h3>Do backup<a class="headerlink" href="#do-backup" title="Link to this heading"></a></h3>
+<h3>Do backup<a class="headerlink" href="#do-backup" title="Permalink to this heading"></a></h3>
 <p>The above commands read the SPI flash chip(s), write into file and then verify content again with the chip:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal:dualbiosindex<span class="o">=</span><span class="m">0</span><span class="w"> </span>-r<span class="w"> </span>m_bios.rom
 sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal:dualbiosindex<span class="o">=</span><span class="m">0</span><span class="w"> </span>-v<span class="w"> </span>m_bios.rom
@@ -301,7 +303,7 @@ sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> <
 <p>Backup file should be stored elsewhere, so that in case the coreboot build is faulty, some external procedure can be used without having to extract the backup from the target device first.</p>
 </section>
 <section id="write-new-flash-image">
-<h3>Write new flash image<a class="headerlink" href="#write-new-flash-image" title="Link to this heading"></a></h3>
+<h3>Write new flash image<a class="headerlink" href="#write-new-flash-image" title="Permalink to this heading"></a></h3>
 <p>Let’s write new image into SPI flash chip, verify checksum again and erase second flash chip:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal:dualbiosindex<span class="o">=</span><span class="m">0</span><span class="w"> </span>-w<span class="w"> </span>build/coreboot.rom
 sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> </span>internal:dualbiosindex<span class="o">=</span><span class="m">0</span><span class="w"> </span>-v<span class="w"> </span>build/coreboot.rom
@@ -311,7 +313,7 @@ sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> <
 </section>
 </section>
 <section id="set-text-mode-for-grub">
-<h2>Set text mode for GRUB<a class="headerlink" href="#set-text-mode-for-grub" title="Link to this heading"></a></h2>
+<h2>Set text mode for GRUB<a class="headerlink" href="#set-text-mode-for-grub" title="Permalink to this heading"></a></h2>
 <p>Update your <code class="docutils literal notranslate"><span class="pre">/etc/default/grub</span></code> with:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">GRUB_TERMINAL</span><span class="o">=</span>console
 </pre></div>
@@ -322,7 +324,7 @@ sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> <
 </div>
 </section>
 <section id="boot-with-new-firmware">
-<h2>Boot with new firmware<a class="headerlink" href="#boot-with-new-firmware" title="Link to this heading"></a></h2>
+<h2>Boot with new firmware<a class="headerlink" href="#boot-with-new-firmware" title="Permalink to this heading"></a></h2>
 <p>Restart your system:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>shutdown<span class="w"> </span>-r<span class="w"> </span>now
 </pre></div>
@@ -332,7 +334,7 @@ sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> <
 <p>Enjoy!</p>
 </section>
 <section id="status">
-<h2>Status<a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<h2>Status<a class="headerlink" href="#status" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-----------------------+--------------------------+--------+-------------------------------+</span>
 <span class="o">|</span> <span class="n">coreboot</span> <span class="n">version</span>      <span class="o">|</span> <span class="n">Date</span> <span class="n">of</span> <span class="n">sources</span> <span class="n">checkout</span> <span class="o">|</span> <span class="n">Status</span> <span class="o">|</span> <span class="n">Comment</span>                       <span class="o">|</span>
 <span class="o">+-----------------------+--------------------------+--------+-------------------------------+</span>
@@ -343,7 +345,7 @@ sudo<span class="w"> </span>flashrom<span class="w"> </span>-p<span class="w"> <
 </pre></div>
 </div>
 <section id="known-issues">
-<h3>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h3>
+<h3>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading"></a></h3>
 <p>Lm-sensors shows wrong values from it87:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>coretemp-isa-0000
 Adapter: ISA adapter
@@ -372,7 +374,7 @@ intrusion0:  ALARM
 </div>
 </section>
 <section id="working">
-<h3>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h3>
+<h3>Working<a class="headerlink" href="#working" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>RAM 1,2x1GiB DDR2 PC2-6400 Kingston KTC1G-UDIMM (1.8V, 2Rx8 ?)</p></li>
 <li><p>RAM 1x1GiB DDR2 PC2-5300 Brooktree AU1G08E32-667P005 / Apogee AU1G082-667P005 CL6 (1.8V, 2Rx8 ?)</p></li>
@@ -388,14 +390,14 @@ intrusion0:  ALARM
 </ul>
 </section>
 <section id="not-working">
-<h3>Not working<a class="headerlink" href="#not-working" title="Link to this heading"></a></h3>
+<h3>Not working<a class="headerlink" href="#not-working" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>SuperIO based fan control: PWM fan speed is not changing in depend of CPU temperature</p></li>
 <li><p>RAM 1,2x4GiB DDR2 PC2-6400 Samsung M378T5263AZ3-CF7 (2Rx4 PC2-6400U-666-12-E3)</p></li>
 </ul>
 </section>
 <section id="not-tested">
-<h3>Not tested<a class="headerlink" href="#not-tested" title="Link to this heading"></a></h3>
+<h3>Not tested<a class="headerlink" href="#not-tested" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>KVM virtualization</p></li>
 <li><p>Onboard audio</p></li>
@@ -409,7 +411,7 @@ intrusion0:  ALARM
 </section>
 </section>
 <section id="interesting-facts">
-<h2>Interesting facts<a class="headerlink" href="#interesting-facts" title="Link to this heading"></a></h2>
+<h2>Interesting facts<a class="headerlink" href="#interesting-facts" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">lshw</span></code> output is different for BIOS and coreboot.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>diff<span class="w"> </span>--side-by-side<span class="w"> </span>--ignore-all-space<span class="w"> </span>--strip-trailing-cr<span class="w"> </span><span class="se">\</span>
 <span class="w">     </span>Documentation/mainboard/gigabyte/ga-g41m-es2l_lshw_before_coreboot.txt<span class="w"> </span><span class="se">\</span>

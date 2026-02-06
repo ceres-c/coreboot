@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GPIO toggling in ACPI AML for coreboot &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>GPIO toggling in ACPI AML for coreboot &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -120,9 +122,9 @@
            <div itemprop="articleBody">
              
   <section id="gpio-toggling-in-acpi-aml-for-coreboot">
-<h1>GPIO toggling in ACPI AML for coreboot<a class="headerlink" href="#gpio-toggling-in-acpi-aml-for-coreboot" title="Link to this heading"></a></h1>
+<h1>GPIO toggling in ACPI AML for coreboot<a class="headerlink" href="#gpio-toggling-in-acpi-aml-for-coreboot" title="Permalink to this heading"></a></h1>
 <section id="table-of-contents">
-<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h2>
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Introduction</p></li>
 <li><p>Platform Interface</p></li>
@@ -132,7 +134,7 @@
 </ul>
 </section>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>ACPI provides platform-independent interfaces enabling the operating
 system to perform power management for devices as well as the entire
 system. An operating system can simply call into Method()s implemented
@@ -149,7 +151,7 @@ simple interface that can be used by any coreboot driver to generate
 ACPI AML code for reading or toggling platform GPIOs.</p>
 </section>
 <section id="platform-interface">
-<h2>Platform Interface<a class="headerlink" href="#platform-interface" title="Link to this heading"></a></h2>
+<h2>Platform Interface<a class="headerlink" href="#platform-interface" title="Permalink to this heading"></a></h2>
 <p>All platforms that use drivers requiring ACPI AML code for GPIO
 interactions need to be implement the following functions:</p>
 <ol class="simple">
@@ -184,7 +186,7 @@ gives SoC the flexibility to call them without any restrictions.</p></li>
 </ol>
 </section>
 <section id="helper-routines">
-<h2>Helper routines<a class="headerlink" href="#helper-routines" title="Link to this heading"></a></h2>
+<h2>Helper routines<a class="headerlink" href="#helper-routines" title="Permalink to this heading"></a></h2>
 <p>In order to relieve drivers of the task of implementing the same code
 for enabling/disabling Tx GPIOs based on the GPIO polarity, helper
 routines are provided which implement this common code and can be used
@@ -211,7 +213,7 @@ the platform specific acpigen_soc_read_rx_gpio() to actually read
 the raw Rx gpio value.</p>
 </section>
 <section id="implementation-details">
-<h2>Implementation Details<a class="headerlink" href="#implementation-details" title="Link to this heading"></a></h2>
+<h2>Implementation Details<a class="headerlink" href="#implementation-details" title="Permalink to this heading"></a></h2>
 <p>Platforms are restricted to using Local5, Local6 and Local7 variables
 only in implementations of the above functions. Any AML methods called
 by the above functions do not have any such restrictions on use of
@@ -289,7 +291,7 @@ required, driver code can rely either on some config option or read
 device-tree to use any user-provided GPIOs.</p>
 </section>
 <section id="arguments-and-local-variables-management">
-<h2>Arguments and Local Variables Management<a class="headerlink" href="#arguments-and-local-variables-management" title="Link to this heading"></a></h2>
+<h2>Arguments and Local Variables Management<a class="headerlink" href="#arguments-and-local-variables-management" title="Permalink to this heading"></a></h2>
 <p>Platform-defined functions can call methods using the same calling
 conventions provided by AML code. However, use of Local Variables is
 restricted to Local5, Local6 and Local7 unless they call into some

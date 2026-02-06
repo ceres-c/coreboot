@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.6 release notes &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.6 release notes &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -144,7 +146,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-6-release-notes">
-<h1>coreboot 4.6 release notes<a class="headerlink" href="#coreboot-4-6-release-notes" title="Link to this heading"></a></h1>
+<h1>coreboot 4.6 release notes<a class="headerlink" href="#coreboot-4-6-release-notes" title="Permalink to this heading"></a></h1>
 <p>We are happy to announce the April 2017 release of coreboot, version
 4.6.</p>
 <p>The 4.6 release covers commit e74f5eaa to commit db508565</p>
@@ -154,9 +156,9 @@ available in the usual place at https://www.coreboot.org/downloads</p>
 <p>There is a pgp signed 4.6 tag in the git repository, and a branch will
 be created as needed.</p>
 <section id="changes-past-ongoing-and-future">
-<h2>Changes: Past, ongoing, and future<a class="headerlink" href="#changes-past-ongoing-and-future" title="Link to this heading"></a></h2>
+<h2>Changes: Past, ongoing, and future<a class="headerlink" href="#changes-past-ongoing-and-future" title="Permalink to this heading"></a></h2>
 <section id="cbmem-console-development-and-the-linux-kernel">
-<h3>CBMEM console development and the Linux Kernel<a class="headerlink" href="#cbmem-console-development-and-the-linux-kernel" title="Link to this heading"></a></h3>
+<h3>CBMEM console development and the Linux Kernel<a class="headerlink" href="#cbmem-console-development-and-the-linux-kernel" title="Permalink to this heading"></a></h3>
 <p>Our cbmem debug console was updated with some nice features. The cbmem
 console now persists between reboots and is able to be used on some
 platforms via late init. Also there is a new Linux kernel driver which
@@ -166,21 +168,21 @@ it can be enabled via GOOGLE_MEMCONSOLE_COREBOOT kconfig option in your
 kernel - Note that this name may change going forward.</p>
 </section>
 <section id="critical-bugs-in-tpm-1-2-support">
-<h3>Critical bugs in TPM 1.2 support<a class="headerlink" href="#critical-bugs-in-tpm-1-2-support" title="Link to this heading"></a></h3>
+<h3>Critical bugs in TPM 1.2 support<a class="headerlink" href="#critical-bugs-in-tpm-1-2-support" title="Permalink to this heading"></a></h3>
 <p>coreboot currently has issues with the TPM 1.2 LPC driver
 implementation. This leads to a misbehavior in SeaBIOS where the TPM
 gets temporarily deactivated. We plan to publish the bugfix release
 4.6.1 when we have these issues sorted out.</p>
 </section>
 <section id="native-graphics-and-ram-init-improvements">
-<h3>Native graphics and ram init improvements<a class="headerlink" href="#native-graphics-and-ram-init-improvements" title="Link to this heading"></a></h3>
+<h3>Native graphics and ram init improvements<a class="headerlink" href="#native-graphics-and-ram-init-improvements" title="Permalink to this heading"></a></h3>
 <p>The native graphics was reworked a while ago and should finally support
 Windows. Numerous bug fixes and EDID support is also now available.
 Finally, the native ram initialization for sandybridge/ivybridge
 platforms got patched and supports more RAM modules.</p>
 </section>
 <section id="new-and-fresh-payloads">
-<h3>New and fresh payloads<a class="headerlink" href="#new-and-fresh-payloads" title="Link to this heading"></a></h3>
+<h3>New and fresh payloads<a class="headerlink" href="#new-and-fresh-payloads" title="Permalink to this heading"></a></h3>
 <p>SeaBIOS, FiLO, and iPXE were all recently updated to the latest
 versions. Https downloads are the default for all payloads now. We
 provide the libpayload project which is used for writing own payloads
@@ -193,7 +195,7 @@ the main coreboot tree before the next release.  The upstream repository
 is here: https://github.com/siro20/coreboot/tree/cbui/payloads/cbui</p>
 </section>
 <section id="uefi-support-a-long-road-to-go">
-<h3>UEFI support: A long road to go<a class="headerlink" href="#uefi-support-a-long-road-to-go" title="Link to this heading"></a></h3>
+<h3>UEFI support: A long road to go<a class="headerlink" href="#uefi-support-a-long-road-to-go" title="Permalink to this heading"></a></h3>
 <p>coreboot can be used with the edk2 UEFI implementation which
 is open source and available at Github. Sadly it is not currently
 integrated into the coreboot build. This has several reasons:</p>
@@ -207,7 +209,7 @@ payload out-of-the- box. See the current patch state at
 http://review.coreboot.org/#/c/15057/</p>
 </section>
 <section id="fighting-blobs-and-proprietary-hw-components">
-<h3>Fighting blobs and proprietary HW components<a class="headerlink" href="#fighting-blobs-and-proprietary-hw-components" title="Link to this heading"></a></h3>
+<h3>Fighting blobs and proprietary HW components<a class="headerlink" href="#fighting-blobs-and-proprietary-hw-components" title="Permalink to this heading"></a></h3>
 <p>coreboot’s ultimate goal would be to replace any closed source firmware
 stack with free software components. Unfortunately this is not always
 possible due to signed binaries such as the Intel ME firmware, the AMD
@@ -222,7 +224,7 @@ older mainboard which are known to be free software. It can easily be
 extended for different binaries with well-defined specifications.</p>
 </section>
 <section id="did-you-say-ada">
-<h3>Did you say Ada?<a class="headerlink" href="#did-you-say-ada" title="Link to this heading"></a></h3>
+<h3>Did you say Ada?<a class="headerlink" href="#did-you-say-ada" title="Permalink to this heading"></a></h3>
 <p>coreboot now supports Ada, and a lot work was done integrating Ada into
 our toolchain. At the moment only the support for formal verification is
 missing and will be soon added. At that point, we can prove the absence
@@ -236,19 +238,19 @@ interfaces as well and is ready to be integrated into our mainboard
 implementations.</p>
 </section>
 <section id="toolchain-updates">
-<h3>Toolchain updates<a class="headerlink" href="#toolchain-updates" title="Link to this heading"></a></h3>
+<h3>Toolchain updates<a class="headerlink" href="#toolchain-updates" title="Permalink to this heading"></a></h3>
 <p>A new coreboot toolchain is out. The major toolchain change was going
 from GCC version 5.3.0 to 6.3.0. There were also minor version updates
 to GMP, MPFR, Binutils, GDB, IASL, and Clang.</p>
 </section>
 <section id="deprecation-policy-for-boards">
-<h3>Deprecation policy for boards<a class="headerlink" href="#deprecation-policy-for-boards" title="Link to this heading"></a></h3>
+<h3>Deprecation policy for boards<a class="headerlink" href="#deprecation-policy-for-boards" title="Permalink to this heading"></a></h3>
 <p>Starting with this release there will be a policy for deprecating
 unmaintained boards. See the end of this announcement for details.</p>
 </section>
 </section>
 <section id="change-summary">
-<h2>Change Summary<a class="headerlink" href="#change-summary" title="Link to this heading"></a></h2>
+<h2>Change Summary<a class="headerlink" href="#change-summary" title="Permalink to this heading"></a></h2>
 <p>Build system (20 commits)</p>
 <ul class="simple">
 <li><p>Clean up Kconfig</p></li>
@@ -489,7 +491,7 @@ SPIBAR</p></li>
 </ul>
 </section>
 <section id="changes-in-chips">
-<h2>Changes in chips<a class="headerlink" href="#changes-in-chips" title="Link to this heading"></a></h2>
+<h2>Changes in chips<a class="headerlink" href="#changes-in-chips" title="Permalink to this heading"></a></h2>
 <p>Added 1 processor &amp; northbridge:</p>
 <ul class="simple">
 <li><p>amd/pi/00670F00</p></li>
@@ -509,7 +511,7 @@ SPIBAR</p></li>
 </ul>
 </section>
 <section id="mainboard-changes">
-<h2>Mainboard changes<a class="headerlink" href="#mainboard-changes" title="Link to this heading"></a></h2>
+<h2>Mainboard changes<a class="headerlink" href="#mainboard-changes" title="Permalink to this heading"></a></h2>
 <p>Added 52 mainboards and variants:</p>
 <ul class="simple">
 <li><p>AMD Gardenia - AMD Stoney Ridge</p></li>
@@ -548,7 +550,7 @@ Kip, Orco, Quawks, Squawks, Sumo, Swanky, &amp; Winky - Intel Baytrail</p></li>
 </ul>
 </section>
 <section id="utilities">
-<h2>Utilities<a class="headerlink" href="#utilities" title="Link to this heading"></a></h2>
+<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this heading"></a></h2>
 <p>Added 2 new utilities:</p>
 <ul class="simple">
 <li><p>blobtool</p></li>
@@ -556,7 +558,7 @@ Kip, Orco, Quawks, Squawks, Sumo, Swanky, &amp; Winky - Intel Baytrail</p></li>
 </ul>
 </section>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 <p>Updated 5 submodules</p>
 <ul class="simple">
 <li><p>3rdparty/blobs (10 commits)</p></li>
@@ -567,7 +569,7 @@ Kip, Orco, Quawks, Squawks, Sumo, Swanky, &amp; Winky - Intel Baytrail</p></li>
 </ul>
 </section>
 <section id="tested-boards">
-<h2>Tested boards<a class="headerlink" href="#tested-boards" title="Link to this heading"></a></h2>
+<h2>Tested boards<a class="headerlink" href="#tested-boards" title="Permalink to this heading"></a></h2>
 <p>The following boards were tested recently:</p>
 <ul class="simple">
 <li><p>emulation qemu-q35                    4.6-1</p></li>
@@ -591,7 +593,7 @@ Kip, Orco, Quawks, Squawks, Sumo, Swanky, &amp; Winky - Intel Baytrail</p></li>
 </ul>
 </section>
 <section id="coreboot-statistics-from-e74f5eaa43-to-db508565d2">
-<h2>coreboot statistics from e74f5eaa43 to db508565d2<a class="headerlink" href="#coreboot-statistics-from-e74f5eaa43-to-db508565d2" title="Link to this heading"></a></h2>
+<h2>coreboot statistics from e74f5eaa43 to db508565d2<a class="headerlink" href="#coreboot-statistics-from-e74f5eaa43-to-db508565d2" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Total Commits: 1708</p></li>
 <li><p>Average Commits per day: 8.75</p></li>
@@ -605,7 +607,7 @@ Kip, Orco, Quawks, Squawks, Sumo, Swanky, &amp; Winky - Intel Baytrail</p></li>
 </ul>
 </section>
 <section id="code-removal-after-the-4-6-release">
-<h2>Code removal after the 4.6 release<a class="headerlink" href="#code-removal-after-the-4-6-release" title="Link to this heading"></a></h2>
+<h2>Code removal after the 4.6 release<a class="headerlink" href="#code-removal-after-the-4-6-release" title="Permalink to this heading"></a></h2>
 <p>The only platform currently scheduled for removal is the
 bifferos/bifferboard &amp; soc/rdc/r8610. This platform is one of two that
 still uses romcc to compile romstage and doesn’t have cache-as-ram in
@@ -614,7 +616,7 @@ to be impossible to buy, so as far as it can be determined, no testing
 has been done recently.</p>
 </section>
 <section id="code-removal-after-the-4-7-release">
-<h2>Code removal after the 4.7 release<a class="headerlink" href="#code-removal-after-the-4-7-release" title="Link to this heading"></a></h2>
+<h2>Code removal after the 4.7 release<a class="headerlink" href="#code-removal-after-the-4-7-release" title="Permalink to this heading"></a></h2>
 <p>One of the things that the coreboot project has struggled with is how to
 maintain the older platforms while still moving the rest of the
 platforms forward. Currently there are numerous platforms in the
@@ -636,7 +638,7 @@ towards this goal. A list of the platforms that are affected by this
 will be sent to the mailing list shortly.</p>
 </section>
 <section id="code-removal-after-the-4-8-release">
-<h2>Code removal after the 4.8 release<a class="headerlink" href="#code-removal-after-the-4-8-release" title="Link to this heading"></a></h2>
+<h2>Code removal after the 4.8 release<a class="headerlink" href="#code-removal-after-the-4-8-release" title="Permalink to this heading"></a></h2>
 <p>To further clean things up, starting with the 4.8 release, any platform
 that does not have a successful boot logged in the board_status repo in
 the previous year (that is, within the previous two releases) will be

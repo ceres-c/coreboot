@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flashing firmware standalone &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Flashing firmware standalone &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -130,32 +132,32 @@
            <div itemprop="articleBody">
              
   <section id="flashing-firmware-standalone">
-<h1>Flashing firmware standalone<a class="headerlink" href="#flashing-firmware-standalone" title="Link to this heading"></a></h1>
+<h1>Flashing firmware standalone<a class="headerlink" href="#flashing-firmware-standalone" title="Permalink to this heading"></a></h1>
 <p>If none of the other methods work, there are three possibilities:</p>
 <section id="desolder">
-<h2>Desolder<a class="headerlink" href="#desolder" title="Link to this heading"></a></h2>
+<h2>Desolder<a class="headerlink" href="#desolder" title="Permalink to this heading"></a></h2>
 <p>You must remove or desolder the flash IC before you can flash it.
 It’s recommended to solder a socket in place of the flash IC.</p>
 <p>When flashing the IC, always connect all input pins.
 If in doubt, pull /WP, /HOLD, /RESET and alike up towards Vcc.</p>
 </section>
 <section id="spi-flash-emulator">
-<h2>SPI flash emulator<a class="headerlink" href="#spi-flash-emulator" title="Link to this heading"></a></h2>
+<h2>SPI flash emulator<a class="headerlink" href="#spi-flash-emulator" title="Permalink to this heading"></a></h2>
 <p>If you are a developer, you might want to use an <a class="reference external" href="https://www.dediprog.com/product/EM100Pro">EM100Pro</a> instead, which sets
 the onboard flash on hold, and allows to run custom firmware.
 It provides a very fast development cycle without actually writing to flash.</p>
 </section>
 <section id="spi-flash-overwrite">
-<h2>SPI flash overwrite<a class="headerlink" href="#spi-flash-overwrite" title="Link to this heading"></a></h2>
+<h2>SPI flash overwrite<a class="headerlink" href="#spi-flash-overwrite" title="Permalink to this heading"></a></h2>
 <p>It is possible to set the onboard flash on hold and use another flash chip.
 Connect all lines one-to-one, except /HOLD. Pull /HOLD of the soldered flash IC
 low, and /HOLD of your replacement flash IC high.</p>
 <section id="spi-header">
-<h3>SPI header<a class="headerlink" href="#spi-header" title="Link to this heading"></a></h3>
+<h3>SPI header<a class="headerlink" href="#spi-header" title="Permalink to this heading"></a></h3>
 <p>Some boards feature a pin header which is connected to the SPI bus. This can
 also be used to connect a secondary flash chip.</p>
 <section id="hp-boards">
-<h4>HP boards<a class="headerlink" href="#hp-boards" title="Link to this heading"></a></h4>
+<h4>HP boards<a class="headerlink" href="#hp-boards" title="Permalink to this heading"></a></h4>
 <p>Many HP desktop mainboards have a 2x8 or 2x10 block of header pins which
 can be used to connect a second flash chip. One pin is connected to the
 onboard flash’s /CS pin, and another is connected to the chipset’s /CS
@@ -179,7 +181,7 @@ secondary flash, otherwise the onboard flash will always respond to
 accesses.</p>
 </section>
 <section id="other-boards">
-<h4>Other boards<a class="headerlink" href="#other-boards" title="Link to this heading"></a></h4>
+<h4>Other boards<a class="headerlink" href="#other-boards" title="Permalink to this heading"></a></h4>
 <p>Other boards may have similar headers, but will likely use a different
 pinout than the ones explicitly mentioned here. Usually such a header
 will be located near the onboard SPI flash. If schematics are available,

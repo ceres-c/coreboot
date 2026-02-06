@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. AMD Platform Security Processor (PSP) Firmware Integration Guide &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>1. AMD Platform Security Processor (PSP) Firmware Integration Guide &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -118,7 +120,7 @@
            <div itemprop="articleBody">
              
   <section id="amd-platform-security-processor-psp-firmware-integration-guide">
-<h1><span class="section-number">1. </span>AMD Platform Security Processor (PSP) Firmware Integration Guide<a class="headerlink" href="#amd-platform-security-processor-psp-firmware-integration-guide" title="Link to this heading"></a></h1>
+<h1><span class="section-number">1. </span>AMD Platform Security Processor (PSP) Firmware Integration Guide<a class="headerlink" href="#amd-platform-security-processor-psp-firmware-integration-guide" title="Permalink to this heading"></a></h1>
 <p>The following content defines the structures of PSP tables and describes the
 firmware images integrated into a functioning system.  Further details of
 each Platform Security Processor (PSP) firmware blob or PSP feature are
@@ -128,7 +130,7 @@ To be consistent with the latest documentation, and because of familiarity
 with the older name, this document continues with “Platform Security Processor”
 and “PSP”.</p>
 <section id="platform-security-processor-psp-overview">
-<h2>Platform Security Processor (PSP) Overview<a class="headerlink" href="#platform-security-processor-psp-overview" title="Link to this heading"></a></h2>
+<h2>Platform Security Processor (PSP) Overview<a class="headerlink" href="#platform-security-processor-psp-overview" title="Permalink to this heading"></a></h2>
 <p>The Platform Security Processor (PSP) is an on-die, isolated security processor
 that runs independently from the main x86 cores of the platform.
 Security-sensitive components run on the PSP without being affected by the
@@ -137,7 +139,7 @@ its own firmware and shares the SPI flash storage that is used by the
 system BIOS.</p>
 </section>
 <section id="embedded-firmware-structure">
-<h2>Embedded Firmware Structure<a class="headerlink" href="#embedded-firmware-structure" title="Link to this heading"></a></h2>
+<h2>Embedded Firmware Structure<a class="headerlink" href="#embedded-firmware-structure" title="Permalink to this heading"></a></h2>
 <p>The PSP identifies its important tables by first locating the Embedded Firmware
 Structure.  It reads specific addresses in the SPI flash, from top to bottom,
 attempting to identify the signature.  The locations (for clarity, the x86
@@ -231,14 +233,14 @@ Details are specific to the implementation.</p></li>
 </ul>
 </section>
 <section id="psp-directory-table">
-<h2>PSP Directory Table<a class="headerlink" href="#psp-directory-table" title="Link to this heading"></a></h2>
+<h2>PSP Directory Table<a class="headerlink" href="#psp-directory-table" title="Permalink to this heading"></a></h2>
 <p>The PSP Directory Table allows the PSP to find and load various images.  A
 second level table may be generated to allow updates without the risk of
 corrupting the primary table.  Certain models support a combo type table,
 allowing secondary tables to be referenced by device ID.  No coreboot
 implementations currently use combo tables.</p>
 <section id="psp-directory-table-header">
-<h3>PSP Directory Table Header<a class="headerlink" href="#psp-directory-table-header" title="Link to this heading"></a></h3>
+<h3>PSP Directory Table Header<a class="headerlink" href="#psp-directory-table-header" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Field Name</p></th>
@@ -277,7 +279,7 @@ entries in the table</p></td>
 </table>
 </section>
 <section id="psp-directory-table-entries">
-<h3>PSP Directory Table Entries<a class="headerlink" href="#psp-directory-table-entries" title="Link to this heading"></a></h3>
+<h3>PSP Directory Table Entries<a class="headerlink" href="#psp-directory-table-entries" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Field Name</p></th>
@@ -334,7 +336,7 @@ partition</p></td>
 </table>
 </section>
 <section id="psp-directory-table-types">
-<h3>PSP Directory Table Types<a class="headerlink" href="#psp-directory-table-types" title="Link to this heading"></a></h3>
+<h3>PSP Directory Table Types<a class="headerlink" href="#psp-directory-table-types" title="Permalink to this heading"></a></h3>
 <p><strong>0x00</strong>: AMD public key</p>
 <ul class="simple">
 <li><p>Public key used by on-chip bootcode to verify the signature of PSP boot
@@ -433,7 +435,7 @@ the main cores from reset.</p></li>
 </ul>
 </section>
 <section id="firmware-version-of-binaries">
-<h3>Firmware Version of Binaries<a class="headerlink" href="#firmware-version-of-binaries" title="Link to this heading"></a></h3>
+<h3>Firmware Version of Binaries<a class="headerlink" href="#firmware-version-of-binaries" title="Permalink to this heading"></a></h3>
 <p>Every firmware binary contains 256 bytes of a PSP Header, which includes
 the firmware version. The version is made up of the four bytes located at
 offset 0x60 in the binary image.</p>
@@ -462,7 +464,7 @@ versioned, as there will not be multiple keys.  Keys are unique to processor
 family.</p>
 </section>
 <section id="bios-directory-table-entry-types">
-<h3>BIOS Directory Table Entry Types<a class="headerlink" href="#bios-directory-table-entry-types" title="Link to this heading"></a></h3>
+<h3>BIOS Directory Table Entry Types<a class="headerlink" href="#bios-directory-table-entry-types" title="Permalink to this heading"></a></h3>
 <p>All x86 accessible components (both executable and data blobs) are found via
 the BIOS Directory Table.  A second level table may be generated to allow for
 updates without the risk of corrupting the primary table.</p>
@@ -477,7 +479,7 @@ expected to be copied from boot media to specific memory location</p></li>
 </ul>
 </section>
 <section id="bios-directory-table-header">
-<h3>BIOS Directory Table Header<a class="headerlink" href="#bios-directory-table-header" title="Link to this heading"></a></h3>
+<h3>BIOS Directory Table Header<a class="headerlink" href="#bios-directory-table-header" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Field Name</p></th>
@@ -516,7 +518,7 @@ entries in the table</p></td>
 </table>
 </section>
 <section id="bios-directory-table-entries">
-<h3>BIOS Directory Table Entries<a class="headerlink" href="#bios-directory-table-entries" title="Link to this heading"></a></h3>
+<h3>BIOS Directory Table Entries<a class="headerlink" href="#bios-directory-table-entries" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Field Name</p></th>
@@ -627,7 +629,7 @@ BIOS Entry is copied</p></td>
 </table>
 </section>
 <section id="id1">
-<h3>BIOS Directory Table Entry Types<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<h3>BIOS Directory Table Entry Types<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <p><strong>0x60</strong>: APCB data</p>
 <ul class="simple">
 <li><p>Source field points to the AGESA PSP Customization Block (APCB) data.</p></li>
@@ -677,9 +679,9 @@ firmware.</p></li>
 </section>
 </section>
 <section id="tools">
-<h2>Tools<a class="headerlink" href="#tools" title="Link to this heading"></a></h2>
+<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this heading"></a></h2>
 <section id="amdcompress">
-<h3>amdcompress<a class="headerlink" href="#amdcompress" title="Link to this heading"></a></h3>
+<h3>amdcompress<a class="headerlink" href="#amdcompress" title="Permalink to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">cbfstool/amdcompress</span></code> is a helper for creating the BIOS Reset Image (BIOS
 Directory Table type 0x62).  This is the code the PSP uncompresses into DRAM
 at the location where the x86 begins execution when released from reset.
@@ -687,7 +689,7 @@ Typical usage is for amdcompress to convert an ELF file’s program section
 into a zlib compressed image.</p>
 </section>
 <section id="amdfwtool">
-<h3>amdfwtool<a class="headerlink" href="#amdfwtool" title="Link to this heading"></a></h3>
+<h3>amdfwtool<a class="headerlink" href="#amdfwtool" title="Permalink to this heading"></a></h3>
 <p>All images requiring PSP functionality rely on the amdfwtool utility.
 amdfwtool takes image names as command-line arguments, as well as the size of
 the flash device, and intended location of the Embedded Firmware Structure.
@@ -697,7 +699,7 @@ structures, and the firmware images added.  The file, typically named
 </section>
 </section>
 <section id="external-reference">
-<h2>External Reference<a class="headerlink" href="#external-reference" title="Link to this heading"></a></h2>
+<h2>External Reference<a class="headerlink" href="#external-reference" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>NDA document #55758: <em>AMD Platform Security Processor BIOS Architecture
 Design Guide for AMD Family 17h Processors</em></p></li>

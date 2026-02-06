@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.2 release notes &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.2 release notes &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -135,7 +137,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-2-release-notes">
-<h1>coreboot 4.2 release notes<a class="headerlink" href="#coreboot-4-2-release-notes" title="Link to this heading"></a></h1>
+<h1>coreboot 4.2 release notes<a class="headerlink" href="#coreboot-4-2-release-notes" title="Permalink to this heading"></a></h1>
 <p>Halloween 2015 release - just as scary as that sounds</p>
 <p>Dear coreboot community,
 today marks the release of coreboot 4.2, the second release on our time
@@ -160,9 +162,9 @@ Patrick</p>
 <p>Log of commit d5e6618a4f076610e683b174c4dd5108d960c785 to
 commit 439a527014fa0cb3e4ef60ba59e5c57c737b4444</p>
 <section id="changes-between-4-1-and-4-2">
-<h2>Changes between 4.1 and 4.2<a class="headerlink" href="#changes-between-4-1-and-4-2" title="Link to this heading"></a></h2>
+<h2>Changes between 4.1 and 4.2<a class="headerlink" href="#changes-between-4-1-and-4-2" title="Permalink to this heading"></a></h2>
 <section id="build-system">
-<h3>Build system:<a class="headerlink" href="#build-system" title="Link to this heading"></a></h3>
+<h3>Build system:<a class="headerlink" href="#build-system" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Store a minimized coreboot config file in cbfs instead of the full
 config</p></li>
@@ -179,7 +181,7 @@ tools</p></li>
 </ul>
 </section>
 <section id="utilities">
-<h3>Utilities:<a class="headerlink" href="#utilities" title="Link to this heading"></a></h3>
+<h3>Utilities:<a class="headerlink" href="#utilities" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Many fixes and updates to many utilities (158 total commits)</p></li>
 <li><p>ifdtool: Update for skylake, handle region masks correctly</p></li>
@@ -192,7 +194,7 @@ code</p></li>
 <li><p>Create a common library to share coreboot routines with utilities</p></li>
 </ul>
 <section id="significant-changes-and-cleanup-to-cbfstool-81-commits">
-<h4>Significant changes and cleanup to cbfstool (81 commits)<a class="headerlink" href="#significant-changes-and-cleanup-to-cbfstool-81-commits" title="Link to this heading"></a></h4>
+<h4>Significant changes and cleanup to cbfstool (81 commits)<a class="headerlink" href="#significant-changes-and-cleanup-to-cbfstool-81-commits" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>Update cbfstool to change the internal location of FSP binaries when
 adding them</p></li>
@@ -211,7 +213,7 @@ about them</p></li>
 </section>
 </section>
 <section id="payloads">
-<h3>Payloads:<a class="headerlink" href="#payloads" title="Link to this heading"></a></h3>
+<h3>Payloads:<a class="headerlink" href="#payloads" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>SeaBIOS: update stable release from 1.7.5 to 1.8.2</p></li>
 <li><p>Libpayload had some significant changes (61 commits). Major changes:</p></li>
@@ -226,7 +228,7 @@ colors</p></li>
 </ul>
 </section>
 <section id="vendorcode">
-<h3>Vendorcode:<a class="headerlink" href="#vendorcode" title="Link to this heading"></a></h3>
+<h3>Vendorcode:<a class="headerlink" href="#vendorcode" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>fsp_baytrail: Support Baytrail FSP Gold 4 release</p></li>
 <li><p>AMD binary PI: add support for fan control</p></li>
@@ -235,7 +237,7 @@ colors</p></li>
 </ul>
 </section>
 <section id="mainboards">
-<h3>Mainboards:<a class="headerlink" href="#mainboards" title="Link to this heading"></a></h3>
+<h3>Mainboards:<a class="headerlink" href="#mainboards" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>New Mainboards:</p></li>
 <li><p>apple/macbookair4_2 * Sandy/Ivy Bridge with Panther / Cougar point
@@ -260,28 +262,28 @@ speedy) mainboards into the single google/veyron mainboard directory</p></li>
 </ul>
 </section>
 <section id="console">
-<h3>Console:<a class="headerlink" href="#console" title="Link to this heading"></a></h3>
+<h3>Console:<a class="headerlink" href="#console" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Add EM100 ˜hyper term” spi console support in ramstage &amp; smm</p></li>
 <li><p>Add console support for verstage</p></li>
 </ul>
 </section>
 <section id="arm">
-<h3>ARM:<a class="headerlink" href="#arm" title="Link to this heading"></a></h3>
+<h3>ARM:<a class="headerlink" href="#arm" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>armv7: use asm coded memory operations for 32/16 bit read/write</p></li>
 <li><p>Many cleanups to the nvidia tegra chips (40 patches)</p></li>
 </ul>
 </section>
 <section id="risc-v">
-<h3>RISC-V:<a class="headerlink" href="#risc-v" title="Link to this heading"></a></h3>
+<h3>RISC-V:<a class="headerlink" href="#risc-v" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Add trap handling</p></li>
 <li><p>Add virtual Memory setup</p></li>
 </ul>
 </section>
 <section id="x86">
-<h3>X86:<a class="headerlink" href="#x86" title="Link to this heading"></a></h3>
+<h3>X86:<a class="headerlink" href="#x86" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Remove and re-add Rangeley and Ivy Bridge / panther point FSP
 platforms</p></li>
@@ -303,7 +305,7 @@ prevent the memory sinkhole smm hack</p></li>
 </ul>
 </section>
 <section id="drivers">
-<h3>Drivers:<a class="headerlink" href="#drivers" title="Link to this heading"></a></h3>
+<h3>Drivers:<a class="headerlink" href="#drivers" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Add native text mode support for the Aspeed AST2050</p></li>
 <li><p>w83795: Add support for for fan control and voltage monitoring</p></li>
@@ -313,7 +315,7 @@ prevent the memory sinkhole smm hack</p></li>
 </ul>
 </section>
 <section id="lib">
-<h3>Lib:<a class="headerlink" href="#lib" title="Link to this heading"></a></h3>
+<h3>Lib:<a class="headerlink" href="#lib" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Derive fmap name from offset/size</p></li>
 <li><p>Several edid fixes</p></li>
@@ -322,9 +324,9 @@ prevent the memory sinkhole smm hack</p></li>
 </section>
 </section>
 <section id="submodules">
-<h2>Submodules:<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<h2>Submodules:<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 <section id="rdparty-blobs">
-<h3>3rdparty/blobs:<a class="headerlink" href="#rdparty-blobs" title="Link to this heading"></a></h3>
+<h3>3rdparty/blobs:<a class="headerlink" href="#rdparty-blobs" title="Permalink to this heading"></a></h3>
 <p>Total commits: 16
 Log of commit 61d663e3 to commit aab093f0</p>
 <ul class="simple">
@@ -334,13 +336,13 @@ Log of commit 61d663e3 to commit aab093f0</p>
 </ul>
 </section>
 <section id="rdparty-arm-trusted-firmware">
-<h3>3rdparty/arm-trusted-firmware:<a class="headerlink" href="#rdparty-arm-trusted-firmware" title="Link to this heading"></a></h3>
+<h3>3rdparty/arm-trusted-firmware:<a class="headerlink" href="#rdparty-arm-trusted-firmware" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>No Changes</p></li>
 </ul>
 </section>
 <section id="rdparty-vboot">
-<h3>3rdparty/vboot:<a class="headerlink" href="#rdparty-vboot" title="Link to this heading"></a></h3>
+<h3>3rdparty/vboot:<a class="headerlink" href="#rdparty-vboot" title="Permalink to this heading"></a></h3>
 <p>Total commits: 41
 Log of commit fbf631c8 to commit d6723ed1</p>
 <ul class="simple">
@@ -352,7 +354,7 @@ Log of commit fbf631c8 to commit d6723ed1</p>
 </ul>
 </section>
 <section id="util-nvidia-cbootimage">
-<h3>util/nvidia/cbootimage:<a class="headerlink" href="#util-nvidia-cbootimage" title="Link to this heading"></a></h3>
+<h3>util/nvidia/cbootimage:<a class="headerlink" href="#util-nvidia-cbootimage" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>No Changes</p></li>
 </ul>

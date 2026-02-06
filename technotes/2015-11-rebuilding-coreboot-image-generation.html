@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rebuilding coreboot image generation &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Rebuilding coreboot image generation &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -124,9 +126,9 @@
            <div itemprop="articleBody">
              
   <section id="rebuilding-coreboot-image-generation">
-<h1>Rebuilding coreboot image generation<a class="headerlink" href="#rebuilding-coreboot-image-generation" title="Link to this heading"></a></h1>
+<h1>Rebuilding coreboot image generation<a class="headerlink" href="#rebuilding-coreboot-image-generation" title="Permalink to this heading"></a></h1>
 <section id="current-situation">
-<h2>Current situation<a class="headerlink" href="#current-situation" title="Link to this heading"></a></h2>
+<h2>Current situation<a class="headerlink" href="#current-situation" title="Permalink to this heading"></a></h2>
 <p>ChromeOS (CrOS) probably has the most complex image bundling process in the
 coreboot ecosystem. To make CrOS features more accessible to the wider
 coreboot community, we want to move these capabilities into upstream
@@ -149,7 +151,7 @@ This document proposes to do the latter and outlines how this could be
 achieved.</p>
 </section>
 <section id="problems-with-the-current-build-system-parts">
-<h2>Problems with the current build system parts<a class="headerlink" href="#problems-with-the-current-build-system-parts" title="Link to this heading"></a></h2>
+<h2>Problems with the current build system parts<a class="headerlink" href="#problems-with-the-current-build-system-parts" title="Permalink to this heading"></a></h2>
 <p>One common sentiment is that it should be possible to reuse some of the
 existing mechanisms that are supposed to be supplanted by this.
 The main concern during this design that precluded their use was that none of
@@ -170,7 +172,7 @@ that only live within downstream projects.</p></li>
 </ul>
 </section>
 <section id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
 <p>A complete ChromeOS coreboot image consists of (depending on the device)</p>
 <ul class="simple">
 <li><p>platform specific data in raw fmap regions (eg IFD, ME firmware),</p></li>
@@ -204,7 +206,7 @@ boot scheme), some concerns need to be kept separate:</p>
 </ul>
 </section>
 <section id="proposal">
-<h2>Proposal<a class="headerlink" href="#proposal" title="Link to this heading"></a></h2>
+<h2>Proposal<a class="headerlink" href="#proposal" title="Permalink to this heading"></a></h2>
 <p>The proposal is based on manifest files that describe certain aspects of the
 final image.
 The number of manifest files may change over time, but this seems to be a
@@ -217,7 +219,7 @@ deal with different concerns, with the following an example that should match
 current use cases:</p>
 </section>
 <section id="chipset-manifest">
-<h2>Chipset manifest<a class="headerlink" href="#chipset-manifest" title="Link to this heading"></a></h2>
+<h2>Chipset manifest<a class="headerlink" href="#chipset-manifest" title="Permalink to this heading"></a></h2>
 <p>The chipset details if there are any non-coreboot regions, and assigns them
 names, locations, sizes and file contents and prepares a region for what is
 “platform visible” (eg. IFD’s BIOS region) that may be of flexible size
@@ -227,14 +229,14 @@ It can also specify if there’s a post processing requirement on the final
 image.</p>
 </section>
 <section id="coreboot-manifest">
-<h2>coreboot manifest<a class="headerlink" href="#coreboot-manifest" title="Link to this heading"></a></h2>
+<h2>coreboot manifest<a class="headerlink" href="#coreboot-manifest" title="Permalink to this heading"></a></h2>
 <p>coreboot provides lists of the files it generates for each category it’s
 building (eg. bootblock, verstage, romstage, ramstage). They not only contain
 the stages themselves, but also additional files (eg. dsdt belongs to ramstage
 since that’s where it is used)</p>
 </section>
 <section id="boot-method-manifest">
-<h2>Boot method manifest<a class="headerlink" href="#boot-method-manifest" title="Link to this heading"></a></h2>
+<h2>Boot method manifest<a class="headerlink" href="#boot-method-manifest" title="Permalink to this heading"></a></h2>
 <p>The boot method manifest can subdivide the BIOS region, eg. using it directly
 (for coreboot’s “simple” bootblock), splitting it in two (for coreboot’s
 fallback/normal) or in many parts (for ChromeOS, which requires two CBFS
@@ -246,7 +248,7 @@ It can also specify a post processing step that is executed before the
 chipset’s.</p>
 </section>
 <section id="payload-and-additional-manifests">
-<h2>Payload and additional manifests<a class="headerlink" href="#payload-and-additional-manifests" title="Link to this heading"></a></h2>
+<h2>Payload and additional manifests<a class="headerlink" href="#payload-and-additional-manifests" title="Permalink to this heading"></a></h2>
 <p>External components should also provide manifests to add files to categories.
 This way the payload and other components (eg. EC firmware) can be developed
 without needing to touch the central boot method manifest (that likely resides
@@ -254,7 +256,7 @@ in the coreboot tree, given that coreboot needs to deal with choosing fmap
 regions already).</p>
 </section>
 <section id="coreboot-build-system">
-<h2>coreboot build system<a class="headerlink" href="#coreboot-build-system" title="Link to this heading"></a></h2>
+<h2>coreboot build system<a class="headerlink" href="#coreboot-build-system" title="Permalink to this heading"></a></h2>
 <p>The coreboot build system will be split more distinctly in two phases: The
 first is about building the files (with results like romstage.elf), while the
 second phase covers the assembly of the final image.</p>
@@ -265,7 +267,7 @@ https://chromium-review.googlesource.com/289491 that reorder the file addition
 manually.</p>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <p>As an example, we’ll define an Intel-based board with a postprocessing tool
 (something that doesn’t exist, but isn’t hard to imagine):</p>
 <p>It specifies an IFD region, an ME, and the BIOS region. After the image is
@@ -375,7 +377,7 @@ signatures to enable verifying other regions.</p>
 </div>
 </section>
 <section id="manifest-parsing">
-<h2>manifest parsing<a class="headerlink" href="#manifest-parsing" title="Link to this heading"></a></h2>
+<h2>manifest parsing<a class="headerlink" href="#manifest-parsing" title="Permalink to this heading"></a></h2>
 <p>The exact BNF is work in progress.</p>
 <p>Some parser rules are</p>
 <ul class="simple">

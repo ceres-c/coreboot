@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Software Bill of Materials (SBOM) &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Software Bill of Materials (SBOM) &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -110,7 +112,7 @@
            <div itemprop="articleBody">
              
   <section id="software-bill-of-materials-sbom">
-<h1>Software Bill of Materials (SBOM)<a class="headerlink" href="#software-bill-of-materials-sbom" title="Link to this heading"></a></h1>
+<h1>Software Bill of Materials (SBOM)<a class="headerlink" href="#software-bill-of-materials-sbom" title="Permalink to this heading"></a></h1>
 <p>SBOM is a collection of information of each software component
 you are supplying/building. Similar to a package manager on Linux
 based systems, it holds information of as many software parts as
@@ -130,7 +132,7 @@ software that takes a coreboot firmware image as input and
 automatically creates a graph with all software components the coreboot
 image contains and their relationship to each other.</p>
 <section id="swid-coswid">
-<h2>SWID/CoSWID<a class="headerlink" href="#swid-coswid" title="Link to this heading"></a></h2>
+<h2>SWID/CoSWID<a class="headerlink" href="#swid-coswid" title="Permalink to this heading"></a></h2>
 <p>SWID is a standard hidden behind an ISO paywall.
 It generally identifies/describes Software components. Since SWID files
 are written in XML, they can get too large for devices with network and
@@ -150,7 +152,7 @@ There are of course other SBOM specifications out there, but most of
 them are rather blown up and don’t support a binary format at all.</p>
 </section>
 <section id="coreboot-implementation">
-<h2>coreboot implementation<a class="headerlink" href="#coreboot-implementation" title="Link to this heading"></a></h2>
+<h2>coreboot implementation<a class="headerlink" href="#coreboot-implementation" title="Permalink to this heading"></a></h2>
 <p>Quick overview of how things are generated:</p>
 <p><img alt="Generation of an SBOM File in coreboot" src="../_images/sbom_generation.svg" /></p>
 <p>After all SBOM data has been fetched from all the software components,
@@ -191,14 +193,14 @@ via Kconfig options in coreboot (<code class="docutils literal notranslate"><spa
 That way the final SBOM has much more useful and correct data.</p>
 </section>
 <section id="build-coreboot-with-sbom">
-<h2>Build coreboot with SBOM<a class="headerlink" href="#build-coreboot-with-sbom" title="Link to this heading"></a></h2>
+<h2>Build coreboot with SBOM<a class="headerlink" href="#build-coreboot-with-sbom" title="Permalink to this heading"></a></h2>
 <p>Directly under the ‘General setup’ Kconfig menu is a
 ‘Software Bill of Materials (SBOM)’ submenu where all options are to
 enable/disable SBOM integration in to the corebeoot build.
 Therefore one can just enable/disable them via <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code>.</p>
 </section>
 <section id="what-to-do-as-developer-of-a-binary-blob-which-is-used-in-coreboot">
-<h2>What to do as Developer of a binary blob (which is used in coreboot)<a class="headerlink" href="#what-to-do-as-developer-of-a-binary-blob-which-is-used-in-coreboot" title="Link to this heading"></a></h2>
+<h2>What to do as Developer of a binary blob (which is used in coreboot)<a class="headerlink" href="#what-to-do-as-developer-of-a-binary-blob-which-is-used-in-coreboot" title="Permalink to this heading"></a></h2>
 <ol class="simple">
 <li><p>Generate a SWID/CoSWID/uSWID File in either JSON, XML or CBOR Format
 as part of your software build process</p></li>
@@ -209,7 +211,7 @@ defconfig pointing to your [software-name] generated File.</p></li>
 </ol>
 </section>
 <section id="what-to-do-as-developer-of-an-open-source-project-which-is-used-in-coreboot">
-<h2>What to do as Developer of an open source project (which is used in coreboot)<a class="headerlink" href="#what-to-do-as-developer-of-an-open-source-project-which-is-used-in-coreboot" title="Link to this heading"></a></h2>
+<h2>What to do as Developer of an open source project (which is used in coreboot)<a class="headerlink" href="#what-to-do-as-developer-of-an-open-source-project-which-is-used-in-coreboot" title="Permalink to this heading"></a></h2>
 <ol class="simple">
 <li><p>Generate a SWID/CoSWID/uSWID file in either JSON, XML or CBOR format
 as part of your software’s build process. For example in form of a
@@ -221,7 +223,7 @@ Makefile target in payloads/external/GRUB2/Makefile.</p></li>
 </ol>
 </section>
 <section id="problems">
-<h2>Problems<a class="headerlink" href="#problems" title="Link to this heading"></a></h2>
+<h2>Problems<a class="headerlink" href="#problems" title="Permalink to this heading"></a></h2>
 <p>What to do if the binary blob that is included in coreboot’s build
 already has a SBOM file embedded in the binary? One could supply the
 path of the software binary itself (e.g. me.bin) as SBOM file path for

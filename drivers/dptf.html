@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Intel DPTF implementations in coreboot &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Intel DPTF implementations in coreboot &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -137,9 +139,9 @@
            <div itemprop="articleBody">
              
   <section id="intel-dptf-implementations-in-coreboot">
-<h1>Intel DPTF implementations in coreboot<a class="headerlink" href="#intel-dptf-implementations-in-coreboot" title="Link to this heading"></a></h1>
+<h1>Intel DPTF implementations in coreboot<a class="headerlink" href="#intel-dptf-implementations-in-coreboot" title="Permalink to this heading"></a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>Intel Dynamic Platform and Thermal Framework is a framework that can be used to
 help regulate the thermal properties (i.e., temperature) of an Intel-based
 computer. It does this by allowing the system designer to specify the different
@@ -148,7 +150,7 @@ different components are referred to as <code class="docutils literal notranslat
 functionality available in DPTF are specified in terms of different <code class="docutils literal notranslate"><span class="pre">policies</span></code>.</p>
 </section>
 <section id="components-participants">
-<h2>Components (”Participants”)<a class="headerlink" href="#components-participants" title="Link to this heading"></a></h2>
+<h2>Components (”Participants”)<a class="headerlink" href="#components-participants" title="Permalink to this heading"></a></h2>
 <p>The participants that can be involved in the current implementation are:</p>
 <ul class="simple">
 <li><p>CPU (monolithic from a DPTF point-of-view)</p>
@@ -162,17 +164,17 @@ functionality available in DPTF are specified in terms of different <code class=
 </ul>
 </section>
 <section id="policies">
-<h2>Policies<a class="headerlink" href="#policies" title="Link to this heading"></a></h2>
+<h2>Policies<a class="headerlink" href="#policies" title="Permalink to this heading"></a></h2>
 <p>In the current implementation, there are 3 different policies available:</p>
 <section id="passive-policy">
-<h3>Passive Policy<a class="headerlink" href="#passive-policy" title="Link to this heading"></a></h3>
+<h3>Passive Policy<a class="headerlink" href="#passive-policy" title="Permalink to this heading"></a></h3>
 <p>The purpose of this policy is to monitor participant temperatures and is capable
 of controlling performance and throttling available on platform devices in order
 to regulate the temperatures of each participant. The temperature threshold
 points are defined by a <code class="docutils literal notranslate"><span class="pre">_PSV</span></code> ACPI object within each participant.</p>
 </section>
 <section id="critical-policy">
-<h3>Critical Policy<a class="headerlink" href="#critical-policy" title="Link to this heading"></a></h3>
+<h3>Critical Policy<a class="headerlink" href="#critical-policy" title="Permalink to this heading"></a></h3>
 <p>The Critical Policy is used for gracefully suspending or powering off the system
 when the temperature of participants exceeds critical threshold
 temperatures. Suspend is effected by specifying temperatures in a <code class="docutils literal notranslate"><span class="pre">_CRT</span></code> object
@@ -180,14 +182,14 @@ for a participant, and poweroff is effected by specifying a temperature
 threshold in a <code class="docutils literal notranslate"><span class="pre">_HOT</span></code> ACPI object.</p>
 </section>
 <section id="active-policy">
-<h3>Active Policy<a class="headerlink" href="#active-policy" title="Link to this heading"></a></h3>
+<h3>Active Policy<a class="headerlink" href="#active-policy" title="Permalink to this heading"></a></h3>
 <p>This policy monitors the temperature of participants and controls fans to spin
 at varying speeds. These speeds are defined by the platform, and will be enabled
 depending on the various temperatures reported by participants.</p>
 </section>
 </section>
 <section id="note-about-units">
-<h2>Note about units<a class="headerlink" href="#note-about-units" title="Link to this heading"></a></h2>
+<h2>Note about units<a class="headerlink" href="#note-about-units" title="Permalink to this heading"></a></h2>
 <p>ACPI uses unusual units for specifying various physical measurements. For
 example, temperatures are specified in 10ths of a degree K, and time is measured
 in tenths of a second. Those oddities are abstracted away in the DPTF library,
@@ -195,7 +197,7 @@ by using degrees C for temperature, milliseconds for time, mW for power, and mA
 for current.</p>
 </section>
 <section id="differences-from-the-static-asl-files-soc-intel-common-acpi-dptf-asl">
-<h2>Differences from the static ASL files (soc/intel/common/acpi/dptf/*.asl)<a class="headerlink" href="#differences-from-the-static-asl-files-soc-intel-common-acpi-dptf-asl" title="Link to this heading"></a></h2>
+<h2>Differences from the static ASL files (soc/intel/common/acpi/dptf/*.asl)<a class="headerlink" href="#differences-from-the-static-asl-files-soc-intel-common-acpi-dptf-asl" title="Permalink to this heading"></a></h2>
 <ol class="simple">
 <li><p>TCPU had many redundant methods. The many references to _SB.CP00._* are not
 created anymore in recent SoCs and the ACPI spec says these are optional objects
@@ -217,7 +219,7 @@ specified in the devicetree entries or by calling the DPTF acpigen API).</p></li
 </ol>
 </section>
 <section id="acpi-tables">
-<h2>ACPI Tables<a class="headerlink" href="#acpi-tables" title="Link to this heading"></a></h2>
+<h2>ACPI Tables<a class="headerlink" href="#acpi-tables" title="Permalink to this heading"></a></h2>
 <p>DPTF relies on an assortment of ACPI tables to provide parameters to the DPTF
 application. We will discuss the more important ones here.</p>
 <ol class="simple">
@@ -256,7 +258,7 @@ various informational properties.</p>
 the battery charger).</p>
 </section>
 <section id="acpi-methods">
-<h2>ACPI Methods<a class="headerlink" href="#acpi-methods" title="Link to this heading"></a></h2>
+<h2>ACPI Methods<a class="headerlink" href="#acpi-methods" title="Permalink to this heading"></a></h2>
 <p>The Active and Passive policies also provide for short Methods to define
 different kinds of temperature thresholds.</p>
 <ol class="simple">
@@ -286,7 +288,7 @@ a “graceful shutdown”.</p>
 <p>These are optional, and are enabled by selecting the Critical Policy.</p>
 </section>
 <section id="how-to-use-the-devicetree-entries">
-<h2>How to use the devicetree entries<a class="headerlink" href="#how-to-use-the-devicetree-entries" title="Link to this heading"></a></h2>
+<h2>How to use the devicetree entries<a class="headerlink" href="#how-to-use-the-devicetree-entries" title="Permalink to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">drivers/intel/dptf</span></code> chip driver is organized into several sections:</p>
 <ul class="simple">
 <li><p>Policies</p></li>
@@ -296,7 +298,7 @@ a “graceful shutdown”.</p>
 <p>The Policies section (<code class="docutils literal notranslate"><span class="pre">policies.active</span></code>, <code class="docutils literal notranslate"><span class="pre">policies.passive</span></code>, and
 <code class="docutils literal notranslate"><span class="pre">policies.critical</span></code>) is where the components of each policy are defined.</p>
 <section id="id1">
-<h3>Active Policy<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<h3>Active Policy<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <p>Each Active Policy is defined in terms of 4 parts:</p>
 <ol class="simple">
 <li><p>A Source (this is implicitly defined as TFN1, the system fan)</p></li>
@@ -327,7 +329,7 @@ rest of the table (note that it <em>must</em> be defined from highest temperatur
 percentage on down to the lowest).</p>
 </section>
 <section id="id2">
-<h3>Passive Policy<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<h3>Passive Policy<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>Each Passive Policy is defined in terms of 5 parts:</p>
 <ol class="simple">
 <li><p>Source - The device that can be throttled</p></li>
@@ -346,7 +348,7 @@ temperature sensor 1 reaches 65C. The sampling period here is 60000 ms (60 s).
 The Priority is defaulted to 100 in this case.</p>
 </section>
 <section id="id3">
-<h3>Critical Policy<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<h3>Critical Policy<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>Each Critical Policy is defined in terms of 3 parts:</p>
 <ol class="simple">
 <li><p>Source - A device that can trigger a critical event</p></li>
@@ -362,7 +364,7 @@ to shutdown the system.</p></li>
 (in a “graceful” manner) when the CPU temperature reaches 75C.</p>
 </section>
 <section id="power-limits">
-<h3>Power Limits<a class="headerlink" href="#power-limits" title="Link to this heading"></a></h3>
+<h3>Power Limits<a class="headerlink" href="#power-limits" title="Permalink to this heading"></a></h3>
 <p>Control over the SoC’s Running Average Power Limits (RAPL) is one of the tools
 that DPTF uses to enact Passive policies. DPTF can control both PL1 and PL2, if
 the PPCC table is provided for the TCPU object. Each power limit is given the
@@ -388,7 +390,7 @@ over a time interval ranging from 28 to 32 seconds, and it can move PL1 in
 increments of 200 mW.</p>
 </section>
 <section id="charger-performance">
-<h3>Charger Performance<a class="headerlink" href="#charger-performance" title="Link to this heading"></a></h3>
+<h3>Charger Performance<a class="headerlink" href="#charger-performance" title="Permalink to this heading"></a></h3>
 <p>The battery charger can be a large contributor of unwanted heat in a system that
 has one. Controlling the rate of charging is another tool that DPTF uses to enact
 Passive Policies. Each entry in the PPSS table consists of:</p>
@@ -410,7 +412,7 @@ applicable, and will pass this opaque control value as its argument.</p></li>
 performance states to choose from.</p>
 </section>
 <section id="fan-performance">
-<h3>Fan Performance<a class="headerlink" href="#fan-performance" title="Link to this heading"></a></h3>
+<h3>Fan Performance<a class="headerlink" href="#fan-performance" title="Permalink to this heading"></a></h3>
 <p>When using DPTF, the system fan (<code class="docutils literal notranslate"><span class="pre">TFN1</span></code>) is the device responsible for actively
 cooling the other temperature sensors on the mainboard. A fan speed table can be
 provided to DPTF to assist with fan control. Each entry holds the following:</p>
@@ -442,9 +444,9 @@ control of the fan, wherein DPTF will interpolate between the percentages in the
 table for a given temperature threshold.</p>
 </section>
 <section id="options">
-<h3>Options<a class="headerlink" href="#options" title="Link to this heading"></a></h3>
+<h3>Options<a class="headerlink" href="#options" title="Permalink to this heading"></a></h3>
 <section id="fan">
-<h4>Fan<a class="headerlink" href="#fan" title="Link to this heading"></a></h4>
+<h4>Fan<a class="headerlink" href="#fan" title="Permalink to this heading"></a></h4>
 <ol class="simple">
 <li><p>Fine-grained control - a boolean (see Fan Performance section above)</p></li>
 <li><p>Step-size - Recommended minimum step size (in percentage points) to adjust
@@ -454,7 +456,7 @@ fan device if a low fan speed is detected.</p></li>
 </ol>
 </section>
 <section id="temperature-sensors">
-<h4>Temperature sensors<a class="headerlink" href="#temperature-sensors" title="Link to this heading"></a></h4>
+<h4>Temperature sensors<a class="headerlink" href="#temperature-sensors" title="Permalink to this heading"></a></h4>
 <ol class="simple">
 <li><p>Hysteresis - The amount of hysteresis implemented in either circuitry or
 the firmware that reads the temperature sensor (in degrees C).</p></li>
@@ -463,7 +465,7 @@ the firmware that reads the temperature sensor (in degrees C).</p></li>
 </section>
 </section>
 <section id="oem-variables">
-<h3>OEM Variables<a class="headerlink" href="#oem-variables" title="Link to this heading"></a></h3>
+<h3>OEM Variables<a class="headerlink" href="#oem-variables" title="Permalink to this heading"></a></h3>
 <p>Platform vendors can define an array of OEM-specific values as OEM variables
 to be used under DPTF policy. There are total six OEM variables available.
 These can be used in AP policy for more specific actions. These OEM variables

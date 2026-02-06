@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IPMI KCS driver &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>IPMI KCS driver &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -115,13 +117,13 @@
            <div itemprop="articleBody">
              
   <section id="ipmi-kcs-driver">
-<h1>IPMI KCS driver<a class="headerlink" href="#ipmi-kcs-driver" title="Link to this heading"></a></h1>
+<h1>IPMI KCS driver<a class="headerlink" href="#ipmi-kcs-driver" title="Permalink to this heading"></a></h1>
 <p>The driver can be found in <code class="docutils literal notranslate"><span class="pre">src/drivers/ipmi/</span></code>. It works with BMC that provide
 a KCS I/O interface as specified in the <a class="reference external" href="https://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/ipmi-second-gen-interface-spec-v2-rev1-1.pdf">IPMI</a> standard.</p>
 <p>The driver detects the IPMI version, reserves the I/O space in coreboot’s
 resource allocator and writes the required ACPI and SMBIOS tables.</p>
 <section id="for-developers">
-<h2>For developers<a class="headerlink" href="#for-developers" title="Link to this heading"></a></h2>
+<h2>For developers<a class="headerlink" href="#for-developers" title="Permalink to this heading"></a></h2>
 <p>To use the driver, select the <code class="docutils literal notranslate"><span class="pre">IPMI_KCS</span></code> Kconfig and add the following PNP
 device under the LPC bridge device (in example for the KCS at 0xca2):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">ipmi</span>

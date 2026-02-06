@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.14 &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.14 &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -137,7 +139,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-14">
-<h1>coreboot 4.14<a class="headerlink" href="#coreboot-4-14" title="Link to this heading"></a></h1>
+<h1>coreboot 4.14<a class="headerlink" href="#coreboot-4-14" title="Permalink to this heading"></a></h1>
 <p>coreboot 4.14 was released on May 10th, 2021.</p>
 <p>Since 4.13 there have been 3660 new commits by 215 developers.
 Of these, about 50 contributed to coreboot for the first time.
@@ -150,7 +152,7 @@ to the overall architecture.</p>
 <p>Thank you to all developers who made coreboot the great open source
 firmware project that it is, and made our code better than ever.</p>
 <section id="new-mainboards">
-<h2>New mainboards<a class="headerlink" href="#new-mainboards" title="Link to this heading"></a></h2>
+<h2>New mainboards<a class="headerlink" href="#new-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>AMD Bilby</p></li>
 <li><p>AMD Majolica</p></li>
@@ -197,7 +199,7 @@ firmware project that it is, and made our code better than ever.</p>
 </ul>
 </section>
 <section id="removed-mainboards">
-<h2>Removed mainboards<a class="headerlink" href="#removed-mainboards" title="Link to this heading"></a></h2>
+<h2>Removed mainboards<a class="headerlink" href="#removed-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Google Boldar</p></li>
 <li><p>Intel Cannonlake U LPDDR4 RVP</p></li>
@@ -205,9 +207,9 @@ firmware project that it is, and made our code better than ever.</p>
 </ul>
 </section>
 <section id="deprecations-and-incompatible-changes">
-<h2>Deprecations and incompatible changes<a class="headerlink" href="#deprecations-and-incompatible-changes" title="Link to this heading"></a></h2>
+<h2>Deprecations and incompatible changes<a class="headerlink" href="#deprecations-and-incompatible-changes" title="Permalink to this heading"></a></h2>
 <section id="sar-support-in-vpd-for-chrome-os">
-<h3>SAR support in VPD for Chrome OS<a class="headerlink" href="#sar-support-in-vpd-for-chrome-os" title="Link to this heading"></a></h3>
+<h3>SAR support in VPD for Chrome OS<a class="headerlink" href="#sar-support-in-vpd-for-chrome-os" title="Permalink to this heading"></a></h3>
 <p>SAR support in VPD has been deprecated for Chrome OS platforms for &gt; 1
 year now. All new Chrome OS platforms have switched to using SAR
 tables from CBFS. For the next release, coreboot is updated to align
@@ -231,7 +233,7 @@ steps:</p>
 </ul>
 </section>
 <section id="cbfs-stage-file-format-change">
-<h3>CBFS stage file format change<a class="headerlink" href="#cbfs-stage-file-format-change" title="Link to this heading"></a></h3>
+<h3>CBFS stage file format change<a class="headerlink" href="#cbfs-stage-file-format-change" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://review.coreboot.org/46484">CB:46484</a> changed the in-flash
 file format of coreboot stages to prepare for per-file signature
 verification. As described in the commit message in more details,
@@ -246,9 +248,9 @@ scenarios.</p>
 </section>
 </section>
 <section id="significant-changes">
-<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Link to this heading"></a></h2>
+<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Permalink to this heading"></a></h2>
 <section id="amd-soc-cleanup-and-initial-cezanne-apu-support">
-<h3>AMD SoC cleanup and initial Cezanne APU support<a class="headerlink" href="#amd-soc-cleanup-and-initial-cezanne-apu-support" title="Link to this heading"></a></h3>
+<h3>AMD SoC cleanup and initial Cezanne APU support<a class="headerlink" href="#amd-soc-cleanup-and-initial-cezanne-apu-support" title="Permalink to this heading"></a></h3>
 <p>There’s initial support for the AMD Cezanne APUs in the tree. This code
 hasn’t started as a copy of the previous generation, but was based on a
 slightly modified version of the example/min86 SoC. During the cleanup
@@ -257,7 +259,7 @@ moved to the common AMD SoC code, so that they could be used by the
 Cezanne code instead of adding another slightly different copy.</p>
 </section>
 <section id="x86-bootblock-layout">
-<h3>X86 bootblock layout<a class="headerlink" href="#x86-bootblock-layout" title="Link to this heading"></a></h3>
+<h3>X86 bootblock layout<a class="headerlink" href="#x86-bootblock-layout" title="Permalink to this heading"></a></h3>
 <p>The static size C_ENV_BOOTBLOCK_SIZE was mostly dropped in favor of
 dynamically allocating the stage size; the Kconfig is still available
 to use as a fixed size and to enforce a maximum for selected chipsets.
@@ -265,14 +267,14 @@ Linker sections are now top-aligned for a reduced flash footprint and to
 maintain the requirements of near jump from reset vector.</p>
 </section>
 <section id="acpi-gnvs-framework">
-<h3>ACPI GNVS framework<a class="headerlink" href="#acpi-gnvs-framework" title="Link to this heading"></a></h3>
+<h3>ACPI GNVS framework<a class="headerlink" href="#acpi-gnvs-framework" title="Permalink to this heading"></a></h3>
 <p>SMI handlers for APM_CNT_GNVS_UDPATE were dropped; GNVS pointer to SMM is
 now passed from within SMM_MODULE_LOADER. Allocation and initialisations
 for common ACPI GNVS table entries were largely moved to one centralized
 implementation.</p>
 </section>
 <section id="intel-xeon-scalable-processor-support-is-now-considered-mature">
-<h3>Intel Xeon Scalable Processor support is now considered mature<a class="headerlink" href="#intel-xeon-scalable-processor-support-is-now-considered-mature" title="Link to this heading"></a></h3>
+<h3>Intel Xeon Scalable Processor support is now considered mature<a class="headerlink" href="#intel-xeon-scalable-processor-support-is-now-considered-mature" title="Permalink to this heading"></a></h3>
 <p>Intel Xeon Scalable Processor (Xeon-SP) family [1] is designed
 primarily to serve the needs of the server market.</p>
 <p>coreboot support for Xeon-SP is in src/soc/intel/xeon_sp directory.

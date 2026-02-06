@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flashing firmware tutorial &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Flashing firmware tutorial &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -132,13 +134,13 @@
            <div itemprop="articleBody">
              
   <section id="flashing-firmware-tutorial">
-<h1>Flashing firmware tutorial<a class="headerlink" href="#flashing-firmware-tutorial" title="Link to this heading"></a></h1>
+<h1>Flashing firmware tutorial<a class="headerlink" href="#flashing-firmware-tutorial" title="Permalink to this heading"></a></h1>
 <p>Updating the firmware is possible using the <strong>internal method</strong>, where the updates
 happen from a running system, or using the <strong>external method</strong>, where the system
 is in a shut down state and an external programmer is attached to write into the
 flash IC.</p>
 <section id="contents">
-<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="int_flashrom.html">Flashing internally</a></li>
@@ -149,7 +151,7 @@ flash IC.</p>
 </div>
 </section>
 <section id="general-advice">
-<h2>General advice<a class="headerlink" href="#general-advice" title="Link to this heading"></a></h2>
+<h2>General advice<a class="headerlink" href="#general-advice" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>It’s recommended to only flash the BIOS region.</p></li>
 <li><p>Always verify the firmware image.</p></li>
@@ -164,7 +166,7 @@ flash IC.</p>
 </ul>
 </section>
 <section id="internal-method">
-<h2>Internal method<a class="headerlink" href="#internal-method" title="Link to this heading"></a></h2>
+<h2>Internal method<a class="headerlink" href="#internal-method" title="Permalink to this heading"></a></h2>
 <p>This method using <a class="reference external" href="https://www.flashrom.org/Flashrom">flashrom</a> is available on many platforms, as long as they
 aren’t locked down.</p>
 <p>There are various protection schemes that make it impossible to modify or
@@ -189,7 +191,7 @@ itself</p></li>
 </div>
 </section>
 <section id="external-method">
-<h2>External method<a class="headerlink" href="#external-method" title="Link to this heading"></a></h2>
+<h2>External method<a class="headerlink" href="#external-method" title="Permalink to this heading"></a></h2>
 <p>External flashing is possible on many platforms, but requires disassembling
 the target hardware. You need to buy a flash programmer, that
 exposes the same interface as your flash IC (likely SPI).</p>
@@ -211,7 +213,7 @@ that appear in datasheets to indicate pin 1 correspond to some kind of physical
 marker, such as a drilled hole, or one side being more flat than the other.</p>
 </section>
 <section id="using-a-layout-file">
-<h2>Using a layout file<a class="headerlink" href="#using-a-layout-file" title="Link to this heading"></a></h2>
+<h2>Using a layout file<a class="headerlink" href="#using-a-layout-file" title="Permalink to this heading"></a></h2>
 <p>On platforms where the flash IC is shared with other components you might want
 to write only a part of the flash IC. On Intel for example there are IFD, ME and
 GBE which don’t need to be updated to install coreboot.
@@ -234,7 +236,7 @@ of the original firmware.</p>
 </div>
 </section>
 <section id="using-an-ifd-to-determine-the-layout">
-<h2>Using an IFD to determine the layout<a class="headerlink" href="#using-an-ifd-to-determine-the-layout" title="Link to this heading"></a></h2>
+<h2>Using an IFD to determine the layout<a class="headerlink" href="#using-an-ifd-to-determine-the-layout" title="Permalink to this heading"></a></h2>
 <p>flashrom version 1.0 supports reading the layout from the IFD (first 4KiB of
 the ROM). You don’t need to manually specify a layout it, but it only works
 under the following conditions:</p>

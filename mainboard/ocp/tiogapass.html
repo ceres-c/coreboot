@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OCP Tioga Pass &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>OCP Tioga Pass &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -150,11 +152,11 @@
            <div itemprop="articleBody">
              
   <section id="ocp-tioga-pass">
-<h1>OCP Tioga Pass<a class="headerlink" href="#ocp-tioga-pass" title="Link to this heading"></a></h1>
+<h1>OCP Tioga Pass<a class="headerlink" href="#ocp-tioga-pass" title="Permalink to this heading"></a></h1>
 <p>This page describes coreboot support status for the <a class="reference external" href="https://www.opencompute.org/">OCP</a> (Open Compute Project)
 Tioga Pass server platform.</p>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>OCP Tioga Pass server platform was contributed by Facebook, and was accepted
 in 2019. The design collateral including datasheet can be found at <a class="reference external" href="https://www.opencompute.org/contributions?query=Tioga%20Pass%20v1.0">OCP Tioga Pass</a>.</p>
 <p>Since complete EE design collateral is open sourced, anyone can build server
@@ -167,7 +169,7 @@ available. <a class="reference external" href="https://github.com/linuxboot/book
 Intel, Wiwynn and Quanta. The context is described at <a class="reference external" href="https://www.opencompute.org/blog/linux-firmware-boots-up-server-powered-by-intelr-xeonr-scalable-processor">OCP Tioga Pass POC Blog</a>.</p>
 </section>
 <section id="required-blobs">
-<h2>Required blobs<a class="headerlink" href="#required-blobs" title="Link to this heading"></a></h2>
+<h2>Required blobs<a class="headerlink" href="#required-blobs" title="Permalink to this heading"></a></h2>
 <p>This board currently requires:</p>
 <ul class="simple">
 <li><p>FSP blob: The blob (Intel Skylake Scalable Processor Firmware Support Package)
@@ -178,7 +180,7 @@ someday an IBV is able to obtain the privilege to maintain it.</p></li>
 </ul>
 </section>
 <section id="payload">
-<h2>Payload<a class="headerlink" href="#payload" title="Link to this heading"></a></h2>
+<h2>Payload<a class="headerlink" href="#payload" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Linuxboot: This is necessary only if you use Linuxboot as coreboot payload.
 U-root as initramfs, is used in the POC activity. It can be extracted from
@@ -186,7 +188,7 @@ U-root as initramfs, is used in the POC activity. It can be extracted from
 </ul>
 </section>
 <section id="flashing-coreboot">
-<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Permalink to this heading"></a></h2>
 <p>To do in-band FW image update, use <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a>:
 flashrom -p internal:ich_spi_mode=hwseq -c “Opaque flash chip” –ifd <br />-i bios –noverify-all -w <path to coreboot image></p>
 <p>From OpenBMC, to update FW image:
@@ -198,7 +200,7 @@ power-util mb on</p>
 sol-util mb</p>
 </section>
 <section id="known-issues-feature-gaps">
-<h2>Known issues / feature gaps<a class="headerlink" href="#known-issues-feature-gaps" title="Link to this heading"></a></h2>
+<h2>Known issues / feature gaps<a class="headerlink" href="#known-issues-feature-gaps" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>C6 state is not supported. Workaround is to disable C6 support through
 target OS and Linuxboot kernel parameter, such as “cpuidle.off=1”.</p></li>
@@ -215,7 +217,7 @@ does not support PCIe topology input for socket 1.k</p></li>
 </ul>
 </section>
 <section id="working">
-<h2>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h2>
+<h2>Working<a class="headerlink" href="#working" title="Permalink to this heading"></a></h2>
 <p>The solution was developed using Linuxboot payload. The Linuxboot
 kernel versions tried are 4.16.18 and 5.2.9. The initramfs image is
 u-root.</p>
@@ -236,7 +238,7 @@ u-root.</p>
 </ul>
 </section>
 <section id="technology">
-<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<h2>Technology<a class="headerlink" href="#technology" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Processor (2 sockets)</p></td>

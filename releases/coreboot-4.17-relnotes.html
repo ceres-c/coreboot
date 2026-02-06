@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.17 &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.17 &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -141,14 +143,14 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-17">
-<h1>coreboot 4.17<a class="headerlink" href="#coreboot-4-17" title="Link to this heading"></a></h1>
+<h1>coreboot 4.17<a class="headerlink" href="#coreboot-4-17" title="Permalink to this heading"></a></h1>
 <p>The coreboot 4.17 release was done on June 3, 2022.</p>
 <p>Since the 4.16 release, we’ve had over 1300 new commits by around 150
 contributors.  Of those people, roughly 15 were first-time contributors.</p>
 <p>As always, we appreciate everyone who has contributed and done the hard
 work to make the coreboot project successful.</p>
 <section id="major-bugfixes-in-this-release">
-<h2>Major Bugfixes in this release<a class="headerlink" href="#major-bugfixes-in-this-release" title="Link to this heading"></a></h2>
+<h2>Major Bugfixes in this release<a class="headerlink" href="#major-bugfixes-in-this-release" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-29264">CVE-2022-29264</a></li>
@@ -156,7 +158,7 @@ work to make the coreboot project successful.</p>
 </div>
 </section>
 <section id="new-mainboards">
-<h2>New Mainboards<a class="headerlink" href="#new-mainboards" title="Link to this heading"></a></h2>
+<h2>New Mainboards<a class="headerlink" href="#new-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Clevo L140MU / L141MU / L142MU</p></li>
 <li><p>Dell Precision T1650</p></li>
@@ -173,18 +175,18 @@ work to make the coreboot project successful.</p>
 </ul>
 </section>
 <section id="removed-mainboards">
-<h2>Removed Mainboards<a class="headerlink" href="#removed-mainboards" title="Link to this heading"></a></h2>
+<h2>Removed Mainboards<a class="headerlink" href="#removed-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Google Deltan</p></li>
 <li><p>Google Deltaur</p></li>
 </ul>
 </section>
 <section id="significant-or-interesting-changes">
-<h2>Significant or interesting changes<a class="headerlink" href="#significant-or-interesting-changes" title="Link to this heading"></a></h2>
+<h2>Significant or interesting changes<a class="headerlink" href="#significant-or-interesting-changes" title="Permalink to this heading"></a></h2>
 <p>These changes are a few that were selected as a sampling of particularly
 interesting commits.</p>
 <section id="cbmem-init-hooks-changed">
-<h3>CBMEM init hooks changed<a class="headerlink" href="#cbmem-init-hooks-changed" title="Link to this heading"></a></h3>
+<h3>CBMEM init hooks changed<a class="headerlink" href="#cbmem-init-hooks-changed" title="Permalink to this heading"></a></h3>
 <p>Instead of having per stage x_CBMEM_INIT_HOOK, we now have only 2 hooks:</p>
 <ul class="simple">
 <li><p>CBMEM_CREATION_HOOK: Used only in the first stage that creates cbmem,
@@ -198,7 +200,7 @@ stage initializes cbmem.</p></li>
 </ul>
 </section>
 <section id="payloads">
-<h3>Payloads<a class="headerlink" href="#payloads" title="Link to this heading"></a></h3>
+<h3>Payloads<a class="headerlink" href="#payloads" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>SeaBIOS: Update stable release from 1.14.0 to 1.16.0</p></li>
 <li><p>iPXE: Update stable release from 2019.3 to 2022.1</p></li>
@@ -212,13 +214,13 @@ cannot access.</p></li>
 </ul>
 </section>
 <section id="payloads-external-add-support-for-coredoom-payload">
-<h3>payloads/external: Add support for coreDOOM payload<a class="headerlink" href="#payloads-external-add-support-for-coredoom-payload" title="Link to this heading"></a></h3>
+<h3>payloads/external: Add support for coreDOOM payload<a class="headerlink" href="#payloads-external-add-support-for-coredoom-payload" title="Permalink to this heading"></a></h3>
 <p>coreDOOM is a port of DOOM to libpayload, based on the doomgeneric
 source port. It renders the game to the coreboot linear framebuffer,
 and loads WAD files from CBFS.</p>
 </section>
 <section id="cpu-x86-smm-module-load-rewrite-setup-stub">
-<h3>cpu/x86/smm_module_load: Rewrite setup_stub<a class="headerlink" href="#cpu-x86-smm-module-load-rewrite-setup-stub" title="Link to this heading"></a></h3>
+<h3>cpu/x86/smm_module_load: Rewrite setup_stub<a class="headerlink" href="#cpu-x86-smm-module-load-rewrite-setup-stub" title="Permalink to this heading"></a></h3>
 <p>This code was hard to read as it did too much and had a lot of state
 to keep track of.</p>
 <p>It also looks like the staggered entry points were first copied and
@@ -231,7 +233,7 @@ security problem.</p>
 <p>Note: This patch fixes CVE-2022-29264 for the 4.17 release.</p>
 </section>
 <section id="cpu-x86-smm-module-loader-c-rewrite-setup">
-<h3>cpu/x86/smm_module_loader.c: Rewrite setup<a class="headerlink" href="#cpu-x86-smm-module-loader-c-rewrite-setup" title="Link to this heading"></a></h3>
+<h3>cpu/x86/smm_module_loader.c: Rewrite setup<a class="headerlink" href="#cpu-x86-smm-module-loader-c-rewrite-setup" title="Permalink to this heading"></a></h3>
 <p>This code is much easier to read if one does not have to keep track of
 mutable variables.</p>
 <p>This also fixes the alignment code on the TSEG smihandler setup code.
@@ -239,13 +241,13 @@ It was aligning the code upwards instead of downwards which would cause
 it to encroach a part of the save state.</p>
 </section>
 <section id="cpu-x86-smm-add-sinkhole-mitigation-to-relocatable-smmstub">
-<h3>cpu/x86/smm: Add sinkhole mitigation to relocatable smmstub<a class="headerlink" href="#cpu-x86-smm-add-sinkhole-mitigation-to-relocatable-smmstub" title="Link to this heading"></a></h3>
+<h3>cpu/x86/smm: Add sinkhole mitigation to relocatable smmstub<a class="headerlink" href="#cpu-x86-smm-add-sinkhole-mitigation-to-relocatable-smmstub" title="Permalink to this heading"></a></h3>
 <p>The sinkhole exploit exists in placing the lapic base such that it
 messes with GDT. This can be mitigated by checking the lapic MSR
 against the current program counter.</p>
 </section>
 <section id="cpu-x86-64bit-generate-static-page-tables-from-an-assembly-file">
-<h3>cpu/x86/64bit: Generate static page tables from an assembly file<a class="headerlink" href="#cpu-x86-64bit-generate-static-page-tables-from-an-assembly-file" title="Link to this heading"></a></h3>
+<h3>cpu/x86/64bit: Generate static page tables from an assembly file<a class="headerlink" href="#cpu-x86-64bit-generate-static-page-tables-from-an-assembly-file" title="Permalink to this heading"></a></h3>
 <p>This removes the need for a tool to generate simple identity pages.
 Future patches will link this page table directly into the stages on
 some platforms so having an assembly file makes a lot of sense.</p>
@@ -253,7 +255,7 @@ some platforms so having an assembly file makes a lot of sense.</p>
 the PDPE_table below the PDE.</p>
 </section>
 <section id="cpu-x86-smm-lib-cbmem-console-enable-cbmemc-when-using-debug-smi">
-<h3>cpu/x86/smm,lib/cbmem_console: Enable CBMEMC when using DEBUG_SMI<a class="headerlink" href="#cpu-x86-smm-lib-cbmem-console-enable-cbmemc-when-using-debug-smi" title="Link to this heading"></a></h3>
+<h3>cpu/x86/smm,lib/cbmem_console: Enable CBMEMC when using DEBUG_SMI<a class="headerlink" href="#cpu-x86-smm-lib-cbmem-console-enable-cbmemc-when-using-debug-smi" title="Permalink to this heading"></a></h3>
 <p>This change will allow the SMI handler to write to the cbmem console
 buffer. Normally SMIs can only be debugged using some kind of serial
 port (UART). By storing the SMI logs into cbmem we can debug SMIs using
@@ -266,7 +268,7 @@ console is implemented as a circular buffer so it will never write
 outside of this area.</p>
 </section>
 <section id="security-tpm-crtm-add-a-function-to-measure-the-bootblock-on-soc-level">
-<h3>security/tpm/crtm: Add a function to measure the bootblock on SoC level<a class="headerlink" href="#security-tpm-crtm-add-a-function-to-measure-the-bootblock-on-soc-level" title="Link to this heading"></a></h3>
+<h3>security/tpm/crtm: Add a function to measure the bootblock on SoC level<a class="headerlink" href="#security-tpm-crtm-add-a-function-to-measure-the-bootblock-on-soc-level" title="Permalink to this heading"></a></h3>
 <p>On platforms where the bootblock is not included in CBFS anymore
 because it is part of another firmware section (IFWI or a different
 CBFS), the CRTM measurement fails.</p>
@@ -276,7 +278,7 @@ bootblock from the SoC related location and measure it from there.
 In this way the really executed code will be measured.</p>
 </section>
 <section id="soc-amd-common-block-psp-add-platform-secure-boot-support">
-<h3>soc/amd/common/block/psp: Add platform secure boot support<a class="headerlink" href="#soc-amd-common-block-psp-add-platform-secure-boot-support" title="Link to this heading"></a></h3>
+<h3>soc/amd/common/block/psp: Add platform secure boot support<a class="headerlink" href="#soc-amd-common-block-psp-add-platform-secure-boot-support" title="Permalink to this heading"></a></h3>
 <p>Add Platform Secure Boot (PSB) enablement via the PSP if it is not
 already enabled. Upon receiving psb command, PSP will program PSB fuses
 as long as BIOS signing key token is valid.
@@ -284,7 +286,7 @@ Refer to the AMD PSB user guide doc# 56654, Revision# 1.00.
 Unfortunately this document is only available with NDA customers.</p>
 </section>
 <section id="drivers-intel-fsp2-0-add-native-implementation-for-fsp-debug-handler">
-<h3>drivers/intel/fsp2_0: Add native implementation for FSP Debug Handler<a class="headerlink" href="#drivers-intel-fsp2-0-add-native-implementation-for-fsp-debug-handler" title="Link to this heading"></a></h3>
+<h3>drivers/intel/fsp2_0: Add native implementation for FSP Debug Handler<a class="headerlink" href="#drivers-intel-fsp2-0-add-native-implementation-for-fsp-debug-handler" title="Permalink to this heading"></a></h3>
 <p>This patch implements coreboot native debug handler to manage the FSP
 event messages.</p>
 <p>‘FSP Event Handlers’ feature introduced in FSP to generate event
@@ -323,7 +325,7 @@ FSP debug wrapper module injected (to allow FSP event handler to execute
 even with FSP non-serial image) in the final FSP.fd.</p>
 </section>
 <section id="security-tpm-add-vendor-specific-tis-functions-to-read-write-tpm-regs">
-<h3>security/tpm: Add vendor-specific tis functions to read/write TPM regs<a class="headerlink" href="#security-tpm-add-vendor-specific-tis-functions-to-read-write-tpm-regs" title="Link to this heading"></a></h3>
+<h3>security/tpm: Add vendor-specific tis functions to read/write TPM regs<a class="headerlink" href="#security-tpm-add-vendor-specific-tis-functions-to-read-write-tpm-regs" title="Permalink to this heading"></a></h3>
 <p>In order to abstract bus-specific logic from TPM logic, the prototype
 for two vendor-specific tis functions are added in this
 patch. tis_vendor_read() can be used to read directly from TPM
@@ -331,7 +333,7 @@ registers, and tis_vendor_write() can be used to write directly to TPM
 registers.</p>
 </section>
 <section id="arch-x86-add-support-for-catching-null-dereferences-through-debug-regs">
-<h3>arch/x86: Add support for catching null dereferences through debug regs<a class="headerlink" href="#arch-x86-add-support-for-catching-null-dereferences-through-debug-regs" title="Link to this heading"></a></h3>
+<h3>arch/x86: Add support for catching null dereferences through debug regs<a class="headerlink" href="#arch-x86-add-support-for-catching-null-dereferences-through-debug-regs" title="Permalink to this heading"></a></h3>
 <p>This commit adds support for catching null dereferences and execution
 through x86’s debug registers. This is particularly useful when running
 32-bit coreboot as paging is not enabled to catch these through page
@@ -340,7 +342,7 @@ DEBUG_HW_BREAKPOINTS, DEBUG_NULL_DEREF_BREAKPOINTS and
 DEBUG_NULL_DEREF_HALT.</p>
 </section>
 <section id="drivers-i2c-generic-add-support-for-i2c-device-detection">
-<h3>drivers/i2c/generic: Add support for i2c device detection<a class="headerlink" href="#drivers-i2c-generic-add-support-for-i2c-device-detection" title="Link to this heading"></a></h3>
+<h3>drivers/i2c/generic: Add support for i2c device detection<a class="headerlink" href="#drivers-i2c-generic-add-support-for-i2c-device-detection" title="Permalink to this heading"></a></h3>
 <p>Add ‘detect’ flag which can be attached to devices which may or may not
 be present at runtime, and for which coreboot should probe the i2c bus
 to confirm device presence prior to adding an entry for it in the SSDT.</p>
@@ -350,7 +352,7 @@ SSDT. This relieves the burden from the OS to detect/probe if a device
 is actually present and allows the OS to trust the ACPI _STA value.</p>
 </section>
 <section id="util-cbmem-add-flamegraph-compatible-timestamps-output">
-<h3>util/cbmem: Add FlameGraph-compatible timestamps output<a class="headerlink" href="#util-cbmem-add-flamegraph-compatible-timestamps-output" title="Link to this heading"></a></h3>
+<h3>util/cbmem: Add FlameGraph-compatible timestamps output<a class="headerlink" href="#util-cbmem-add-flamegraph-compatible-timestamps-output" title="Permalink to this heading"></a></h3>
 <p>Flame graphs are used to visualize hierarchical data, like call stacks.
 Timestamps collected by coreboot can be processed to resemble
 profiler-like output, and thus can be feed to flame graph generation
@@ -362,7 +364,7 @@ tools.</p>
 </div>
 </section>
 <section id="src-console-kconfig-add-option-to-disable-loglevel-prefix">
-<h3>src/console/Kconfig: Add option to disable loglevel prefix<a class="headerlink" href="#src-console-kconfig-add-option-to-disable-loglevel-prefix" title="Link to this heading"></a></h3>
+<h3>src/console/Kconfig: Add option to disable loglevel prefix<a class="headerlink" href="#src-console-kconfig-add-option-to-disable-loglevel-prefix" title="Permalink to this heading"></a></h3>
 <p>This patch adds an option to disable loglevel prefixes. This patch helps
 to achieve clear messages when low loglevel is used and very few
 messages are displayed on a terminal. This option also allows to
@@ -378,7 +380,7 @@ the same message will show up as
 This is a debug message!</p>
 </section>
 <section id="util-cbmem-add-an-option-to-append-timestamp">
-<h3>util/cbmem: add an option to append timestamp<a class="headerlink" href="#util-cbmem-add-an-option-to-append-timestamp" title="Link to this heading"></a></h3>
+<h3>util/cbmem: add an option to append timestamp<a class="headerlink" href="#util-cbmem-add-an-option-to-append-timestamp" title="Permalink to this heading"></a></h3>
 <p>Add an option to the cbmem utility that can be used to append an entry
 to the cbmem timestamp table from userspace. This is useful for
 bookkeeping of post-coreboot timing information while still being able
@@ -387,7 +389,7 @@ to use cbmem-based tooling for processing the generated data.</p>
 </section>
 </section>
 <section id="additional-changes">
-<h2>Additional changes<a class="headerlink" href="#additional-changes" title="Link to this heading"></a></h2>
+<h2>Additional changes<a class="headerlink" href="#additional-changes" title="Permalink to this heading"></a></h2>
 <p>The following are changes across a number of patches, or changes worth
 noting, but not needing a full description.</p>
 <ul class="simple">
@@ -407,7 +409,7 @@ noting, but not needing a full description.</p>
 </ul>
 </section>
 <section id="plans-to-move-platform-support-to-a-branch">
-<h2>Plans to move platform support to a branch:<a class="headerlink" href="#plans-to-move-platform-support-to-a-branch" title="Link to this heading"></a></h2>
+<h2>Plans to move platform support to a branch:<a class="headerlink" href="#plans-to-move-platform-support-to-a-branch" title="Permalink to this heading"></a></h2>
 <p>After the 4.18 release in November 2022, we plan to move support for any
 boards still requiring RESOURCE_ALLOCATOR_V3 to the 4.18 branch.  V4 was
 introduced more than a year ago and with minor changes most platforms
@@ -433,9 +435,9 @@ it can be brought back to ToT if they’re fixed to support the V4
 allocator.</p>
 </section>
 <section id="plans-for-code-deprecation">
-<h2>Plans for Code Deprecation<a class="headerlink" href="#plans-for-code-deprecation" title="Link to this heading"></a></h2>
+<h2>Plans for Code Deprecation<a class="headerlink" href="#plans-for-code-deprecation" title="Permalink to this heading"></a></h2>
 <section id="intel-icelake">
-<h3>Intel Icelake<a class="headerlink" href="#intel-icelake" title="Link to this heading"></a></h3>
+<h3>Intel Icelake<a class="headerlink" href="#intel-icelake" title="Permalink to this heading"></a></h3>
 <p>Intel Icelake is unmaintained. Also, the only user of this platform ever was
 the CRB board. From the looks of it the code never was ready for production as
 only engineering sample CPUIDs are supported.</p>
@@ -448,7 +450,7 @@ with the release 4.19.</p>
 </ul>
 </section>
 <section id="legacy-smp-init">
-<h3>LEGACY_SMP_INIT<a class="headerlink" href="#legacy-smp-init" title="Link to this heading"></a></h3>
+<h3>LEGACY_SMP_INIT<a class="headerlink" href="#legacy-smp-init" title="Permalink to this heading"></a></h3>
 <p>As of release 4.18 (August 2022) we plan to deprecate LEGACY_SMP_INIT.
 This also includes the codepath for SMM_ASEG. This code is used to start
 APs and do some feature programming on each AP, but also set up SMM.
@@ -462,7 +464,7 @@ migrating to PARALLEL_MP / a simple !CONFIG_SMP codebase.</p>
 </section>
 </section>
 <section id="statistics">
-<h2>Statistics<a class="headerlink" href="#statistics" title="Link to this heading"></a></h2>
+<h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Total Commits: 1305</p></li>
 <li><p>Average Commits per day: 13.42</p></li>

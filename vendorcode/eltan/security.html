@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eltan Security &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Eltan Security &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -114,17 +116,17 @@
            <div itemprop="articleBody">
              
   <section id="eltan-security">
-<h1>Eltan Security<a class="headerlink" href="#eltan-security" title="Link to this heading"></a></h1>
+<h1>Eltan Security<a class="headerlink" href="#eltan-security" title="Permalink to this heading"></a></h1>
 <p>This code enables measured boot and verified boot support.
 Verified boot is available in coreboot, but based on ChromeOS. This vendorcode security
 solution is intended to be used for system without ChromeOS support.</p>
 <p>This solution allows implementing verified boot support for systems that do not contain a TPM.</p>
 <section id="hashing-library">
-<h2>Hashing Library<a class="headerlink" href="#hashing-library" title="Link to this heading"></a></h2>
+<h2>Hashing Library<a class="headerlink" href="#hashing-library" title="Permalink to this heading"></a></h2>
 <p>The API functions of <code class="docutils literal notranslate"><span class="pre">3rdparty/vboot/firmware</span></code> are used.</p>
 </section>
 <section id="measured-boot">
-<h2>Measured boot<a class="headerlink" href="#measured-boot" title="Link to this heading"></a></h2>
+<h2>Measured boot<a class="headerlink" href="#measured-boot" title="Permalink to this heading"></a></h2>
 <p>Measured boot support requires a TPM2 device.</p>
 <p>The items specified in <code class="docutils literal notranslate"><span class="pre">mb_log_list[]</span></code> and <code class="docutils literal notranslate"><span class="pre">*_verify_list[]</span></code> will be measured.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">mb_log_list[]</span></code> should only contain items that are not contained in one of the verify_lists
@@ -133,7 +135,7 @@ below (except for the <code class="docutils literal notranslate"><span class="pr
 <code class="docutils literal notranslate"><span class="pre">oemmanifest.bin</span></code> should be added to the list when Verified boot is enabled.</p>
 </section>
 <section id="verified-boot">
-<h2>Verified boot<a class="headerlink" href="#verified-boot" title="Link to this heading"></a></h2>
+<h2>Verified boot<a class="headerlink" href="#verified-boot" title="Permalink to this heading"></a></h2>
 <p>Verified boot support will use the OEM manifest to verify the items.</p>
 <p>The verification process is controlled using the following verify lists:</p>
 <ul class="simple">
@@ -152,14 +154,14 @@ the grub payload and the <code class="docutils literal notranslate"><span class=
 entries that are verified (and measured) depend on the payload selected at runtime.</p>
 </section>
 <section id="creating-private-and-public-keys">
-<h2>Creating private and public keys<a class="headerlink" href="#creating-private-and-public-keys" title="Link to this heading"></a></h2>
+<h2>Creating private and public keys<a class="headerlink" href="#creating-private-and-public-keys" title="Permalink to this heading"></a></h2>
 <p>Create private key in RSA2048 format: <code class="docutils literal notranslate"><span class="pre">openssl</span> <span class="pre">genrsa</span> <span class="pre">-F4</span> <span class="pre">-out</span> <span class="pre">&lt;private_key_file&gt;</span> <span class="pre">2048</span></code></p>
 <p>Create public key using private key:
 <code class="docutils literal notranslate"><span class="pre">futility</span> <span class="pre">--vb1</span> <span class="pre">create</span> <span class="pre">&lt;private_key_file&gt;</span> <span class="pre">&lt;public_key_file_without_extension&gt;</span></code></p>
 <p>The public key will be included into coreboot and used for verified boot only.</p>
 </section>
 <section id="enabling-support">
-<h2>Enabling support<a class="headerlink" href="#enabling-support" title="Link to this heading"></a></h2>
+<h2>Enabling support<a class="headerlink" href="#enabling-support" title="Permalink to this heading"></a></h2>
 <p>To enable measured boot support:</p>
 <ul class="simple">
 <li><p>Enabled <em>VENDORCODE_ELTAN_MBOOT</em></p></li>
@@ -173,7 +175,7 @@ entries that are verified (and measured) depend on the payload selected at runti
 </ul>
 </section>
 <section id="creating-signed-binary">
-<h2>Creating signed binary<a class="headerlink" href="#creating-signed-binary" title="Link to this heading"></a></h2>
+<h2>Creating signed binary<a class="headerlink" href="#creating-signed-binary" title="Permalink to this heading"></a></h2>
 <p>During build of coreboot binary an empty <code class="docutils literal notranslate"><span class="pre">oemmanifest.bin</span></code> is added to the binary.</p>
 <p>This binary must be replaced by a correct (signed) binary when <em>VENDORCODE_ELTAN_VBOOT</em> is enabled</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">oemmanifest.bin</span></code> file contains the SHA-256 (or SHA-512) hashes of all the different parts
@@ -183,7 +185,7 @@ signature should appended to the manifest.</p>
 <p>Please make sure the public key is in the RO part of the coreboot image. The <code class="docutils literal notranslate"><span class="pre">oemmanifest.bin</span></code> file
 should be in the RW part of the coreboot image.</p>
 <section id="hashing">
-<h3>Hashing<a class="headerlink" href="#hashing" title="Link to this heading"></a></h3>
+<h3>Hashing<a class="headerlink" href="#hashing" title="Permalink to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">oemmanifest.bin</span></code> file contains the hashes of different binaries parts of the binary e.g.:
 bootblock, romstage, postcar, ramstage, fsp etc.</p>
 <p>The total number of items must match <code class="docutils literal notranslate"><span class="pre">VENDORCODE_ELTAN_OEM_MANIFEST_ITEMS</span></code>.</p>
@@ -195,7 +197,7 @@ followed by: <code class="docutils literal notranslate"><span class="pre">openss
 defined by the <code class="docutils literal notranslate"><span class="pre">HASH_IDX_XXX</span></code> values.</p>
 </section>
 <section id="signing">
-<h3>Signing<a class="headerlink" href="#signing" title="Link to this heading"></a></h3>
+<h3>Signing<a class="headerlink" href="#signing" title="Permalink to this heading"></a></h3>
 <p>The oemmanifest needs to be signed when <code class="docutils literal notranslate"><span class="pre">VENDORCODE_ELTAN_VBOOT_SIGNED_MANIFEST</span></code> is enabled.</p>
 <p>This can be done with the following command:
 <code class="docutils literal notranslate"><span class="pre">openssl</span> <span class="pre">dgst</span> <span class="pre">-sign</span> <span class="pre">&lt;private_key_file_name&gt;</span> <span class="pre">-sha256</span> <span class="pre">-out</span> <span class="pre">&lt;signature_binary&gt;</span> <span class="pre">&lt;hash_binary&gt;</span></code></p>
@@ -204,7 +206,7 @@ defined by the <code class="docutils literal notranslate"><span class="pre">HASH
 </section>
 </section>
 <section id="create-binary">
-<h2>Create binary<a class="headerlink" href="#create-binary" title="Link to this heading"></a></h2>
+<h2>Create binary<a class="headerlink" href="#create-binary" title="Permalink to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">oemmanifest.bin</span></code> file must be replaced in the coreboot binary by the generated
 <code class="docutils literal notranslate"><span class="pre">hash_table.bin</span></code>.</p>
 <p>To replace the binary: Remove using:
@@ -214,7 +216,7 @@ Then add the new image using:
 <code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">&lt;CONFIG_VENDORCODE_ELTAN_OEM_MANIFEST_LOC&gt;</span></code></p>
 </section>
 <section id="debugging">
-<h2>Debugging<a class="headerlink" href="#debugging" title="Link to this heading"></a></h2>
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading"></a></h2>
 <p>You can enable verbose console output in <em>menuconfig</em>.</p>
 </section>
 </section>

@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Upcoming release - coreboot 24.02 &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Upcoming release - coreboot 24.02 &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -122,7 +124,7 @@
            <div itemprop="articleBody">
              
   <section id="upcoming-release-coreboot-24-02">
-<h1>Upcoming release - coreboot 24.02<a class="headerlink" href="#upcoming-release-coreboot-24-02" title="Link to this heading"></a></h1>
+<h1>Upcoming release - coreboot 24.02<a class="headerlink" href="#upcoming-release-coreboot-24-02" title="Permalink to this heading"></a></h1>
 <p>The 24.02 release is scheduled for February 19, 2024. The next release,
 which will be 24.05, is scheduled for mid-May.</p>
 <p>The coreboot project is happy to announce our next release for February
@@ -133,7 +135,7 @@ who have dedicated their time and expertise. Thank you for your
 invaluable contributions to this vital phase of maintenance and
 optimization.</p>
 <section id="release-number-format-update">
-<h2>Release number format update<a class="headerlink" href="#release-number-format-update" title="Link to this heading"></a></h2>
+<h2>Release number format update<a class="headerlink" href="#release-number-format-update" title="Permalink to this heading"></a></h2>
 <p>The previous release was the last to use the incrementing 4.xx release
 name scheme. For this and future releases, coreboot has switched to a
 Year.Month.Sub-version naming scheme. As such, the next release,
@@ -142,7 +144,7 @@ of 00 implied. If we need to do a fix or incremental release, we’ll
 append the values .01, .02 and so on to the initial release value.</p>
 </section>
 <section id="the-master-branch-is-being-deleted">
-<h2>The master branch is being deleted<a class="headerlink" href="#the-master-branch-is-being-deleted" title="Link to this heading"></a></h2>
+<h2>The master branch is being deleted<a class="headerlink" href="#the-master-branch-is-being-deleted" title="Permalink to this heading"></a></h2>
 <p>The coreboot project changed from master to main roughly 6 months ago,
 and has been keeping the two branches in sync since then to ease the
 transition. As of this release, we are getting rid of the master branch
@@ -150,15 +152,15 @@ completely. Please make sure any scripts you’re using that reference the
 ‘master’ branch have been switched to ‘main’.</p>
 </section>
 <section id="significant-or-interesting-changes">
-<h2>Significant or interesting changes<a class="headerlink" href="#significant-or-interesting-changes" title="Link to this heading"></a></h2>
+<h2>Significant or interesting changes<a class="headerlink" href="#significant-or-interesting-changes" title="Permalink to this heading"></a></h2>
 <section id="acpi-add-arm-io-remapping-table-structures">
-<h3>acpi: Add Arm IO Remapping Table structures<a class="headerlink" href="#acpi-add-arm-io-remapping-table-structures" title="Link to this heading"></a></h3>
+<h3>acpi: Add Arm IO Remapping Table structures<a class="headerlink" href="#acpi-add-arm-io-remapping-table-structures" title="Permalink to this heading"></a></h3>
 <p>Input Output Remapping Table (IORT) represents the IO topology of an Arm
 based system.</p>
 <p>Document number: ARM DEN 0049E.e, Sep 2022</p>
 </section>
 <section id="acpi-add-pptt-support">
-<h3>acpi: Add PPTT support<a class="headerlink" href="#acpi-add-pptt-support" title="Link to this heading"></a></h3>
+<h3>acpi: Add PPTT support<a class="headerlink" href="#acpi-add-pptt-support" title="Permalink to this heading"></a></h3>
 <p>This patch adds code to generate Processor Properties Topology Tables
 (PPTT) compliant to the ACPI 6.4 specification.</p>
 <ul class="simple">
@@ -172,7 +174,7 @@ Neoverse N2. Both require a valid PPTT table. Patch was tested against
 the qemu-sbsa board.</p>
 </section>
 <section id="acpi-add-support-for-wdat-table">
-<h3>acpi: Add support for WDAT table<a class="headerlink" href="#acpi-add-support-for-wdat-table" title="Link to this heading"></a></h3>
+<h3>acpi: Add support for WDAT table<a class="headerlink" href="#acpi-add-support-for-wdat-table" title="Permalink to this heading"></a></h3>
 <p>This commit lays the groundwork for implementing the ACPI WDAT (Watchdog
 Action Table) table specification. The WDAT is a special ACPI table
 introduced by Microsoft that describes the watchdog for the OS.</p>
@@ -182,7 +184,7 @@ specification. See “Links to ACPI-Related Documents”
 (http://uefi.org/acpi) under the heading “Watchdog Action Table”.</p>
 </section>
 <section id="lib-jpeg-replace-decoder-with-wuffs-implementation">
-<h3>lib/jpeg: Replace decoder with Wuffs’ implementation<a class="headerlink" href="#lib-jpeg-replace-decoder-with-wuffs-implementation" title="Link to this heading"></a></h3>
+<h3>lib/jpeg: Replace decoder with Wuffs’ implementation<a class="headerlink" href="#lib-jpeg-replace-decoder-with-wuffs-implementation" title="Permalink to this heading"></a></h3>
 <p>To quote its repo[0]: Wuffs is a memory-safe programming language (and a
 standard library written in that language) for Wrangling Untrusted File
 Formats Safely. Wrangling includes parsing, decoding and encoding.</p>
@@ -212,7 +214,7 @@ to 172304 bytes decompressed (82734 bytes after LZMA).</p>
 </section>
 </section>
 <section id="additional-coreboot-changes">
-<h2>Additional coreboot changes<a class="headerlink" href="#additional-coreboot-changes" title="Link to this heading"></a></h2>
+<h2>Additional coreboot changes<a class="headerlink" href="#additional-coreboot-changes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Rename Makefiles from .inc to .mk to better identify them</p></li>
 <li><p>SPI: Add GD25LQ255E and IS25WP256D chip support</p></li>
@@ -224,9 +226,9 @@ to 172304 bytes decompressed (82734 bytes after LZMA).</p>
 </ul>
 </section>
 <section id="changes-to-external-resources">
-<h2>Changes to external resources<a class="headerlink" href="#changes-to-external-resources" title="Link to this heading"></a></h2>
+<h2>Changes to external resources<a class="headerlink" href="#changes-to-external-resources" title="Permalink to this heading"></a></h2>
 <section id="toolchain-updates">
-<h3>Toolchain updates<a class="headerlink" href="#toolchain-updates" title="Link to this heading"></a></h3>
+<h3>Toolchain updates<a class="headerlink" href="#toolchain-updates" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Add buildgcc support for Apple M1/M2 devices</p></li>
 <li><p>crossgcc: Upgrade GCC from 11.4.0 to 13.2.0</p></li>
@@ -235,7 +237,7 @@ to 172304 bytes decompressed (82734 bytes after LZMA).</p>
 </ul>
 </section>
 <section id="git-submodule-pointers">
-<h3>Git submodule pointers<a class="headerlink" href="#git-submodule-pointers" title="Link to this heading"></a></h3>
+<h3>Git submodule pointers<a class="headerlink" href="#git-submodule-pointers" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>/3rdparty/amd_blobs: Update from commit id e4519efca7 to 64cdd7c8ef
 (5 commits)</p></li>
@@ -249,7 +251,7 @@ commits)</p></li>
 </ul>
 </section>
 <section id="external-payloads">
-<h3>External payloads<a class="headerlink" href="#external-payloads" title="Link to this heading"></a></h3>
+<h3>External payloads<a class="headerlink" href="#external-payloads" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>payload/grub2: Update from 2.06 to 2.12</p></li>
 <li><p>payload/seabios: Update from 1.16.2 to 1.16.3</p></li>
@@ -257,9 +259,9 @@ commits)</p></li>
 </section>
 </section>
 <section id="platform-updates">
-<h2>Platform Updates<a class="headerlink" href="#platform-updates" title="Link to this heading"></a></h2>
+<h2>Platform Updates<a class="headerlink" href="#platform-updates" title="Permalink to this heading"></a></h2>
 <section id="added-mainboards">
-<h3>Added mainboards:<a class="headerlink" href="#added-mainboards" title="Link to this heading"></a></h3>
+<h3>Added mainboards:<a class="headerlink" href="#added-mainboards" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Google: Dita</p></li>
 <li><p>Google: Xol</p></li>
@@ -267,14 +269,14 @@ commits)</p></li>
 </ul>
 </section>
 <section id="removed-mainboards">
-<h3>Removed Mainboards<a class="headerlink" href="#removed-mainboards" title="Link to this heading"></a></h3>
+<h3>Removed Mainboards<a class="headerlink" href="#removed-mainboards" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Google -&gt;  Primus4ES</p></li>
 </ul>
 </section>
 </section>
 <section id="statistics-from-the-4-22-to-the-24-02-release">
-<h2>Statistics from the 4.22 to the 24.02 release<a class="headerlink" href="#statistics-from-the-4-22-to-the-24-02-release" title="Link to this heading"></a></h2>
+<h2>Statistics from the 4.22 to the 24.02 release<a class="headerlink" href="#statistics-from-the-4-22-to-the-24-02-release" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Total Commits: 814</p></li>
 <li><p>Average Commits per day: 8.65</p></li>
@@ -290,15 +292,15 @@ commits)</p></li>
 </ul>
 </section>
 <section id="significant-known-and-open-issues">
-<h2>Significant Known and Open Issues<a class="headerlink" href="#significant-known-and-open-issues" title="Link to this heading"></a></h2>
+<h2>Significant Known and Open Issues<a class="headerlink" href="#significant-known-and-open-issues" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>AMD chromebooks will not currently work with the signed vboot image.</p></li>
 </ul>
 </section>
 <section id="issues-from-the-coreboot-bugtracker-https-ticket-coreboot-org">
-<h2>Issues from the coreboot bugtracker: https://ticket.coreboot.org/<a class="headerlink" href="#issues-from-the-coreboot-bugtracker-https-ticket-coreboot-org" title="Link to this heading"></a></h2>
+<h2>Issues from the coreboot bugtracker: https://ticket.coreboot.org/<a class="headerlink" href="#issues-from-the-coreboot-bugtracker-https-ticket-coreboot-org" title="Permalink to this heading"></a></h2>
 <section id="coreboot-wide-or-architecture-wide-issues">
-<h3>coreboot-wide or architecture-wide issues<a class="headerlink" href="#coreboot-wide-or-architecture-wide-issues" title="Link to this heading"></a></h3>
+<h3>coreboot-wide or architecture-wide issues<a class="headerlink" href="#coreboot-wide-or-architecture-wide-issues" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>#</p></th>
@@ -319,7 +321,7 @@ commits)</p></li>
 </table>
 </section>
 <section id="payload-specific-issues">
-<h3>Payload-specific issues<a class="headerlink" href="#payload-specific-issues" title="Link to this heading"></a></h3>
+<h3>Payload-specific issues<a class="headerlink" href="#payload-specific-issues" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>#</p></th>
@@ -343,7 +345,7 @@ commits)</p></li>
 </table>
 </section>
 <section id="platform-specific-issues">
-<h3>Platform-specific issues<a class="headerlink" href="#platform-specific-issues" title="Link to this heading"></a></h3>
+<h3>Platform-specific issues<a class="headerlink" href="#platform-specific-issues" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>#</p></th>
@@ -413,7 +415,7 @@ commits)</p></li>
 </section>
 </section>
 <section id="coreboot-links-and-contact-information">
-<h2>coreboot Links and Contact Information<a class="headerlink" href="#coreboot-links-and-contact-information" title="Link to this heading"></a></h2>
+<h2>coreboot Links and Contact Information<a class="headerlink" href="#coreboot-links-and-contact-information" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Main Web site: https://www.coreboot.org</p></li>
 <li><p>Downloads: https://coreboot.org/downloads.html</p></li>

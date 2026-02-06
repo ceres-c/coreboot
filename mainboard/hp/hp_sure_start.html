@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HP Sure Start &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>HP Sure Start &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -152,14 +154,14 @@
            <div itemprop="articleBody">
              
   <section id="hp-sure-start">
-<h1>HP Sure Start<a class="headerlink" href="#hp-sure-start" title="Link to this heading"></a></h1>
+<h1>HP Sure Start<a class="headerlink" href="#hp-sure-start" title="Permalink to this heading"></a></h1>
 <p>According to the <a class="reference external" href="http://h10032.www1.hp.com/ctg/Manual/c05163901">HP Sure Start Technical Whitepaper</a>, HP Sure Start is a chipset
 and processor independent firmware intrusion detection and automatic repair system.
 It is implemented in HP notebooks since 2013, and desktops since 2015.</p>
 <p>This document talks about some mechanism of HP Sure Start on some machines, and
 the method to bypass it.</p>
 <section id="laptops-with-smsc-mec1322-embedded-controller">
-<h2>Laptops with SMSC MEC1322 embedded controller<a class="headerlink" href="#laptops-with-smsc-mec1322-embedded-controller" title="Link to this heading"></a></h2>
+<h2>Laptops with SMSC MEC1322 embedded controller<a class="headerlink" href="#laptops-with-smsc-mec1322-embedded-controller" title="Permalink to this heading"></a></h2>
 <p>Haswell EliteBook, ZBook and ProBook 600 series use SMSC MEC1322 embedded controller.
 The EC firmware implements HP Sure Start.</p>
 <p>A Haswell EliteBook has two flash chips. According to the strings in the EC firmware,
@@ -189,7 +191,7 @@ in the private flash. If the private flash has no valid copies of the PEI volume
 the PEI volume is modified, the machine will refuse to boot with the CapsLock LED blinking.</p>
 </section>
 <section id="bypassing-hp-sure-start">
-<h2>Bypassing HP Sure Start<a class="headerlink" href="#bypassing-hp-sure-start" title="Link to this heading"></a></h2>
+<h2>Bypassing HP Sure Start<a class="headerlink" href="#bypassing-hp-sure-start" title="Permalink to this heading"></a></h2>
 <p>First search the mainboard for the flash chips. If there are two flash chips,
 the smaller one may be the private flash.</p>
 <p>For Intel boards, try to modify the IFD with <code class="docutils literal notranslate"><span class="pre">ifdtool</span> <span class="pre">-u</span></code>, power on and shut down

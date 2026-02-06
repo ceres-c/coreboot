@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.15 &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.15 &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -138,7 +140,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-15">
-<h1>coreboot 4.15<a class="headerlink" href="#coreboot-4-15" title="Link to this heading"></a></h1>
+<h1>coreboot 4.15<a class="headerlink" href="#coreboot-4-15" title="Permalink to this heading"></a></h1>
 <p>coreboot 4.15 was released on November 5th, 2021.</p>
 <p>Since 4.14 there have been more than 2597 new commits by more than 219 developers.
 Of these, over 73 contributed to coreboot for the first time.</p>
@@ -146,12 +148,12 @@ Of these, over 73 contributed to coreboot for the first time.</p>
 <p>Thank you to all the developers who continue to make coreboot the
 great open source firmware project that it is.</p>
 <section id="important-announcement">
-<h2>Important Announcement<a class="headerlink" href="#important-announcement" title="Link to this heading"></a></h2>
+<h2>Important Announcement<a class="headerlink" href="#important-announcement" title="Permalink to this heading"></a></h2>
 <p>We are going to be changing the cadence from every 6 months, to every 3 months.
 That means the 4.16 release will be coming in February, 2022.</p>
 </section>
 <section id="new-mainboards">
-<h2>New mainboards<a class="headerlink" href="#new-mainboards" title="Link to this heading"></a></h2>
+<h2>New mainboards<a class="headerlink" href="#new-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Asus p8h61-m_pro_cm6630</p></li>
 <li><p>Asus p8h77-v</p></li>
@@ -177,15 +179,15 @@ That means the 4.16 release will be coming in February, 2022.</p>
 </ul>
 </section>
 <section id="removed-mainboards">
-<h2>Removed mainboards<a class="headerlink" href="#removed-mainboards" title="Link to this heading"></a></h2>
+<h2>Removed mainboards<a class="headerlink" href="#removed-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Google Mancomb</p></li>
 </ul>
 </section>
 <section id="deprecations-and-incompatible-changes">
-<h2>Deprecations and incompatible changes<a class="headerlink" href="#deprecations-and-incompatible-changes" title="Link to this heading"></a></h2>
+<h2>Deprecations and incompatible changes<a class="headerlink" href="#deprecations-and-incompatible-changes" title="Permalink to this heading"></a></h2>
 <section id="corebootpayload-option">
-<h3>COREBOOTPAYLOAD option<a class="headerlink" href="#corebootpayload-option" title="Link to this heading"></a></h3>
+<h3>COREBOOTPAYLOAD option<a class="headerlink" href="#corebootpayload-option" title="Permalink to this heading"></a></h3>
 <p>Drop the deprecated COREBOOTPAYLOAD option, and replace it with MrChromebox’s
 updated UefiPayloadPkg option. Simplify the Kconfig options to make it easier
 to build from upstream edk2 master. Drop the EDK2_USE_8254_TIMER Kconfig
@@ -193,43 +195,43 @@ option since it applies only to CorebootPayloadPkg. Clean up the Makefile now
 that we’re only building from a single edk2 package/target.</p>
 </section>
 <section id="remove-old-lp4x-and-ddr4-versions-of-spd-tools">
-<h3>Remove old lp4x and ddr4 versions of spd_tools<a class="headerlink" href="#remove-old-lp4x-and-ddr4-versions-of-spd-tools" title="Link to this heading"></a></h3>
+<h3>Remove old lp4x and ddr4 versions of spd_tools<a class="headerlink" href="#remove-old-lp4x-and-ddr4-versions-of-spd-tools" title="Permalink to this heading"></a></h3>
 <p>The migration to the new unified version of spd_tools is complete, so
 the old lp4x and ddr4 versions can be removed.</p>
 </section>
 <section id="remove-amd-pi-00630f01">
-<h3>Remove AMD PI 00630F01<a class="headerlink" href="#remove-amd-pi-00630f01" title="Link to this heading"></a></h3>
+<h3>Remove AMD PI 00630F01<a class="headerlink" href="#remove-amd-pi-00630f01" title="Permalink to this heading"></a></h3>
 <p>No board currently uses AMD PI 00630F01 so remove it.</p>
 </section>
 </section>
 <section id="significant-changes">
-<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Link to this heading"></a></h2>
+<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Permalink to this heading"></a></h2>
 <section id="merged-family-of-asus-mainboards-using-h61-chipset">
-<h3>Merged family of Asus mainboards using H61 chipset<a class="headerlink" href="#merged-family-of-asus-mainboards-using-h61-chipset" title="Link to this heading"></a></h3>
+<h3>Merged family of Asus mainboards using H61 chipset<a class="headerlink" href="#merged-family-of-asus-mainboards-using-h61-chipset" title="Permalink to this heading"></a></h3>
 <p>By using newer coreboot features like board variants and override devicetrees,
 lots of code can now be shared. This should ease maintenance and also make it
 easier for newcomers to add support for even more mainboards.</p>
 </section>
 <section id="changed-default-setting-for-intel-chipset-lockdown">
-<h3>Changed default setting for Intel chipset lockdown<a class="headerlink" href="#changed-default-setting-for-intel-chipset-lockdown" title="Link to this heading"></a></h3>
+<h3>Changed default setting for Intel chipset lockdown<a class="headerlink" href="#changed-default-setting-for-intel-chipset-lockdown" title="Permalink to this heading"></a></h3>
 <p>Previously, the default behaviour for Intel chipset lockdown was to let the FSP
 do it. Since all related mainboards used the coreboot mechanisms for chipset
 lockdown, the default behaviour was changed to that.</p>
 </section>
 <section id="payloads-unit-testing">
-<h3>Payloads unit testing<a class="headerlink" href="#payloads-unit-testing" title="Link to this heading"></a></h3>
+<h3>Payloads unit testing<a class="headerlink" href="#payloads-unit-testing" title="Permalink to this heading"></a></h3>
 <p>Libpayload now supports the mock architecture, which can be used for unit testing
 payloads. (For examples see
 <a class="reference external" href="https://chromium.googlesource.com/chromiumos/platform/depthcharge/">depthcharge</a>
 payload)</p>
 </section>
 <section id="unit-testing-infrastructure">
-<h3>Unit testing infrastructure<a class="headerlink" href="#unit-testing-infrastructure" title="Link to this heading"></a></h3>
+<h3>Unit testing infrastructure<a class="headerlink" href="#unit-testing-infrastructure" title="Permalink to this heading"></a></h3>
 <p>Unit testing of libpayload is now possible in the same fashion as in the main
 coreboot tree.</p>
 </section>
 <section id="introduce-new-method-for-accessing-cpu-info">
-<h3>Introduce new method for accessing cpu_info<a class="headerlink" href="#introduce-new-method-for-accessing-cpu-info" title="Link to this heading"></a></h3>
+<h3>Introduce new method for accessing cpu_info<a class="headerlink" href="#introduce-new-method-for-accessing-cpu-info" title="Permalink to this heading"></a></h3>
 <p>There is currently a fundamental flaw in the current cpu_info()
 implementation. It assumes that current stack is CONFIG_STACK_SIZE
 aligned. This assumption breaks down when performing SMM relocation.</p>

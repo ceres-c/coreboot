@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dealing with Untrusted Input in SMM &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Dealing with Untrusted Input in SMM &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -123,16 +125,16 @@
            <div itemprop="articleBody">
              
   <section id="dealing-with-untrusted-input-in-smm">
-<h1>Dealing with Untrusted Input in SMM<a class="headerlink" href="#dealing-with-untrusted-input-in-smm" title="Link to this heading"></a></h1>
+<h1>Dealing with Untrusted Input in SMM<a class="headerlink" href="#dealing-with-untrusted-input-in-smm" title="Permalink to this heading"></a></h1>
 <section id="objective">
-<h2>Objective<a class="headerlink" href="#objective" title="Link to this heading"></a></h2>
+<h2>Objective<a class="headerlink" href="#objective" title="Permalink to this heading"></a></h2>
 <p>Intel Security recently held a talk and published
 <a class="reference external" href="http://www.intelsecurity.com/advanced-threat-research/content/data/REConBrussels2017_BARing_the_system.pdf">slides</a>
 on a vulnerability in SMM handlers on x86 systems. They provide examples
 on how both UEFI and coreboot are affected.</p>
 </section>
 <section id="background">
-<h2>Background<a class="headerlink" href="#background" title="Link to this heading"></a></h2>
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this heading"></a></h2>
 <p>SMM, the System Management Mode, is a CPU mode that is configured by
 firmware and survives the system’s initialization phase. On certain
 events that mode can be triggered and executes code, suspending the
@@ -145,7 +147,7 @@ are writable in SMM only).  This makes SMM a target for attacks which
 seek to elevate a ring0 (kernel) exploit to something permanent.</p>
 </section>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p>Intel Security showed several places in coreboot’s SMM handler (Slides
 32+) that could be manipulated into writing data at user-chosen addresses
 (SMRAM or otherwise), by modifying the BAR (Base Address Register) on
@@ -159,7 +161,7 @@ regular memory or SMRAM. They’re not very detailed on how this could
 be implemented, which is what this document discusses.</p>
 </section>
 <section id="detailed-design">
-<h2>Detailed Design<a class="headerlink" href="#detailed-design" title="Link to this heading"></a></h2>
+<h2>Detailed Design<a class="headerlink" href="#detailed-design" title="Permalink to this heading"></a></h2>
 <p>The attack works because the SMM handler trusts the results of the
 <code class="docutils literal notranslate"><span class="pre">pci_read_config32(dev,</span> <span class="pre">reg)</span></code> function, even though the value read by that
 function can be modified in kernel mode.</p>
@@ -213,7 +215,7 @@ documented, in accordance with the chipset design. (For example: AMD
 K8 has a bunch of registers that define strictly which addresses are
 “MMIO”)</p>
 <section id="fully-insured-aka-paranoid-mode">
-<h3>Fully insured (aka “paranoid”) mode<a class="headerlink" href="#fully-insured-aka-paranoid-mode" title="Link to this heading"></a></h3>
+<h3>Fully insured (aka “paranoid”) mode<a class="headerlink" href="#fully-insured-aka-paranoid-mode" title="Permalink to this heading"></a></h3>
 <p>For systems with more control over the hardware and kernel (such as
 Chromebooks), it may be possible to set up the BARs in a way that the
 kernel isn’t compelled to rewrite them, and store these values for
@@ -228,21 +230,21 @@ compile-time feature.</p>
 </section>
 </section>
 <section id="caveats">
-<h2>Caveats<a class="headerlink" href="#caveats" title="Link to this heading"></a></h2>
+<h2>Caveats<a class="headerlink" href="#caveats" title="Permalink to this heading"></a></h2>
 <p>This capability might need to be hidden behind a Kconfig flag
 because we won’t be able to provide functional implementations of
 <code class="docutils literal notranslate"><span class="pre">is_address_in_mmio()</span></code> for every chipset supported by coreboot from the
 start.</p>
 </section>
 <section id="security-considerations">
-<h2>Security Considerations<a class="headerlink" href="#security-considerations" title="Link to this heading"></a></h2>
+<h2>Security Considerations<a class="headerlink" href="#security-considerations" title="Permalink to this heading"></a></h2>
 <p>The actual exploitability of the issue is unknown, but fixing it serves
 as defense in depth, similar to the
 <a class="reference external" href="https://review.coreboot.org/#/c/11519/">Memory Sinkhole mitigation</a> for
 older Intel chipsets.</p>
 </section>
 <section id="testing-plan">
-<h2>Testing Plan<a class="headerlink" href="#testing-plan" title="Link to this heading"></a></h2>
+<h2>Testing Plan<a class="headerlink" href="#testing-plan" title="Permalink to this heading"></a></h2>
 <p>Manual testing can be conducted easily by creating a small payload that
 provokes the reaction. It should test all conditions that enable the
 address test (ie. the different BAR offsets if used by SMM handlers).</p>

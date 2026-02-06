@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jenkins builder setup and configuration &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Jenkins builder setup and configuration &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -116,11 +118,11 @@
            <div itemprop="articleBody">
              
   <section id="jenkins-builder-setup-and-configuration">
-<h1>Jenkins builder setup and configuration<a class="headerlink" href="#jenkins-builder-setup-and-configuration" title="Link to this heading"></a></h1>
+<h1>Jenkins builder setup and configuration<a class="headerlink" href="#jenkins-builder-setup-and-configuration" title="Permalink to this heading"></a></h1>
 <section id="how-to-set-up-a-new-jenkins-builder">
-<h2>How to set up a new jenkins builder<a class="headerlink" href="#how-to-set-up-a-new-jenkins-builder" title="Link to this heading"></a></h2>
+<h2>How to set up a new jenkins builder<a class="headerlink" href="#how-to-set-up-a-new-jenkins-builder" title="Permalink to this heading"></a></h2>
 <section id="contact-a-jenkins-admin">
-<h3>Contact a jenkins admin<a class="headerlink" href="#contact-a-jenkins-admin" title="Link to this heading"></a></h3>
+<h3>Contact a jenkins admin<a class="headerlink" href="#contact-a-jenkins-admin" title="Permalink to this heading"></a></h3>
 <p>Let a jenkins admin know that you’re interested in setting up a jenkins
 build system.</p>
 <p>For a permanent build system, this should generally be a dedicated
@@ -151,14 +153,14 @@ issues.</p>
 </ul>
 </section>
 <section id="build-machine-requirements">
-<h3>Build Machine requirements<a class="headerlink" href="#build-machine-requirements" title="Link to this heading"></a></h3>
+<h3>Build Machine requirements<a class="headerlink" href="#build-machine-requirements" title="Permalink to this heading"></a></h3>
 <p>For a builder, we need a very fast system with lots of threads and
 plenty of RAM.  The builder builds and stores the git repos and output
 in tmpfs along with the ccache save area, so if there isn’t enough
 memory, the builds will slow down because of smaller ccache areas and
 can run into “out of storage space” errors.</p>
 <section id="current-build-machines">
-<h4>Current Build Machines<a class="headerlink" href="#current-build-machines" title="Link to this heading"></a></h4>
+<h4>Current Build Machines<a class="headerlink" href="#current-build-machines" title="Permalink to this heading"></a></h4>
 <p>To give an idea of what a suitable build machine might be, currently the
 coreboot project has 6 active jenkins build machines.</p>
 <p>These times are taken from the week of Feb 21 - Feb 28, 2022</p>
@@ -203,13 +205,13 @@ coreboot project has 6 active jenkins build machines.</p>
 </section>
 </section>
 <section id="jenkins-builds">
-<h3>Jenkins Builds<a class="headerlink" href="#jenkins-builds" title="Link to this heading"></a></h3>
+<h3>Jenkins Builds<a class="headerlink" href="#jenkins-builds" title="Permalink to this heading"></a></h3>
 <p>There are a number of builds handled by the coreboot jenkins builders,
 for a number of different projects - coreboot, flashrom, memtest86+,
 em100, etc.  Many of these have builders for their current main branch
 as well as Gerrit and <a class="reference internal" href="coverity.html"><span class="doc">Coverity</span></a> builds.</p>
 <section id="long-builds-over-90-minutes-on-congenialbuilder">
-<h4>Long builds - over 90 minutes on congenialbuilder<a class="headerlink" href="#long-builds-over-90-minutes-on-congenialbuilder" title="Link to this heading"></a></h4>
+<h4>Long builds - over 90 minutes on congenialbuilder<a class="headerlink" href="#long-builds-over-90-minutes-on-congenialbuilder" title="Permalink to this heading"></a></h4>
 <p>There are a few builds that take a long time even on the fastest
 machines.  These tasks run overnight in the US timezones.</p>
 <ul class="simple">
@@ -219,7 +221,7 @@ machines.  These tasks run overnight in the US timezones.</p>
 </ul>
 </section>
 <section id="all-builds">
-<h4>All builds<a class="headerlink" href="#all-builds" title="Link to this heading"></a></h4>
+<h4>All builds<a class="headerlink" href="#all-builds" title="Permalink to this heading"></a></h4>
 <p>You can see all the builds in the main jenkins interface:
 <a class="reference external" href="https://qa.coreboot.org/">https://qa.coreboot.org/</a></p>
 <p>Most of the time on the builders is taken up by the coreboot main and
@@ -233,7 +235,7 @@ coreboot gerrit builds.</p>
 </section>
 </section>
 <section id="stress-test-the-machine">
-<h3>Stress test the machine<a class="headerlink" href="#stress-test-the-machine" title="Link to this heading"></a></h3>
+<h3>Stress test the machine<a class="headerlink" href="#stress-test-the-machine" title="Permalink to this heading"></a></h3>
 <p>Test the machine to make sure that building won’t stress the hardware
 too much.  Install stress-ng, then run the stress test for at least an
 hour.</p>
@@ -254,14 +256,14 @@ cooling system.</p>
 </section>
 </section>
 <section id="jenkins-server-docker-installation">
-<h2>jenkins-server docker installation<a class="headerlink" href="#jenkins-server-docker-installation" title="Link to this heading"></a></h2>
+<h2>jenkins-server docker installation<a class="headerlink" href="#jenkins-server-docker-installation" title="Permalink to this heading"></a></h2>
 <section id="manual-installation">
-<h3>Manual Installation<a class="headerlink" href="#manual-installation" title="Link to this heading"></a></h3>
+<h3>Manual Installation<a class="headerlink" href="#manual-installation" title="Permalink to this heading"></a></h3>
 <p>If you’ve met all the above requirements, and an admin has agreed to set
 up the builder in jenkins, you’re ready to go on to the next steps.</p>
 </section>
 <section id="set-up-your-network-so-jenkins-can-talk-to-the-container">
-<h3>Set up your network so jenkins can talk to the container<a class="headerlink" href="#set-up-your-network-so-jenkins-can-talk-to-the-container" title="Link to this heading"></a></h3>
+<h3>Set up your network so jenkins can talk to the container<a class="headerlink" href="#set-up-your-network-so-jenkins-can-talk-to-the-container" title="Permalink to this heading"></a></h3>
 <p>Expose a local port through any firewalls you might have on your router.
 This would generally be in the port forwarding section, and you’d just
 forward a port (typically 49151) from the internet directly to the
@@ -271,13 +273,13 @@ machine and set up openssh so you or the jenkins admins can manage
 the machine remotely (if you allow them).</p>
 </section>
 <section id="install-and-set-up-docker">
-<h3>Install and set up docker<a class="headerlink" href="#install-and-set-up-docker" title="Link to this heading"></a></h3>
+<h3>Install and set up docker<a class="headerlink" href="#install-and-set-up-docker" title="Permalink to this heading"></a></h3>
 <p>Install docker by following <a class="reference external" href="https://docs.docker.com/engine/install/">the
 directions</a> on the docker site.
 These instructions keep changing, so just check the latest information.</p>
 </section>
 <section id="set-up-the-system-for-the-jenkins-builder">
-<h3>Set up the system for the jenkins builder<a class="headerlink" href="#set-up-the-system-for-the-jenkins-builder" title="Link to this heading"></a></h3>
+<h3>Set up the system for the jenkins builder<a class="headerlink" href="#set-up-the-system-for-the-jenkins-builder" title="Permalink to this heading"></a></h3>
 <p>As a regular user - <em>Not root</em>, run:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">COREBOOT_JENKINS_CACHE_DIR</span><span class="si">}</span>
 sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">COREBOOT_JENKINS_CCACHE_DIR</span><span class="si">}</span>
@@ -288,7 +290,7 @@ mv<span class="w"> </span>EM100Pro.rar<span class="w"> </span><span class="si">$
 </pre></div>
 </div>
 <section id="set-up-environment-variables">
-<h4>Set up environment variables<a class="headerlink" href="#set-up-environment-variables" title="Link to this heading"></a></h4>
+<h4>Set up environment variables<a class="headerlink" href="#set-up-environment-variables" title="Permalink to this heading"></a></h4>
 <p>To make configuration and the later commands easier, these should go in
 your shell’s .rc file.  Note that you only need to set them if you’re
 using something other than the default.</p>
@@ -310,7 +312,7 @@ continuing to the next step.</p>
 </section>
 </section>
 <section id="using-the-makefile-for-docker-installation">
-<h3>Using the Makefile for docker installation<a class="headerlink" href="#using-the-makefile-for-docker-installation" title="Link to this heading"></a></h3>
+<h3>Using the Makefile for docker installation<a class="headerlink" href="#using-the-makefile-for-docker-installation" title="Permalink to this heading"></a></h3>
 <p>From the coreboot directory, run</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>util/docker<span class="w"> </span><span class="nb">help</span>
 </pre></div>
@@ -349,14 +351,14 @@ Variables:
 </div>
 </section>
 <section id="install-the-coreboot-jenkins-builder">
-<h3>Install the coreboot jenkins builder<a class="headerlink" href="#install-the-coreboot-jenkins-builder" title="Link to this heading"></a></h3>
+<h3>Install the coreboot jenkins builder<a class="headerlink" href="#install-the-coreboot-jenkins-builder" title="Permalink to this heading"></a></h3>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>util/docker<span class="w"> </span>docker-jenkins-server
 </pre></div>
 </div>
 <p>Your installation is complete on your side.</p>
 </section>
 <section id="tell-the-admins-that-the-machine-is-set-up">
-<h3>Tell the Admins that the machine is set up<a class="headerlink" href="#tell-the-admins-that-the-machine-is-set-up" title="Link to this heading"></a></h3>
+<h3>Tell the Admins that the machine is set up<a class="headerlink" href="#tell-the-admins-that-the-machine-is-set-up" title="Permalink to this heading"></a></h3>
 <p>Let the admins know that the builder is set up so they can set up the
 machine profile on qa.coreboot.org.</p>
 <p>They need to know:</p>
@@ -371,7 +373,7 @@ the amount of memory used for ccache.</p></li>
 </ul>
 </section>
 <section id="first-build">
-<h3>First build<a class="headerlink" href="#first-build" title="Link to this heading"></a></h3>
+<h3>First build<a class="headerlink" href="#first-build" title="Permalink to this heading"></a></h3>
 <p>On the first build after a machine is reset, it will frequently take
 an hour to do the entire what-jenkins-does build while the ccache
 is getting filled up and the entire coreboot repo gets downloaded.  As
@@ -379,9 +381,9 @@ the ccache gets populated, the build time will drop.</p>
 </section>
 </section>
 <section id="additional-information">
-<h2>Additional Information<a class="headerlink" href="#additional-information" title="Link to this heading"></a></h2>
+<h2>Additional Information<a class="headerlink" href="#additional-information" title="Permalink to this heading"></a></h2>
 <section id="how-to-log-in-to-the-docker-instance-for-debugging">
-<h3>How to log in to the docker instance for debugging<a class="headerlink" href="#how-to-log-in-to-the-docker-instance-for-debugging" title="Link to this heading"></a></h3>
+<h3>How to log in to the docker instance for debugging<a class="headerlink" href="#how-to-log-in-to-the-docker-instance-for-debugging" title="Permalink to this heading"></a></h3>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>util/docker<span class="w"> </span>docker-jenkins-attach
 su<span class="w"> </span>coreboot
 <span class="nb">cd</span><span class="w"> </span>~/slave-root/workspace
@@ -397,7 +399,7 @@ accidentally change something, you can remove the containers and images,
 then update to get a fresh installation.</p>
 </section>
 <section id="how-to-download-containers-images-for-a-fresh-installation-and-remove-old-containers">
-<h3>How to download containers/images for a fresh installation and remove old containers<a class="headerlink" href="#how-to-download-containers-images-for-a-fresh-installation-and-remove-old-containers" title="Link to this heading"></a></h3>
+<h3>How to download containers/images for a fresh installation and remove old containers<a class="headerlink" href="#how-to-download-containers-images-for-a-fresh-installation-and-remove-old-containers" title="Permalink to this heading"></a></h3>
 <p>To delete the old containers &amp; images:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>stop<span class="w"> </span><span class="nv">$COREBOOT_JENKINS_CONTAINER</span>
 docker<span class="w"> </span>rm<span class="w"> </span><span class="nv">$COREBOOT_JENKINS_CONTAINER</span>
@@ -411,7 +413,7 @@ docker<span class="w"> </span>rmi<span class="w"> </span>XXXX<span class="w"> </
 </pre></div>
 </div>
 <section id="getting-ready-to-push-the-docker-images">
-<h4>Getting ready to push the docker images<a class="headerlink" href="#getting-ready-to-push-the-docker-images" title="Link to this heading"></a></h4>
+<h4>Getting ready to push the docker images<a class="headerlink" href="#getting-ready-to-push-the-docker-images" title="Permalink to this heading"></a></h4>
 <p>Set up an account on hub.docker.com</p>
 <p>Get an admin to add the account to the coreboot team on hub.docker.com</p>
 <p><a class="reference external" href="https://hub.docker.com/u/coreboot/dashboard/teams/?team=owners">https://hub.docker.com/u/coreboot/dashboard/teams/?team=owners</a></p>
@@ -425,7 +427,7 @@ address, and write out to ~/.docker/config.json.  Without this file, you
 won’t be able to push the images.</p>
 </section>
 <section id="updating-the-dockerfiles">
-<h4>Updating the Dockerfiles<a class="headerlink" href="#updating-the-dockerfiles" title="Link to this heading"></a></h4>
+<h4>Updating the Dockerfiles<a class="headerlink" href="#updating-the-dockerfiles" title="Permalink to this heading"></a></h4>
 <p>The coreboot-sdk Dockerfile will need to be updated when any additional
 dependencies are added.  Both the coreboot-sdk and the
 coreboot-jenkins-node Dockerfiles will need to be updated to the new
@@ -435,14 +437,14 @@ files are stored in the coreboot repo under coreboot/util/docker.</p>
 page before updating the files.</p>
 </section>
 <section id="rebuilding-the-coreboot-sdk-docker-image-to-update-the-toolchain">
-<h4>Rebuilding the coreboot-sdk docker image to update the toolchain<a class="headerlink" href="#rebuilding-the-coreboot-sdk-docker-image-to-update-the-toolchain" title="Link to this heading"></a></h4>
+<h4>Rebuilding the coreboot-sdk docker image to update the toolchain<a class="headerlink" href="#rebuilding-the-coreboot-sdk-docker-image-to-update-the-toolchain" title="Permalink to this heading"></a></h4>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>util/docker<span class="w"> </span>coreboot-sdk
 </pre></div>
 </div>
 <p>This takes a relatively long time.</p>
 </section>
 <section id="test-the-coreboot-sdk-docker-image">
-<h4>Test the coreboot-sdk docker image<a class="headerlink" href="#test-the-coreboot-sdk-docker-image" title="Link to this heading"></a></h4>
+<h4>Test the coreboot-sdk docker image<a class="headerlink" href="#test-the-coreboot-sdk-docker-image" title="Permalink to this heading"></a></h4>
 <p>There are two methods of running the docker image - interactively as a
 shell, or doing the build directly.  Running interactively as a shell is
 useful for early testing, because it allows you to update the image
@@ -450,7 +452,7 @@ useful for early testing, because it allows you to update the image
 time of having to rebuild the image for every issue you find.</p>
 </section>
 <section id="running-the-docker-image-interactively">
-<h4>Running the docker image interactively<a class="headerlink" href="#running-the-docker-image-interactively" title="Link to this heading"></a></h4>
+<h4>Running the docker image interactively<a class="headerlink" href="#running-the-docker-image-interactively" title="Permalink to this heading"></a></h4>
 <p>Run:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>util/docker<span class="w"> </span>docker-jenkins-server
 make<span class="w"> </span>-C<span class="w"> </span>util/docker<span class="w"> </span>docker-jenkins-attach
@@ -458,7 +460,7 @@ make<span class="w"> </span>-C<span class="w"> </span>util/docker<span class="w"
 </div>
 </section>
 <section id="running-the-build-directly">
-<h4>Running the build directly<a class="headerlink" href="#running-the-build-directly" title="Link to this heading"></a></h4>
+<h4>Running the build directly<a class="headerlink" href="#running-the-build-directly" title="Permalink to this heading"></a></h4>
 <p>From the coreboot directory:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>util/docker<span class="w"> </span>docker-build-coreboot
 </pre></div>
@@ -468,7 +470,7 @@ ChromeEC, flashrom, memtest86+, em100, Grub2, SeaBIOS, iPXE, coreinfo,
 nvramcui, tint…</p>
 </section>
 <section id="pushing-the-coreboot-sdk-image-to-hub-docker-com-for-use">
-<h4>Pushing the coreboot-sdk image to hub.docker.com for use<a class="headerlink" href="#pushing-the-coreboot-sdk-image-to-hub-docker-com-for-use" title="Link to this heading"></a></h4>
+<h4>Pushing the coreboot-sdk image to hub.docker.com for use<a class="headerlink" href="#pushing-the-coreboot-sdk-image-to-hub-docker-com-for-use" title="Permalink to this heading"></a></h4>
 <p>When you’re satisfied with the testing, push the coreboot-sdk image to
 the hub.docker.com</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>util/docker<span class="w"> </span>upload-coreboot-sdk
@@ -476,7 +478,7 @@ the hub.docker.com</p>
 </div>
 </section>
 <section id="building-and-pushing-the-coreboot-jenkins-node-docker-image">
-<h4>Building and pushing the coreboot-jenkins-node docker image<a class="headerlink" href="#building-and-pushing-the-coreboot-jenkins-node-docker-image" title="Link to this heading"></a></h4>
+<h4>Building and pushing the coreboot-jenkins-node docker image<a class="headerlink" href="#building-and-pushing-the-coreboot-jenkins-node-docker-image" title="Permalink to this heading"></a></h4>
 <p>This docker image is pretty simple, so there’s not really any testing
 that needs to be done.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>util/docker<span class="w"> </span>coreboot-jenkins-node
@@ -486,11 +488,11 @@ make<span class="w"> </span>-C<span class="w"> </span>util/docker<span class="w"
 </section>
 </section>
 <section id="coverity-setup">
-<h3>Coverity Setup<a class="headerlink" href="#coverity-setup" title="Link to this heading"></a></h3>
+<h3>Coverity Setup<a class="headerlink" href="#coverity-setup" title="Permalink to this heading"></a></h3>
 <p>To run coverity jobs, the builder needs to have the tools available, and
 to be marked as a coverity builder.</p>
 <section id="set-up-the-coverity-tools">
-<h4>Set up the Coverity tools<a class="headerlink" href="#set-up-the-coverity-tools" title="Link to this heading"></a></h4>
+<h4>Set up the Coverity tools<a class="headerlink" href="#set-up-the-coverity-tools" title="Permalink to this heading"></a></h4>
 <p>Download the Linux-64 coverity build tool and decompress it into your
 cache directory as defined by the <code class="docutils literal notranslate"><span class="pre">$COREBOOT_JENKINS_CACHE_DIR</span></code> variable
 on the jenkins server.</p>

@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Upcoming release - coreboot 4.21 &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Upcoming release - coreboot 4.21 &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -143,7 +145,7 @@
            <div itemprop="articleBody">
              
   <section id="upcoming-release-coreboot-4-21">
-<h1>Upcoming release - coreboot 4.21<a class="headerlink" href="#upcoming-release-coreboot-4-21" title="Link to this heading"></a></h1>
+<h1>Upcoming release - coreboot 4.21<a class="headerlink" href="#upcoming-release-coreboot-4-21" title="Permalink to this heading"></a></h1>
 <p>The 4.21 release is scheduled for August 21st, 2023</p>
 <p>In the past quarter year, the coreboot project has gotten over 1200 new
 patches from around 140 authors, 20 of whom contributed for the first
@@ -154,7 +156,7 @@ about the coreboot project. There have been a number of new companies
 starting to use coreboot recently, and we appreciate all of the
 contributions and support.</p>
 <section id="upcoming-switch-from-master-branch-to-main-branch">
-<h2>Upcoming switch from master branch to main branch<a class="headerlink" href="#upcoming-switch-from-master-branch-to-main-branch" title="Link to this heading"></a></h2>
+<h2>Upcoming switch from master branch to main branch<a class="headerlink" href="#upcoming-switch-from-master-branch-to-main-branch" title="Permalink to this heading"></a></h2>
 <p>Historically, the initial branch that was created in a new git
 repository was named ‘master’. In line with many other projects,
 coreboot has decided to switch away from this name and use the name
@@ -177,9 +179,9 @@ be decreased over time. We plan to stop updating the master branch
 following the 4.22 release.</p>
 </section>
 <section id="significant-or-interesting-changes">
-<h2>Significant or interesting changes<a class="headerlink" href="#significant-or-interesting-changes" title="Link to this heading"></a></h2>
+<h2>Significant or interesting changes<a class="headerlink" href="#significant-or-interesting-changes" title="Permalink to this heading"></a></h2>
 <section id="lib-support-localized-text-of-memory-training-desc-in-ux-locales-c">
-<h3>lib: Support localized text of memory_training_desc in ux_locales.c<a class="headerlink" href="#lib-support-localized-text-of-memory-training-desc-in-ux-locales-c" title="Link to this heading"></a></h3>
+<h3>lib: Support localized text of memory_training_desc in ux_locales.c<a class="headerlink" href="#lib-support-localized-text-of-memory-training-desc-in-ux-locales-c" title="Permalink to this heading"></a></h3>
 <p>Most of the text in coreboot is for logging, and does not use
 localization. There are however, some bits of text that can be
 presented to the user, and this patch supplies a method to localize
@@ -202,7 +204,7 @@ returns. If no valid string found, we will try to display in English
 (locale ID 0).</p>
 </section>
 <section id="improved-the-bootsplash-support">
-<h3>Improved the bootsplash support<a class="headerlink" href="#improved-the-bootsplash-support" title="Link to this heading"></a></h3>
+<h3>Improved the bootsplash support<a class="headerlink" href="#improved-the-bootsplash-support" title="Permalink to this heading"></a></h3>
 <p>The JPEG decoder, that was added many years ago to display a bootsplash
 in coreboot, has a few quirks. People used to do some voodoo with GIMP
 to convert images to the right format, but we can also achieve the same
@@ -220,7 +222,7 @@ the picture can be done by it and several options have been added to
 Kconfig.</p>
 </section>
 <section id="libpayload-uhci-re-write-uhci-rh-driver-w-generic-hub-api">
-<h3>libpayload/uhci: Re-write UHCI RH driver w/ generic_hub API<a class="headerlink" href="#libpayload-uhci-re-write-uhci-rh-driver-w-generic-hub-api" title="Link to this heading"></a></h3>
+<h3>libpayload/uhci: Re-write UHCI RH driver w/ generic_hub API<a class="headerlink" href="#libpayload-uhci-re-write-uhci-rh-driver-w-generic-hub-api" title="Permalink to this heading"></a></h3>
 <p>This is a complete rewrite of the UHCI root-hub driver, based on the
 xHCI one. We are doing things by the book as far as possible. One
 special case is uhci_rh_reset_port() which does the reset sequencing
@@ -233,7 +235,7 @@ that usually the hardware would do.</p>
 </ul>
 </section>
 <section id="linux-trampoline-handle-coreboot-framebuffer-64-bit-addresses">
-<h3>linux_trampoline: Handle coreboot framebuffer &amp; 64-bit addresses<a class="headerlink" href="#linux-trampoline-handle-coreboot-framebuffer-64-bit-addresses" title="Link to this heading"></a></h3>
+<h3>linux_trampoline: Handle coreboot framebuffer &amp; 64-bit addresses<a class="headerlink" href="#linux-trampoline-handle-coreboot-framebuffer-64-bit-addresses" title="Permalink to this heading"></a></h3>
 <p>Translate the coreboot framebuffer info from coreboot tables to the
 Linux zero page.</p>
 <p>To support full 64-bit addresses, there is a new field <code class="docutils literal notranslate"><span class="pre">ext_lfb_base</span></code>
@@ -245,7 +247,7 @@ play safe, and only allow 64-bit addresses for kernels after the 2.15
 version bump of the boot protocol.</p>
 </section>
 <section id="arch-x86-don-t-allow-hw-floating-point-operations">
-<h3>arch/x86: Don’t allow hw floating point operations<a class="headerlink" href="#arch-x86-don-t-allow-hw-floating-point-operations" title="Link to this heading"></a></h3>
+<h3>arch/x86: Don’t allow hw floating point operations<a class="headerlink" href="#arch-x86-don-t-allow-hw-floating-point-operations" title="Permalink to this heading"></a></h3>
 <p>Even though coreboot does not allow floating point operations, some
 compilers like clang generate code using hw floating point registers,
 e.g. SSE %XMMx registers on 64bit code by default. Floating point
@@ -264,7 +266,7 @@ Returning to 32bit mode was only done so that fxsave was done in the
 same mode as fxrstor, but this is no longer done.</p>
 </section>
 <section id="caching-of-pcie-5-0-hsphy-firmware-in-spi-flash">
-<h3>Caching of PCIe 5.0 HSPHY firmware in SPI flash<a class="headerlink" href="#caching-of-pcie-5-0-hsphy-firmware-in-spi-flash" title="Link to this heading"></a></h3>
+<h3>Caching of PCIe 5.0 HSPHY firmware in SPI flash<a class="headerlink" href="#caching-of-pcie-5-0-hsphy-firmware-in-spi-flash" title="Permalink to this heading"></a></h3>
 <p>This adds the ability to cache the PCIe 5.0 HSPHY firmware in the SPI
 flash. A new flashmap region is created for that purpose. The goal of
 caching is to reduce the dependency on the CSME (Converged Security and
@@ -275,7 +277,7 @@ caching that firmware, this allows the PCIe 5.0 root ports to keep
 functioning even if CSME/HECI is not functional.</p>
 </section>
 <section id="extracting-of-tpm-logs-using-cbmem-tool">
-<h3>Extracting of TPM logs using cbmem tool<a class="headerlink" href="#extracting-of-tpm-logs-using-cbmem-tool" title="Link to this heading"></a></h3>
+<h3>Extracting of TPM logs using cbmem tool<a class="headerlink" href="#extracting-of-tpm-logs-using-cbmem-tool" title="Permalink to this heading"></a></h3>
 <p>CBMEM can contain logs in different forms (at most one is present):</p>
 <ul class="simple">
 <li><p>coreboot-specific format (CBMEM_ID_TPM_CB_LOG exported as
@@ -313,7 +315,7 @@ entries.</p>
 </div>
 </section>
 <section id="soc-amd-read-domain-resource-window-configuration-from-hardware">
-<h3>soc/amd: read domain resource window configuration from hardware<a class="headerlink" href="#soc-amd-read-domain-resource-window-configuration-from-hardware" title="Link to this heading"></a></h3>
+<h3>soc/amd: read domain resource window configuration from hardware<a class="headerlink" href="#soc-amd-read-domain-resource-window-configuration-from-hardware" title="Permalink to this heading"></a></h3>
 <p>Read the MMIO and IO decode windows for the PCI root complex and the
 PCI bus number range decoded to the PCI root complex from the data
 fabric registers and pass the information to the resource allocator so
@@ -323,7 +325,7 @@ about this too. This is required for the upcoming USB 4 support.</p>
 </section>
 </section>
 <section id="additional-coreboot-changes">
-<h2>Additional coreboot changes<a class="headerlink" href="#additional-coreboot-changes" title="Link to this heading"></a></h2>
+<h2>Additional coreboot changes<a class="headerlink" href="#additional-coreboot-changes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Added SPDX headers to more files to help automated license checking.
 The linter has been enabled to check the Makefiles as well.</p></li>
@@ -359,9 +361,9 @@ which is needed for reproducible build environments for example.</p></li>
 </ul>
 </section>
 <section id="changes-to-external-resources">
-<h2>Changes to external resources<a class="headerlink" href="#changes-to-external-resources" title="Link to this heading"></a></h2>
+<h2>Changes to external resources<a class="headerlink" href="#changes-to-external-resources" title="Permalink to this heading"></a></h2>
 <section id="toolchain">
-<h3>Toolchain<a class="headerlink" href="#toolchain" title="Link to this heading"></a></h3>
+<h3>Toolchain<a class="headerlink" href="#toolchain" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>binutils</p>
 <ul>
@@ -384,9 +386,9 @@ which is needed for reproducible build environments for example.</p></li>
 </ul>
 </section>
 <section id="git-submodule-pointers">
-<h3>Git submodule pointers<a class="headerlink" href="#git-submodule-pointers" title="Link to this heading"></a></h3>
+<h3>Git submodule pointers<a class="headerlink" href="#git-submodule-pointers" title="Permalink to this heading"></a></h3>
 <section id="rdparty">
-<h4>/3rdparty<a class="headerlink" href="#rdparty" title="Link to this heading"></a></h4>
+<h4>/3rdparty<a class="headerlink" href="#rdparty" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>amd_blobs: Update from commit id 1cd6ea5cc5 to 6a1e1457af (5 commits)</p></li>
 <li><p>arm-trusted-firmware: Update from commit id 4c985e8674 to 37366af8d4
@@ -403,7 +405,7 @@ commits)</p></li>
 </ul>
 </section>
 <section id="util">
-<h4>/util<a class="headerlink" href="#util" title="Link to this heading"></a></h4>
+<h4>/util<a class="headerlink" href="#util" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>goswid: Update from commit id bdd55e4202 to 567a1c99b0 (5 commits)</p></li>
 <li><p>nvidia/cbootimage: Update from commit id 65a6d94dd5 to 80c499ebbe (1
@@ -412,7 +414,7 @@ commit)</p></li>
 </section>
 </section>
 <section id="external-payloads">
-<h3>External payloads<a class="headerlink" href="#external-payloads" title="Link to this heading"></a></h3>
+<h3>External payloads<a class="headerlink" href="#external-payloads" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Update the depthcharge payload from commit ID 902681db13 to c48613a71c</p></li>
 <li><p>Upgrade EDK2-MrChromebox from version 202304 to version 202306</p></li>
@@ -423,7 +425,7 @@ commit)</p></li>
 </section>
 </section>
 <section id="added-mainboards">
-<h2>Added mainboards:<a class="headerlink" href="#added-mainboards" title="Link to this heading"></a></h2>
+<h2>Added mainboards:<a class="headerlink" href="#added-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>ByteDance ByteDance bd_egs</p></li>
 <li><p>Google: Craaskov</p></li>
@@ -458,19 +460,19 @@ commit)</p></li>
 </ul>
 </section>
 <section id="removed-mainboards">
-<h2>Removed Mainboards<a class="headerlink" href="#removed-mainboards" title="Link to this heading"></a></h2>
+<h2>Removed Mainboards<a class="headerlink" href="#removed-mainboards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Intel Galileo</p></li>
 </ul>
 </section>
 <section id="updated-socs">
-<h2>Updated SoCs<a class="headerlink" href="#updated-socs" title="Link to this heading"></a></h2>
+<h2>Updated SoCs<a class="headerlink" href="#updated-socs" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Removed src/soc/intel/quark</p></li>
 </ul>
 </section>
 <section id="statistics-from-the-4-20-to-the-4-21-release">
-<h2>Statistics from the 4.20 to the 4.21 release<a class="headerlink" href="#statistics-from-the-4-20-to-the-4-21-release" title="Link to this heading"></a></h2>
+<h2>Statistics from the 4.20 to the 4.21 release<a class="headerlink" href="#statistics-from-the-4-20-to-the-4-21-release" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Total Commits: 1252</p></li>
 <li><p>Average Commits per day: 12.59</p></li>
@@ -486,7 +488,7 @@ commit)</p></li>
 </ul>
 </section>
 <section id="significant-known-and-open-issues">
-<h2>Significant Known and Open Issues<a class="headerlink" href="#significant-known-and-open-issues" title="Link to this heading"></a></h2>
+<h2>Significant Known and Open Issues<a class="headerlink" href="#significant-known-and-open-issues" title="Permalink to this heading"></a></h2>
 <p>Issues from the coreboot bugtracker: https://ticket.coreboot.org/</p>
 <table class="docutils align-default">
 <thead>
@@ -547,7 +549,7 @@ commit)</p></li>
 </table>
 </section>
 <section id="coreboot-links-and-contact-information">
-<h2>coreboot Links and Contact Information<a class="headerlink" href="#coreboot-links-and-contact-information" title="Link to this heading"></a></h2>
+<h2>coreboot Links and Contact Information<a class="headerlink" href="#coreboot-links-and-contact-information" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Main Web site: https://www.coreboot.org</p></li>
 <li><p>IRC: https://web.libera.chat/#coreboot</p></li>

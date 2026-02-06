@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Firmware Configuration Interface in coreboot &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Firmware Configuration Interface in coreboot &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -135,9 +137,9 @@
            <div itemprop="articleBody">
              
   <section id="firmware-configuration-interface-in-coreboot">
-<h1>Firmware Configuration Interface in coreboot<a class="headerlink" href="#firmware-configuration-interface-in-coreboot" title="Link to this heading"></a></h1>
+<h1>Firmware Configuration Interface in coreboot<a class="headerlink" href="#firmware-configuration-interface-in-coreboot" title="Permalink to this heading"></a></h1>
 <section id="motivation">
-<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h2>
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this heading"></a></h2>
 <p>The firmware configuration interface in coreboot is designed to support a wide variety of
 configuration options in that are dictated by the hardware at runtime.  This allows a single
 BIOS image to be used across a wide variety of devices which may have key differences but are
@@ -152,7 +154,7 @@ match the actual hardware.  In the case where a user was to swap their hardware 
 would need to be updated or overridden.</p>
 </section>
 <section id="device-presence">
-<h2>Device Presence<a class="headerlink" href="#device-presence" title="Link to this heading"></a></h2>
+<h2>Device Presence<a class="headerlink" href="#device-presence" title="Permalink to this heading"></a></h2>
 <p>One common example of why a firmware configuration interface is important is determining if a
 device is present in the system.  With some bus topologies and hardware mechanisms it is
 possible to probe and enumerate this at runtime:</p>
@@ -174,7 +176,7 @@ support relatively few options.</p></li>
 </ul>
 <p>This presence detection can impact different stages of boot:</p>
 <section id="acpi">
-<h3>ACPI<a class="headerlink" href="#acpi" title="Link to this heading"></a></h3>
+<h3>ACPI<a class="headerlink" href="#acpi" title="Permalink to this heading"></a></h3>
 <p>Devices that are not present should not provide an ACPI device indicating that they are
 present or the operating system may not be able to handle it correctly.</p>
 <p>The ACPI devices are largely driven by chips defined in the mainboard <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> and
@@ -183,33 +185,33 @@ is present or not directly in <code class="docutils literal notranslate"><span c
 code to parse the tree and disable unused devices.</p>
 </section>
 <section id="gpio">
-<h3>GPIO<a class="headerlink" href="#gpio" title="Link to this heading"></a></h3>
+<h3>GPIO<a class="headerlink" href="#gpio" title="Permalink to this heading"></a></h3>
 <p>GPIOs with multiple functions may need to be configured correctly depending on the attached
 device.  Given the wide variety of GPIO configuration possibilities it is not feasible to
 specify all combinations directly in <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> and it is best left to code provided by
 the mainboard.</p>
 </section>
 <section id="fsp-upd">
-<h3>FSP UPD<a class="headerlink" href="#fsp-upd" title="Link to this heading"></a></h3>
+<h3>FSP UPD<a class="headerlink" href="#fsp-upd" title="Permalink to this heading"></a></h3>
 <p>Enabling and disabling devices may require altering FSP UPD values that are provided to the
 various stages of FSP.  These options are also not easy to specify multiple times for
 different configurations in <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> and can be provided by the mainboard as code.</p>
 </section>
 </section>
 <section id="firmware-configuration-interface">
-<h2>Firmware Configuration Interface<a class="headerlink" href="#firmware-configuration-interface" title="Link to this heading"></a></h2>
+<h2>Firmware Configuration Interface<a class="headerlink" href="#firmware-configuration-interface" title="Permalink to this heading"></a></h2>
 <p>The firmware configuration interface can be enabled by selecting <code class="docutils literal notranslate"><span class="pre">CONFIG_FW_CONFIG</span></code> and also
 providing a source for the value by defining an additional Kconfig option defined below.</p>
 <p>If the firmware configuration interface is disabled via Kconfig then all probe attempts will
 return true.</p>
 </section>
 <section id="firmware-configuration-value">
-<h2>Firmware Configuration Value<a class="headerlink" href="#firmware-configuration-value" title="Link to this heading"></a></h2>
+<h2>Firmware Configuration Value<a class="headerlink" href="#firmware-configuration-value" title="Permalink to this heading"></a></h2>
 <p>The 64-bit value used as the firmware configuration bitmask is meant to be determined at runtime
 but could also be defined at compile time if needed.</p>
 <p>There are two supported sources for providing this information to coreboot.</p>
 <section id="cbfs">
-<h3>CBFS<a class="headerlink" href="#cbfs" title="Link to this heading"></a></h3>
+<h3>CBFS<a class="headerlink" href="#cbfs" title="Permalink to this heading"></a></h3>
 <p>The value can be provided with a 64-bit raw value in CBFS that is read by coreboot.  The value
 can be set at build time but also adjusted in an existing image with <code class="docutils literal notranslate"><span class="pre">cbfstool</span></code>.</p>
 <p>To enable this select the <code class="docutils literal notranslate"><span class="pre">CONFIG_FW_CONFIG_CBFS</span></code> option in the build configuration and add a
@@ -218,7 +220,7 @@ raw 64-bit value to CBFS with the name of the current prefix at <code class="doc
 file in CBFS use the value it contains when matching fields and options.</p>
 </section>
 <section id="embedded-controller">
-<h3>Embedded Controller<a class="headerlink" href="#embedded-controller" title="Link to this heading"></a></h3>
+<h3>Embedded Controller<a class="headerlink" href="#embedded-controller" title="Permalink to this heading"></a></h3>
 <p>Google ChromeOS devices support an Embedded Controller interface for reading and writing the
 firmware configuration value, along with other board-specific information.  It is possible for
 coreboot to read this value at boot on systems that support this feature.</p>
@@ -233,7 +235,7 @@ documentation for <a class="reference external" href="http://chromium.googlesour
 </section>
 </section>
 <section id="firmware-configuration-table">
-<h2>Firmware Configuration Table<a class="headerlink" href="#firmware-configuration-table" title="Link to this heading"></a></h2>
+<h2>Firmware Configuration Table<a class="headerlink" href="#firmware-configuration-table" title="Permalink to this heading"></a></h2>
 <p>The firmware configuration table itself is defined in the mainboard <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> with
 special tokens for defining fields and options.</p>
 <p>The table itself is enclosed in a <code class="docutils literal notranslate"><span class="pre">fw_config</span></code> token and terminated with <code class="docutils literal notranslate"><span class="pre">end</span></code> and it contains
@@ -305,7 +307,7 @@ variant to add specific options to fields in or define new fields in the unused 
 <p>It is not possible to redefine a field mask or override the value of an existing option this
 way, only to add new options to a field or new fields to the table.</p>
 <section id="firmware-configuration-table-example">
-<h3>Firmware Configuration Table Example<a class="headerlink" href="#firmware-configuration-table-example" title="Link to this heading"></a></h3>
+<h3>Firmware Configuration Table Example<a class="headerlink" href="#firmware-configuration-table-example" title="Permalink to this heading"></a></h3>
 <p>In this example a baseboard defines a simple boolean feature that is enabled or disabled
 depending on the value of bit 0, and a field at bits 1-2 that indicates which daughter board
 is attached.</p>
@@ -313,7 +315,7 @@ is attached.</p>
 This way each variant can support multiple possible daughter boards in addition to the one
 that was defined by the baseboard.</p>
 <section id="devicetree-cb">
-<h4>devicetree.cb<a class="headerlink" href="#devicetree-cb" title="Link to this heading"></a></h4>
+<h4>devicetree.cb<a class="headerlink" href="#devicetree-cb" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fw_config</span>
     <span class="n">field</span> <span class="n">FEATURE</span> <span class="mi">0</span>
         <span class="n">option</span> <span class="n">DISABLED</span> <span class="mi">0</span>
@@ -328,7 +330,7 @@ that was defined by the baseboard.</p>
 </div>
 </section>
 <section id="overridetree-cb">
-<h4>overridetree.cb<a class="headerlink" href="#overridetree-cb" title="Link to this heading"></a></h4>
+<h4>overridetree.cb<a class="headerlink" href="#overridetree-cb" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fw_config</span>
     <span class="n">field</span> <span class="n">DAUGHTER_BOARD</span>
         <span class="n">option</span> <span class="n">VARIANT_DB_ONE</span> <span class="mi">2</span>
@@ -342,7 +344,7 @@ to check if fields match the firmware configuration options determined at runtim
 simple check of the field mask and the option value.</p>
 </section>
 <section id="static-h">
-<h4>static.h<a class="headerlink" href="#static-h" title="Link to this heading"></a></h4>
+<h4>static.h<a class="headerlink" href="#static-h" title="Permalink to this heading"></a></h4>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* field: FEATURE */</span>
 <span class="cp">#define FW_CONFIG_FIELD_FEATURE_NAME &quot;FEATURE&quot;</span>
 <span class="cp">#define FW_CONFIG_FIELD_FEATURE_MASK 0x00000001</span>
@@ -368,17 +370,17 @@ simple check of the field mask and the option value.</p>
 </section>
 </section>
 <section id="device-probing">
-<h2>Device Probing<a class="headerlink" href="#device-probing" title="Link to this heading"></a></h2>
+<h2>Device Probing<a class="headerlink" href="#device-probing" title="Permalink to this heading"></a></h2>
 <p>One use of the firmware configuration interface in devicetree is to allow device probing to be
 specified directly with the devices themselves.  A new <code class="docutils literal notranslate"><span class="pre">probe</span></code> token is introduced to allow a
 device to be probed by field and option name.  Multiple <code class="docutils literal notranslate"><span class="pre">probe</span></code> entries may be present for
 each device and any successful probe will consider the device to be present.</p>
 <section id="probing-example">
-<h3>Probing Example<a class="headerlink" href="#probing-example" title="Link to this heading"></a></h3>
+<h3>Probing Example<a class="headerlink" href="#probing-example" title="Permalink to this heading"></a></h3>
 <p>Continuing with the previous example this device would be considered present if the field
 <code class="docutils literal notranslate"><span class="pre">DAUGHTER_BOARD</span></code> was set to either <code class="docutils literal notranslate"><span class="pre">VARIANT_DB_ONE</span></code> or <code class="docutils literal notranslate"><span class="pre">VARIANT_DB_TWO</span></code>:</p>
 <section id="id1">
-<h4>overridetree.cb<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<h4>overridetree.cb<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">generic</span><span class="o">/</span><span class="n">example</span>
     <span class="n">device</span> <span class="n">generic</span> <span class="mi">0</span> <span class="n">on</span>
         <span class="n">probe</span> <span class="n">DAUGHTER_BOARD</span> <span class="n">VARIANT_DB_ONE</span>
@@ -392,7 +394,7 @@ undefined value then the device would be disabled.</p>
 </section>
 </section>
 <section id="probe-overrides">
-<h3>Probe Overrides<a class="headerlink" href="#probe-overrides" title="Link to this heading"></a></h3>
+<h3>Probe Overrides<a class="headerlink" href="#probe-overrides" title="Permalink to this heading"></a></h3>
 <p>When a device is declared with a probe in the baseboard <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code> and the same device
 is also present in the <code class="docutils literal notranslate"><span class="pre">overridetree.cb</span></code> then the probing information from the baseboard
 is discarded and the override device must provide all necessary probing information.</p>
@@ -404,7 +406,7 @@ probing for the <code class="docutils literal notranslate"><span class="pre">VAR
 override device must list both.  This allows an override device to remove a probe entry that
 was defined in the baseboard.</p>
 <section id="id2">
-<h4>devicetree.cb<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<h4>devicetree.cb<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">generic</span><span class="o">/</span><span class="n">example</span>
     <span class="n">device</span> <span class="n">generic</span> <span class="mi">0</span> <span class="n">on</span>
 	    <span class="n">probe</span> <span class="n">DAUGHTER_BOARD</span> <span class="n">REFERENCE_DB</span>
@@ -414,7 +416,7 @@ was defined in the baseboard.</p>
 </div>
 </section>
 <section id="id3">
-<h4>overridetree.cb<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<h4>overridetree.cb<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chip</span> <span class="n">drivers</span><span class="o">/</span><span class="n">generic</span><span class="o">/</span><span class="n">example</span>
     <span class="n">device</span> <span class="n">generic</span> <span class="mi">0</span> <span class="n">on</span>
 	    <span class="n">probe</span> <span class="n">DAUGHTER_BOARD</span> <span class="n">VARIANT_DB_ONE</span>
@@ -425,7 +427,7 @@ was defined in the baseboard.</p>
 </section>
 </section>
 <section id="automatic-device-probing">
-<h3>Automatic Device Probing<a class="headerlink" href="#automatic-device-probing" title="Link to this heading"></a></h3>
+<h3>Automatic Device Probing<a class="headerlink" href="#automatic-device-probing" title="Permalink to this heading"></a></h3>
 <p>At boot time the firmware configuration interface will walk the device tree and apply any
 probe entries that were defined in <code class="docutils literal notranslate"><span class="pre">devicetree.cb</span></code>.  This probing takes effect before the
 <code class="docutils literal notranslate"><span class="pre">BS_DEV_ENUMERATE</span></code> step during the boot state machine in ramstage.</p>
@@ -435,7 +437,7 @@ be executed to allow any device disable code to execute.</p>
 <p>The result of this probe definition is to provide an array of structures describing each
 field and option to check.</p>
 <section id="fw-config-h">
-<h4>fw_config.h<a class="headerlink" href="#fw-config-h" title="Link to this heading"></a></h4>
+<h4>fw_config.h<a class="headerlink" href="#fw-config-h" title="Permalink to this heading"></a></h4>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
 <span class="cm"> * struct fw_config - Firmware configuration field and option.</span>
 <span class="cm"> * @field_name: Name of the field that this option belongs to.</span>
@@ -453,7 +455,7 @@ field and option to check.</p>
 </div>
 </section>
 <section id="static-c">
-<h4>static.c<a class="headerlink" href="#static-c" title="Link to this heading"></a></h4>
+<h4>static.c<a class="headerlink" href="#static-c" title="Permalink to this heading"></a></h4>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">STORAGE</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">fw_config</span><span class="w"> </span><span class="n">__devN_probe_list</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">	</span><span class="p">{</span>
 <span class="w">		</span><span class="p">.</span><span class="n">field_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FW_CONFIG_FIELD_DAUGHTER_BOARD_NAME</span><span class="p">,</span>
@@ -474,7 +476,7 @@ field and option to check.</p>
 </section>
 </section>
 <section id="runtime-probing">
-<h3>Runtime Probing<a class="headerlink" href="#runtime-probing" title="Link to this heading"></a></h3>
+<h3>Runtime Probing<a class="headerlink" href="#runtime-probing" title="Permalink to this heading"></a></h3>
 <p>The device driver probing allows for seamless integration with the mainboard but it is only
 effective in ramstage and for specific devices declared in devicetree.cb.  There are other
 situations where code may need to probe or check the value of a field in romstage or at other

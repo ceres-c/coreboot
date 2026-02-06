@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>abuild &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>abuild &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -123,7 +125,7 @@
            <div itemprop="articleBody">
              
   <section id="abuild">
-<h1>abuild<a class="headerlink" href="#abuild" title="Link to this heading"></a></h1>
+<h1>abuild<a class="headerlink" href="#abuild" title="Permalink to this heading"></a></h1>
 <p>This utility is a great tool to check whether your coreboot tree
 compiles for one or all targets. It compiles the ‘default’ build for a
 mainboard. This is roughly equivalent to removing the .config file,
@@ -135,7 +137,7 @@ to make sure your patch compiles cleanly for all.</p>
 <p>Note that abuild is a tool to do a simple build test, and binaries it
 produces may well not boot if flashed to a system.</p>
 <section id="basic-usage">
-<h2>Basic usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h2>
+<h2>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this heading"></a></h2>
 <p>abuild needs to be run from the coreboot directory. If you cd into the
 coreboot/util/abuild directory and try to run it from there, it will
 not run correctly.</p>
@@ -148,7 +150,7 @@ example, to build the Lenovo X230 target, run:</p>
 </div>
 </section>
 <section id="where-builds-and-logs-are-stored">
-<h2>Where builds and logs are stored<a class="headerlink" href="#where-builds-and-logs-are-stored" title="Link to this heading"></a></h2>
+<h2>Where builds and logs are stored<a class="headerlink" href="#where-builds-and-logs-are-stored" title="Permalink to this heading"></a></h2>
 <p>The resulting images and logs are stored in directory coreboot-builds/
 under your current directory. This can be overridden with –outdir:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>util/abuild/abuild<span class="w"> </span>--outdir<span class="w"> </span>/mnt/portable/coreboot-builds
@@ -166,7 +168,7 @@ coreboot-builds/passing_boards and coreboot-builds/failing_boards.
 if you feel a need to reference the results later.</p>
 </section>
 <section id="payloads">
-<h2>Payloads<a class="headerlink" href="#payloads" title="Link to this heading"></a></h2>
+<h2>Payloads<a class="headerlink" href="#payloads" title="Permalink to this heading"></a></h2>
 <p>You can also specify a payload directory with -p:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>payloads
 cp<span class="w"> </span>/somewhere/filo.elf<span class="w"> </span>payloads
@@ -187,7 +189,7 @@ payload to use (and takes the mainboard as a parameter) such as:</p>
 </div>
 </section>
 <section id="build-non-default-configurations">
-<h2>Build non-default configurations<a class="headerlink" href="#build-non-default-configurations" title="Link to this heading"></a></h2>
+<h2>Build non-default configurations<a class="headerlink" href="#build-non-default-configurations" title="Permalink to this heading"></a></h2>
 <p>Sometimes you do need to build test a custom, non-default configuration.
 This can be accomplished by placing a config file in configs/.</p>
 <p>First, clean your slate with <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">distclean</span></code> or <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">.config</span></code>.</p>
@@ -233,7 +235,7 @@ a file named <code class="docutils literal notranslate"><span class="pre">myconf
 stage.</p>
 </section>
 <section id="selectively-build-certain-targets-only-also-config-file-naming-caveats">
-<h2>Selectively build certain targets only (also config file naming caveats)<a class="headerlink" href="#selectively-build-certain-targets-only-also-config-file-naming-caveats" title="Link to this heading"></a></h2>
+<h2>Selectively build certain targets only (also config file naming caveats)<a class="headerlink" href="#selectively-build-certain-targets-only-also-config-file-naming-caveats" title="Permalink to this heading"></a></h2>
 <p>The P8Z77-M PRO example above would fail for P8Z77-M, because the
 config file name is ambiguous. <code class="docutils literal notranslate"><span class="pre">abuild</span></code> would pick up this config when
 building for P8Z77-M, but fails when it sees that this config isn’t
@@ -253,7 +255,7 @@ building targets without a Kconfig set, use –skip_unset:</p>
 RAM init.</p>
 </section>
 <section id="additional-examples">
-<h2>Additional Examples<a class="headerlink" href="#additional-examples" title="Link to this heading"></a></h2>
+<h2>Additional Examples<a class="headerlink" href="#additional-examples" title="Permalink to this heading"></a></h2>
 <p>Many boards have multiple variants. You can build for a specific
 variant of a board:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>util/abuild/abuild<span class="w"> </span>-t<span class="w"> </span>asus/p8x7x-series<span class="w"> </span>-b<span class="w"> </span>p8z77-m_pro<span class="w"> </span>-p<span class="w"> </span>none
@@ -281,7 +283,7 @@ things up as well:</p>
 </div>
 </section>
 <section id="full-options-list">
-<h2>Full options list<a class="headerlink" href="#full-options-list" title="Link to this heading"></a></h2>
+<h2>Full options list<a class="headerlink" href="#full-options-list" title="Permalink to this heading"></a></h2>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>coreboot autobuild v0.11.01 (Feb 3, 2023)
 [...]
 Usage: util/abuild/abuild [options]

@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Intel Authenticated Code Modules &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Intel Authenticated Code Modules &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -117,7 +119,7 @@
            <div itemprop="articleBody">
              
   <section id="intel-authenticated-code-modules">
-<h1>Intel Authenticated Code Modules<a class="headerlink" href="#intel-authenticated-code-modules" title="Link to this heading"></a></h1>
+<h1>Intel Authenticated Code Modules<a class="headerlink" href="#intel-authenticated-code-modules" title="Permalink to this heading"></a></h1>
 <p>The Authenticated Code Modules (ACMs) are Intel digitally signed modules
 that contain code to be run before the traditional x86 CPU reset vector.
 The ACMs can be invoked at runtime through the GETSEC instruction, too.</p>
@@ -138,14 +140,14 @@ like <a class="reference external" href="https://sourceforge.net/p/tboot/wiki/Ho
 </li>
 </ol>
 <section id="retrieving-acms">
-<h2>Retrieving ACMs<a class="headerlink" href="#retrieving-acms" title="Link to this heading"></a></h2>
+<h2>Retrieving ACMs<a class="headerlink" href="#retrieving-acms" title="Permalink to this heading"></a></h2>
 <p>The ACMs can be downloaded on Intel’s website:
 <a class="reference external" href="https://software.intel.com/en-us/articles/intel-trusted-execution-technology">Intel Trusted Execution Technology</a></p>
 <p>If you want to extract the BLOB from vendor firmware you can search for the
 string <code class="docutils literal notranslate"><span class="pre">LCP_POLICY_DATA</span></code> or <code class="docutils literal notranslate"><span class="pre">TXT</span></code>.</p>
 </section>
 <section id="header">
-<h2>Header<a class="headerlink" href="#header" title="Link to this heading"></a></h2>
+<h2>Header<a class="headerlink" href="#header" title="Permalink to this heading"></a></h2>
 <p>Every ACM has a fixed size header:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * ACM Header v0.0 without dynamic part</span>

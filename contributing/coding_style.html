@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coding Style &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Coding Style &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -138,7 +140,7 @@
            <div itemprop="articleBody">
              
   <section id="coding-style">
-<h1>Coding Style<a class="headerlink" href="#coding-style" title="Link to this heading"></a></h1>
+<h1>Coding Style<a class="headerlink" href="#coding-style" title="Permalink to this heading"></a></h1>
 <p>This document describes the preferred C coding style for the
 coreboot project. It is in many ways exactly the same as the Linux
 kernel coding style. In fact, most of this document has been copied from
@@ -163,7 +165,7 @@ were not designed to directly match this guide and may have false
 positives. They should not be bulk-applied to change existing code
 except in cases where they directly match the style guide.)</p>
 <section id="indentation">
-<h2>Indentation<a class="headerlink" href="#indentation" title="Link to this heading"></a></h2>
+<h2>Indentation<a class="headerlink" href="#indentation" title="Permalink to this heading"></a></h2>
 <p>Tabs are 8 characters, and thus indentations are also 8 characters.
 There are heretic movements that try to make indentations 4 (or even 2!)
 characters deep, and that is akin to trying to define the value of PI to
@@ -219,7 +221,7 @@ will actually keep the patch from being tested in the CI, so patches
 with ending whitespace cannot be merged.</p>
 </section>
 <section id="breaking-long-lines-and-strings">
-<h2>Breaking long lines and strings<a class="headerlink" href="#breaking-long-lines-and-strings" title="Link to this heading"></a></h2>
+<h2>Breaking long lines and strings<a class="headerlink" href="#breaking-long-lines-and-strings" title="Permalink to this heading"></a></h2>
 <p>Coding style is all about readability and maintainability using commonly
 available tools.</p>
 <p>The limit on the length of lines is 96 columns and this is a strongly
@@ -233,7 +235,7 @@ user-visible strings such as printk messages, because that breaks the
 ability to grep for them.</p>
 </section>
 <section id="placing-braces-and-spaces">
-<h2>Placing Braces and Spaces<a class="headerlink" href="#placing-braces-and-spaces" title="Link to this heading"></a></h2>
+<h2>Placing Braces and Spaces<a class="headerlink" href="#placing-braces-and-spaces" title="Permalink to this heading"></a></h2>
 <p>The other issue that always comes up in C styling is the placement of
 braces. Unlike the indent size, there are few technical reasons to
 choose one placement strategy over the other, but the preferred way, as
@@ -318,7 +320,7 @@ single statement; in the latter case use braces in both branches:</p>
 </pre></div>
 </div>
 <section id="spaces">
-<h3>Spaces<a class="headerlink" href="#spaces" title="Link to this heading"></a></h3>
+<h3>Spaces<a class="headerlink" href="#spaces" title="Permalink to this heading"></a></h3>
 <p>Linux kernel style for use of spaces depends (mostly) on
 function-versus-keyword usage. Use a space after (most) keywords. The
 notable exceptions are sizeof, typeof, alignof, and <strong>attribute</strong>,
@@ -380,7 +382,7 @@ applying a series of patches, this may make later patches in the series
 fail by changing their context lines.</p>
 </section>
 <section id="naming">
-<h3>Naming<a class="headerlink" href="#naming" title="Link to this heading"></a></h3>
+<h3>Naming<a class="headerlink" href="#naming" title="Permalink to this heading"></a></h3>
 <p>C is a Spartan language, and so should your naming be. Unlike Modula-2
 and Pascal programmers, C programmers do not use cute names like
 ThisVariableIsATemporaryCounter. A C programmer would call that variable
@@ -409,7 +411,7 @@ See chapter 6 (Functions).</p>
 </section>
 </section>
 <section id="typedefs">
-<h2>Typedefs<a class="headerlink" href="#typedefs" title="Link to this heading"></a></h2>
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this heading"></a></h2>
 <p>Please don’t use things like “vps_t”.</p>
 <p>It’s a <em>mistake</em> to use typedef for structures and pointers. When you
 see a</p>
@@ -466,7 +468,7 @@ rules.</p>
 be directly accessed should <em>never</em> be a typedef.</p>
 </section>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
 <p>Functions should be short and sweet, and do just one thing. They should
 fit on one or two screenfuls of text (the ISO/ANSI screen size is 80x24,
 as we all know), and do one thing and do that well.</p>
@@ -504,7 +506,7 @@ Linux because it is a simple way to add valuable information for the
 reader.</p>
 </section>
 <section id="centralized-exiting-of-functions">
-<h2>Centralized exiting of functions<a class="headerlink" href="#centralized-exiting-of-functions" title="Link to this heading"></a></h2>
+<h2>Centralized exiting of functions<a class="headerlink" href="#centralized-exiting-of-functions" title="Permalink to this heading"></a></h2>
 <p>Albeit deprecated by some people, the equivalent of the goto statement
 is used frequently by compilers in form of the unconditional jump
 instruction.</p>
@@ -543,7 +545,7 @@ modifications are prevented</p></li>
 </div>
 </section>
 <section id="commenting">
-<h2>Commenting<a class="headerlink" href="#commenting" title="Link to this heading"></a></h2>
+<h2>Commenting<a class="headerlink" href="#commenting" title="Permalink to this heading"></a></h2>
 <p>Comments are good, but there is also a danger of over-commenting. NEVER
 try to explain HOW your code works in a comment: it’s much better to
 write the code so that the <em>working</em> is obvious, and it’s a waste of
@@ -580,7 +582,7 @@ commas for multiple data declarations). This leaves you room for a small
 comment on each item, explaining its use.</p>
 </section>
 <section id="you-ve-made-a-mess-of-it">
-<h2>You’ve made a mess of it<a class="headerlink" href="#you-ve-made-a-mess-of-it" title="Link to this heading"></a></h2>
+<h2>You’ve made a mess of it<a class="headerlink" href="#you-ve-made-a-mess-of-it" title="Permalink to this heading"></a></h2>
 <p>That’s OK, we all do. You’ve probably been told by your long-time Unix user
 helper that “GNU emacs” automatically formats the C sources for you, and
 you’ve noticed that yes, it does do that, but the defaults it uses are less
@@ -635,7 +637,7 @@ re-formatting you may want to take a look at the man page. But remember:
 “indent” is not a fix for bad programming.</p>
 </section>
 <section id="kconfig-configuration-files">
-<h2>Kconfig configuration files<a class="headerlink" href="#kconfig-configuration-files" title="Link to this heading"></a></h2>
+<h2>Kconfig configuration files<a class="headerlink" href="#kconfig-configuration-files" title="Permalink to this heading"></a></h2>
 <p>For all of the Kconfig* configuration files throughout the source tree,
 the indentation is somewhat different. Lines under a “config”
 definition are indented with one tab, while help text is indented an
@@ -662,7 +664,7 @@ filesystems) should advertise this prominently in their prompt string:</p>
 Documentation/kbuild/kconfig-language.txt.</p>
 </section>
 <section id="macros-enums-and-rtl">
-<h2>Macros, Enums and RTL<a class="headerlink" href="#macros-enums-and-rtl" title="Link to this heading"></a></h2>
+<h2>Macros, Enums and RTL<a class="headerlink" href="#macros-enums-and-rtl" title="Permalink to this heading"></a></h2>
 <p>Names of macros defining constants and labels in enums are capitalized.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define CONSTANT 0x12345</span>
 </pre></div>
@@ -719,7 +721,7 @@ also covers RTL which is used frequently with assembly language in the
 kernel.</p>
 </section>
 <section id="printing-coreboot-messages">
-<h2>Printing coreboot messages<a class="headerlink" href="#printing-coreboot-messages" title="Link to this heading"></a></h2>
+<h2>Printing coreboot messages<a class="headerlink" href="#printing-coreboot-messages" title="Permalink to this heading"></a></h2>
 <p>coreboot developers like to be seen as literate. Do mind the spelling of
 coreboot messages to make a good impression. Do not use crippled words
 like “dont”; use “do not” or “don’t” instead. Make the messages
@@ -729,7 +731,7 @@ concise, clear, and unambiguous.</p>
 avoided.</p>
 </section>
 <section id="allocating-memory">
-<h2>Allocating memory<a class="headerlink" href="#allocating-memory" title="Link to this heading"></a></h2>
+<h2>Allocating memory<a class="headerlink" href="#allocating-memory" title="Permalink to this heading"></a></h2>
 <p>coreboot provides a single general purpose memory allocator: malloc()</p>
 <p>The preferred form for passing a size of a struct is the following:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">));</span>
@@ -752,7 +754,7 @@ Use of free() is not required though it is accepted. It is useful when
 sharing code with other codebases that make use of free().</p>
 </section>
 <section id="the-inline-disease">
-<h2>The inline disease<a class="headerlink" href="#the-inline-disease" title="Link to this heading"></a></h2>
+<h2>The inline disease<a class="headerlink" href="#the-inline-disease" title="Permalink to this heading"></a></h2>
 <p>There appears to be a common misperception that gcc has a magic “make
 me faster” speedup option called “inline”. While the use of inlines
 can be appropriate (for example as a means of replacing macros, see
@@ -771,7 +773,7 @@ inline when a second user appears outweighs the potential value of the
 hint that tells gcc to do something it would have done anyway.</p>
 </section>
 <section id="function-return-values-and-names">
-<h2>Function return values and names<a class="headerlink" href="#function-return-values-and-names" title="Link to this heading"></a></h2>
+<h2>Function return values and names<a class="headerlink" href="#function-return-values-and-names" title="Permalink to this heading"></a></h2>
 <p>Functions can return values of many different kinds, and one of the most
 common is a value indicating whether the function succeeded or failed.
 Such a value can be represented as an error-code integer (<code class="docutils literal notranslate"><span class="pre">CB_ERR_xxx</span></code>
@@ -797,7 +799,7 @@ out-of-range result. Typical examples would be functions that return
 pointers; they use NULL to report failure.</p>
 </section>
 <section id="error-handling-assertions-and-die">
-<h2>Error handling, assertions and die()<a class="headerlink" href="#error-handling-assertions-and-die" title="Link to this heading"></a></h2>
+<h2>Error handling, assertions and die()<a class="headerlink" href="#error-handling-assertions-and-die" title="Permalink to this heading"></a></h2>
 <p>As firmware, coreboot has no means to let the user interactively fix things when
 something goes wrong. We either succeed to boot or the device becomes a brick
 that must be recovered through complicated external means (e.g. a flash
@@ -859,7 +861,7 @@ sole guard against conditions that really <em>need</em> to stop execution (e.g.
 security guarantees should never be enforced only by <code class="docutils literal notranslate"><span class="pre">assert()</span></code>).</p>
 </section>
 <section id="headers-and-includes">
-<h2>Headers and includes<a class="headerlink" href="#headers-and-includes" title="Link to this heading"></a></h2>
+<h2>Headers and includes<a class="headerlink" href="#headers-and-includes" title="Permalink to this heading"></a></h2>
 <p>Headers should always be included at the top of the file. Includes should
 always use the <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;file.h&gt;</span></code> notation, except for rare cases where a file
 in the same directory that is not part of a normal include path gets included
@@ -890,7 +892,7 @@ are always automatically included in all compilation units by the build
 system and should not be included manually.</p>
 </section>
 <section id="don-t-re-invent-common-macros">
-<h2>Don’t re-invent common macros<a class="headerlink" href="#don-t-re-invent-common-macros" title="Link to this heading"></a></h2>
+<h2>Don’t re-invent common macros<a class="headerlink" href="#don-t-re-invent-common-macros" title="Permalink to this heading"></a></h2>
 <p>The header file <code class="docutils literal notranslate"><span class="pre">src/commonlib/bsd/include/commonlib/bsd/helpers.h</span></code>
 contains a number of macros that you should use, rather than explicitly
 coding some variant of them yourself. For example, if you need to
@@ -900,7 +902,7 @@ calculate the length of an array, take advantage of the macro</p>
 </div>
 </section>
 <section id="editor-modelines-and-other-cruft">
-<h2>Editor modelines and other cruft<a class="headerlink" href="#editor-modelines-and-other-cruft" title="Link to this heading"></a></h2>
+<h2>Editor modelines and other cruft<a class="headerlink" href="#editor-modelines-and-other-cruft" title="Permalink to this heading"></a></h2>
 <p>Some editors can interpret configuration information embedded in source
 files, indicated with special markers. For example, emacs interprets
 lines marked like this:</p>
@@ -926,7 +928,7 @@ configuration. People may use their own custom mode, or may have some
 other magic method for making indentation work correctly.</p>
 </section>
 <section id="inline-assembly">
-<h2>Inline assembly<a class="headerlink" href="#inline-assembly" title="Link to this heading"></a></h2>
+<h2>Inline assembly<a class="headerlink" href="#inline-assembly" title="Permalink to this heading"></a></h2>
 <p>In architecture-specific code, you may need to use inline assembly to
 interface with CPU or platform functionality. Don’t hesitate to do so
 when necessary. However, don’t use inline assembly gratuitously when C
@@ -952,7 +954,7 @@ properly indent the next instruction in the assembly output:</p>
 </div>
 </section>
 <section id="gcc-extensions">
-<h2>GCC extensions<a class="headerlink" href="#gcc-extensions" title="Link to this heading"></a></h2>
+<h2>GCC extensions<a class="headerlink" href="#gcc-extensions" title="Permalink to this heading"></a></h2>
 <p>GCC is the only officially-supported compiler for coreboot, and a
 variety of its C language extensions are heavily used throughout the
 code base. There have been occasional attempts to add clang as a second
@@ -983,7 +985,7 @@ should never rely on incidental GCC translation behavior that is not
 explicitly documented as a feature and could change at any moment.</p>
 </section>
 <section id="refactoring">
-<h2>Refactoring<a class="headerlink" href="#refactoring" title="Link to this heading"></a></h2>
+<h2>Refactoring<a class="headerlink" href="#refactoring" title="Permalink to this heading"></a></h2>
 <p>Because refactoring existing code can add bugs to tested code, any
 refactors should be done only with serious consideration. Refactoring
 for style differences should only be done if the existing style
@@ -1003,7 +1005,7 @@ functionality matches or improves upon pre-change functionality is
 encouraged.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
 <p>The C Programming Language, Second Edition by Brian W. Kernighan and
 Dennis M. Ritchie. Prentice Hall, Inc., 1988. ISBN 0-13-110362-8
 (paperback), 0-13-110370-9 (hardback). URL:

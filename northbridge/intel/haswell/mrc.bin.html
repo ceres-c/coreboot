@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mrc.bin &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>mrc.bin &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -114,7 +116,7 @@
            <div itemprop="articleBody">
              
   <section id="mrc-bin">
-<h1>mrc.bin<a class="headerlink" href="#mrc-bin" title="Link to this heading"></a></h1>
+<h1>mrc.bin<a class="headerlink" href="#mrc-bin" title="Permalink to this heading"></a></h1>
 <p>All Haswell boards supported by coreboot currently require a proprietary
 blob in order to initialise the DRAM and a few other components. The
 blob, named <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code>, largely consists of Intel’s memory reference code
@@ -124,7 +126,7 @@ binary.</p>
 <p>Having a replacement for <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> using native coreboot code is very
 much desired, but it is not an easy task.</p>
 <section id="obtaining-mrc-bin">
-<h2>Obtaining mrc.bin<a class="headerlink" href="#obtaining-mrc-bin" title="Link to this heading"></a></h2>
+<h2>Obtaining mrc.bin<a class="headerlink" href="#obtaining-mrc-bin" title="Permalink to this heading"></a></h2>
 <p>Unfortunately, it is not currently possible to distribute <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> as
 part of coreboot. Though, it can be obtained from a Haswell Chromebook
 firmware image like so, starting in the root of the coreboot directory:</p>
@@ -139,7 +141,7 @@ Alternatively, place <code class="docutils literal notranslate"><span class="pre
 its location when building coreboot.</p>
 </section>
 <section id="spd-addresses">
-<h2>SPD Addresses<a class="headerlink" href="#spd-addresses" title="Link to this heading"></a></h2>
+<h2>SPD Addresses<a class="headerlink" href="#spd-addresses" title="Permalink to this heading"></a></h2>
 <p>When porting a board from vendor firmware, the SPD addresses can be obtained
 through <code class="docutils literal notranslate"><span class="pre">i2c-tools</span></code>, which can be found in many GNU/Linux distributions. A more
 <a class="reference external" href="https://hannuhartikainen.fi/blog/hacking-ddr3-spd/">detailed description</a> of
@@ -206,7 +208,7 @@ vendor firmware are <code class="docutils literal notranslate"><span class="pre"
 <code class="docutils literal notranslate"><span class="pre">0xa4</span></code>. This is because the I2C addresses are 7 bits long.</p>
 </section>
 <section id="ecc-dram">
-<h2>ECC DRAM<a class="headerlink" href="#ecc-dram" title="Link to this heading"></a></h2>
+<h2>ECC DRAM<a class="headerlink" href="#ecc-dram" title="Permalink to this heading"></a></h2>
 <p>When <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> has finished executing, ECC is active on the channels
 populated with ECC DIMMs. However, <code class="docutils literal notranslate"><span class="pre">mrc.bin</span></code> was tailored specifically
 for Haswell Chromebooks and Chomeboxes, none of which support ECC DRAM.

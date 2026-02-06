@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot FAQ &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot FAQ &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -137,11 +139,11 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-faq">
-<h1>coreboot FAQ<a class="headerlink" href="#coreboot-faq" title="Link to this heading"></a></h1>
+<h1>coreboot FAQ<a class="headerlink" href="#coreboot-faq" title="Permalink to this heading"></a></h1>
 <section id="general-coreboot-questions">
-<h2>General coreboot questions<a class="headerlink" href="#general-coreboot-questions" title="Link to this heading"></a></h2>
+<h2>General coreboot questions<a class="headerlink" href="#general-coreboot-questions" title="Permalink to this heading"></a></h2>
 <section id="what-is-coreboot">
-<h3>What is coreboot?<a class="headerlink" href="#what-is-coreboot" title="Link to this heading"></a></h3>
+<h3>What is coreboot?<a class="headerlink" href="#what-is-coreboot" title="Permalink to this heading"></a></h3>
 <p>coreboot is a free and open software project designed to initialize
 computers and embedded systems in a fast, secure, and auditable fashion.
 The focus is on minimal hardware initialization: to do only what is
@@ -149,7 +151,7 @@ absolutely needed, then pass control to other software (a payload, in
 coreboot parlance) in order to boot the operating system securely.</p>
 </section>
 <section id="what-is-a-coreboot-payload">
-<h3>What is a coreboot payload?<a class="headerlink" href="#what-is-a-coreboot-payload" title="Link to this heading"></a></h3>
+<h3>What is a coreboot payload?<a class="headerlink" href="#what-is-a-coreboot-payload" title="Permalink to this heading"></a></h3>
 <p>coreboot itself does not deal with boot media such as hard-drives,
 SSDs, or USB flash-drives, beyond initializing the underlying hardware.
 So in order to actually boot an operating system, another piece of
@@ -157,7 +159,7 @@ software which does do those things must be used. coreboot supports
 a large number of diverse payloads; see below for more details.</p>
 </section>
 <section id="is-coreboot-the-same-as-uefi">
-<h3>Is coreboot the same as UEFI?<a class="headerlink" href="#is-coreboot-the-same-as-uefi" title="Link to this heading"></a></h3>
+<h3>Is coreboot the same as UEFI?<a class="headerlink" href="#is-coreboot-the-same-as-uefi" title="Permalink to this heading"></a></h3>
 <p>No. coreboot and UEFI are both system firmware that handle the
 initialization of the hardware, but are otherwise not similar.
 coreboot’s goal is to <strong>just</strong> initialize the hardware and exit.
@@ -166,7 +168,7 @@ and making it easier to find and fix bugs. The result is a higher
 overall security.</p>
 </section>
 <section id="what-s-the-difference-between-coreboot-and-uefi">
-<h3>What’s the difference between coreboot and UEFI?<a class="headerlink" href="#what-s-the-difference-between-coreboot-and-uefi" title="Link to this heading"></a></h3>
+<h3>What’s the difference between coreboot and UEFI?<a class="headerlink" href="#what-s-the-difference-between-coreboot-and-uefi" title="Permalink to this heading"></a></h3>
 <p>UEFI is actually a firmware specification, not a specific software
 implementation. Intel, along with the rest of the Tianocore project,
 has released an open-source implementation of the overall framework,
@@ -186,7 +188,7 @@ outside of coreboot’s scope, including (but not limited to):</p>
 </ul>
 </section>
 <section id="can-coreboot-boot-operating-systems-that-require-uefi">
-<h3>Can coreboot boot operating systems that require UEFI?<a class="headerlink" href="#can-coreboot-boot-operating-systems-that-require-uefi" title="Link to this heading"></a></h3>
+<h3>Can coreboot boot operating systems that require UEFI?<a class="headerlink" href="#can-coreboot-boot-operating-systems-that-require-uefi" title="Permalink to this heading"></a></h3>
 <p>Yes, but… again, coreboot <strong>just</strong> initializes the hardware. coreboot
 itself doesn’t load operating systems from storage media other than the
 flash chip. Unlike UEFI, coreboot does not, and will not contain a Wi-Fi
@@ -198,7 +200,7 @@ with EDK2 supplying the UEFI boot interface and runtime services to
 the operating system.</p>
 </section>
 <section id="what-non-uefi-payloads-does-coreboot-support">
-<h3>What non-UEFI payloads does coreboot support?<a class="headerlink" href="#what-non-uefi-payloads-does-coreboot-support" title="Link to this heading"></a></h3>
+<h3>What non-UEFI payloads does coreboot support?<a class="headerlink" href="#what-non-uefi-payloads-does-coreboot-support" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>SeaBIOS, behaves like a classic BIOS, allowing you to boot operating
 systems that rely on the legacy interrupts.</p></li>
@@ -216,7 +218,7 @@ using kexec. This is sometimes called LinuxBoot.</p></li>
 html) with a list, although it’s not complete.</p>
 </section>
 <section id="what-does-coreboot-leave-in-memory-after-it-s-done-initializing-the-hardware">
-<h3>What does coreboot leave in memory after it’s done initializing the hardware?<a class="headerlink" href="#what-does-coreboot-leave-in-memory-after-it-s-done-initializing-the-hardware" title="Link to this heading"></a></h3>
+<h3>What does coreboot leave in memory after it’s done initializing the hardware?<a class="headerlink" href="#what-does-coreboot-leave-in-memory-after-it-s-done-initializing-the-hardware" title="Permalink to this heading"></a></h3>
 <p>While coreboot tries to remove itself completely from memory after
 finishing, some tables and data need to remain for the OS. coreboot
 reserves an area in memory known as CBMEM, to save this data after it
@@ -227,9 +229,9 @@ SMM, which will remain resident after coreboot exits.</p>
 </section>
 </section>
 <section id="platforms">
-<h2>Platforms<a class="headerlink" href="#platforms" title="Link to this heading"></a></h2>
+<h2>Platforms<a class="headerlink" href="#platforms" title="Permalink to this heading"></a></h2>
 <section id="whats-the-best-coreboot-platform-for-a-user">
-<h3>What’s the best coreboot platform for a user?<a class="headerlink" href="#whats-the-best-coreboot-platform-for-a-user" title="Link to this heading"></a></h3>
+<h3>What’s the best coreboot platform for a user?<a class="headerlink" href="#whats-the-best-coreboot-platform-for-a-user" title="Permalink to this heading"></a></h3>
 <p>The choice of the best coreboot platform for a user can vary depending
 on their specific needs, preferences, and use cases.</p>
 <p>Typically, people who want a system with a minimum of proprietary
@@ -244,7 +246,7 @@ tradeoffs with either option.</p>
 which use coreboot on the <a class="reference external" href="https://coreboot.org/users.html">website</a>.</p>
 </section>
 <section id="whats-the-best-platform-for-coreboot-development">
-<h3>What’s the best platform for coreboot development?<a class="headerlink" href="#whats-the-best-platform-for-coreboot-development" title="Link to this heading"></a></h3>
+<h3>What’s the best platform for coreboot development?<a class="headerlink" href="#whats-the-best-platform-for-coreboot-development" title="Permalink to this heading"></a></h3>
 <p>Similar to the best platform for users, the best platform for
 developers very much depends on what a developer is trying to do.</p>
 <ul class="simple">
@@ -283,7 +285,7 @@ specifications</a>
 for these cables.</p>
 </section>
 <section id="what-platforms-does-coreboot-support">
-<h3>What platforms does coreboot support?<a class="headerlink" href="#what-platforms-does-coreboot-support" title="Link to this heading"></a></h3>
+<h3>What platforms does coreboot support?<a class="headerlink" href="#what-platforms-does-coreboot-support" title="Permalink to this heading"></a></h3>
 <p>The most accurate way to determine what systems coreboot supports is by
 browsing the src/mainboard tree or running “make menuconfig” and going
 through the “Mainboard” submenu. You can also search Gerrit to see if
@@ -294,9 +296,9 @@ however this does not currently show supported board variants.</p>
 </section>
 </section>
 <section id="coreboot-development">
-<h2>coreboot Development<a class="headerlink" href="#coreboot-development" title="Link to this heading"></a></h2>
+<h2>coreboot Development<a class="headerlink" href="#coreboot-development" title="Permalink to this heading"></a></h2>
 <section id="can-coreboot-be-ported-to-this-board">
-<h3>Can coreboot be ported to [this board]?<a class="headerlink" href="#can-coreboot-be-ported-to-this-board" title="Link to this heading"></a></h3>
+<h3>Can coreboot be ported to [this board]?<a class="headerlink" href="#can-coreboot-be-ported-to-this-board" title="Permalink to this heading"></a></h3>
 <p>The best way to determine if coreboot can be ported to a system is to
 see if the processor and chipset is supported. The next step is to see
 whether the system is locked to the proprietary firmware which comes
@@ -371,7 +373,7 @@ not rely on software detection alone to identify an EC.</p></li>
 </ul>
 </section>
 <section id="how-do-i-port-coreboot-to-this-board">
-<h3>How do I port coreboot to [this board]?<a class="headerlink" href="#how-do-i-port-coreboot-to-this-board" title="Link to this heading"></a></h3>
+<h3>How do I port coreboot to [this board]?<a class="headerlink" href="#how-do-i-port-coreboot-to-this-board" title="Permalink to this heading"></a></h3>
 <p>A critical piece for anyone attempting to do a board port is to make
 sure that you have a method to recover your system from a failed flash.</p>
 <p>We need an updated motherboard porting guide, but currently the guide
@@ -382,7 +384,7 @@ one of the <a class="reference external" href="https://doc.coreboot.org/communit
 forums</a>.</p>
 </section>
 <section id="what-about-the-intel-me">
-<h3>What about the Intel ME?<a class="headerlink" href="#what-about-the-intel-me" title="Link to this heading"></a></h3>
+<h3>What about the Intel ME?<a class="headerlink" href="#what-about-the-intel-me" title="Permalink to this heading"></a></h3>
 <p>There seems to be a lot of FUD about what the ME can and can’t do.
 coreboot currently does not have a clear recommendation on how to
 handle the ME. We understand that there are serious concerns about the
@@ -393,7 +395,7 @@ which in many cases simply happen to occupy the same flash chip. It is
 not necessary to run coreboot to modify the ME, and running coreboot
 does not imply anything about the ME’s operational state.</p>
 <section id="a-word-of-caution-about-the-modifying-me">
-<h4>A word of caution about the modifying ME<a class="headerlink" href="#a-word-of-caution-about-the-modifying-me" title="Link to this heading"></a></h4>
+<h4>A word of caution about the modifying ME<a class="headerlink" href="#a-word-of-caution-about-the-modifying-me" title="Permalink to this heading"></a></h4>
 <p>Messing with the ME firmware can cause issues, and this is outside the
 scope of the coreboot project.</p>
 <p>If you do decide to modify the ME firmware, please make sure coreboot

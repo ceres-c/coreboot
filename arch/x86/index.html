@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>x86 architecture documentation &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>x86 architecture documentation &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -123,7 +125,7 @@
            <div itemprop="articleBody">
              
   <section id="x86-architecture-documentation">
-<h1>x86 architecture documentation<a class="headerlink" href="#x86-architecture-documentation" title="Link to this heading"></a></h1>
+<h1>x86 architecture documentation<a class="headerlink" href="#x86-architecture-documentation" title="Permalink to this heading"></a></h1>
 <p>This section contains documentation about coreboot on x86 architecture.</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -131,7 +133,7 @@
 </ul>
 </div>
 <section id="state-of-x86-64-support">
-<h2>State of x86_64 support<a class="headerlink" href="#state-of-x86-64-support" title="Link to this heading"></a></h2>
+<h2>State of x86_64 support<a class="headerlink" href="#state-of-x86-64-support" title="Permalink to this heading"></a></h2>
 <p>At the moment there’s only experimental x86_64 support.
 The <code class="docutils literal notranslate"><span class="pre">emulation/qemu-i440fx</span></code> and <code class="docutils literal notranslate"><span class="pre">emulation/qemu-q35</span></code> boards do support
 <em>ARCH_RAMSTAGE_X86_64</em> , <em>ARCH_POSTCAR_X86_64</em> and <em>ARCH_ROMSTAGE_X86_64</em>.</p>
@@ -148,7 +150,7 @@ to in <em>protected mode</em></p></li>
 </ul>
 </section>
 <section id="assumptions-for-all-stages-using-the-reference-implementation">
-<h2>Assumptions for all stages using the reference implementation<a class="headerlink" href="#assumptions-for-all-stages-using-the-reference-implementation" title="Link to this heading"></a></h2>
+<h2>Assumptions for all stages using the reference implementation<a class="headerlink" href="#assumptions-for-all-stages-using-the-reference-implementation" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>0-4GiB are identity mapped using 2MiB-pages as WB</p></li>
 <li><p>Memory above 4GiB isn’t accessible</p></li>
@@ -157,7 +159,7 @@ to in <em>protected mode</em></p></li>
 </ul>
 </section>
 <section id="page-tables">
-<h2>Page tables<a class="headerlink" href="#page-tables" title="Link to this heading"></a></h2>
+<h2>Page tables<a class="headerlink" href="#page-tables" title="Permalink to this heading"></a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">pagetables</span></code> cbfs file is generated based on an assembly file.</p>
 <p>To generate the static page tables it must know the physical address where to
 place the file.</p>
@@ -170,11 +172,11 @@ place the file.</p>
 <p>At the moment <em>$n</em> is 4, which results in identity mapping the lower 4 GiB.</p>
 </section>
 <section id="basic-x86-64-support">
-<h2>Basic x86_64 support<a class="headerlink" href="#basic-x86-64-support" title="Link to this heading"></a></h2>
+<h2>Basic x86_64 support<a class="headerlink" href="#basic-x86-64-support" title="Permalink to this heading"></a></h2>
 <p>Basic support for x86_64 has been implemented for QEMU mainboard target.</p>
 </section>
 <section id="reference-implementation">
-<h2>Reference implementation<a class="headerlink" href="#reference-implementation" title="Link to this heading"></a></h2>
+<h2>Reference implementation<a class="headerlink" href="#reference-implementation" title="Permalink to this heading"></a></h2>
 <p>The reference implementation is</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -184,13 +186,13 @@ place the file.</p>
 </div>
 </section>
 <section id="todo">
-<h2>TODO<a class="headerlink" href="#todo" title="Link to this heading"></a></h2>
+<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Identity map memory above 4GiB in ramstage</p></li>
 </ul>
 </section>
 <section id="future-work">
-<h2>Future work<a class="headerlink" href="#future-work" title="Link to this heading"></a></h2>
+<h2>Future work<a class="headerlink" href="#future-work" title="Permalink to this heading"></a></h2>
 <ol class="simple">
 <li><p>Fine grained page tables for SMM:</p>
 <ul class="simple">
@@ -204,7 +206,7 @@ place the file.</p>
 </ol>
 </section>
 <section id="porting-other-boards">
-<h2>Porting other boards<a class="headerlink" href="#porting-other-boards" title="Link to this heading"></a></h2>
+<h2>Porting other boards<a class="headerlink" href="#porting-other-boards" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Fix compilation errors</p></li>
 <li><p>Test how well CAR works with x86_64 and paging</p></li>
@@ -213,13 +215,13 @@ place the file.</p>
 </ul>
 </section>
 <section id="known-bugs-on-real-hardware">
-<h2>Known bugs on real hardware<a class="headerlink" href="#known-bugs-on-real-hardware" title="Link to this heading"></a></h2>
+<h2>Known bugs on real hardware<a class="headerlink" href="#known-bugs-on-real-hardware" title="Permalink to this heading"></a></h2>
 <p>According to Intel x86_64 mode hasn’t been validated in CAR environments.
 Until now it could be verified on various Intel platforms and no issues have
 been found.</p>
 </section>
 <section id="known-bugs-on-kvm-enabled-qemu">
-<h2>Known bugs on KVM enabled qemu<a class="headerlink" href="#known-bugs-on-kvm-enabled-qemu" title="Link to this heading"></a></h2>
+<h2>Known bugs on KVM enabled qemu<a class="headerlink" href="#known-bugs-on-kvm-enabled-qemu" title="Permalink to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">x86_64</span></code> reference code runs fine in qemu soft-cpu, but has serious issues
 when using KVM mode on some machines. The workaround is to <em>not</em> place
 page-tables in ROM, as done in

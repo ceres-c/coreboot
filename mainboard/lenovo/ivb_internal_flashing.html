@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ivy Bridge Lenovo ThinkPad Internal Flashing &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Ivy Bridge Lenovo ThinkPad Internal Flashing &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -158,9 +160,9 @@
            <div itemprop="articleBody">
              
   <section id="ivy-bridge-lenovo-thinkpad-internal-flashing">
-<h1>Ivy Bridge Lenovo ThinkPad Internal Flashing<a class="headerlink" href="#ivy-bridge-lenovo-thinkpad-internal-flashing" title="Link to this heading"></a></h1>
+<h1>Ivy Bridge Lenovo ThinkPad Internal Flashing<a class="headerlink" href="#ivy-bridge-lenovo-thinkpad-internal-flashing" title="Permalink to this heading"></a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>Old versions of stock BIOS for these models have several security issues.
 In order to flash coreboot internally, two of them are of interest.</p>
 <p><strong>First</strong> is the fact the <code class="docutils literal notranslate"><span class="pre">SMM_BWP</span></code> and <code class="docutils literal notranslate"><span class="pre">BLE</span></code> are not enabled in BIOS
@@ -174,7 +176,7 @@ of which contains following line:</p>
 that was discovered and fixed later.</p>
 </section>
 <section id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>USB drive (in case you need to downgrade BIOS)</p></li>
 <li><p>Linux install that (can be) loaded in UEFI mode</p></li>
@@ -182,7 +184,7 @@ that was discovered and fixed later.</p>
 </ul>
 </section>
 <section id="bios-versions">
-<h2>BIOS versions<a class="headerlink" href="#bios-versions" title="Link to this heading"></a></h2>
+<h2>BIOS versions<a class="headerlink" href="#bios-versions" title="Permalink to this heading"></a></h2>
 <p>Below is a table of BIOS versions that are vulnerable enough for our
 goals, per model. The version number means that you need to downgrade to
 that or earlier version.</p>
@@ -218,7 +220,7 @@ that or earlier version.</p>
 go through the downgrade process, described next.</p>
 </section>
 <section id="downgrading-bios">
-<h2>Downgrading BIOS<a class="headerlink" href="#downgrading-bios" title="Link to this heading"></a></h2>
+<h2>Downgrading BIOS<a class="headerlink" href="#downgrading-bios" title="Permalink to this heading"></a></h2>
 <p>Go to the Lenovo web site and download BIOS Update Bootable CD for your
 machine of needed version (see above).</p>
 <p>Lenovo states that BIOS has “security rollback prevention”, meaning once
@@ -294,7 +296,7 @@ vulnerability exploitation.</p>
 <code class="docutils literal notranslate"><span class="pre">/sys/firmware/efivars</span></code> exist.</p>
 </section>
 <section id="examining-protections-theory">
-<h2>Examining protections (theory)<a class="headerlink" href="#examining-protections-theory" title="Link to this heading"></a></h2>
+<h2>Examining protections (theory)<a class="headerlink" href="#examining-protections-theory" title="Permalink to this heading"></a></h2>
 <p>There are two main ways that Intel platform provides to protect BIOS
 chip:</p>
 <ul>
@@ -410,7 +412,7 @@ executed on S3 resume. Once we patch that instruction to not set <code class="do
 bit, we will be able to write to PR0-PR4 registers.</p>
 </section>
 <section id="creating-a-backup">
-<h2>Creating a backup<a class="headerlink" href="#creating-a-backup" title="Link to this heading"></a></h2>
+<h2>Creating a backup<a class="headerlink" href="#creating-a-backup" title="Permalink to this heading"></a></h2>
 <p>Before you proceed, please create a backup of the <code class="docutils literal notranslate"><span class="pre">bios</span></code> region. Then,
 in case something goes wrong, you’ll be able to flash it back externally.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">me</span></code> region is locked, so an attempt to create a full dump will fail.
@@ -427,7 +429,7 @@ brick your machine, because your backup has <code class="docutils literal notran
 <code class="docutils literal notranslate"><span class="pre">me</span></code> regions. Flash only <code class="docutils literal notranslate"><span class="pre">bios</span></code> region!</p>
 </section>
 <section id="removing-protections-practice">
-<h2>Removing protections (practice)<a class="headerlink" href="#removing-protections-practice" title="Link to this heading"></a></h2>
+<h2>Removing protections (practice)<a class="headerlink" href="#removing-protections-practice" title="Permalink to this heading"></a></h2>
 <p>The original boot script writes 0xE009 to <code class="docutils literal notranslate"><span class="pre">HSFS</span></code>. <code class="docutils literal notranslate"><span class="pre">FLOCKDN</span></code> is 15th bit, so
 let’s write 0x6009 instead:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chipsec_main</span> <span class="o">-</span><span class="n">m</span> <span class="n">tools</span><span class="o">.</span><span class="n">uefi</span><span class="o">.</span><span class="n">s3script_modify</span> <span class="o">-</span><span class="n">a</span> <span class="n">replace_op</span><span class="p">,</span><span class="n">mmio_wr</span><span class="p">,</span><span class="mh">0xFED1F804</span><span class="p">,</span><span class="mh">0x6009</span><span class="p">,</span><span class="mh">0x2</span>

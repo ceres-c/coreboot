@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot 4.11 &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot 4.11 &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -139,7 +141,7 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-4-11">
-<h1>coreboot 4.11<a class="headerlink" href="#coreboot-4-11" title="Link to this heading"></a></h1>
+<h1>coreboot 4.11<a class="headerlink" href="#coreboot-4-11" title="Permalink to this heading"></a></h1>
 <p>coreboot 4.11 was released on November 19th.</p>
 <p>This release cycle was a bit shorter to get closer to our regular
 schedule of releasing in spring and autumn.</p>
@@ -148,7 +150,7 @@ Of these, about 30 contributed to coreboot for the first time.</p>
 <p>Thank you to all contributors who made 4.11 what it is and welcome
 to the project to all new contributors!</p>
 <section id="clean-up">
-<h2>Clean Up<a class="headerlink" href="#clean-up" title="Link to this heading"></a></h2>
+<h2>Clean Up<a class="headerlink" href="#clean-up" title="Permalink to this heading"></a></h2>
 <p>The past few months saw lots of cleanup across the source tree:</p>
 <p>The included headers in source files were stripped down to avoid reading
 unused headers, and unused code fragments, duplicate preprocessor symbols
@@ -160,7 +162,7 @@ common function blocks, an effort we’re more confident will succeed now
 that Intel itself is driving it.</p>
 </section>
 <section id="chipset-work">
-<h2>Chipset work<a class="headerlink" href="#chipset-work" title="Link to this heading"></a></h2>
+<h2>Chipset work<a class="headerlink" href="#chipset-work" title="Permalink to this heading"></a></h2>
 <p>Most activity in the last couple months was on Intel support,
 specifically the Kaby Lake and Cannon Lake drivers were extended
 for the generations following them.</p>
@@ -171,7 +173,7 @@ the AMD side worked on getting Picasso support in.</p>
 (Quark).</p>
 </section>
 <section id="verified-boot">
-<h2>Verified Boot<a class="headerlink" href="#verified-boot" title="Link to this heading"></a></h2>
+<h2>Verified Boot<a class="headerlink" href="#verified-boot" title="Permalink to this heading"></a></h2>
 <p>The vboot feature that Chromebooks brought into coreboot was extended
 to work on devices that weren’t specially adapted for it: In addition
 to its original device family it’s now supported on various Lenovo
@@ -181,7 +183,7 @@ vboot, sharing data structures and generally working together where
 possible.</p>
 </section>
 <section id="new-devices">
-<h2>New devices<a class="headerlink" href="#new-devices" title="Link to this heading"></a></h2>
+<h2>New devices<a class="headerlink" href="#new-devices" title="Permalink to this heading"></a></h2>
 <p>With 4.11 there’s the beginning of support for Intel Tiger Lake and
 Qualcomm’s SC7180 SoCs, while we removed the unmaintained support
 for Allwinner’s A10 SoC.</p>
@@ -217,7 +219,7 @@ for Allwinner’s A10 SoC.</p>
 removed Google Hatch WHL.</p>
 </section>
 <section id="deprecations">
-<h2>Deprecations<a class="headerlink" href="#deprecations" title="Link to this heading"></a></h2>
+<h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this heading"></a></h2>
 <p>Because there was only a single developer board (AMD Torpedo)
 using AGESA family 12h, and because there were multiple,
 unique Coverity issues with it, the associated vendorcode will
@@ -232,45 +234,45 @@ and, on systems using Cache as RAM, a postcar stage, won’t be supported
 going forward.</p>
 </section>
 <section id="significant-changes">
-<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Link to this heading"></a></h2>
+<h2>Significant changes<a class="headerlink" href="#significant-changes" title="Permalink to this heading"></a></h2>
 <section id="pre-ram-is-deprecated">
-<h3><code class="docutils literal notranslate"><span class="pre">__PRE_RAM__</span></code> is deprecated<a class="headerlink" href="#pre-ram-is-deprecated" title="Link to this heading"></a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">__PRE_RAM__</span></code> is deprecated<a class="headerlink" href="#pre-ram-is-deprecated" title="Permalink to this heading"></a></h3>
 <p>Preprocessor use of <code class="docutils literal notranslate"><span class="pre">defined(__PRE_RAM__)</span></code> have been mostly replaced with
 <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(ENV_ROMSTAGE_OR_BEFORE)</span></code> or the inverse <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(ENV_RAMSTAGE)</span></code>.</p>
 <p>The remaining cases and <code class="docutils literal notranslate"><span class="pre">-D__PRE_RAM__</span></code> are to be removed soon after release.</p>
 </section>
 <section id="bootblock-et-al-are-converted">
-<h3><code class="docutils literal notranslate"><span class="pre">__BOOTBLOCK__</span></code> et.al. are converted<a class="headerlink" href="#bootblock-et-al-are-converted" title="Link to this heading"></a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">__BOOTBLOCK__</span></code> et.al. are converted<a class="headerlink" href="#bootblock-et-al-are-converted" title="Permalink to this heading"></a></h3>
 <p>This applies to all <code class="docutils literal notranslate"><span class="pre">ENV_xxx</span></code> definitions found in <code class="docutils literal notranslate"><span class="pre">&lt;rules.h&gt;</span></code>.</p>
 <p>Write code without preprocessor directives whenever possible, replacing
 <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">__BOOTBLOCK__</span></code> with  <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(ENV_BOOTBLOCK)</span></code></p>
 <p>In cases where preprocessor is needed use <code class="docutils literal notranslate"><span class="pre">#if</span> <span class="pre">ENV_BOOTBLOCK</span></code> instead.</p>
 </section>
 <section id="car-global-is-removed-where-possible">
-<h3><code class="docutils literal notranslate"><span class="pre">CAR_GLOBAL</span></code> is removed where possible<a class="headerlink" href="#car-global-is-removed-where-possible" title="Link to this heading"></a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">CAR_GLOBAL</span></code> is removed where possible<a class="headerlink" href="#car-global-is-removed-where-possible" title="Permalink to this heading"></a></h3>
 <p>For all platform code with <code class="docutils literal notranslate"><span class="pre">NO_CAR_GLOBAL_MIGRATION=y</span></code>, any <code class="docutils literal notranslate"><span class="pre">CAR_GLOBAL</span></code>
 attributes have been removed. Remaining cases from common code are to be
 removed soon after release.</p>
 </section>
 <section id="tseg-and-cbmem-top-mapping">
-<h3><code class="docutils literal notranslate"><span class="pre">TSEG</span></code> and  <code class="docutils literal notranslate"><span class="pre">cbmem_top()</span></code> mapping<a class="headerlink" href="#tseg-and-cbmem-top-mapping" title="Link to this heading"></a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">TSEG</span></code> and  <code class="docutils literal notranslate"><span class="pre">cbmem_top()</span></code> mapping<a class="headerlink" href="#tseg-and-cbmem-top-mapping" title="Permalink to this heading"></a></h3>
 <p>Significant refactoring has been done to achieve some consistency across platforms
 and to reduce code duplication.</p>
 </section>
 <section id="build-system-amenities">
-<h3>Build system amenities<a class="headerlink" href="#build-system-amenities" title="Link to this heading"></a></h3>
+<h3>Build system amenities<a class="headerlink" href="#build-system-amenities" title="Permalink to this heading"></a></h3>
 <p>The build system now has an <code class="docutils literal notranslate"><span class="pre">all</span></code> class of source files to remove the need to
 list source files for each and every source class (romstage, ramstage, …)</p>
 <p>The site-local/ mechanism became more robust.</p>
 </section>
 <section id="stricter-coding-standards-to-improve-security">
-<h3>Stricter coding standards to improve security<a class="headerlink" href="#stricter-coding-standards-to-improve-security" title="Link to this heading"></a></h3>
+<h3>Stricter coding standards to improve security<a class="headerlink" href="#stricter-coding-standards-to-improve-security" title="Permalink to this heading"></a></h3>
 <p>The build now fails on variable length arrays (that make it way too easy to
 smash a stack) and case statements falling through without a note that it is
 intentional.</p>
 </section>
 <section id="shorter-file-headers">
-<h3>Shorter file headers<a class="headerlink" href="#shorter-file-headers" title="Link to this heading"></a></h3>
+<h3>Shorter file headers<a class="headerlink" href="#shorter-file-headers" title="Permalink to this heading"></a></h3>
 <p>This project is still under way, but we started moving author information
 from individual files into the global AUTHORS file (and there’s the git
 history for more details).</p>
@@ -280,26 +282,26 @@ directory that contains the full text of all the licenses that are used
 throughout our tree.</p>
 </section>
 <section id="variant-creation-scripts">
-<h3>Variant creation scripts<a class="headerlink" href="#variant-creation-scripts" title="Link to this heading"></a></h3>
+<h3>Variant creation scripts<a class="headerlink" href="#variant-creation-scripts" title="Permalink to this heading"></a></h3>
 <p>To ease the creation of variant boards, <code class="docutils literal notranslate"><span class="pre">util/mainboard/</span></code> now contains
 scripts to generate a new variant to a given board. These are still
 specific to google/hatch at this time, but they’re written with the idea
 of becoming more generally useful.</p>
 </section>
 <section id="payloads">
-<h3>Payloads<a class="headerlink" href="#payloads" title="Link to this heading"></a></h3>
+<h3>Payloads<a class="headerlink" href="#payloads" title="Permalink to this heading"></a></h3>
 <p>Payload integration has been updated, coreinfo learned to cope with
 UPPER CASE commands and libpayload knows how to deal with USB3 hubs.</p>
 </section>
 <section id="added-vboot-support-to-the-following-platforms">
-<h3>Added vboot support to the following platforms:<a class="headerlink" href="#added-vboot-support-to-the-following-platforms" title="Link to this heading"></a></h3>
+<h3>Added vboot support to the following platforms:<a class="headerlink" href="#added-vboot-support-to-the-following-platforms" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>intel/gm45</p></li>
 <li><p>intel/nehalem</p></li>
 </ul>
 </section>
 <section id="moved-the-following-platforms-to-c-environment-bootblock">
-<h3>Moved the following platforms to C_ENVIRONMENT_BOOTBLOCK:<a class="headerlink" href="#moved-the-following-platforms-to-c-environment-bootblock" title="Link to this heading"></a></h3>
+<h3>Moved the following platforms to C_ENVIRONMENT_BOOTBLOCK:<a class="headerlink" href="#moved-the-following-platforms-to-c-environment-bootblock" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>intel/i945</p></li>
 <li><p>intel/x4x</p></li>
@@ -310,7 +312,7 @@ UPPER CASE commands and libpayload knows how to deal with USB3 hubs.</p>
 </ul>
 </section>
 <section id="libgfxinit">
-<h3>libgfxinit<a class="headerlink" href="#libgfxinit" title="Link to this heading"></a></h3>
+<h3>libgfxinit<a class="headerlink" href="#libgfxinit" title="Permalink to this heading"></a></h3>
 <p>Most notable, dynamic CDClk configuration was added to libgfxinit,
 to support higher resolution displays without changes in the static
 configuration. It also received some fixes for better DP and eDP
@@ -325,7 +327,7 @@ updated platform support:</p>
 </ul>
 </section>
 <section id="other">
-<h3>Other<a class="headerlink" href="#other" title="Link to this heading"></a></h3>
+<h3>Other<a class="headerlink" href="#other" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Did cleanups around TSC timer</p></li>
 <li><p>Improved automatic VR configuration on SKL/KBL</p></li>

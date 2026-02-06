@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutorial, part 1: Starting from scratch &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Tutorial, part 1: Starting from scratch &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -137,7 +139,7 @@
            <div itemprop="articleBody">
              
   <section id="tutorial-part-1-starting-from-scratch">
-<h1>Tutorial, part 1: Starting from scratch<a class="headerlink" href="#tutorial-part-1-starting-from-scratch" title="Link to this heading"></a></h1>
+<h1>Tutorial, part 1: Starting from scratch<a class="headerlink" href="#tutorial-part-1-starting-from-scratch" title="Permalink to this heading"></a></h1>
 <p>This tutorial will guide you through the process of setting up a working
 coreboot toolchain. In same cases you will find specific instructions
 for Debian (apt-get), Fedora (dnf) and Arch Linux (pacman) based package
@@ -154,9 +156,9 @@ board. You must reconfigure coreboot for your board and rebuild the ROM
 before flashing it to a physical system.</p>
 <p><strong>Note: Summaries of each of the steps are at the end of the document.</strong></p>
 <section id="download-configure-and-build-coreboot">
-<h2>Download, configure, and build coreboot<a class="headerlink" href="#download-configure-and-build-coreboot" title="Link to this heading"></a></h2>
+<h2>Download, configure, and build coreboot<a class="headerlink" href="#download-configure-and-build-coreboot" title="Permalink to this heading"></a></h2>
 <section id="step-1-install-tools-and-libraries-needed-for-coreboot">
-<h3>Step 1 - Install tools and libraries needed for coreboot<a class="headerlink" href="#step-1-install-tools-and-libraries-needed-for-coreboot" title="Link to this heading"></a></h3>
+<h3>Step 1 - Install tools and libraries needed for coreboot<a class="headerlink" href="#step-1-install-tools-and-libraries-needed-for-coreboot" title="Permalink to this heading"></a></h3>
 <p>Debian based distros:
 <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">bison</span> <span class="pre">build-essential</span> <span class="pre">curl</span> <span class="pre">flex</span> <span class="pre">git</span> <span class="pre">gnat</span></code>
 <code class="docutils literal notranslate"><span class="pre">libncurses5-dev</span> <span class="pre">m4</span> <span class="pre">zlib1g-dev</span></code></p>
@@ -167,14 +169,14 @@ before flashing it to a physical system.</p>
 <code class="docutils literal notranslate"><span class="pre">ncurses-devel</span> <span class="pre">wget</span> <span class="pre">zlib-devel</span> <span class="pre">patch</span></code></p>
 </section>
 <section id="step-2-download-coreboot-source-tree">
-<h3>Step 2 - Download coreboot source tree<a class="headerlink" href="#step-2-download-coreboot-source-tree" title="Link to this heading"></a></h3>
+<h3>Step 2 - Download coreboot source tree<a class="headerlink" href="#step-2-download-coreboot-source-tree" title="Permalink to this heading"></a></h3>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://review.coreboot.org/coreboot
 <span class="nb">cd</span><span class="w"> </span>coreboot
 </pre></div>
 </div>
 </section>
 <section id="step-3-build-the-coreboot-toolchain">
-<h3>Step 3 - Build the coreboot toolchain<a class="headerlink" href="#step-3-build-the-coreboot-toolchain" title="Link to this heading"></a></h3>
+<h3>Step 3 - Build the coreboot toolchain<a class="headerlink" href="#step-3-build-the-coreboot-toolchain" title="Permalink to this heading"></a></h3>
 <p>Please note that this can take a significant amount of time. Use <code class="docutils literal notranslate"><span class="pre">CPUS=</span></code>
 to specify number of <code class="docutils literal notranslate"><span class="pre">make</span></code> jobs to run in parallel.</p>
 <p>This will list toolchain options and supported architectures:</p>
@@ -194,16 +196,16 @@ results are not reproducible, and may have issues, so this is not
 recommended.  See step 5 to use your system toolchain.</p>
 </section>
 <section id="step-4-build-the-payload-coreinfo">
-<h3>Step 4 - Build the payload - coreinfo<a class="headerlink" href="#step-4-build-the-payload-coreinfo" title="Link to this heading"></a></h3>
+<h3>Step 4 - Build the payload - coreinfo<a class="headerlink" href="#step-4-build-the-payload-coreinfo" title="Permalink to this heading"></a></h3>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>payloads/coreinfo<span class="w"> </span>olddefconfig
 make<span class="w"> </span>-C<span class="w"> </span>payloads/coreinfo
 </pre></div>
 </div>
 </section>
 <section id="step-5-configure-the-build">
-<h3>Step 5 - Configure the build<a class="headerlink" href="#step-5-configure-the-build" title="Link to this heading"></a></h3>
+<h3>Step 5 - Configure the build<a class="headerlink" href="#step-5-configure-the-build" title="Permalink to this heading"></a></h3>
 <section id="configure-your-mainboard">
-<h4>Configure your mainboard<a class="headerlink" href="#configure-your-mainboard" title="Link to this heading"></a></h4>
+<h4>Configure your mainboard<a class="headerlink" href="#configure-your-mainboard" title="Permalink to this heading"></a></h4>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>menuconfig
 </pre></div>
 </div>
@@ -218,7 +220,7 @@ select &lt; Exit &gt;
 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">distclean</span></code> to remove your old config file and start over.</p>
 </section>
 <section id="optionally-use-your-system-toolchain-again-not-recommended">
-<h4>Optionally use your system toolchain (Again, not recommended)<a class="headerlink" href="#optionally-use-your-system-toolchain-again-not-recommended" title="Link to this heading"></a></h4>
+<h4>Optionally use your system toolchain (Again, not recommended)<a class="headerlink" href="#optionally-use-your-system-toolchain-again-not-recommended" title="Permalink to this heading"></a></h4>
 <div class="highlight-Text notranslate"><div class="highlight"><pre><span></span>select &#39;General Setup&#39; menu
 select &#39;Allow building with any toolchain&#39;
 select &lt; Exit &gt;
@@ -226,7 +228,7 @@ select &lt; Exit &gt;
 </div>
 </section>
 <section id="select-the-payload">
-<h4>Select the payload<a class="headerlink" href="#select-the-payload" title="Link to this heading"></a></h4>
+<h4>Select the payload<a class="headerlink" href="#select-the-payload" title="Permalink to this heading"></a></h4>
 <div class="highlight-Text notranslate"><div class="highlight"><pre><span></span>select &#39;Payload&#39; menu
 select &#39;Payload to add (SeaBIOS) ---&gt;&#39;
 choose &#39;An ELF executable payload&#39;
@@ -239,7 +241,7 @@ select &lt; Yes &gt;
 </div>
 </section>
 <section id="check-your-configuration-optional-step">
-<h4>Check your configuration (optional step):<a class="headerlink" href="#check-your-configuration-optional-step" title="Link to this heading"></a></h4>
+<h4>Check your configuration (optional step):<a class="headerlink" href="#check-your-configuration-optional-step" title="Permalink to this heading"></a></h4>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>savedefconfig
 cat<span class="w"> </span>defconfig
 </pre></div>
@@ -263,7 +265,7 @@ contents of defconfig.</p>
 </section>
 </section>
 <section id="step-6-build-coreboot">
-<h3>Step 6 - Build coreboot<a class="headerlink" href="#step-6-build-coreboot" title="Link to this heading"></a></h3>
+<h3>Step 6 - Build coreboot<a class="headerlink" href="#step-6-build-coreboot" title="Permalink to this heading"></a></h3>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>make
 </pre></div>
 </div>
@@ -274,9 +276,9 @@ the <code class="docutils literal notranslate"><span class="pre">build</span></c
 </section>
 </section>
 <section id="test-the-image-using-qemu">
-<h2>Test the image using QEMU<a class="headerlink" href="#test-the-image-using-qemu" title="Link to this heading"></a></h2>
+<h2>Test the image using QEMU<a class="headerlink" href="#test-the-image-using-qemu" title="Permalink to this heading"></a></h2>
 <section id="step-7-install-qemu">
-<h3>Step 7 - Install QEMU<a class="headerlink" href="#step-7-install-qemu" title="Link to this heading"></a></h3>
+<h3>Step 7 - Install QEMU<a class="headerlink" href="#step-7-install-qemu" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Debian: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">qemu-system</span></code></p></li>
 <li><p>Arch: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">qemu</span></code></p></li>
@@ -284,7 +286,7 @@ the <code class="docutils literal notranslate"><span class="pre">build</span></c
 </ul>
 </section>
 <section id="step-8-run-qemu">
-<h3>Step 8 - Run QEMU<a class="headerlink" href="#step-8-run-qemu" title="Link to this heading"></a></h3>
+<h3>Step 8 - Run QEMU<a class="headerlink" href="#step-8-run-qemu" title="Permalink to this heading"></a></h3>
 <p>Start QEMU, and point it to the ROM you just built:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>qemu-system-x86_64<span class="w"> </span>-bios<span class="w"> </span>build/coreboot.rom<span class="w"> </span>-serial<span class="w"> </span>stdio
 </pre></div>
@@ -294,9 +296,9 @@ window, and a new window will appear running the coreinfo payload.</p>
 </section>
 </section>
 <section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading"></a></h2>
 <section id="step-1-summary-install-tools-and-libraries-needed-for-coreboot">
-<h3>Step 1 summary - Install tools and libraries needed for coreboot<a class="headerlink" href="#step-1-summary-install-tools-and-libraries-needed-for-coreboot" title="Link to this heading"></a></h3>
+<h3>Step 1 summary - Install tools and libraries needed for coreboot<a class="headerlink" href="#step-1-summary-install-tools-and-libraries-needed-for-coreboot" title="Permalink to this heading"></a></h3>
 <p>Depending on your distribution you have installed the minimum additional
 software requirements to continue with downloading and building
 coreboot.  Not every distribution has the tools, that would be required,
@@ -317,7 +319,7 @@ encourage you to contribute to the project and submit a pull request
 with an update for this documentation for your system.</p>
 </section>
 <section id="step-2-summary-download-coreboot-source-tree">
-<h3>Step 2 summary - Download coreboot source tree<a class="headerlink" href="#step-2-summary-download-coreboot-source-tree" title="Link to this heading"></a></h3>
+<h3>Step 2 summary - Download coreboot source tree<a class="headerlink" href="#step-2-summary-download-coreboot-source-tree" title="Permalink to this heading"></a></h3>
 <p>This will download a ‘read-only’ copy of the coreboot tree. This just
 means that if you made changes to the coreboot tree, you couldn’t
 immediately contribute them back to the community. To pull a copy of
@@ -325,7 +327,7 @@ coreboot that would allow you to contribute back, you would first need
 to sign up for an account on gerrit.</p>
 </section>
 <section id="step-3-summary-build-the-coreboot-toolchain">
-<h3>Step 3 summary - Build the coreboot toolchain.<a class="headerlink" href="#step-3-summary-build-the-coreboot-toolchain" title="Link to this heading"></a></h3>
+<h3>Step 3 summary - Build the coreboot toolchain.<a class="headerlink" href="#step-3-summary-build-the-coreboot-toolchain" title="Permalink to this heading"></a></h3>
 <p>This builds one of the coreboot cross-compiler toolchains for X86
 platforms.  Because of the variability of compilers and the other
 required tools between the various operating systems that coreboot can
@@ -336,7 +338,7 @@ used to build various tools that will run on the local system during the
 build process.</p>
 </section>
 <section id="step-4-summary-build-the-payload">
-<h3>Step 4 summary - Build the payload<a class="headerlink" href="#step-4-summary-build-the-payload" title="Link to this heading"></a></h3>
+<h3>Step 4 summary - Build the payload<a class="headerlink" href="#step-4-summary-build-the-payload" title="Permalink to this heading"></a></h3>
 <p>To actually do anything useful with coreboot, you need to build a
 payload to include into the rom. The idea behind coreboot is that it
 does the minimum amount possible before passing control of the machine
@@ -359,7 +361,7 @@ built and explicitly set as the primary payload using the “ELF
 executable payload” option.</p>
 </section>
 <section id="step-5-summary-configure-the-build">
-<h3>Step 5 summary - Configure the build<a class="headerlink" href="#step-5-summary-configure-the-build" title="Link to this heading"></a></h3>
+<h3>Step 5 summary - Configure the build<a class="headerlink" href="#step-5-summary-configure-the-build" title="Permalink to this heading"></a></h3>
 <p>This step configures coreboot’s build options using the menuconfig
 interface to Kconfig. Kconfig is the same configuration program used by
 the linux kernel. It allows you to enable, disable, and change various
@@ -373,7 +375,7 @@ This leads to a hybrid configuration which may or may not work as
 expected.</p>
 </section>
 <section id="step-6-summary-build-coreboot">
-<h3>Step 6 summary - Build coreboot<a class="headerlink" href="#step-6-summary-build-coreboot" title="Link to this heading"></a></h3>
+<h3>Step 6 summary - Build coreboot<a class="headerlink" href="#step-6-summary-build-coreboot" title="Permalink to this heading"></a></h3>
 <p>You may notice that a number of other pieces are downloaded at the
 beginning of the build process. These are the git submodules used in
 various coreboot builds.  By default, the <em>blobs</em> submodule is not
@@ -385,12 +387,12 @@ file itself ends up in the build directory as ‘coreboot.rom’. At the end
 of the build process, the build displayed the contents of the rom file.</p>
 </section>
 <section id="step-7-summary-install-qemu">
-<h3>Step 7 summary - Install QEMU<a class="headerlink" href="#step-7-summary-install-qemu" title="Link to this heading"></a></h3>
+<h3>Step 7 summary - Install QEMU<a class="headerlink" href="#step-7-summary-install-qemu" title="Permalink to this heading"></a></h3>
 <p>QEMU is a processor emulator which we can use to show the coreboot boot
 process in a virtualised environment.</p>
 </section>
 <section id="step-8-summary-run-qemu">
-<h3>Step 8 summary - Run QEMU<a class="headerlink" href="#step-8-summary-run-qemu" title="Link to this heading"></a></h3>
+<h3>Step 8 summary - Run QEMU<a class="headerlink" href="#step-8-summary-run-qemu" title="Permalink to this heading"></a></h3>
 <p>Here’s the command line instruction broken down:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">qemu-system-x86_64</span></code>

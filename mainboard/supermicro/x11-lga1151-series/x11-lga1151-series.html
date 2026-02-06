@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>X11 LGA1151 series &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>X11 LGA1151 series &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -153,12 +155,12 @@
            <div itemprop="articleBody">
              
   <section id="x11-lga1151-series">
-<h1>X11 LGA1151 series<a class="headerlink" href="#x11-lga1151-series" title="Link to this heading"></a></h1>
+<h1>X11 LGA1151 series<a class="headerlink" href="#x11-lga1151-series" title="Permalink to this heading"></a></h1>
 <p>The <a class="reference external" href="https://www.supermicro.com/products/motherboard/Xeon3000/#1151">Supermicro X11 LGA1151 series</a> are mostly the same boards with some minor differences in
 internal and external interfaces like available PCIe slots, NICs (1 GbE, 10 GbE), IPMI, RAID
 Controller etc.</p>
 <section id="supported-boards">
-<h2>Supported boards<a class="headerlink" href="#supported-boards" title="Link to this heading"></a></h2>
+<h2>Supported boards<a class="headerlink" href="#supported-boards" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="x11ssh-tf/x11ssh-tf.html">X11SSH-TF</a></li>
@@ -169,14 +171,14 @@ Controller etc.</p>
 </div>
 </section>
 <section id="required-proprietary-blobs">
-<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Link to this heading"></a></h2>
+<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../../soc/intel/fsp/index.html"><span class="doc">Intel FSP2.0</span></a></p></li>
 <li><p>Intel ME</p></li>
 </ul>
 </section>
 <section id="de-blobbing">
-<h2>De-blobbing<a class="headerlink" href="#de-blobbing" title="Link to this heading"></a></h2>
+<h2>De-blobbing<a class="headerlink" href="#de-blobbing" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../../soc/intel/fsp/index.html"><span class="doc">Intel FSP2.0</span></a> can not be removed as long as there is no free replacement</p></li>
 <li><p>Intel ME can be cleaned using me_cleaner (~4.5 MiB more free space)</p></li>
@@ -186,18 +188,18 @@ needed. For more details refer to the respective datasheet (e.g 333016-008 for I
 </ul>
 </section>
 <section id="flashing-coreboot">
-<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Permalink to this heading"></a></h2>
 <p>Look at the <a class="reference internal" href="../../../tutorial/flashing_firmware/ext_power.html"><span class="doc">flashing tutorial</span></a> and the board-specific section.</p>
 </section>
 <section id="known-issues">
-<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading"></a></h2>
 <p>These issues apply to all boards. Have a look at the board-specific issues, too.</p>
 <ul class="simple">
 <li><p>MRC caching does not work on cold boot with Intel SPS (see <a class="reference internal" href="../../../soc/intel/fsp/index.html"><span class="doc">Intel FSP2.0</span></a>)</p></li>
 </ul>
 </section>
 <section id="todo">
-<h2>ToDo<a class="headerlink" href="#todo" title="Link to this heading"></a></h2>
+<h2>ToDo<a class="headerlink" href="#todo" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Fix issues above</p></li>
 <li><p>Fix issues in board specific sections</p></li>
@@ -205,7 +207,7 @@ needed. For more details refer to the respective datasheet (e.g 333016-008 for I
 </ul>
 </section>
 <section id="technology">
-<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<h2>Technology<a class="headerlink" href="#technology" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>CPU</p></td>
@@ -221,7 +223,7 @@ needed. For more details refer to the respective datasheet (e.g 333016-008 for I
 </table>
 </section>
 <section id="extra-links">
-<h2>Extra links<a class="headerlink" href="#extra-links" title="Link to this heading"></a></h2>
+<h2>Extra links<a class="headerlink" href="#extra-links" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 

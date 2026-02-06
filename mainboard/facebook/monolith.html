@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Facebook Monolith &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Facebook Monolith &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -150,12 +152,12 @@
            <div itemprop="articleBody">
              
   <section id="facebook-monolith">
-<h1>Facebook Monolith<a class="headerlink" href="#facebook-monolith" title="Link to this heading"></a></h1>
+<h1>Facebook Monolith<a class="headerlink" href="#facebook-monolith" title="Permalink to this heading"></a></h1>
 <p>This page describes how to run coreboot on the Facebook Monolith.</p>
 <p>Please note: the coreboot implementation for this board is in its
 Beta state and isn’t fully tested yet.</p>
 <section id="required-blobs">
-<h2>Required blobs<a class="headerlink" href="#required-blobs" title="Link to this heading"></a></h2>
+<h2>Required blobs<a class="headerlink" href="#required-blobs" title="Permalink to this heading"></a></h2>
 <p>Mainboard is based on the Intel Kaby Lake U SoC.
 Intel company provides <a class="reference internal" href="../../soc/intel/fsp/index.html"><span class="doc">Firmware Support Package (2.0)</span></a>
 (intel FSP 2.0) to initialize this generation silicon. Please see this
@@ -178,7 +180,7 @@ processors  and chipsets
 <p>Microcode: 3rdparty/intel-microcode/intel-ucode</p>
 </section>
 <section id="flash-components">
-<h2>Flash components<a class="headerlink" href="#flash-components" title="Link to this heading"></a></h2>
+<h2>Flash components<a class="headerlink" href="#flash-components" title="Permalink to this heading"></a></h2>
 <p>To create a complete flash image, the flash descriptor, GBE and ME blobs are required. The
 complete image can be used when e.g. a blank flash should be programmed. In other cases (when
 only coreboot needs to be replaced) placeholders can be used for the GBE and ME regions.</p>
@@ -206,9 +208,9 @@ not needed as this is replaced by the coreboot image.</p>
 flashrom it is advisable to leave out the <em>gbe</em> area.</p>
 </section>
 <section id="flashing-coreboot">
-<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Permalink to this heading"></a></h2>
 <section id="internal-programming">
-<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Link to this heading"></a></h3>
+<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Permalink to this heading"></a></h3>
 <p>The SPI flash can be accessed using <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a>.</p>
 <p>The descriptor area needs to be updated once to resize the <em>bios</em> region.
 <code class="docutils literal notranslate"><span class="pre">flashrom</span> <span class="pre">-p</span> <span class="pre">internal</span> <span class="pre">--ifd</span> <span class="pre">-i</span> <span class="pre">fd</span> <span class="pre">-w</span> <span class="pre">&lt;coreboot.bin&gt;</span></code></p>
@@ -219,7 +221,7 @@ flashrom it is advisable to leave out the <em>gbe</em> area.</p>
 descriptor and bios regions in the right sequence. Don’t update both in one command.</p>
 </section>
 <section id="external-programming">
-<h3>External programming<a class="headerlink" href="#external-programming" title="Link to this heading"></a></h3>
+<h3>External programming<a class="headerlink" href="#external-programming" title="Permalink to this heading"></a></h3>
 <p>The system has an internal flash chip which is a 16 MiB soldered SOIC-8 chip.
 Specifically, it’s a Winbond W25Q128JVSIQ (3.3V).</p>
 <p>The system has an external flash chip which is a 16 MiB soldered SOIC-8 chip.
@@ -229,13 +231,13 @@ solution. Wires need to be connected to be able to flash using an external progr
 </section>
 </section>
 <section id="known-issues">
-<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>None</p></li>
 </ul>
 </section>
 <section id="untested">
-<h2>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h2>
+<h2>Untested<a class="headerlink" href="#untested" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Hardware monitor</p></li>
 <li><p>Full Embedded Controller support</p></li>
@@ -244,7 +246,7 @@ solution. Wires need to be connected to be able to flash using an external progr
 </ul>
 </section>
 <section id="working">
-<h2>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h2>
+<h2>Working<a class="headerlink" href="#working" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>USB</p></li>
 <li><p>Gigabit Ethernet (i219 and i210)</p></li>
@@ -266,7 +268,7 @@ and LinuxBoot.</p>
 output.</p>
 </section>
 <section id="technology">
-<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<h2>Technology<a class="headerlink" href="#technology" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>SoC</p></td>

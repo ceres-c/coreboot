@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Managing local additions &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Managing local additions &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -115,11 +117,11 @@
            <div itemprop="articleBody">
              
   <section id="managing-local-additions">
-<h1>Managing local additions<a class="headerlink" href="#managing-local-additions" title="Link to this heading"></a></h1>
+<h1>Managing local additions<a class="headerlink" href="#managing-local-additions" title="Permalink to this heading"></a></h1>
 <p>This section describes the site-local mechanism, what it is good for and
 how it can be used.</p>
 <section id="what-is-site-local">
-<h2>What is site-local?<a class="headerlink" href="#what-is-site-local" title="Link to this heading"></a></h2>
+<h2>What is site-local?<a class="headerlink" href="#what-is-site-local" title="Permalink to this heading"></a></h2>
 <p>site-local is the name of a directory that won’t ever appear in the
 upstream coreboot repository but is referred to in several key places of its
 configuration and build system. The intent is provide a single location to
@@ -131,13 +133,13 @@ and any changes made there won’t ever conflict with upstream changes.</p>
 repo and is called <code class="docutils literal notranslate"><span class="pre">site-local</span></code>.</p>
 </section>
 <section id="integration-into-the-configuration-system">
-<h2>Integration into the configuration system<a class="headerlink" href="#integration-into-the-configuration-system" title="Link to this heading"></a></h2>
+<h2>Integration into the configuration system<a class="headerlink" href="#integration-into-the-configuration-system" title="Permalink to this heading"></a></h2>
 <p>Kconfig includes <code class="docutils literal notranslate"><span class="pre">site-local/Kconfig</span></code> relatively early, so it can be used
 to pre-define some configuration before coreboot’s regular ruleset sets
 up defaults.</p>
 </section>
 <section id="integration-into-the-build-system">
-<h2>Integration into the build system<a class="headerlink" href="#integration-into-the-build-system" title="Link to this heading"></a></h2>
+<h2>Integration into the build system<a class="headerlink" href="#integration-into-the-build-system" title="Permalink to this heading"></a></h2>
 <p>The build system includes, if present, <code class="docutils literal notranslate"><span class="pre">site-local/Makefile.inc</span></code>. The main
 purpose so far has been to add additional files to a CBFS image. A single
 Makefile.inc can serve multiple boards, for example:</p>

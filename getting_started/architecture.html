@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>coreboot architecture &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>coreboot architecture &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -126,13 +128,13 @@
            <div itemprop="articleBody">
              
   <section id="coreboot-architecture">
-<h1>coreboot architecture<a class="headerlink" href="#coreboot-architecture" title="Link to this heading"></a></h1>
+<h1>coreboot architecture<a class="headerlink" href="#coreboot-architecture" title="Permalink to this heading"></a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p><img alt="../_images/comparison_coreboot_uefi.svg" src="../_images/comparison_coreboot_uefi.svg" /></p>
 </section>
 <section id="stages">
-<h2>Stages<a class="headerlink" href="#stages" title="Link to this heading"></a></h2>
+<h2>Stages<a class="headerlink" href="#stages" title="Permalink to this heading"></a></h2>
 <p>coreboot consists of multiple stages that are compiled as separate binaries and
 are inserted into the CBFS with custom compression. The bootblock usually doesn’t
 have compression while the ramstage and payload are compressed with LZMA.</p>
@@ -147,7 +149,7 @@ usually cached in CBMEM for faster loading times on ACPI S3 resume.</p>
 </ul>
 </section>
 <section id="bootblock">
-<h2>bootblock<a class="headerlink" href="#bootblock" title="Link to this heading"></a></h2>
+<h2>bootblock<a class="headerlink" href="#bootblock" title="Permalink to this heading"></a></h2>
 <p>The bootblock is the first stage executed after CPU reset. It is written in
 assembly language and its main task is to set up everything for a C-environment:</p>
 <p>Common tasks:</p>
@@ -165,7 +167,7 @@ assembly language and its main task is to set up everything for a C-environment:
 </ul>
 <p>The bootblock loads the romstage or the verstage if verified boot is enabled.</p>
 <section id="cache-as-ram">
-<h3>Cache-As-Ram<a class="headerlink" href="#cache-as-ram" title="Link to this heading"></a></h3>
+<h3>Cache-As-Ram<a class="headerlink" href="#cache-as-ram" title="Permalink to this heading"></a></h3>
 <p>The <em>Cache-As-Ram</em>, also called Non-Eviction mode, or <em>CAR</em> allows to use the
 CPU cache like regular SRAM. This is particullary useful for high level
 languages like <code class="docutils literal notranslate"><span class="pre">C</span></code>, which need RAM for heap and stack.</p>
@@ -180,7 +182,7 @@ languages like <code class="docutils literal notranslate"><span class="pre">C</s
 </section>
 </section>
 <section id="verstage">
-<h2>verstage<a class="headerlink" href="#verstage" title="Link to this heading"></a></h2>
+<h2>verstage<a class="headerlink" href="#verstage" title="Permalink to this heading"></a></h2>
 <p>The verstage is where the root-of-trust starts. It’s assumed that
 it cannot be overwritten in-field (together with the public key) and
 it starts at the very beginning of the boot process.
@@ -190,7 +192,7 @@ CBFS or a partition before it’s accessed.</p>
 combined with a fail-safe recovery mode.</p>
 </section>
 <section id="romstage">
-<h2>romstage<a class="headerlink" href="#romstage" title="Link to this heading"></a></h2>
+<h2>romstage<a class="headerlink" href="#romstage" title="Permalink to this heading"></a></h2>
 <p>The romstage initializes the DRAM and prepares everything for device init.</p>
 <p>Common tasks:</p>
 <ul class="simple">
@@ -199,12 +201,12 @@ combined with a fail-safe recovery mode.</p>
 </ul>
 </section>
 <section id="postcar">
-<h2>postcar<a class="headerlink" href="#postcar" title="Link to this heading"></a></h2>
+<h2>postcar<a class="headerlink" href="#postcar" title="Permalink to this heading"></a></h2>
 <p>To leave the CAR setup and run code from regular DRAM the postcar-stage tears
 down CAR and loads the ramstage. Compared to other stages it’s minimal in size.</p>
 </section>
 <section id="ramstage">
-<h2>ramstage<a class="headerlink" href="#ramstage" title="Link to this heading"></a></h2>
+<h2>ramstage<a class="headerlink" href="#ramstage" title="Permalink to this heading"></a></h2>
 <p>The ramstage does the main device init:</p>
 <ul class="simple">
 <li><p>PCI device init</p></li>
@@ -229,7 +231,7 @@ about the current hardware existence and state. That includes:</p>
 </ul>
 </section>
 <section id="payload">
-<h2>payload<a class="headerlink" href="#payload" title="Link to this heading"></a></h2>
+<h2>payload<a class="headerlink" href="#payload" title="Permalink to this heading"></a></h2>
 <p>The payload is the software that is run after coreboot is done. It resides in
 the CBFS and there’s no possibility to choose it at runtime.</p>
 <p>For more details have a look at <a class="reference internal" href="../payloads.html"><span class="doc">payloads</span></a>.</p>

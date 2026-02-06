@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Intel Firmware Support Package (FSP)-specific documentation &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Intel Firmware Support Package (FSP)-specific documentation &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -116,10 +118,10 @@
            <div itemprop="articleBody">
              
   <section id="intel-firmware-support-package-fsp-specific-documentation">
-<h1>Intel Firmware Support Package (FSP)-specific documentation<a class="headerlink" href="#intel-firmware-support-package-fsp-specific-documentation" title="Link to this heading"></a></h1>
+<h1>Intel Firmware Support Package (FSP)-specific documentation<a class="headerlink" href="#intel-firmware-support-package-fsp-specific-documentation" title="Permalink to this heading"></a></h1>
 <p>This section contains documentation about Intel-FSP in public domain.</p>
 <section id="integration-guidelines">
-<h2>Integration Guidelines<a class="headerlink" href="#integration-guidelines" title="Link to this heading"></a></h2>
+<h2>Integration Guidelines<a class="headerlink" href="#integration-guidelines" title="Permalink to this heading"></a></h2>
 <p>Some guiding principles when working on the glue to integrate FSP into
 coreboot, e.g. on how to configure a board in devicetree when that affects
 the way FSP works:</p>
@@ -132,11 +134,11 @@ directly configure FSP.</p></li>
 </ul>
 </section>
 <section id="bugs">
-<h2>Bugs<a class="headerlink" href="#bugs" title="Link to this heading"></a></h2>
+<h2>Bugs<a class="headerlink" href="#bugs" title="Permalink to this heading"></a></h2>
 <p>As Intel doesn’t even list known bugs, they are collected here until
 those are fixed. If possible a workaround is described here as well.</p>
 <section id="broadwelldefsp">
-<h3>BroadwellDEFsp<a class="headerlink" href="#broadwelldefsp" title="Link to this heading"></a></h3>
+<h3>BroadwellDEFsp<a class="headerlink" href="#broadwelldefsp" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>IA32_FEATURE_CONTROL MSR is locked in FSP-M</p>
 <ul>
@@ -166,7 +168,7 @@ those are fixed. If possible a workaround is described here as well.</p>
 </ul>
 </section>
 <section id="kabylakefsp">
-<h3>KabylakeFsp<a class="headerlink" href="#kabylakefsp" title="Link to this heading"></a></h3>
+<h3>KabylakeFsp<a class="headerlink" href="#kabylakefsp" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>MfgId and ModulePartNum in the DIMM_INFO struct are empty</p>
 <ul>
@@ -186,7 +188,7 @@ those are fixed. If possible a workaround is described here as well.</p>
 </ul>
 </section>
 <section id="braswellfsp">
-<h3>BraswellFsp<a class="headerlink" href="#braswellfsp" title="Link to this heading"></a></h3>
+<h3>BraswellFsp<a class="headerlink" href="#braswellfsp" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Internal UART can’t be disabled using PcdEnableHsuart*</p>
 <ul>
@@ -198,7 +200,7 @@ those are fixed. If possible a workaround is described here as well.</p>
 </ul>
 </section>
 <section id="coffeelakefsp">
-<h3>CoffeeLakeFsp<a class="headerlink" href="#coffeelakefsp" title="Link to this heading"></a></h3>
+<h3>CoffeeLakeFsp<a class="headerlink" href="#coffeelakefsp" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Disabling the internal graphics causes a crash in FSP-M</p>
 <ul>
@@ -211,7 +213,7 @@ those are fixed. If possible a workaround is described here as well.</p>
 </section>
 </section>
 <section id="open-source-intel-fsp-specification">
-<h2>Open Source Intel FSP specification<a class="headerlink" href="#open-source-intel-fsp-specification" title="Link to this heading"></a></h2>
+<h2>Open Source Intel FSP specification<a class="headerlink" href="#open-source-intel-fsp-specification" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://firmware.intel.com/learn/fsp/about-intel-fsp">About Intel FSP</a></li>
@@ -223,7 +225,7 @@ those are fixed. If possible a workaround is described here as well.</p>
 </div>
 </section>
 <section id="additional-features-in-fsp-2-1-specification">
-<h2>Additional Features in FSP 2.1 specification<a class="headerlink" href="#additional-features-in-fsp-2-1-specification" title="Link to this heading"></a></h2>
+<h2>Additional Features in FSP 2.1 specification<a class="headerlink" href="#additional-features-in-fsp-2-1-specification" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ppi/ppi.html">PPI</a></li>
@@ -231,7 +233,7 @@ those are fixed. If possible a workaround is described here as well.</p>
 </div>
 </section>
 <section id="official-bugtracker">
-<h2>Official bugtracker<a class="headerlink" href="#official-bugtracker" title="Link to this heading"></a></h2>
+<h2>Official bugtracker<a class="headerlink" href="#official-bugtracker" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/IntelFsp/FSP/issues">IntelFSP/FSP</a></li>

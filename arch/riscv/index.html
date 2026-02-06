@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RISC-V architecture documentation &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>RISC-V architecture documentation &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -118,10 +120,10 @@
            <div itemprop="articleBody">
              
   <section id="risc-v-architecture-documentation">
-<h1>RISC-V architecture documentation<a class="headerlink" href="#risc-v-architecture-documentation" title="Link to this heading"></a></h1>
+<h1>RISC-V architecture documentation<a class="headerlink" href="#risc-v-architecture-documentation" title="Permalink to this heading"></a></h1>
 <p>This section contains documentation about coreboot on RISC-V architecture.</p>
 <section id="mode-usage">
-<h2>Mode usage<a class="headerlink" href="#mode-usage" title="Link to this heading"></a></h2>
+<h2>Mode usage<a class="headerlink" href="#mode-usage" title="Permalink to this heading"></a></h2>
 <p>All stages run in M mode.</p>
 <p>Payloads have a choice of managing M mode activity: they can control
 everything or nothing.</p>
@@ -131,7 +133,7 @@ The payload must, for example, prepare and install its own SBI.</p>
 will have been done. These payloads rely on the SBI and can not replace it.</p>
 </section>
 <section id="stage-handoff-protocol">
-<h2>Stage handoff protocol<a class="headerlink" href="#stage-handoff-protocol" title="Link to this heading"></a></h2>
+<h2>Stage handoff protocol<a class="headerlink" href="#stage-handoff-protocol" title="Permalink to this heading"></a></h2>
 <p>On entry to a stage or payload (including SELF payloads),</p>
 <ul class="simple">
 <li><p>all harts are running.</p></li>
@@ -146,11 +148,11 @@ will have been done. These payloads rely on the SBI and can not replace it.</p>
 </ul>
 </section>
 <section id="additional-payload-handoff-requirements">
-<h2>Additional payload handoff requirements<a class="headerlink" href="#additional-payload-handoff-requirements" title="Link to this heading"></a></h2>
+<h2>Additional payload handoff requirements<a class="headerlink" href="#additional-payload-handoff-requirements" title="Permalink to this heading"></a></h2>
 <p>The location of cbmem should be placed in a node in the FDT.</p>
 </section>
 <section id="opensbi">
-<h2>OpenSBI<a class="headerlink" href="#opensbi" title="Link to this heading"></a></h2>
+<h2>OpenSBI<a class="headerlink" href="#opensbi" title="Permalink to this heading"></a></h2>
 <p>In case the payload doesn’t install it’s own SBI, like the <a class="reference external" href="https://github.com/riscv/riscv-pk">RISCV-PK</a> does,
 <a class="reference external" href="https://github.com/riscv/opensbi">OpenSBI</a> can be used instead.
 It’s loaded into RAM after coreboot has finished loading the payload.
@@ -161,11 +163,11 @@ a platform independent console.</p>
 <p>The OpenSBI code is always run in M mode.</p>
 </section>
 <section id="trap-delegation">
-<h2>Trap delegation<a class="headerlink" href="#trap-delegation" title="Link to this heading"></a></h2>
+<h2>Trap delegation<a class="headerlink" href="#trap-delegation" title="Permalink to this heading"></a></h2>
 <p>Traps are delegated to the payload.</p>
 </section>
 <section id="smp-within-a-stage">
-<h2>SMP within a stage<a class="headerlink" href="#smp-within-a-stage" title="Link to this heading"></a></h2>
+<h2>SMP within a stage<a class="headerlink" href="#smp-within-a-stage" title="Permalink to this heading"></a></h2>
 <p>At the beginning of each stage, all harts save 0 are spinning in a loop on
 a semaphore.  At the end of the stage harts 1..max are released by changing
 the semaphore.</p>

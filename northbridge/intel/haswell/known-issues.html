@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Known issues with Haswell &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Known issues with Haswell &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -114,11 +116,11 @@
            <div itemprop="articleBody">
              
   <section id="known-issues-with-haswell">
-<h1>Known issues with Haswell<a class="headerlink" href="#known-issues-with-haswell" title="Link to this heading"></a></h1>
+<h1>Known issues with Haswell<a class="headerlink" href="#known-issues-with-haswell" title="Permalink to this heading"></a></h1>
 <p>These issues are specific to the Haswell architecture. For a given
 mainboard, there might be additional issues to those listed here.</p>
 <section id="pcie-graphics">
-<h2>PCIe graphics<a class="headerlink" href="#pcie-graphics" title="Link to this heading"></a></h2>
+<h2>PCIe graphics<a class="headerlink" href="#pcie-graphics" title="Permalink to this heading"></a></h2>
 <p>Using a PCIe graphics card for display output is not currently
 supported. This is because <a class="reference internal" href="mrc.bin.html"><span class="doc">mrc.bin</span></a> requires workarounds to
 have such a feature working correctly.</p>
@@ -130,7 +132,7 @@ while the integrated graphics device is used for display output. This
 can be achieved under GNU/Linux by using <a class="reference external" href="https://wiki.archlinux.org/index.php/PRIME">PRIME GPU offloading</a>.</p>
 </section>
 <section id="pcie-3-0">
-<h2>PCIe 3.0<a class="headerlink" href="#pcie-3-0" title="Link to this heading"></a></h2>
+<h2>PCIe 3.0<a class="headerlink" href="#pcie-3-0" title="Permalink to this heading"></a></h2>
 <p>Only PCIe 2.0 has been tested so far. PCIe 3.0 could potentially have
 stability issues.</p>
 </section>

@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Unit testing coreboot &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Unit testing coreboot &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -132,9 +134,9 @@
            <div itemprop="articleBody">
              
   <section id="unit-testing-coreboot">
-<h1>Unit testing coreboot<a class="headerlink" href="#unit-testing-coreboot" title="Link to this heading"></a></h1>
+<h1>Unit testing coreboot<a class="headerlink" href="#unit-testing-coreboot" title="Permalink to this heading"></a></h1>
 <section id="preface">
-<h2>Preface<a class="headerlink" href="#preface" title="Link to this heading"></a></h2>
+<h2>Preface<a class="headerlink" href="#preface" title="Permalink to this heading"></a></h2>
 <p>First part of this document, Introduction, comprises disambiguation for what
 unit testing is and what is not. This definition will be a basis for the whole
 paper.</p>
@@ -151,7 +153,7 @@ codebase in general should be organized, in order to support unit testing. This
 comprises couple of design considerations which need to be addressed.</p>
 </section>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>A unit test is supposed to test a single unit of code in isolation. In C
 language (in contrary to OOP) unit usually means a function. One may also
 consider unit under test to be a single compilation unit which exposes some
@@ -174,7 +176,7 @@ unit test does. Furthermore, unit tests are running on the build machine, while
 integration tests usually are executed on the target (or simulator).</p>
 </section>
 <section id="rationale">
-<h2>Rationale<a class="headerlink" href="#rationale" title="Link to this heading"></a></h2>
+<h2>Rationale<a class="headerlink" href="#rationale" title="Permalink to this heading"></a></h2>
 <p>Considering above, what is the benefit of unit testing, especially keeping in
 mind that coreboot is low-level firmware? Unit tests should be quick, thus may
 be executed frequently during development process. It is much easier to build
@@ -193,9 +195,9 @@ testable code is a good code.</p>
 payloads/libpayload) and coreboot infrastructure (console/, device/, security/).</p>
 </section>
 <section id="evaluation-of-unit-testing-frameworks">
-<h2>Evaluation of unit testing frameworks<a class="headerlink" href="#evaluation-of-unit-testing-frameworks" title="Link to this heading"></a></h2>
+<h2>Evaluation of unit testing frameworks<a class="headerlink" href="#evaluation-of-unit-testing-frameworks" title="Permalink to this heading"></a></h2>
 <section id="requirements">
-<h3>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h3>
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h3>
 <p>Requirements for unit testing frameworks:</p>
 <ul>
 <li><p>Easy to use</p></li>
@@ -219,7 +221,7 @@ compiler could be the same, but this is not a requirement.</p>
 </ul>
 </section>
 <section id="desirables">
-<h3>Desirables<a class="headerlink" href="#desirables" title="Link to this heading"></a></h3>
+<h3>Desirables<a class="headerlink" href="#desirables" title="Permalink to this heading"></a></h3>
 <ul>
 <li><p>Easy to integrate with build system/build tools</p>
 <p>Ideally JUnit-like XML output format for Jenkins</p>
@@ -240,7 +242,7 @@ However ideally compatible with GPL.</p>
 </ul>
 </section>
 <section id="candidates">
-<h3>Candidates<a class="headerlink" href="#candidates" title="Link to this heading"></a></h3>
+<h3>Candidates<a class="headerlink" href="#candidates" title="Permalink to this heading"></a></h3>
 <p>There is a lot of frameworks which allow unit testing C code
 (<a class="reference external" href="https://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#C">list</a> from
 Wikipedia). While not all of them were evaluated, because that would take an
@@ -257,7 +259,7 @@ for various reasons such as functionality, size of the developer community, or
 compatibility.</p>
 </section>
 <section id="evaluation">
-<h3>Evaluation<a class="headerlink" href="#evaluation" title="Link to this heading"></a></h3>
+<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.use-strict.de/sput-unit-testing/">SputUnit</a></p>
 <ul>
@@ -351,7 +353,7 @@ of all frameworks that were investigated</p></li>
 </ul>
 </section>
 <section id="summary-framework-proposal">
-<h3>Summary &amp; framework proposal<a class="headerlink" href="#summary-framework-proposal" title="Link to this heading"></a></h3>
+<h3>Summary &amp; framework proposal<a class="headerlink" href="#summary-framework-proposal" title="Permalink to this heading"></a></h3>
 <p>After research, we propose using the Cmocka unit test framework. Cmocka fulfills
 all stated evaluation criteria. It is rather easy to use, doesn’t have extra
 dependencies, written fully in C, allows for tests fixtures and some popular
@@ -364,9 +366,9 @@ community or simply apply some extra wrapper with demanded functionality.</p>
 </section>
 </section>
 <section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading"></a></h2>
 <section id="framework-as-a-submodule-or-external-package">
-<h3>Framework as a submodule or external package<a class="headerlink" href="#framework-as-a-submodule-or-external-package" title="Link to this heading"></a></h3>
+<h3>Framework as a submodule or external package<a class="headerlink" href="#framework-as-a-submodule-or-external-package" title="Permalink to this heading"></a></h3>
 <p>Unit test frameworks may be either compiled from source (from a git submodule
 under 3rdparty/) or pre-compiled as a package. The second option seems to be
 easier to maintain, while at the same time may bring some unwanted consequences
@@ -375,13 +377,13 @@ to initially experiment with packages and check how it works. If this will
 cause any issues, then it is always possible to switch to submodule approach.</p>
 </section>
 <section id="integration-with-build-system">
-<h3>Integration with build system<a class="headerlink" href="#integration-with-build-system" title="Link to this heading"></a></h3>
+<h3>Integration with build system<a class="headerlink" href="#integration-with-build-system" title="Permalink to this heading"></a></h3>
 <p>To get the most out of unit testing framework, it should be integrated with
 Jenkins automation server. Verification of all unit tests for new changes may
 improve code reliability to some extent.</p>
 </section>
 <section id="build-configuration-kconfig">
-<h3>Build configuration (Kconfig)<a class="headerlink" href="#build-configuration-kconfig" title="Link to this heading"></a></h3>
+<h3>Build configuration (Kconfig)<a class="headerlink" href="#build-configuration-kconfig" title="Permalink to this heading"></a></h3>
 <p>While building unit under test object file, it is necessary to apply some
 configuration (config) just like when building usual firmware. For simplicity,
 there will be one default tests .config <code class="docutils literal notranslate"><span class="pre">qemu_x86_i440fx</span></code> for all unit tests. At
@@ -392,7 +394,7 @@ required value. When unit testing will be integrated with Jenkins, it may be
 preferred to use every available config for periodic builds.</p>
 </section>
 <section id="directory-structure">
-<h3>Directory structure<a class="headerlink" href="#directory-structure" title="Link to this heading"></a></h3>
+<h3>Directory structure<a class="headerlink" href="#directory-structure" title="Permalink to this heading"></a></h3>
 <p>Tests should be kept separate from the code, while at the same time it must be
 easy to match code with test harness.</p>
 <p>We create new directory for test files ($(toplevel)/tests/) and mimic the
@@ -446,7 +448,7 @@ tests/lib/string-test and tests/device/i2c-test:</p>
 </div>
 </section>
 <section id="writing-new-tests">
-<h3>Writing new tests<a class="headerlink" href="#writing-new-tests" title="Link to this heading"></a></h3>
+<h3>Writing new tests<a class="headerlink" href="#writing-new-tests" title="Permalink to this heading"></a></h3>
 <p>Our tutorial series has <a class="reference internal" href="../tutorial/part3.html"><span class="doc">detailed guidelines</span></a> for writing
 unit tests.</p>
 </section>

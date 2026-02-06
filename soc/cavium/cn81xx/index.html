@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cavium CN81xx documentation &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Cavium CN81xx documentation &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -116,14 +118,14 @@
            <div itemprop="articleBody">
              
   <section id="cavium-cn81xx-documentation">
-<h1>Cavium CN81xx documentation<a class="headerlink" href="#cavium-cn81xx-documentation" title="Link to this heading"></a></h1>
+<h1>Cavium CN81xx documentation<a class="headerlink" href="#cavium-cn81xx-documentation" title="Permalink to this heading"></a></h1>
 <section id="reference-code">
-<h2>Reference code<a class="headerlink" href="#reference-code" title="Link to this heading"></a></h2>
+<h2>Reference code<a class="headerlink" href="#reference-code" title="Permalink to this heading"></a></h2>
 <p>The Cavium reference code is called <a class="reference external" href="../../../vendorcode/cavium/bdk.html">BDK</a> (board development kit) and is part
 of the <a class="reference external" href="https://github.com/Cavium-Open-Source-Distributions/OCTEON-TX-SDK">Octeon-TX-SDK</a>. Parts of the <a class="reference external" href="../../../vendorcode/cavium/bdk.html">BDK</a> have been integrated into coreoboot.</p>
 </section>
 <section id="soc-code">
-<h2>SOC code<a class="headerlink" href="#soc-code" title="Link to this heading"></a></h2>
+<h2>SOC code<a class="headerlink" href="#soc-code" title="Permalink to this heading"></a></h2>
 <p>The SOC folder contains functions for:</p>
 <ul class="simple">
 <li><p>TWSI</p></li>
@@ -141,14 +143,14 @@ of the <a class="reference external" href="https://github.com/Cavium-Open-Source
 ramstage.</p>
 </section>
 <section id="notes-about-the-hardware">
-<h2>Notes about the hardware<a class="headerlink" href="#notes-about-the-hardware" title="Link to this heading"></a></h2>
+<h2>Notes about the hardware<a class="headerlink" href="#notes-about-the-hardware" title="Permalink to this heading"></a></h2>
 <p>Cavium SoC do <strong>not</strong> have embedded SRAM. The <strong>BOOTROM</strong> setups the
 L2 cache and loads 192KiB of firmware starting from 0x20000 to a fixed
 location. It then jumps to the firmware.</p>
 <p>For more details have a look at <a class="reference external" href="../bootflow.html">Cavium CN8XXX Bootflow</a>.</p>
 </section>
 <section id="car-setup">
-<h2>CAR setup<a class="headerlink" href="#car-setup" title="Link to this heading"></a></h2>
+<h2>CAR setup<a class="headerlink" href="#car-setup" title="Permalink to this heading"></a></h2>
 <p>For Cache-as-RAM we only need to lock the cachelines which are used by bootblock
 or romstage until DRAM has been set up. At the end of romstage the cachelines
 are unlocked and the contents are flushed to DRAM.
@@ -157,17 +159,17 @@ Locked cachelines are never evicted.</p>
 aarch64 <code class="docutils literal notranslate"><span class="pre">bootblock.S</span></code> code.</p>
 </section>
 <section id="dram-setup">
-<h2>DRAM setup<a class="headerlink" href="#dram-setup" title="Link to this heading"></a></h2>
+<h2>DRAM setup<a class="headerlink" href="#dram-setup" title="Permalink to this heading"></a></h2>
 <p>The DRAM setup is done by the <a class="reference external" href="../../../vendorcode/cavium/bdk.html">BDK</a>.</p>
 </section>
 <section id="pci-setup">
-<h2>PCI setup<a class="headerlink" href="#pci-setup" title="Link to this heading"></a></h2>
+<h2>PCI setup<a class="headerlink" href="#pci-setup" title="Permalink to this heading"></a></h2>
 <p>The PCI setup is done using the MMCONF mechanism.
 Besides configuring device visibility (secure/unsecure) the MSI-X interrupts
 needs to be configured.</p>
 </section>
 <section id="devicetree-patching">
-<h2>Devicetree patching<a class="headerlink" href="#devicetree-patching" title="Link to this heading"></a></h2>
+<h2>Devicetree patching<a class="headerlink" href="#devicetree-patching" title="Permalink to this heading"></a></h2>
 <p>The Linux devicetree needs to be patched, depending on the available hardware
 and their configuration. Some values depends on fuses, some on user selectable
 configuration.</p>
@@ -181,10 +183,10 @@ configuration.</p>
 </ol>
 </section>
 <section id="cn81xx-quirks">
-<h2>CN81xx quirks<a class="headerlink" href="#cn81xx-quirks" title="Link to this heading"></a></h2>
+<h2>CN81xx quirks<a class="headerlink" href="#cn81xx-quirks" title="Permalink to this heading"></a></h2>
 <p>The CN81xx needs some quirks that are not documented or hidden in the code.</p>
 <section id="violation-of-pci-spec">
-<h3>Violation of PCI spec<a class="headerlink" href="#violation-of-pci-spec" title="Link to this heading"></a></h3>
+<h3>Violation of PCI spec<a class="headerlink" href="#violation-of-pci-spec" title="Permalink to this heading"></a></h3>
 <p><strong>Problem:</strong></p>
 <ul class="simple">
 <li><p>The PCI device 01:01.0 is disabled, but a multifunction device.</p></li>
@@ -195,7 +197,7 @@ PCI allocator.</p></li>
 <p>The PCI Bus 0 and 1 are scanned manually in SOC’s PCI code.</p>
 </section>
 <section id="crash-accessing-sli-memory">
-<h3>Crash accessing SLI memory<a class="headerlink" href="#crash-accessing-sli-memory" title="Link to this heading"></a></h3>
+<h3>Crash accessing SLI memory<a class="headerlink" href="#crash-accessing-sli-memory" title="Permalink to this heading"></a></h3>
 <p><strong>Problem:</strong></p>
 <p>The SLI memory region decodes to attached PCIe devices.
 Accessing the memory region results in ‘Data Abort Exception’ if the link of the
@@ -205,7 +207,7 @@ PCIe device never had been enabled.</p>
 memory reads as 0xffffffff.)</p>
 </section>
 <section id="rng-data-abort-exception">
-<h3>RNG Data Abort Exception<a class="headerlink" href="#rng-data-abort-exception" title="Link to this heading"></a></h3>
+<h3>RNG Data Abort Exception<a class="headerlink" href="#rng-data-abort-exception" title="Permalink to this heading"></a></h3>
 <p><strong>Problem:</strong></p>
 <p>‘Data Abort Exception’ on accessing the enabled RNG.</p>
 <p><strong>Solution</strong>:</p>

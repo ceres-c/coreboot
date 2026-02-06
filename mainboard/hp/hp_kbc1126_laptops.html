@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HP Laptops with KBC1126 Embedded Controller &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>HP Laptops with KBC1126 Embedded Controller &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -152,7 +154,7 @@
            <div itemprop="articleBody">
              
   <section id="hp-laptops-with-kbc1126-embedded-controller">
-<h1>HP Laptops with KBC1126 Embedded Controller<a class="headerlink" href="#hp-laptops-with-kbc1126-embedded-controller" title="Link to this heading"></a></h1>
+<h1>HP Laptops with KBC1126 Embedded Controller<a class="headerlink" href="#hp-laptops-with-kbc1126-embedded-controller" title="Permalink to this heading"></a></h1>
 <p>This document is about HP EliteBook series laptops up to Ivy Bridge era
 which use SMSC KBC1126 as embedded controller.</p>
 <p>SMSC KBC1126 (and older similar chips like KBC1098) has been used in
@@ -160,7 +162,7 @@ HP EliteBooks for many generations.  BIOS and EC firmware share an SPI
 flash chip in these laptops, so we need to put firmware blobs for the
 EC to the coreboot image.</p>
 <section id="ec-firmware-extraction-and-coreboot-building">
-<h2>EC firmware extraction and coreboot building<a class="headerlink" href="#ec-firmware-extraction-and-coreboot-building" title="Link to this heading"></a></h2>
+<h2>EC firmware extraction and coreboot building<a class="headerlink" href="#ec-firmware-extraction-and-coreboot-building" title="Permalink to this heading"></a></h2>
 <p>The following document takes EliteBook 2760p as an example.</p>
 <p>First, you need to extract the blobs needed by EC firmware using util/kbc1126.
 You can extract them from your backup firmware image, or firmware update
@@ -181,7 +183,7 @@ mv<span class="w"> </span>68SOU.BIN.fw2<span class="w"> </span><span class="si">
 </div>
 </section>
 <section id="porting-guide-for-hp-laptops-with-kbc1126">
-<h2>Porting guide for HP laptops with KBC1126<a class="headerlink" href="#porting-guide-for-hp-laptops-with-kbc1126" title="Link to this heading"></a></h2>
+<h2>Porting guide for HP laptops with KBC1126<a class="headerlink" href="#porting-guide-for-hp-laptops-with-kbc1126" title="Permalink to this heading"></a></h2>
 <p>To port coreboot to an HP laptop with KBC1126, you need to do the
 following:</p>
 <ul class="simple">

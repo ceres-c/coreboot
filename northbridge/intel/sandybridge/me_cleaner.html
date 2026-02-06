@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ME Cleaner &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>ME Cleaner &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -114,7 +116,7 @@
            <div itemprop="articleBody">
              
   <section id="me-cleaner">
-<h1>ME Cleaner<a class="headerlink" href="#me-cleaner" title="Link to this heading"></a></h1>
+<h1>ME Cleaner<a class="headerlink" href="#me-cleaner" title="Permalink to this heading"></a></h1>
 <p>It’s possible to ‘clean’ the ME partition within the flash medium as part
 of the build process. While cleaning as much code as possible is removed
 from the ME firmware partition. In this state the ME errors out and doesn’t
@@ -122,7 +124,7 @@ operate any more.</p>
 <p><strong>Using a ‘cleaned’ ME partition may lead to issues and its use should be
 carefully evaluated.</strong></p>
 <section id="observations-with-cleaned-me">
-<h2>Observations with ‘cleaned’ ME<a class="headerlink" href="#observations-with-cleaned-me" title="Link to this heading"></a></h2>
+<h2>Observations with ‘cleaned’ ME<a class="headerlink" href="#observations-with-cleaned-me" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Instable LPC bus</p>
 <ul>
@@ -134,12 +136,12 @@ carefully evaluated.</strong></p>
 </ul>
 </section>
 <section id="filing-bug-reports">
-<h2>Filing bug reports<a class="headerlink" href="#filing-bug-reports" title="Link to this heading"></a></h2>
+<h2>Filing bug reports<a class="headerlink" href="#filing-bug-reports" title="Permalink to this heading"></a></h2>
 <p>Always test with unmodified IFD and ME section before reporting bugs to the
 coreboot project.</p>
 </section>
 <section id="tutorial-reducing-the-intel-me-firmware-size">
-<h2>Tutorial reducing the Intel ME firmware size<a class="headerlink" href="#tutorial-reducing-the-intel-me-firmware-size" title="Link to this heading"></a></h2>
+<h2>Tutorial reducing the Intel ME firmware size<a class="headerlink" href="#tutorial-reducing-the-intel-me-firmware-size" title="Permalink to this heading"></a></h2>
 <p>By default the cleaned ME firmware will still occupy the same space in
 the firmware image. It’s possible to change the firmware partition layout
 and reclaim the space for the use by coreboot.
@@ -148,11 +150,11 @@ less than 128 KiB of space in the ROM, which leaves the remaining for the
 <code class="docutils literal notranslate"><span class="pre">bios</span></code> region.</p>
 <p>This tutorial will guide you through the steps necessary.</p>
 <section id="obtain-a-full-rom">
-<h3>1. Obtain a full ROM<a class="headerlink" href="#obtain-a-full-rom" title="Link to this heading"></a></h3>
+<h3>1. Obtain a full ROM<a class="headerlink" href="#obtain-a-full-rom" title="Permalink to this heading"></a></h3>
 <p>You need a full and working ROM with a full Intel ME firmware.</p>
 </section>
 <section id="running-me-cleaner">
-<h3>2. Running me_cleaner<a class="headerlink" href="#running-me-cleaner" title="Link to this heading"></a></h3>
+<h3>2. Running me_cleaner<a class="headerlink" href="#running-me-cleaner" title="Permalink to this heading"></a></h3>
 <p>You need to run the <em>me_cleaner</em> on a full ROM, here called <code class="docutils literal notranslate"><span class="pre">fulldump.rom</span></code>:
 The full ROM contains:</p>
 <ul class="simple">
@@ -176,7 +178,7 @@ build-process, but that doesn’t rework the flash layout, it only removes
 files from ME and sets the <em>AltMeDisable</em>-bit.</p>
 </section>
 <section id="build-coreboot">
-<h3>3. Build coreboot<a class="headerlink" href="#build-coreboot" title="Link to this heading"></a></h3>
+<h3>3. Build coreboot<a class="headerlink" href="#build-coreboot" title="Permalink to this heading"></a></h3>
 <ol class="simple">
 <li><p>Now include the two new files from the previous step into coreboot’s
 build system.</p></li>
@@ -192,7 +194,7 @@ you have already run it</p></li>
 </ol>
 </section>
 <section id="flashing-the-rom">
-<h3>4. Flashing the ROM<a class="headerlink" href="#flashing-the-rom" title="Link to this heading"></a></h3>
+<h3>4. Flashing the ROM<a class="headerlink" href="#flashing-the-rom" title="Permalink to this heading"></a></h3>
 <p>As you have modified the layout you need to write the <strong>full ROM</strong> to flash
 using an <a class="reference internal" href="../../../tutorial/flashing_firmware/index.html"><span class="doc">external programmer</span></a>.
 Make sure to include all partitions into the ROM:</p>

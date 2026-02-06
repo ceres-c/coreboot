@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beaglebone Black &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Beaglebone Black &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -149,13 +151,13 @@
            <div itemprop="articleBody">
              
   <section id="beaglebone-black">
-<h1>Beaglebone Black<a class="headerlink" href="#beaglebone-black" title="Link to this heading"></a></h1>
+<h1>Beaglebone Black<a class="headerlink" href="#beaglebone-black" title="Permalink to this heading"></a></h1>
 <p>This page gives some details about the <a class="reference external" href="https://beagleboard.org/black">BeagleBone Black</a> coreboot port and
 describes how to build and run it.</p>
 <p>The port currently only supports booting coreboot from a micro SD card and has
 some other limitations listed below.</p>
 <section id="supported-boards">
-<h2>Supported Boards<a class="headerlink" href="#supported-boards" title="Link to this heading"></a></h2>
+<h2>Supported Boards<a class="headerlink" href="#supported-boards" title="Permalink to this heading"></a></h2>
 <p>The Beaglebone port supports the following boards:</p>
 <ul class="simple">
 <li><p>Beaglebone Black</p></li>
@@ -166,7 +168,7 @@ some other limitations listed below.</p>
 </ul>
 </section>
 <section id="use-cases">
-<h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this heading"></a></h2>
 <p>This port was primarily developed as a learning exercise and there is
 potentially little reason to use it compared to the defacto bootloader choice of
 U-Boot. However, it does have some interesting practical use cases compared to
@@ -189,7 +191,7 @@ use it as a reference platform.</p></li>
 </ol>
 </section>
 <section id="quickstart">
-<h2>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading"></a></h2>
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this heading"></a></h2>
 <ol class="simple">
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">menuconfig</span></code> and select <em>TI</em>/<em>Beaglebone</em> in the <em>Mainboard</em> menu.</p></li>
 <li><p>Add a payload as normal.</p></li>
@@ -205,7 +207,7 @@ jack - the boot order doesn’t change on reset) to prioritize SD in the boot
 order.</p>
 </section>
 <section id="serial-console">
-<h2>Serial Console<a class="headerlink" href="#serial-console" title="Link to this heading"></a></h2>
+<h2>Serial Console<a class="headerlink" href="#serial-console" title="Permalink to this heading"></a></h2>
 <p>By default, coreboot uses UART0 as the serial console. UART0 is available
 through the J1 header on both the Beaglebone Black and Beaglebone Black
 Wireless. The serial runs at 3.3V and 115200 8n1.</p>
@@ -225,7 +227,7 @@ Wireless. The serial runs at 3.3V and 115200 8n1.</p>
 </div>
 </section>
 <section id="boot-process">
-<h2>Boot Process<a class="headerlink" href="#boot-process" title="Link to this heading"></a></h2>
+<h2>Boot Process<a class="headerlink" href="#boot-process" title="Permalink to this heading"></a></h2>
 <p>The AM335x contains ROM code to allow booting in a number of different
 configurations. More information about the boot ROM code can be found in the
 AM335x technical reference manual (<em>SPRUH73Q</em>) in the <em>Initialization</em> section.</p>
@@ -239,7 +241,7 @@ All stages directly read from the SD card in order to load the next stage in
 sequence.</p>
 </section>
 <section id="clock-initialization-and-pmic">
-<h2>Clock Initialization and PMIC<a class="headerlink" href="#clock-initialization-and-pmic" title="Link to this heading"></a></h2>
+<h2>Clock Initialization and PMIC<a class="headerlink" href="#clock-initialization-and-pmic" title="Permalink to this heading"></a></h2>
 <p>To simplify the port, the TPS65217C Power Management IC (PMIC) on the Beaglebone
 Black is not configured by coreboot. By default, the PMIC reset values for
 VDD_MPU (1.1V) and VDD_CORE (1.8V) are within the Operating Performance Point
@@ -270,7 +272,7 @@ ROM.</p>
 </section>
 </section>
 <section id="todo">
-<h1>Todo<a class="headerlink" href="#todo" title="Link to this heading"></a></h1>
+<h1>Todo<a class="headerlink" href="#todo" title="Permalink to this heading"></a></h1>
 <ul class="simple">
 <li><p>Allow coreboot to run from the Beaglebone Black’s internal eMMC. This would
 require updating the <code class="docutils literal notranslate"><span class="pre">mmc.c</span></code> driver to support running from both SD and eMMC.</p></li>

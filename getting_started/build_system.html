@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The coreboot build system &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>The coreboot build system &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +35,9 @@
           <a href="../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -122,10 +124,10 @@
            <div itemprop="articleBody">
              
   <section id="the-coreboot-build-system">
-<h1>The coreboot build system<a class="headerlink" href="#the-coreboot-build-system" title="Link to this heading"></a></h1>
+<h1>The coreboot build system<a class="headerlink" href="#the-coreboot-build-system" title="Permalink to this heading"></a></h1>
 <p>(this document is still incomplete and will be filled in over time)</p>
 <section id="general-operation">
-<h2>General operation<a class="headerlink" href="#general-operation" title="Link to this heading"></a></h2>
+<h2>General operation<a class="headerlink" href="#general-operation" title="Permalink to this heading"></a></h2>
 <p>The coreboot build system is based on GNU make but extends it significantly
 to the point of providing its own custom language.
 The overhead of learning this new syntax is (hopefully) offset by its lower
@@ -148,12 +150,12 @@ with a <code class="docutils literal notranslate"><span class="pre">CONFIG_</spa
 <code class="docutils literal notranslate"><span class="pre">class</span></code> depending on the choice for <code class="docutils literal notranslate"><span class="pre">FOO</span></code>.</p>
 </section>
 <section id="classes">
-<h2>classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
+<h2>classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
 <p>Classes can be defined as required. <code class="docutils literal notranslate"><span class="pre">subdirs</span></code> is handled internally since
 it’s parsed per subdirectory to add further directories to the rule set.</p>
 <p>TODO: explain how to create new classes and how to evaluate them.</p>
 <section id="subdirs">
-<h3>subdirs<a class="headerlink" href="#subdirs" title="Link to this heading"></a></h3>
+<h3>subdirs<a class="headerlink" href="#subdirs" title="Permalink to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">subdirs</span></code> contains subdirectories (relative to the current directory) that
 should also be handled by the build system. The build system expects these
 directories to contain a file called <code class="docutils literal notranslate"><span class="pre">Makefile.mk</span></code>.</p>
@@ -162,7 +164,7 @@ resides but later, after the current directory is handled (and potentially
 others, too).</p>
 </section>
 <section id="cbfs-files">
-<h3>cbfs-files<a class="headerlink" href="#cbfs-files" title="Link to this heading"></a></h3>
+<h3>cbfs-files<a class="headerlink" href="#cbfs-files" title="Permalink to this heading"></a></h3>
 <p>This class is used to add files to the final CBFS image. Since several more
 options need to be maintained than can comfortably fit in that single
 variable, additional variables are used.</p>
@@ -182,7 +184,7 @@ supported options are:</p>
 <p><code class="docutils literal notranslate"><span class="pre">position</span></code> and <code class="docutils literal notranslate"><span class="pre">align</span></code> are mutually exclusive.</p>
 </section>
 <section id="adding-makefile-fragments">
-<h3>Adding Makefile fragments<a class="headerlink" href="#adding-makefile-fragments" title="Link to this heading"></a></h3>
+<h3>Adding Makefile fragments<a class="headerlink" href="#adding-makefile-fragments" title="Permalink to this heading"></a></h3>
 <p>You can use the <code class="docutils literal notranslate"><span class="pre">add_intermediate</span></code> helper to add new post-processing steps for
 the final <code class="docutils literal notranslate"><span class="pre">coreboot.rom</span></code> image. For example you can add new files to CBFS by
 adding something like this to <code class="docutils literal notranslate"><span class="pre">site-local/Makefile.mk</span></code></p>
@@ -193,7 +195,7 @@ adding something like this to <code class="docutils literal notranslate"><span c
 <p>Note that the second line must start with a tab, not spaces.</p>
 <p>See also <a class="reference internal" href="../tutorial/managing_local_additions.html"><span class="doc">Managing local additions</span></a>.</p>
 <section id="fmap-region-support">
-<h4>FMAP region support<a class="headerlink" href="#fmap-region-support" title="Link to this heading"></a></h4>
+<h4>FMAP region support<a class="headerlink" href="#fmap-region-support" title="Permalink to this heading"></a></h4>
 <p>With the addition of FMAP flash partitioning support to coreboot, there was a
 need to extend the specification of files to provide more precise control
 which regions should contain which files, and even change some flags based on

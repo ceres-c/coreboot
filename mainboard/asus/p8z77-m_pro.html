@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ASUS P8Z77-M PRO &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>ASUS P8Z77-M PRO &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -163,10 +165,10 @@
            <div itemprop="articleBody">
              
   <section id="asus-p8z77-m-pro">
-<h1>ASUS P8Z77-M PRO<a class="headerlink" href="#asus-p8z77-m-pro" title="Link to this heading"></a></h1>
+<h1>ASUS P8Z77-M PRO<a class="headerlink" href="#asus-p8z77-m-pro" title="Permalink to this heading"></a></h1>
 <p>This page describes how to run coreboot on the <a class="reference external" href="https://www.asus.com/Motherboards/P8Z77M_PRO/">ASUS P8Z77-M PRO</a></p>
 <section id="flashing-coreboot">
-<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Type</p></th>
@@ -200,7 +202,7 @@
 <p>The flash IC is located right next to one of the SATA ports:
 <img alt="../../_images/p8z77-m_pro.jpg" src="../../_images/p8z77-m_pro.jpg" /></p>
 <section id="internal-programming">
-<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Link to this heading"></a></h3>
+<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Permalink to this heading"></a></h3>
 <p>The main SPI flash cannot be written because Asus disables BIOSWE and
 enables BLE/SMM_BWP flags in BIOS_CNTL for their latest bioses.
 An external programmer is required. You must flash standalone,
@@ -209,7 +211,7 @@ easy to remove and reflash.</p>
 </section>
 </section>
 <section id="working">
-<h2>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h2>
+<h2>Working<a class="headerlink" href="#working" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>PS/2 keyboard with SeaBIOS &amp; edk2 (in Mint 18.3/19.1)</p></li>
 <li><p>Rear/front headphones connector audio &amp; mic</p></li>
@@ -237,7 +239,7 @@ port 4        port 6         port 2             port 7</p></li>
 </ul>
 </section>
 <section id="known-issues">
-<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>The rear’s USB3s on bottom (closest to the PCB) have problems booting or
 being used before the OS loads. For better compatibility, please use
@@ -256,7 +258,7 @@ HKLM\SYSTEM\CurrentControlSet\Services\i8042prt-&gt;Start from ‘3’ to ‘1�
 </ul>
 </section>
 <section id="untested">
-<h2>Untested<a class="headerlink" href="#untested" title="Link to this heading"></a></h2>
+<h2>Untested<a class="headerlink" href="#untested" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>EHCI debugging</p></li>
 <li><p>S/PDIF audio</p></li>
@@ -265,7 +267,7 @@ HKLM\SYSTEM\CurrentControlSet\Services\i8042prt-&gt;Start from ‘3’ to ‘1�
 </ul>
 </section>
 <section id="not-working">
-<h2>Not working<a class="headerlink" href="#not-working" title="Link to this heading"></a></h2>
+<h2>Not working<a class="headerlink" href="#not-working" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>PS/2 keyboard in Win10 using edk2 (please see [Known issues])</p></li>
 <li><p>PS/2 mouse using edk2</p></li>
@@ -273,7 +275,7 @@ HKLM\SYSTEM\CurrentControlSet\Services\i8042prt-&gt;Start from ‘3’ to ‘1�
 </ul>
 </section>
 <section id="native-raminit-compatibility">
-<h2>Native raminit compatibility<a class="headerlink" href="#native-raminit-compatibility" title="Link to this heading"></a></h2>
+<h2>Native raminit compatibility<a class="headerlink" href="#native-raminit-compatibility" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>GSkill F3-2133C10D-16GAB(XMP,1.60v) 2x8GB kit works at 1333Mhz instead
 of XMP 2133Mhz</p></li>
@@ -288,7 +290,7 @@ works perfectly at full speed (1333Mhz)</p></li>
 </ul>
 </section>
 <section id="mrc-memory-compatibility">
-<h2>MRC memory compatibility<a class="headerlink" href="#mrc-memory-compatibility" title="Link to this heading"></a></h2>
+<h2>MRC memory compatibility<a class="headerlink" href="#mrc-memory-compatibility" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>GSkill F3-2133C10D-16GAB(XMP,1.60v) 2x8GB kit works at 1333Mhz
 instead of XMP 2133Mhz</p></li>
@@ -303,7 +305,7 @@ works perfectly at full speed (1333Mhz)</p></li>
 </ul>
 </section>
 <section id="technology">
-<h2>Technology<a class="headerlink" href="#technology" title="Link to this heading"></a></h2>
+<h2>Technology<a class="headerlink" href="#technology" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Northbridge</p></td>
@@ -328,7 +330,7 @@ works perfectly at full speed (1333Mhz)</p></li>
 </table>
 </section>
 <section id="extra-resources">
-<h2>Extra resources<a class="headerlink" href="#extra-resources" title="Link to this heading"></a></h2>
+<h2>Extra resources<a class="headerlink" href="#extra-resources" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://www.winbond.com/resource-files/w25q64fv%20revs%2007182017.pdf">Flash chip datasheet</a></li>

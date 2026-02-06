@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Protectli Vault VP46xx series &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Protectli Vault VP46xx series &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -151,12 +153,12 @@
            <div itemprop="articleBody">
              
   <section id="protectli-vault-vp46xx-series">
-<h1>Protectli Vault VP46xx series<a class="headerlink" href="#protectli-vault-vp46xx-series" title="Link to this heading"></a></h1>
+<h1>Protectli Vault VP46xx series<a class="headerlink" href="#protectli-vault-vp46xx-series" title="Permalink to this heading"></a></h1>
 <p>This page describes how to run coreboot on the <a class="reference external" href="https://protectli.com/vault-6-port/">Protectli VP46xx</a>.</p>
 <p><img alt="../../_images/vp46xx_front.jpg" src="../../_images/vp46xx_front.jpg" />
 <img alt="../../_images/vp46xx_back.jpg" src="../../_images/vp46xx_back.jpg" /></p>
 <section id="required-proprietary-blobs">
-<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Link to this heading"></a></h2>
+<h2>Required proprietary blobs<a class="headerlink" href="#required-proprietary-blobs" title="Permalink to this heading"></a></h2>
 <p>To build a minimal working coreboot image some blobs are required (assuming
 only the BIOS region is being modified).</p>
 <table class="docutils align-default">
@@ -187,15 +189,15 @@ succeed on memory initialization.</p>
 system from the <code class="docutils literal notranslate"><span class="pre">3rdparty/intel-microcode</span></code> submodule.</p>
 </section>
 <section id="flashing-coreboot">
-<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Link to this heading"></a></h2>
+<h2>Flashing coreboot<a class="headerlink" href="#flashing-coreboot" title="Permalink to this heading"></a></h2>
 <section id="internal-programming">
-<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Link to this heading"></a></h3>
+<h3>Internal programming<a class="headerlink" href="#internal-programming" title="Permalink to this heading"></a></h3>
 <p>The main SPI flash can be accessed using <a class="reference external" href="https://flashrom.org/Flashrom">flashrom</a>. The first version
 supporting the chipset is flashrom v1.2. Firmware an be easily flashed
 with internal programmer (either BIOS region or full image).</p>
 </section>
 <section id="external-programming">
-<h3>External programming<a class="headerlink" href="#external-programming" title="Link to this heading"></a></h3>
+<h3>External programming<a class="headerlink" href="#external-programming" title="Permalink to this heading"></a></h3>
 <p>The system has an internal flash chip which is a 16 MiB socketed SOIC-8 chip.
 This chip is located on the top side of the case (the lid side). One has to
 remove 4 top cover screws and lift up the lid. The flash chip is near the M.2
@@ -206,7 +208,7 @@ MX25L12835F - <a class="reference external" href="https://www.mxic.com.tw/Lists/
 </section>
 </section>
 <section id="known-issues">
-<h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>After flashing with external programmer it is always required to reset RTC
 with a jumper or disconnect the coin cell temporarily. Only then the platform
@@ -214,7 +216,7 @@ will boot after flashing.</p></li>
 </ul>
 </section>
 <section id="working">
-<h2>Working<a class="headerlink" href="#working" title="Link to this heading"></a></h2>
+<h2>Working<a class="headerlink" href="#working" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>USB 3.0 front ports (SeaBIOS, Tianocore UEFIPayload and Linux)</p></li>
 <li><p>6 Ethernet ports</p></li>
@@ -237,7 +239,7 @@ UART adapter present on board)</p></li>
 </ul>
 </section>
 <section id="variants">
-<h2>Variants<a class="headerlink" href="#variants" title="Link to this heading"></a></h2>
+<h2>Variants<a class="headerlink" href="#variants" title="Permalink to this heading"></a></h2>
 <p>There are 3 variants of VP46xx boards: VP4630, VP4650 and VP4670. They differ
 only in used SoC and some units may come with different Super I/O chips, either
 ITE IT8786E or IT8784E, but the configuration is the same on this platform.</p>
@@ -300,7 +302,7 @@ ITE IT8786E or IT8784E, but the configuration is the same on this platform.</p>
 </table>
 </section>
 <section id="useful-links">
-<h2>Useful links<a class="headerlink" href="#useful-links" title="Link to this heading"></a></h2>
+<h2>Useful links<a class="headerlink" href="#useful-links" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://protectli.com/kb/vp4600-hardware-overview/">VP4600 Hardware Overview</a></li>

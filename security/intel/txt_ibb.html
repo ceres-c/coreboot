@@ -1,23 +1,22 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Intel TXT Initial Boot Block &mdash; coreboot 24.02.01-57-g80fd22699e
- documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=f9a4a06c" />
-
+  <title>Intel TXT Initial Boot Block &mdash; coreboot unknown documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=36d40e99"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             coreboot
           </a>
+              <div class="version">
+                unknown
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -119,10 +121,10 @@
            <div itemprop="articleBody">
              
   <section id="intel-txt-initial-boot-block">
-<h1>Intel TXT Initial Boot Block<a class="headerlink" href="#intel-txt-initial-boot-block" title="Link to this heading"></a></h1>
+<h1>Intel TXT Initial Boot Block<a class="headerlink" href="#intel-txt-initial-boot-block" title="Permalink to this heading"></a></h1>
 <p>The Initial Boot Block (IBB) consists out of one or more files in the CBFS.</p>
 <section id="constraints">
-<h2>Constraints<a class="headerlink" href="#constraints" title="Link to this heading"></a></h2>
+<h2>Constraints<a class="headerlink" href="#constraints" title="Permalink to this heading"></a></h2>
 <p>The IBB must follow the following constrains:</p>
 <ul class="simple">
 <li><p>One IBB must contain the reset vector as well as the [FIT table].</p></li>
@@ -141,20 +143,20 @@ that can train the main system memory and is able to clear all secrets.</p></li>
 </ul>
 </section>
 <section id="identification">
-<h2>Identification<a class="headerlink" href="#identification" title="Link to this heading"></a></h2>
+<h2>Identification<a class="headerlink" href="#identification" title="Permalink to this heading"></a></h2>
 <p>To add the IBBs to the <a class="reference internal" href="../../soc/intel/fit.html"><span class="doc">FIT</span></a>, all CBFS files are added using the <code class="docutils literal notranslate"><span class="pre">cbfstool</span></code>
 with the <code class="docutils literal notranslate"><span class="pre">--ibb</span></code> flag set.
 The flags sets the CBFS file attribute tag to LE <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">IBB'</span></code>.</p>
 <p>The make system in turn adds all those files to the <a class="reference internal" href="../../soc/intel/fit.html"><span class="doc">FIT</span></a> as type 7.</p>
 </section>
 <section id="intel-txt-measurements">
-<h2>Intel TXT measurements<a class="headerlink" href="#intel-txt-measurements" title="Link to this heading"></a></h2>
+<h2>Intel TXT measurements<a class="headerlink" href="#intel-txt-measurements" title="Permalink to this heading"></a></h2>
 <p>Each IBB is measured and extended into PCR0 by <a class="reference internal" href="txt.html"><span class="doc">Intel TXT</span></a>, before the CPU
 reset vector is executed.
 The IBBs are measured in the order they are listed in the <a class="reference internal" href="../../soc/intel/fit.html"><span class="doc">FIT</span></a>.</p>
 </section>
 <section id="fit-schematic">
-<h2>FIT schematic<a class="headerlink" href="#fit-schematic" title="Link to this heading"></a></h2>
+<h2>FIT schematic<a class="headerlink" href="#fit-schematic" title="Permalink to this heading"></a></h2>
 <p><img alt="../../_images/fit_ibb.svg" src="../../_images/fit_ibb.svg" /></p>
 </section>
 </section>
